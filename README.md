@@ -22,7 +22,7 @@ When we are at it, after a quick look at Python.
     - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Objective-C, Java, JavaScript, Kotlin, Swift
     - Isomorphic mapping of all C++ functionality to Cin possible
         - only with other/better/shorter "expression".
-    - C++ Successor Language
+    - C++ "Successor Language"
         - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),
             -  [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) seems to be a fully backwards compatible syntax, so it's a bit different.
         - Similar to
