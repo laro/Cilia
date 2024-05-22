@@ -86,7 +86,7 @@ When we are at it, after a quick look at Python.
     - Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
 
 - Namespaces fully lowercase 
-    - Standard namespace `cone`
+    - Standard namespace `cin`
     - I am not sure about this, I don't think it's important. But this helps to differentiate between classes and namespaces.
 
 
