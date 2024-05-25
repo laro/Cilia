@@ -30,7 +30,7 @@ When we are at it, after a quick look at Python.
     - Uses the same compiler backend as C++ (clang, gcc, …)
         - with an own / a new compiler frontend (or a precompiler).
     - So _no_ garbage collection,  
-      instead you use
+      instead in C++/Cilia you use
         - **RAII** (Resource Acquisition is Initialization)
             - **RROD** (Resource Release on Object Destruction)
         - `SharedPtr<T>` / `T^` etc.
