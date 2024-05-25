@@ -1,23 +1,24 @@
-# Cin
+# Cilia
 **C++ with CamelCase Style**  
 I'd like to have the standard library / STL roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), and (a variant of) Qt with the standard library / STL classes as base (and with exceptions, and with namespaces instead of the prefix "Q").
   
 **C++ with Simplified Syntax**  
 Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed.
-Cin can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
+Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
 
 **C++ without Semicolons**  
 When we are at it, after a quick look at Python. 
 
 
 ## Introduction
-- **Cin**,  
-  as in "cinema" or "sin"
+- **Cilia**,  
+    - Plural form of cilium
+    - Similar to "C" and "Julia" (so maybe I should add some more of Julias features)
     - The names [D](https://dlang.org/), [C2](http://c2lang.org/), [Cone](https://cone.jondgoodwin.com/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken `¯\_(ツ)_/¯`.
 - "Improved" C++
     - with a **simplified** syntax,
     - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Objective-C, Java, JavaScript, Kotlin, Swift
-    - Isomorphic mapping of all C++ functionality to Cin possible
+    - Isomorphic mapping of all C++ functionality to Cilia possible
         - only with other/better/shorter "expression".
     - C++ "Successor Language"
         - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),
@@ -42,11 +43,11 @@ When we are at it, after a quick look at Python.
         - C#: C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby …
         - Objective-C: Swift
     - Possible to include
-        - C++ headers and modules from Cin
-        - Cin headers and modules from C++
+        - C++ headers and modules from Cilia
+        - Cilia headers and modules from C++
     - Language is recognised by
         - the file extension
-            - Cin: `*.cin` `*.hin`
+            - Cilia: `*.cilia` `*.hilia` &nbsp; `*.cl` `*.hl`
             - C++: `*.cpp` `*.hpp` &nbsp; `*.cxx` `*.hxx` &nbsp; `*.h`
                 - `*.h` is of course a problem, as the header could be C or C++ code.
                 - So use of `*.hpp` is recommended for C++ code.
@@ -61,8 +62,8 @@ When we are at it, after a quick look at Python.
 ## Style
 - All types and **classes in upper CamelCase** (even the standard/STL classes).
     - Style similar to Kotlin, Swift
-    - Cin standard library (`cin::` instead of `std::`)
-        - `cin::String` instead of `std::string`
+    - Cilia standard library (`cilia::` instead of `std::`)
+        - `cilia::String` instead of `std::string`
         - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
     - Arithmetic types
         - `Bool`
@@ -83,7 +84,7 @@ When we are at it, after a quick look at Python.
     - Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
 
 - Namespaces fully lowercase 
-    - Standard namespace `cin`
+    - Standard namespace `cilia`
     - I am not sure about this, I don't think it's important. But this helps to differentiate between classes and namespaces.
 
 
@@ -98,14 +99,14 @@ When we are at it, after a quick look at Python.
         - like `int32_t` or `qint32`, but no prefix "q" nor postfix "_t", and in CamelCase 
     - `UInt8`, `UInt16`, `UInt32`, `UInt64`, maybe `UInt128`, `UInt256`
         - e.g. `UInt256` for SHA256
-    - `cin::safe::Int`
-        - Like `cin::Int`, but with **overflow check** for all operations,
+    - `cilia::safe::Int`
+        - Like `cilia::Int`, but with **overflow check** for all operations,
             - may throw OverflowException.
         - `safe::Int8`/`Int16`/`Int32`/`Int64`
         - `safe::Uint`
             - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
-    - `cin::saturating::Int`
-        - Like `cin::Int`, but with **saturation** for all operations.
+    - `cilia::saturating::Int`
+        - Like `cilia::Int`, but with **saturation** for all operations.
             - Limit to maximum, no wrap around.
             - Typically using SIMD (as those „media/DSP instructions“ do support saturation natively).
         - see https://en.wikipedia.org/wiki/Saturation_arithmetic 
@@ -183,7 +184,7 @@ When we are at it, after a quick look at Python.
 
 
 ## String, Char & CodePoint
-- `cin::String` with
+- `cilia::String` with
     - _basic/standard_ unicode support.
         - Iteration over a `String` or `StringView` by:
             - **grapheme clusters**
@@ -246,7 +247,7 @@ When we are at it, after a quick look at Python.
             - Date/Number/Message formatting and parsing of culture specific input/output formats
             - Calendar specific date and time manipulation
             - Text boundary analysis for finding characters, word and sentence boundaries"
-        - `import icu` adds extension methods for `cin::String`
+        - `import icu` adds extension methods for `cilia::String`
             - Allows iteration over:
                 - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
                     - `for word in text.asWords()`
@@ -298,10 +299,10 @@ When we are at it, after a quick look at Python.
         - ~~You may use `wchar_t` then.~~
 
 
-## Namespace `cin`
-Cin standard library in namespace `cin` (instead of `std`).
-- With Cin version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
-    - `cin::String` instead of `std::string`
+## Namespace `cilia`
+Cilia standard library in namespace `cilia` (instead of `std`).
+- With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
+    - `cilia::String` instead of `std::string`
     - `Map` instead of `map`
         - `Dictionary` as typedef with deprecation warning, as a hint for C# programmers.
     - `ForwardList` instead of `forward_list`
@@ -313,7 +314,7 @@ Cin standard library in namespace `cin` (instead of `std`).
             - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, …
         - `Multimap` or `MultiMap` instead of `multimap`?
 - Shallow wrapper,
-    - e.g. `cin::String : protected std::string`
+    - e.g. `cilia::String : protected std::string`
 - "**Alias**" for 
     - member variables  
       `using x = data[0]`  
@@ -393,7 +394,7 @@ Const reference/value as default type for function call arguments and for "for-i
 
 ## Better Readable Keywords
 C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace).
-- Cin has
+- Cilia has
     - `var` instead of `auto`
     - `func` instead of `auto`
     - `for … in …` instead of `for (… : …)`
@@ -412,7 +413,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
                 - `anInt`**`and`**`anotherInt` -> `Int`
 - `Int32` instead of `int32_t` or `qint32`,
   - so no prefix "q" nor postfix "_t".
-- When translating C++ code to Cin then change conflicting names, e.g.
+- When translating C++ code to Cilia then change conflicting names, e.g.
     - `int var` -> `Int __variable_var`
     - `class func` -> `class __class_func`
     - `yield()` -> `func __function_yield()`
@@ -535,7 +536,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
       }
       ```
     - Multiple inheritance is problematic here:
-        - In Cin/C++, an object can be an instance of several base classes at once, whereby the pointer (typically) changes during casting.
+        - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (typically) changes during casting.
         - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
             - Workaround: Cast back with `Type(obj).functionOfA()`
         - ~~Therefore maybe better: `if obj is String str ...`~~
@@ -614,7 +615,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - `1.0d` is always `Float64`
 - `"Text"` is a `StringView`
     - Pointer to first character and pointer after the last character
-        - in C++/Cin tradition, but length would also work, of course
+        - in C++/Cilia tradition, but length would also work, of course
     - No null termination
         - If necessary
             - use `"Text\0“`  or
@@ -673,7 +674,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
 ## Short Smart Pointer Syntax 
 - `Type^ instance`
     - `T^` by default is `SharedPtr<T>`
-        - for C++/Cin,
+        - for C++/Cilia,
         - defined via type traits `default_circumflex_type`.
     - Possible to redefine for interoperability with other languages:
         - Objective-C/Swift: Use their reference counting mechanism
@@ -773,9 +774,9 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - arrayOfThreeIntegers.size() -> 3 (realised as extension function)
     - `Int[] arrayOfIntegers`
         - „Dynamic array“ – dynamic size
-        - Translated to `Array<T>` (normally `cin::Array<T>` will be used)
-        - `cin::Array<Int>`
-            - not called `cin::Vector<Int>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
+        - Translated to `Array<T>` (normally `cilia::Array<T>` will be used)
+        - `cilia::Array<Int>`
+            - not called `cilia::Vector<Int>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
             - (See Matrix & Vector, even if they are in other sub-namespaces.)
         - Problem: Confusing because so similar to fixed-size arrays?
         - Use `Int*` for C/C++ arrays of arbitrary size  
@@ -792,7 +793,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
           ```
     - `int[,,]`
         - Multidimensional dynamic array
-        - `cin::NArray<Int, 3>`
+        - `cilia::NArray<Int, 3>`
         - or `Int[*,*,*]`?
         - TODO Mixed forms?
             - `Int[3,*,*]` 
@@ -805,26 +806,26 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - Static/fixed size
         - For small, fixed size vectors & matrices ,
             - as typically used in geometry (i.e. 2D, 3D, 4D).
-        - `cin::geometry::Vector<T = Float, Int size>`
-            - `cin::geometry::Vector2<T = Float>`
-            - `cin::geometry::Vector3<T = Float>`
-            - `cin::geometry::Vector4<T = Float>`
-        - `cin::geometry::Matrix<T = Float, Int rows, Int columns>`
-            - `cin::geometry::Matrix22<T = Float>`
-            - `cin::geometry::Matrix33<T = Float>`
-            - `cin::geometry::Matrix44<T = Float>`
+        - `cilia::geometry::Vector<T = Float, Int size>`
+            - `cilia::geometry::Vector2<T = Float>`
+            - `cilia::geometry::Vector3<T = Float>`
+            - `cilia::geometry::Vector4<T = Float>`
+        - `cilia::geometry::Matrix<T = Float, Int rows, Int columns>`
+            - `cilia::geometry::Matrix22<T = Float>`
+            - `cilia::geometry::Matrix33<T = Float>`
+            - `cilia::geometry::Matrix44<T = Float>`
     - Numerics
         - Dynamic/variable size
         - For large, dynamically sized vectors & matrices,
             - as typically used in numerics.
-        - `cin::numerics::Vector<T = Float>`
-        - `cin::numerics::Matrix<T = Float>`
+        - `cilia::numerics::Vector<T = Float>`
+        - `cilia::numerics::Matrix<T = Float>`
             - stored column-major
-        - `cin::numerics::NArray<T = Float, Int dimensions>`
+        - `cilia::numerics::NArray<T = Float, Int dimensions>`
           
 - Image
-    - `cin::Image<T = Float>`
-    - Almost like `cin::Matrix`, but stored row-major.
+    - `cilia::Image<T = Float>`
+    - Almost like `cilia::Matrix`, but stored row-major.
       
 - Views, Slices
     - `ArrayView`
@@ -839,22 +840,22 @@ Variable declaration still simply as `Int i`, as in C/C++.
 - no single-pass as in C/C++
  
       
-## Versioning of the Cin source code
-- Via file ".cinVersion" ".cin_version" in a (project) directory,
+## Versioning of the Cilia source code
+- Via file ".ciliaVersion" ".cilia_version" in a (project) directory,
     - similar to ".clang_format",
-    - also possible file by file: Matrix.cinVersion (for Matrix.cin).
+    - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
 - Via file extension: 
-    - "*.cin" – always the latest language version (if not defined otherwise via ".cinVersion")
-    - "*.2024.cin" – Version from the year 2024
-    - "*.2024b.cin" – Second version from the year 2024
-    - ~~"*.cin2024" – Version from the year 2024~~
-    - ~~"*.cin2024b" – Second version from the year 2024~~
-    - ~~"*.cin_2024" – Version from the year 2024~~
-    - ~~"*.cin_2024b" – Second version from the year 2024~~
+    - "*.cilia" – always the latest language version (if not defined otherwise via ".ciliaVersion")
+    - "*.2024.cilia" – Version from the year 2024
+    - "*.2024b.cilia" – Second version from the year 2024
+    - ~~"*.cilia2024" – Version from the year 2024~~
+    - ~~"*.cilia2024b" – Second version from the year 2024~~
+    - ~~"*.cilia_2024" – Version from the year 2024~~
+    - ~~"*.cilia_2024b" – Second version from the year 2024~~
     - ~~"*.c1a"~~
     - ~~"*.c1b"~~
-    - ~~"*CinA"~~
-        - ~~"*.CinB"~~
+    - ~~"*CiliaA"~~
+        - ~~"*.CiliaB"~~
          
               
 ## Fix C++ "wrong defaults"
