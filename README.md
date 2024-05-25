@@ -12,7 +12,7 @@ When we are at it, after a quick look at Julia and Python.
 
 ## Introduction
 - **Cilia**  
-    - Similar to "C" and "Julia" (so maybe I should add some more of Julias features).
+    - Similar to [C](https://en.wikipedia.org/wiki/C_(programming_language)) and [Julia](https://julialang.org) (so maybe I should add some more of Julias features).
     - The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,
     - as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
 - "Improved" C++
