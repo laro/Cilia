@@ -1,4 +1,4 @@
-# Cilia (Programming Language)
+# Cilia (programming language)
 **C++ with CamelCase Style**  
 I'd like to have the standard library / STL roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), and (a variant of) Qt with the standard library / STL classes as base (and with exceptions, and with namespaces instead of the prefix "Q").
   
