@@ -377,7 +377,7 @@ Const reference/value as default type for function call arguments and for "for-i
         - `for Double d in [1, 2, 3] { … }`
             - `d` is `const Double`
         - `for String str in ["a", "b", "c"] { … }`
-            - `str` is `const String&`
+            - `str` is `const String&` (not `const StringView&`)
         - `for mutable String str in ["a", "b", "c"] { … }`
             - `str` is `String&`
         - `for value String str in ["a", "b", "c"] { … }`
