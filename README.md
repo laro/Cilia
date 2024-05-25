@@ -561,6 +561,9 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - as in Python,
     - as they are constants.  
     - ~~`true`, `false` are Bool~~
+- `Null` is the null pointer
+    - it is of the type `NullPtr` 
+    - explicit cast necessary to convert any pointer to Int
 - `123` is an integer literal of arbitrary precision
     - Can be converted to any integer type it fits into (signed and unsigned)
         - `Int8 a = 1`    // Works because `1` fits into `Int8`
@@ -590,7 +593,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
 - `0o123` is `UInt` in octal
     - as in Python
     - not `0123`, as that is confusing/unexpected, even if it is C++ standard
-- `Bool` vs. `Int`
+- `Int` vs. `Bool`
     - ~~`Int a = True`~~      // Error,
         - because `Bool` is _not_ an `Int`
         - because a `Bool` should not be accidentally interpreted as an `Int`
@@ -599,9 +602,6 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - because `Int` is not a `Bool`
         - because an `Int` should not be accidentally interpreted as a `Bool`
         - cast if necessary: `Bool a = Bool(1)` 
-- `Null` is the null pointer
-    - ~~or `NullPtr`?~~
-    - explicit cast necessary to convert any pointer to Int
 - `1.0` is a floating point literal of arbitrary precision
     - Can be converted to any float type into which it fits exactly
         - otherwise explicit cast necessary: `Float16(3.1415926)`
