@@ -260,7 +260,7 @@ When we are at it, after a quick look at Python.
         - `toUpper(Sting)` -> `String`
         - `toLower(Sting)` -> `String`
     - Sorting
-- `SingleByteString` to represent the classical strings consisting of one-byte characters,
+- `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
     - like
         - ASCII
         - Latin-1
