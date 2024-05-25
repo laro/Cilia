@@ -7,7 +7,7 @@ Many of C++'s shortcomings stem from the fact that it inherited from C or that b
 Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
 
 **C++ without Semicolons**  
-When we are at it, after a quick look at Python. 
+When we are at it, after a quick look at Julia and Python. 
 
 
 ## Introduction
