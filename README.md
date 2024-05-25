@@ -67,13 +67,13 @@ When we are at it, after a quick look at Julia and Python.
             - `Int8`, `Int16`, `Int32`, `Int64`
         - `UInt`
             - `UInt8`, `UInt16`, `UInt32`, `UInt64`
+        - `Byte` == `UInt8`
+        - `Char` == `Char8`, `Char16`, `Char32`~~, `CodePoint` == `UInt32`~~
         - `BigInt` (Arbitrary Precision Integer)
         - `Float`
             - `Float16`, `Float32`, `Float64` (Half, Single, Double Precision Floating Point)
             - `BFloat16` (Brain Floating Point)
             - `BigFloat` (Arbitrary Precision Float)
-        - `Byte` == `UInt8`
-        - `Char` == `Char8`, `Char16`, `Char32`~~, `CodePoint` == `UInt32`~~
 
 - **Functions in lower camelCase**
     - Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
