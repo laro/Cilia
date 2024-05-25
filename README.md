@@ -21,8 +21,8 @@ When we are at it, after a quick look at Julia and Python.
     - Isomorphic mapping of all C++ functionality to Cilia possible
         - only with other/better/shorter "expression".
     - C++ "Successor Language"
-        - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),
-            -  [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) seems to be a fully backwards compatible syntax, so it's a bit different.
+        - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),  
+          but [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) seems to be a fully backwards compatible syntax, so it's a bit different.
         - Similar to
             - C -> C++
             - Java -> Kotlin
