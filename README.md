@@ -217,7 +217,7 @@ When we are at it, after a quick look at Julia and Python.
                     - `Char`==`Char8`==`Byte`, `String`==`UTF8String`
                 - `Char16` with `UTF16String`
                 - `Char32` with `UTF32String`
-            - `for char8 in "abc 🥸👮🏻".asArray()`
+            - `for aChar8 in "abc 🥸👮🏻".asArray()`
                 - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
                 - same for
                     - `for codeUnit in "abc 🥸👮🏻"utf8.asArray()`
@@ -225,12 +225,12 @@ When we are at it, after a quick look at Julia and Python.
                     - ? `for codeUnit in "abc 🥸👮🏻".asCodeUnits()`
                     - ~~`for codeUnit in text.byCodeUnit()`?~~
                     - ~~`for codeUnit in text.byChar()`?~~
-            - `for char16 in "abc 🥸👮🏻"`**`utf16`**`.asArray()`
+            - `for aChar16 in "abc 🥸👮🏻"`**`utf16`**`.asArray()`
                 - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
-                - same for `for char16 in UTF16String("abc 🥸👮🏻").asArray()`
-            - `for char32 in "abc 🥸👮🏻"`**`utf32`**`.asArray()`
+                - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
+            - `for aChar32 in "abc 🥸👮🏻"`**`utf32`**`.asArray()`
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
-                - same for `for char32 in UTF32String("abc 🥸👮🏻").asArray()`
+                - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
     - `string.toUpper()`, `string.toLower()`
         - `toUpper(Sting)` -> `String`
         - `toLower(Sting)` -> `String`
@@ -247,21 +247,21 @@ When we are at it, after a quick look at Julia and Python.
         - or a subclass with known encoding has to be used (`ASCIIString`, `Latin1String`). 
     - `ASCIIString`, a string containing only ASCII characters.
         - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`==`Byte`
-            - `for char in "abc"ascii`
+            - `for aChar in "abc"ascii`
                 - 0x61, 0x62, 0x63
                 - 'a', 'b', 'c'
                 - Compilation error, if string literal contains non-ASCII characters.
-                - same for `for char in ASCIIString("abc")`
+                - same for `for aChar in ASCIIString("abc")`
                     - but Exception thrown, if string contains non-ASCII characters.
         - Implicitly convertable to `String`==`UTF8String`.
             - Very fast conversion, as all characters have the same binary representation.
     - `Latin1String`, a string containing only Latin-1 (ISO 8859-1) characters.
         - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`==`Byte`
-            - `for char in "äbc"latin1`
+            - `for aChar in "äbc"latin1`
                 - 0xe4, 0x62, 0x63
                 - 'ä', 'b', 'c'
                 - Compilation error, if string literal contains non-Latin-1 characters.
-                - same for `for char in ASCIIString("abc")`
+                - same for `for aChar in ASCIIString("abc")`
                     - but Exception thrown, if string contains non-Latin1 characters.
         - Explicitly convertable to `String`==`UTF8String`.
             - Not so fast conversion as with ASCIIString, as typically some characters need to be translated into two UTF-8 code units.
