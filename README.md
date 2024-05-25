@@ -266,8 +266,8 @@ When we are at it, after a quick look at Julia and Python.
         - Explicitly convertable to `String`==`UTF8String`.
             - Not so fast conversion as with ASCIIString, as typically some characters need to be translated into two UTF-8 code units.
 - `Char8`, `Char16`, `Char32`
-    - are like `UInt8`, `UInt16`, `UInt32`,
-    - but considered as _different_ types for parameter overloading.
+    - are considered as _different_ types for parameter overloading,
+    - but otherwise are like `UInt8`, `UInt16`, `UInt32`,
 - So no ~~`WideChar`~~
     - ~~Or is it useful for portable code (Linux `UInt32` <-> Windows `UInt16`)?~~
         - ~~You may use `wchar_t` then.~~
