@@ -45,9 +45,9 @@ When we are at it, after a quick look at Julia and Python.
         - the file extension
             - Cilia: `*.cl` `*.hl`  &nbsp;  ~~`*.cilia` `*.hilia`~~
             - C++: `*.cpp` `*.hpp` &nbsp; `*.cxx` `*.hxx` &nbsp; `*.h`
-                - `*.h` is of course a problem, as the header could be C or C++ code.
-                - So use of `*.hpp` is recommended for C++ code.
-                - This can probably best be solved using path based rules.
+                - `*.h` is of course a problem, as the header could be C or C++ code.  
+                  So use of `*.hpp` is recommended for C++ code.  
+                  This can probably best be solved using path based rules.
             - C: `*.c` `*.h`
         - path based rules
             - to handle C or C++ standard headers in certain directories 
