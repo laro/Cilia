@@ -154,7 +154,7 @@ When we are at it, after a quick look at Julia and Python.
 - Who needs more than 2GB of data in an "array", should please use a 64 bit platform.
 - For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
 - Then types `Size` and `SSize`/`PtrDiff` are not necessary anymore, so two types less.
-    - We simply use Int instead. Or `UInt` in rate cases.
+    - We simply use `Int` instead. Or `UInt` in rate cases.
 - Restricted rules for mixed integer arithmetic:
     - `Unsigned +-*/ Signed` is an error
         - you have to cast
