@@ -233,8 +233,8 @@ When we are at it, after a quick look at Julia and Python.
     - `string.toUpper()`, `string.toLower()`
         - `toUpper(Sting)` -> `String`
         - `toLower(Sting)` -> `String`
-      - `stringArray.sort()`
-      - `compare(stringA, stringB) -> Int`
+    - `stringArray.sort()`
+    - `compare(stringA, stringB) -> Int`
 - `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
     - like
         - ASCII
