@@ -180,84 +180,61 @@ When we are at it, after a quick look at Julia and Python.
 
 
 ## String, Char & CodePoint
-- `cilia::String` with
-    - _basic/standard_ unicode support.
-        - Iteration over a `String` or `StringView` by:
-            - **grapheme clusters**
-                - represented by `StringView`.
-                - This is the _default form of iteration_ over a `String` or `StringView`
-                - A grapheme cluster may consist of multiple code points.
-                - `for graphemeCluster in "abc 🥸👮🏻"`
-                    - "a", "b", "c", " ", "🥸", "👮🏻"
-                    - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
-                - A bit slow, as it has to find grapheme cluster boundaries.
-                - It is recommended to mostly use the standard functions for string manipulation anyway, you seldomly need grapheme-cluster-based iteration. But when you do, this probably is the correct way. 
-                - additional/alternative names?
-                    - `for graphemeCluster in text.asGraphemeClusters()`?
-                    - ~~`for graphemeCluster in text.byGraphemeCluster()`?~~
-            - **code points**
-                - represented by `UInt32`,
-                    - independent of the encoding (so, the same for UTF-8, UTF-16, and UTF-32 strings).
-                    - Called "auto decoding" in D.
-                    - ~~`CodePoint` == `UInt32`~~
-                        - ~~No distinct type for code points necessary, or would it be useful?~~
-                - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
-                    - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB 
-                - ~~`for codePoint in text.byCodePoint()`?~~
-                - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
-                - Fast with UTF-32, **but** even with UTF-32 not all grapheme clusters fit into a single code point,
-                    - so not:
-                        - emoji with modifier characters like skin tone or variation selector,
-                        - diacritical characters (äöü…, depending on the normal form chosen),
-                        - surely some more …
-                    - Often slower than UTF-8, simply due to its size (cache, memory bandwidth).
-            - **code units**
-                - represented by
-                    - `Char` for `String`
-                    -   `Char`==`Char8`==`Byte`, `String`==`UTF8String`
-                    - `Char16` with `UTF16String`
-                    - `Char32` with `UTF32String`
-                - `for char8 in "abc 🥸👮🏻".asArray()`
-                    - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
-                    - same for
-                        - `for codeUnit in "abc 🥸👮🏻"utf8.asArray()`
-                        - `for codeUnit in UTF8String("abc 🥸👮🏻").asArray()`
-                        - ? `for codeUnit in "abc 🥸👮🏻".asCodeUnits()`
-                        - ~~`for codeUnit in text.byCodeUnit()`?~~
-                        - ~~`for codeUnit in text.byChar()`?~~
-                - `for char16 in "abc 🥸👮🏻"`**`utf16`**`.asArray()`
-                    - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
-                    - same for `for char16 in UTF16String("abc 🥸👮🏻").asArray()`
-                - `for char32 in "abc 🥸👮🏻"`**`utf32`**`.asArray()`
-                    - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
-                    - same for `for char32 in UTF32String("abc 🥸👮🏻").asArray()`
-    - Advanced support based on [ICU](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode", "ICU4C").
-        - "The ICU libraries provide support for:
-            - The latest version of the Unicode standard
-            - Character set conversions with support for over 220 codepages
-            - Locale data for more than 300 locales
-            - Language sensitive text collation (sorting) and searching based on the Unicode Collation Algorithm (=ISO 14651)
-            - Regular expression matching and Unicode sets
-            - Transformations for normalization, upper/lowercase, script transliterations (50+ pairs)
-            - Resource bundles for storing and accessing localized information
-            - Date/Number/Message formatting and parsing of culture specific input/output formats
-            - Calendar specific date and time manipulation
-            - Text boundary analysis for finding characters, word and sentence boundaries"
-        - `import icu` adds extension methods for `cilia::String`
-            - Allows iteration over:
-                - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
-                    - `for word in text.asWords()`
-                    - ~~`for word in text.byWord()`~~
-                - lines
-                    - `for line in text.asLines()`
-                    - ~~`for line in text.byLine()`~~
-                - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
-                    - `for sentence in text.asSentences()`
-                    - ~~`for sentence in text.bySentence()`~~
+- `cilia::String` with _basic/standard_ unicode support.
+    - Iteration over a `String` or `StringView` by:
+        - **grapheme clusters**
+            - represented by `StringView`.
+            - This is the _default form of iteration_ over a `String` or `StringView`
+            - A grapheme cluster may consist of multiple code points.
+            - `for graphemeCluster in "abc 🥸👮🏻"`
+                - "a", "b", "c", " ", "🥸", "👮🏻"
+                - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
+            - A bit slow, as it has to find grapheme cluster boundaries.
+            - It is recommended to mostly use the standard functions for string manipulation anyway, you seldomly need grapheme-cluster-based iteration. But when you do, this probably is the correct way. 
+            - additional/alternative names?
+                - `for graphemeCluster in text.asGraphemeClusters()`?
+                - ~~`for graphemeCluster in text.byGraphemeCluster()`?~~
+        - **code points**
+            - represented by `UInt32`,
+                - independent of the encoding (so, the same for UTF-8, UTF-16, and UTF-32 strings).
+                - Called "auto decoding" in D.
+                - ~~`CodePoint` == `UInt32`~~
+                    - ~~No distinct type for code points necessary, or would it be useful?~~
+            - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
+                - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB 
+            - ~~`for codePoint in text.byCodePoint()`?~~
+            - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
+            - Fast with UTF-32, **but** even with UTF-32 not all grapheme clusters fit into a single code point,
+                - so not:
+                    - emoji with modifier characters like skin tone or variation selector,
+                    - diacritical characters (äöü…, depending on the normal form chosen),
+                    - surely some more …
+                - Often slower than UTF-8, simply due to its size (cache, memory bandwidth).
+        - **code units**
+            - represented by
+                - `Char` for `String`
+                -   `Char`==`Char8`==`Byte`, `String`==`UTF8String`
+                - `Char16` with `UTF16String`
+                - `Char32` with `UTF32String`
+            - `for char8 in "abc 🥸👮🏻".asArray()`
+                - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
+                - same for
+                    - `for codeUnit in "abc 🥸👮🏻"utf8.asArray()`
+                    - `for codeUnit in UTF8String("abc 🥸👮🏻").asArray()`
+                    - ? `for codeUnit in "abc 🥸👮🏻".asCodeUnits()`
+                    - ~~`for codeUnit in text.byCodeUnit()`?~~
+                    - ~~`for codeUnit in text.byChar()`?~~
+            - `for char16 in "abc 🥸👮🏻"`**`utf16`**`.asArray()`
+                - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
+                - same for `for char16 in UTF16String("abc 🥸👮🏻").asArray()`
+            - `for char32 in "abc 🥸👮🏻"`**`utf32`**`.asArray()`
+                - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
+                - same for `for char32 in UTF32String("abc 🥸👮🏻").asArray()`
     - `string.toUpper()`, `string.toLower()`
         - `toUpper(Sting)` -> `String`
         - `toLower(Sting)` -> `String`
-    - Sorting
+      - `stringArray.sort()`
+      - `compare(stringA, stringB) -> Int`
 - `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
     - like
         - ASCII
@@ -293,6 +270,38 @@ When we are at it, after a quick look at Julia and Python.
 - So no ~~`WideChar`~~
     - ~~Or is it useful for portable code (Linux `UInt32` <-> Windows `UInt16`)?~~
         - ~~You may use `wchar_t` then.~~
+
+
+## Advanced Unicode Support (ICU)
+Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode", "ICU4C").
+- "The ICU libraries provide support for:
+    - The latest version of the Unicode standard
+    - Character set conversions with support for over 220 codepages
+    - Locale data for more than 300 locales
+    - Language sensitive text collation (sorting) and searching based on the Unicode Collation Algorithm (=ISO 14651)
+    - Regular expression matching and Unicode sets
+    - Transformations for normalization, upper/lowercase, script transliterations (50+ pairs)
+    - Resource bundles for storing and accessing localized information
+    - Date/Number/Message formatting and parsing of culture specific input/output formats
+    - Calendar specific date and time manipulation
+    - Text boundary analysis for finding characters, word and sentence boundaries"
+- `import icu` adds extension methods for `cilia::String`
+    - Allows iteration over:
+        - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
+            - `for word in text.asWords()`
+            - ~~`for word in text.byWord()`~~
+        - lines
+            - `for line in text.asLines()`
+            - ~~`for line in text.byLine()`~~
+        - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
+            - `for sentence in text.asSentences()`
+            - ~~`for sentence in text.bySentence()`~~
+    - Depending on locale
+        - `string.toUpper(locale)`, `string.toLower(locale)`
+            - `toUpper(Sting, locale)` -> `String`
+            - `toLower(Sting, locale)` -> `String`
+        - `stringArray.sort(locale)`
+        - `compare(stringA, stringB, locale) -> Int`
 
 
 ## Namespace `cilia`
