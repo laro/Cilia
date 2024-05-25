@@ -40,7 +40,7 @@ When we are at it, after a quick look at Julia and Python.
     - Possible to include
         - C++ headers and modules from Cilia
         - Cilia headers and modules from C++
-    - Language is recognised by
+    - The compiler recognises the language (C, C++, or Cilia) by
         - the file extension
             - Cilia: `*.cilia` `*.hilia` &nbsp; `*.cl` `*.hl`
             - C++: `*.cpp` `*.hpp` &nbsp; `*.cxx` `*.hxx` &nbsp; `*.h`
