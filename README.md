@@ -214,7 +214,7 @@ When we are at it, after a quick look at Julia and Python.
         - **code units**
             - represented by
                 - `Char` for `String`
-                -   `Char`==`Char8`==`Byte`, `String`==`UTF8String`
+                    - `Char`==`Char8`==`Byte`, `String`==`UTF8String`
                 - `Char16` with `UTF16String`
                 - `Char32` with `UTF32String`
             - `for char8 in "abc 🥸👮🏻".asArray()`
