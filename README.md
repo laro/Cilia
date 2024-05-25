@@ -11,9 +11,8 @@ When we are at it, after a quick look at Python.
 
 
 ## Introduction
-- **Cilia**,  
-    - Plural form of cilium
-    - Similar to "C" and "Julia" (so maybe I should add some more of Julias features)
+- **Cilia**  
+    - Similar to "C" and "Julia" (so maybe I should add some more of Julias features).
     - The names [D](https://dlang.org/), [C2](http://c2lang.org/), [Cone](https://cone.jondgoodwin.com/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken `¯\_(ツ)_/¯`.
 - "Improved" C++
     - with a **simplified** syntax,
