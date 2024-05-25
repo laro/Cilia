@@ -613,7 +613,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - `1.0d` is always `Float64`
 - `"Text"` is a `StringView`
     - Pointer to first character and pointer after the last character
-        - in C++/Cilia tradition, but length would also work, of course
+        - in C++ tradition, but length would also work, of course
     - No null termination
         - If necessary
             - use `"Text\0“`  or
