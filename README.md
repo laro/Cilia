@@ -210,7 +210,7 @@ When we are at it, after a quick look at Julia and Python.
                         - emoji with modifier characters like skin tone or variation selector,
                         - diacritical characters (äöü…, depending on the normal form chosen),
                         - surely some more …
-                    - Often slower than UTF-8, due to its size (cache, memory bandwidth).
+                    - Often slower than UTF-8, simply due to its size (cache, memory bandwidth).
             - **code units**
                 - represented by
                     - `Char` for `String`
