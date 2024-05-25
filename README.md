@@ -32,7 +32,7 @@ When we are at it, after a quick look at Julia and Python.
     - "Cilia" signals something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org) (so maybe I could add some more of Julias interesting features to this wish list).
 
 
-- **Compatible to C++**, C and maybe other languages of this "language family" / "ecosystem", even future ones,
+- **Compatible to C++**, C and maybe other languages of this "**language family**" / "**ecosystem**", even future ones,
     - as with
         - Java: Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby …
         - C#: C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby …
