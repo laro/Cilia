@@ -13,7 +13,8 @@ When we are at it, after a quick look at Python.
 ## Introduction
 - **Cilia**  
     - Similar to "C" and "Julia" (so maybe I should add some more of Julias features).
-    - The names [D](https://dlang.org/), [C2](http://c2lang.org/), [Cone](https://cone.jondgoodwin.com/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken `¯\_(ツ)_/¯`.
+    - The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,
+    - as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
 - "Improved" C++
     - with a **simplified** syntax,
     - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Objective-C, Java, JavaScript, Kotlin, Swift
