@@ -191,7 +191,7 @@ When we are at it, after a quick look at Julia and Python.
                 - "a", "b", "c", " ", "🥸", "👮🏻"
                 - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
             - A bit slow, as it has to find grapheme cluster boundaries.
-            - It is recommended to mostly use the standard functions for string manipulation anyway, you seldomly need grapheme-cluster-based iteration. But when you do, this probably is the correct way. 
+            - It is recommended to mostly use the standard functions for string manipulation anyway, you seldomly need grapheme-cluster-based iteration. But when you do, this is the safe way. 
             - additional/alternative names?
                 - `for graphemeCluster in text.asGraphemeClusters()`?
                 - ~~`for graphemeCluster in text.byGraphemeCluster()`?~~
