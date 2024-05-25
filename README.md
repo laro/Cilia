@@ -42,7 +42,7 @@ When we are at it, after a quick look at Julia and Python.
         - Cilia headers and modules from C++
     - The compiler recognises the language (C, C++, or Cilia) by
         - the file extension
-            - Cilia: `*.cilia` `*.hilia` &nbsp; `*.cl` `*.hl`
+            - Cilia: `*.cl` `*.hl`  &nbsp;  ~~`*.cilia` `*.hilia`~~
             - C++: `*.cpp` `*.hpp` &nbsp; `*.cxx` `*.hxx` &nbsp; `*.h`
                 - `*.h` is of course a problem, as the header could be C or C++ code.
                 - So use of `*.hpp` is recommended for C++ code.
