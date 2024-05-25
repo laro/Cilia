@@ -19,11 +19,7 @@ When we are at it, after a quick look at Julia and Python.
 - C++ "Successor Language"
     - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),  
       but [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) seems to be a fully backwards compatible syntax, so it's a bit different.
-    - Similar to
-        - C -> C++
-        - Java -> Kotlin
-        - Objective-C -> Swift
-        - JavaScript -> TypeScrtipt
+    - Similar C -> C++, Java -> Kotlin, Objective-C -> Swift, JavaScript -> TypeScrtipt
 - Uses the same compiler backend as C++ (clang, gcc, …)
     - with an own / a new compiler frontend (or a precompiler).
 - So _no_ garbage collection,  
