@@ -11,30 +11,29 @@ When we are at it, after a quick look at Julia and Python.
 
 
 ## Introduction
-- **Cilia**  
-    - Similar to [C](https://en.wikipedia.org/wiki/C_(programming_language)) and [Julia](https://julialang.org) (so maybe I should add some more of Julias features).
-    - The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
-      as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
 - "Improved" C++
     - with a **simplified** syntax,
     - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Objective-C, Java, JavaScript, Kotlin, Swift
     - Isomorphic mapping of all C++ functionality to Cilia possible
         - only with other/better/shorter "expression".
-    - C++ "Successor Language"
-        - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),  
-          but [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) seems to be a fully backwards compatible syntax, so it's a bit different.
-        - Similar to
-            - C -> C++
-            - Java -> Kotlin
-            - Objective-C -> Swift
-            - JavaScript -> TypeScrtipt
-    - Uses the same compiler backend as C++ (clang, gcc, …)
-        - with an own / a new compiler frontend (or a precompiler).
-    - So _no_ garbage collection,  
-      instead in Cilia you use, as in C++,
-        - **RAII** (Resource Acquisition is Initialization)
-            - **RROD** (Resource Release on Object Destruction)
-        - `SharedPtr<T>` / `T^` etc.
+- C++ "Successor Language"
+    - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),  
+      but [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) seems to be a fully backwards compatible syntax, so it's a bit different.
+    - Similar to
+        - C -> C++
+        - Java -> Kotlin
+        - Objective-C -> Swift
+        - JavaScript -> TypeScrtipt
+- Uses the same compiler backend as C++ (clang, gcc, …)
+    - with an own / a new compiler frontend (or a precompiler).
+- So _no_ garbage collection,  
+  instead in Cilia you use, as in C++,
+    - **RAII** (Resource Acquisition is Initialization)
+        - **RROD** (Resource Release on Object Destruction)
+    - `SharedPtr<T>` / `T^` etc.
+- The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
+  as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
+    - "Cilia" signals something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org) (so maybe I should add some more of Julias features).
 
 
 - **Compatible to C++**, C and maybe other languages of this "language family" / "ecosystem", even future ones,
