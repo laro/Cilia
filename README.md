@@ -67,13 +67,12 @@ When we are at it, after a quick look at Python.
     - Arithmetic types
         - `Bool`
         - `Int`
-            - `Int8`, `Int16`, `Int32`, `Int64`, maybe `Int128`, `Int256`
+            - `Int8`, `Int16`, `Int32`, `Int64`
         - `UInt`
-            - `UInt8`, `UInt16`, `UInt32`, `UInt64`, maybe `UInt128`, `UInt256`
+            - `UInt8`, `UInt16`, `UInt32`, `UInt64`
         - `BigInt` (Arbitrary Precision Integer)
         - `Float`
             - `Float16`, `Float32`, `Float64` (Half, Single, Double Precision Floating Point)
-                - maybe `Float128`, `Float256`
             - `BFloat16` (Brain Floating Point)
             - `BigFloat` (Arbitrary Precision Float)
         - `Byte` == `UInt8`
