@@ -342,7 +342,7 @@ Const reference/value as default type for function call arguments and for "for-i
     - Is not specified when calling the function, as a copy is created here.
 - `reference`, to mark as reference (not value)
 - RValue references still as `&&`
-- Type traits `default_argument_type`
+- Type traits `DefaultArgumentType`
     - As const _value_:
         - `Int`, `Float`, `Bool` etc.
         - Small classes (as `Complex<Float>`, `StringView`) 
@@ -673,12 +673,12 @@ Variable declaration still simply as `Int i`, as in C/C++.
 - `Type^ instance`
     - `T^` by default is `SharedPtr<T>`
         - for C++/Cilia,
-        - defined via type traits `default_circumflex_type`.
+        - defined via type traits `DefaultCircumflexType`.
     - Possible to redefine for interoperability with other languages:
         - Objective-C/Swift: Use their reference counting mechanism
         - C#/Java: Use garbage collected memory
     - ~~`T^^` by default is `WeakPtr<T>`~~
-        - ~~defined via type traits `default_circumflex_circumflex_type`.~~
+        - ~~defined via type traits `DefaultCircumflexCircumflexType`.~~
         - ~~`SharedPtr<SharedPtr<T>>` just doesn't work like that, doesn’t really make sense anyway.~~
         - Do we really need a short expression for `WeakPtr<T>`?
 
