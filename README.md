@@ -235,7 +235,7 @@ When we are at it, after a quick look at Julia and Python.
         - `toUpper(Sting)` -> `String`
         - `toLower(Sting)` -> `String`
     - `stringArray.sort()`
-        - sort (Container<String>) -> Container<String>
+        - `sort (Container<String>)` -> `Container<String>`
     - `compare(stringA, stringB) -> Int`
 - `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
     - like
@@ -303,7 +303,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
             - `toUpper(Sting, locale)` -> `String`
             - `toLower(Sting, locale)` -> `String`
         - `stringArray.sort(locale)`
-            - sort (Container<String>, locale) -> Container<String>
+            - `sort (Container<String>, locale)` -> `Container<String>`
         - `compare(stringA, stringB, locale) -> Int`
 
 
