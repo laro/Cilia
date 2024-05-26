@@ -874,8 +874,8 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
  
       
 ## Two-Pass Compiler
-- no forward declarations necessary 
-    - as in C#, Java
+- no forward declarations necessary  
+  as in C#, Java
 - no single-pass as in C/C++
  
       
