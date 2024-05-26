@@ -299,10 +299,9 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
             - ~~`for sentence in text.bySentence()`~~
     - Depending on locale
         - `string.toUpper(locale)`, `string.toLower(locale)`
-            - `toUpper(Sting, locale)` -> `String`
-            - `toLower(Sting, locale)` -> `String`
+            - `toUpper(Sting, locale) -> String`, `toLower(Sting, locale) -> String`
         - `stringArray.sort(locale)`
-            - `sort (Container<String>, locale)` -> `Container<String>`
+            - `sort (Container<String>, locale) -> Container<String>`
         - `compare(stringA, stringB, locale) -> Int`
 
 
