@@ -217,7 +217,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 
 ## Const Reference as Default Type
-- Const reference as default type for (most) function call arguments and for "for-in" (AKA "for-each", "foreach").  
+- Const reference as default type for (most) function call arguments and for "for ... in".  
     - **`concat(String first, String second)`**
         - instead of `concat(const String& first, const String& second)`
     - **`String[] stringArray = ["a", "b", "c"]`**  
@@ -536,12 +536,16 @@ Variable declaration still simply as `Int i`, as in C/C++.
 
 ## if, while, for ... in
 No braces around the condition clause.
-- ```
+- if
+  ```
   if a > b {
       // ...
   }
   ```
-- ```
+- `if 1 <= x <= 10 { … }`
+    - as in Python, Julia, Cpp2 (Herb Sutter)
+- while
+  ```
   while a > b {
       // ...
   }
@@ -551,7 +555,7 @@ No braces around the condition clause.
       // ...
   } while a > b
   ```
-- `for … in …` instead of `for (… : …)`
+- `for … in …` instead of `for (… : …)` (AKA `for each`/`foreach`)
   ```
   for str in ["a", "b", "c"] {
       // ...
@@ -559,10 +563,30 @@ No braces around the condition clause.
   ```
 - `for … in …` instead of `for (…; …; …)`
   ```
-  for i in 0..<10 {
+- for i in 0..<10 {
       // ...
   }
   ```
+- "For ... in" loop (instead of `for (… : …)` or `foreach`)
+    - as in Rust, Swift
+    - With range literal also used instead of `for (Int i = 0; i < 10; ++i) { … }`
+        - `for i in 1..10`
+            - translates to `for i in Range(1, 10)`
+        - `for i in 1..<10`
+            - translates to `for i in RangeExclusiveEnd(1, 10)`
+        - Not recommended, but possible to write
+            - `for i in Range(1, 10)`
+            - `for i in Range(1, 10, 1)`
+        - Instead of `for (Int i = 10; i > 0; --i) { … }` use
+            - `for i in 10..1:-1`
+            - ? `for i in 10..>0:-1`
+            - `for i in (1..10).reversed()`
+            - Not recommended, but possible
+                - `for i in Range(10, 1, -1)`
+                - `for i in Range(10..1, -1)`
+                - ~~`for i in 10 downTo 1 step 1`~~
+                - ~~`for i in 10..1 by -1`~~
+                - ~~`for i in 10..1 step -1`~~
 
 
 ## Better Readable Keywords
@@ -779,34 +803,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
     - `a.multiplyAdd(b, inout c)`
     - `b = shiftLeft(a, Int steps, mutable carry)`
     - `a.shiftLeft(Int steps, mutable carry)`
- 
 
-- For-in loop (instead of `for (… : …)` or `foreach`)
-    - as in Rust, Swift
-    - With range literal also used instead of `for (Int i = 0; i < 10; ++i) { … }`
-        - `for i in 1..10`
-            - translates to `for i in Range(1, 10)`
-        - `for i in 1..<10`
-            - translates to `for i in RangeExclusiveEnd(1, 10)`
-        - Not recommended, but possible to write
-            - `for i in Range(1, 10)`
-            - `for i in Range(1, 10, 1)`
-        - Instead of `for (Int i = 10; i > 0; --i) { … }` use
-            - `for i in 10..1:-1`
-            - ? `for i in 10..>0:-1`
-            - `for i in (1..10).reversed()`
-            - Not recommended, but possible
-                - `for i in Range(10, 1, -1)`
-                - `for i in Range(10..1, -1)`
-                - ~~`for i in 10 downTo 1 step 1`~~
-                - ~~`for i in 10..1 by -1`~~
-                - ~~`for i in 10..1 step -1`~~
-
-
--  `if 1 <= x <= 10 { … }`
-    - as in Python, Julia, Cpp2 (Herb Sutter)
- 
-    
 - Arrays
     - `Int[3] arrayOfThreeIntegers`
         - „Static array“ – fixed size, same as C/C++
