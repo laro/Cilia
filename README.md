@@ -461,6 +461,10 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - for type inferring, parameter overloading and template matching.
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
+- Range literals `1..10` and `1..<10`
+    - as in Kotlin
+    - ~~Swift would be `1...10`~~
+        - I like `...` to be reserved for ellipsis in human language like comments.
 - `"Text"` is a `StringView`
     - Pointer to first character and pointer after the last character
         - in C++ tradition, but length would also work, of course
@@ -511,10 +515,6 @@ Variable declaration still simply as `Int i`, as in C/C++.
   }
   ```
     - is a `Map<String,String>`
-- Range literals `1..10` and `1..<10`
-    - as in Kotlin
-    - ~~Swift would be `1...10`~~
-        - I like `...` to be reserved for ellipsis in human language like comments.
 - Rules for user defined literals
     - as in C++.
 
