@@ -400,6 +400,38 @@ Cilia standard library in namespace `cilia` (instead of `std`).
             - `str` is `String`
 
 
+## if, while, for ... in
+No braces around the condition clause.
+- ´´´
+  if a > b {
+      // ...
+  }
+  ´´´
+- ´´´
+  while a > b {
+      // ...
+  }
+  ´´´
+- ´´´
+  do {
+      // ...
+  } while a > b
+  ´´´
+- `for … in …` instead of `for (… : …)`
+  ´´´
+  for str in ["a", "b", "c"] {
+      // ...
+  }
+  ´´´
+- `for … in …` instead of `for (…; …; …)`
+  ´´´
+  for i in 0..<10 {
+      // ...
+  }
+  ´´´
+
+
+
 ## Better Readable Keywords
 C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace).
 - Cilia has
