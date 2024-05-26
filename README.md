@@ -352,7 +352,7 @@ Const reference as default type for (most) function call arguments and for "for-
     - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
     - ~~Or (similar to C# and Swift) const-reference for `classes`, const-value for `structs`?~~
         - ~~At least as default?~~
-- Explicitly overriding with
+- Explicit override with
     - `mutable`, to mark as changeable
         - Also at the caller `swap(mutable a, mutable b)`
         - ~~Or `inout`?~~
