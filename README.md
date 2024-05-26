@@ -564,7 +564,7 @@ No braces around the condition clause.
   ```
 - `for … in …` instead of `for (…; …; …)`
   ```
-- for i in 0..<10 {
+  for i in 0..<10 {
       // ...
   }
   ```
