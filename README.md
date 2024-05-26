@@ -223,9 +223,9 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - **`String[] stringArray = ["a", "b", "c"]`**  
       **`for str in stringArray { … }`**
         - `str` is `const String&`
+- Const value for "small types".
     - `for str in ["a", "b", "c"] { … }`
         - `str` is `const StringView`
-- Const value for "small types".
     - `for i in [1, 2, 3] { … }`
         - `i` is `const Int`
     - `for i in 1..<10 { … }`
