@@ -952,7 +952,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
         - [https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm](https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm)
     - Much more operators
         - [https://stackoverflow.com/a/60321302](https://stackoverflow.com/a/60321302)
-    - „Precedence and associativity: When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
+    - „Precedence and associativity:  When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
         - That seems quite complicated to parse?!
 - Many kinds of brackets?
     - [https://stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
