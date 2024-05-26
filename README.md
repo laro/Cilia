@@ -904,8 +904,10 @@ I am not familiar with all these issues, but in a new language we certainly coud
 
 1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
     - Unclear - haven't people gotten used to it?
-    - Then there should be a keyword `noinit`,
-        - at least for large arrays.
+    - Maybe just a warning if not initialized,  
+      and a keyword `noinit` to avoid that warning.
+    - How to handle classes?
+        - With a "noinit" constructor?
     - Only for stack variables or also for free memory/heap?
         - With virtual memory, this is actually "free".
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
