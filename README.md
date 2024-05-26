@@ -399,80 +399,6 @@ Cilia standard library in namespace `cilia` (instead of `std`).
             - `str` is `String`
 
 
-## if, while, for ... in
-No braces around the condition clause.
-- ```
-  if a > b {
-      // ...
-  }
-  ```
-- ```
-  while a > b {
-      // ...
-  }
-  ```
-- ```
-  do {
-      // ...
-  } while a > b
-  ```
-- `for … in …` instead of `for (… : …)`
-  ```
-  for str in ["a", "b", "c"] {
-      // ...
-  }
-  ```
-- `for … in …` instead of `for (…; …; …)`
-  ```
-  for i in 0..<10 {
-      // ...
-  }
-  ```
-
-
-## Better Readable Keywords
-C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace).
-- Cilia has
-    - `var` instead of `auto`
-    - `func` instead of `auto`
-    - `for … in …` instead of `for (… : …)`
-        - `for i in 0..<10` instead of `for (int i = 0; i < 10; ++i)`
-    - `class … extends …` instead of `class … : …`
-        - or better `implements`?
-    - `await` instead of `co_await`
-    - `yield` instead of `co_yield`
-    - `return` instead of `co_return`
-    - `and`, `or`, `xor`, `not` instead of `&&`, `||`, `^`, `!`
-        - as in Python, Carbon
-        - Used for both
-            - boolean operation
-                - `anBool`**`and`**`anotherBool` -> `Bool`
-            - bitwise operation
-                - `anInt`**`and`**`anotherInt` -> `Int`
-- `Int32` instead of `int32_t` or `qint32`,
-  - so no prefix "q" nor postfix "_t".
-- When translating C++ code to Cilia then change conflicting names, e.g.
-    - `int var` -> `Int __variable_var`
-    - `class func` -> `class __class_func`
-    - `yield()` -> `func __function_yield()`
-
-
-## No Trailing Semicolons
-As in Python, Kotlin, Swift, JavaScript, Julia
-- Advantage:
-    - Better readability
-- Disadvantage:
-    - Errors are less easily recognized
-        - Walter Bright / D: „Redundancy helps“
-    - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
-        - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
-- Multiline expressions:
-    - Explicitly via `\` or `(…)` / `[…]` / `{…}` as in Python
-    - ~~Implicitly/clever as in Swift, Kotlin and JavaScript?~~
-- Only in REPL:
-    - Trailing semicolon used to suppress evaluation output,
-        - as in Matlab, Python, Julia.
-     
 ## Functions
 - `func aFunction(Int i) -> Float { return i * 3.14 }`
     - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
@@ -579,21 +505,6 @@ Variable declaration still simply as `Int i`, as in C/C++.
             - Workaround: Cast back with `Type(obj).functionOfA()`
         - ~~Therefore maybe better: `if obj is String str ...`~~
             - ~~as in C#~~
-
-
-## Comments
-- One line comments
-    - ```
-      // if a < b {
-      //   TODO
-      // }
-      ```
-- Block comments can be _nested_
-    - ```
-      /* This
-      /* (and this) */
-         is a comment */ 
-      ```
 
      
 ## Literals
@@ -708,6 +619,96 @@ Variable declaration still simply as `Int i`, as in C/C++.
 - Rules for user defined literals
     - as in C++.
 
+
+## if, while, for ... in
+No braces around the condition clause.
+- ```
+  if a > b {
+      // ...
+  }
+  ```
+- ```
+  while a > b {
+      // ...
+  }
+  ```
+- ```
+  do {
+      // ...
+  } while a > b
+  ```
+- `for … in …` instead of `for (… : …)`
+  ```
+  for str in ["a", "b", "c"] {
+      // ...
+  }
+  ```
+- `for … in …` instead of `for (…; …; …)`
+  ```
+  for i in 0..<10 {
+      // ...
+  }
+  ```
+
+
+## Better Readable Keywords
+C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace).
+- Cilia has
+    - `var` instead of `auto`
+    - `func` instead of `auto`
+    - `for … in …` instead of `for (… : …)`
+        - `for i in 0..<10` instead of `for (int i = 0; i < 10; ++i)`
+    - `class … extends …` instead of `class … : …`
+        - or better `implements`?
+    - `await` instead of `co_await`
+    - `yield` instead of `co_yield`
+    - `return` instead of `co_return`
+    - `and`, `or`, `xor`, `not` instead of `&&`, `||`, `^`, `!`
+        - as in Python, Carbon
+        - Used for both
+            - boolean operation
+                - `anBool`**`and`**`anotherBool` -> `Bool`
+            - bitwise operation
+                - `anInt`**`and`**`anotherInt` -> `Int`
+- `Int32` instead of `int32_t` or `qint32`,
+  - so no prefix "q" nor postfix "_t".
+- When translating C++ code to Cilia then change conflicting names, e.g.
+    - `int var` -> `Int __variable_var`
+    - `class func` -> `class __class_func`
+    - `yield()` -> `func __function_yield()`
+
+
+## No Trailing Semicolons
+As in Python, Kotlin, Swift, JavaScript, Julia
+- Advantage:
+    - Better readability
+- Disadvantage:
+    - Errors are less easily recognized
+        - Walter Bright / D: „Redundancy helps“
+    - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
+        - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
+- Multiline expressions:
+    - Explicitly via `\` or `(…)` / `[…]` / `{…}` as in Python
+    - ~~Implicitly/clever as in Swift, Kotlin and JavaScript?~~
+- Only in REPL:
+    - Trailing semicolon used to suppress evaluation output,
+        - as in Matlab, Python, Julia.
+
+
+## Comments
+- One line comments
+    - ```
+      // if a < b {
+      //   TODO
+      // }
+      ```
+- Block comments can be _nested_
+    - ```
+      /* This
+      /* (and this) */
+         is a comment */ 
+      ```
+     
 
 ## Short Smart Pointer Syntax 
 - `Type^ instance`
