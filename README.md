@@ -798,12 +798,14 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
 ## Misc
 - Operations with carry flag  
   (to implement `Int128`, `Int256` etc.)
-    - `c = add(a, b, inout carry)`
-    - `a.add(b, inout carry)`
-    - `d = multiplyAdd(a, b, inout c)`
-    - `a.multiplyAdd(b, inout c)`
-    - `b = shiftLeft(a, Int steps, mutable carry)`
-    - `a.shiftLeft(Int steps, mutable carry)`
+    - `c = add(a, b, mutable carry)`
+    - `a.add(b, mutable carry)`
+    - `d = multiplyAdd(a, b, c, mutable dHigh)`
+    - `a.multiplyAdd(b, c, mutable aHigh)`
+    - `b = shiftLeftAdd(a, Int steps, mutable addAndHigh)`
+    - `a.shiftLeftAdd(Int steps, mutable addAndHigh)`
+    - `b = shiftOneLeft(a, mutable carry)`
+    - `a.shiftOneLeft(mutable carry)`
 
 - Arrays
     - `Int[3] arrayOfThreeIntegers`
