@@ -345,10 +345,10 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 Const reference as default type for (most) function call arguments and for "for-in" (AKA "for-each", "foreach").
 - Examples:
     - **`concat(String first, String second)`**
-        - **instead of `concat(const String& first, const String& second)`**
+        - instead of `concat(const String& first, const String& second)`
     - **`String[] stringArray = ["a", "b", "c"]`**  
       **`for str in stringArray { … }`**
-        - **`str` is `const String&`**
+        - `str` is `const String&`
     - `for str in ["a", "b", "c"] { … }`
         - `str` is `const StringView`
     - `for i in [1, 2, 3] { … }`
