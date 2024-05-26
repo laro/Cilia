@@ -402,34 +402,33 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 ## if, while, for ... in
 No braces around the condition clause.
-- ´´´
+- ```
   if a > b {
       // ...
   }
-  ´´´
-- ´´´
+  ```
+- ```
   while a > b {
       // ...
   }
-  ´´´
-- ´´´
+  ```
+- ```
   do {
       // ...
   } while a > b
-  ´´´
+  ```
 - `for … in …` instead of `for (… : …)`
-  ´´´
+  ```
   for str in ["a", "b", "c"] {
       // ...
   }
-  ´´´
+  ```
 - `for … in …` instead of `for (…; …; …)`
-  ´´´
+  ```
   for i in 0..<10 {
       // ...
   }
-  ´´´
-
+  ```
 
 
 ## Better Readable Keywords
