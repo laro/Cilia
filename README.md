@@ -733,10 +733,10 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - use negated `operator==` (if defined), or
         - use `operator<=>` (if defined), or
         - use negated generated `operator==`.
-- `<<` Shift left (here a logical shift with UInt is the same as arithmetic shift with Int)
 - `>>` Shift right (logical shift with Uint, arithmetic shift with Int)
-- `<<<` Rotate left (circular shift left)
+- `<<` Shift left (here a logical shift with UInt is the same as arithmetic shift with Int)
 - `>>>` Rotate right (circular shift right)
+- `<<<` Rotate left (circular shift left)
   
 
 ## Misc
