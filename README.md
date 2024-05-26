@@ -342,24 +342,25 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 
 ## Const Reference as Default Type
-Const reference/value as default type for function call arguments and for "for-in" (AKA "for-each", "foreach").
-- `mutable`, to mark as changeable
-    - Also at the caller `swap(mutable a, mutable b)`
-    - ~~Or `inout`?~~
-- `value`, to mark as value (not reference) 
-    - `mutable value`
-    - Is not specified when calling the function, as a copy is created here.
-- `reference`, to mark as reference (not value)
-- RValue references still as `&&`
+Const reference as default type for (most) function call arguments and for "for-in" (AKA "for-each", "foreach").
 - Type traits `DefaultArgumentType`
-    - As const _value_:
+    - As const _value_ for:
         - `Int`, `Float`, `Bool` etc.
         - Small classes (as `Complex<Float>`, `StringView`) 
-    - As const _reference_:
+    - As const _reference_ for:
         - All other cases
     - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
     - ~~Or (similar to C# and Swift) const-reference for `classes`, const-value for `structs`?~~
         - ~~At least as default?~~
+- Explicitly overriding with
+    - `mutable`, to mark as changeable
+        - Also at the caller `swap(mutable a, mutable b)`
+        - ~~Or `inout`?~~
+    - `value`, to mark as value (not reference) 
+        - `mutable value`
+        - Is not specified when calling the function, as a copy is created here.
+    - `reference`, to mark as reference (not value)
+    - RValue references still as `&&`
 - Examples:
     - `concat(String first, String second)`
         - instead of `concat(const String& first, const String& second)`
