@@ -342,8 +342,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 
 ## Const Reference as Default Type
-Const reference as default type for (most) function call arguments and for "for-in" (AKA "for-each", "foreach").
-- Examples:
+- Const reference as default type for (most) function call arguments and for "for-in" (AKA "for-each", "foreach").  
     - **`concat(String first, String second)`**
         - instead of `concat(const String& first, const String& second)`
     - **`String[] stringArray = ["a", "b", "c"]`**  
@@ -351,6 +350,7 @@ Const reference as default type for (most) function call arguments and for "for-
         - `str` is `const String&`
     - `for str in ["a", "b", "c"] { … }`
         - `str` is `const StringView`
+- Const value for "small types".
     - `for i in [1, 2, 3] { … }`
         - `i` is `const Int`
     - `for i in 1..<10 { … }`
