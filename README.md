@@ -343,6 +343,18 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 ## Const Reference as Default Type
 Const reference as default type for (most) function call arguments and for "for-in" (AKA "for-each", "foreach").
+- Examples:
+    - `concat(String first, String second)`
+        - instead of `concat(const String& first, const String& second)`
+    - `String[] stringArray = ["a", "b", "c"]`  
+      `for str in stringArray { … }`
+        - `str` is `const String&`
+    - `for str in ["a", "b", "c"] { … }`
+        - `str` is `const StringView`
+    - `for i in [1, 2, 3] { … }`
+        - `i` is `const Int`
+    - `for i in 1..<10 { … }`
+        - `i` is `const Int`
 - Type traits `DefaultArgumentType`
     - As const _value_ for:
         - `Int`, `Float`, `Bool` etc.
@@ -361,12 +373,7 @@ Const reference as default type for (most) function call arguments and for "for-
         - Is not specified when calling the function, as a copy is created here.
     - `reference`, to mark as reference (not value)
     - RValue references still as `&&`
-- Examples:
-    - `concat(String first, String second)`
-        - instead of `concat(const String& first, const String& second)`
-    - `String[] stringArray = ["a", "b", "c"]`  
-      `for str in stringArray { … }`
-        - `str` is `const String&`
+    - Examples:
         - If you want to have it differently:
             - `for mutable str in stringArray { … }`
                 - `str` is `String&`
@@ -374,11 +381,6 @@ Const reference as default type for (most) function call arguments and for "for-
                 - `str` is `const String`
             - `for mutable value str in stringArray { … }`
                 - `str` is `String`
-    - `for str in ["a", "b", "c"] { … }`
-        - `str` is `const StringView`
-    - `for i in [1, 2, 3] { … }`
-        - `i` is `const Int`
-        - If you want to have it differently:
             - `for mutable i in [1, 2, 3] { … }`
                 - `i` is `Int`
             - `for reference i in [1, 2, 3] { … }`
@@ -396,8 +398,6 @@ Const reference as default type for (most) function call arguments and for "for-
             - `str` is `const String`
         - `for mutable value String str in ["a", "b", "c"] { … }`
             - `str` is `String`
-    - `for i in 1..<10 { … }`
-        - `i` is `const Int`
 
 
 ## Better Readable Keywords
