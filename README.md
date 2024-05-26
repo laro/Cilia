@@ -948,7 +948,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
 - `>=`, `≥`
 - Operator overloading
     - See:
-        - https://www.geeksforgeeks.org/operator-overloading-in-julia/
+        - [https://www.geeksforgeeks.org/operator-overloading-in-julia/](https://www.geeksforgeeks.org/operator-overloading-in-julia/)
         - https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm
     - Much more operators
         - https://stackoverflow.com/a/60321302
