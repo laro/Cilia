@@ -902,36 +902,36 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
 
 I am not familiar with all these issues, but in a new language we certainly coud fix a lot of it.
 
-1. Uninitialized automatic variables.
+1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
     - Unclear - haven't people gotten used to it?
     - Then there should be a keyword `noinit`,
         - at least for large arrays.
     - Only for stack variables or also for free memory/heap?
         - With virtual memory, this is actually "free".
-2. Integral promotions.
+2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
     - Only allow safe ones,
     - otherwise explicit cast necessary.
-3. Implicit narrowing conversions.
+3. [Implicit narrowing conversions.](http://eel.is/c++draft/conv.integral#3)
     - Not allowed
-4. Switches should break rather than fallthrough.
+4. [Switches should break rather than fallthrough.](http://eel.is/c++draft/stmt.switch#6)
     - Keyword `fallthrough` instead
-5. Operator precedence is complicated and wrong.
+5. [Operator precedence is complicated and wrong.](http://eel.is/c++draft/expr.compound#expr.bit.and)
     - If the suggestion of Sean Baxter / Circle works well, then that would be fine.
-6. Hard-to-parse declarations and the most vexing parse.
+6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
     - `func` but not `var`
-7. Template brackets `< >` are a nightmare to parse.
+7. [Template brackets `< >` are a nightmare to parse.](http://eel.is/c++draft/temp.names#nt:template-argument-list)
     - I would not like to change this.
     - Only if it _really_ has to be.
-8. Forwarding parameters and std::forward are error prone.
-9. Braced initializers can choose the wrong constructor.
+8. [Forwarding parameters and `std::forward` are error prone.](http://eel.is/c++draft/temp.deduct#call-3)
+9. [Braced initializers can choose the wrong constructor.](http://eel.is/c++draft/dcl.init.list#2)
     - Do without braced initializers altogether.
     - With `func` there is now a clear distinction between function declaration and variable declaration with initialization.
     - The classic initialization via `(...)`, ultimately a function call of the constructor, fits better.
     - Curly brackets only for initializer lists, i.e. for tuples, lists etc.
     - Square brackets for arrays.
-10. `0` shouldn't be a null pointer constant.
+10. [`0` shouldn't be a null pointer constant.](http://eel.is/c++draft/expr#conv.ptr-1)
     - Not allowed, use `Null`.
-11. `this` shouldn't be a pointer.
+11. [`this` shouldn't be a pointer.](http://eel.is/c++draft/expr.prim.this#1)
     - Better it is a reference.
        
         
