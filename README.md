@@ -328,7 +328,8 @@ Cilia standard library in namespace `cilia` (instead of `std`).
         - ~~or `alias x = data[0]`?~~
         - Not quite possible in C++.
             - With …  
-              `Float& imaginary = im`  
+              `Float& imaginary = im`
+              or  
               `T& x = data[0]`  
               … unfortunately memory is created for the reference (the pointer).
             - And this indeed is necessary here, because the reference could be assigned differently in the constructor,
