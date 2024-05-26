@@ -374,19 +374,18 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - `reference`, to mark as reference (not value)
     - RValue references still as `&&`
     - Examples:
-        - If you want to have it differently:
-            - `for mutable str in stringArray { … }`
-                - `str` is `String&`
-            - `for value str in stringArray { … }`
-                - `str` is `const String`
-            - `for mutable value str in stringArray { … }`
-                - `str` is `String`
-            - `for mutable i in [1, 2, 3] { … }`
-                - `i` is `Int`
-            - `for reference i in [1, 2, 3] { … }`
-                - `i` is `const Int&`
-            - `for mutable reference i in [1, 2, 3] { … `}"
-                - `i` is `Int&`
+        - `for mutable str in stringArray { … }`
+            - `str` is `String&`
+        - `for value str in stringArray { … }`
+            - `str` is `const String`
+        - `for mutable value str in stringArray { … }`
+            - `str` is `String`
+        - `for mutable i in [1, 2, 3] { … }`
+            - `i` is `Int`
+        - `for reference i in [1, 2, 3] { … }`
+            - `i` is `const Int&`
+        - `for mutable reference i in [1, 2, 3] { … `}"
+            - `i` is `Int&`
     - If you want even the basic type to be different:
         - `for Double d in [1, 2, 3] { … }`
             - `d` is `const Double`
