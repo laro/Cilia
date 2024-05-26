@@ -124,7 +124,7 @@ When we are at it, after a quick look at Julia and Python.
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
         - maybe `Float128`, `Float256`
             - typically probably realized as double-double respectively double-double-double-double
-            - https://stackoverflow.com/a/6770329
+            - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
     - `BFloat16` (Brain Floating Point)
     - Mixed arithmetic:
         - `1 * aFloat` is possible
