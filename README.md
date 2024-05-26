@@ -556,18 +556,19 @@ No braces around the condition clause.
       // ...
   } while a > b
   ```
-- `for … in …` instead of `for (… : …)` (AKA `for each`/`foreach`)
-  ```
-  for str in ["a", "b", "c"] {
-      // ...
-  }
-  ```
-- `for … in …` instead of `for (…; …; …)`
-  ```
-  for i in 0..<10 {
-      // ...
-  }
-  ```
+- `for … in …`
+    - instead of `for (… : …)` (AKA `for each`/`foreach`)
+      ```
+      for str in ["a", "b", "c"] {
+          // ...
+      }
+      ```
+    - instead of `for (…; …; …)`
+      ```
+      for i in 0..<10 {
+          // ...
+      }
+      ```
 - "For ... in" loop (instead of `for (… : …)` or `foreach`)
     - as in Rust, Swift
     - With range literal also used instead of `for (Int i = 0; i < 10; ++i) { … }`
