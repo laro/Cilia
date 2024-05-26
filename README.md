@@ -878,21 +878,21 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
  
       
 ## Versioning of the Cilia source code
-- Via file ".ciliaVersion" ".cilia_version" in a (project) directory,
+- Via file ".ciliaVersion" ~~".cilia_version"~~ in a (project) directory,
     - similar to ".clang_format",
     - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
 - Via file extension: 
-    - "*.cilia" – always the latest language version (if not defined otherwise via ".ciliaVersion")
-    - "*.2024.cilia" – Version from the year 2024
-    - "*.2024b.cilia" – Second version from the year 2024
-    - ~~"*.cilia2024" – Version from the year 2024~~
-    - ~~"*.cilia2024b" – Second version from the year 2024~~
-    - ~~"*.cilia_2024" – Version from the year 2024~~
-    - ~~"*.cilia_2024b" – Second version from the year 2024~~
-    - ~~"*.c1a"~~
-    - ~~"*.c1b"~~
-    - ~~"*CiliaA"~~
-        - ~~"*.CiliaB"~~
+    - "*.cl" – always the latest language version (if not defined otherwise via ".ciliaVersion")
+    - "*.2024.cl" – Version from the year 2024
+    - "*.2024b.cl" – Second version from the year 2024
+    - ~~"*.cl2024" – Version from the year 2024~~
+    - ~~"*.cl2024b" – Second version from the year 2024~~
+    - ~~"*.cl_2024" – Version from the year 2024~~
+    - ~~"*.cl_2024b" – Second version from the year 2024~~
+    - ~~"*.cla"~~
+    - ~~"*.clb"~~
+    - ~~"*clA"~~
+        - ~~"*.clB"~~
          
               
 ## Fix C++ "wrong defaults"
