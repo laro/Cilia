@@ -224,12 +224,12 @@ Cilia standard library in namespace `cilia` (instead of `std`).
       **`for str in stringArray { … }`**
         - `str` is `const String&`
 - Const value for "small types".
-    - `for str in ["a", "b", "c"] { … }`
-        - `str` is `const StringView`
     - `for i in [1, 2, 3] { … }`
         - `i` is `const Int`
     - `for i in 1..<10 { … }`
         - `i` is `const Int`
+    - `for str in ["a", "b", "c"] { … }`
+        - `str` is `const StringView`
 - Type traits `DefaultArgumentType`
     - As const _value_ for:
         - `Int`, `Float`, `Bool` etc.
