@@ -911,12 +911,12 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - Only for stack variables or also for free memory/heap?
         - With virtual memory, this is actually "free".
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
-    - Only allow safe ones,
-    - otherwise explicit cast necessary.
+    - Only allow safe ones,  
+      otherwise an explicit cast is necessary.
 3. [Implicit narrowing conversions.](http://eel.is/c++draft/conv.integral#3)
     - Not allowed
 4. [Switches should break rather than fallthrough.](http://eel.is/c++draft/stmt.switch#6)
-    - Keyword `fallthrough` instead
+    - Keyword `fallthrough` instead, as in Swift.
 5. [Operator precedence is complicated and wrong.](http://eel.is/c++draft/expr.compound#expr.bit.and)
     - If the suggestion of Sean Baxter / Circle works well, then that would be fine.
 6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
