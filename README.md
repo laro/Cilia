@@ -537,20 +537,21 @@ Variable declaration still simply as `Int i`, as in C/C++.
 ## if, while, for ... in
 No braces around the condition clause.
 - if
-  ```
-  if a > b {
-      // ...
-  }
-  ```
-- `if 1 <= x <= 10 { … }`
-    - as in Python, Julia, Cpp2 (Herb Sutter)
+    - ```
+      if a > b {
+          // ...
+      }
+      ```
+    - `if 1 <= x <= 10 { … }`
+        - as in Python, Julia, Cpp2 (Herb Sutter)
 - while
   ```
   while a > b {
       // ...
   }
   ```
-- ```
+- do … while
+  ```
   do {
       // ...
   } while a > b
