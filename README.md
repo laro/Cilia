@@ -830,7 +830,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
           ```
     - `int[,,]`
         - Multidimensional dynamic array
-        - `cilia::NArray<Int, 3>`
+        - `cilia::NArray<Int,3>`
         - or `Int[*,*,*]`?
         - TODO Mixed forms?
             - `Int[3,*,*]` 
