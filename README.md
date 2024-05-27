@@ -43,10 +43,19 @@ When we are at it, after a quick look at Julia and Python.
           Print("Total area: {0}", area);
       ｝
       ```
-    - Cpp2 ("C++ syntax 2") seems to be a fully backwards compatible syntax, inheriting all of C++'s properties and therefore inheriting (at least some of) its pitfalls:
-        - Integral promotions,
-        - implicit narrowing conversions,
-        - operator precedence, etc.
+    - Cpp2 ("C++ syntax 2") also has this `name : Type` syntax:
+      ```
+      divide: (dividend: int, divisor: int) -> (quotient: int, remainder: int) = {
+          if divisor == 0 {
+              quotient  = 0;                      // constructs quotient
+              remainder = 0;                      // constructs remainder
+          }
+          else {
+              quotient = dividend / divisor;      // constructs quotient
+              remainder = dividend % divisor;     // constructs remainder
+          }
+      }
+      ```
 
 
 ## C++ Language Family
