@@ -907,7 +907,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
 1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
     - Unclear - haven't people gotten used to it?
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
-    - We could warn (or maybe consider it an error) if not initialized,  
+    - We could warn (or maybe even consider it an error) if not initialized,  
       and use a keyword `noinit` to avoid that warning/error.  
       ```
       Int i         // Warning
