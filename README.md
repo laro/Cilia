@@ -291,7 +291,11 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 
 ## Functions
-- `func aFunction(Int i) -> Float { return i * 3.14 }`
+- ```
+  func aFunction(Int i) -> Float {
+      return i * 3.14
+  }
+  ```
     - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
     - Easier parsing due to clear distinction between function vs. variable declaration.
     - Always and only in the trailing return type syntax.
