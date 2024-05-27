@@ -17,9 +17,21 @@ When we are at it, after a quick look at Julia and Python.
     - Isomorphic mapping of all C++ functionality to Cilia possible
         - only with other/better/shorter "expression".
 - C++ "Successor Language"
-    - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),  
-      but [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) seems to be a fully backwards compatible syntax, so it's a bit different.
+    - like [Carbon](https://github.com/carbon-language/carbon-lang) or [Circle](https://github.com/seanbaxter/circle),
+      or [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) 
     - Similar to C -> C++, Java -> Kotlin, Objective-C -> Swift, JavaScript -> TypeScript
+    - IMHO this (Cilia) is a collection of quite obvious ideas, but tastes and opinions differ, so
+        - Carbon is based on the same basic idea, a new syntax with C++ interoperability, but with a syntax that reminds more to Rust than to C++. That is something I neither expected nor would prefer.
+          ```
+          fn PrintTotalArea(circles: Slice (Circle)) {
+              var area: f32 = 0;
+              for (c: Circle in circles) {
+                  area += Math.Pi * c.r * c.r;
+              }
+              Print("Total area: {0}", area);
+          ｝
+          ```
+        - Cpp2 ("C++ syntax 2") seems to be a fully backwards compatible syntax, allowing and inheriting all of C++'s properties and therefore inheriting (at least some of) its pitfalls.
 - Uses the same compiler backend as C++ (clang, gcc, …)  
   with an own / a new compiler frontend (or a precompiler).
 - So _no_ garbage collection,  
@@ -34,6 +46,7 @@ When we are at it, after a quick look at Julia and Python.
       (so maybe I could add some more of Julias interesting features to this wish list).
 
 
+## C++ Language Family
 - **Compatible to C++**, C and maybe other languages of this "**language family**" / "**ecosystem**", even future ones,
     - as with
         - Java: Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby …
