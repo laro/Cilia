@@ -880,11 +880,11 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
  
       
 ## Versioning of the Cilia source code
-- Via file ".ciliaVersion" ~~".cilia_version"~~ in a (project) directory,
+- Via file ".clVersion" ~~".cl_version"~~ in a (project) directory,
     - similar to ".clang_format",
-    - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
+    - also possible file by file: Matrix.clVersion (for Matrix.cl).
 - Via file extension: 
-    - "*.cl" – always the latest language version (if not defined otherwise via ".ciliaVersion")
+    - "*.cl" – always the latest language version (if not defined otherwise via ".clVersion")
     - "*.2024.cl" – Version from the year 2024
     - "*.2024b.cl" – Second version from the year 2024
     - ~~"*.cl2024" – Version from the year 2024~~
