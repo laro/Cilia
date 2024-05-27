@@ -411,9 +411,9 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - as in Python,
     - as they are constants.  
     - ~~`true`, `false` are Bool~~
-- `Null` is the null pointer
-    - it is of the type `NullPtr` 
-    - explicit cast necessary to convert any pointer to Int
+- `Null` is the null pointer,
+    - it is of the type `NullPtr,` 
+    - explicit cast necessary to convert any pointer to `Int`.
 - `123` is an integer literal of arbitrary precision
     - Can be converted to any integer type it fits into (signed and unsigned)
         - `Int8 a = 1`    // Works because `1` fits into `Int8`
