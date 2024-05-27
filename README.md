@@ -906,23 +906,28 @@ I am not familiar with all these issues, but in a new language we certainly coud
 
 1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
     - Unclear - haven't people gotten used to it?
-    - We could consider it an error (or maybe just warn) if not initialized,  
-      and a keyword `noinit` to avoid that error/warning.  
-      No initialization means random values. In this case they are in fact often zero, but _not always_.
+    - No initialization means random values. In this case they are in fact often zero, but _not always_.
+    - We could warn (or maybe consider it an error) if not initialized,  
+      and use a keyword `noinit` to avoid that warning/error.  
       ```
       Int i         // Warning
-      Int j = 1     // No warning
       Int j noinit  // No warning
+      Int j = 1     // No warning
       ```
     - How to handle classes?
         - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
         - ```
           Array<Float> anArray(10)         // Warning
-          Array<Float> anArray(10, 1.0)    // No warning
           Array<Float> anArray(10) noinit  // No warning
+          Array<Float> anArray(10, 1.0)    // No warning
           ```
     - Only for stack variables or also for free memory/heap?
-        - With virtual memory, this is actually "free".
+        - ```
+          var array = new Array(10)         // Warning
+          var array = new Array(10) noinit  // No warning
+          var array = new Array(10, 1.0)    // No warning
+          ```
+        - With virtual memory, it is actually (almost) "free" to initialize with zero.
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
     - Only allow safe ones,  
       otherwise an explicit cast is necessary.
