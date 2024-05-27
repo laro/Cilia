@@ -907,6 +907,8 @@ I am not familiar with all these issues, but in a new language we certainly coud
 1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
     - Unclear - haven't people gotten used to it?
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
+    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
+        - But with virtual memory, it is actually (almost) "free" to initialize with zero.
     - We could warn (or maybe even consider it an error) if not initialized,  
       and use a keyword `noinit` to avoid that warning/error.  
       ```
@@ -927,7 +929,6 @@ I am not familiar with all these issues, but in a new language we certainly coud
           var array = new Array(10) noinit  // No warning
           var array = new Array(10, 1.0)    // No warning
           ```
-        - With virtual memory, it is actually (almost) "free" to initialize with zero.
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
     - Only allow safe ones,  
       otherwise an explicit cast is necessary.
