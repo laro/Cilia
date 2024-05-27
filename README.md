@@ -908,10 +908,10 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - Unclear - haven't people gotten used to it?
     - Maybe just a warning if not initialized,  
       and a keyword `noinit` to avoid that warning.
-      ´´´
+      ```
       Int i         // Warning
       Int j noinit  // No warning
-      ´´´
+      ```
     - How to handle classes?
         - Mark constructor with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
         - ```
