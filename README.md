@@ -908,11 +908,16 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - Unclear - haven't people gotten used to it?
     - Maybe just a warning if not initialized,  
       and a keyword `noinit` to avoid that warning.
+      ´´´
+      Int i         // Warning
+      Int j noinit  // No warning
+      ´´´
     - How to handle classes?
         - Mark constructor with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
         - ```
-          Array anArray(10) noinit
-          Array anArray(10, 1.0)
+          Array anArray(10)         // Warning
+          Array anArray(10) noinit  // No warning
+          Array anArray(10, 1.0)    // No warning
           ```
     - Only for stack variables or also for free memory/heap?
         - With virtual memory, this is actually "free".
