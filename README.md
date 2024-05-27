@@ -908,7 +908,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - Unclear - haven't people gotten used to it?
     - We could consider it an error (or maybe just warn) if not initialized,  
       and a keyword `noinit` to avoid that error/warning.  
-      No initialization means random values. In this case they are usually zero, but _not always_.
+      No initialization means random values. In this case they are in fact often zero, but _not always_.
       ```
       Int i         // Warning
       Int j = 1     // No warning
