@@ -915,7 +915,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
       Int j noinit  // No warning
       ```
     - How to handle classes?
-        - Mark constructor with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
+        - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
         - ```
           Array<Float> anArray(10)         // Warning
           Array<Float> anArray(10, 1.0)    // No warning
