@@ -919,6 +919,11 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - How to handle classes?
         - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
         - ```
+          template<typename T>
+          class Array {
+              Array(Int size) noinit { ... }
+              Array(Int size, T value) { ... }
+          }
           Array<Float> anArray(10)         // Warning
           Array<Float> anArray(10) noinit  // No warning
           Array<Float> anArray(10, 1.0)    // No warning
