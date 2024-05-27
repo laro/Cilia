@@ -283,6 +283,10 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 - Lambdas
     - `[](Int i) -> Float { i * 3.14 }`
         - as in C++
+- Extension methods
+    - Also possible for arithmetic types (like `Int i; i.toString()`)
+        - `func Int::toString() -> String { … }`  // as in Kotlin
+            - ~~or `func toString (Int this) -> String` ~~
 - Function pointers
     - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Variant A:
@@ -300,10 +304,6 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - ~~Variant E:~~
         - ~~`func*(Int, Int)->Int pointerToFunctionOfIntAndIntToInt`~~
         - ~~`(func*(Int, Int)->Int)[] arrayOfPointersToFunctionOfIntAndIntToInt`~~
-- Extension methods
-    - Also possible for arithmetic types (like `Int i; i.toString()`)
-        - `func Int::toString() -> String { … }`  // as in Kotlin
-            - ~~or `func toString (Int this) -> String` ~~
 
           
 ## Operators
