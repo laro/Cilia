@@ -973,7 +973,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
 5. [Operator precedence is complicated and wrong.](http://eel.is/c++draft/expr.compound#expr.bit.and)
     - If the suggestion of Sean Baxter / Circle works well, then that would be fine.
 6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
-    - `func` but not `var`
+    - `func` (but not `var`)
 7. [Template brackets `< >` are a nightmare to parse.](http://eel.is/c++draft/temp.names#nt:template-argument-list)
     - I would not like to change this.
     - Only if it _really_ has to be.
