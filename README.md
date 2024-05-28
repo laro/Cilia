@@ -839,7 +839,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
 - Arrays
     - `Int[3] arrayOfThreeIntegers`
         - „Static array“ – fixed size, same as C/C++
-        - arrayOfThreeIntegers.size() -> 3 (realised as extension function)
+        - `arrayOfThreeIntegers.size()` -> `3` (realised as extension function)
     - `Int[] arrayOfIntegers`
         - „Dynamic array“ – dynamic size
         - Translated to `Array<T>` (normally `cilia::Array<T>` will be used)
