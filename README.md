@@ -953,15 +953,15 @@ I am not familiar with all these issues, but in a new language we certainly coud
               Array(Int size) noinit { ... }
               Array(Int size, T value) { ... }
           }
-          Array<Float> anArray(10)         // Warning
-          Array<Float> anArray(10) noinit  // No warning
-          Array<Float> anArray(10, 1.0)    // No warning
+          Float[] anArray(10)         // Warning
+          Float[] anArray(10) noinit  // No warning
+          Float[] anArray(10, 1.0)    // No warning
           ```
     - Only for stack variables or also for free memory/heap?
         - ```
-          var array = new Array(10)         // Warning
-          var array = new Array(10) noinit  // No warning
-          var array = new Array(10, 1.0)    // No warning
+          var array = new Float[](10)         // Warning
+          var array = new Float[](10) noinit  // No warning
+          var array = new Float[](10, 1.0)    // No warning
           ```
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
     - Only allow safe ones,  
