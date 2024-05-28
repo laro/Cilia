@@ -26,7 +26,7 @@ When we are at it, after a quick look at Julia and Python.
   instead in Cilia you use, as in C++,
     - automatic/stack variables
     - **RAII** (Resource Acquisition is Initialization)
-        - RROD (Resource Release on Object Destruction)
+        - I'd like to call it "RROD" (Resource Release on Object Destruction)
     - `SharedPtr<T>` / `T^` etc.
 - The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
   as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
