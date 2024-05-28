@@ -43,7 +43,7 @@ When we are at it, after a quick look at Julia and Python.
           Print("Total area: {0}", area);
       ｝
       ```
-    - Cpp2 ("C++ syntax 2") also has this `name : Type` syntax:
+    - Cpp2 ("C++ syntax 2") also has this `name: Type` syntax:
       ```
       divide: (dividend: int, divisor: int) -> (quotient: int, remainder: int) = {
           if divisor == 0 {
