@@ -911,8 +911,38 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - Release (for deployment, with range checks, suitable for most situations)
         - ~~EvenFasterBut~~UnsafeRelease (for deployment when maximum performance is desired, _without_ range checks)
 - **Thread Safety**
+    - A thread safety issue can lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
     - While thread safety can be a hard problem and failure can lead to a crash, it usually is not a security problem, it is a reliabilty problem.
     - There are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with possible solutions).
+- **Initialization**
+    - No initialization means random values. In this case they are in fact often zero, but _not always_.
+    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
+        - But with virtual memory, it is actually (almost) "free" to initialize with zero.
+    - We could warn (or maybe even consider it an error) if not initialized,  
+      and use a keyword `noinit` to avoid that warning/error.  
+      ```
+      Int i         // Warning
+      Int j noinit  // No warning
+      Int j = 1     // No warning
+      ```
+    - How to handle classes?
+        - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
+        - ```
+          template<typename T>
+          class Array {
+              Array(Int size) noinit { ... }
+              Array(Int size, T value) { ... }
+          }
+          Array<Float> anArray(10)         // Warning
+          Array<Float> anArray(10) noinit  // No warning
+          Array<Float> anArray(10, 1.0)    // No warning
+          ```
+    - Only for stack variables or also for free memory/heap?
+        - ```
+          var array = new Array<Float>(10)         // Warning
+          var array = new Array<Float>(10) noinit  // No warning
+          var array = new Array<Float>(10, 1.0)    // No warning
+          ```
 - There are currently no plans to support additional security features beyond C++ (like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/)).
   
 
@@ -949,34 +979,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
 
 1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
     - Unclear - haven't people gotten used to it?
-    - No initialization means random values. In this case they are in fact often zero, but _not always_.
-    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
-        - But with virtual memory, it is actually (almost) "free" to initialize with zero.
-    - We could warn (or maybe even consider it an error) if not initialized,  
-      and use a keyword `noinit` to avoid that warning/error.  
-      ```
-      Int i         // Warning
-      Int j noinit  // No warning
-      Int j = 1     // No warning
-      ```
-    - How to handle classes?
-        - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
-        - ```
-          template<typename T>
-          class Array {
-              Array(Int size) noinit { ... }
-              Array(Int size, T value) { ... }
-          }
-          Array<Float> anArray(10)         // Warning
-          Array<Float> anArray(10) noinit  // No warning
-          Array<Float> anArray(10, 1.0)    // No warning
-          ```
-    - Only for stack variables or also for free memory/heap?
-        - ```
-          var array = new Array<Float>(10)         // Warning
-          var array = new Array<Float>(10) noinit  // No warning
-          var array = new Array<Float>(10, 1.0)    // No warning
-          ```
+    - Otherweise see [Safety & Security](Safety & Security)
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
     - Only allow safe ones,  
       otherwise an explicit cast is necessary.
