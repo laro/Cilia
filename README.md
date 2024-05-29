@@ -902,6 +902,20 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
     - `NArrayView`
  
       
+## Safety & Security
+- **Range Checks**
+    - The low hanging fruit would be to enable range checks _by default_, also in release builds (not only in debug), to detect **buffer overflows** or similar. This should fix the majority of C/C++ security issues.  
+      To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
+      So we would have:
+        - Debug (for debugging with line by line debug info, and with range checks)
+        - Release (for deployment, with range checks, suitable for most situations)
+        - ~~EvenFasterBut~~UnsafeRelease (for deployment when maximum performance is desired, _without_ range checks)
+- **Thread Safety**
+    - While thread safety can be a hard problem and failure can lead to a crash, it usually is not a security problem, it is a reliabilty problem.
+    - There are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with possible solutions).
+- There are currently no plans to support additional security features beyond C++ (like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/)).
+  
+
 ## Two-Pass Compiler
 - no forward declarations necessary  
   as in C#, Java
