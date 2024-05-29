@@ -56,6 +56,17 @@ When we are at it, after a quick look at Julia and Python.
           }
       }
       ```
+- Why not change/evolve C++?
+    - The CamelCase style could be archieved in C++, too, but aliasing of member
+      names (functions and variables) is necessary to fully translate the C++
+      standard library to CamelCase.
+       - Aliasing could & IMHO should be added to C++
+    -  Incompatible with C++ is
+       - Const Reference as Default Type
+       - no trailing semicolons
+       - new keywords
+       - Integral promotions
+       - Implicit narrowing conversions
 
 
 ## C++ Language Family
