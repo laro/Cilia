@@ -911,9 +911,8 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - Release (for deployment, with range checks, suitable for most situations)
         - ~~EvenFasterBut~~UnsafeRelease (for deployment when maximum performance is desired, _without_ range checks)
 - **Thread Safety**
-    - A thread safety issue can lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
-    - While thread safety can be a hard problem and failure can lead to a crash, it usually is not a security problem, it is a reliabilty problem.
-    - There are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with possible solutions).
+    - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
+    - While thread safety can be a hard problem, there are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with possible solutions).
 - **Initialization**
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
     - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
