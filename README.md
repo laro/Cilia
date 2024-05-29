@@ -942,7 +942,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
           var array = new Array<Float>(10) noinit  // No warning
           var array = new Array<Float>(10, 1.0)    // No warning
           ```
-- There are currently no plans to support additional security features beyond C++ (like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/)).
+- Further security features beyond C++, like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/)) are out of scope.
   
 
 ## Two-Pass Compiler
