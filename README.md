@@ -63,7 +63,7 @@ When we are at it, after a quick look at Julia and Python.
     - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
        - Restricted integral promotions and implicit narrowing conversions
        - Const reference as default type for function arguments
-       - No trailing semicolons
+       - [No trailing semicolons](#No-trailing-semicolons)
        - New array declaration (`Int[] array` instead of `Int array[]`)
        - New/simplified keywords
 
