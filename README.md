@@ -913,7 +913,6 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
  
       
 ## Safety and Security
-## Safety & Security
 - **Range Checks**
     - The low hanging fruit would be to enable range checks _by default_, also in release builds (not only in debug), to detect **buffer overflows** or similar. This should fix the majority of C/C++ security issues.  
       To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
@@ -989,7 +988,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
 
 1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
     - Unclear - haven't people gotten used to it?
-    - Otherweise see [Safety & Security](Safety & Security) [Test](#safety-&-security)
+    - Otherweise see [Safety and Security](#safety-and-security)
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
     - Only allow safe ones,  
       otherwise an explicit cast is necessary.
