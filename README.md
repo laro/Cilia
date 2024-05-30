@@ -912,7 +912,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
     - `NArrayView`
  
       
-(##Safety-and-Security)
+##Safety-and-Security
 ## Safety & Security
 - **Range Checks**
     - The low hanging fruit would be to enable range checks _by default_, also in release builds (not only in debug), to detect **buffer overflows** or similar. This should fix the majority of C/C++ security issues.  
