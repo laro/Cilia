@@ -65,7 +65,7 @@ When we are at it, after a quick look at Julia and Python.
        - Const reference as default type for function arguments
        - [No trailing semicolons](#No-trailing-semicolons)
        - New array declaration (`Int[] array` instead of `Int array[]`)
-       - New/simplified keywords
+       - [New/simplified keywords](#better-readable-keywords)
 
 
 ## C++ Language Family
