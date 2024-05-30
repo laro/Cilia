@@ -164,7 +164,7 @@ When we are at it, after a quick look at Julia and Python.
 ## Signed Size
 `Int` (i.e. signed) as type for `*.size()`
 - Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
-    - In C/C++ `anUInt - 1 >= 0` is _always_ true (even if `anUInt` is `0`)
+    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
 - When working with sizes, calculating the difference is common; Then you are limited to `PtrDiff` (i.e. signed integer) anyway.
 - Who needs more than 2GB of data in an "array", should please use a 64 bit platform.
 - For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
@@ -174,9 +174,9 @@ When we are at it, after a quick look at Julia and Python.
     - `Unsigned +-*/ Signed` is an error
         - you have to cast
         - `Int` (i.e. signed) is almost always used anyways
-    - Error with `if anUInt < 0`
+    - Error with `if aUInt < 0`
         - if the literal on the right is `<= 0`
-    - Error with `if anUInt < anInt`
+    - Error with `if aUInt < anInt`
         - you have to cast
 - Not:
     - ~~`Size` AKA `UInt` as type for `*.size()` (i.e. still unsigned)~~
@@ -187,8 +187,8 @@ When we are at it, after a quick look at Julia and Python.
                 - ~~Signed is therefore considered the "larger" type compared to unsigned~~
                 - ~~`1` is `Int` (signed)~~
                     - ~~`1u` is `UInt` (unsigned)~~
-                - ~~Therefore `if anUInt - 1 >= 0` is a useful expression (`1` is signed)~~
-                - ~~But also `anUInt + 1 == anInt`~~
+                - ~~Therefore `if aUInt - 1 >= 0` is a useful expression (`1` is signed)~~
+                - ~~But also `aUInt + 1 == anInt`~~
     - ~~Or~~
         - ~~`Size` - `Size` -> `SSize`~~
             - ~~Problem: `-` results in `SSize`, but `+` results in `Size`?!~~
