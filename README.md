@@ -179,20 +179,18 @@ When we are at it, after a quick look at Julia and Python.
     - Error with `if aUInt < anInt`
         - you have to cast
 - Not:
-    - ~~`Size` AKA `UInt` as type for `*.size()` (i.e. still unsigned)~~
-        - ~~`Size` reads IMHO better than `UInt`~~
-            - ~~`Size` would not really be necessary~~
+    - ~~`UInt` as type for `*.size()` (i.e. still unsigned)~~
         - ~~New rules for mixed integer arithmetic:~~
             - ~~Unsigned +-*/ Signed -> Signed.~~
                 - ~~Signed is therefore considered the "larger" type compared to unsigned~~
                 - ~~`1` is `Int` (signed)~~
                     - ~~`1u` is `UInt` (unsigned)~~
-                - ~~Therefore `if aUInt - 1 >= 0` is a useful expression (`1` is signed)~~
-                - ~~But also `aUInt + 1 == anInt`~~
+                - ~~Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)~~
+                - ~~But then also `aUInt + 1 == anInt`~~
     - ~~Or~~
         - ~~`Size` - `Size` -> `SSize`~~
             - ~~Problem: `-` results in `SSize`, but `+` results in `Size`?!~~
-        - ~~The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size ~~
+        - ~~The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.~~
 
 
 ## Namespace `cilia`
