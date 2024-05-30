@@ -34,28 +34,7 @@ When we are at it, after a quick look at Julia and Python.
       (so maybe I could add some more of Julias interesting features to this wish list).
 - Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:
     - Carbon is based on the same basic idea, a new syntax with C++ interoperability, but with a syntax more resembling Rust than C++. That is something I neither expected nor would prefer.
-      ```
-      fn PrintTotalArea(circles: Slice (Circle)) {
-          var area: f32 = 0;
-          for (c: Circle in circles) {
-              area += Math.Pi * c.r * c.r;
-          }
-          Print("Total area: {0}", area);
-      ｝
-      ```
-    - Cpp2 ("C++ syntax 2") also has this `name: Type` syntax:
-      ```
-      divide: (dividend: int, divisor: int) -> (quotient: int, remainder: int) = {
-          if divisor == 0 {
-              quotient  = 0;                      // constructs quotient
-              remainder = 0;                      // constructs remainder
-          }
-          else {
-              quotient = dividend / divisor;      // constructs quotient
-              remainder = dividend % divisor;     // constructs remainder
-          }
-      }
-      ```
+    - Cpp2 ("C++ syntax 2") also has this `name: Type` syntax.
 - Why a new language, not C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
