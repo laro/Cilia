@@ -989,7 +989,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
 
 1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
     - Unclear - haven't people gotten used to it?
-    - Otherweise see [Safety & Security](Safety & Security) [Test](Safety-and-Security)
+    - Otherweise see [Safety & Security](Safety & Security) [Test](##Safety-and-Security)
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
     - Only allow safe ones,  
       otherwise an explicit cast is necessary.
