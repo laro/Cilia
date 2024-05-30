@@ -166,7 +166,7 @@ When we are at it, after a quick look at Julia and Python.
 - Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
     - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
 - When working with sizes, calculating the difference is common; Then you are limited to `PtrDiff` (i.e. signed integer) anyway.
-- Who needs more than 2GB of data in an "array", should please use a 64 bit platform.
+- Who needs more than 2GB of data in a single "array", should please use a 64 bit platform.
 - For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
 - Then types `Size` and `SSize`/`PtrDiff` are not necessary anymore, so two types less.
     - We simply use `Int` instead. Or `UInt` in rate cases.
