@@ -61,11 +61,11 @@ When we are at it, after a quick look at Julia and Python.
     - C++ could be extended by some features:
         - Aliasing of member names (functions and variables) is necessary to fully translate the C++ standard library to CamelCase.
     - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
-       - Restricted integral promotions and implicit narrowing conversions
        - [Const reference as default type](#const-reference-as-default-type) for function arguments
-       - [No trailing semicolons](#No-trailing-semicolons)
+       - Restricted integral promotions and implicit narrowing conversions
        - New array declaration (`Int[] array` instead of `Int array[]`)
        - [New/simplified keywords](#better-readable-keywords)
+       - [No trailing semicolons](#No-trailing-semicolons)
 
 
 ## C++ Language Family
