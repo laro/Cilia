@@ -38,7 +38,7 @@ When we are at it, after a quick look at Julia and Python.
 - Why a new language, not C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
-        - Aliasing of member names (functions and variables) is necessary to fully translate the C++ standard library to CamelCase.
+        - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow wrapper for the C++ standard library (i.e. a translation layer).
     - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
        - [Const reference as default type](#const-reference-as-default-type) for function arguments
        - [Fixing C++ "wrong defaults"](#fix-c-wrong-defaults)
