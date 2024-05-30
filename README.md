@@ -210,7 +210,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
             - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, …
         - `Multimap` or `MultiMap` instead of `multimap`?
 - Shallow wrapper,
-    - e.g. `cilia::String : protected std::string`
+    - e.g. `cilia::String : public std::string`
 - "**Alias**" for 
     - member variables  
       `using x = data[0]`  
