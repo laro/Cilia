@@ -480,6 +480,14 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - for type inferring, parameter overloading and template matching.
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
+- `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
+    - Can be converted to any float type
+    - Is interpreted as `Float`
+        - for type inferring, parameter overloading and template matching.
+- `NaN` is a floating point literal of arbitrary precision for NaN ("not a number") values
+    - Can be converted to any float type
+    - Is interpreted as `Float`
+        - for type inferring, parameter overloading and template matching.
 - Range literals `1..10` and `1..<10`
     - as in Kotlin
     - ~~Swift would be `1...10`~~
