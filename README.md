@@ -852,6 +852,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
           array[3] = 0
           array[4] = 0  // Runtime error, no static bounds check
           ```
+        - `var subarray = array[1..2]`
     - `Int[3,2,200]`
         - Multidimensional array  
           ```
