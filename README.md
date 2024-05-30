@@ -179,8 +179,8 @@ When we are at it, after a quick look at Julia and Python.
     - Error with `if aUInt < anInt`
         - you have to cast
 - Not:
-    - ~~`UInt` as type for `*.size()` (i.e. still unsigned)~~
-    - ~~but with new rules for mixed integer arithmetic:~~
+    - ~~`UInt` as type for `*.size()` (i.e. still unsigned)~~  
+      ~~but with new rules for mixed integer arithmetic:~~
         - ~~Unsigned +-*/ Signed -> Signed.~~
             - ~~Signed is therefore considered the "larger" type compared to unsigned~~
             - ~~`1` is `Int` (signed)~~
