@@ -180,13 +180,13 @@ When we are at it, after a quick look at Julia and Python.
         - you have to cast
 - Not:
     - ~~`UInt` as type for `*.size()` (i.e. still unsigned)~~
-        - ~~New rules for mixed integer arithmetic:~~
-            - ~~Unsigned +-*/ Signed -> Signed.~~
-                - ~~Signed is therefore considered the "larger" type compared to unsigned~~
-                - ~~`1` is `Int` (signed)~~
-                    - ~~`1u` is `UInt` (unsigned)~~
-                - ~~Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)~~
-                - ~~But then also `aUInt + 1 == anInt`~~
+    - ~~but with new rules for mixed integer arithmetic:~~
+        - ~~Unsigned +-*/ Signed -> Signed.~~
+            - ~~Signed is therefore considered the "larger" type compared to unsigned~~
+            - ~~`1` is `Int` (signed)~~
+                - ~~`1u` is `UInt` (unsigned)~~
+            - ~~Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)~~
+            - ~~But then also `aUInt + 1 == anInt`~~
     - ~~Or~~
         - ~~`Size` - `Size` -> `SSize`~~
             - ~~Problem: `-` results in `SSize`, but `+` results in `Size`?!~~
