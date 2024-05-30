@@ -56,17 +56,16 @@ When we are at it, after a quick look at Julia and Python.
           }
       }
       ```
-- Why not change/evolve C++?
-    - The CamelCase style could be archieved in C++, too, but aliasing of member
-      names (functions and variables) is necessary to fully translate the C++
-      standard library to CamelCase.
-       - Aliasing could & IMHO should be added to C++
-    -  Incompatible with C++ is
-       - Const Reference as Default Type
-       - no trailing semicolons
-       - new keywords
-       - Integral promotions
-       - Implicit narrowing conversions
+- Why a new language, not C++?
+    - The CamelCase style could basically be archieved in C++, too
+    - C++ could be extended by some features:
+        - Aliasing of member names (functions and variables) is necessary to fully translate the C++ standard library to CamelCase.
+    - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
+       - Const reference as default type for function arguments
+       - No trailing semicolons
+       - New/simplified keywords
+       - Restricted integral promotions and implicit narrowing conversions
+       - New array declaration (`Int[] array` instead of `Int array[]`)
 
 
 ## C++ Language Family
