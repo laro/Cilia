@@ -779,11 +779,11 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
 ## Short Smart Pointer Syntax 
 - `Type^ instance`
     - `T^` by default is `SharedPtr<T>`
-        - for C++/Cilia,
+        - for C++/Cilia classes,
         - defined via type traits `CircumflexType`.
     - Possible to redefine for interoperability with other languages:
-        - Objective-C/Swift: Use their reference counting mechanism
-        - C#/Java: Use garbage collected memory
+        - Objective-C/Swift classes: Use their reference counting mechanism
+        - C#/Java classes: Use garbage collected memory
     - ~~`T^^` by default is `WeakPtr<T>`~~
         - ~~defined via type traits `CircumflexCircumflexType`.~~
         - ~~`SharedPtr<SharedPtr<T>>` just doesn't work like that, doesn’t really make sense anyway.~~
