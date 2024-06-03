@@ -625,8 +625,9 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `func` instead of `auto`
     - `for … in …` instead of `for (… : …)`
     - `for i in 0..<10` instead of `for (int i = 0; i < 10; ++i)`
-    - `class … extends …` instead of `class … : …`
-        - or better `implements`?
+    - ~~`class … extends …` instead of `class … : …`~~
+        - ~~or better `implements`?~~
+    - `type` instead of `typename`
     - `await` instead of `co_await`
     - `yield` instead of `co_yield`
     - `return` instead of `co_return`
@@ -801,25 +802,42 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - Do we really need a short expression for `WeakPtr<T>`?
 
 
-## Automatic Templates
-- If the type of a function argument is a concept, then the function is a template.
-    - Concept `Number`:
-        - ```
-          func sq(Number x) -> Number {
-               return x * x
-           }
+## Templates
+- Automatic Templates
+    - If the type of a function argument is a concept, then the function is a template.
+        - Concept `Number`:
+            - ```
+              func sq(Number x) -> Number {
+                   return x * x
+               }
+              ```
+            - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
+        - `func add(Number a, b) -> Number`
+            - `a`, `b` and the return type could each be a _different_ type (as long as it satisfies the concept `Number`)
+        - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
           ```
-        - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
-    - `func add(Number a, b) -> Number`
-        - `a`, `b` and the return type could each be a _different_ type (as long as it satisfies the concept `Number`)
-    - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
+           func sqrt(Real x) -> Real {
+               // … a series development …
+          }
+          ```
+    - Like abbreviated function templates in C++ 20, only without `auto`.
+- Explicit templates for cases where a common type is required.
+    - ```
+      func sq<type T>(Number x) -> Number {
+           return x * x
+       }
       ```
-       func sqrt(Real x) -> Real {
-           // … a series development …
-      }
-      ```
-- Like abbreviated function templates in C++ 20, only without `auto`.
-- `template<typename T>` for cases where a common type is required.
+    - ~~```~~
+      ~~func<type T> sq(Number x) -> Number {~~
+      ~~     return x * x~~
+      ~~}~~
+      ~~```~~
+    - ~~```
+      template<type T>
+      func sq(Number x) -> Number {
+           return x * x
+       }
+      ~~```~~
 - `requires` for further restricting the type.
   
 
