@@ -823,19 +823,19 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
     - Like abbreviated function templates in C++ 20, only without `auto`.
 - Explicit templates for cases where a common type is required.
     - ```
-      func sq<type T>(Number x) -> Number {
+      func sq<Number T>(T x) -> T {
            return x * x
       }
       ```
-    - ~~`func<type T> sq(Number x) -> Number { return x * x }`~~
-    - ~~`template<type T> func sq(Number x) -> Number { return x * x }`~~
+    - ~~`func<Number T> sq(T x) -> T { return x * x }`~~
+    - ~~`template<Number T> func sq(T x) -> T { return x * x }`~~
 - `requires` for further restricting the type.
     - ```
-      func sq<type T>(Number x) -> Number requires (T a, T b) { a * b } {
+      func sq<Number T>(T x) -> T requires (T a, T b) { a * b } {
            return x * x
       }
       ```
-    - TODO `{ ... } { ... }`?
+    - TODO Really this syntax: `{ ... } { ... }`?
   
 
 ## Misc
