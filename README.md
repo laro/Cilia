@@ -983,16 +983,18 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - Only allow safe ones,  
       otherwise an explicit cast is necessary.
 3. [Implicit narrowing conversions.](http://eel.is/c++draft/conv.integral#3)
-    - Not allowed
+    - Not allowed,  
+      only implicit widening is allowed.
+    - Assigment of integer and float literals to variables of certain precision only possible if "it fits".
 4. [Switches should break rather than fallthrough.](http://eel.is/c++draft/stmt.switch#6)
-    - Keyword `fallthrough` instead, as in Swift.
+    - Use the keyword `fallthrough` instead, as in Swift.
 5. [Operator precedence is complicated and wrong.](http://eel.is/c++draft/expr.compound#expr.bit.and)
     - If the suggestion of Sean Baxter / Circle works well, then that would be fine.
 6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
-    - `func` (but not `var`)
+    - Use `func` (but not `var`)
 7. [Template brackets `< >` are a nightmare to parse.](http://eel.is/c++draft/temp.names#nt:template-argument-list)
-    - I would not like to change this.
-    - Only if it _really_ has to be.
+    - I would not like to change this,  
+      only if it _really_ has to be.
 8. [Forwarding parameters and `std::forward` are error prone.](http://eel.is/c++draft/temp.deduct#call-3)
 9. [Braced initializers can choose the wrong constructor.](http://eel.is/c++draft/dcl.init.list#2)
     - Do without braced initializers altogether.
