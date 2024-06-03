@@ -825,20 +825,17 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
     - ```
       func sq<type T>(Number x) -> Number {
            return x * x
-       }
+      }
       ```
-    - ~~```~~
-      ~~func<type T> sq(Number x) -> Number {~~
-      ~~     return x * x~~
-      ~~}~~
-      ~~```~~
-    - ~~```
-      template<type T>
-      func sq(Number x) -> Number {
-           return x * x
-       }
-      ~~```~~
+    - ~~`func<type T> sq(Number x) -> Number { return x * x }`~~
+    - ~~`template<type T> func sq(Number x) -> Number { return x * x }`~~
 - `requires` for further restricting the type.
+    - ```
+      func sq<type T>(Number x) -> Number requires (T a, T b) { a * b } {
+           return x * x
+      }
+      ```
+    - TODO `{ ... } { ... }`?
   
 
 ## Misc
