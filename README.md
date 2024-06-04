@@ -35,19 +35,19 @@ When we are at it, after a quick look at Julia and Python.
 - Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:
     - Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++, with a `name: Type` syntax.
     - Carbon
-        - `i32`, `i64`, `f32`
+        - `Int` (uppercase!), `i32`, `i64`, `f32`
         - `var x: i32 = 42;`
             - `var x: auto = 42;`
         - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
     - Cpp2
-        - `int`, but also `i32`, `i64`
+        - `int`, `i32`, `i64`, `f32`
         - `x: int = 42;`
             - `x := 42;`
         - `multiply: (x: int, y: int) -> int = x * y;`
         - `for (0, 1, 2) do (i) { ... }`
         - `while i < 3 next i++ { ... }`
     - Cilia
-        - `Int`, `Int32`, `Int64`
+        - `Int`, `Int32`, `Int64`, `Float32`
         - `Int x = 42`
             - `var x = 42`
         - `func multiply(Int x, y) -> Int { return x * y };`
