@@ -73,7 +73,7 @@ When we are at it, after a quick look at Julia and Python.
         - `for (int i = 0; i < 10; ++i) { ... }`
         - `for (int i = 0; i < words.ssize(); ++i) { ... }`
         - `while (i < 10) { ...; ++i }`
-- Why a new language, not C++?
+- Why a new language, not extending C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
         - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow wrapper for the C++ standard library (i.e. a translation layer).
