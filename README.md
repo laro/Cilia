@@ -863,6 +863,21 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
           }
           ```
     - Like abbreviated function templates in C++ 20, only without `auto`.
+    - Template classes
+      ```
+      class MyVector<Number T> {
+          T* numbers = Null
+          Int size = 0
+      }
+      ```
+        - If the type of one member variable is a concept, then the class is a template.
+          ```
+          class MyVector {
+              Number* numbers = Null
+              Int size = 0
+          }
+          ```
+
 - Explicit templates for cases where a common type is required.
     - ```
       func sq<Number T>(T x) -> T {
