@@ -39,6 +39,7 @@ When we are at it, after a quick look at Julia and Python.
         - `var x: i32 = 42;`
             - `var x: auto = 42;`
         - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
+        - `var circles: Array(Circle) = ({.r = 1.0}, {.r = 2.0});`
     - Cpp2
         - `int`, `i32`, `i64`, `f32`
         - `x: int = 42;`
@@ -51,6 +52,7 @@ When we are at it, after a quick look at Julia and Python.
         - `Int x = 42`
             - `var x = 42`
         - `func multiply(Int x, y) -> Int { return x * y }`
+        - `Array<Circle> circles = [{.r = 1.0}, {.r = 2.0}]`
         - `for i in [0, 1, 2] { ... }`
         - `while i < 3 { ... ++i }`
     - C++
@@ -58,6 +60,7 @@ When we are at it, after a quick look at Julia and Python.
         - `int x = 42;`
             - `auto x = 42;`
         - `auto multiply(int x, int y) -> int { return x * y }`
+        - `vector<Circle> circles {{.r = 1.0}, {.r = 2.0}};`
         - `for (i : {0, 1, 2}) { ... }`
         - `while (i < 3) { ... ++i }`
 - Why a new language, not C++?
