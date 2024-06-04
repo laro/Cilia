@@ -37,13 +37,22 @@ When we are at it, after a quick look at Julia and Python.
     - Carbon
         - `i32`, `i64`, `f32`
         - `var x: i32 = 42;`
+            - `var x: auto = 42;`
         - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
     - Cpp2
-        - `i32`, `i64`, but also `int`
+        - `int`, but also `i32`, `i64`
         - `x: int = 42;`
-        - `aFunction: (x: int) -> int = 3 * x;`
+            - `x := 42;`
+        - `multiply: (x: int, y: int) -> int = x * y;`
         - `for (0, 1, 2) do (i) { ... }`
         - `while i < 3 next i++ { ... }`
+    - Cilia
+        - `Int`, `Int32`, `Int64`
+        - `Int x = 42`
+            - `var x = 42`
+        - `func multiply(Int x, y) -> Int { return x * y };`
+        - `for i in [0, 1, 2] { ... }`
+        - `while i < 3 { ... ++i }`
 - Why a new language, not C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
