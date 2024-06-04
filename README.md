@@ -871,13 +871,22 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
       }
       ```
         - If the type of one member variable is a concept, then the class is a template.
+        - With concept "Number":
+            - ```
+              class MyVector {
+                  Number* numbers = Null
+                  Int size = 0
+              }
+              ```
+            - Usage: `MyVector<Float> vector`
+        - With concepts "Number" and `Integer`:
           ```
-          class MyVector {
+          class MyOtherVector {
               Number* numbers = Null
-              Int size = 0
+              Integer size = 0
           }
           ```
-
+            - Usage: `MyOtherVector<Float, Int> vector`
 - Explicit templates for cases where a common type is required.
     - ```
       func sq<Number T>(T x) -> T {
