@@ -666,7 +666,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `for … in …` instead of `for (… : …)`
     - `for i in 0..<10` instead of `for (int i = 0; i < 10; ++i)`
     - ~~`class … extends …` instead of `class … : …`~~
-        - ~~or better `implements`?~~
+        - ~~`class … implements …` instead of `class … : …` for pure abstract classes (like interfaces)~~
     - `type` instead of `typename`
     - `await` instead of `co_await`
     - `yield` instead of `co_yield`
