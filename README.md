@@ -869,8 +869,9 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
            return x * x
       }
       ```
-    - ~~`func<Number T> sq(T x) -> T { return x * x }`~~
-    - ~~`template<Number T> func sq(T x) -> T { return x * x }`~~
+    - Not
+        - ~~`func<Number T> sq(T x) -> T { return x * x }`~~
+        - ~~`template<Number T> func sq(T x) -> T { return x * x }`~~
 - `requires` for further restricting the type.
     - ```
       func sq<Number T>(T x) -> T requires (T x) { x * x } {
