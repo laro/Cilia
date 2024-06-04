@@ -50,7 +50,7 @@ When we are at it, after a quick look at Julia and Python.
         - `Int`, `Int32`, `Int64`, `Float32`
         - `Int x = 42`
             - `var x = 42`
-        - `func multiply(Int x, y) -> Int { return x * y };`
+        - `func multiply(Int x, y) -> Int { return x * y }`
         - `for i in [0, 1, 2] { ... }`
         - `while i < 3 { ... ++i }`
 - Why a new language, not C++?
