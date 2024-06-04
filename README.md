@@ -45,7 +45,7 @@ When we are at it, after a quick look at Julia and Python.
        - [No trailing semicolons](#No-trailing-semicolons)
 
 
-## Comparison to Cpp2, Carbon, and C++
+## Comparison to C++, Cpp2, and Carbon
 Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:  
 Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++, with a `name: Type` syntax.
 - Cilia
@@ -59,6 +59,16 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
     - `for i in 0..<10 { ... }`
     - `for i in 0..<words.size() { ... }`
     - `while i < 10 { ... ++i }`
+- C++
+    - `int`, `int32_t`, `int64_t`, `float`
+    - `int x = 42;`
+        - `auto x = 42;`
+        - `vector<Circle> circles;`
+    - `auto multiply(int x, int y) -> int { return x * y }`
+    - `for (i : {5, 7, 11, 13}) { ... }`
+    - `for (int i = 0; i < 10; ++i) { ... }`
+    - `for (int i = 0; i < words.ssize(); ++i) { ... }`
+    - `while (i < 10) { ...; ++i }`
 - Cpp2
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
@@ -71,23 +81,13 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
         - `for words next i++ do (inout word) { ... word & i ... }`
     - `while i < 10 next i++ { ... }`
 - Carbon
-    - `Int` (uppercase), `i32`, `i64`, `f32` (lowercase – ?)
+    - `Int` (uppercase - ?), `i32`, `i64`, `f32` (lowercase)
     - `var x: i32 = 42;`
         - `var x: auto = 42;`
         - `var circles: Array(Circle);`
     - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
     - `for (i:i32 in (5, 7, 11, 13)) { ... }`
     - `while (i < 10) { ...; i = i+1; }`
-- C++
-    - `int`, `int32_t`, `int64_t`, `float`
-    - `int x = 42;`
-        - `auto x = 42;`
-        - `vector<Circle> circles;`
-    - `auto multiply(int x, int y) -> int { return x * y }`
-    - `for (i : {5, 7, 11, 13}) { ... }`
-    - `for (int i = 0; i < 10; ++i) { ... }`
-    - `for (int i = 0; i < words.ssize(); ++i) { ... }`
-    - `while (i < 10) { ...; ++i }`
 
 
 ## C++ Language Family
