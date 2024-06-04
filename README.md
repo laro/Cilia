@@ -300,7 +300,8 @@ Cilia standard library in namespace `cilia` (instead of `std`).
         - `mutable value`
         - Is not specified when calling the function, as a copy is created here.
     - `reference`, to mark as reference (not value)
-    - RValue references still as `&&`
+    - `moveable`, to mark as rvalue reference
+        - ~~RValue references still as `&&`~~
     - Examples:
         - `for mutable str in stringArray { … }`
             - `str` is `String&`
