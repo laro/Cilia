@@ -53,6 +53,13 @@ When we are at it, after a quick look at Julia and Python.
         - `func multiply(Int x, y) -> Int { return x * y }`
         - `for i in [0, 1, 2] { ... }`
         - `while i < 3 { ... ++i }`
+    - C++
+        - `int`, `int32_t`, `int64_t`, `float`
+        - `int x = 42;`
+            - `auto x = 42;`
+        - `auto multiply(int x, int y) -> int { return x * y }`
+        - `for (i : {0, 1, 2}) { ... }`
+        - `while (i < 3) { ... ++i }`
 - Why a new language, not C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
