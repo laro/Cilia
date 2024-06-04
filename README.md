@@ -92,9 +92,9 @@ When we are at it, after a quick look at Julia and Python.
         - Java: Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby …
         - C#: C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby …
         - Objective-C: Swift
-    - Possible to include
-        - C++ headers and modules from Cilia
-        - Cilia headers and modules from C++
+    - Bi-directional interoperability, so it is possible to include
+        - C++ headers and modules from Cilia,
+        - Cilia headers and modules from C++.
     - The compiler recognises the language (C, C++, or Cilia) by
         - the file extension
             - Cilia: `*.cl` `*.hl`  &nbsp;  ~~`*.cilia` `*.hilia`~~
