@@ -57,7 +57,8 @@ When we are at it, after a quick look at Julia and Python.
         - `Int`, `Int32`, `Int64`, `Float32`
         - `Int x = 42`
             - `var x = 42`
-            - `Array<Circle> circles`
+            - `Circle[] circles`
+                - or `Array<Circle> circles`
         - `func multiply(Int x, y) -> Int { return x * y }`
         - `for i in [5, 7, 11, 13] { ... }`
         - `for i in 0..<10 { ... }`
