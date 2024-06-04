@@ -871,7 +871,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
       }
       ```
         - If the type of one member variable is a concept, then the class is a template.
-        - With concept "Number":
+        - With concept `Number`:
             - ```
               class MyVector {
                   Number* numbers = Null
@@ -879,7 +879,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
               }
               ```
             - Usage: `MyVector<Float> vector`
-        - With concepts "Number" and `Integer`:
+        - With concepts `Number` and `Integer`:
           ```
           class MyOtherVector {
               Number* numbers = Null
