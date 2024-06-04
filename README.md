@@ -49,7 +49,7 @@ When we are at it, after a quick look at Julia and Python.
 Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:  
 Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++, with a `name: Type` syntax.
 - Cilia
-    - `Int`, `Int32`, `Int64`, `Float32`
+    - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
         - `var x = 42`
         - `Circle[] circles`
