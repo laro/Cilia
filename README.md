@@ -658,7 +658,8 @@ No braces around the condition clause.
 
 
 ## Better Readable Keywords
-C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace).
+C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
+
 - Cilia has
     - `var` instead of `auto`
     - `func` instead of `auto`
