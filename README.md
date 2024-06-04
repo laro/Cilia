@@ -38,14 +38,15 @@ When we are at it, after a quick look at Julia and Python.
         - `Int` (uppercase), `i32`, `i64`, `f32` (lowercase – ?)
         - `var x: i32 = 42;`
             - `var x: auto = 42;`
+            - `var circles: Array(Circle);`
         - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
-        - `var circles: Array(Circle) = ({.r = 1.0}, {.r = 2.0});`
         - `for (i:i32 in (5, 7, 11, 13)) { ... }`
         -` while (i<5) { ...; i = i+1; }`
     - Cpp2
         - `int`, `i32`, `i64`, `f32`
         - `x: int = 42;`
             - `x := 42;`
+            - `circles: vector<Circle>;`
         - `multiply: (x: int, y: int) -> int = x * y;`
         - `for (5, 7, 11, 13) do (i) { ... }`
         - `while i < words.ssize() next i++ { ... } `          
@@ -55,8 +56,8 @@ When we are at it, after a quick look at Julia and Python.
         - `Int`, `Int32`, `Int64`, `Float32`
         - `Int x = 42`
             - `var x = 42`
+            - `Array<Circle> circles`
         - `func multiply(Int x, y) -> Int { return x * y }`
-        - `Array<Circle> circles = [{.r = 1.0}, {.r = 2.0}]`
         - `for i in [5, 7, 11, 13] { ... }`
         - `for i in 0..<10 { ... }`
         - `while i < 3 { ... ++i }`
@@ -64,8 +65,8 @@ When we are at it, after a quick look at Julia and Python.
         - `int`, `int32_t`, `int64_t`, `float`
         - `int x = 42;`
             - `auto x = 42;`
+            - `vector<Circle> circles;`
         - `auto multiply(int x, int y) -> int { return x * y }`
-        - `vector<Circle> circles {{.r = 1.0}, {.r = 2.0}};`
         - `for (i : {5, 7, 11, 13}) { ... }`
         - `for (int i = 0; i < 10; ++i) { ... }`
         - `while (i < 3) { ... ++i }`
