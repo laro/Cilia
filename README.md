@@ -47,6 +47,8 @@ When we are at it, after a quick look at Julia and Python.
             - `x := 42;`
         - `multiply: (x: int, y: int) -> int = x * y;`
         - `for (0, 1, 2) do (i) { ... }`
+        - `while i < words.ssize() next i++ { ... } `          
+            - `for words next i++ do (inout word) { ... }`
         - `while i < 3 next i++ { ... }`
     - Cilia
         - `Int`, `Int32`, `Int64`, `Float32`
@@ -55,6 +57,7 @@ When we are at it, after a quick look at Julia and Python.
         - `func multiply(Int x, y) -> Int { return x * y }`
         - `Array<Circle> circles = [{.r = 1.0}, {.r = 2.0}]`
         - `for i in [0, 1, 2] { ... }`
+        - `for i in 0..<10 { ... }`
         - `while i < 3 { ... ++i }`
     - C++
         - `int`, `int32_t`, `int64_t`, `float`
@@ -63,6 +66,7 @@ When we are at it, after a quick look at Julia and Python.
         - `auto multiply(int x, int y) -> int { return x * y }`
         - `vector<Circle> circles {{.r = 1.0}, {.r = 2.0}};`
         - `for (i : {0, 1, 2}) { ... }`
+        - `for (int i = 0; i < 10; ++i) { ... }`
         - `while (i < 3) { ... ++i }`
 - Why a new language, not C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
