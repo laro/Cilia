@@ -848,11 +848,11 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
 - Automatic Templates
     - If the type of a function argument is a concept, then the function is a template.
         - Concept `Number`:
-            - ```
-              func sq(Number x) -> Number {
-                   return x * x
-               }
-              ```
+          ```
+          func sq(Number x) -> Number {
+               return x * x
+           }
+          ```
             - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
         - `func add(Number a, b) -> Number`
             - `a`, `b` and the return type could each be a _different_ type (as long as it satisfies the concept `Number`)
