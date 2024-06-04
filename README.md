@@ -1071,8 +1071,8 @@ I am not familiar with all these issues, but in a new language we certainly coud
 4. [Switches should break rather than fallthrough.](http://eel.is/c++draft/stmt.switch#6)
     - Use the keyword `fallthrough` instead, as in Swift.
 5. [Operator precedence is complicated and wrong.](http://eel.is/c++draft/expr.compound#expr.bit.and)
-    - If the suggestion of Sean Baxter / Circle works well, then that would be fine.
-    - Herb Sutter / Cpp2 has [this precedence](https://hsutter.github.io/cppfront/cpp2/common/?h=operator#binary-operators).
+    - If the [suggestion](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#simpler_precedence) of Circle (Sean Baxter) works well, then that would be fine.
+    - Cpp2 (Herb Sutter) has [this precedence](https://hsutter.github.io/cppfront/cpp2/common/?h=operator#binary-operators).
 6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
     - Use `func` (but not typically `var`)
 7. [Template brackets `< >` are a nightmare to parse.](http://eel.is/c++draft/temp.names#nt:template-argument-list)
