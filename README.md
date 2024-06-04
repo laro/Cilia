@@ -33,8 +33,17 @@ When we are at it, after a quick look at Julia and Python.
     - "Cilia" signals something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org)  
       (so maybe I could add some more of Julias interesting features to this wish list).
 - Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:
-    - Carbon is based on the same basic idea, a new syntax with C++ interoperability, but with a syntax more resembling Rust than C++. That is something I neither expected nor would prefer.
-    - Cpp2 ("C++ syntax 2") also has this `name: Type` syntax.
+    - Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++, with a `name: Type` syntax.
+    - Carbon
+        - `i32`, `i64`, `f32`
+        - `var x: i32 = 42;`
+        - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
+    - Cpp2
+        - `i32`, `i64`, but also `int`
+        - `x: int = 42;`
+        - `aFunction: () -> int = 3;`
+        - `for (0, 1, 2) do (i) { ... }`
+        - `while i < 3 next i++ { ... }`
 - Why a new language, not C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
