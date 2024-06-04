@@ -399,6 +399,8 @@ Variable declaration still simply as `Int i`, as in C/C++.
 - `var i = 3` only for type inference
     - ~~Maybe possible to simply write `i = 3`?~~
     - ~~Maybe `i := 3`?~~
+- New array declaration `Int[] array`
+    - instead of ~~`Int array[]`~~
 - Examples:
     - `Int anInt`
     - `Int[] arrayOfInt`
