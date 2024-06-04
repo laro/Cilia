@@ -41,7 +41,7 @@ When we are at it, after a quick look at Julia and Python.
     - Cpp2
         - `i32`, `i64`, but also `int`
         - `x: int = 42;`
-        - `aFunction: () -> int = 3;`
+        - `aFunction: (x: int) -> int = 3 * x;`
         - `for (0, 1, 2) do (i) { ... }`
         - `while i < 3 next i++ { ... }`
 - Why a new language, not C++?
