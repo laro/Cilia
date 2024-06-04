@@ -41,6 +41,7 @@ When we are at it, after a quick look at Julia and Python.
         - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
         - `var circles: Array(Circle) = ({.r = 1.0}, {.r = 2.0});`
         - `for (i:i32 in (5, 7, 11, 13)) { ... }`
+        -` while (i<5) { ...; i = i+1; }`
     - Cpp2
         - `int`, `i32`, `i64`, `f32`
         - `x: int = 42;`
