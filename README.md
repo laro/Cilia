@@ -330,8 +330,8 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 ## Functions
 - ```
-  func aFunction(Int i) -> Float {
-      return i * 3.14
+  func multiplyAdd(Int x, y, Float z) -> Float {
+      return x * y  +  z
   }
   ```
     - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
