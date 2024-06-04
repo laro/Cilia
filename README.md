@@ -72,7 +72,7 @@ When we are at it, after a quick look at Julia and Python.
         - `for (i : {5, 7, 11, 13}) { ... }`
         - `for (int i = 0; i < 10; ++i) { ... }`
         - `for (int i = 0; i < words.ssize(); ++i) { ... }`
-        - `while (i < 10) { ... ++i }`
+        - `while (i < 10) { ...; ++i }`
 - Why a new language, not C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
