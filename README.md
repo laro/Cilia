@@ -32,48 +32,6 @@ When we are at it, after a quick look at Julia and Python.
   as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
     - "Cilia" signals something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org)  
       (so maybe I could add some more of Julias interesting features to this wish list).
-- Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:
-    - Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++, with a `name: Type` syntax.
-    - Carbon
-        - `Int` (uppercase), `i32`, `i64`, `f32` (lowercase – ?)
-        - `var x: i32 = 42;`
-            - `var x: auto = 42;`
-            - `var circles: Array(Circle);`
-        - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
-        - `for (i:i32 in (5, 7, 11, 13)) { ... }`
-        - `while (i < 10) { ...; i = i+1; }`
-    - Cpp2
-        - `int`, `i32`, `i64`, `f32`
-        - `x: int = 42;`
-            - `x := 42;`
-            - `circles: vector<Circle>;`
-        - `multiply: (x: int, y: int) -> int = x * y;`
-        - `for (5, 7, 11, 13) do (i) { ... }`
-        - `while i < 10 next i++ { ... } `          
-        - `while i < words.ssize() next i++ { ... } `          
-            - `for words next i++ do (inout word) { ... word & i ... }`
-        - `while i < 10 next i++ { ... }`
-    - Cilia
-        - `Int`, `Int32`, `Int64`, `Float32`
-        - `Int x = 42`
-            - `var x = 42`
-            - `Circle[] circles`
-                - or `Array<Circle> circles`
-        - `func multiply(Int x, y) -> Int { return x * y }`
-        - `for i in [5, 7, 11, 13] { ... }`
-        - `for i in 0..<10 { ... }`
-        - `for i in 0..<words.size() { ... }`
-        - `while i < 10 { ... ++i }`
-    - C++
-        - `int`, `int32_t`, `int64_t`, `float`
-        - `int x = 42;`
-            - `auto x = 42;`
-            - `vector<Circle> circles;`
-        - `auto multiply(int x, int y) -> int { return x * y }`
-        - `for (i : {5, 7, 11, 13}) { ... }`
-        - `for (int i = 0; i < 10; ++i) { ... }`
-        - `for (int i = 0; i < words.ssize(); ++i) { ... }`
-        - `while (i < 10) { ...; ++i }`
 - Why a new language, not extending C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
@@ -85,6 +43,51 @@ When we are at it, after a quick look at Julia and Python.
        - New array declaration (`Int[] array` instead of `Int array[]`)
        - [New/simplified keywords](#better-readable-keywords)
        - [No trailing semicolons](#No-trailing-semicolons)
+
+
+## Comparison to Cpp2, Carbon, and C++
+Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:  
+Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++, with a `name: Type` syntax.
+- Cilia
+    - `Int`, `Int32`, `Int64`, `Float32`
+    - `Int x = 42`
+        - `var x = 42`
+        - `Circle[] circles`
+            - or `Array<Circle> circles`
+    - `func multiply(Int x, y) -> Int { return x * y }`
+    - `for i in [5, 7, 11, 13] { ... }`
+    - `for i in 0..<10 { ... }`
+    - `for i in 0..<words.size() { ... }`
+    - `while i < 10 { ... ++i }`
+- Cpp2
+    - `int`, `i32`, `i64`, `f32`
+    - `x: int = 42;`
+        - `x := 42;`
+        - `circles: vector<Circle>;`
+    - `multiply: (x: int, y: int) -> int = x * y;`
+    - `for (5, 7, 11, 13) do (i) { ... }`
+    - `while i < 10 next i++ { ... } `          
+    - `while i < words.ssize() next i++ { ... } `          
+        - `for words next i++ do (inout word) { ... word & i ... }`
+    - `while i < 10 next i++ { ... }`
+- Carbon
+    - `Int` (uppercase), `i32`, `i64`, `f32` (lowercase – ?)
+    - `var x: i32 = 42;`
+        - `var x: auto = 42;`
+        - `var circles: Array(Circle);`
+    - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
+    - `for (i:i32 in (5, 7, 11, 13)) { ... }`
+    - `while (i < 10) { ...; i = i+1; }`
+- C++
+    - `int`, `int32_t`, `int64_t`, `float`
+    - `int x = 42;`
+        - `auto x = 42;`
+        - `vector<Circle> circles;`
+    - `auto multiply(int x, int y) -> int { return x * y }`
+    - `for (i : {5, 7, 11, 13}) { ... }`
+    - `for (int i = 0; i < 10; ++i) { ... }`
+    - `for (int i = 0; i < words.ssize(); ++i) { ... }`
+    - `while (i < 10) { ...; ++i }`
 
 
 ## C++ Language Family
