@@ -996,9 +996,6 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - Debug (for debugging with line by line debug info, and with range checks)
         - Release (for deployment, with range checks, suitable for most situations)
         - ~~EvenFasterBut~~UnsafeRelease (for deployment when maximum performance is desired, _without_ range checks)
-- **Thread Safety**
-    - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
-    - While thread safety can be a hard problem, there are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with possible solutions).
 - **Initialization**
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
     - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
@@ -1028,7 +1025,12 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
           var array = new Array<Float>(10) noinit  // No warning
           var array = new Array<Float>(10, 1.0)    // No warning
           ```
-- Further security features beyond C++, like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/), are currently not planned.
+- No further security features planned beyond C++
+    - not like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
+    - no thread safety
+- **Thread Safety**
+    - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
+    - While thread safety can be a hard problem, there are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with possible solutions).
   
 
 ## Two-Pass Compiler
