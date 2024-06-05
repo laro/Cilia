@@ -1028,10 +1028,10 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
           ```
 - No further security features planned beyond C++
     - not like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
+        - that is just out of scope,
     - no thread safety
-- **Thread Safety**
-    - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
-    - While thread safety can be a hard problem, there are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with possible solutions).
+        - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
+        - While thread safety can be a hard problem, there are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with good solutions).
   
 
 ## Two-Pass Compiler
