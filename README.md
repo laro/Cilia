@@ -403,6 +403,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - ~~`var Int i`~~
     - ~~`var i : Int`~~
     - ~~Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?~~
+        - When a parser can handle C++, this should be possible to parse.
         - ~~Could be problematic in connection with omitting the trailing semicolons,~~
         - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
 - New array declaration `Int[] array`
