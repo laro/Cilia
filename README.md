@@ -796,7 +796,7 @@ As in Python, Kotlin, Swift, JavaScript, Julia
                 - same for `for aChar in ASCIIString("abc")`
                     - but Exception thrown, if string contains non-Latin1 characters.
         - Explicitly convertable to `String`==`UTF8String`.
-            - Not so fast conversion as with ASCIIString, as typically some characters need to be translated into two UTF-8 code units.
+            - Not as fast conversion as with ASCIIString, as typically some characters need to be translated into two UTF-8 code units.
 - `Char8`, `Char16`, `Char32`
     - are considered as _different_ types for parameter overloading,
     - but otherwise are like `UInt8`, `UInt16`, `UInt32`,
