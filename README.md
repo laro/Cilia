@@ -81,7 +81,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
         - `for words next i++ do (inout word) { ... word & i ... }`
     - `while i < 10 next i++ { ... }`
 - Carbon
-    - `Int` (uppercase - ?), `i32`, `i64`, `f32` (lowercase)
+    - `Int` (uppercase - ?), `i32`, `i64`, `f32`
     - `var x: i32 = 42;`
         - `var x: auto = 42;`
         - `var circles: Array(Circle);`
