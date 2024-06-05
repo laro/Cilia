@@ -64,7 +64,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
     - `int x = 42;`
         - `auto x = 42;`
         - `vector<Circle> circles;`
-    - `auto multiply(int x, int y) -> int { return x * y }`
+    - `auto multiply(int x, int y) -> int { return x * y; }`
     - `for (i : {5, 7, 11, 13}) { ... }`
     - `for (int i = 0; i < 10; ++i) { ... }`
     - `for (int i = 0; i < words.ssize(); ++i) { ... }`
