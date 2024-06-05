@@ -643,26 +643,42 @@ No braces around the condition clause.
       }
       ```
     - instead of `for (…; …; …)`  
-        - With range literal also used instead of `for (Int i = 0; i < 10; ++i) { … }`
+        - Use the range literal to write          
           ```
           for i in 0..<10 {
               // ...
           }
           ```
+          instead of
+          ```
+          for (Int i = 0; i < 10; ++i) {
+              // ...
+          }
+          ```
         - `for i in 1..10`
             - translates to `for i in Range(1, 10)`
+            - Not recommended, but also possible to write that,  
+              or even
+                - `for i in Range(1, 10, 1)`
         - `for i in 1..<10`
             - translates to `for i in RangeExclusiveEnd(1, 10)`
-        - Not recommended, but possible to write
-            - `for i in Range(1, 10)`
-            - `for i in Range(1, 10, 1)`
-        - Instead of `for (Int i = 10; i > 0; --i) { … }` use
-            - `for i in 10..1:-1`
-            - ? `for i in 10..>0:-1`
+        - Write          
+          ```
+          for i in 10..1:-1 {
+              // ...
+          }
+          ```
+          instead of
+          ```
+          for (Int i = 10; i > 0; --i) {
+              // ...
+          }
+          ```
+        - Alternatively write
             - `for i in (1..10).reversed()`
-            - Not recommended, but possible
-                - `for i in Range(10, 1, -1)`
-                - `for i in Range(10..1, -1)`
+            - `for i in Range(10, 1, -1)`
+            - `for i in Range(10..1, -1)`
+            - Maybe even `for i in 10..>0:-1`?
         - In general replace  
           ```
           for (<Initialization>; <TerminationCriteria>; <Increment>) {
