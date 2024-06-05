@@ -396,15 +396,15 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 ## Variable Declaration
 Variable declaration still simply as `Int i`, as in C/C++.
-- Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?
-    - Could be problematic in connection with omitting the trailing semicolons,
-    - Swift, Kotlin and Circle always start variable declarations with `var`.
-- Not
-    - ~~`var Int i`~~
-    - ~~`var i : Int`~~
 - `var i = 3` only for type inference
     - ~~Maybe possible to simply write `i = 3`?~~
     - ~~Maybe `i := 3`?~~
+- Not
+    - ~~`var Int i`~~
+    - ~~`var i : Int`~~
+    - ~~Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?~~
+        - ~~Could be problematic in connection with omitting the trailing semicolons,~~
+        - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
 - New array declaration `Int[] array`
     - instead of ~~`Int array[]`~~
 - Examples:
