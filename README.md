@@ -928,7 +928,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
     - `Int[3] arrayOfThreeIntegers`
         - „Static array“ – fixed size, same as C/C++
         - `arrayOfThreeIntegers.size()` -> `3`
-            - realised as extension function:  
+            - realized as extension function:  
               TODO `template<type T, Int N> func T[N]::size() -> Int { return N }`
     - `Int[] arrayOfIntegers`
         - „Dynamic array“ – dynamic size
