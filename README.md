@@ -636,25 +636,25 @@ No braces around the condition clause.
   ```
 - `for … in …`
     - as in Rust, Swift
-    - instead of `for (… : …)` (AKA `for each`/`foreach`)
+    - Write
       ```
       for str in ["a", "b", "c"] {
           // ...
       }
       ```
-    - instead of `for (…; …; …)`  
-        - Use the range literal to write          
-          ```
-          for i in 0..<10 {
-              // ...
-          }
-          ```
-          instead of
-          ```
-          for (Int i = 0; i < 10; ++i) {
-              // ...
-          }
-          ```
+      instead of `for (… : …)` (AKA `for each`/`foreach`)
+    - Use the range literal to write          
+      ```
+      for i in 0..<10 {
+          // ...
+      }
+      ```
+      instead of
+      ```
+      for (Int i = 0; i < 10; ++i) {
+          // ...
+      }
+      ```
         - `for i in 1..10`
             - translates to `for i in Range(1, 10)`
             - Not recommended, but also possible to write that,  
@@ -679,21 +679,21 @@ No braces around the condition clause.
             - `for i in Range(10, 1, -1)`
             - `for i in Range(10..1, -1)`
             - Maybe even `for i in 10..>0:-1`?
-        - In general replace  
-          ```
-          for (<Initialization>; <TerminationCriteria>; <Increment>) {
-              <Body>
-          }  
-          ```
-          with
-          ```
-          <Initialization>
-          while <TerminationCriteria> {
-              <Body>
-              <Increment>
-          }
-          ```
-          (OK, curly braces around all of this are necessary to be a perfect replacement.)
+    - In general replace  
+      ```
+      for (<Initialization>; <TerminationCriteria>; <Increment>) {
+          <Body>
+      }  
+      ```
+      with
+      ```
+      <Initialization>
+      while <TerminationCriteria> {
+          <Body>
+          <Increment>
+      }
+      ```
+      (OK, curly braces around all of this are necessary to be a perfect replacement.)
 
 ## Better Readable Keywords
 C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
