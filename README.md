@@ -476,7 +476,8 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - as they are constants.  
     - ~~`true`, `false` are Bool~~
 - `Null` is the null pointer,
-    - it is of the type `NullPtr,` 
+    - it is of the type `NullPtr`,
+        - (or should `NullPtr` be the null pointer, and `NullPtrType` its type?)
     - explicit cast necessary to convert any pointer to `Int`.
 - `123` is an integer literal of arbitrary precision
     - Can be converted to any integer type it fits into (signed and unsigned)
