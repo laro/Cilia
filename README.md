@@ -1101,7 +1101,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
         
 ## Interesting Features of Other Languages
 - Cpp2
-    - Labelled (i.e. multi-level) `break` and `continue`
+    - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
       ```
       outer: while true {
           j := 0;
