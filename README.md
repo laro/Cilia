@@ -306,6 +306,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - `reference`, to mark as reference (not value)
     - `moveable`, to mark as rvalue reference
         - ~~RValue references still as `&&`~~
+    - Short keywords `val`, `ref`, `mut`, `mov`?
     - Examples:
         - `for mutable str in stringArray { … }`
             - `str` is `String&`
