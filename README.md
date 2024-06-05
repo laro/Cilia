@@ -1099,24 +1099,39 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - Better it is a reference.
        
         
-## Capabilities of Julia
-[Julia](https://julialang.org/) has very strong math support. Some of its features should be easy to copy.
-- `b = 2a` as short form of `b = 2*a`
-- `x ÷ y`, integer divide, like `x / y`, truncated to an integer
-- `sqrt(x)`, `√x`
-- `cbrt(x)`, `∛x`
-- `!=`, `≠`
-- `<=`, `≤`
-- `>=`, `≥`
-- Operator overloading
-    - See:
-        - [https://www.geeksforgeeks.org/operator-overloading-in-julia/](https://www.geeksforgeeks.org/operator-overloading-in-julia/)
-            - „Precedence and associativity:  When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
-                - That seems quite complicated to parse?!
-                - I cannot find any other reference to this feature, I assume it is a misunderstanding.
-        - [https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm](https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm)
-    - Much more operators
-        - [https://stackoverflow.com/a/60321302](https://stackoverflow.com/a/60321302)
-- Many kinds of brackets?
-    - [https://stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
-    - Problem: some of the brackets are also conceivable as operators.
+## Interesting Features of Other Languages
+- Cpp2
+    - Labelled (i.e. multi-level) `break` and `continue`
+      ```
+      outer: while true {
+          j := 0;
+          while j < 3 next j++ {
+              if done() {
+                  break outer;
+              }
+          }
+      }
+      ```
+- Rust
+    - Security, of course: borrow checker etc.
+- [Julia](https://julialang.org/)
+  has very strong math support. Some of its features should be easy to copy.
+    - `b = 2a` as short form of `b = 2*a`
+    - `x ÷ y`, integer divide, like `x / y`, truncated to an integer
+    - `sqrt(x)`, `√x`
+    - `cbrt(x)`, `∛x`
+    - `!=`, `≠`
+    - `<=`, `≤`
+    - `>=`, `≥`
+    - Operator overloading
+        - See:
+            - [https://www.geeksforgeeks.org/operator-overloading-in-julia/](https://www.geeksforgeeks.org/operator-overloading-in-julia/)
+                - „Precedence and associativity:  When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
+                    - That seems quite complicated to parse?!
+                    - I cannot find any other reference to this feature, I assume it is a misunderstanding.
+            - [https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm](https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm)
+        - Much more operators
+            - [https://stackoverflow.com/a/60321302](https://stackoverflow.com/a/60321302)
+    - Many kinds of brackets?
+        - [https://stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
+        - Problem: some of the brackets are also conceivable as operators.
