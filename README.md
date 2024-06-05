@@ -101,7 +101,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
         - Cilia headers and modules from C++.
     - The compiler recognises the language (C, C++, or Cilia) by
         - the file extension
-            - Cilia: `*.cl` `*.hl`  &nbsp;  ~~`*.cilia` `*.hilia`~~
+            - Cilia: `*.cilia` `*.hilia`  &nbsp;  `*.cl` `*.hl`
             - C++: `*.cpp` `*.hpp` &nbsp; `*.cxx` `*.hxx` &nbsp; `*.h`
                 - `*.h` is of course a problem, as the header could be C or C++ code.  
                   So use of `*.hpp` is recommended for C++ code.  
@@ -1043,21 +1043,19 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
  
       
 ## Versioning of the Cilia source code
-- Via file ".clVersion" ~~".cl_version"~~ in a (project) directory,
+- Via file ".ciliaVersion" ~~".cilia_version"~~ in a (project) directory,
     - similar to ".clang_format",
-    - also possible file by file: Matrix.clVersion (for Matrix.cl).
+    - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
 - Via file extension: 
-    - "*.cl" – always the latest language version (if not defined otherwise via ".clVersion")
-    - "*.2024.cl" – Version from the year 2024
-    - "*.2024b.cl" – Second version from the year 2024
-    - ~~"*.cl2024" – Version from the year 2024~~
-    - ~~"*.cl2024b" – Second version from the year 2024~~
-    - ~~"*.cl_2024" – Version from the year 2024~~
-    - ~~"*.cl_2024b" – Second version from the year 2024~~
-    - ~~"*.cla"~~
-    - ~~"*.clb"~~
-    - ~~"*clA"~~
-        - ~~"*.clB"~~
+    - "*.cilia" – always the latest language version (if not overridden via ".ciliaVersion")
+    - "*.2024.cilia" – Version from the year 2024
+    - "*.2024b.cilia" – Second version from the year 2024
+    - ~~"*.cilia2024" – Version from the year 2024~~
+    - ~~"*.cilia2024b" – Second version from the year 2024~~
+    - ~~"*.cilia_2024" – Version from the year 2024~~
+    - ~~"*.cilia_2024b" – Second version from the year 2024~~
+    - ~~"*.ciliaA"~~
+    - ~~"*.ciliaB"~~
          
               
 ## Fix C++ "wrong defaults"
