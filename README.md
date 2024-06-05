@@ -663,9 +663,6 @@ No braces around the condition clause.
             - Not recommended, but possible
                 - `for i in Range(10, 1, -1)`
                 - `for i in Range(10..1, -1)`
-                - ~~`for i in 10 downTo 1 step 1`~~
-                - ~~`for i in 10..1 by -1`~~
-                - ~~`for i in 10..1 step -1`~~
         - In general replace
           `for (<Initialization>; <TerminationCriteria>; <Increment>) { <Body> }`  
           with
