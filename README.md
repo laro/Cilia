@@ -422,6 +422,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - Type variations are _not_ allowed.
     - ~~`Float *i`~~
         - No whitespace _whithin_ type specification allowed.
+        - TODO We need whitespace for `const Float*`, `const Float const *`
     - ~~`Float*i`~~
         - Whitespace _between_ type specification and variable name is mandatory.
 
