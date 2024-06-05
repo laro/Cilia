@@ -498,7 +498,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
             - `Int n = Int(m)`   // Works
     - `123` is interpreted as `Int`
-        - for type inferring, parameter overloading and template matching.
+        - in case of type inferring, parameter overloading and template matching.
     - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
         - Store as array of `Int`
     - `123u` is `UInt`
@@ -523,17 +523,17 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - Difficult: Constexpr constructor that accepts an arbitrary precision float literal  and can store that in ROM
         - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
     - `1.0` is interpreted as `Float`
-        - for type inferring, parameter overloading and template matching.
+        - in case of type inferring, parameter overloading and template matching.
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
 - `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
     - Can be converted to any float type
     - Is interpreted as `Float`
-        - for type inferring, parameter overloading and template matching.
+        - in case of type inferring, parameter overloading and template matching.
 - `NaN` is a floating point literal of arbitrary precision for NaN ("not a number") values
     - Can be converted to any float type
     - Is interpreted as `Float`
-        - for type inferring, parameter overloading and template matching.
+        - in case of type inferring, parameter overloading and template matching.
 - Range literals `1..10` and `1..<10`
     - as in Kotlin
     - ~~Swift would be `1...10` abd `1..<10`~~
