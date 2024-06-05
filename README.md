@@ -540,7 +540,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - in case of type inferring, parameter overloading and template matching.
 - Range literals `1..10` and `1..<10`
     - as in Kotlin
-    - ~~Swift would be `1...10` abd `1..<10`~~
+    - ~~Swift would be `1...10` and `1..<10`~~
         - I like `...` to be reserved for ellipsis in human language like comments.
     - ~~Rust would be `1..=10` and `1..10`~~
 - `"Text"` is a `StringView`
