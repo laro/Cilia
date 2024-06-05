@@ -667,12 +667,10 @@ No braces around the condition clause.
           `for (<Initialization>; <TerminationCriteria>; <Increment>) { <Body> }`  
           with
           ```
-          {
-              <Initialization>
-              while <TerminationCriteria> {
-                  <Body>
-                  <Increment>
-              }
+          <Initialization>
+          while <TerminationCriteria> {
+              <Body>
+              <Increment>
           }
           ```
 
