@@ -1112,6 +1112,22 @@ I am not familiar with all these issues, but in a new language we certainly coud
           }
       }
       ```
+    - [Uniform Call Syntax](https://github.com/ntrel/cpp2?tab=readme-ov-file#uniform-call-syntax)
+      for member functions and free functions.
+    - [Function Bodies](https://github.com/ntrel/cpp2?tab=readme-ov-file#function-bodies)
+        - `multiply: (x: int, y: int) -> int = x * y;`
+        - `multiply: (x: int, y: int) x * y;` (not even an `=` anymore?)
+        - `multiply: (x: int, y: int) -> int = return x * y;`
+        - Nice and short, as in math, but in the end it is one more kind of notation for functions.
+    - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing)
+        - `in`, `inout`, `out`, `move`, `copy`, `forward`
+        - Sounds nice for function arguments, but does not fit to `for` loops.
+    - [is](https://github.com/ntrel/cpp2?tab=readme-ov-file#is), [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
+    - [Unified `operator=` and constructor](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
+    - [Implicit Move on Last Use](https://github.com/ntrel/cpp2?tab=readme-ov-file#implicit-move-on-last-use)
+    - [Named Return Values](https://github.com/ntrel/cpp2?tab=readme-ov-file#named-return-values)
+    - [Inspect](https://github.com/ntrel/cpp2?tab=readme-ov-file#inspect),
+      a kind of pattern matching.
 - Rust
     - Security, of course: borrow checker etc.
 - [Julia](https://julialang.org/)
