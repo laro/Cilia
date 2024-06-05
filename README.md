@@ -1068,8 +1068,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
 I am not familiar with all these issues, but in a new language we certainly coud fix a lot of it.
 
 1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
-    - Unclear - haven't people gotten used to it?
-    - Otherweise see [Safety and Security](#safety-and-security)
+    - See [Safety and Security](#safety-and-security)/Initialization
 2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
     - Only allow safe ones,  
       otherwise an explicit cast is necessary.
