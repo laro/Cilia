@@ -663,7 +663,7 @@ No braces around the condition clause.
             - Not recommended, but possible
                 - `for i in Range(10, 1, -1)`
                 - `for i in Range(10..1, -1)`
-        - In general replace
+        - In general replace  
           `for (<Initialization>; <TerminationCriteria>; <Increment>) { <Body> }`  
           with
           ```
