@@ -961,7 +961,8 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
             - realized as extension function:  
               `template<type T, Int N> func T[N]::size() -> Int { return N }`
                 - TODO I planned to use another syntax for function templates, but this does not really work for extension functions:
-                  `func T[N]::size<type T, Int N>() -> Int { return N }`  
+                  ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
+                - So maybe  
                   `func<type T, Int N> T[N]::size() -> Int { return N }`
     - `Int[] arrayOfIntegers`
         - „Dynamic array“ – dynamic size
