@@ -334,14 +334,15 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 
 ## Functions
-- ```
+- Function declarations start with the keyword `func`:
+  ```
   func multiplyAdd(Int x, y, Float z) -> Float {
       return x * y  +  z
   }
   ```
     - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
     - Easier parsing due to clear distinction between function vs. variable declaration.
-    - Always and only in the trailing return type syntax.
+- Always and only in the trailing return type syntax.
 - `func function2(`**`Int x, y`**`) -> Float` // x _and_ y are Int
 - Lambdas
     - `[](Int i) -> Float { i * 3.14 }`
