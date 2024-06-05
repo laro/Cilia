@@ -925,13 +925,14 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
             - Usage: `MyOtherVector<Float, Int> vector`
 - Explicit templates for cases where a common type is required.
     - ```
-      func sq<Number T>(T x) -> T {
-           return x * x
+      func add<Number T>(T x, y) -> T {
+           return x + x
       }
       ```
     - Not
         - ~~`func<Number T> sq(T x) -> T { return x * x }`~~
         - ~~`template<Number T> func sq(T x) -> T { return x * x }`~~
+            - But may be necessary for extension functions.
 - `requires` for further restricting the type.
     - ```
       func sq<Number T>(T x) -> T requires (T x) { x * x } {
