@@ -1033,7 +1033,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - that is just out of scope,
     - no thread safety
         - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
-        - While thread safety can be a hard problem, there are currently no plans to extend the C++ possibilities here (maybe because I am not aware of / familiar with good solutions).
+        - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with good solutions).
   
 
 ## Two-Pass Compiler
