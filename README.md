@@ -353,7 +353,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
           }
           ```
         - TODO Really this syntax: `{ ... } { ... }`?
-- Function pointers
+- **Function pointers**
     - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Variant A:
         - **`func(Int, Int -> Int)* pointerToFunctionOfIntToInt`**
