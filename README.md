@@ -376,14 +376,14 @@ Cilia standard library in namespace `cilia` (instead of `std`).
                return x + x
           }
           ```
-        - Not
-            - ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
+        - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
         - For extension functions it is necessary to know the template parameter before we give the type name, that we want to extend.
             - So there we write
                 - `func<type T, Int N> T[N]::size() -> Int { N }`
                     - not ~~`func T[N]::size<type T, Int N>() -> Int { N }`~~
                 - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
-                    - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~ as we would write
+                    - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
+                      as we would write
                       ```
                       Float[3] shortArray = {1.0, 2.0, 3.0}
                       shortArray.add<Int>(4)
