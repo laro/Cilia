@@ -1076,6 +1076,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 
 - Arrays
     - `Int[3] arrayOfThreeIntegers`
+      not ~~`Int arrayOfThreeIntegers[3]`~~
         - „Static array“ – **fixed size**, same as C/C++
           ```
           Int[3] array
