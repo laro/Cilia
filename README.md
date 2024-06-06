@@ -1170,7 +1170,8 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
     - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing)
         - `in`, `inout`, `out`, `move`, `copy`, `forward`
-        - Sounds nice for function arguments, but does not fit to `for` loops.
+        - Sounds nice for function arguments, but does not fit so well to `for` loops.  
+          Would be OK, though.
     - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
       ```
       outer: while true {
