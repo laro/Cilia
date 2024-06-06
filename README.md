@@ -114,16 +114,16 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
 
 
 ## Style
-- All types and **classes in upper CamelCase** (even the standard/STL classes).
+- All types and **classes in upper CamelCase**.
     - Style similar to Kotlin, Swift
-    - Cilia standard library (`cilia::` instead of `std::`)
-        - `cilia::String` instead of `std::string`
-        - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
-    - Arithmetic types
+    - Basic/arithmetic types
         - `Bool`
         - `Int`, `Int8`, `Int16`, `Int32`, `Int64`, `UInt`, `BigInt`
         - `Byte`, `Char`
         - `Float`, `Float32`, `Float64`, `BFloat16`, `BigFloat`
+    - Cilia standard library (`cilia::` instead of `std::`)
+        - `cilia::String` instead of `std::string`
+        - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
 - **Functions in lower camelCase**
     - Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
