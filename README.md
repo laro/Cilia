@@ -351,6 +351,45 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - Also possible for arithmetic types (like `Int i; i.toString()`)
         - `func Int::toString() -> String { … }`  // as in Kotlin
             - ~~or `func toString (Int this) -> String` ~~
+- Function templates
+    - Automatic function templates
+        - If (at least) one the function arguments is a concept, then the function is (in fact) a function template.
+            - Concept `Number`:
+              ```
+              func sq(Number x) -> Number {
+                   return x * x
+              }
+              ```
+                - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
+            - `func add(Number a, b) -> Number`
+                - Even `a` and `b` (and of course the return type) could each be a _different_ type (as long as they satisfy the concept `Number`)
+            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
+              ```
+              func sqrt(Real x) -> Real {
+                   // … a series development …
+              }
+              ```
+        - Like abbreviated function templates in C++ 20, only without `auto`.
+    - Explicit function templates for cases where a common type is required.
+        - ```
+          func<Number T> add(T x, y) -> T {
+               return x + x
+          }
+          ```
+        - Not
+            - ~~`func add<Number T>(T x, y) -> T { return x + y }`~~
+            - For extension functions it seems necessary to know the template parameter before we give the type name, that we want to extend.
+              so now we write  
+              ~~`func<type T, Int N> T[N]::size() -> Int { N }`~~
+              not  
+              ~~`func T[N]::size<type T, Int N>() -> Int { N }`~~
+    - `requires` for further restricting the type.
+        - ```
+          func<Number T> sq(T x) -> T requires (T x) { x * x } {
+               return x * x
+          }
+          ```
+        - TODO Really this syntax: `{ ... } { ... }`?
 - Function pointers
     - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Variant A:
@@ -881,41 +920,6 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
 
 
 ## Templates
-- Function templates
-    - Automatic templates
-        - If the type of a function argument is a concept, then the function is a template.
-            - Concept `Number`:
-              ```
-              func sq(Number x) -> Number {
-                   return x * x
-               }
-              ```
-                - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
-            - `func add(Number a, b) -> Number`
-                - Even `a` and `b` (and of course the return type) could each be a _different_ type (as long as it satisfies the concept `Number`)
-            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
-              ```
-               func sqrt(Real x) -> Real {
-                   // … a series development …
-              }
-              ```
-        - Like abbreviated function templates in C++ 20, only without `auto`.
-    - Explicit templates for cases where a common type is required.
-        - ```
-          func<Number T> add(T x, y) -> T {
-               return x + x
-          }
-          ```
-        - For extension functions it may be necessary to know the template parameter before we give the type name, that we want to extend.
-        - Not
-            - ~~`func add<Number T>(T x, y) -> T { return x + y }`~~
-    - `requires` for further restricting the type.
-        - ```
-          func<Number T> sq(T x) -> T requires (T x) { x * x } {
-               return x * x
-          }
-          ```
-        - TODO Really this syntax: `{ ... } { ... }`?
 - Class templates
     - Explicit class templates
       ```
