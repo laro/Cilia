@@ -1111,7 +1111,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - Mixed forms of static and dynamic array
         - `Int[3][,] dynamicArray2DOfArrayOfThreeInt`
             - ~~not `Int[3,*,*]`~~
-        - `Int[3,4][] dynamicArrayOfArrayOfFourOfArrayOfThreeInt`
+        - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
             - ~~not `Int[3,4,*]`~~
     - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
       ```
