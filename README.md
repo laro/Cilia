@@ -1082,16 +1082,17 @@ Cilia standard library in namespace `cilia` (instead of `std`).
           array[2] = 0
           array[3] = 0  // Compilation error, due to compile time bounds check
           ```
-          ```
-          Int[3]* arrayPtr = new Int[3]
-          *arrayPtr[2] = 0
-          *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-          ```
         - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
           ```
           Int* array = new Int[3]  // Array-to-pointer decay possible
           array[2] = 0
           array[3] = 0  // Undefined behaviour, no bounds check
+          ```
+          Actually this is how to handle pointer to array of Int "correctly":
+          ```
+          Int[3]* arrayPtr = new Int[3]
+          *arrayPtr[2] = 0
+          *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
           ```
         - `arrayOfThreeIntegers.size()` -> `3`
             - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
