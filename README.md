@@ -599,8 +599,9 @@ Variable declaration still simply as `Int i`, as in C/C++.
       """
       ```
     - Removes indentation as in the last line
-    - Removes first newline
-    - As in Swift, Julia
+    - Removes first newline (if there is one)
+    - Removes last newline (if there is one)
+    - Similar to Swift, Julia, late Java, ...
     - Also as single line string literal with very few restrictions, good for RegEx
         - `"""(.* )whatever(.*)"""`
 - Interpolated Strings
