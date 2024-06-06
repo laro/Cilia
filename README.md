@@ -892,7 +892,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
               ```
                 - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
             - `func add(Number a, b) -> Number`
-                - `a`, `b` and the return type could each be a _different_ type (as long as it satisfies the concept `Number`)
+                - Even `a` and `b` (and of course the return type) could each be a _different_ type (as long as it satisfies the concept `Number`)
             - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
               ```
                func sqrt(Real x) -> Real {
@@ -903,6 +903,12 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
     - Explicit templates for cases where a common type is required.
         - ```
           func add<Number T>(T x, y) -> T {
+               return x + x
+          }
+          ```
+          or
+          ```
+          func<Number T> add(T x, y) -> T {
                return x + x
           }
           ```
