@@ -1109,7 +1109,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
           array[2] = 0
           array[3] = 0  // Runtime error, no compile time bounds check
           ```
-        - Translated to `Array<T>` (normally `cilia::Array<T>` will be used)
+        - `T[]` is translated to `Array<T>` (normally `cilia::Array<T>` will be used)
         - Problem: May be confusing because it is so similar to fixed-size arrays.
         - `Int[,,]`
             - Multidimensional dynamic array
