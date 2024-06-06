@@ -372,20 +372,27 @@ Cilia standard library in namespace `cilia` (instead of `std`).
         - Like abbreviated function templates in C++ 20, only without `auto`.
     - Explicit function templates for cases where a common type is required.
         - ```
-          func<Number T> add(T x, y) -> T {
+          func add<Number T>(T x, y) -> T {
                return x + x
           }
           ```
         - Not
-            - ~~`func add<Number T>(T x, y) -> T { return x + y }`~~
-            - For extension functions it seems necessary to know the template parameter before we give the type name, that we want to extend.
-              so now we write  
-              ~~`func<type T, Int N> T[N]::size() -> Int { N }`~~
-              not  
-              ~~`func T[N]::size<type T, Int N>() -> Int { N }`~~
+            - ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
+        - For extension functions it is necessary to know the template parameter before we give the type name, that we want to extend.
+            - So there we write
+                - `func<type T, Int N> T[N]::size() -> Int { N }`
+                    - not ~~`func T[N]::size<type T, Int N>() -> Int { N }`~~
+                - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
+                    - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~ as we would write
+                      ```
+                      Float[3] shortArray = {1.0, 2.0, 3.0}
+                      shortArray.add<Int>(4)
+                      ```
+                      not
+                      ~~`shortArray.add<Float, 3, Int>(4)`~~
     - `requires` for further restricting the type.
         - ```
-          func<Number T> sq(T x) -> T requires (T x) { x * x } {
+          func sq<Number T>(T x) -> T requires (T x) { x * x } {
                return x * x
           }
           ```
@@ -465,6 +472,44 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - ~~`Float*i`~~
         - Whitespace _between_ type specification and variable name is mandatory.
 
+
+## Classes
+- Quite as in C++
+  ```
+  class MyVectorOfInt {
+  public:
+      Int* numbers = Null
+      Int size = 0
+  }
+  ```
+- Class templates
+    - Explicit class templates
+      ```
+      class MyVector<Number T> {
+          T* numbers = Null
+          Int size = 0
+      }
+      ```
+    - Automatic class templates
+        - TODO Unclear, is this really a good idea?
+        - If the type of one member variable is a concept, then the class is a template.
+        - Example with concept `Number`:
+            - ```
+              class MyVector {
+                  Number* numbers = Null
+                  Int size = 0
+              }
+              ```
+            - Usage: `MyVector<Float> vector`
+        - With concepts `Number` and `Integer`:
+          ```
+          class MyOtherVector {
+              Number* numbers = Null
+              Integer size = 0
+          }
+          ```
+            - Usage: `MyOtherVector<Float, Int> vector`
+  
 
 ## Casting
 - Constructor casting
@@ -918,43 +963,6 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - ~~`SharedPtr<SharedPtr<T>>` just doesn't work like that, doesn’t really make sense anyway.~~
         - Do we really need a short expression for `WeakPtr<T>`?
 
-
-## Templates
-- Class templates
-    - Explicit class templates
-      ```
-      class<Number T> MyVector {
-          T* numbers = Null
-          Int size = 0
-      }
-      ```
-      or
-      ```
-      class MyVector<Number T> {
-          T* numbers = Null
-          Int size = 0
-      }
-      ```
-    - Automatic class templates
-        - TODO Unclear, is this really a good idea?
-        - If the type of one member variable is a concept, then the class is a template.
-        - Example with concept `Number`:
-            - ```
-              class MyVector {
-                  Number* numbers = Null
-                  Int size = 0
-              }
-              ```
-            - Usage: `MyVector<Float> vector`
-        - With concepts `Number` and `Integer`:
-          ```
-          class MyOtherVector {
-              Number* numbers = Null
-              Integer size = 0
-          }
-          ```
-            - Usage: `MyOtherVector<Float, Int> vector`
-  
 
 ## Misc
 - Operations with carry flag  
