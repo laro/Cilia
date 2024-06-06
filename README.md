@@ -1166,6 +1166,11 @@ I am not familiar with all these issues, but in a new language we certainly coud
         
 ## Interesting Features of Other Languages
 - Cpp2
+    - [is](https://github.com/ntrel/cpp2?tab=readme-ov-file#is)
+    - [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
+    - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing)
+        - `in`, `inout`, `out`, `move`, `copy`, `forward`
+        - Sounds nice for function arguments, but does not fit to `for` loops.
     - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
       ```
       outer: while true {
@@ -1184,10 +1189,6 @@ I am not familiar with all these issues, but in a new language we certainly coud
         - `multiply: (x: int, y: int) x * y;` (not even an `=` anymore?)
         - `multiply: (x: int, y: int) -> int = return x * y;`
         - Nice and short, as in math, but in the end it is one more kind of notation for functions.
-    - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing)
-        - `in`, `inout`, `out`, `move`, `copy`, `forward`
-        - Sounds nice for function arguments, but does not fit to `for` loops.
-    - [is](https://github.com/ntrel/cpp2?tab=readme-ov-file#is), [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
     - [Unified `operator=` and constructor](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
     - [Implicit Move on Last Use](https://github.com/ntrel/cpp2?tab=readme-ov-file#implicit-move-on-last-use)
     - [Named Return Values](https://github.com/ntrel/cpp2?tab=readme-ov-file#named-return-values)
