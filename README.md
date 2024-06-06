@@ -377,19 +377,19 @@ Cilia standard library in namespace `cilia` (instead of `std`).
           }
           ```
         - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
-        - For extension functions it is necessary to know the template parameter before we give the type name, that we want to extend.
-            - So there we write
-                - `func<type T, Int N> T[N]::size() -> Int { N }`
-                    - not ~~`func T[N]::size<type T, Int N>() -> Int { N }`~~
-                - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
-                    - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
-                      as we would write
-                      ```
-                      Float[3] shortArray = {1.0, 2.0, 3.0}
-                      shortArray.add<Int>(4)
-                      ```
-                      not
-                      ~~`shortArray.add<Float, 3, Int>(4)`~~
+    - For extension functions it is necessary to know the template parameter before we give the type name, that we want to extend.  
+      So there we write
+        - `func<type T, Int N> T[N]::size() -> Int { N }`
+            - not ~~`func T[N]::size<type T, Int N>() -> Int { N }`~~
+        - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
+            - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
+              as we would write
+              ```
+              Float[3] shortArray = {1.0, 2.0, 3.0}
+              shortArray.add<Int>(4)
+              ```
+              not  
+              ~~`shortArray.add<Float, 3, Int>(4)`~~
     - `requires` for further restricting the type.
         - ```
           func sq<Number T>(T x) -> T requires (T x) { x * x } {
