@@ -1075,7 +1075,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - `a.shiftOneLeft(mutable carry)`
 
 - Arrays
-    - `Int[3] arrayOfThreeIntegers`
+    - `Int[3] arrayOfThreeIntegers`  
       not ~~`Int arrayOfThreeIntegers[3]`~~
         - „Static array“ – **fixed size**, same as C/C++
           ```
