@@ -1030,7 +1030,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 - No further security features planned beyond C++
     - not like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
         - that is just out of scope,
-    - no thread safety
+    - no _additional_ thread safety measures
         - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
         - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with better solutions than already available/recommended in C++).
   
@@ -1070,8 +1070,9 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - `a.shiftOneLeft(mutable carry)`
 
 - Arrays
+    - TODO This is a bit experimental!
     - `Int[3] arrayOfThreeIntegers`
-        - „Static array“ – fixed size, same as C/C++
+        - „Static array“ – **fixed size**, same as C/C++
         - `arrayOfThreeIntegers.size()` -> `3`
             - realized as extension function:  
               `template<type T, Int N> func T[N]::size() -> Int { return N }`
@@ -1080,17 +1081,19 @@ Cilia standard library in namespace `cilia` (instead of `std`).
                 - So maybe  
                   `func<type T, Int N> T[N]::size() -> Int { return N }`
     - `Int[] arrayOfIntegers`
-        - „Dynamic array“ – dynamic size
+        - „Dynamic array“ – **dynamic size**
         - Translated to `Array<T>` (normally `cilia::Array<T>` will be used)
         - `cilia::Array<Int>`
             - not called `cilia::Vector<Int>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
             - (See Matrix & Vector, even if they are in other sub-namespaces.)
-        - Problem: Confusing because so similar to fixed-size arrays?
+        - Problem: May be confusing because it is so similar to fixed-size arrays.
         - Use `Int*` for C/C++ arrays of arbitrary size  
           ```
           Int* array = new Int[4]
+          or
+          Int* array = new Int[](4)
           array[3] = 0
-          array[4] = 0  // Runtime error, no static bounds check
+          array[4] = 0  // Runtime error, no compile time bounds check
           ```
         - `var subarray = array[1..2]`
     - `Int[3,2,200]`
