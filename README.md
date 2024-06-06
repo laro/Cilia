@@ -942,6 +942,11 @@ Cilia standard library in namespace `cilia` (instead of `std`).
             - ~~https://stackoverflow.com/a/9864472~~
             - This would not work for virtual functions
 
+- Array
+    - `cilia::Array<T>`
+    - Not called `cilia::Vector<T>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
+    - (See Matrix & Vector, even though they are in other sub-namespaces.)
+
 - Matrix & Vector
     - BLAS (Basic Linear Algebra Subprograms)
     - Geometry
@@ -1074,41 +1079,48 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - `Int[3] arrayOfThreeIntegers`
         - „Static array“ – **fixed size**, same as C/C++
           ```
-          Int[4] array = new Int[4]
-          array[3] = 0
-          array[4] = 0  // Compilation error, due to compile time bounds check
+          Int[3] array
+          array[2] = 0
+          array[3] = 0  // Compilation error, due to compile time bounds check
+          ```
+          ```
+          Int[3]* arrayPtr = new Int[3]
+          *arrayPtr[2] = 0
+          *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
           ```
         - `arrayOfThreeIntegers.size()` -> `3`
             - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
     - `Int[] arrayOfIntegers`
         - „Dynamic array“ – **dynamic size**
+          ```
+          Int[] array(3)
+          array[2] = 0
+          array[3] = 0  // Runtime error, no compile time bounds check
+          ```
         - Translated to `Array<T>` (normally `cilia::Array<T>` will be used)
-        - `cilia::Array<Int>`
-            - not called `cilia::Vector<Int>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
-            - (See Matrix & Vector, even if they are in other sub-namespaces.)
         - Problem: May be confusing because it is so similar to fixed-size arrays.
-        - Use `Int*` for C/C++ arrays of arbitrary size  
-          ```
-          Int* array = new Int[4]
-          or
-          Int* array = new Int[](4)
-          array[3] = 0
-          array[4] = 0  // Runtime error, no compile time bounds check
-          ```
-        - `var subarray = array[1..2]`
+    - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
+      ```
+      Int* array = new Int[3]  // Array-to-pointer decay possible
+      array[2] = 0
+      array[3] = 0  // Undefined behaviour, no bounds check
+      ```
+    - `var subarray = array[1..2]`
     - `Int[3,2,200]`
         - Multidimensional array  
           ```
           Int[3,2,200] intArray3D
           intArray3D[2, 1, 199] = 1
           ```
-    - `int[,,]`
+    - `Int[,,]`
         - Multidimensional dynamic array
         - `cilia::NArray<Int,3>`
         - or `Int[*,*,*]`?
         - TODO Mixed forms?
-            - `Int[3,*,*]` 
-            - `Int[3,4,*]`
+            - `Int[3][,] dynamicArrayOfArrayOfThreeInt`
+                - not ~~`Int[3,*,*]`~~
+            - `Int[3,4][] dynamicArrayOfArrayOfFourIfArrayOfThreeInt`
+                - not ~~`Int[3,4,*]`~~
 
 
 ## Fix C++ "wrong defaults"
