@@ -942,6 +942,39 @@ Cilia standard library in namespace `cilia` (instead of `std`).
             - ~~https://stackoverflow.com/a/9864472~~
             - This would not work for virtual functions
 
+- Matrix & Vector
+    - BLAS (Basic Linear Algebra Subprograms)
+    - Geometry
+        - Static/fixed size
+        - For small, fixed size vectors & matrices ,
+            - as typically used in geometry (i.e. 2D, 3D, 4D).
+        - `cilia::geometry::Vector<T = Float, Int size>`
+            - `cilia::geometry::Vector2<T = Float>`
+            - `cilia::geometry::Vector3<T = Float>`
+            - `cilia::geometry::Vector4<T = Float>`
+        - `cilia::geometry::Matrix<T = Float, Int rows, Int columns>`
+            - `cilia::geometry::Matrix22<T = Float>`
+            - `cilia::geometry::Matrix33<T = Float>`
+            - `cilia::geometry::Matrix44<T = Float>`
+    - Numerics
+        - Dynamic/variable size
+        - For large, dynamically sized vectors & matrices,
+            - as typically used in numerics.
+        - `cilia::numerics::Vector<T = Float>`
+        - `cilia::numerics::Matrix<T = Float>`
+            - stored column-major
+        - `cilia::numerics::NArray<T = Float, Int dimensions>`
+          
+- Image
+    - `cilia::Image<T = Float>`
+    - Almost like `cilia::Matrix`, but stored row-major.
+      
+- Views, Slices
+    - `ArrayView`
+    - `VectorView`
+    - `MatrixView`
+    - `NArrayView`
+
 
 ## Short Smart Pointer Syntax 
 - `Type^ instance`
@@ -1073,42 +1106,8 @@ Cilia standard library in namespace `cilia` (instead of `std`).
         - TODO Mixed forms?
             - `Int[3,*,*]` 
             - `Int[3,4,*]`
-         
-        
-- Matrix & Vector
-    - BLAS (Basic Linear Algebra Subprograms)
-    - Geometry
-        - Static/fixed size
-        - For small, fixed size vectors & matrices ,
-            - as typically used in geometry (i.e. 2D, 3D, 4D).
-        - `cilia::geometry::Vector<T = Float, Int size>`
-            - `cilia::geometry::Vector2<T = Float>`
-            - `cilia::geometry::Vector3<T = Float>`
-            - `cilia::geometry::Vector4<T = Float>`
-        - `cilia::geometry::Matrix<T = Float, Int rows, Int columns>`
-            - `cilia::geometry::Matrix22<T = Float>`
-            - `cilia::geometry::Matrix33<T = Float>`
-            - `cilia::geometry::Matrix44<T = Float>`
-    - Numerics
-        - Dynamic/variable size
-        - For large, dynamically sized vectors & matrices,
-            - as typically used in numerics.
-        - `cilia::numerics::Vector<T = Float>`
-        - `cilia::numerics::Matrix<T = Float>`
-            - stored column-major
-        - `cilia::numerics::NArray<T = Float, Int dimensions>`
-          
-- Image
-    - `cilia::Image<T = Float>`
-    - Almost like `cilia::Matrix`, but stored row-major.
-      
-- Views, Slices
-    - `ArrayView`
-    - `VectorView`
-    - `MatrixView`
-    - `NArrayView`
- 
-      
+
+
 ## Fix C++ "wrong defaults"
 [Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
 > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
