@@ -1107,12 +1107,12 @@ Cilia standard library in namespace `cilia` (instead of `std`).
         - `Int[,,]`
             - Multidimensional dynamic array
             - `cilia::NArray<Int,3>`
-            - or `Int[*,*,*]`?
+            - ~~or `Int[*,*,*]`?~~
     - Mixed forms of static and dynamic array
         - `Int[3][,] dynamicArray2DOfArrayOfThreeInt`
-            - not ~~`Int[3,*,*]`~~
+            - ~~not `Int[3,*,*]`~~
         - `Int[3,4][] dynamicArrayOfArrayOfFourIfArrayOfThreeInt`
-            - not ~~`Int[3,4,*]`~~
+            - ~~not `Int[3,4,*]`~~
     - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
       ```
       Int* array = new Int[3]  // Array-to-pointer decay possible
