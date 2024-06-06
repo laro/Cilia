@@ -1074,12 +1074,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - `Int[3] arrayOfThreeIntegers`
         - „Static array“ – **fixed size**, same as C/C++
         - `arrayOfThreeIntegers.size()` -> `3`
-            - realized as extension function:  
-              `template<type T, Int N> func T[N]::size() -> Int { return N }`
-                - TODO I planned to use another syntax for function templates, but this does not really work for extension functions:
-                  ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
-                - So maybe  
-                  `func<type T, Int N> T[N]::size() -> Int { return N }`
+            - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
     - `Int[] arrayOfIntegers`
         - „Dynamic array“ – **dynamic size**
         - Translated to `Array<T>` (normally `cilia::Array<T>` will be used)
