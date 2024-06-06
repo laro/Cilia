@@ -881,33 +881,61 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
 
 
 ## Templates
-- Automatic Templates
-    - If the type of a function argument is a concept, then the function is a template.
-        - Concept `Number`:
-          ```
-          func sq(Number x) -> Number {
-               return x * x
-           }
-          ```
-            - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
-        - `func add(Number a, b) -> Number`
-            - `a`, `b` and the return type could each be a _different_ type (as long as it satisfies the concept `Number`)
-        - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
-          ```
-           func sqrt(Real x) -> Real {
-               // … a series development …
+- Function templates
+    - Automatic templates
+        - If the type of a function argument is a concept, then the function is a template.
+            - Concept `Number`:
+              ```
+              func sq(Number x) -> Number {
+                   return x * x
+               }
+              ```
+                - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
+            - `func add(Number a, b) -> Number`
+                - `a`, `b` and the return type could each be a _different_ type (as long as it satisfies the concept `Number`)
+            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
+              ```
+               func sqrt(Real x) -> Real {
+                   // … a series development …
+              }
+              ```
+        - Like abbreviated function templates in C++ 20, only without `auto`.
+    - Explicit templates for cases where a common type is required.
+        - ```
+          func add<Number T>(T x, y) -> T {
+               return x + x
           }
           ```
-    - Like abbreviated function templates in C++ 20, only without `auto`.
-    - Template classes
+        - Not
+            - ~~`func<Number T> sq(T x) -> T { return x * x }`~~
+            - ~~`template<Number T> func sq(T x) -> T { return x * x }`~~
+                - But may be necessary for extension functions.
+    - `requires` for further restricting the type.
+        - ```
+          func sq<Number T>(T x) -> T requires (T x) { x * x } {
+               return x * x
+          }
+          ```
+        - TODO Really this syntax: `{ ... } { ... }`?
+- Class templates
+    - Explicit templates
+      ```
+      class<Number T> MyVector {
+          T* numbers = Null
+          Int size = 0
+      }
+      ```
+      or
       ```
       class MyVector<Number T> {
           T* numbers = Null
           Int size = 0
       }
       ```
+    - Automatic Templates
+        - TODO Unclear, is this really a good idea?
         - If the type of one member variable is a concept, then the class is a template.
-        - With concept `Number`:
+        - Example with concept `Number`:
             - ```
               class MyVector {
                   Number* numbers = Null
@@ -923,23 +951,6 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
           }
           ```
             - Usage: `MyOtherVector<Float, Int> vector`
-- Explicit templates for cases where a common type is required.
-    - ```
-      func add<Number T>(T x, y) -> T {
-           return x + x
-      }
-      ```
-    - Not
-        - ~~`func<Number T> sq(T x) -> T { return x * x }`~~
-        - ~~`template<Number T> func sq(T x) -> T { return x * x }`~~
-            - But may be necessary for extension functions.
-- `requires` for further restricting the type.
-    - ```
-      func sq<Number T>(T x) -> T requires (T x) { x * x } {
-           return x * x
-      }
-      ```
-    - TODO Really this syntax: `{ ... } { ... }`?
   
 
 ## Misc
