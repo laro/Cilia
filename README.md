@@ -121,7 +121,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
         - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
     - Arithmetic types
         - `Bool`
-        - `Int`, `Int8`, `Int16`, `Int32`, `Int64`, `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`, `BigInt`
+        - `Int`, `Int8`, `Int16`, `Int32`, `Int64`, `UInt`, `BigInt`
         - `Byte`, `Char`
         - `Float`, `Float32`, `Float64`, `BFloat16`, `BigFloat`
 
