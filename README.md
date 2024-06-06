@@ -1075,7 +1075,6 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - `a.shiftOneLeft(mutable carry)`
 
 - Arrays
-    - TODO This is a bit experimental, it currently does not work this way!
     - `Int[3] arrayOfThreeIntegers`
         - „Static array“ – **fixed size**, same as C/C++
           ```
@@ -1090,6 +1089,12 @@ Cilia standard library in namespace `cilia` (instead of `std`).
           ```
         - `arrayOfThreeIntegers.size()` -> `3`
             - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
+        - `Int[3, 2, 200]`
+            - Multidimensional static array  
+              ```
+              Int[3, 2, 200] intArray3D
+              intArray3D[2, 1, 199] = 1
+              ```
     - `Int[] arrayOfIntegers`
         - „Dynamic array“ – **dynamic size**
           ```
@@ -1099,6 +1104,15 @@ Cilia standard library in namespace `cilia` (instead of `std`).
           ```
         - Translated to `Array<T>` (normally `cilia::Array<T>` will be used)
         - Problem: May be confusing because it is so similar to fixed-size arrays.
+        - `Int[,,]`
+            - Multidimensional dynamic array
+            - `cilia::NArray<Int,3>`
+            - or `Int[*,*,*]`?
+    - Mixed forms of static and dynamic array
+        - `Int[3][,] dynamicArray2DOfArrayOfThreeInt`
+            - not ~~`Int[3,*,*]`~~
+        - `Int[3,4][] dynamicArrayOfArrayOfFourIfArrayOfThreeInt`
+            - not ~~`Int[3,4,*]`~~
     - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
       ```
       Int* array = new Int[3]  // Array-to-pointer decay possible
@@ -1106,21 +1120,6 @@ Cilia standard library in namespace `cilia` (instead of `std`).
       array[3] = 0  // Undefined behaviour, no bounds check
       ```
     - `var subarray = array[1..2]`
-    - `Int[3,2,200]`
-        - Multidimensional array  
-          ```
-          Int[3,2,200] intArray3D
-          intArray3D[2, 1, 199] = 1
-          ```
-    - `Int[,,]`
-        - Multidimensional dynamic array
-        - `cilia::NArray<Int,3>`
-        - or `Int[*,*,*]`?
-        - TODO Mixed forms?
-            - `Int[3][,] dynamicArrayOfArrayOfThreeInt`
-                - not ~~`Int[3,*,*]`~~
-            - `Int[3,4][] dynamicArrayOfArrayOfFourIfArrayOfThreeInt`
-                - not ~~`Int[3,4,*]`~~
 
 
 ## Fix C++ "wrong defaults"
