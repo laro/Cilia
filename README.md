@@ -300,14 +300,14 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
     - Easier parsing due to clear distinction between function vs. variable declaration.
 - Always and only in the trailing return type syntax.
 - `func function2(`**`Int x, y`**`) -> Float` // x _and_ y are Int
-- Lambdas
+- **Lambdas**
     - `[](Int i) -> Float { i * 3.14 }`
         - as in C++
-- Extension methods
+- **Extension methods**
     - Also possible for arithmetic types (like `Int i; i.toString()`)
         - `func Int::toString() -> String { … }`  // as in Kotlin
             - ~~or `func toString (Int this) -> String` ~~
-- Function templates
+- Function **templates**
     - Automatic function templates
         - If (at least) one the function arguments is a concept, then the function is (in fact) a function template.
             - Concept `Number`:
@@ -333,7 +333,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
           }
           ```
         - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
-    - For extension functions it is necessary to know the template parameter before we give the type name, that we want to extend.  
+    - For extension function templates it is necessary to know the template parameter(s) for the type to be extended, before we write its name.  
       So there we write
         - `func<type T, Int N> T[N]::size() -> Int { N }`
             - not ~~`func T[N]::size<type T, Int N>() -> Int { N }`~~
