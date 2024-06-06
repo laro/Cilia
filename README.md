@@ -1070,9 +1070,14 @@ Cilia standard library in namespace `cilia` (instead of `std`).
     - `a.shiftOneLeft(mutable carry)`
 
 - Arrays
-    - TODO This is a bit experimental!
+    - TODO This is a bit experimental, it currently does not wotk this way!
     - `Int[3] arrayOfThreeIntegers`
         - „Static array“ – **fixed size**, same as C/C++
+          ```
+          Int[4] array = new Int[4]
+          array[3] = 0
+          array[4] = 0  // Compilation error, due to compile time bounds check
+          ```
         - `arrayOfThreeIntegers.size()` -> `3`
             - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
     - `Int[] arrayOfIntegers`
