@@ -135,7 +135,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
     - I don't think this is that important, but it helps to differentiate between classes and namespaces.
 
 
-## Arithmetic Types
+## Basic / Arithmetic Types
 - `Bool`
     - not ~~`bool`~~ nor ~~`Boolean`~~
 - `Int`, `UInt`
