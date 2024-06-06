@@ -902,29 +902,22 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - Like abbreviated function templates in C++ 20, only without `auto`.
     - Explicit templates for cases where a common type is required.
         - ```
-          func add<Number T>(T x, y) -> T {
-               return x + x
-          }
-          ```
-          or
-          ```
           func<Number T> add(T x, y) -> T {
                return x + x
           }
           ```
+        - For extension functions it may be necessary to know the template parameter before we give the type name, that we want to extend.
         - Not
-            - ~~`func<Number T> sq(T x) -> T { return x * x }`~~
-            - ~~`template<Number T> func sq(T x) -> T { return x * x }`~~
-                - But may be necessary for extension functions.
+            - ~~`func add<Number T>(T x, y) -> T { return x + y }`~~
     - `requires` for further restricting the type.
         - ```
-          func sq<Number T>(T x) -> T requires (T x) { x * x } {
+          func<Number T> sq(T x) -> T requires (T x) { x * x } {
                return x * x
           }
           ```
         - TODO Really this syntax: `{ ... } { ... }`?
 - Class templates
-    - Explicit templates
+    - Explicit class templates
       ```
       class<Number T> MyVector {
           T* numbers = Null
@@ -938,7 +931,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
           Int size = 0
       }
       ```
-    - Automatic Templates
+    - Automatic class templates
         - TODO Unclear, is this really a good idea?
         - If the type of one member variable is a concept, then the class is a template.
         - Example with concept `Number`:
