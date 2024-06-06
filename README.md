@@ -121,17 +121,9 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
         - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
     - Arithmetic types
         - `Bool`
-        - `Int`
-            - `Int8`, `Int16`, `Int32`, `Int64`
-        - `UInt`
-            - `UInt8`, `UInt16`, `UInt32`, `UInt64`
-        - `Byte` == `UInt8`
-        - `Char` == `Char8`, `Char16`, `Char32`~~, `CodePoint` == `UInt32`~~
-        - `BigInt` (Arbitrary Precision Integer)
-        - `Float`
-            - `Float16`, `Float32`, `Float64` (Half, Single, Double Precision Floating Point)
-            - `BFloat16` (Brain Floating Point)
-            - `BigFloat` (Arbitrary Precision Float)
+        - `Int`, `Int8`, `Int16`, `Int32`, `Int64`, `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`, `BigInt`
+        - `Byte`, `Char`
+        - `Float`, `Float32`, `Float64`, `BFloat16`, `BigFloat`
 
 - **Functions in lower camelCase**
     - Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
@@ -140,7 +132,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
     - `cilia`
     - `cilia::numerics`
     - `cilia::geometry`
-    - I am not sure about this, I don't think it's important. But this helps to differentiate between classes and namespaces.
+    - I don't think this is important, but it helps to differentiate between classes and namespaces.
 
 
 ## Arithmetic Types
