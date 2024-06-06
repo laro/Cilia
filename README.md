@@ -229,42 +229,6 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
         - ~~The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.~~
 
 
-## Namespace `cilia`
-Cilia standard library in namespace `cilia` (instead of `std`).
-- With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
-    - `cilia::String` instead of `std::string`
-    - `Map` instead of `map`
-        - `Dictionary` as typedef with deprecation warning, as a hint for C# programmers.
-    - `ForwardList` instead of `forward_list`
-    - `UnorderedMap` instead of `unordered_map`
-    - `ValueType` instead of `value_type`
-    - Maybe some exceptions/variations:
-        - `Array` instead of `vector`
-        - `Stringstream` or `StringStream` instead of `stringstream`?
-            - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, …
-        - `Multimap` or `MultiMap` instead of `multimap`?
-- Shallow wrapper,
-    - e.g. `cilia::String : public std::string`
-- "**Alias**" for 
-    - member variables  
-      `using x = data[0]`  
-      `using y = data[1]`  
-        - ~~or `alias x = data[0]`?~~
-        - Not quite possible in C++.
-            - With …  
-              `Float& imaginary = im`  
-              or  
-              `T& x = data[0]`  
-              … unfortunately memory is created for the reference (the pointer).
-            - And this indeed is necessary here, because the reference could be assigned differently in the constructor,
-                - so it is not possible to optimize it away.
-    - member functions
-        - `using f() = g()`
-        - ~~Or is perfect forwarding enough?~~
-            - ~~https://stackoverflow.com/a/9864472~~
-            - This would not work for virtual functions
-
-
 ## Const Reference as Default Type
 - Const reference as default type for (most) function call arguments and for "for ... in".  
     - **`concat(String first, String second)`**
@@ -942,6 +906,42 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - `compare(stringA, stringB, locale) -> Int`
      
 
+## Namespace `cilia`
+Cilia standard library in namespace `cilia` (instead of `std`).
+- With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
+    - `cilia::String` instead of `std::string`
+    - `Map` instead of `map`
+        - `Dictionary` as typedef with deprecation warning, as a hint for C# programmers.
+    - `ForwardList` instead of `forward_list`
+    - `UnorderedMap` instead of `unordered_map`
+    - `ValueType` instead of `value_type`
+    - Maybe some exceptions/variations:
+        - `Array` instead of `vector`
+        - `Stringstream` or `StringStream` instead of `stringstream`?
+            - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, …
+        - `Multimap` or `MultiMap` instead of `multimap`?
+- Shallow wrapper,
+    - e.g. `cilia::String : public std::string`
+- "**Alias**" for 
+    - member variables  
+      `using x = data[0]`  
+      `using y = data[1]`  
+        - ~~or `alias x = data[0]`?~~
+        - Not quite possible in C++.
+            - With …  
+              `Float& imaginary = im`  
+              or  
+              `T& x = data[0]`  
+              … unfortunately memory is created for the reference (the pointer).
+            - And this indeed is necessary here, because the reference could be assigned differently in the constructor,
+                - so it is not possible to optimize it away.
+    - member functions
+        - `using f() = g()`
+        - ~~Or is perfect forwarding enough?~~
+            - ~~https://stackoverflow.com/a/9864472~~
+            - This would not work for virtual functions
+
+
 ## Short Smart Pointer Syntax 
 - `Type^ instance`
     - `T^` by default is `SharedPtr<T>`
@@ -956,6 +956,73 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - Do we really need a short expression for `WeakPtr<T>`?
 
 
+## Safety and Security
+- **Range Checks**
+    - The low hanging fruit would be to enable range checks _by default_, also in release builds (not only in debug), to detect **buffer overflows** or similar. This should fix the majority of C/C++ security issues.  
+      To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
+      So we would have:
+        - Debug (for debugging with line by line debug info, and with range checks)
+        - Release (for deployment, with range checks, suitable for most situations)
+        - ~~EvenFasterBut~~UnsafeRelease (for deployment when maximum performance is desired, _without_ range checks)
+- **Initialization**
+    - No initialization means random values. In this case they are in fact often zero, but _not always_.
+    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
+        - But with virtual memory, it is actually (almost) "free" to initialize with zero.
+    - We could warn (or maybe even consider it an error) if not initialized,  
+      and use a keyword `noinit` to avoid that warning/error.  
+      ```
+      Int i         // Warning
+      Int j noinit  // No warning
+      Int j = 1     // No warning
+      ```
+    - How to handle classes?
+        - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
+        - ```
+          template<typename T>
+          class Array {
+              Array(Int size) noinit { ... }
+              Array(Int size, T value) { ... }
+          }
+          Array<Float> anArray(10)         // Warning
+          Array<Float> anArray(10) noinit  // No warning
+          Array<Float> anArray(10, 1.0)    // No warning
+          ```
+    - Only for stack variables or also for free memory/heap?
+        - ```
+          var array = new Array<Float>(10)         // Warning
+          var array = new Array<Float>(10) noinit  // No warning
+          var array = new Array<Float>(10, 1.0)    // No warning
+          ```
+- No further security features planned beyond C++
+    - not like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
+        - that is just out of scope,
+    - no thread safety
+        - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
+        - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with good solutions).
+  
+
+## Two-Pass Compiler
+- no forward declarations necessary  
+  as in C#, Java
+- no single-pass as in C/C++
+ 
+      
+## Versioning of the Cilia source code
+- Via file ".ciliaVersion" ~~".cilia_version"~~ in a (project) directory,
+    - similar to ".clang_format",
+    - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
+- Via file extension: 
+    - "*.cilia" – always the latest language version (if not overridden via ".ciliaVersion")
+    - "*.2024.cilia" – Version from the year 2024
+    - "*.2024b.cilia" – Second version from the year 2024
+    - ~~"*.cilia2024" – Version from the year 2024~~
+    - ~~"*.cilia2024b" – Second version from the year 2024~~
+    - ~~"*.cilia_2024" – Version from the year 2024~~
+    - ~~"*.cilia_2024b" – Second version from the year 2024~~
+    - ~~"*.ciliaA"~~
+    - ~~"*.ciliaB"~~
+         
+              
 ## Misc
 - Operations with carry flag  
   (to implement `Int128`, `Int256` etc.)
@@ -1041,73 +1108,6 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
     - `NArrayView`
  
       
-## Safety and Security
-- **Range Checks**
-    - The low hanging fruit would be to enable range checks _by default_, also in release builds (not only in debug), to detect **buffer overflows** or similar. This should fix the majority of C/C++ security issues.  
-      To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
-      So we would have:
-        - Debug (for debugging with line by line debug info, and with range checks)
-        - Release (for deployment, with range checks, suitable for most situations)
-        - ~~EvenFasterBut~~UnsafeRelease (for deployment when maximum performance is desired, _without_ range checks)
-- **Initialization**
-    - No initialization means random values. In this case they are in fact often zero, but _not always_.
-    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
-        - But with virtual memory, it is actually (almost) "free" to initialize with zero.
-    - We could warn (or maybe even consider it an error) if not initialized,  
-      and use a keyword `noinit` to avoid that warning/error.  
-      ```
-      Int i         // Warning
-      Int j noinit  // No warning
-      Int j = 1     // No warning
-      ```
-    - How to handle classes?
-        - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
-        - ```
-          template<typename T>
-          class Array {
-              Array(Int size) noinit { ... }
-              Array(Int size, T value) { ... }
-          }
-          Array<Float> anArray(10)         // Warning
-          Array<Float> anArray(10) noinit  // No warning
-          Array<Float> anArray(10, 1.0)    // No warning
-          ```
-    - Only for stack variables or also for free memory/heap?
-        - ```
-          var array = new Array<Float>(10)         // Warning
-          var array = new Array<Float>(10) noinit  // No warning
-          var array = new Array<Float>(10, 1.0)    // No warning
-          ```
-- No further security features planned beyond C++
-    - not like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
-        - that is just out of scope,
-    - no thread safety
-        - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
-        - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with good solutions).
-  
-
-## Two-Pass Compiler
-- no forward declarations necessary  
-  as in C#, Java
-- no single-pass as in C/C++
- 
-      
-## Versioning of the Cilia source code
-- Via file ".ciliaVersion" ~~".cilia_version"~~ in a (project) directory,
-    - similar to ".clang_format",
-    - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
-- Via file extension: 
-    - "*.cilia" – always the latest language version (if not overridden via ".ciliaVersion")
-    - "*.2024.cilia" – Version from the year 2024
-    - "*.2024b.cilia" – Second version from the year 2024
-    - ~~"*.cilia2024" – Version from the year 2024~~
-    - ~~"*.cilia2024b" – Second version from the year 2024~~
-    - ~~"*.cilia_2024" – Version from the year 2024~~
-    - ~~"*.cilia_2024b" – Second version from the year 2024~~
-    - ~~"*.ciliaA"~~
-    - ~~"*.ciliaB"~~
-         
-              
 ## Fix C++ "wrong defaults"
 [Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
 > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
