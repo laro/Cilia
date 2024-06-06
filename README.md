@@ -1087,6 +1087,12 @@ Cilia standard library in namespace `cilia` (instead of `std`).
           *arrayPtr[2] = 0
           *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
           ```
+        - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
+          ```
+          Int* array = new Int[3]  // Array-to-pointer decay possible
+          array[2] = 0
+          array[3] = 0  // Undefined behaviour, no bounds check
+          ```
         - `arrayOfThreeIntegers.size()` -> `3`
             - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
         - `Int[3, 2, 200]`
@@ -1113,12 +1119,6 @@ Cilia standard library in namespace `cilia` (instead of `std`).
             - ~~not `Int[3,*,*]`~~
         - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
             - ~~not `Int[3,4,*]`~~
-    - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
-      ```
-      Int* array = new Int[3]  // Array-to-pointer decay possible
-      array[2] = 0
-      array[3] = 0  // Undefined behaviour, no bounds check
-      ```
     - `var subarray = array[1..2]`
 
 
