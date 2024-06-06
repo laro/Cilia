@@ -132,7 +132,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
     - `cilia`
     - `cilia::numerics`
     - `cilia::geometry`
-    - I don't think this is important, but it helps to differentiate between classes and namespaces.
+    - I don't think this is so important, but it helps to differentiate between classes and namespaces.
 
 
 ## Arithmetic Types
