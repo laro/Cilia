@@ -1167,16 +1167,16 @@ I am not familiar with all these issues, but in a new language we certainly coud
 - Cpp2
     - [is](https://github.com/ntrel/cpp2?tab=readme-ov-file#is)
     - [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
-    - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing)
+    - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing), [functions](https://hsutter.github.io/cppfront/cpp2/functions/)
         - `in`, `inout`, `out`, `move`, `copy`, `forward`
-            - `in` – `const&` or `const` (value)
-            - `inout` – (non-const) `&`
-            - `out` – ? (non-const) `*`
-            - `move` – `&&`
-            - `copy` – (non-const) value
-            - `forward` – ? `&&`
+            - `in` – const reference (`const X&`) or const value (`const X`)
+            - `inout` – non-const/nutable reference (`X&`)
+            - `out` – ?
+            - `move` – right-value reference (`X&&`)
+            - `copy` – non-const/nutable value (`X`)
+            - `forward` – ? `X&&`
         - Sounds nice for function arguments.
-        - With `for` loops these words decribe well, how the information (i.e. the variables) get into the body of the loop (or out of it).
+        - Also works for `for` loops, then these words decribe well how the information (i.e. the variables) get into the body of the loop (or out of it).
     - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
       ```
       outer: while true {
