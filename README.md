@@ -1148,8 +1148,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
 6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
     - Use `func` (but not typically `var`)
 7. [Template brackets `< >` are a nightmare to parse.](http://eel.is/c++draft/temp.names#nt:template-argument-list)
-    - I would not like to change this,  
-      only if it _really_ has to be.
+    - I would not like to change this, only if it _really_ has to be.
     - Cpp2 / Herb Sutter kept `< >` after all.
 8. [Forwarding parameters and `std::forward` are error prone.](http://eel.is/c++draft/temp.deduct#call-3)
 9. [Braced initializers can choose the wrong constructor.](http://eel.is/c++draft/dcl.init.list#2)
@@ -1170,8 +1169,8 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
     - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing)
         - `in`, `inout`, `out`, `move`, `copy`, `forward`
-        - Sounds nice for function arguments, but does not fit so well to `for` loops.  
-          Would be OK, though.
+        - Sounds nice for function arguments.
+        - With `for` loops these words decribe well, how the information (i.e. the variables) get into the body of the loop (or out of it).
     - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
       ```
       outer: while true {
