@@ -1178,7 +1178,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
             - `copy` – non-const/nutable value (`X`)
             - `forward` – ? `X&&`
         - Sounds nice for function arguments.
-        - Also works for `for` loops, then these words decribe well how the information (i.e. the variables) get into the body of the loop (or out of it).
+        - Also works for `for` loops, then these words decribe how the information (i.e. the variables) get into the body of the loop (or out of it).
     - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
       ```
       outer: while true {
