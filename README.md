@@ -116,8 +116,9 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
 
 
 ## Style
+Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
+
 - All types and **classes in upper CamelCase**.
-    - Style similar to Kotlin, Swift
     - Basic/arithmetic types
         - `Bool`
         - `Int`, `Int8`, `Int16`, `Int32`, `Int64`, `UInt`, `BigInt`
@@ -128,7 +129,6 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
 - **Functions in lower camelCase**
-    - Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
 
 - Namespaces fully lowercase 
     - `cilia`
