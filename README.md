@@ -17,8 +17,8 @@ When we are at it, after a quick look at Julia and Python.
     - Isomorphic mapping of all C++ functionality to Cilia possible
         - only with other/better/shorter "expression".
 - C++ "Successor Language / Syntax"
-    - like [Carbon](https://github.com/carbon-language/carbon-lang), [Circle](https://github.com/seanbaxter/circle),
-      or [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront) 
+    - like [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang),  
+      or [Circle](https://github.com/seanbaxter/circle)
     - Similar to C -> C++, Java -> Kotlin, Objective-C -> Swift, JavaScript -> TypeScript
 - Uses the same compiler backend as C++ (clang, gcc, …)  
   with an own / a new compiler frontend (or a precompiler).
@@ -47,7 +47,9 @@ When we are at it, after a quick look at Julia and Python.
 
 ## Comparison to C++, Cpp2, and Carbon
 Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:  
-Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++, with a `name: Type` syntax.
+Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++.  
+I like many aspects especially of Cpp2, but not its `name: Type` syntax.
+
 - Cilia
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
