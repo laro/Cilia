@@ -78,7 +78,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
     - `for (5, 7, 11, 13) do (i) { ... }`
     - `while i < 10 next i++ { ... } `          
     - `while i < words.ssize() next i++ { ... } `          
-        - `for words next i++ do (inout word) { ... word & i ... }`
+        - `for words next i++ do (word) { ... word & i ... }`
     - `while i < 10 next i++ { ... }`
 - Carbon
     - `Int` (uppercase - ?), `i32`, `i64`, `f32`
@@ -1169,6 +1169,12 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
     - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing)
         - `in`, `inout`, `out`, `move`, `copy`, `forward`
+            - `in` – `const&` or `const` (value)
+            - `inout` – (non-const) `&`
+            - `out` – ? (non-const) `*`
+            - `move` – `&&`
+            - `copy` – (non-const) value
+            - `forward` – ? `&&`
         - Sounds nice for function arguments.
         - With `for` loops these words decribe well, how the information (i.e. the variables) get into the body of the loop (or out of it).
     - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
