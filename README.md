@@ -1099,7 +1099,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
 - Arrays
     - `Int[3] arrayOfThreeIntegers`  
       not ~~`Int arrayOfThreeIntegers[3]`~~
-        - „Static array“ – **fixed size**, same as C/C++
+        - „Static array“ with **fixed size**, same as C/C++
           ```
           Int[3] array
           array[2] = 0
@@ -1109,9 +1109,9 @@ Cilia standard library in namespace `cilia` (instead of `std`).
           ```
           Int* array = new Int[3]  // Array-to-pointer decay possible
           array[2] = 0
-          array[3] = 0  // Undefined behaviour, no bounds check
+          array[3] = 0  // Undefined behaviour, no bounds check at all
           ```
-          Actually this is how to handle pointer to array of Int "correctly":
+        - Actually this is how to handle pointer to array of Int "correctly":
           ```
           Int[3]* arrayPtr = new Int[3]
           *arrayPtr[2] = 0
@@ -1126,14 +1126,19 @@ Cilia standard library in namespace `cilia` (instead of `std`).
               intArray3D[2, 1, 199] = 1
               ```
     - `Int[] arrayOfIntegers`
-        - „Dynamic array“ – **dynamic size**
+        - „Dynamic array“ with **dynamic size**
           ```
           Int[] array(3)
           array[2] = 0
           array[3] = 0  // Runtime error, no compile time bounds check
           ```
-        - `T[]` is translated to `Array<T>` (normally `cilia::Array<T>` will be used)
-        - Problem: May be confusing because it is so similar to fixed-size arrays.
+        - `T[]` is the short form of `Array<T>` (normally `cilia::Array<T>` will be used)
+        - Problem:
+            - May be confusing because it is so similar to fixed-size arrays,  
+              **but** IMHO the inconsistency is already in C/C++:
+                - while in C/C++ function declarations `int[]` and `int*` are actually the same thing,
+                - you use `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,
+                - but `int* array = new int[3]` for an int-array of unknown size.
         - `Int[,,]`
             - Multidimensional dynamic array
             - `cilia::NArray<Int,3>`
