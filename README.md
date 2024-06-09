@@ -298,6 +298,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
       return x * y  +  z
   }
   ```
+    - like Swift
     - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
     - Easier parsing due to clear distinction between function vs. variable declaration.
 - Always and only in the trailing return type syntax.
