@@ -347,10 +347,11 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
               as we would write
               ```
               Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}
-              shortArray.add<Int>(4)
+              arrayOfThreeFloat.add<Int>(4)
               ```
               not  
-              ~~`shortArray.add<Float, 3, Int>(4)`~~
+              ~~`arrayOfThreeFloat.add<Float, 3, Int>(4)`~~  
+              The template parameters `T` and `N` belong to the type and are determined by the object `arrayOfThreeFloat` already. It would not be possible to change them in the call of `add<>()`, so it is not desired to specify them here at all.
     - `requires` for further restricting the type.
         - ```
           func sq<Number T>(T x) -> T requires (T x) { x * x } {
