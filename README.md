@@ -331,7 +331,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
     - Explicit function templates for cases where a common type is required.
         - ```
           func add<Number T>(T x, y) -> T {
-               return x + x
+               return x + y
           }
           ```
         - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
@@ -343,7 +343,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
             - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
               as we would write
               ```
-              Float[3] shortArray = {1.0, 2.0, 3.0}
+              Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}
               shortArray.add<Int>(4)
               ```
               not  
