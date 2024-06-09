@@ -298,7 +298,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
       return x * y  +  z
   }
   ```
-    - like Swift
+    - as in Swift
     - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
     - Easier parsing due to clear distinction between function vs. variable declaration.
 - Always and only in the trailing return type syntax.
@@ -617,7 +617,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - `"""(.* )whatever(.*)"""`
 - Interpolated Strings
     - `$“M[{i},{j}] = {M[i, j]}"`
-        - like in C#
+        - as in C#
         - Any reason to use/prefer any other syntax?
 - Alternative string literals
     - `"Text"utf8` (but UTF-8 is the default anyway)
@@ -1044,7 +1044,7 @@ Cilia standard library in namespace `cilia` (instead of `std`).
           var array = new Array<Float>(10, 1.0)    // No warning
           ```
 - No further security features planned beyond C++
-    - not like in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
+    - not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
         - that is just out of scope,
     - no _additional_ thread safety measures
         - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
