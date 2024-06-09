@@ -323,7 +323,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
                 - Even `a` and `b` (and of course the return type) could each be a _different_ type (as long as they satisfy the concept `Number`)
             - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
               ```
-              func sqrt(Real x) -> Real {
+               func sqrt(Real x) -> Real {
                    // … a series development …
               }
               ```
