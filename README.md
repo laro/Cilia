@@ -483,17 +483,22 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - reinterpret_cast<>
         - static_cast<>?
 - `is` (type query)
-    - `obj is Int`  
-    - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
-    - `obj is cilia::Array` (i.e. a template)
-    - `obj is cilia::Integral` (i.e. a concept)
+    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
+        - `obj is Int`  
+        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
+        - `obj is cilia::Array` (i.e. a template)
+        - `obj is cilia::Integral` (i.e. a concept)
     - Also support value query?
-    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
 - `as`
-    - `obj as T` instead of `T(obj)`
-    - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
-    - `Variant v; v as T` instead	`std::get<T>(v)`
     - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
+        - `obj as T` instead of `T(obj)`
+        - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
+        - With `Variant v` where T is one alternative:  
+          `v as T` instead of`std::get<T>(v)`
+        - With `Any a`:  
+          `a as T` instead of `std::any_cast<T>(a)`
+        - With `Optional<T> o`:  
+          `o as T` instead of `o.value()`
 - Automatic casts
     - as in Kotlin,
     - for template types, references and pointers.
