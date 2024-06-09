@@ -478,6 +478,12 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - mutable_cast<>
         - reinterpret_cast<>
         - static_cast<>?
+- `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
+    - See Cpp2 [is](https://github.com/ntrel/cpp2?tab=readme-ov-file#is)
+- `as`
+    - `obj as T`
+    - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
+    - See Cpp2 [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
 - Automatic casts
     - as in Kotlin,
     - for template types, references and pointers.
