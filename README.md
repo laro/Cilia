@@ -306,6 +306,8 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
     - `[](Int i) -> Float { i * 3.14 }`
         - as in C++
 - **Extension methods**
+    - To add functions to "third party" classes/types.
+    - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
     - Also possible for arithmetic types (like `Int i; i.toString()`)
         - `func Int::toString() -> String { … }`  // as in Kotlin
             - ~~or `func toString (Int this) -> String` ~~
