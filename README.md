@@ -484,7 +484,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - static_cast<>?
 - `is` (type query)
     - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
-        - `obj is Int`  
+        - `obj is Int` (i.e. a type)
         - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
         - `obj is cilia::Array` (i.e. a template)
         - `obj is cilia::Integral` (i.e. a concept)
