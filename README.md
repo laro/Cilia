@@ -483,11 +483,11 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - reinterpret_cast<>
         - static_cast<>?
 - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
-    - See Cpp2 [is](https://github.com/ntrel/cpp2?tab=readme-ov-file#is)
+    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
 - `as`
     - `obj as T`
     - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
-    - See Cpp2 [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
+    - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
 - Automatic casts
     - as in Kotlin,
     - for template types, references and pointers.
@@ -1177,9 +1177,9 @@ I am not familiar with all these issues, but in a new language we certainly coud
         
 ## Interesting Features of Other Languages
 - Cpp2 (Herb Sutter)
-    - [is](https://github.com/ntrel/cpp2?tab=readme-ov-file#is)
-    - [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
-    - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing), [functions](https://hsutter.github.io/cppfront/cpp2/functions/)
+    - [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
+    - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
+    -  [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
         - `in`, `inout`, `out`, `move`, `copy`, `forward`
             - `in` – const reference (`const X&`) or const value (`const X`)
             - `inout` – non-const/nutable reference (`X&`)
