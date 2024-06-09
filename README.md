@@ -482,7 +482,12 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - mutable_cast<>
         - reinterpret_cast<>
         - static_cast<>?
-- `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
+- `is` (type query)
+    - `obj is Int`  
+    - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
+    - `obj is cilia::Array` (i.e. a template)
+    - `obj is cilia::Integral` (i.e. a concept)
+    - Also support value query?
     - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
 - `as`
     - `obj as T`
