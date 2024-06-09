@@ -276,7 +276,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
             - `i` is `Int`
         - `for reference i in [1, 2, 3] { … }`
             - `i` is `const Int&`
-        - `for mutable reference i in [1, 2, 3] { … `}"
+        - `for mutable reference i in [1, 2, 3] { … }`"
             - `i` is `Int&`
     - If you want even the basic type to be different:
         - `for Double d in [1, 2, 3] { … }`
