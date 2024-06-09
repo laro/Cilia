@@ -514,7 +514,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
       ```
     - ```
       func getStringLength(Type obj) -> Int {
-          if obj not is String
+          if not obj is String
               return 0
           // "obj" is automatically cast to "String" in this branch
           return obj.length
