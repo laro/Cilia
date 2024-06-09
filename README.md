@@ -1166,7 +1166,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
        
         
 ## Interesting Features of Other Languages
-- Cpp2
+- Cpp2 (Herb Sutter)
     - [is](https://github.com/ntrel/cpp2?tab=readme-ov-file#is)
     - [as](https://github.com/ntrel/cpp2?tab=readme-ov-file#as)
     - [Parameter Passing](https://github.com/ntrel/cpp2?tab=readme-ov-file#parameter-passing), [functions](https://hsutter.github.io/cppfront/cpp2/functions/)
