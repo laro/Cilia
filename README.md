@@ -1011,8 +1011,8 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
         - `compare(stringA, stringB, locale) -> Int`
      
 
-## Namespace `cilia`
-Cilia standard library in namespace `cilia` (instead of `std`).
+## `cilia` Standard Library
+Standard library in namespace `cilia` (instead of `std`).
 - With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
     - `cilia::String` instead of `std::string`
     - `Map` instead of `map`
