@@ -799,41 +799,19 @@ No braces around the condition clause.
       ```
       instead of `for (… : …)` (AKA `for each`/`foreach`)
     - Use the range literal to write          
-      ```
-      for i in 0..<10 {
-          // ...
-      }
-      ```
-      instead of
-      ```
-      for (Int i = 0; i < 10; ++i) {
-          // ...
-      }
-      ```
-        - `for i in 1..10`
-            - translates to `for i in Range(1, 10)`
-            - Not recommended, but also possible to write that,  
-              or even
-                - `for i in Range(1, 10, 1)`
-        - `for i in 1..<10`
-            - translates to `for i in RangeExclusiveEnd(1, 10)`
-        - Write          
-          ```
-          for i in 10..1:-1 {
-              // ...
-          }
-          ```
-          instead of
-          ```
-          for (Int i = 10; i > 0; --i) {
-              // ...
-          }
-          ```
+      `for i in 0..<10  { ... }`
+      instead of `for (Int i = 0; i < 10; ++i) { ... }`
+        - `for i in 1..10 { ... }`
+            - translates to `for i in Range(1, 10) { ... }`
+        - `for i in 1..<10 { ... }`
+            - translates to `for i in RangeExclusiveEnd(1, 10) { ... }`
+        - Write  
+          `for i in 10..1:-1  { ... }`
+          (translates to `for i in RangeWithStep(10, 1, -1) { ... }`)
+          instead of `for (Int i = 10; i > 0; --i)  { ... }`
         - Alternatively write
             - `for i in (1..10).reversed()`
-            - `for i in Range(10, 1, -1)`
             - `for i in Range(10..1, -1)`
-            - Maybe even `for i in 10..>0:-1`?
     - In general replace  
       ```
       for (<Initialization>; <TerminationCriteria>; <Increment>) {
