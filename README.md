@@ -666,7 +666,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - Can be converted to any float type
     - Is interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
-- Range literals `1..10` and `1..<10`
+- `1..10` and `1..<10` are range literals
     - as in Kotlin
     - Not like:
         - Swift would be ~~`1...10`~~ and ~~`1..<10`~~
