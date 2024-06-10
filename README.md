@@ -422,7 +422,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - Whitespace _between_ type specification and variable name is mandatory.
 
 ## Arrays & Views/Slices
-- New array declaration `Int[3] arrayOfThreeIntegers`  
+- `Int[3] arrayOfThreeIntegers` as new array declaration  
   instead of ~~`Int arrayOfThreeIntegers[3]`~~
     - „Static array“ with **fixed size**, same as C/C++
       ```
