@@ -472,12 +472,15 @@ Variable declaration still simply as `Int i`, as in C/C++.
                 - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
                   but `int* array = new int[3]` for an int-array of unknown size, so
                 - `int[]` and `int*` mean different things.
-        - `Int[,,]`
-            - Multidimensional dynamic array
-            - `cilia::NArray<Int,3>`
-            - ~~or `Int[*,*,*]`?~~
+    - `Int[,] dynamic2DArray`
+        - `T[,] array` is the short form of `NArray<T, 2> array` (normally `cilia::NArray<T, 2>` will be used)
+        - ~~or `Int[*,*]`?~~
+    - `Int[,,] multidimensionalDynamicArray`
+        - `T[,,] array` is the short form of `NArray<T, 3> array` (normally `cilia::NArray<T, 3>` will be used)
+        - and so on: `cilia::NArray<T, N>`
+        - ~~or `Int[*,*,*]`?~~
     - Mixed forms of static and dynamic array
-        - `Int[3][,] dynamicArray2DOfArrayOfThreeInt`
+        - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
             - ~~not `Int[3,*,*]`~~
         - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
             - ~~not `Int[3,4,*]`~~
