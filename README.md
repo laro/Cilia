@@ -1012,7 +1012,7 @@ Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/usergu
      
 
 ## `cilia` Standard Library
-Standard library in namespace `cilia` (instead of `std`).
+Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
 - With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
     - `cilia::String` instead of `std::string`
     - `Map` instead of `map`
