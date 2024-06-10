@@ -492,16 +492,20 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - `var subarray = array[1..2]` – Range
         - `var subarray = array[1..<3]` – RangeExclusiveEnd
         - `var subarray = array[0<..3]` – RangeExclusiveStart
-        - Dependent ranges (need lower and/or upper bounds before use)
+        - Dependent ranges (need lower and/or upper bounds before use)  
+          Typcally implemented as inline function that determine the concrete bounxds an then call `array[start..end]` (or one of the exclusive counterparts).
             - `var subarray = array[..2]` – RangeTo
-            - `var subarray = array[..<2]` – RangeToExclusive
+            - `var subarray = array[..<2]` – RangeToExclusiveEnd
             - `var subarray = array[1..]` – RangeFrom
+            - `var subarray = array[0<..]` – RangeFromExclusiveStart
             - `var subarray = array[..]` – RangeFull
-        - Range with step, e.g. for downwards iterating ranges
+        - Range with step, e.g. for downwards iterating ranges.  
+          If with the exclusive ranges "less than" or "greate than" is used (i.e. the direction) does noot matter and is not checked.
+          (It may be checked/warned for constant values).
             - `var subarray = array[2..1:-1]` – RangeWithStep
             - `var subarray = array[2..>0:-1]` – RangeWithStepExclusiveEnd
             - `var subarray = array[3>..1:-1]` – RangeWithStepExclusiveStart
-            - Dependent ranges (need lower and/or upper bounds before use)
+            - Dependent ranges
                 - `var subarray = array[..1:-1]` – RangeWithStepTo
                 - `var subarray = array[..>0:-1]` – RangeWithStepToExclusiveEnd
                 - `var subarray = array[2..:-1]` – RangeWithStepFrom
