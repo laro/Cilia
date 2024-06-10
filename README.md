@@ -682,9 +682,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
             - `1..` – RangeFrom
             - `0<..` – RangeFromExclusiveStart
             - `..` – RangeFull
-        - Range with step, e.g. for downwards iterating ranges.  
-          Wheather (with the exclusive ranges) `<` or `>` is used (i.e. the direction) does not matter and is not checked.  
-          It may be checked/warned if the step value is a compile time constant, then `<` ("less than") is used for positive steps (i.e. for `1`), and `>` ("greater than") is used for negative steps (e.g. for `-1`).
+        - Range with step, also used for downwards iterating ranges.  
             - `2..1:-1` – RangeWithStep
             - `2..>0:-1` – RangeWithStepExclusiveEnd
             - `3>..1:-1` – RangeWithStepExclusiveStart
@@ -694,6 +692,10 @@ Variable declaration still simply as `Int i`, as in C/C++.
                 - `2..:-1` – RangeWithStepFrom
                 - `3>..:-1` – RangeWithStepFromExclusiveStart
                 - `..:-1` – RangeWithStepFull
+            - Wheather (with the exclusive ranges) `<` or `>` is used (i.e. the direction) does not matter.
+            - Compile time checks:
+                - It may be checked/warned if the step value is a compile time constant, then `<` ("less than") is used for positive steps (i.e. for `1`), and `>` ("greater than") is used for negative steps (e.g. for `-1`).
+                - If both start and end of the range are compile time constants, then it may be checked and warned when the range contain no elements at all (e.g. when start >= end).
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - `"Text"` is a `StringView`
     - Pointer to first character and pointer after the last character
