@@ -456,7 +456,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
               Int[3, 2, 200] intArray3D
               intArray3D[2, 1, 199] = 1
               ```
-    - `Int[] arrayOfIntegers`
+    - `Int[] dynamicArrayOfIntegers`
         - „Dynamic array“ with **dynamic size**
           ```
           Int[] array(3)
