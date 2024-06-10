@@ -483,12 +483,19 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
             - ~~not `Int[3,4,*]`~~
     - Examples:
-        - `Int[] arrayOfInt`
+        - `Int[] dynamicArrayOfInt`
         - `Int[3] arrayOfThreeInt`
         - `Int[3]* pointerToArrayOfThreeInt`
         - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
         - `String*[] dynamicArrayOfPointersToString`
-    - `var subarray = array[1..2]`
+    - Views/Slices/Subarrays
+        - `var subarray = array[1..2]` – RangeInclusive
+        - `var subarray = array[1..<3]` – RangeExclusive
+        - `var subarray = array[..2]` – RangeTo
+        - `var subarray = array[..<2]` – RangeToExclusive
+        - `var subarray = array[1..]` – RangeFrom
+        - `var subarray = array[..]` – RangeFull
+        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 
 ## Classes
