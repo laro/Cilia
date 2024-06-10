@@ -395,7 +395,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
         - use negated `operator==` (if defined), or
         - use `operator<=>` (if defined), or
         - use negated generated `operator==`.
-- `>>` Shift right (logical shift with Uint, arithmetic shift with Int)
+- `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
 - `<<` Shift left (here a logical shift with UInt is the same as arithmetic shift with Int)
 - `>>>` Rotate right (circular shift right)
 - `<<<` Rotate left (circular shift left)
