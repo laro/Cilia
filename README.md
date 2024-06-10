@@ -500,8 +500,8 @@ Variable declaration still simply as `Int i`, as in C/C++.
             - `var subarray = array[0<..]` – RangeFromExclusiveStart
             - `var subarray = array[..]` – RangeFull
         - Range with step, e.g. for downwards iterating ranges.  
-          If with the exclusive ranges `<` or `>` is used (i.e. the direction) does not matter and is not checked.
-          It may be checked/warned if the step value is a compile time constant, then `<` is used for positive steps (i.e. for `1`), and `>` is used for negative steps (e.g. for `-1`).
+          If with the exclusive ranges `<` or `>` is used (i.e. the direction) does not matter and is not checked.  
+          It may be checked/warned if the step value is a compile time constant, then `<` ("less than") is used for positive steps (i.e. for `1`), and `>` ("greater than") is used for negative steps (e.g. for `-1`).
             - `var subarray = array[2..1:-1]` – RangeWithStep
             - `var subarray = array[2..>0:-1]` – RangeWithStepExclusiveEnd
             - `var subarray = array[3>..1:-1]` – RangeWithStepExclusiveStart
