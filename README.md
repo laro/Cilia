@@ -808,7 +808,7 @@ No braces around the condition clause.
         - Write  
           `for i in 10..1:-1  { ... }`  
           instead of `for (Int i = 10; i > 0; --i)  { ... }`
-        - Ttranslates to `for i in RangeWithStep(10, 1, -1) { ... }`
+        - Translates to `for i in RangeWithStep(10, 1, -1) { ... }`
         - Alternatively write
             - `for i in (1..10).reversed()`
             - `for i in Range(10..1, -1)`
