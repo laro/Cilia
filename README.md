@@ -148,12 +148,6 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
         - maybe `Int128`, `Int256`
     - `UInt8`, `UInt16`, `UInt32`, `UInt64`
         - maybe `UInt128`, `UInt256` e.g. for SHA256
-    - `cilia::safe::Int`
-        - Like `cilia::Int`, but with **overflow check** for all operations,
-            - may throw OverflowException.
-        - `safe::Int8`/`Int16`/`Int32`/`Int64`
-        - `safe::Uint`
-            - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
     - `cilia::saturating::Int`
         - Like `cilia::Int`, but with **saturation** for all operations.
             - Limit to maximum, no wrap around.
@@ -1123,6 +1117,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           var array = new Array<Float>(10) noinit  // No warning
           var array = new Array<Float>(10, 1.0)    // No warning
           ```
+- `cilia::safe::Int`
+    - Like `cilia::Int`, but with **overflow check** for all operations,
+        - may throw OverflowException (or abort the program).
+    - `safe::Int8`/`Int16`/`Int32`/`Int64`
+    - `safe::Uint`
+        - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
 - No further security features planned beyond C++
     - not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
         - that is just out of scope,
