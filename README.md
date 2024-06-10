@@ -675,7 +675,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - Different kinds of ranges:
         - `1..2` – Range
         - `1..<3` – RangeExclusiveEnd
-        - `0<..3` – RangeExclusiveStart
+        - `0<..2` – RangeExclusiveStart
         - Dependent ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – RangeTo
             - `..<2` – RangeToExclusiveEnd
