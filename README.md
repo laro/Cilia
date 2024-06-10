@@ -1040,7 +1040,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - (See Matrix & Vector, even though they are in other sub-namespaces.)
 
 - Matrix & Vector
-    - BLAS (Basic Linear Algebra Subprograms)
     - Geometry
         - Static/fixed size
         - For small, fixed size vectors & matrices ,
@@ -1056,7 +1055,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Numerics
         - Dynamic/variable size
         - For large, dynamically sized vectors & matrices,
-            - as typically used in numerics.
+            - as typically used in numerics: BLAS (Basic Linear Algebra Subprograms)
         - `cilia::numerics::Vector<T = Float>`
         - `cilia::numerics::Matrix<T = Float>`
             - stored column-major
