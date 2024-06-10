@@ -673,25 +673,25 @@ Variable declaration still simply as `Int i`, as in C/C++.
             - I like `...` to be reserved for ellipsis in human language like comments.
         - Rust would be ~~`1..=10`~~ and ~~`1..10`~~
     - Different kinds of ranges:
-        - `1..2` – Range
-        - `1..<3` – RangeExclusiveEnd
-        - `0<..2` – RangeExclusiveStart
+        - `1..2` – Range(1, 2)
+        - `1..<3` – RangeExclusiveEnd(1, 3)
+        - `0<..2` – RangeExclusiveStart(0, 2)
         - Dependent ranges (need lower and/or upper bounds to be set before use)  
-            - `..2` – RangeTo
-            - `..<2` – RangeToExclusiveEnd
-            - `1..` – RangeFrom
-            - `0<..` – RangeFromExclusiveStart
-            - `..` – RangeFull
+            - `..2` – RangeTo(2)
+            - `..<2` – RangeToExclusiveEnd(2)
+            - `1..` – RangeFrom(1)
+            - `0<..` – RangeFromExclusiveStart(0)
+            - `..` – RangeFull()
         - Range with step, also used for downwards iterating ranges.  
-            - `2..1:-1` – RangeWithStep
-            - `2..>0:-1` – RangeWithStepExclusiveEnd
-            - `3>..1:-1` – RangeWithStepExclusiveStart
+            - `2..1:-1` – RangeWithStep(2, 1, -1)
+            - `2..>0:-1` – RangeWithStepExclusiveEnd(2, 0, -1)
+            - `3>..1:-1` – RangeWithStepExclusiveStart(3, 1, -1)
             - Dependent ranges
-                - `..1:-1` – RangeWithStepTo
-                - `..>0:-1` – RangeWithStepToExclusiveEnd
-                - `2..:-1` – RangeWithStepFrom
-                - `3>..:-1` – RangeWithStepFromExclusiveStart
-                - `..:-1` – RangeWithStepFull
+                - `..1:-1` – RangeWithStepTo(1, -1)
+                - `..>0:-1` – RangeWithStepToExclusiveEnd(1, -1)
+                - `2..:-1` – RangeWithStepFrom(2, -1)
+                - `3>..:-1` – RangeWithStepFromExclusiveStart(3, -1)
+                - `..:-1` – RangeWithStepFull(-1)
             - Wheather (with the exclusive ranges) `<` or `>` is used (i.e. the direction) does not matter.
             - Compile time checks:
                 - It may be checked/warned if the step value is a compile time constant, then `<` ("less than") is used for positive steps (i.e. for `1`), and `>` ("greater than") is used for negative steps (e.g. for `-1`).
