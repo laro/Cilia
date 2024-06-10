@@ -491,29 +491,13 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
         - `String*[] dynamicArrayOfPointersToString`
     - Views/Slices/Subarrays
-        - `var subarray = array[1..2]` – Range
-        - `var subarray = array[1..<3]` – RangeExclusiveEnd
-        - `var subarray = array[0<..3]` – RangeExclusiveStart
-        - Dependent ranges (need lower and/or upper bounds before use)  
-          Typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
-            - `var subarray = array[..2]` – RangeTo
-            - `var subarray = array[..<2]` – RangeToExclusiveEnd
-            - `var subarray = array[1..]` – RangeFrom
-            - `var subarray = array[0<..]` – RangeFromExclusiveStart
-            - `var subarray = array[..]` – RangeFull
-        - Range with step, e.g. for downwards iterating ranges.  
-          Wheather (with the exclusive ranges) `<` or `>` is used (i.e. the direction) does not matter and is not checked.  
-          It may be checked/warned if the step value is a compile time constant, then `<` ("less than") is used for positive steps (i.e. for `1`), and `>` ("greater than") is used for negative steps (e.g. for `-1`).
-            - `var subarray = array[2..1:-1]` – RangeWithStep
-            - `var subarray = array[2..>0:-1]` – RangeWithStepExclusiveEnd
-            - `var subarray = array[3>..1:-1]` – RangeWithStepExclusiveStart
-            - Dependent ranges
-                - `var subarray = array[..1:-1]` – RangeWithStepTo
-                - `var subarray = array[..>0:-1]` – RangeWithStepToExclusiveEnd
-                - `var subarray = array[2..:-1]` – RangeWithStepFrom
-                - `var subarray = array[3>..:-1]` – RangeWithStepFromExclusiveStart
-                - `var subarray = array[..:-1]` – RangeWithStepFull
-        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+        - `var subarray = array[1..2]`
+        - `var subarray = array[1..<3]`
+        - Dependent ranges (need lower and/or upper bounds before use) are
+          typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
+            - `var subarray = array[..2]`
+            - `var subarray = array[..]`
+        - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 
 ## Classes
@@ -684,10 +668,33 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - in case of type inferring, parameter overloading and template matching.
 - Range literals `1..10` and `1..<10`
     - as in Kotlin
-    - ~~Swift would be `1...10` and `1..<10`~~
-        - I like `...` to be reserved for ellipsis in human language like comments.
-    - ~~Rust would be `1..=10` and `1..10`~~
-- `"Text"` is a `StringView`
+    - Not like:
+        - Swift would be ~~`1...10`~~ and ~~`1..<10`~~
+            - I like `...` to be reserved for ellipsis in human language like comments.
+        - Rust would be ~~`1..=10`~~ and ~~`1..10`~~
+    - Different kinds of ranges:
+        - `1..2` – Range
+        - `1..<3` – RangeExclusiveEnd
+        - `0<..3` – RangeExclusiveStart
+        - Dependent ranges (need lower and/or upper bounds before use)  
+            - `..2` – RangeTo
+            - `..<2` – RangeToExclusiveEnd
+            - `1..` – RangeFrom
+            - `0<..` – RangeFromExclusiveStart
+            - `..` – RangeFull
+        - Range with step, e.g. for downwards iterating ranges.  
+          Wheather (with the exclusive ranges) `<` or `>` is used (i.e. the direction) does not matter and is not checked.  
+          It may be checked/warned if the step value is a compile time constant, then `<` ("less than") is used for positive steps (i.e. for `1`), and `>` ("greater than") is used for negative steps (e.g. for `-1`).
+            - `2..1:-1` – RangeWithStep
+            - `2..>0:-1` – RangeWithStepExclusiveEnd
+            - `3>..1:-1` – RangeWithStepExclusiveStart
+            - Dependent ranges
+                - `..1:-1` – RangeWithStepTo
+                - `..>0:-1` – RangeWithStepToExclusiveEnd
+                - `2..:-1` – RangeWithStepFrom
+                - `3>..:-1` – RangeWithStepFromExclusiveStart
+                - `..:-1` – RangeWithStepFull
+        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-- `"Text"` is a `StringView`
     - Pointer to first character and pointer after the last character
         - in C++ tradition, but length would also work, of course
     - No null termination
