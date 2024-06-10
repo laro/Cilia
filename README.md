@@ -464,15 +464,14 @@ Variable declaration still simply as `Int i`, as in C/C++.
           array[3] = 0  // Runtime error, no compile time bounds check
           ```
         - `T[] array` is the short form of `Array<T> array` (normally `cilia::Array<T>` will be used)
-        - Problem:
-            - May be confusing because it is so similar to fixed-size arrays,  
-              **but** IMHO the inconsistency is already in C/C++:
-                - while in C/C++ function declarations:
-                    - `int[]` and `int*` are actually the same,
-                - for local variables in C/C++ you write:
-                    - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
-                      but `int* array = new int[3]` for an int-array of unknown size, so
-                    - `int[]` and `int*` mean different things.
+        - Problem: May be confusing because it is so similar to fixed-size arrays,  
+          **but** IMHO the inconsistency is already in C/C++:
+            - while in C/C++ function declarations:
+                - `int[]` and `int*` are actually the same,
+            - for local variables in C/C++ you write:
+                - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
+                  but `int* array = new int[3]` for an int-array of unknown size, so
+                - `int[]` and `int*` mean different things.
         - `Int[,,]`
             - Multidimensional dynamic array
             - `cilia::NArray<Int,3>`
