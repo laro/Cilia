@@ -413,8 +413,6 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - When a parser can handle C++, this should be possible to parse, too.
         - ~~Could be problematic in connection with omitting the trailing semicolons,~~
         - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
-- New array declaration `Int[] array`
-    - instead of ~~`Int array[]`~~
 - Examples:
     - `Int anInt`
     - **`Float* i, j`   // i _and_ j are pointers**
@@ -430,8 +428,8 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - Whitespace _between_ type specification and variable name is mandatory.
 
 - Arrays
-    - `Int[3] arrayOfThreeIntegers`  
-      not ~~`Int arrayOfThreeIntegers[3]`~~
+    - New array declaration `Int[3] arrayOfThreeIntegers`  
+      instead of ~~`Int arrayOfThreeIntegers[3]`~~
         - „Static array“ with **fixed size**, same as C/C++
           ```
           Int[3] array
@@ -465,13 +463,16 @@ Variable declaration still simply as `Int i`, as in C/C++.
           array[2] = 0
           array[3] = 0  // Runtime error, no compile time bounds check
           ```
-        - `T[]` is the short form of `Array<T>` (normally `cilia::Array<T>` will be used)
+        - `T[] array` is the short form of `Array<T> array` (normally `cilia::Array<T>` will be used)
         - Problem:
             - May be confusing because it is so similar to fixed-size arrays,  
               **but** IMHO the inconsistency is already in C/C++:
-                - while in C/C++ function declarations `int[]` and `int*` are actually the same thing,
-                - you use `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,
-                - but `int* array = new int[3]` for an int-array of unknown size.
+                - while in C/C++ function declarations:
+                    - `int[]` and `int*` are actually the same thing,
+                - for local variables you write:
+                    - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
+                      but `int* array = new int[3]` for an int-array of unknown size,
+                    - so `int[]` and `int*` mean different things here.
         - `Int[,,]`
             - Multidimensional dynamic array
             - `cilia::NArray<Int,3>`
