@@ -493,7 +493,7 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - `var subarray = array[1..<3]` – RangeExclusiveEnd
         - `var subarray = array[0<..3]` – RangeExclusiveStart
         - Dependent ranges (need lower and/or upper bounds before use)  
-          Typcally implemented as inline function that determine the concrete bounxds an then call `array[start..end]` (or one of the exclusive counterparts).
+          Typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
             - `var subarray = array[..2]` – RangeTo
             - `var subarray = array[..<2]` – RangeToExclusiveEnd
             - `var subarray = array[1..]` – RangeFrom
