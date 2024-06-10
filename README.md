@@ -421,77 +421,77 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - ~~`Float*i`~~
         - Whitespace _between_ type specification and variable name is mandatory.
 
-- Arrays
-    - New array declaration `Int[3] arrayOfThreeIntegers`  
-      instead of ~~`Int arrayOfThreeIntegers[3]`~~
-        - „Static array“ with **fixed size**, same as C/C++
+## Arrays & Views/Slices
+- New array declaration `Int[3] arrayOfThreeIntegers`  
+  instead of ~~`Int arrayOfThreeIntegers[3]`~~
+    - „Static array“ with **fixed size**, same as C/C++
+      ```
+      Int[3] array
+      array[2] = 0
+      array[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+    - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
+      ```
+      Int* array = new Int[3]  // Array-to-pointer decay possible
+      array[2] = 0
+      array[3] = 0  // Undefined behaviour, no bounds check at all
+      ```
+    - Actually this is how to handle pointer to array of Int "correctly":
+      ```
+      Int[3]* arrayPtr = new Int[3]
+      *arrayPtr[2] = 0
+      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+    - `arrayOfThreeIntegers.size()` -> `3`
+        - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
+    - `Int[3, 2, 200]`
+        - Multidimensional static array  
           ```
-          Int[3] array
-          array[2] = 0
-          array[3] = 0  // Compilation error, due to compile time bounds check
+          Int[3, 2, 200] intArray3D
+          intArray3D[2, 1, 199] = 1
           ```
-        - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
-          ```
-          Int* array = new Int[3]  // Array-to-pointer decay possible
-          array[2] = 0
-          array[3] = 0  // Undefined behaviour, no bounds check at all
-          ```
-        - Actually this is how to handle pointer to array of Int "correctly":
-          ```
-          Int[3]* arrayPtr = new Int[3]
-          *arrayPtr[2] = 0
-          *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-          ```
-        - `arrayOfThreeIntegers.size()` -> `3`
-            - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
-        - `Int[3, 2, 200]`
-            - Multidimensional static array  
-              ```
-              Int[3, 2, 200] intArray3D
-              intArray3D[2, 1, 199] = 1
-              ```
-    - `Int[] dynamicArrayOfIntegers`
-        - „Dynamic array“ with **dynamic size**
-          ```
-          Int[] array(3)
-          array[2] = 0
-          array[3] = 0  // Runtime error, no compile time bounds check
-          ```
-        - `T[] array` is the short form of `Array<T> array` (normally `cilia::Array<T>` will be used)
-        - Problem: May be confusing because it is so similar to fixed-size arrays,  
-          **but** IMHO the inconsistency is already in C/C++:
-            - while in C/C++ function declarations:
-                - `int[]` and `int*` are actually the same,
-            - for local variables in C/C++ you write:
-                - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
-                  but `int* array = new int[3]` for an int-array of unknown size, so
-                - `int[]` and `int*` mean different things.
-    - `Int[,] dynamic2DArray`
-        - `T[,] array` is the short form of `NArray<T, 2> array` (normally `cilia::NArray<T, 2>` will be used)
-        - ~~or `Int[*,*]`?~~
-    - `Int[,,] multidimensionalDynamicArray`
-        - `T[,,] array` is the short form of `NArray<T, 3> array` (normally `cilia::NArray<T, 3>` will be used)
-        - and so on: `cilia::NArray<T, N>`
-        - ~~or `Int[*,*,*]`?~~
-    - Mixed forms of static and dynamic array
-        - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
-            - ~~not `Int[3,*,*]`~~
-        - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
-            - ~~not `Int[3,4,*]`~~
-    - Examples:
-        - `Int[] dynamicArrayOfInt`
-        - `Int[3] arrayOfThreeInt`
-        - `Int[3]* pointerToArrayOfThreeInt`
-        - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
-        - `String*[] dynamicArrayOfPointersToString`
-    - Views/Slices/Subarrays
-        - `var subarray = array[1..2]`
-        - `var subarray = array[1..<3]`
-        - Dependent ranges (need lower and/or upper bounds before use) are
-          typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
-            - `var subarray = array[..2]`
-            - `var subarray = array[..]`
-        - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- `Int[] dynamicArrayOfIntegers`
+    - „Dynamic array“ with **dynamic size**
+      ```
+      Int[] array(3)
+      array[2] = 0
+      array[3] = 0  // Runtime error, no compile time bounds check
+      ```
+    - `T[] array` is the short form of `Array<T> array` (normally `cilia::Array<T>` will be used)
+    - Problem: May be confusing because it is so similar to fixed-size arrays,  
+      **but** IMHO the inconsistency is already in C/C++:
+        - while in C/C++ function declarations:
+            - `int[]` and `int*` are actually the same,
+        - for local variables in C/C++ you write:
+            - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
+              but `int* array = new int[3]` for an int-array of unknown size, so
+            - `int[]` and `int*` mean different things.
+- `Int[,] dynamic2DArray`
+    - `T[,] array` is the short form of `NArray<T, 2> array` (normally `cilia::NArray<T, 2>` will be used)
+    - ~~or `Int[*,*]`?~~
+- `Int[,,] multidimensionalDynamicArray`
+    - `T[,,] array` is the short form of `NArray<T, 3> array` (normally `cilia::NArray<T, 3>` will be used)
+    - and so on: `cilia::NArray<T, N>`
+    - ~~or `Int[*,*,*]`?~~
+- Mixed forms of static and dynamic array
+    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
+        - ~~not `Int[3,*,*]`~~
+    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
+        - ~~not `Int[3,4,*]`~~
+- Examples:
+    - `Int[] dynamicArrayOfInt`
+    - `Int[3] arrayOfThreeInt`
+    - `Int[3]* pointerToArrayOfThreeInt`
+    - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
+    - `String*[] dynamicArrayOfPointersToString`
+- Views/Slices/Subarrays
+    - `var subarray = array[1..2]`
+    - `var subarray = array[1..<3]`
+    - Dependent ranges (need lower and/or upper bounds before use) are
+      typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
+        - `var subarray = array[..2]`
+        - `var subarray = array[..]`
+    - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 
 ## Classes
