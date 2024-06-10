@@ -396,7 +396,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
 
 
 ## Variable Declaration
-Variable declaration still simply as `Int i`, as in C/C++.
+`Int i` as variable declaration, just as in C/C++.
 - `var i = 3` only for type inference
     - ~~Maybe possible to simply write `i = 3`?~~
     - ~~Maybe `i := 3`?~~
@@ -404,7 +404,6 @@ Variable declaration still simply as `Int i`, as in C/C++.
     - ~~`var Int i`~~
     - ~~`var i : Int`~~
     - ~~Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?~~
-        - When a parser can handle C++, this should be possible to parse, too.
         - ~~Could be problematic in connection with omitting the trailing semicolons,~~
         - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
 - Examples:
