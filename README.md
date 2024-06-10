@@ -694,7 +694,8 @@ Variable declaration still simply as `Int i`, as in C/C++.
                 - `2..:-1` – RangeWithStepFrom
                 - `3>..:-1` – RangeWithStepFromExclusiveStart
                 - `..:-1` – RangeWithStepFull
-        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-- `"Text"` is a `StringView`
+        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- `"Text"` is a `StringView`
     - Pointer to first character and pointer after the last character
         - in C++ tradition, but length would also work, of course
     - No null termination
