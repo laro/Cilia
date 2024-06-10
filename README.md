@@ -489,12 +489,24 @@ Variable declaration still simply as `Int i`, as in C/C++.
         - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
         - `String*[] dynamicArrayOfPointersToString`
     - Views/Slices/Subarrays
-        - `var subarray = array[1..2]` – RangeInclusive
-        - `var subarray = array[1..<3]` – RangeExclusive
-        - `var subarray = array[..2]` – RangeTo
-        - `var subarray = array[..<2]` – RangeToExclusive
-        - `var subarray = array[1..]` – RangeFrom
-        - `var subarray = array[..]` – RangeFull
+        - `var subarray = array[1..2]` – Range
+        - `var subarray = array[1..<3]` – RangeExclusiveEnd
+        - `var subarray = array[0<..3]` – RangeExclusiveStart
+        - Dependent ranges (need lower and/or upper bounds before use)
+            - `var subarray = array[..2]` – RangeTo
+            - `var subarray = array[..<2]` – RangeToExclusive
+            - `var subarray = array[1..]` – RangeFrom
+            - `var subarray = array[..]` – RangeFull
+        - Range with step, e.g. for downwards iterating ranges
+            - `var subarray = array[2..1:-1]` – RangeWithStep
+            - `var subarray = array[2..>0:-1]` – RangeWithStepExclusiveEnd
+            - `var subarray = array[3>..1:-1]` – RangeWithStepExclusiveStart
+            - Dependent ranges (need lower and/or upper bounds before use)
+                - `var subarray = array[..1:-1]` – RangeWithStepTo
+                - `var subarray = array[..>0:-1]` – RangeWithStepToExclusiveEnd
+                - `var subarray = array[2..:-1]` – RangeWithStepFrom
+                - `var subarray = array[3>..:-1]` – RangeWithStepFromExclusiveStart
+                - `var subarray = array[..:-1]` – RangeWithStepFull
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 
