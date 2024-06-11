@@ -628,8 +628,8 @@ No braces around the condition clause.
 - Function call arguments and the loop variable of "for ... in" are by default passed as `in`.
 - Technically `in` is either `const X&` or `const X`
     - `const X&` as default:
-        - **`concat(String first, String second)`**
-            - instead of `concat(const String& first, const String& second)`
+        - So simply write **`concat(String first, String second)`**  
+          instead of `concat(const String& first, const String& second)`
         - **`String[] stringArray = ["a", "b", "c"]`**  
           **`for str in stringArray { … }`**
             - `str` is `const String&`
