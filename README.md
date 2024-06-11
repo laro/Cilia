@@ -967,37 +967,35 @@ As in Python, Kotlin, Swift, JavaScript, Julia
     - ~~Or is it useful for portable code (Linux `UInt32` <-> Windows `UInt16`)?~~
         - ~~You may use `wchar_t` then.~~
 
-
-## Advanced Unicode Support (ICU)
-Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode", "ICU4C").
-- "The ICU libraries provide support for:
-    - The latest version of the Unicode standard
-    - Character set conversions with support for over 220 codepages
-    - Locale data for more than 300 locales
-    - Language sensitive text collation (sorting) and searching based on the Unicode Collation Algorithm (=ISO 14651)
-    - Regular expression matching and Unicode sets
-    - Transformations for normalization, upper/lowercase, script transliterations (50+ pairs)
-    - Resource bundles for storing and accessing localized information
-    - Date/Number/Message formatting and parsing of culture specific input/output formats
-    - Calendar specific date and time manipulation
-    - Text boundary analysis for finding characters, word and sentence boundaries"
-- `import icu` adds extension methods for `cilia::String`
-    - Allows iteration over:
-        - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
-            - `for word in text.asWords()`
-            - ~~`for word in text.byWord()`~~
-        - lines
-            - `for line in text.asLines()`
-            - ~~`for line in text.byLine()`~~
-        - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
-            - `for sentence in text.asSentences()`
-            - ~~`for sentence in text.bySentence()`~~
-    - Depending on locale
-        - `string.toUpper(locale)`, `string.toLower(locale)`
-            - `toUpper(Sting, locale) -> String`, `toLower(Sting, locale) -> String`
-        - `stringArray.sort(locale)`
-            - `sort(Container<String>, locale) -> Container<String>`
-        - `compare(stringA, stringB, locale) -> Int`
+- Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode", "ICU4C").
+    - "The ICU libraries provide support for:
+        - The latest version of the Unicode standard
+        - Character set conversions with support for over 220 codepages
+        - Locale data for more than 300 locales
+        - Language sensitive text collation (sorting) and searching based on the Unicode Collation Algorithm (=ISO 14651)
+        - Regular expression matching and Unicode sets
+        - Transformations for normalization, upper/lowercase, script transliterations (50+ pairs)
+        - Resource bundles for storing and accessing localized information
+        - Date/Number/Message formatting and parsing of culture specific input/output formats
+        - Calendar specific date and time manipulation
+        - Text boundary analysis for finding characters, word and sentence boundaries"
+    - `import icu` adds extension methods for `cilia::String`
+        - Allows iteration over:
+            - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
+                - `for word in text.asWords()`
+                - ~~`for word in text.byWord()`~~
+            - lines
+                - `for line in text.asLines()`
+                - ~~`for line in text.byLine()`~~
+            - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
+                - `for sentence in text.asSentences()`
+                - ~~`for sentence in text.bySentence()`~~
+        - Depending on locale
+            - `string.toUpper(locale)`, `string.toLower(locale)`
+                - `toUpper(Sting, locale) -> String`, `toLower(Sting, locale) -> String`
+            - `stringArray.sort(locale)`
+                - `sort(Container<String>, locale) -> Container<String>`
+            - `compare(stringA, stringB, locale) -> Int`
      
 
 ## `cilia` Standard Library
