@@ -44,7 +44,7 @@ When we are at it, after a quick look at Julia and Python.
        - [No trailing semicolons](#No-trailing-semicolons)
 
 
-## Comparison to C++, Cpp2, and Carbon
+## Comparison with C++, Cpp2, and Carbon
 Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:  
 Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++.  
 I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax.
