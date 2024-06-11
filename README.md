@@ -640,13 +640,19 @@ No braces around the condition clause.
             - `i` is `const Int`
         - `for str in ["a", "b", "c"] { … }`
             - `str` is `const StringView`
-    - Type traits `DefaultInArgumentType`
+    - Type traits `InArgumentType`  
         - As const _value_ (const X) for:
             - `Int`, `Float`, `Bool` etc.
             - Small classes (as `Complex<Float>`, `StringView`) 
         - As const _reference_ (`const X&`) for:
             - All other cases
         - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
+            - `typedef<type T> T::InArgumentType = const T&`
+            - `typedef Int32::InArgumentType = const Int32`
+            - `typedef Int64::InArgumentType = const Int64`
+            - `typedef Complex<Float32>::InArgumentType = const Complex<Float32>`
+            - `typedef Complex<Float64>::InArgumentType = const Complex<Float64>`
+            - `typedef StringView::InArgumentType = const StringView`
     - Explicit override with
        - `in`, `inout`, `out`, `move`, `copy`, `forward`
             - Wording fits nicely for function arguments.
