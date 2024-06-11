@@ -787,8 +787,10 @@ No braces around the condition clause.
                 - `..:-1` – RangeWithStepFull(-1)
             - Wheather (with the exclusive ranges) `<` or `>` is used (i.e. the direction) does not matter.
             - Compile time checks:
-                - It may be checked/warned if the step value is a compile time constant, then `<` ("less than") is used for positive steps (i.e. for `1`), and `>` ("greater than") is used for negative steps (e.g. for `-1`).
-                - If both start and end of the range are compile time constants, then it may be checked and warned when the range contains no elements at all (e.g. when start >= end).
+                - In case the step value is a compile time constant, then it may be _warned_
+                    - if `>` ("greater than") is used for positive steps (i.e. for `1`), and
+                    - if `<` ("less than") is used for negative steps (e.g. for `-1`).
+                - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when start >= end ans step > 0).
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - `"Text"` is a `StringView`
     - Pointer to first character and pointer after the last character
