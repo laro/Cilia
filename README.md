@@ -253,6 +253,70 @@ As in Python, Kotlin, Swift, JavaScript, Julia
   ```  
 
 
+## Casting
+- Constructor casting
+    - `Float(3)`
+    - no classic C-style casting: ~~`(Float) 3`~~
+    - but also
+        - ~~const_cast<>~~
+        - mutable_cast<>
+        - reinterpret_cast<>
+        - static_cast<>?
+- `is` (type query)
+    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
+        - `obj is Int` (i.e. a type)
+        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
+        - `obj is cilia::Array` (i.e. a template)
+        - `obj is cilia::Integral` (i.e. a concept)
+    - Also support value query?
+- `as`
+    - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
+        - `obj as T` instead of `T(obj)`
+        - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
+        - With `Variant v` where T is one alternative:  
+          `v as T` instead of`std::get<T>(v)`
+        - With `Any a`:  
+          `a as T` instead of `std::any_cast<T>(a)`
+        - With `Optional<T> o`:  
+          `o as T` instead of `o.value()`
+- Automatic casts
+    - as in Kotlin,
+    - for template types, references and pointers.
+    - ```
+      func getStringLength(Type obj) -> Int {
+           if obj is String {
+               // "obj" is automatically cast to "String" in this branch
+               return obj.length
+           }
+           // "obj" is still a "Type" outside of the type-checked branch
+           return 0
+      }
+      ```
+    - ```
+      func getStringLength(Type obj) -> Int {
+          if not obj is String
+              return 0
+          // "obj" is automatically cast to "String" in this branch
+          return obj.length
+       }
+      ```
+    - ```
+      func getStringLength(Type obj) -> Int {
+          // "obj" is automatically cast to "String" on the right-hand side of "and"
+          if obj is String  and  obj.length > 0 {
+              return obj.length
+          }
+          return 0
+      }
+      ```
+    - Multiple inheritance is problematic here:
+        - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (typically) changes during casting.
+        - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
+            - Workaround: Cast back with `Type(obj).functionOfA()`
+        - ~~Therefore maybe better: `if obj is String str ...`~~
+            - ~~as in C#~~
+
+     
 ## Arrays & ArrayViews/Slices
 - `Int[3] arrayOfThreeIntegers` as new array declaration  
   instead of ~~`Int arrayOfThreeIntegers[3]`~~
@@ -356,74 +420,6 @@ As in Python, Kotlin, Swift, JavaScript, Julia
         - ~~`Size` - `Size` -> `SSize`~~
             - ~~Problem: `-` results in `SSize`, but `+` results in `Size`?!~~
         - ~~The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.~~
-
-
-## Default Type `in`
-- `in` as default type for function call arguments and for "for ... in".
-- Technically either `const X&` or `const X`
-    - `const X&` as deafult:
-        - **`concat(String first, String second)`**
-            - instead of `concat(const String& first, const String& second)`
-        - **`String[] stringArray = ["a", "b", "c"]`**  
-          **`for str in stringArray { … }`**
-            - `str` is `const String&`
-    - `const X` for "small types":
-        - `for i in [1, 2, 3] { … }`
-            - `i` is `const Int`
-        - `for i in 1..<10 { … }`
-            - `i` is `const Int`
-        - `for str in ["a", "b", "c"] { … }`
-            - `str` is `const StringView`
-    - Type traits `DefaultArgumentType`
-        - As const _value_ for:
-            - `Int`, `Float`, `Bool` etc.
-            - Small classes (as `Complex<Float>`, `StringView`) 
-        - As const _reference_ for:
-            - All other cases
-        - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
-        - ~~Or (similar to C# and Swift) const-reference for `classes`, const-value for `structs`?~~
-            - ~~At least as default?~~
-    - Explicit override with
-       - `in`, `inout`, `out`, `move`, `copy`, `forward`
-            - Wording fits nicely for function arguments.
-            - Also works for `for` loops, then these words decribe how the information (i.e. the variables) get into the body of the loop (or out of it).
-       - `in` – const reference (`const X&`) or const value (`const X`)
-           - Default
-        - `inout` – non-const/nutable reference (`X&`)
-            - to mark as mutable/non-const reference.
-            - Also at the caller `swap(inout a, inout b)`
-        - `out`, to mark as (non-const) reference
-            - Like `inout`, but without prior initialization.
-            - Also at the caller
-              ```
-              String errorDetails
-              if not open("...", out errorDetails) {
-                  cout << errorDetails
-              }
-              ```
-        - `move` – right-value reference (`X&&`)
-            - for move sematics.
-        - `copy` – non-const/nutable value (`X`)
-        - `forward` – ? `X&&`
-            - for perfect forwarding
-    - Examples:
-        - `for inout str in stringArray { … }`
-            - `str` is `String&`
-        - `for inout reference i in [1, 2, 3] { … }`
-            - `i` is `Int&`
-        - `for copy str in stringArray { … }`
-            - `str` is `String`
-        - `for copy i in [1, 2, 3] { … }`
-            - `i` is `Int`
-    - If you want even the basic type to be different:
-        - `for Double d in [1, 2, 3] { … }`
-            - `d` is `const Double`
-        - `for String str in ["a", "b", "c"] { … }`
-            - `str` is `const String&` (not `const StringView&`)
-        - `for inout String str in ["a", "b", "c"] { … }`
-            - `str` is `String&`
-        - `for copy String str in ["a", "b", "c"] { … }`
-            - `str` is `String`
 
 
 ## Functions
@@ -537,70 +533,136 @@ As in Python, Kotlin, Swift, JavaScript, Julia
 - `<<<` Rotate left (circular shift left)
 
 
-## Casting
-- Constructor casting
-    - `Float(3)`
-    - no classic C-style casting: ~~`(Float) 3`~~
-    - but also
-        - ~~const_cast<>~~
-        - mutable_cast<>
-        - reinterpret_cast<>
-        - static_cast<>?
-- `is` (type query)
-    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
-        - `obj is Int` (i.e. a type)
-        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
-        - `obj is cilia::Array` (i.e. a template)
-        - `obj is cilia::Integral` (i.e. a concept)
-    - Also support value query?
-- `as`
-    - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
-        - `obj as T` instead of `T(obj)`
-        - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
-        - With `Variant v` where T is one alternative:  
-          `v as T` instead of`std::get<T>(v)`
-        - With `Any a`:  
-          `a as T` instead of `std::any_cast<T>(a)`
-        - With `Optional<T> o`:  
-          `o as T` instead of `o.value()`
-- Automatic casts
-    - as in Kotlin,
-    - for template types, references and pointers.
+## if, while, for ... in
+No braces around the condition clause.
+- if
     - ```
-      func getStringLength(Type obj) -> Int {
-           if obj is String {
-               // "obj" is automatically cast to "String" in this branch
-               return obj.length
-           }
-           // "obj" is still a "Type" outside of the type-checked branch
-           return 0
+      if a > b {
+          // ...
       }
       ```
-    - ```
-      func getStringLength(Type obj) -> Int {
-          if not obj is String
-              return 0
-          // "obj" is automatically cast to "String" in this branch
-          return obj.length
-       }
+    - `if 1 <= x <= 10 { … }`
+        - as in Python, Julia, Cpp2 (Herb Sutter)
+- while
+  ```
+  while a > b {
+      // ...
+  }
+  ```
+- do … while
+  ```
+  do {
+      // ...
+  } while a > b
+  ```
+- `for … in …`
+    - as in Rust, Swift
+    - Write
       ```
-    - ```
-      func getStringLength(Type obj) -> Int {
-          // "obj" is automatically cast to "String" on the right-hand side of "and"
-          if obj is String  and  obj.length > 0 {
-              return obj.length
-          }
-          return 0
+      for str in ["a", "b", "c"] {
+          // ...
       }
       ```
-    - Multiple inheritance is problematic here:
-        - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (typically) changes during casting.
-        - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
-            - Workaround: Cast back with `Type(obj).functionOfA()`
-        - ~~Therefore maybe better: `if obj is String str ...`~~
-            - ~~as in C#~~
+      instead of `for (… : …)` (AKA `for each`/`foreach`)
+    - Use the range literal to write          
+      `for i in 0..<10  { ... }`  
+      instead of `for (Int i = 0; i < 10; ++i) { ... }`
+        - `for i in 1..10 { ... }`  
+          translates to `for i in Range(1, 10) { ... }`
+        - `for i in 1..<10 { ... }`  
+           translates to `for i in RangeExclusiveEnd(1, 10) { ... }`
+        - Write  
+          `for i in 10..1:-1  { ... }`  
+          instead of `for (Int i = 10; i > 0; --i)  { ... }`
+        - Translates to `for i in RangeWithStep(10, 1, -1) { ... }`
+        - Alternatively write
+            - `for i in (1..10).reversed()`
+            - `for i in Range(10..1, -1)`
+    - In general replace  
+      ```
+      for (<Initialization>; <TerminationCriteria>; <Increment>) {
+          <Body>
+      }  
+      ```
+      with
+      ```
+      <Initialization>
+      while <TerminationCriteria> {
+          <Body>
+          <Increment>
+      }
+      ```
+      (OK, curly braces around all of this are necessary to be a perfect replacement.)
 
-     
+
+## Default Type `in`
+- `in` as default type for function call arguments and for "for ... in".
+- Technically either `const X&` or `const X`
+    - `const X&` as deafult:
+        - **`concat(String first, String second)`**
+            - instead of `concat(const String& first, const String& second)`
+        - **`String[] stringArray = ["a", "b", "c"]`**  
+          **`for str in stringArray { … }`**
+            - `str` is `const String&`
+    - `const X` for "small types":
+        - `for i in [1, 2, 3] { … }`
+            - `i` is `const Int`
+        - `for i in 1..<10 { … }`
+            - `i` is `const Int`
+        - `for str in ["a", "b", "c"] { … }`
+            - `str` is `const StringView`
+    - Type traits `DefaultArgumentType`
+        - As const _value_ for:
+            - `Int`, `Float`, `Bool` etc.
+            - Small classes (as `Complex<Float>`, `StringView`) 
+        - As const _reference_ for:
+            - All other cases
+        - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
+        - ~~Or (similar to C# and Swift) const-reference for `classes`, const-value for `structs`?~~
+            - ~~At least as default?~~
+    - Explicit override with
+       - `in`, `inout`, `out`, `move`, `copy`, `forward`
+            - Wording fits nicely for function arguments.
+            - Also works for `for` loops, then these words decribe how the information (i.e. the variables) get into the body of the loop (or out of it).
+       - `in` – const reference (`const X&`) or const value (`const X`)
+           - Default
+        - `inout` – non-const/nutable reference (`X&`)
+            - to mark as mutable/non-const reference.
+            - Also at the caller `swap(inout a, inout b)`
+        - `out`, to mark as (non-const) reference
+            - Like `inout`, but without prior initialization.
+            - Also at the caller
+              ```
+              String errorDetails
+              if not open("...", out errorDetails) {
+                  cout << errorDetails
+              }
+              ```
+        - `move` – right-value reference (`X&&`)
+            - for move sematics.
+        - `copy` – non-const/nutable value (`X`)
+        - `forward` – ? `X&&`
+            - for perfect forwarding
+    - Examples:
+        - `for inout str in stringArray { … }`
+            - `str` is `String&`
+        - `for inout reference i in [1, 2, 3] { … }`
+            - `i` is `Int&`
+        - `for copy str in stringArray { … }`
+            - `str` is `String`
+        - `for copy i in [1, 2, 3] { … }`
+            - `i` is `Int`
+    - If you want even the basic type to be different:
+        - `for Double d in [1, 2, 3] { … }`
+            - `d` is `const Double`
+        - `for String str in ["a", "b", "c"] { … }`
+            - `str` is `const String&` (not `const StringView&`)
+        - `for inout String str in ["a", "b", "c"] { … }`
+            - `str` is `String&`
+        - `for copy String str in ["a", "b", "c"] { … }`
+            - `str` is `String`
+
+
 ## Literals
 - `True`, `False` are Bool,
     - as in Python,
@@ -765,67 +827,6 @@ As in Python, Kotlin, Swift, JavaScript, Julia
          is a comment */ 
       ```
 
-
-## if, while, for ... in
-No braces around the condition clause.
-- if
-    - ```
-      if a > b {
-          // ...
-      }
-      ```
-    - `if 1 <= x <= 10 { … }`
-        - as in Python, Julia, Cpp2 (Herb Sutter)
-- while
-  ```
-  while a > b {
-      // ...
-  }
-  ```
-- do … while
-  ```
-  do {
-      // ...
-  } while a > b
-  ```
-- `for … in …`
-    - as in Rust, Swift
-    - Write
-      ```
-      for str in ["a", "b", "c"] {
-          // ...
-      }
-      ```
-      instead of `for (… : …)` (AKA `for each`/`foreach`)
-    - Use the range literal to write          
-      `for i in 0..<10  { ... }`  
-      instead of `for (Int i = 0; i < 10; ++i) { ... }`
-        - `for i in 1..10 { ... }`  
-          translates to `for i in Range(1, 10) { ... }`
-        - `for i in 1..<10 { ... }`  
-           translates to `for i in RangeExclusiveEnd(1, 10) { ... }`
-        - Write  
-          `for i in 10..1:-1  { ... }`  
-          instead of `for (Int i = 10; i > 0; --i)  { ... }`
-        - Translates to `for i in RangeWithStep(10, 1, -1) { ... }`
-        - Alternatively write
-            - `for i in (1..10).reversed()`
-            - `for i in Range(10..1, -1)`
-    - In general replace  
-      ```
-      for (<Initialization>; <TerminationCriteria>; <Increment>) {
-          <Body>
-      }  
-      ```
-      with
-      ```
-      <Initialization>
-      while <TerminationCriteria> {
-          <Body>
-          <Increment>
-      }
-      ```
-      (OK, curly braces around all of this are necessary to be a perfect replacement.)
 
 ## Better Readable Keywords
 C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
