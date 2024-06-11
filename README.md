@@ -1220,9 +1220,10 @@ I am not familiar with all these issues, but in a new language we certainly coud
         - `multiply: (x: int, y: int) x * y;` (not even an `=` anymore?)
         - `multiply: (x: int, y: int) -> int = return x * y;`
         - Nice and short, as in math, but in the end it is one more kind of notation for functions.
-    - [Unified `operator=` and constructor](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
+    - [Unified `operator=` for assignment, constructor, and destructor)](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
         - Takes a bit of getting used to.
     - [Implicit Move on Last Use](https://github.com/ntrel/cpp2?tab=readme-ov-file#implicit-move-on-last-use)
+        - So resources are freed even earlier than in C++.
     - [Named Return Values](https://github.com/ntrel/cpp2?tab=readme-ov-file#named-return-values)
     - [Inspect](https://github.com/ntrel/cpp2?tab=readme-ov-file#inspect),
       a kind of pattern matching.
