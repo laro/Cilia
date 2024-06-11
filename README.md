@@ -1062,7 +1062,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - `Type^ instance`
     - `T^` by default is `SharedPtr<T>`
         - for C++/Cilia classes,
-        - defined via type traits `CircumflexType`.
+        - defined via type traits `CircumflexType`:  
+          `typedef<type T> T::CircumflexType = SharedPtr<T>`
     - Possible to redefine for interoperability with other languages:
         - Objective-C/Swift classes: Use their reference counting mechanism
         - C#/Java classes: Use garbage collected memory
