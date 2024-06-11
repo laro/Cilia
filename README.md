@@ -282,15 +282,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   ```  
 
 
-## Casting
-- Constructor casting
-    - `Float(3)`
-    - no classic C-style casting: ~~`(Float) 3`~~
-    - but also
-        - ~~const_cast<>~~
-        - mutable_cast<>
-        - reinterpret_cast<>
-        - static_cast<>?
+## `is`, `as`, Casting
 - `is` (type query)
     - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
         - `obj is Int` (i.e. a type)
@@ -308,6 +300,14 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
           `a as T` instead of `std::any_cast<T>(a)`
         - With `Optional<T> o`:  
           `o as T` instead of `o.value()`
+- Constructor casting
+    - `Float(3)`
+    - no classic C-style casting: ~~`(Float) 3`~~
+    - but also
+        - ~~const_cast<>~~
+        - mutable_cast<>
+        - reinterpret_cast<>
+        - static_cast<>?
 - Automatic casts
     - as in Kotlin,
     - for template types, references and pointers.
