@@ -724,7 +724,7 @@ No braces around the condition clause.
             - `Int n = Int(m)`   // Works
     - `123` is interpreted as `Int`
         - in case of type inferring, parameter overloading and template matching.
-    - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
+    - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
         - Store as array of `Int`
     - `123u` is `UInt`
     - `-123` is always `Int` (signed)
