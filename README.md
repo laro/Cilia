@@ -137,20 +137,49 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
 
 
 ## No Trailing Semicolons
-As in Python, Kotlin, Swift, JavaScript, Julia
+As in Python, Kotlin, Swift, JavaScript, Julia.
 - Advantage:
     - Better readability
 - Disadvantage:
     - Errors are less easily recognized
         - Walter Bright / D: „Redundancy helps“
     - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
-        - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
+        - ~~As this is difficult & unclear/disputed: Keep C++ semicolons for now?~~
 - Multiline expressions:
     - Explicitly via `\` or `(…)` / `[…]` / `{…}` as in Python
     - ~~Implicitly/clever as in Swift, Kotlin and JavaScript?~~
 - Only in REPL:
     - Trailing semicolon used to suppress evaluation output,
         - as in Matlab, Python, Julia.
+
+
+## Better Readable Keywords
+C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
+
+- Cilia has
+    - `var` instead of `auto`
+    - `func` instead of `auto`
+    - `for … in …` instead of `for (… : …)`
+    - `for i in 0..<10` instead of `for (int i = 0; i < 10; ++i)`
+    - ~~`class … extends …` instead of `class … : …`~~
+        - ~~`class … implements …` instead of `class … : …` for pure abstract classes (like interfaces)~~
+    - `type` instead of `typename`
+    - `await` instead of `co_await`
+    - `yield` instead of `co_yield`
+    - `return` instead of `co_return`
+    - `and`, `or`, `xor`, `not` instead of `&&`, `||`, `^`, `!`
+        - as in Python, Carbon
+        - Used for both
+            - boolean operation
+                - `anBool`**`and`**`anotherBool` -> `Bool`
+            - bitwise operation
+                - `anInt`**`and`**`anotherInt` -> `Int`
+- `Int32` instead of `int32_t` or `qint32`,
+    - so no prefix "q" nor postfix "_t".
+- When translating C++ code to Cilia then change conflicting names, e.g.
+    - `int var` -> `Int __variable_var`
+    - `class func` -> `class __class_func`
+    - `yield()` -> `func __function_yield()`
 
 
 ## Basic / Arithmetic Types
@@ -826,35 +855,6 @@ No braces around the condition clause.
       /* (and this) */
          is a comment */ 
       ```
-
-
-## Better Readable Keywords
-C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
-
-- Cilia has
-    - `var` instead of `auto`
-    - `func` instead of `auto`
-    - `for … in …` instead of `for (… : …)`
-    - `for i in 0..<10` instead of `for (int i = 0; i < 10; ++i)`
-    - ~~`class … extends …` instead of `class … : …`~~
-        - ~~`class … implements …` instead of `class … : …` for pure abstract classes (like interfaces)~~
-    - `type` instead of `typename`
-    - `await` instead of `co_await`
-    - `yield` instead of `co_yield`
-    - `return` instead of `co_return`
-    - `and`, `or`, `xor`, `not` instead of `&&`, `||`, `^`, `!`
-        - as in Python, Carbon
-        - Used for both
-            - boolean operation
-                - `anBool`**`and`**`anotherBool` -> `Bool`
-            - bitwise operation
-                - `anInt`**`and`**`anotherInt` -> `Int`
-- `Int32` instead of `int32_t` or `qint32`,
-  - so no prefix "q" nor postfix "_t".
-- When translating C++ code to Cilia then change conflicting names, e.g.
-    - `int var` -> `Int __variable_var`
-    - `class func` -> `class __class_func`
-    - `yield()` -> `func __function_yield()`
 
 
 ## String, Char & CodePoint
