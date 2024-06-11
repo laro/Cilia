@@ -224,63 +224,71 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
         - ~~The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.~~
 
 
-## Const Reference as Default Type
-- Const reference as default type for (most) function call arguments and for "for ... in".  
-    - **`concat(String first, String second)`**
-        - instead of `concat(const String& first, const String& second)`
-    - **`String[] stringArray = ["a", "b", "c"]`**  
-      **`for str in stringArray { … }`**
-        - `str` is `const String&`
-- Const value for "small types".
-    - `for i in [1, 2, 3] { … }`
-        - `i` is `const Int`
-    - `for i in 1..<10 { … }`
-        - `i` is `const Int`
-    - `for str in ["a", "b", "c"] { … }`
-        - `str` is `const StringView`
-- Type traits `DefaultArgumentType`
-    - As const _value_ for:
-        - `Int`, `Float`, `Bool` etc.
-        - Small classes (as `Complex<Float>`, `StringView`) 
-    - As const _reference_ for:
-        - All other cases
-    - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
-    - ~~Or (similar to C# and Swift) const-reference for `classes`, const-value for `structs`?~~
-        - ~~At least as default?~~
-- Explicit override with
-    - `mutable`, to mark as changeable
-        - Also at the caller `swap(mutable a, mutable b)`
-        - ~~Or `inout`?~~
-    - `value`, to mark as value (not reference) 
-        - `mutable value`
-        - Is not specified when calling the function, as a copy is created here.
-    - `reference`, to mark as reference (not value)
-    - `moveable`, to mark as rvalue reference
-        - ~~RValue references still as `&&`~~
-    - Short keywords `val`, `ref`, `mut`, `mov`?
+## Default Type `in`
+- `in` as default type for function call arguments and for "for ... in".
+- Technically either `const X&` or `const X`
+    - `const X&` as deafult:
+        - **`concat(String first, String second)`**
+            - instead of `concat(const String& first, const String& second)`
+        - **`String[] stringArray = ["a", "b", "c"]`**  
+          **`for str in stringArray { … }`**
+            - `str` is `const String&`
+    - `const X` for "small types":
+        - `for i in [1, 2, 3] { … }`
+            - `i` is `const Int`
+        - `for i in 1..<10 { … }`
+            - `i` is `const Int`
+        - `for str in ["a", "b", "c"] { … }`
+            - `str` is `const StringView`
+    - Type traits `DefaultArgumentType`
+        - As const _value_ for:
+            - `Int`, `Float`, `Bool` etc.
+            - Small classes (as `Complex<Float>`, `StringView`) 
+        - As const _reference_ for:
+            - All other cases
+        - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
+        - ~~Or (similar to C# and Swift) const-reference for `classes`, const-value for `structs`?~~
+            - ~~At least as default?~~
+    - Explicit override with
+       - `in`, `inout`, `out`, `move`, `copy`, `forward`
+            - Wording fits nicely for function arguments.
+            - Also works for `for` loops, then these words decribe how the information (i.e. the variables) get into the body of the loop (or out of it).
+       - `in` – const reference (`const X&`) or const value (`const X`)
+           - Default
+        - `inout` – non-const/nutable reference (`X&`)
+            - to mark as mutable/non-const reference.
+            - Also at the caller `swap(inout a, inout b)`
+        - `out`, to mark as (non-const) reference
+            - Like `inout`, but without prior initialization.
+            - Also at the caller
+              ```
+              String errorDetails
+              if (not open("...", out errorDetails)) {
+                  cout << errorDetails
+              }
+              ```
+        - `move` – right-value reference (`X&&`)
+            - for move sematics.
+        - `copy` – non-const/nutable value (`X`)
+        - `forward` – ? `X&&`
+            - for perfect forwarding
     - Examples:
-        - `for mutable str in stringArray { … }`
+        - `for inout str in stringArray { … }`
             - `str` is `String&`
-        - `for value str in stringArray { … }`
-            - `str` is `const String`
-        - `for mutable value str in stringArray { … }`
-            - `str` is `String`
-        - `for mutable i in [1, 2, 3] { … }`
-            - `i` is `Int`
-        - `for reference i in [1, 2, 3] { … }`
-            - `i` is `const Int&`
-        - `for mutable reference i in [1, 2, 3] { … }`
+        - `for inout reference i in [1, 2, 3] { … }`
             - `i` is `Int&`
+        - `for copy str in stringArray { … }`
+            - `str` is `String`
+        - `for copy i in [1, 2, 3] { … }`
+            - `i` is `Int`
     - If you want even the basic type to be different:
         - `for Double d in [1, 2, 3] { … }`
             - `d` is `const Double`
         - `for String str in ["a", "b", "c"] { … }`
             - `str` is `const String&` (not `const StringView&`)
-        - `for mutable String str in ["a", "b", "c"] { … }`
+        - `for inout String str in ["a", "b", "c"] { … }`
             - `str` is `String&`
-        - `for value String str in ["a", "b", "c"] { … }`
-            - `str` is `const String`
-        - `for mutable value String str in ["a", "b", "c"] { … }`
+        - `for copy String str in ["a", "b", "c"] { … }`
             - `str` is `String`
 
 
@@ -1155,14 +1163,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 ## Misc
 - Operations with carry flag  
   (to implement `Int128`, `Int256` etc.)
-    - `c = add(a, b, mutable carry)`
-    - `a.add(b, mutable carry)`
-    - `d = multiplyAdd(a, b, c, mutable dHigh)`
-    - `a.multiplyAdd(b, c, mutable aHigh)`
-    - `b = shiftLeftAdd(a, Int steps, mutable addAndHigh)`
-    - `a.shiftLeftAdd(Int steps, mutable addAndHigh)`
-    - `b = shiftOneLeft(a, mutable carry)`
-    - `a.shiftOneLeft(mutable carry)`
+    - `c = add(a, b, inout carry)`
+    - `a.add(b, inout carry)`
+    - `d = multiplyAdd(a, b, c, inout dHigh)`
+    - `a.multiplyAdd(b, c, inout aHigh)`
+    - `b = shiftLeftAdd(a, Int steps, inout addAndHigh)`
+    - `a.shiftLeftAdd(Int steps, inout addAndHigh)`
+    - `b = shiftOneLeft(a, inout carry)`
+    - `a.shiftOneLeft(inout carry)`
 
 
 ## Fix C++ "wrong defaults"
