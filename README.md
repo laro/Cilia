@@ -474,7 +474,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
             - ~~or `func toString (Int this) -> String` ~~
 - Function **templates**
     - Automatic function templates
-        - If (at least) one the function arguments is a concept, then the function is (in fact) a function template.
+        - If (at least) one of the function arguments is a concept, then the function is (in fact) a function template.
             - Concept `Number`:
               ```
               func sq(Number x) -> Number {
