@@ -608,14 +608,14 @@ No braces around the condition clause.
             - `for i in Range(10..1, -1)`
     - In general replace  
       ```
-      for (<Initialization>; <TerminationCriteria>; <Increment>) {
+      for (<Initialization>; <ContinuationCondition>; <Increment>) {
           <Body>
       }  
       ```
       with
       ```
       <Initialization>
-      while <TerminationCriteria> {
+      while <ContinuationCondition> {
           <Body>
           <Increment>
       }
