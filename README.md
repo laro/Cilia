@@ -248,7 +248,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - ~~`var i : Int`~~
     - ~~Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?~~
         - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
-        - ~~Not starting with `var` could be problematic in connection with omitting the trailing semicolons,~~
+        - ~~Not starting with `var` could be problematic in connection with omitting the trailing semicolons.~~
 - Examples:
     - `Int anInt`
     - **`Float* i, j`   // i _and_ j are pointers**
