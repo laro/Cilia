@@ -946,7 +946,7 @@ As in Python, Kotlin, Swift, JavaScript, Julia
     - ~~Or is it useful for portable code (Linux `UInt32` <-> Windows `UInt16`)?~~
         - ~~You may use `wchar_t` then.~~
 
-- Advanced Unicode support based on [ICU](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode", "ICU4C").
+- Advanced Unicode support based on [**ICU**](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode", "ICU4C").
     - "The ICU libraries provide support for:
         - The latest version of the Unicode standard
         - Character set conversions with support for over 220 codepages
