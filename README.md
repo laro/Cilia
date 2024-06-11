@@ -624,10 +624,10 @@ No braces around the condition clause.
       (OK, curly braces around all of this are necessary to be a perfect replacement.)
 
 
-## Default Type `in`
-- `in` as default type for function call arguments and for "for ... in".
-- Technically either `const X&` or `const X`
-    - `const X&` as deafult:
+## Arguments Passed as `in`
+- Function call arguments and the loop variable of "for ... in" are by default passed as `in`.
+- Technically `in` is either `const X&` or `const X`
+    - `const X&` as default:
         - **`concat(String first, String second)`**
             - instead of `concat(const String& first, const String& second)`
         - **`String[] stringArray = ["a", "b", "c"]`**  
@@ -641,14 +641,12 @@ No braces around the condition clause.
         - `for str in ["a", "b", "c"] { … }`
             - `str` is `const StringView`
     - Type traits `DefaultArgumentType`
-        - As const _value_ for:
+        - As const _value_ (const X) for:
             - `Int`, `Float`, `Bool` etc.
             - Small classes (as `Complex<Float>`, `StringView`) 
-        - As const _reference_ for:
+        - As const _reference_ (`const X&`) for:
             - All other cases
         - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
-        - ~~Or (similar to C# and Swift) const-reference for `classes`, const-value for `structs`?~~
-            - ~~At least as default?~~
     - Explicit override with
        - `in`, `inout`, `out`, `move`, `copy`, `forward`
             - Wording fits nicely for function arguments.
