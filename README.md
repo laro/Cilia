@@ -263,7 +263,7 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
             - Also at the caller
               ```
               String errorDetails
-              if (not open("...", out errorDetails)) {
+              if not open("...", out errorDetails) {
                   cout << errorDetails
               }
               ```
