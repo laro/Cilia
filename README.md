@@ -317,7 +317,7 @@ As in Python, Kotlin, Swift, JavaScript, Julia
             - ~~as in C#~~
 
      
-## Arrays & ArrayViews/Slices
+## Arrays & ArrayViews
 - `Int[3] arrayOfThreeIntegers` as new array declaration  
   instead of ~~`Int arrayOfThreeIntegers[3]`~~
     - „Static array“ with **fixed size**, same as C/C++
