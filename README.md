@@ -1134,31 +1134,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - no _additional_ thread safety measures
         - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
         - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with better solutions than already available/recommended in C++).
-  
-
-## Two-Pass Compiler
-- no forward declarations necessary  
-  as in C#, Java
-- no single-pass as in C/C++
- 
-      
-## Versioning of the Cilia source code
-- Via file ".ciliaVersion" ~~".cilia_version"~~ in a (project) directory,
-    - similar to ".clang_format",
-    - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
-- Via file extension: 
-    - "*.cilia" – always the latest language version (if not overridden via ".ciliaVersion")
-    - "*.2024.cilia" – Version from the year 2024
-    - "*.2024b.cilia" – Second version from the year 2024
-    - ~~"*.cilia2024" – Version from the year 2024~~
-    - ~~"*.cilia2024b" – Second version from the year 2024~~
-    - ~~"*.cilia_2024" – Version from the year 2024~~
-    - ~~"*.cilia_2024b" – Second version from the year 2024~~
-    - ~~"*.ciliaA"~~
-    - ~~"*.ciliaB"~~
          
               
 ## Misc
+- Two-Pass Compiler
+    - no forward declarations necessary  
+      as in C#, Java
+    - no single-pass as in C/C++
+ 
 - Operations with carry flag  
   (to implement `Int128`, `Int256` etc.)
     - `c = add(a, b, inout carry)`
@@ -1169,6 +1152,21 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `a.shiftLeftAdd(Int steps, inout addAndHigh)`
     - `b = shiftOneLeft(a, inout carry)`
     - `a.shiftOneLeft(inout carry)`
+
+- Versioning of the Cilia source code
+    - Via file ".ciliaVersion" ~~".cilia_version"~~ in a (project) directory,
+        - similar to ".clang_format",
+        - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
+    - Via file extension: 
+        - "*.cilia" – always the latest language version (if not overridden via ".ciliaVersion")
+        - "*.2024.cilia" – Version from the year 2024
+        - "*.2024b.cilia" – Second version from the year 2024
+        - ~~"*.cilia2024" – Version from the year 2024~~
+        - ~~"*.cilia2024b" – Second version from the year 2024~~
+        - ~~"*.cilia_2024" – Version from the year 2024~~
+        - ~~"*.cilia_2024b" – Second version from the year 2024~~
+        - ~~"*.ciliaA"~~
+        - ~~"*.ciliaB"~~
 
 
 ## Fix C++ "wrong defaults"
