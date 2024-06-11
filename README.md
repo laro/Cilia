@@ -412,7 +412,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - ArrayViews AKA Slices AKA Subarrays
     - `var subarray = array[1..2]`
     - `var subarray = array[1..<3]`
-    - Dependent ranges (need lower and/or upper bounds before use) are
+    - Incomplete ranges (need lower and/or upper bounds before use) are
       typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
         - `var subarray = array[..2]`
         - `var subarray = array[..]`
@@ -769,7 +769,7 @@ No braces around the condition clause.
         - `1..2` – Range(1, 2)
         - `1..<3` – RangeExclusiveEnd(1, 3)
         - `0<..2` – RangeExclusiveStart(0, 2)
-        - Dependent ranges (need lower and/or upper bounds to be set before use)  
+        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – RangeTo(2)
             - `..<2` – RangeToExclusiveEnd(2)
             - `1..` – RangeFrom(1)
@@ -779,7 +779,7 @@ No braces around the condition clause.
             - `2..1:-1` – RangeWithStep(2, 1, -1)
             - `2..>0:-1` – RangeWithStepExclusiveEnd(2, 0, -1)
             - `3>..1:-1` – RangeWithStepExclusiveStart(3, 1, -1)
-            - Dependent ranges
+            - Incomplete ranges
                 - `..1:-1` – RangeWithStepTo(1, -1)
                 - `..>0:-1` – RangeWithStepToExclusiveEnd(1, -1)
                 - `2..:-1` – RangeWithStepFrom(2, -1)
