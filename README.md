@@ -511,33 +511,12 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
   }
   ```
 - Class templates
-    - Explicit class templates
-      ```
-      class MyVector<Number T> {
-          T* numbers = Null
-          Int size = 0
-      }
-      ```
-    - Automatic class templates
-        - TODO Unclear, is this really a good idea?
-        - If the type of one member variable is a concept, then the class is a template.
-        - Example with concept `Number`:
-            - ```
-              class MyVector {
-                  Number* numbers = Null
-                  Int size = 0
-              }
-              ```
-            - Usage: `MyVector<Float> vector`
-        - With concepts `Number` and `Integer`:
-          ```
-          class MyOtherVector {
-              Number* numbers = Null
-              Integer size = 0
-          }
-          ```
-            - Usage: `MyOtherVector<Float, Int> vector`
-  
+  ```
+  class MyVector<Number T> {
+      T* numbers = Null
+      Int size = 0
+  }
+  ```  
 
 ## Casting
 - Constructor casting
