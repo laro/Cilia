@@ -649,9 +649,9 @@ No braces around the condition clause.
             - `typedef<type T> T::InArgumentType = const T&`
             - `typedef Int32::InArgumentType = const Int32`
             - `typedef Int64::InArgumentType = const Int64`
-            - `typedef Complex<Float32>::InArgumentType = const Complex<Float32>`
-            - `typedef Complex<Float64>::InArgumentType = const Complex<Float64>`
             - `typedef StringView::InArgumentType = const StringView`
+            - `typedef<type T> Complex<T>::InArgumentType = T::InArgumentType`
+            - `typedef Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
     - Explicit override with
        - `in`, `inout`, `out`, `move`, `copy`, `forward`
             - Wording fits nicely for function arguments.
