@@ -1004,8 +1004,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               or  
               `T& x = data[0]`  
               … unfortunately memory is created for the reference (the pointer).
-            - And this indeed is necessary here, because the reference could be assigned differently in the constructor,
-                - so it is not possible to optimize it away.
+            - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
     - member functions
         - `using f() = g()`
         - ~~Or is perfect forwarding enough?~~
