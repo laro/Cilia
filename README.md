@@ -955,7 +955,7 @@ No braces around the condition clause.
     - ~~Or is it useful for portable code (Linux `UInt32` <-> Windows `UInt16`)?~~
         - ~~You may use `wchar_t` then.~~
 
-- Advanced Unicode support based on [**ICU**](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode", "ICU4C").
+- [**ICU**](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode") for advanced Unicode support.
     - "The ICU libraries provide support for:
         - The latest version of the Unicode standard
         - Character set conversions with support for over 220 codepages
