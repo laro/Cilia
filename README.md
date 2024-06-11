@@ -500,8 +500,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
     - For extension function templates it is necessary to know the template parameter(s) for the type to be extended, before we write its name.  
       So there we write
-        - `func<type T, Int N> T[N]::size() -> Int { N }`
-            - not ~~`func T[N]::size<type T, Int N>() -> Int { N }`~~
+        - `func<type T, Int N> T[N]::size() -> Int { return N }`
+            - not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
         - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
             - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
               as we would write
