@@ -868,18 +868,19 @@ No braces around the condition clause.
         - **grapheme clusters**
             - represented by `StringView`.
             - This is the _default form of iteration_ over a `String` or `StringView`
-            - A grapheme cluster may consist of multiple code points.
+            - A single grapheme cluster will typically consist of multiple code units   
+              and may even consist of multiple code points.
             - `for graphemeCluster in "abc 🥸👮🏻"`
                 - "a", "b", "c", " ", "🥸", "👮🏻"
                 - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
             - A bit slow, as it has to find grapheme cluster boundaries.
-            - It is recommended to mostly use the standard functions for string manipulation anyway, you seldomly need grapheme-cluster-based iteration. But when you do, this is the safe way. 
-            - additional/alternative names?
+            - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way. 
+            - Additional/alternative names?
                 - `for graphemeCluster in text.asGraphemeClusters()`?
                 - ~~`for graphemeCluster in text.byGraphemeCluster()`?~~
         - **code points**
             - represented by `UInt32`,
-                - independent of the encoding (so, the same for UTF-8, UTF-16, and UTF-32 strings).
+                - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
                 - Called "auto decoding" in D.
                 - ~~`CodePoint` == `UInt32`~~
                     - ~~No distinct type for code points necessary, or would it be useful?~~
