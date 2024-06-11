@@ -114,7 +114,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
             - for each file individually 
 
 
-## Style
+## CamelCase Style
 Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
 
 - All types and **classes in upper CamelCase**.
@@ -134,6 +134,23 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
     - `cilia::numerics`
     - `cilia::geometry`
     - I don't think this is that important, but it helps to differentiate between classes and namespaces.
+
+
+## No Trailing Semicolons
+As in Python, Kotlin, Swift, JavaScript, Julia
+- Advantage:
+    - Better readability
+- Disadvantage:
+    - Errors are less easily recognized
+        - Walter Bright / D: „Redundancy helps“
+    - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
+        - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
+- Multiline expressions:
+    - Explicitly via `\` or `(…)` / `[…]` / `{…}` as in Python
+    - ~~Implicitly/clever as in Swift, Kotlin and JavaScript?~~
+- Only in REPL:
+    - Trailing semicolon used to suppress evaluation output,
+        - as in Matlab, Python, Julia.
 
 
 ## Basic / Arithmetic Types
@@ -190,6 +207,123 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
         - The precision is arbitrary but fixed, either
           - statically, i.e. at compile time, as part of the BigFloat type, or
           - dynamically, i.e. at runtime, as property of a BigFloat variable.
+
+
+## Variable Declaration
+`Int i` as variable declaration, just as in C/C++.
+- `var i = 3` only for type inference
+    - ~~Maybe possible to simply write `i = 3`?~~
+    - ~~Maybe `i := 3`?~~
+- Not
+    - ~~`var Int i`~~
+    - ~~`var i : Int`~~
+    - ~~Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?~~
+        - ~~Could be problematic in connection with omitting the trailing semicolons,~~
+        - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
+- Examples:
+    - `Int anInt`
+    - **`Float* i, j`   // i _and_ j are pointers**
+        - contrary to C/C++.
+    - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
+    - `const Float*`
+    - `const Float const*`
+- Not allowed / syntax error is:
+    - ~~`Float* i, &j`~~
+        - Type variations within multiple-variable declarations are _not_ allowed.
+        - It has to be the exactly same type.
+    - ~~`Float*i`~~
+        - Whitespace _between_ type specification and variable name is mandatory.
+
+
+## Classes
+- Quite as in C++
+  ```
+  class MyVectorOfInt {
+  public:
+      Int* numbers = Null
+      Int size = 0
+  }
+  ```
+- Class templates
+  ```
+  class MyVector<Number T> {
+      T* numbers = Null
+      Int size = 0
+  }
+  ```  
+
+
+## Arrays & ArrayViews/Slices
+- `Int[3] arrayOfThreeIntegers` as new array declaration  
+  instead of ~~`Int arrayOfThreeIntegers[3]`~~
+    - „Static array“ with **fixed size**, same as C/C++
+      ```
+      Int[3] array
+      array[2] = 0
+      array[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+    - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
+      ```
+      Int* array = new Int[3]  // Array-to-pointer decay possible
+      array[2] = 0
+      array[3] = 0  // Undefined behaviour, no bounds check at all
+      ```
+    - Actually this is how to handle pointer to array of Int "correctly":
+      ```
+      Int[3]* arrayPtr = new Int[3]
+      *arrayPtr[2] = 0
+      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+    - `arrayOfThreeIntegers.size()` -> `3`
+        - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
+    - `Int[3, 2, 200]`
+        - Multidimensional static array  
+          ```
+          Int[3, 2, 200] intArray3D
+          intArray3D[2, 1, 199] = 1
+          ```
+- `Int[] dynamicArrayOfIntegers`
+    - „Dynamic array“ with **dynamic size**
+      ```
+      Int[] array(3)
+      array[2] = 0
+      array[3] = 0  // Runtime error, no compile time bounds check
+      ```
+    - `T[] array` is the short form of `Array<T> array` (normally `cilia::Array<T>` will be used)
+    - Problem: May be confusing because it is so similar to fixed-size arrays,  
+      **but** IMHO the inconsistency is already in C/C++:
+        - while in C/C++ function declarations:
+            - `int[]` and `int*` are actually the same,
+        - for local variables in C/C++ you write:
+            - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
+              but `int* array = new int[3]` for an int-array of unknown size, so
+            - `int[]` and `int*` mean different things.
+- `Int[,] dynamic2DArray`
+    - `T[,] array` is the short form of `NArray<T, 2> array` (normally `cilia::NArray<T, 2>` will be used)
+    - ~~or `Int[*,*]`?~~
+- `Int[,,] multidimensionalDynamicArray`
+    - `T[,,] array` is the short form of `NArray<T, 3> array` (normally `cilia::NArray<T, 3>` will be used)
+    - and so on: `cilia::NArray<T, N>`
+    - ~~or `Int[*,*,*]`?~~
+- Mixed forms of static and dynamic array
+    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
+        - ~~not `Int[3,*,*]`~~
+    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
+        - ~~not `Int[3,4,*]`~~
+- Examples:
+    - `Int[] dynamicArrayOfInt`
+    - `Int[3] arrayOfThreeInt`
+    - `Int[3]* pointerToArrayOfThreeInt`
+    - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
+    - `String*[] dynamicArrayOfPointersToString`
+- ArrayViews AKA Slices AKA Subarrays
+    - `var subarray = array[1..2]`
+    - `var subarray = array[1..<3]`
+    - Dependent ranges (need lower and/or upper bounds before use) are
+      typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
+        - `var subarray = array[..2]`
+        - `var subarray = array[..]`
+    - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 
 ## Signed Size
@@ -402,121 +536,6 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
 - `>>>` Rotate right (circular shift right)
 - `<<<` Rotate left (circular shift left)
 
-
-## Variable Declaration
-`Int i` as variable declaration, just as in C/C++.
-- `var i = 3` only for type inference
-    - ~~Maybe possible to simply write `i = 3`?~~
-    - ~~Maybe `i := 3`?~~
-- Not
-    - ~~`var Int i`~~
-    - ~~`var i : Int`~~
-    - ~~Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?~~
-        - ~~Could be problematic in connection with omitting the trailing semicolons,~~
-        - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
-- Examples:
-    - `Int anInt`
-    - **`Float* i, j`   // i _and_ j are pointers**
-        - contrary to C/C++.
-    - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
-    - `const Float*`
-    - `const Float const*`
-- Not allowed / syntax error is:
-    - ~~`Float* i, &j`~~
-        - Type variations within multiple-variable declarations are _not_ allowed.
-        - It has to be the exactly same type.
-    - ~~`Float*i`~~
-        - Whitespace _between_ type specification and variable name is mandatory.
-
-## Arrays & Views/Slices
-- `Int[3] arrayOfThreeIntegers` as new array declaration  
-  instead of ~~`Int arrayOfThreeIntegers[3]`~~
-    - „Static array“ with **fixed size**, same as C/C++
-      ```
-      Int[3] array
-      array[2] = 0
-      array[3] = 0  // Compilation error, due to compile time bounds check
-      ```
-    - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
-      ```
-      Int* array = new Int[3]  // Array-to-pointer decay possible
-      array[2] = 0
-      array[3] = 0  // Undefined behaviour, no bounds check at all
-      ```
-    - Actually this is how to handle pointer to array of Int "correctly":
-      ```
-      Int[3]* arrayPtr = new Int[3]
-      *arrayPtr[2] = 0
-      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-      ```
-    - `arrayOfThreeIntegers.size()` -> `3`
-        - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
-    - `Int[3, 2, 200]`
-        - Multidimensional static array  
-          ```
-          Int[3, 2, 200] intArray3D
-          intArray3D[2, 1, 199] = 1
-          ```
-- `Int[] dynamicArrayOfIntegers`
-    - „Dynamic array“ with **dynamic size**
-      ```
-      Int[] array(3)
-      array[2] = 0
-      array[3] = 0  // Runtime error, no compile time bounds check
-      ```
-    - `T[] array` is the short form of `Array<T> array` (normally `cilia::Array<T>` will be used)
-    - Problem: May be confusing because it is so similar to fixed-size arrays,  
-      **but** IMHO the inconsistency is already in C/C++:
-        - while in C/C++ function declarations:
-            - `int[]` and `int*` are actually the same,
-        - for local variables in C/C++ you write:
-            - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
-              but `int* array = new int[3]` for an int-array of unknown size, so
-            - `int[]` and `int*` mean different things.
-- `Int[,] dynamic2DArray`
-    - `T[,] array` is the short form of `NArray<T, 2> array` (normally `cilia::NArray<T, 2>` will be used)
-    - ~~or `Int[*,*]`?~~
-- `Int[,,] multidimensionalDynamicArray`
-    - `T[,,] array` is the short form of `NArray<T, 3> array` (normally `cilia::NArray<T, 3>` will be used)
-    - and so on: `cilia::NArray<T, N>`
-    - ~~or `Int[*,*,*]`?~~
-- Mixed forms of static and dynamic array
-    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
-        - ~~not `Int[3,*,*]`~~
-    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
-        - ~~not `Int[3,4,*]`~~
-- Examples:
-    - `Int[] dynamicArrayOfInt`
-    - `Int[3] arrayOfThreeInt`
-    - `Int[3]* pointerToArrayOfThreeInt`
-    - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
-    - `String*[] dynamicArrayOfPointersToString`
-- Views/Slices/Subarrays
-    - `var subarray = array[1..2]`
-    - `var subarray = array[1..<3]`
-    - Dependent ranges (need lower and/or upper bounds before use) are
-      typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
-        - `var subarray = array[..2]`
-        - `var subarray = array[..]`
-    - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
-
-
-## Classes
-- Quite as in C++
-  ```
-  class MyVectorOfInt {
-  public:
-      Int* numbers = Null
-      Int size = 0
-  }
-  ```
-- Class templates
-  ```
-  class MyVector<Number T> {
-      T* numbers = Null
-      Int size = 0
-  }
-  ```  
 
 ## Casting
 - Constructor casting
@@ -835,23 +854,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `int var` -> `Int __variable_var`
     - `class func` -> `class __class_func`
     - `yield()` -> `func __function_yield()`
-
-
-## No Trailing Semicolons
-As in Python, Kotlin, Swift, JavaScript, Julia
-- Advantage:
-    - Better readability
-- Disadvantage:
-    - Errors are less easily recognized
-        - Walter Bright / D: „Redundancy helps“
-    - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
-        - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
-- Multiline expressions:
-    - Explicitly via `\` or `(…)` / `[…]` / `{…}` as in Python
-    - ~~Implicitly/clever as in Swift, Kotlin and JavaScript?~~
-- Only in REPL:
-    - Trailing semicolon used to suppress evaluation output,
-        - as in Matlab, Python, Julia.
 
 
 ## String, Char & CodePoint
