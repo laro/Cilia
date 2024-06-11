@@ -848,7 +848,7 @@ No braces around the condition clause.
 
 
 ## Comments
-- One line comments
+- Single-line comments
     - ```
       // if a < b {
       //   TODO
