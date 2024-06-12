@@ -696,7 +696,7 @@ No braces around the condition clause.
     - Examples:
         - `for inout str in stringArray { … }`
             - `str` is `String&`
-        - `for inout reference i in [1, 2, 3] { … }`
+        - `for inout i in [1, 2, 3] { … }`
             - `i` is `Int&`
         - `for copy str in stringArray { … }`
             - `str` is `String`
