@@ -569,6 +569,22 @@ No braces around the condition clause.
           // ...
       }
       ```
+    - ```
+      if a > b {
+          // ...
+      } else {
+          // ...
+      }
+      ```
+    - ```
+      if a > b {
+          // ...
+      } else if a > c {
+          // ...
+      } else {
+          // ...
+      }
+      ```
     - `if 1 <= x <= 10 { … }`
         - as in Python, Julia, Cpp2 (Herb Sutter)
 - while
