@@ -171,7 +171,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - as in Python, Carbon
         - Used for both
             - boolean operation
-                - `anBool`**`and`**`anotherBool` -> `Bool`
+                - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation
                 - `anInt`**`and`**`anotherInt` -> `Int`
 - `Int32` instead of `int32_t` or `qint32`,
