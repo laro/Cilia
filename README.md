@@ -82,7 +82,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `for words next i++ do (word) { ... word & i ... }`
     - `while i < 10 next i++ { ... }`
 - Carbon
-    - `Int` (uppercase - ?), `i32`, `i64`, `f32`
+    - `i32`, `i64`, `f32`
     - `var x: i32 = 42;`
         - `var x: auto = 42;`
         - `var circles: Array(Circle);`
