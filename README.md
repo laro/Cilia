@@ -1284,3 +1284,12 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - Many kinds of brackets?
         - [https://stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
         - Problem: some of the brackets are also conceivable as operators.
+- Circle
+    - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
+        - Standardization is better than having multiple different language "dialects"  
+          **but** for
+            - for transitioning of existings source code  and
+            - for the evolution of a language
+        - it is a very interesting idea to selectively enable new language features or defaults.
+    - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
+        - Extending C++ for Rust-level safety. 
