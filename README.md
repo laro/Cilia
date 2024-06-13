@@ -79,8 +79,8 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `mapStringsToCircles: map<string, Circle>;`
     - `multiply: (x: int, y: int) -> int = x * y;`
     - `for (5, 7, 11, 13) do (i) { ...; }`
-    - `while i < 10 next i++ { ...; } `          
-    - `while i < words.ssize() next i++ { ...; } `          
+    - `i := 0; while i < 10 next i++ { ...; } `          
+    - `i := 0; while i < words.ssize() next i++ { ...; } `          
     - `while !file.open("...") { ...; }`
 - Carbon
     - `i32`, `i64`, `f32`
