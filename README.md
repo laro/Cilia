@@ -76,8 +76,10 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `circles: vector<Circle>;`
         - `mapStringsToCircles: map<string, Circle>;`
     - `multiply: (x: int, y: int) -> int = x * y;`
-    - `i := 1; while i <= 10 next i++ { ...; } `          
-    - `i := 0; while i < words.ssize() next i++ { ...; } `          
+    - `i := 1;`  
+      `while i <= 10 next i++ { ...; } `          
+    - `i := 0;`  
+      `while i < words.ssize() next i++ { ...; } `          
     - `for (5, 7, 11, 13) do (i) { ...; }`
 - Carbon
     - `i32`, `i64`, `f32`
@@ -86,8 +88,10 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `var circles: Array(Circle);`
         - `var mapStringsToCircles: HashMap(String, Circle);`
     - `fn multiply(x: i64, y: i64) -> i64 { return x * y; }`
-    - `var i: i64 = 1; while (i <= 10) { ...; ++i; }`
-    - `var i: i64 = 0; while (i < words.ssize()) { ...; ++i; } `          
+    - `var i: i64 = 1;`  
+      `while (i <= 10) { ...; ++i; }`
+    - `var i: i64 = 0;`  
+      `while (i < words.ssize()) { ...; ++i; } `          
     - `for (i:i64 in (5, 7, 11, 13)) { ...; }`
 
 
