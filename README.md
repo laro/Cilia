@@ -615,6 +615,7 @@ No braces around the condition clause.
       }
       ```
       instead of `for (… : …)` (AKA `for each`/`foreach`)
+    - The loop variable is declared "in the loop", with its type inferred from the range, array, etc. used (similar to `var`).
     - Use the range literal to write          
       `for i in 0..<10  { ... }`  
       instead of `for (Int i = 0; i < 10; ++i) { ... }`
