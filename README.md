@@ -628,13 +628,13 @@ No braces around the condition clause.
         - Alternatively write
             - `for i in (1..10).reversed()`
             - `for i in Range(10..1, -1)`
-    - In general replace  
+    - In general replace C++
       ```
       for (<Initialization>; <Condition>; <Increment>) {
           <Body>
       }  
       ```
-      with
+      with Cilia
       ```
       <Initialization>
       while <Condition> {
