@@ -59,7 +59,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `for i in [5, 7, 11, 13] { ... }`
     - `for i in 0..<10 { ... }`
     - `for i in 0..<words.size() { ... }`
-    - `while i < 10 { ... ++i }`
+    - `while not file.open("...") { ... }`
 - C++
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
@@ -67,10 +67,10 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `vector<Circle> circles;`
         - `map<string, Circle> mapStringsToCircles`
     - `auto multiply(int x, int y) -> int { return x * y; }`
-    - `for (i : {5, 7, 11, 13}) { ... }`
-    - `for (int i = 0; i < 10; ++i) { ... }`
-    - `for (int i = 0; i < words.ssize(); ++i) { ... }`
-    - `while (i < 10) { ...; ++i }`
+    - `for (i : {5, 7, 11, 13}) { ...; }`
+    - `for (int i = 0; i < 10; ++i) { ...; }`
+    - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
+    - `while (!file.open("...")) { ...; }`
 - Cpp2
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
@@ -78,11 +78,10 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `circles: vector<Circle>;`
         - `mapStringsToCircles: map<string, Circle>;`
     - `multiply: (x: int, y: int) -> int = x * y;`
-    - `for (5, 7, 11, 13) do (i) { ... }`
-    - `while i < 10 next i++ { ... } `          
-    - `while i < words.ssize() next i++ { ... } `          
-        - `for words next i++ do (word) { ... word & i ... }`
-    - `while i < 10 next i++ { ... }`
+    - `for (5, 7, 11, 13) do (i) { ...; }`
+    - `while i < 10 next i++ { ...; } `          
+    - `while i < words.ssize() next i++ { ...; } `          
+    - `while !file.open("...") { ...; }`
 - Carbon
     - `i32`, `i64`, `f32`
     - `var x: i32 = 42;`
@@ -90,8 +89,10 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `var circles: Array(Circle);`
         - `var mapStringsToCircles: HashMap(String, Circle);`
     - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
-    - `for (i:i32 in (5, 7, 11, 13)) { ... }`
-    - `while (i < 10) { ...; i = i+1; }`
+    - `for (i:i32 in (5, 7, 11, 13)) { ...; }`
+    - `var i: i32 = 0; while (i < 10) { ...; ++i; }`
+    - `var i: i32 = 0; while (i < words.ssize()) { ...; ++i; } `          
+    - `while (!file.open("...")) { ...; } `          
 
 
 ## C++ Language Family
@@ -1243,6 +1244,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
           }
       }
       ```
+    - `for words next i++ do (word) { ... word & i ... }` iterates over all words with an index, at the same time.
     - [Uniform Call Syntax](https://github.com/ntrel/cpp2?tab=readme-ov-file#uniform-call-syntax)
       for member functions and free functions.
     - [Function Bodies](https://github.com/ntrel/cpp2?tab=readme-ov-file#function-bodies)
