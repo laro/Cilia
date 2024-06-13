@@ -67,7 +67,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `vector<Circle> circles;`
         - `map<string, Circle> mapStringsToCircles`
     - `auto multiply(int x, int y) -> int { return x * y; }`
-    - `for (i : {5, 7, 11, 13}) { ...; }`
+    - `for (int i : {5, 7, 11, 13}) { ...; }`
     - `for (int i = 0; i < 10; ++i) { ...; }`
     - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
     - `while (!file.open("...")) { ...; }`
