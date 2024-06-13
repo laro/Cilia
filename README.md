@@ -56,9 +56,9 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `Circle[] circles` (short form for `Array<Circle> circles`)
         - `Map<String, Circle> mapStringsToCircles`
     - `func multiply(Int x, y) -> Int { return x * y }`
-    - `for i in [5, 7, 11, 13] { ... }`
     - `for i in 1..10 { ... }`
     - `for i in 0..<words.size() { ... }`
+    - `for i in [5, 7, 11, 13] { ... }`
 - C++
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
@@ -66,9 +66,9 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `vector<Circle> circles;`
         - `map<string, Circle> mapStringsToCircles`
     - `auto multiply(int x, int y) -> int { return x * y; }`
-    - `for (int i : {5, 7, 11, 13}) { ...; }`
     - `for (int i = 1; i <= 10; ++i) { ...; }`
     - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
+    - `for (int i : {5, 7, 11, 13}) { ...; }`
 - Cpp2
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
@@ -76,19 +76,19 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `circles: vector<Circle>;`
         - `mapStringsToCircles: map<string, Circle>;`
     - `multiply: (x: int, y: int) -> int = x * y;`
-    - `for (5, 7, 11, 13) do (i) { ...; }`
     - `i := 1; while i <= 10 next i++ { ...; } `          
     - `i := 0; while i < words.ssize() next i++ { ...; } `          
+    - `for (5, 7, 11, 13) do (i) { ...; }`
 - Carbon
     - `i32`, `i64`, `f32`
-    - `var x: i32 = 42;`
+    - `var x: i64 = 42;`
         - `var x: auto = 42;`
         - `var circles: Array(Circle);`
         - `var mapStringsToCircles: HashMap(String, Circle);`
-    - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
-    - `for (i:i32 in (5, 7, 11, 13)) { ...; }`
-    - `var i: i32 = 1; while (i <= 10) { ...; ++i; }`
-    - `var i: i32 = 0; while (i < words.ssize()) { ...; ++i; } `          
+    - `fn multiply(x: i64, y: i64) -> i64 { return x * y; }`
+    - `var i: i64 = 1; while (i <= 10) { ...; ++i; }`
+    - `var i: i64 = 0; while (i < words.ssize()) { ...; ++i; } `          
+    - `for (i:i64 in (5, 7, 11, 13)) { ...; }`
 
 
 ## C++ Language Family
