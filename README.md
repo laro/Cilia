@@ -92,7 +92,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `for (i:i32 in (5, 7, 11, 13)) { ...; }`
     - `var i: i32 = 0; while (i < 10) { ...; ++i; }`
     - `var i: i32 = 0; while (i < words.ssize()) { ...; ++i; } `          
-    - `while (!file.open("...")) { ...; } `          
+    - `while (not file.open("...")) { ...; } `          
 
 
 ## C++ Language Family
