@@ -295,7 +295,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - `obj is Int` (i.e. a type)
         - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
         - `obj is cilia::Array` (i.e. a template)
-        - `obj is cilia::Integral` (i.e. a concept)
+        - `obj is cilia::Integer` (i.e. a concept)
     - Also support value query?
 - `as`
     - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
