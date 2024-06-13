@@ -165,8 +165,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - Cilia has
     - `var` instead of `auto`
     - `func` instead of `auto`
-    - `for … in …` instead of `for (… : …)`
-    - `for i in 0..<10` instead of `for (int i = 0; i < 10; ++i)`
     - ~~`class … extends …` instead of `class … : …`~~
         - ~~`class … implements …` instead of `class … : …` for pure abstract classes (like interfaces)~~
     - `type` instead of `typename`
