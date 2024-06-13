@@ -57,7 +57,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `Map<String, Circle> mapStringsToCircles`
     - `func multiply(Int x, y) -> Int { return x * y }`
     - `for i in [5, 7, 11, 13] { ... }`
-    - `for i in 0..<10 { ... }`
+    - `for i in 1..10 { ... }`
     - `for i in 0..<words.size() { ... }`
     - `while not file.open("...") { ... }`
 - C++
@@ -68,7 +68,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `map<string, Circle> mapStringsToCircles`
     - `auto multiply(int x, int y) -> int { return x * y; }`
     - `for (int i : {5, 7, 11, 13}) { ...; }`
-    - `for (int i = 0; i < 10; ++i) { ...; }`
+    - `for (int i = 1; i <= 10; ++i) { ...; }`
     - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
     - `while (!file.open("...")) { ...; }`
 - Cpp2
@@ -79,7 +79,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `mapStringsToCircles: map<string, Circle>;`
     - `multiply: (x: int, y: int) -> int = x * y;`
     - `for (5, 7, 11, 13) do (i) { ...; }`
-    - `i := 0; while i < 10 next i++ { ...; } `          
+    - `i := 1; while i <= 10 next i++ { ...; } `          
     - `i := 0; while i < words.ssize() next i++ { ...; } `          
     - `while !file.open("...") { ...; }`
 - Carbon
@@ -90,7 +90,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
         - `var mapStringsToCircles: HashMap(String, Circle);`
     - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
     - `for (i:i32 in (5, 7, 11, 13)) { ...; }`
-    - `var i: i32 = 0; while (i < 10) { ...; ++i; }`
+    - `var i: i32 = 1; while (i <= 10) { ...; ++i; }`
     - `var i: i32 = 0; while (i < words.ssize()) { ...; ++i; } `          
     - `while (not file.open("...")) { ...; } `          
 
