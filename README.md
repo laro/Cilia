@@ -128,8 +128,8 @@ Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotli
         - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
 - **Functions in lower camelCase**
-    - ˋstr.findFirstOf(...)ˋ
-    - ˋvec.pushBack(...)ˋ
+    - `str.findFirstOf(...)`
+    - `vec.pushBack(...)`
 
 - Namespaces fully lowercase 
     - `cilia`
