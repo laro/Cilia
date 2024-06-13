@@ -680,7 +680,7 @@ No braces around the condition clause.
             - Also works for `for` loops, then these words decribe how the information (i.e. the variables) get into the body of the loop (or out of it).
        - `in` – const reference (`const X&`) or const value (`const X`)
            - Default
-        - `inout` – non-const/nutable reference (`X&`)
+        - `inout` – non-const/mutable reference (`X&`)
             - to mark as mutable/non-const reference.
             - Also at the caller `swap(inout a, inout b)`
         - `out`, to mark as (non-const) reference
@@ -694,7 +694,7 @@ No braces around the condition clause.
               ```
         - `move` – right-value reference (`X&&`)
             - for move sematics.
-        - `copy` – non-const/nutable value (`X`)
+        - `copy` – non-const/mutable value (`X`)
         - `forward` – ? `X&&`
             - for perfect forwarding
     - Examples:
@@ -1226,10 +1226,10 @@ I am not familiar with all these issues, but in a new language we certainly coud
     -  [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
         - `in`, `inout`, `out`, `move`, `copy`, `forward`
             - `in` – const reference (`const X&`) or const value (`const X`)
-            - `inout` – non-const/nutable reference (`X&`)
+            - `inout` – non-const/mutable reference (`X&`)
             - `out` – ?
             - `move` – right-value reference (`X&&`)
-            - `copy` – non-const/nutable value (`X`)
+            - `copy` – non-const/mutable value (`X`)
             - `forward` – ? `X&&`
         - Sounds nice for function arguments.
         - Also works for `for` loops, then these words decribe how the information (i.e. the variables) get into the body of the loop (or out of it).
