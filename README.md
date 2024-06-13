@@ -1246,7 +1246,7 @@ I am not familiar with all these issues, but in a new language we certainly coud
           }
       }
       ```
-    - `for words next i++ do (word) { ... word & i ... }` iterates over all words with an index, at the same time.
+    - `for words next i++ do (word) { ... word & i ... }` iterates over all words and with an index, at the same time.
     - [Uniform Call Syntax](https://github.com/ntrel/cpp2?tab=readme-ov-file#uniform-call-syntax)
       for member functions and free functions.
     - [Function Bodies](https://github.com/ntrel/cpp2?tab=readme-ov-file#function-bodies)
