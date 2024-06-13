@@ -53,8 +53,8 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
         - `var x = 42`
-        - `Circle[] circles`
-            - or `Array<Circle> circles`
+        - `Circle[] circles` (short form for `Array<Circle> circles`)
+        - `Map<String, Circle> mapStringsToCircles`
     - `func multiply(Int x, y) -> Int { return x * y }`
     - `for i in [5, 7, 11, 13] { ... }`
     - `for i in 0..<10 { ... }`
@@ -65,6 +65,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `int x = 42;`
         - `auto x = 42;`
         - `vector<Circle> circles;`
+        - `map<string, Circle> mapStringsToCircles`
     - `auto multiply(int x, int y) -> int { return x * y; }`
     - `for (i : {5, 7, 11, 13}) { ... }`
     - `for (int i = 0; i < 10; ++i) { ... }`
@@ -75,6 +76,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `x: int = 42;`
         - `x := 42;`
         - `circles: vector<Circle>;`
+        - `mapStringsToCircles: map<string, Circle>;`
     - `multiply: (x: int, y: int) -> int = x * y;`
     - `for (5, 7, 11, 13) do (i) { ... }`
     - `while i < 10 next i++ { ... } `          
@@ -86,6 +88,7 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `var x: i32 = 42;`
         - `var x: auto = 42;`
         - `var circles: Array(Circle);`
+        - `var mapStringsToCircles: HashMap(String, Circle);`
     - `fn multiply(x: i32, y: i32) -> i32 { return x * y; }`
     - `for (i:i32 in (5, 7, 11, 13)) { ... }`
     - `while (i < 10) { ...; i = i+1; }`
