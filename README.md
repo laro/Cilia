@@ -59,7 +59,6 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `for i in [5, 7, 11, 13] { ... }`
     - `for i in 1..10 { ... }`
     - `for i in 0..<words.size() { ... }`
-    - `while not file.open("...") { ... }`
 - C++
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
@@ -70,7 +69,6 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `for (int i : {5, 7, 11, 13}) { ...; }`
     - `for (int i = 1; i <= 10; ++i) { ...; }`
     - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
-    - `while (!file.open("...")) { ...; }`
 - Cpp2
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
@@ -81,7 +79,6 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `for (5, 7, 11, 13) do (i) { ...; }`
     - `i := 1; while i <= 10 next i++ { ...; } `          
     - `i := 0; while i < words.ssize() next i++ { ...; } `          
-    - `while !file.open("...") { ...; }`
 - Carbon
     - `i32`, `i64`, `f32`
     - `var x: i32 = 42;`
@@ -92,7 +89,6 @@ I like many aspects especially of Cpp2, but surely _not_ its `name: Type` syntax
     - `for (i:i32 in (5, 7, 11, 13)) { ...; }`
     - `var i: i32 = 1; while (i <= 10) { ...; ++i; }`
     - `var i: i32 = 0; while (i < words.ssize()) { ...; ++i; } `          
-    - `while (not file.open("...")) { ...; } `          
 
 
 ## C++ Language Family
