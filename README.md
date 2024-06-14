@@ -627,7 +627,7 @@ No braces around the condition clause.
         - Translates to `for i in RangeWithStep(10, 1, -1) { ... }`
         - Alternatively write
             - `for i in (1..10).reversed()`
-            - `for i in Range(10..1, -1)`
+            - `for i in RangeWithStep(10..1, -1)`
     - In general replace C++
       ```
       for (<Initialization>; <Condition>; <Increment>) {
