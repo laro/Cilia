@@ -376,6 +376,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       array[2] = 0
       array[3] = 0  // Undefined behaviour, no bounds check at all
       ```
+        - Don't use subscript for raw pointers,  
+          except for implememntation of abstractions (like Array, Vector, Matrix, ...).
     - Actually this is how to handle pointer to array of Int "correctly":
       ```
       Int[3]* arrayPtr = new Int[3]
