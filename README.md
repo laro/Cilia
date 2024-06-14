@@ -787,7 +787,7 @@ No braces around the condition clause.
         - in case of type inferring, parameter overloading and template matching.
 - `1..10` and `1..<10` are range literals
     - as in Kotlin
-    - Not like:
+    - Similar, but diffentent:
         - Swift would be ~~`1...10`~~ and ~~`1..<10`~~
             - I like `...` to be reserved for ellipsis in human language like comments.
         - Rust would be ~~`1..=10`~~ and ~~`1..10`~~
