@@ -399,8 +399,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       array[2] = 0
       array[3] = 0  // Runtime error, no compile time bounds check
       ```
-    - `T[] array` is the short form of `Array<T> array` (normally `cilia::Array<T>` will be used)
-    - Problem: May be confusing because it is so similar to fixed-size arrays,  
+    - `T[] array` is the short form of `cilia::Array<T> array`
+    - May be confusing because it is so similar to fixed-size arrays,  
       **but** IMHO the inconsistency is already in C/C++:
         - while in C/C++ function declarations:
             - `int[]` and `int*` are actually the same,
