@@ -1081,7 +1081,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 
 ## Short Smart Pointer Syntax 
-- `Type^ instance`
+- `Type^ instance`, inspired by C++.
     - `T^` by default is `SharedPtr<T>`
         - for C++/Cilia classes,
         - defined via type traits `CircumflexType`:  
