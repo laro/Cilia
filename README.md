@@ -19,7 +19,7 @@ When we are at it, after a quick look at Julia and Python.
 - C++ "Successor Language / Syntax"
     - like [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle)
     - Similar to C -> C++, Java -> Kotlin, Objective-C -> Swift, JavaScript -> TypeScript
-- While "[C++11 feels like a new language](https://www.stroustrup.com/tour2preface.pdf)"  
+- While "[C++11 feels like a new language](https://www.stroustrup.com/tour2preface.pdf)",  
   Clilia should feel like (modern) C++.
 - Uses the same compiler backend as C++ (clang, gcc, …)  
   with an own / a new compiler frontend (or a precompiler).
