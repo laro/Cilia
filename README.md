@@ -662,7 +662,7 @@ No braces around the condition clause.
         - `for str in ["a", "b", "c"] { … }`
             - `str` is `const StringView`
     - Type traits `InArgumentType`  
-        - As const _value_ (const X) for:
+        - As const _value_ (`const X`) for:
             - `Int`, `Float`, `Bool` etc.
             - Small classes (as `Complex<Float>`, `StringView`) 
         - As const _reference_ (`const X&`) for:
