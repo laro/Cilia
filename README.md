@@ -52,7 +52,8 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
 I like many aspects especially of Cpp2, but _not_ its `name: Type` syntax.
 
 [Bjarne Stroustrup's DevX interview:](https://www.stroustrup.com/devXinterview.html)
-> Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.  
+> Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
+
 I don't know what exact syntax would prefer, but  both Cpp2 and Carbon do not feel familiar to me.
 It is not necessary to go from the "most vexing parse" right to the "most easy parse".
 
