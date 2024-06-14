@@ -156,6 +156,7 @@ As in Python, Kotlin, Swift, JavaScript, Julia.
 - Multiline expressions:
     - Explicitly via `\` or `(…)` / `[…]` / `{…}` as in Python
     - ~~Implicitly/clever as in Swift, Kotlin and JavaScript?~~
+- Multiple expressions in a single _are_ separated by semicolon.
 - Only in REPL:
     - Trailing semicolon used to suppress evaluation output,
         - as in Matlab, Python, Julia.
