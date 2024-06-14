@@ -463,7 +463,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       return x * y  +  z
   }
   ```
-    - as in Swift
+    - `func` as in Swift
     - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
     - Easier parsing due to clear distinction between function vs. variable declaration.
 - Always and only in the trailing return type syntax.
