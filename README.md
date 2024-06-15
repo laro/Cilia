@@ -11,7 +11,7 @@ When we are at it, after a quick look at Julia and Python.
 
 
 ## Introduction
-- "Improved" C++
+- Ideas / a wish list for an "improved" C++
     - with a **simplified** syntax,
     - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Objective-C, Java, JavaScript, Kotlin, Swift
     - Isomorphic mapping of all C++ functionality to Cilia possible
