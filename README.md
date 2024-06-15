@@ -686,16 +686,17 @@ No braces around the condition clause.
             - `typedef Int32::InArgumentType = const Int32`
             - `typedef Int64::InArgumentType = const Int64`
             - `typedef StringView::InArgumentType = const StringView`
-                - maybe even `typedef String::InArgumentType = const StringView`,  
-                  i.e. a function with an `in String` parameter would implicitly accept a `StringView`, too.
-                  But only for types that can implicitly be converted "back", as a real `String` should also be accepted:
-                    - `String` -> `StringView`
-                    - `Array` -> `ArrayView`
-                    - `Image` -> `ImageView`
-                    - `Vector` -> `VectorView`
-                    - `Matrix` -> `MatrixView`
             - `typedef<type T> Complex<T>::InArgumentType = T::InArgumentType`
             - `typedef Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
+            - `typedef String::InArgumentType = const StringView`,  
+              i.e. a function with an `in String` parameter would implicitly accept a `StringView`, too.  
+              But only for types that can implicitly be converted "back", as a real `String` should also be accepted:  
+                - `String` -> `StringView`
+                - `Array` -> `ArrayView`
+                - `Image` -> `ImageView`
+                - `Vector` -> `VectorView`
+                - `Matrix` -> `MatrixView`
+                - `NArray` -> `NArrayView`
     - Explicit override with
        - `in`, `inout`, `out`, `move`, `copy`, `forward`
             - Wording fits nicely for function arguments.
