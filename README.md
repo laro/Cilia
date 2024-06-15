@@ -409,11 +409,11 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
               but `int* array = new int[3]` for an int-array of unknown size, so
             - `int[]` and `int*` mean different things.
 - `Int[,] dynamic2DArray`
-    - `T[,] array` is the short form of `NArray<T, 2> array` (normally `cilia::NArray<T, 2>` will be used)
+    - `T[,] array` is the short form of `MDArray<T, 2> array` (normally `cilia::MDArray<T, 2>` will be used)
     - ~~or `Int[*,*]`?~~
 - `Int[,,] multidimensionalDynamicArray`
-    - `T[,,] array` is the short form of `NArray<T, 3> array` (normally `cilia::NArray<T, 3>` will be used)
-    - and so on: `cilia::NArray<T, N>`
+    - `T[,,] array` is the short form of `MDArray<T, 3> array` (normally `cilia::MDArray<T, 3>` will be used)
+    - and so on: `cilia::MDArray<T, N>`
     - ~~or `Int[*,*,*]`?~~
 - Mixed forms of static and dynamic array
     - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
@@ -697,7 +697,7 @@ No braces around the condition clause.
                 - `Vector` -> `VectorView`
                 - `Matrix` -> `MatrixView`
                 - `Image` -> `ImageView`
-                - `NArray` -> `NArrayView`
+                - `MDArray` -> `MDArrayView`
     - Explicit override with
        - `in`, `inout`, `out`, `move`, `copy`, `forward`
             - Wording fits nicely for function arguments.
@@ -1091,8 +1091,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `cilia::numerics::Vector<T = Float>`
         - `cilia::numerics::Matrix<T = Float>`
             - stored column-major
-        - `cilia::numerics::NArray<T = Float, Int dimensions>`
-            - maybe `MDArray` due to `MDSpan`
+        - `cilia::numerics::MDArray<T = Float, Int dimensions>`
+            - alsom see `MDSpan`
           
 - Image
     - `cilia::Image<T = Float>`
@@ -1103,7 +1103,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `VectorView`
     - `MatrixView`
     - `ImageView`
-    - `NArrayView`
+    - `MDArrayView`
 
 
 ## Short Smart Pointer Syntax 
