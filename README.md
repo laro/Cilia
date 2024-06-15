@@ -693,9 +693,9 @@ No braces around the condition clause.
               But only for types that can implicitly be converted "back", as a real `String` should also be accepted:  
                 - `String` -> `StringView`
                 - `Array` -> `ArrayView`
-                - `Image` -> `ImageView`
                 - `Vector` -> `VectorView`
                 - `Matrix` -> `MatrixView`
+                - `Image` -> `ImageView`
                 - `NArray` -> `NArrayView`
     - Explicit override with
        - `in`, `inout`, `out`, `move`, `copy`, `forward`
