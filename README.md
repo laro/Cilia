@@ -519,6 +519,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       So there we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
             - not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
+        - Od `class<type T, Int N> func T[N]::size() -> Int { return N }`?
         - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
             - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
               as with  
@@ -527,6 +528,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
               `arrayOfThreeFloat.add<Int>(4)`  
               not  
               ~~`arrayOfThreeFloat.add<Float, 3, Int>(4)`~~  
+            - Or `class<type T, Int N> func T[N]::add<type T2>(T2 x) { ... }`?  
             - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `add<>()`, so it is not desired to specify them here at all.
     - `requires` for further restricting the type.
         - ```
