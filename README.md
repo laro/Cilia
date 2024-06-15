@@ -409,10 +409,10 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
               but `int* array = new int[3]` for an int-array of unknown size, so
             - `int[]` and `int*` mean different things.
 - `Int[,] dynamic2DArray`
-    - `T[,] array` is the short form of `MDArray<T, 2> array` (normally `cilia::MDArray<T, 2>` will be used)
+    - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
     - ~~or `Int[*,*]`?~~
 - `Int[,,] multidimensionalDynamicArray`
-    - `T[,,] array` is the short form of `MDArray<T, 3> array` (normally `cilia::MDArray<T, 3>` will be used)
+    - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
     - and so on: `cilia::MDArray<T, N>`
     - ~~or `Int[*,*,*]`?~~
 - Mixed forms of static and dynamic array
@@ -697,7 +697,7 @@ No braces around the condition clause.
                 - `Vector` -> `VectorView`
                 - `Matrix` -> `MatrixView`
                 - `Image` -> `ImageView`
-                - `MDArray` -> `MDArrayView`
+                - `MDArray` -> `MDArrayView` (AKA MDSpan?)
     - Explicit override with
        - `in`, `inout`, `out`, `move`, `copy`, `forward`
             - Wording fits nicely for function arguments.
