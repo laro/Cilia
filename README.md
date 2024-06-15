@@ -1090,6 +1090,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `cilia::numerics::Matrix<T = Float>`
             - stored column-major
         - `cilia::numerics::NArray<T = Float, Int dimensions>`
+            - maybe `MDArray` due to `MDSpan`
           
 - Image
     - `cilia::Image<T = Float>`
