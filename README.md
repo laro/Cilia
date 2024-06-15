@@ -540,16 +540,16 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - **Function pointers**
     - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Variant A:
-        - **`func(Int, Int -> Int)* pointerToFunctionOfIntToInt`**
+        - **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
         - **`func(Int)* pointerToFunctionOfInt`**
-        - `func(Int, Int -> Int)& referenceToFunctionOfIntToInt` // Can't be zero; is that useful?
+        - `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero; is that useful?
         - `func(Int)& referenceToFunctionOfInt`
     - ~~Variant B:~~
-        - ~~`func((Int, Int) -> Int)* pointerToFunctionOfIntToInt`  // Closer to the function declaration but (too) many brackets~~
+        - ~~`func((Int, Int) -> Int)* pointerToFunctionOfIntAndIntToInt`  // Closer to the function declaration but (too) many brackets~~
     - ~~Variant C:~~
         - ~~`(Int, Int -> Int)` [Functions are only available as pointers, so you can omit "*"?]~~
     - ~~Variant D:~~
-        - ~~`func*(Int->Int) pointerToFunctionOfIntToInt`~~
+        - ~~`func*(Int->Int) pointerToFunctionOfIntAndIntToInt`~~
         - ~~`func*(Int) pointerToFunctionOfInt`~~
     - ~~Variant E:~~
         - ~~`func*(Int, Int)->Int pointerToFunctionOfIntAndIntToInt`~~
