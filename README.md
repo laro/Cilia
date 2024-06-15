@@ -1101,6 +1101,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `ArrayView`
     - `VectorView`
     - `MatrixView`
+    - `ImageView`
     - `NArrayView`
 
 
