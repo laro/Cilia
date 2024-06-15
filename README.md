@@ -1108,11 +1108,11 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - `Type^ instance`, inspired by C++/CLI.
     - `T^` by default is `SharedPtr<T>`
         - for C++/Cilia classes,
-        - defined via type traits `CircumflexType`:  
-          `using<type T> T::CircumflexType = SharedPtr<T>`
+        - defined via type traits `SmartPtrType`:  
+          `using<type T> T::SmartPtrType = SharedPtr<T>`
     - Possible to redefine for interoperability with other languages:
-        - Objective-C/Swift classes: Use their reference counting mechanism
-        - C#/Java classes: Use garbage collected memory
+        - Objective-C/Swift classes: Use their reference counting mechanism.
+        - C#/Java classes: Use garbage collected memory, manage a global list of C#/Java instance pointers.
     - ~~`T^^` by default is `WeakPtr<T>`~~
         - ~~defined via type traits `CircumflexCircumflexType`.~~
         - ~~`SharedPtr<SharedPtr<T>>` just doesn't work like that, doesn’t really make sense anyway.~~
