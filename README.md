@@ -288,13 +288,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       Int size = 0
   }
   ```
-- Class templates
-  ```
-  class MyVector<Number T> {
-      T* numbers = Null
-      Int size = 0
-  }
-  ```  
 
 
 ## `is`, `as`, Casting
@@ -489,54 +482,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - Also possible for arithmetic types (like `Int i; i.toString()`)
         - `func Int::toString() -> String { … }`  // as in Kotlin
             - ~~or `func toString (Int this) -> String` ~~
-- Function **templates**
-    - Automatic function templates
-        - If (at least) one of the function arguments is a concept, then the function is (in fact) a function template.
-            - Concept `Number`:
-              ```
-              func sq(Number x) -> Number {
-                   return x * x
-              }
-              ```
-                - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
-            - `func add(Number a, b) -> Number`
-                - Even `a` and `b` (and of course the return type) could each be a _different_ type (as long as they satisfy the concept `Number`)
-            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
-              ```
-               func sqrt(Real x) -> Real {
-                   // … a series development …
-              }
-              ```
-        - Like abbreviated function templates in C++ 20, only without `auto`.
-    - Explicit function templates for cases where a common type is required.
-        - ```
-          func add<Number T>(T x, y) -> T {
-               return x + y
-          }
-          ```
-        - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
-    - For extension function templates it is necessary to know the template parameter(s) for the type to be extended, before we write its name.  
-      So there we write
-        - `func<type T, Int N> T[N]::size() -> Int { return N }`
-            - not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
-        - Or `class<type T, Int N> func T[N]::size() -> Int { return N }`?
-        - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
-            - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
-              as with  
-              `Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}`  
-              we would write  
-              `arrayOfThreeFloat.add<Int>(4)`  
-              not  
-              ~~`arrayOfThreeFloat.add<Float, 3, Int>(4)`~~  
-            - Or `class<type T, Int N> func T[N]::add<type T2>(T2 x) { ... }`?  
-            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `add<>()`, so it is not desired to specify them here at all.
-    - `requires` for further restricting the type.
-        - ```
-          func sq<Number T>(T x) -> T requires (T x) { x * x } {
-               return x * x
-          }
-          ```
-        - TODO Really this syntax: `{ ... } { ... }`?
 - **Function pointers**
     - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Variant A:
@@ -657,6 +602,66 @@ No braces around the condition clause.
       }
       ```
       (OK, curly braces around all of this are necessary to be a perfect replacement.)
+
+
+## Templates
+- Class templates
+  ```
+  class MyVector<Number T> {
+      T* numbers = Null
+      Int size = 0
+  }
+  ```
+- Function **templates**
+    - Automatic function templates
+        - If (at least) one of the function arguments is a concept, then the function is (in fact) a function template.
+            - Concept `Number`:
+              ```
+              func sq(Number x) -> Number {
+                   return x * x
+              }
+              ```
+                - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
+            - `func add(Number a, b) -> Number`
+                - Even `a` and `b` (and of course the return type) could each be a _different_ type (as long as they satisfy the concept `Number`)
+            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
+              ```
+               func sqrt(Real x) -> Real {
+                   // … a series development …
+              }
+              ```
+        - Like abbreviated function templates in C++ 20, only without `auto`.
+    - Explicit function templates for cases where a common type is required.
+        - ```
+          func add<Number T>(T x, y) -> T {
+               return x + y
+          }
+          ```
+        - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
+    - For extension function templates it is necessary to know the template parameter(s) for the type to be extended, before we write its name.  
+      So there we write
+        - `func<type T, Int N> T[N]::size() -> Int { return N }`
+            - not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
+        - Or `class<type T, Int N> func T[N]::size() -> Int { return N }`?
+        - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
+            - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
+              as with  
+              `Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}`  
+              we would write  
+              `arrayOfThreeFloat.add<Int>(4)`  
+              not  
+              ~~`arrayOfThreeFloat.add<Float, 3, Int>(4)`~~  
+            - Or `class<type T, Int N> func T[N]::add<type T2>(T2 x) { ... }`?  
+            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `add<>()`, so it is not desired to specify them here at all.
+    - `requires` for further restricting the type.
+        - ```
+          func sq<Number T>(T x) -> T requires (T x) { x * x } {
+               return x * x
+          }
+          ```
+        - TODO Really this syntax: `{ ... } { ... }`?
+- Template type alias (with `using`, not ~~`typedef`~~)
+    - `using<type T> T::InArgumentType = const T&`
 
 
 ## Arguments Passed as `in`
