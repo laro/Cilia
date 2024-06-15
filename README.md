@@ -682,15 +682,15 @@ No braces around the condition clause.
         - As const _reference_ (`const X&`) for:
             - All other cases
         - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
-            - `typedef<type T> T::InArgumentType = const T&`
-            - `typedef Int32::InArgumentType = const Int32`
-            - `typedef Int64::InArgumentType = const Int64`
-            - `typedef StringView::InArgumentType = const StringView`
-            - `typedef<type T> Complex<T>::InArgumentType = T::InArgumentType`
-            - `typedef Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
-            - `typedef String::InArgumentType = const StringView`,  
+            - `using<type T> T::InArgumentType = const T&`
+            - `using Int32::InArgumentType = const Int32`
+            - `using Int64::InArgumentType = const Int64`
+            - `using StringView::InArgumentType = const StringView`
+            - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
+            - `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
+            - `using String::InArgumentType = const StringView`,  
               i.e. a function with an `in String` parameter would implicitly accept a `StringView`, too.  
-              But only for types that can implicitly be converted "back", as a real `String` should also be accepted:  
+              But applicable only for types that can implicitly be converted "back", as a real `String` should also be accepted:  
                 - `String` -> `StringView`
                 - `Array` -> `ArrayView`
                 - `Vector` -> `VectorView`
@@ -1036,7 +1036,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
     - `cilia::String` instead of `std::string`
     - `Map` instead of `map`
-        - `Dictionary` as typedef with deprecation warning, as a hint for C# programmers.
+        - `Dictionary` as alias with deprecation warning, as a hint for C# programmers.
     - `ForwardList` instead of `forward_list`
     - `UnorderedMap` instead of `unordered_map`
     - `ValueType` instead of `value_type`
@@ -1109,7 +1109,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `T^` by default is `SharedPtr<T>`
         - for C++/Cilia classes,
         - defined via type traits `CircumflexType`:  
-          `typedef<type T> T::CircumflexType = SharedPtr<T>`
+          `using<type T> T::CircumflexType = SharedPtr<T>`
     - Possible to redefine for interoperability with other languages:
         - Objective-C/Swift classes: Use their reference counting mechanism
         - C#/Java classes: Use garbage collected memory
