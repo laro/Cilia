@@ -21,7 +21,7 @@ When we are at it, after a quick look at Julia and Python.
     - Similar to C -> C++, Java -> Kotlin, Objective-C -> Swift, JavaScript -> TypeScript
 - While "[C++11 feels like a new language](https://www.stroustrup.com/tour2preface.pdf)",  
   Clilia should feel like (a modernized) C++.
-- Uses the same compiler backend as C++ (clang, gcc, …)  
+- Uses the same compiler backend as C++ (clang, gcc, ...)  
   with an own / a new compiler frontend (or a precompiler).
 - So _no_ garbage collection,  
   instead in Cilia you use, as in C++,
@@ -106,8 +106,8 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
 ## C++ Language Family
 - **Compatible to C++**, C and maybe other languages of this "**language family**" / "**ecosystem**", even future ones,
     - as with
-        - Java: Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby …
-        - C#: C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby …
+        - Java: Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
+        - C#: C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
         - Objective-C: Swift
     - Bi-directional interoperability, so it is possible to include
         - C++ headers and modules from Cilia,
@@ -160,7 +160,7 @@ As in Python, Kotlin, Swift, JavaScript, Julia.
     - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
         - ~~As this is difficult & unclear/disputed: Keep C++ semicolons for now?~~
 - Multiline expressions:
-    - Explicitly via `\` or `(…)` / `[…]` / `{…}` as in Python
+    - Explicitly via `\` or `(...)` / `[...]` / `{...}` as in Python
     - ~~Implicitly/clever as in Swift, Kotlin and JavaScript?~~
 - Multiple expressions in a single line _are_ separated by semicolon.  
   `x += offset; y += offset`
@@ -175,8 +175,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - Cilia has
     - `var` instead of `auto`
     - `func` instead of `auto`
-    - ~~`class … extends …` instead of `class … : …`~~
-        - ~~`class … implements …` instead of `class … : …` for pure abstract classes (like interfaces)~~
+    - ~~`class ... extends ...` instead of `class ... : ...`~~
+        - ~~`class ... implements ...` instead of `class ... : ...` for pure abstract classes (like interfaces)~~
     - `type` instead of `typename`
     - `await` instead of `co_await`
     - `yield` instead of `co_yield`
@@ -480,7 +480,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - To add "member like" functions to "third party" classes/types.
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
     - Also possible for arithmetic types (like `Int i; i.toString()`)
-        - `func Int::toString() -> String { … }`  // as in Kotlin
+        - `func Int::toString() -> String { ... }`  // as in Kotlin
             - ~~or `func toString (Int this) -> String` ~~
 - **Function pointers**
     - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
@@ -549,7 +549,7 @@ No braces around the condition clause.
           // ...
       }
       ```
-    - `if 1 <= x <= 10 { … }`
+    - `if 1 <= x <= 10 { ... }`
         - as in Python, Julia, Cpp2 (Herb Sutter)
 - while
   ```
@@ -557,13 +557,13 @@ No braces around the condition clause.
       // ...
   }
   ```
-- do … while
+- do ... while
   ```
   do {
       // ...
   } while a > b
   ```
-- `for … in …`
+- `for ... in ...`
     - as in Rust, Swift
     - Write
       ```
@@ -571,7 +571,7 @@ No braces around the condition clause.
           // ...
       }
       ```
-      instead of `for (… : …)` (AKA C++ range-for, C++/CLI `for each`, C# `foreach`)
+      instead of `for (... : ...)` (AKA C++ range-for, C++/CLI `for each`, C# `foreach`)
     - The loop variable is declared "in the loop", with its type inferred from the range, array, etc. used (similar to `var`).
     - Use the range literal to write          
       `for i in 0..<10  { ... }`  
@@ -627,7 +627,8 @@ No braces around the condition clause.
             - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
               ```
                func sqrt(Real x) -> Real {
-                   // … a series development …
+                   // ... a series development ...
+                  // (with number of iterations determined from the size of the mantissa)
               }
               ```
         - Like abbreviated function templates in C++ 20, only without `auto`.
@@ -674,14 +675,14 @@ No braces around the condition clause.
         - So simply write **`concat(String first, String second)`**  
           instead of `concat(const String& first, const String& second)`
         - **`String[] stringArray = ["a", "b", "c"]`**  
-          **`for str in stringArray { … }`**
+          **`for str in stringArray { ... }`**
             - `str` is `const String&`
     - `const X` for "small types":
-        - `for i in [1, 2, 3] { … }`
+        - `for i in [1, 2, 3] { ... }`
             - `i` is `const Int`
-        - `for i in 1..<10 { … }`
+        - `for i in 1..<10 { ... }`
             - `i` is `const Int`
-        - `for str in ["a", "b", "c"] { … }`
+        - `for str in ["a", "b", "c"] { ... }`
             - `str` is `const StringView`
     - Type traits `InArgumentType`  
         - As const _value_ (`const X`) for:
@@ -732,22 +733,22 @@ No braces around the condition clause.
         - `forward` – ? `X&&`
             - for perfect forwarding
     - Examples:
-        - `for inout str in stringArray { … }`
+        - `for inout str in stringArray { ... }`
             - `str` is `String&`
-        - `for inout i in [1, 2, 3] { … }`
+        - `for inout i in [1, 2, 3] { ... }`
             - `i` is `Int&`
-        - `for copy str in stringArray { … }`
+        - `for copy str in stringArray { ... }`
             - `str` is `String`
-        - `for copy i in [1, 2, 3] { … }`
+        - `for copy i in [1, 2, 3] { ... }`
             - `i` is `Int`
     - If you want even the basic type to be different:
-        - `for Double d in [1, 2, 3] { … }`
+        - `for Double d in [1, 2, 3] { ... }`
             - `d` is `const Double`
-        - `for String str in ["a", "b", "c"] { … }`
+        - `for String str in ["a", "b", "c"] { ... }`
             - `str` is `const String&` (not `const StringView&`)
-        - `for inout String str in ["a", "b", "c"] { … }`
+        - `for inout String str in ["a", "b", "c"] { ... }`
             - `str` is `String&`
-        - `for copy String str in ["a", "b", "c"] { … }`
+        - `for copy String str in ["a", "b", "c"] { ... }`
             - `str` is `String`
 
 
@@ -854,7 +855,7 @@ No braces around the condition clause.
     - No null termination
         - If necessary
             - use `"Text\0“`  or
-            - convert using `StringZ(…)`.
+            - convert using `StringZ(...)`.
     - Data is typically stored in read-only data segments or ROM.
 - Multiline String Literal
     - ```
@@ -947,8 +948,8 @@ No braces around the condition clause.
             - Fast with UTF-32, **but** even with UTF-32 not all grapheme clusters fit into a single code point,
                 - so not:
                     - emoji with modifier characters like skin tone or variation selector,
-                    - diacritical characters (äöü…, depending on the normal form chosen),
-                    - surely some more …
+                    - diacritical characters (äöü..., depending on the normal form chosen),
+                    - surely some more ...
                 - Often slower than UTF-8, simply due to its size (cache, memory bandwidth).
         - **code units**
             - represented by
@@ -1054,7 +1055,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Maybe some exceptions/variations:
         - `Array` instead of `vector`
         - `Stringstream` or `StringStream` instead of `stringstream`?
-            - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, …
+            - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, ...
         - `Multimap` or `MultiMap` instead of `multimap`?
 - Shallow wrapper,
     - e.g. `cilia::String : public std::string`
@@ -1064,11 +1065,11 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       `using y = data[1]`  
         - ~~or `alias x = data[0]`?~~
         - Not quite possible in C++.
-            - With …  
+            - With ...  
               `Float& imaginary = im`  
               or  
               `T& x = data[0]`  
-              … unfortunately memory is created for the reference (the pointer).
+              ... unfortunately memory is created for the reference (the pointer).
             - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
     - member functions
         - `using f() = g()`
