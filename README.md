@@ -695,10 +695,11 @@ No braces around the condition clause.
             - `using Int32::InArgumentType = const Int32`
             - `using Int64::InArgumentType = const Int64`
             - `using StringView::InArgumentType = const StringView`
-            - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
-            - Some rules could be further refined  
-              `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
-        - Special trick for types with views, e.g. `String`/`SringView`:
+            - Some rules could be generic  
+              `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
+                - This rule then could be further refined  
+                  `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
+        - Special trick for **types with views**, e.g. `String`/`SringView`:
             - `using String::InArgumentType = const StringView`,  
               i.e. a function with an `in String` parameter would implicitly accept a `StringView`, too.  
               But applicable only for types that can implicitly be converted from `X` to `XView`, as a plain `X` (here a real `String`) should also be accepted:  
