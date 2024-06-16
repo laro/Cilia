@@ -645,17 +645,17 @@ No braces around the condition clause.
             - Or `template<type T, Int N> func T[N]::size() -> Int { return N }`?
             - Or `class<type T, Int N> func T[N]::size() -> Int { return N }`?
             - Not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
-              as with  
-              `Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}`  
-              we would write  
-              `arrayOfThreeFloat.add<Int>(4)`  
-              not  
-              ~~`arrayOfThreeFloat.add<Float, 3, Int>(4)`~~  
-            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `add<>()`, so it is not desired to specify them here at all.
         - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
             - Or `template<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?
             - Or `class<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?
             - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~  
+              as with  
+              `Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}`  
+              we would write  
+              `var intArray = arrayOfThreeFloat.convertTo<Int>()`  
+              not  
+              ~~`var intArray = arrayOfThreeFloat.convertTo<Float, 3, Int>()`~~  
+            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `add<>()`, so it is not desired to specify them here at all.
     - `requires` for further restricting the type.
         - ```
           func sq<Number T>(T x) -> T requires (T x) { x * x } {
