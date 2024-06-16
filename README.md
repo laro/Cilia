@@ -650,7 +650,7 @@ No braces around the condition clause.
             - Or `class<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?
             - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~  
               as with  
-              `Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}`  
+              `Float[3] arrayOfThreeFloat = { 1.0, 2.0, 3.0 }`  
               we would write  
               `var intArray = arrayOfThreeFloat.convertTo<Int>()`  
               not  
