@@ -410,13 +410,12 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Multidimensional arrays
     - dynamic size
-        - `Int[,] dynamic2DArray`
-            - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
-            - ~~or `Int[*,*]`?~~
-        - `Int[,,] multidimensionalDynamicArray`
-            - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
-            - and so on: `cilia::MDArray<T, N>`
-            - ~~or `Int[*,*,*]`?~~
+        - `Int[,] dynamic2DArray`  
+          `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
+        - `Int[,,] multidimensionalDynamicArray`  
+           `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
+        - and so on:  
+          `cilia::MDArray<T, N>`
     - static size
         - `Int[3, 2, 200]`
             - Multidimensional static array  
