@@ -663,7 +663,7 @@ No braces around the condition clause.
           }
           ```
         - TODO Really this syntax: `{ ... } { ... }`?
-- Template type **alias** (with `using`, not ~~`typedef`~~)
+- Template **type alias** (with `using`, not ~~`typedef`~~)
     - `using<type T> T::InArgumentType = const T&`
     - Or `template<type T> using T::InArgumentType = const T&`?
 
