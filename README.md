@@ -355,6 +355,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       array[3] = 0  // Runtime error, no compile time bounds check
       ```
     - `T[] array` is the short form of `cilia::Array<T> array`
+        - Not called `cilia::Vector<T>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
+          (See Matrix & Vector, even though they are in other sub-namespaces.)
     - May be confusing because it is so similar to fixed-size arrays,  
       **but** IMHO the inconsistency is already in C/C++:
         - while in C/C++ function declarations:
@@ -1074,11 +1076,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - ~~Or is perfect forwarding enough?~~
             - ~~https://stackoverflow.com/a/9864472~~
             - This would not work for virtual functions
-
-- Array
-    - `cilia::Array<T>`
-    - Not called `cilia::Vector<T>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
-    - (See Matrix & Vector, even though they are in other sub-namespaces.)
 
 - Matrix & Vector
     - Geometry
