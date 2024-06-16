@@ -391,9 +391,9 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   ```
 - Mixed forms of static and dynamic array
     - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
-        - ~~not `Int[3,*,*]`~~
+        - ~~not `Int[3,,]`~~
     - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
-        - ~~not `Int[3,4,*]`~~
+        - ~~not `Int[3,4,]`~~
 - Examples:
     - `Int[] dynamicArrayOfInt`
     - `Int[3] arrayOfThreeInt`
