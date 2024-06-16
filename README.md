@@ -605,15 +605,15 @@ No braces around the condition clause.
 
 
 ## Templates
-- Class templates
+- **Class** templates
   ```
   class MyVector<Number T> {
       T* numbers = Null
       Int size = 0
   }
   ```
-- Function **templates**
-    - Automatic function templates
+- **Function** templates
+    - _Automatic_ function templates
         - If (at least) one of the function arguments is a concept, then the function is (in fact) a function template.
             - Concept `Number`:
               ```
@@ -631,7 +631,7 @@ No braces around the condition clause.
               }
               ```
         - Like abbreviated function templates in C++ 20, only without `auto`.
-    - Explicit function templates for cases where a common type is required.
+    - _Explicit_ function templates for cases where a common type is required.
         - ```
           func add<Number T>(T x, y) -> T {
                return x + y
@@ -644,6 +644,8 @@ No braces around the condition clause.
             - not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
         - Or `class<type T, Int N> func T[N]::size() -> Int { return N }`?
         - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
+            - Or `template<type T, Int N> func T[N]::add<type T2>(T2 x) { ... }`?  
+            - Or `class<type T, Int N> func T[N]::add<type T2>(T2 x) { ... }`?  
             - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
               as with  
               `Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}`  
@@ -651,7 +653,6 @@ No braces around the condition clause.
               `arrayOfThreeFloat.add<Int>(4)`  
               not  
               ~~`arrayOfThreeFloat.add<Float, 3, Int>(4)`~~  
-            - Or `class<type T, Int N> func T[N]::add<type T2>(T2 x) { ... }`?  
             - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `add<>()`, so it is not desired to specify them here at all.
     - `requires` for further restricting the type.
         - ```
@@ -660,8 +661,9 @@ No braces around the condition clause.
           }
           ```
         - TODO Really this syntax: `{ ... } { ... }`?
-- Template type alias (with `using`, not ~~`typedef`~~)
+- Template type **alias** (with `using`, not ~~`typedef`~~)
     - `using<type T> T::InArgumentType = const T&`
+    - Or `template<type T> using T::InArgumentType = const T&`?
 
 
 ## Arguments Passed as `in`
