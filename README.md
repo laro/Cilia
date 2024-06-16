@@ -642,12 +642,11 @@ No braces around the condition clause.
     - For extension function templates it is necessary to know the template parameter(s) for the type that shall be extended, before we write the function name.  
       Therefore we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
-            - Or `template<type T, Int N> func T[N]::size() -> Int { return N }`?
-            - Or `class<type T, Int N> func T[N]::size() -> Int { return N }`?
             - Not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
+            - Maybe `template<type T, Int N> func T[N]::size() -> Int { return N }`?
+            - ~~Maybe `class<type T, Int N> func T[N]::size() -> Int { return N }`?~~
+                - `T[N]` is not even a `class`, it's a type.
         - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
-            - Or `template<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?
-            - Or `class<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?
             - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~  
               as with  
               `Float[3] arrayOfThreeFloat = { 1.0, 2.0, 3.0 }`  
@@ -656,6 +655,10 @@ No braces around the condition clause.
               not  
               ~~`Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Float, 3, Int>()`~~  
             - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
+            - Maybe `template<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?
+            - ~~Maybe `class<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?~~
+                - `T[N]` is not even a `class`, it's a type.
+
     - `requires` for further restricting the type.
         - ```
           func sq<Number T>(T x) -> T requires (T x) { x * x } {
