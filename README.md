@@ -638,8 +638,8 @@ No braces around the condition clause.
           }
           ```
         - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
-    - For extension function templates it is necessary to know the template parameter(s) for the type to be extended, before we write its name.  
-      So there we write
+    - For extension function templates it is necessary to know the template parameter(s) for the type that shall be extended, before we write the function name.  
+      Therefore we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
             - not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
         - Or `class<type T, Int N> func T[N]::size() -> Int { return N }`?
