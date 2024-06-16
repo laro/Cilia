@@ -389,11 +389,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   *arrayPtr[2] = 0
   *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
   ```
-- Mixed forms of static and dynamic array
-    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`  
-       ~~not `Int[3,,]`~~
-    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`  
-       ~~not `Int[3,4,]`~~
 - Examples:
     - `Int[] dynamicArrayOfInt`
     - `Int[3] arrayOfThreeInt`
@@ -423,6 +418,11 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
               Int[3, 2, 200] intArray3D
               intArray3D[2, 1, 199] = 1
               ```
+- Mixed forms of static and dynamic array
+    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`  
+       ~~not `Int[3,,]`~~
+    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`  
+       ~~not `Int[3,4,]`~~
 
 
 ## Signed Size
