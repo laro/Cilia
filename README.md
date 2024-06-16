@@ -667,70 +667,9 @@ No braces around the condition clause.
     - Or `template<type T> using T::InArgumentType = const T&`?
 
 
-## Arguments Passed as `in`
-- Function call arguments and the loop variable of "for ... in" are by default passed as `in`.
-- Technically `in` is either `const X&` or `const X`
-    - `const X&` as default:
-        - So simply write **`concat(String first, String second)`**  
-          instead of `concat(const String& first, const String& second)`
-        - **`String[] stringArray = ["a", "b", "c"]`**  
-          **`for str in stringArray { ... }`**
-            - `str` is `const String&`
-    - `const X` for "small types":
-        - `for i in [1, 2, 3] { ... }`
-            - `i` is `const Int`
-        - `for i in 1..<10 { ... }`
-            - `i` is `const Int`
-        - `for str in ["a", "b", "c"] { ... }`
-            - `str` is `const StringView`
-    - Type traits `InArgumentType`  
-        - As const _value_ (`const X`) for:
-            - `Int`, `Float`, `Bool` etc.
-            - Small classes (as `Complex<Float>`, `StringView`) 
-        - As const _reference_ (`const X&`) for:
-            - All other cases
-    - Therefore `const&` as general default,  
-      `using<type T> T::InArgumentType = const T&`  
-      and a "list of exceptions" for the "value types".
-        - `using Int32::InArgumentType = const Int32`
-        - `using Int64::InArgumentType = const Int64`
-        - `using StringView::InArgumentType = const StringView`
-        - Some rules could be generic  
-          `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
-            - This rule then could be further refined  
-              `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
-    - Special trick for **types with views**, e.g. `String`/`SringView`:  
-      `using String::InArgumentType = const StringView`,  
-      so a function with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. But applicable only for types `X` that can implicitly be converted to `XView`,  
-      like:  
-        - `String` -> `StringView`
-        - `Array` -> `ArrayView`
-        - `Vector` -> `VectorView`
-        - `Matrix` -> `MatrixView`
-        - `Image` -> `ImageView`
-        - `MDArray` -> `MDArrayView` (AKA MDSpan?)
-    - Explicit override with keywords `in`, `inout`, `out`, `move`, `copy`, `forward`
-        - Wording fits nicely for function arguments.  
-          Also works for `for` loops, then these words describe how the information (i.e. the variables) get into the body of the loop (or out of it).
-        - `in` – const reference (`const X&`) or const value (`const X`), sometimes `const XView`
-           - Default
-        - `inout` – non-const/mutable reference (`X&`)
-            - to mark as mutable/non-const reference.
-            - Also at the caller `swap(inout a, inout b)`
-        - `out`, to mark as (non-const) reference
-            - Like `inout`, but without prior initialization.
-            - Also at the caller
-              ```
-              String errorDetails
-              if not open("...", out errorDetails) {
-                  cout << errorDetails
-              }
-              ```
-        - `move` – right-value reference (`X&&`)
-            - for move sematics.
-        - `copy` – non-const/mutable value (`X`)
-        - `forward` – ? `X&&`
-            - for perfect forwarding
+## Function/Loop Parameter Passing
+- Function call arguments and the loop variable of "for ... in" are **by default passed as `in`**.
+- Explicit override with keywords **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, **`forward`**.
     - Examples:
         - `for inout str in stringArray { ... }`
             - `str` is `String&`
@@ -740,6 +679,71 @@ No braces around the condition clause.
             - `str` is `String`
         - `for copy i in [1, 2, 3] { ... }`
             - `i` is `Int`
+- Wording fits nicely for function arguments.  
+  Also works for `for` loops, then these words describe how the information (i.e. the variables) get into the body of the loop (or out of it).
+    - **`in`**
+        - Default
+        - Technically `in` is either `const X&` or `const X` (sometimes `const XView`)
+            - `const X&` as default:
+                - So simply write **`concat(String first, String second)`**  
+                  instead of `concat(const String& first, const String& second)`
+                - **`String[] stringArray = ["a", "b", "c"]`**  
+                  **`for str in stringArray { ... }`**
+                    - `str` is `const String&`
+            - `const X` for "small types":
+                - `for i in [1, 2, 3] { ... }`
+                    - `i` is `const Int`
+                - `for i in 1..<10 { ... }`
+                    - `i` is `const Int`
+                - `for str in ["a", "b", "c"] { ... }`
+                    - `str` is `const StringView`
+            - Type traits `InArgumentType`  
+                - As const _value_ (`const X`) for:
+                    - `Int`, `Float`, `Bool` etc.
+                    - Small classes (as `Complex<Float>`, `StringView`) 
+                - As const _reference_ (`const X&`) for:
+                    - All other cases
+            - Therefore `const&` as general default,  
+              `using<type T> T::InArgumentType = const T&`  
+              and a "list of exceptions" for the "value types".
+                - `using Int32::InArgumentType = const Int32`
+                - `using Int64::InArgumentType = const Int64`
+                - `using StringView::InArgumentType = const StringView`
+                - Some rules could be generic  
+                  `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
+                    - This rule then could be further refined  
+                      `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
+            - Special trick for **types with views**, e.g. `String`/`SringView`:  
+              `using String::InArgumentType = const StringView`,  
+              so a function with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. But applicable only for types `X` that can implicitly be converted to `XView`,  
+              like:  
+                - `String` -> `StringView`
+                - `Array` -> `ArrayView`
+                - `Vector` -> `VectorView`
+                - `Matrix` -> `MatrixView`
+                - `Image` -> `ImageView`
+                - `MDArray` -> `MDArrayView` (AKA MDSpan?)
+    - **`inout`**
+        - Technically a non-const/mutable reference (`X&`)
+        - to mark as mutable/non-const reference.
+        - Also at the caller `swap(inout a, inout b)`
+    - **`out`**, to mark as (non-const) reference
+        - Technically, line `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
+        - Also at the caller
+          ```
+          String errorDetails
+          if not open("...", out errorDetails) {
+              cout << errorDetails
+          }
+          ```
+    - **`copy`**
+        - Technically a non-const/mutable value (`X`)
+    - **`move`**
+        - Technically a right-value reference (`X&&`)
+        - for move sematics.
+    - **`forward`**
+        - Technically a right-value reference (`X&&`)?
+        - for perfect forwarding.
     - If you want even the basic type to be different:
         - `for Double d in [1, 2, 3] { ... }`
             - `d` is `const Double`
