@@ -701,8 +701,8 @@ No braces around the condition clause.
                   `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
         - Special trick for **types with views**, e.g. `String`/`SringView`:
             - `using String::InArgumentType = const StringView`,  
-              i.e. a function with an `in String` parameter would implicitly accept a `StringView`, too.  
-              But applicable only for types that can implicitly be converted from `X` to `XView`, as a plain `X` (here a real `String`) should also be accepted:  
+              so a function with an `in String` parameter would implicitly accept a `String` _and_ a `StringView`, too.  
+              But applicable only for types X` that can implicitly be converted to `XView`:  
                 - `String` -> `StringView`
                 - `Array` -> `ArrayView`
                 - `Vector` -> `VectorView`
