@@ -642,11 +642,12 @@ No braces around the condition clause.
       Therefore we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
             - not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
-        - Or `class<type T, Int N> func T[N]::size() -> Int { return N }`?
+            - Or `template<type T, Int N> func T[N]::size() -> Int { return N }`?
+            - Or `class<type T, Int N> func T[N]::size() -> Int { return N }`?
         - `func<type T, Int N> T[N]::add<type T2>(T2 x) { ... }`  
             - Or `template<type T, Int N> func T[N]::add<type T2>(T2 x) { ... }`?  
             - Or `class<type T, Int N> func T[N]::add<type T2>(T2 x) { ... }`?  
-            - not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
+            - Not ~~`func T[N]::size<type T, Int N, type T2>() { ... }`~~  
               as with  
               `Float[3] arrayOfThreeFloat = {1.0, 2.0, 3.0}`  
               we would write  
