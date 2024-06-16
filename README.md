@@ -347,36 +347,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 
      
 ## Arrays & ArrayViews
-- `Int[3] arrayOfThreeIntegers` as new array declaration  
-  instead of ~~`Int arrayOfThreeIntegers[3]`~~
-    - „Static array“ with **fixed size**, same as C/C++
-      ```
-      Int[3] array
-      array[2] = 0
-      array[3] = 0  // Compilation error, due to compile time bounds check
-      ```
-    - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
-      ```
-      Int* array = new Int[3]  // Array-to-pointer decay possible
-      array[2] = 0
-      array[3] = 0  // Undefined behaviour, no bounds check at all
-      ```
-        - Recommended to _not_ use subscript for raw pointers anyway,  
-          except for implementation of abstractions (like Array, Vector, Matrix, ...).
-    - Actually this is how to handle pointer to array of Int "correctly":
-      ```
-      Int[3]* arrayPtr = new Int[3]
-      *arrayPtr[2] = 0
-      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-      ```
-    - `arrayOfThreeIntegers.size()` -> `3`
-        - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
-    - `Int[3, 2, 200]`
-        - Multidimensional static array  
-          ```
-          Int[3, 2, 200] intArray3D
-          intArray3D[2, 1, 199] = 1
-          ```
 - `Int[] dynamicArrayOfIntegers`
     - „Dynamic array“ with **dynamic size**
       ```
@@ -393,13 +363,36 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
             - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
               but `int* array = new int[3]` for an int-array of unknown size, so
             - `int[]` and `int*` mean different things.
-- `Int[,] dynamic2DArray`
-    - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
-    - ~~or `Int[*,*]`?~~
-- `Int[,,] multidimensionalDynamicArray`
-    - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
-    - and so on: `cilia::MDArray<T, N>`
-    - ~~or `Int[*,*,*]`?~~
+- `Int[3] arrayOfThreeIntegers` as new array declaration  
+  instead of ~~`Int arrayOfThreeIntegers[3]`~~
+    - „Static array“ with **fixed size**, same as C/C++
+      ```
+      Int[3] array
+      array[2] = 0
+      array[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+    - `arrayOfThreeIntegers.size()` -> `3`
+        - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
+    - `Int[3, 2, 200]`
+        - Multidimensional static array  
+          ```
+          Int[3, 2, 200] intArray3D
+          intArray3D[2, 1, 199] = 1
+          ```
+- Use `Int*` for "raw" C/C++ arrays of arbitrary size  
+  ```
+  Int* array = new Int[3]  // Array-to-pointer decay possible
+  array[2] = 0
+  array[3] = 0  // Undefined behaviour, no bounds check at all
+  ```
+    - Recommended to _not_ use subscript for raw pointers anyway,  
+      except for implementation of abstractions (like Array, Vector, Matrix, ...).
+- Actually this is how to handle pointer to array of Int "correctly":
+  ```
+  Int[3]* arrayPtr = new Int[3]
+  *arrayPtr[2] = 0
+  *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+  ```
 - Mixed forms of static and dynamic array
     - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
         - ~~not `Int[3,*,*]`~~
@@ -419,6 +412,14 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - `var subarray = array[..2]`
         - `var subarray = array[..]`
     - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- Multidimensional arrays
+    - `Int[,] dynamic2DArray`
+        - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
+        - ~~or `Int[*,*]`?~~
+    - `Int[,,] multidimensionalDynamicArray`
+        - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
+        - and so on: `cilia::MDArray<T, N>`
+        - ~~or `Int[*,*,*]`?~~
 
 
 ## Signed Size
