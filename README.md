@@ -208,14 +208,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - maybe `Int128`, `Int256`
     - `UInt8`, `UInt16`, `UInt32`, `UInt64`
         - maybe `UInt128`, `UInt256` e.g. for SHA256
-    - `cilia::saturating::Int`
-        - Like `cilia::Int`, but with **saturation** for all operations.
-            - Limit to maximum, no wrap around.
-            - Typically using SIMD (as those „media/DSP instructions“ do support saturation natively).
-        - see https://en.wikipedia.org/wiki/Saturation_arithmetic 
-        - `saturating::Int8`/`Int16`/`Int32`/`Int64`
-        - `saturating::Uint`
-            - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
 - `BigInt` – Arbitrary Precision Integer
     - for cryptography, maybe computer algebra, numerics
@@ -1187,7 +1179,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - no forward declarations necessary  
       as in C#, Java
     - no single-pass as in C/C++
- 
+- `cilia::saturating::Int`
+        - Like `cilia::Int`, but with **saturation** for all operations.
+            - Limit to maximum, no wrap around.
+            - Typically using SIMD (as those „media/DSP instructions“ do support saturation natively).
+        - see https://en.wikipedia.org/wiki/Saturation_arithmetic 
+        - `saturating::Int8`/`Int16`/`Int32`/`Int64`
+        - `saturating::Uint`
+            - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 - Operations with carry flag  
   (to implement `Int128`, `Int256` etc.)
     - `c = add(a, b, inout carry)`
