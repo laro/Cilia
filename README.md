@@ -683,7 +683,7 @@ No braces around the condition clause.
   Also works for `for` loops, then these words describe how the information (i.e. the variables) get into the body of the loop (or out of it).
     - **`in`**
         - Default
-        - Technically `in` is either `const X&` or `const X` (sometimes `const XView`)
+        - Technically either `const X&` or `const X` (sometimes `const XView`)
             - `const X&` as default:
                 - So simply write **`concat(String first, String second)`**  
                   instead of `concat(const String& first, const String& second)`
