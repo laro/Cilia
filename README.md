@@ -697,32 +697,6 @@ No braces around the condition clause.
                     - `i` is `const Int`
                 - `for str in ["a", "b", "c"] { ... }`
                     - `str` is `const StringView`
-            - Type traits `InArgumentType`  
-                - As const _value_ (`const X`) for:
-                    - `Int`, `Float`, `Bool` etc.
-                    - Small classes (as `Complex<Float>`, `StringView`) 
-                - As const _reference_ (`const X&`) for:
-                    - All other cases
-            - Therefore `const&` as general default,  
-              `using<type T> T::InArgumentType = const T&`  
-              and a "list of exceptions" for the "value types".
-                - `using Int32::InArgumentType = const Int32`
-                - `using Int64::InArgumentType = const Int64`
-                - `using StringView::InArgumentType = const StringView`
-                - Some rules could be generic  
-                  `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
-                    - This rule then could be further refined  
-                      `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
-            - Special trick for **types with views**, e.g. `String`/`SringView`:  
-              `using String::InArgumentType = const StringView`,  
-              so a function with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. But applicable only for types `X` that can implicitly be converted to `XView`,  
-              like:  
-                - `String` -> `StringView`
-                - `Array` -> `ArrayView`
-                - `Vector` -> `VectorView`
-                - `Matrix` -> `MatrixView`
-                - `Image` -> `ImageView`
-                - `MDArray` -> `MDArrayView` (AKA MDSpan?)
     - **`inout`**
         - Technically a non-const/mutable reference (`X&`)
         - to mark as mutable/non-const reference.
@@ -744,6 +718,30 @@ No braces around the condition clause.
     - **`forward`**
         - Technically a right-value reference (`X&&`)?
         - for perfect forwarding.
+- Type traits `InArgumentType`  
+    - As const _reference_ (`const&`) as general default 
+        - `using<type T> T::InArgumentType = const T&`  
+    - A "list of exceptions" for the "const _value_ types" (`const X`).
+        - `using Bool::InArgumentType = const Bool`
+        - `using Int32::InArgumentType = const Int32`
+        - `using Int64::InArgumentType = const Int64`
+        - `using Float32::InArgumentType = const Float32`
+        - `using Float64::InArgumentType = const Float64`
+        - `using StringView::InArgumentType = const StringView`
+        - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
+            - A generic rule.
+            - Could be further refined  
+              `using Complex<Float128>::InArgumentType = const Complex<Float128>&`
+    - Special trick for **types with views**, e.g. `String`/`SringView`:  
+      `using String::InArgumentType = const StringView`,  
+      so a function with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. But applicable only for types `X` that can implicitly be converted to `XView`,  
+      like:  
+        - `String` -> `StringView`
+        - `Array` -> `ArrayView`
+        - `Vector` -> `VectorView`
+        - `Matrix` -> `MatrixView`
+        - `Image` -> `ImageView`
+        - `MDArray` -> `MDArrayView` (AKA MDSpan?)
     - If you want even the basic type to be different:
         - `for Double d in [1, 2, 3] { ... }`
             - `d` is `const Double`
