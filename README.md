@@ -363,9 +363,9 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
             - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
               but `int* array = new int[3]` for an int-array of unknown size, so
             - `int[]` and `int*` mean different things.
-- `Int[3] arrayOfThreeIntegers` as new array declaration  
-  instead of ~~`Int arrayOfThreeIntegers[3]`~~
-    - „Static array“ with **fixed size**, same as C/C++
+- `Int[3] arrayOfThreeIntegers`  
+  (instead of ~~`Int arrayOfThreeIntegers[3]`~~)
+    - „Static array“ with **fixed size**
       ```
       Int[3] array
       array[2] = 0
