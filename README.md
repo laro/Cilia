@@ -373,12 +373,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       ```
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
-    - `Int[3, 2, 200]`
-        - Multidimensional static array  
-          ```
-          Int[3, 2, 200] intArray3D
-          intArray3D[2, 1, 199] = 1
-          ```
 - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
   ```
   Int* array = new Int[3]  // Array-to-pointer decay possible
@@ -413,13 +407,21 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - `var subarray = array[..]`
     - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Multidimensional arrays
-    - `Int[,] dynamic2DArray`
-        - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
-        - ~~or `Int[*,*]`?~~
-    - `Int[,,] multidimensionalDynamicArray`
-        - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
-        - and so on: `cilia::MDArray<T, N>`
-        - ~~or `Int[*,*,*]`?~~
+    - dynamic size
+        - `Int[,] dynamic2DArray`
+            - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
+            - ~~or `Int[*,*]`?~~
+        - `Int[,,] multidimensionalDynamicArray`
+            - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
+            - and so on: `cilia::MDArray<T, N>`
+            - ~~or `Int[*,*,*]`?~~
+    - static size
+        - `Int[3, 2, 200]`
+            - Multidimensional static array  
+              ```
+              Int[3, 2, 200] intArray3D
+              intArray3D[2, 1, 199] = 1
+              ```
 
 
 ## Signed Size
