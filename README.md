@@ -707,7 +707,7 @@ No braces around the condition clause.
                 - `Matrix` -> `MatrixView`
                 - `Image` -> `ImageView`
                 - `MDArray` -> `MDArrayView` (AKA MDSpan?)
-    - Explicit override with `in`, `inout`, `out`, `move`, `copy`, `forward`
+    - Explicit override with keywords `in`, `inout`, `out`, `move`, `copy`, `forward`
         - Wording fits nicely for function arguments.  
           Also works for `for` loops, then these words describe how the information (i.e. the variables) get into the body of the loop (or out of it).
         - `in` – const reference (`const X&`) or const value (`const X`), sometimes `const XView`
