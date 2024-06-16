@@ -654,7 +654,7 @@ No braces around the condition clause.
               `var intArray = arrayOfThreeFloat.convertTo<Int>()`  
               not  
               ~~`var intArray = arrayOfThreeFloat.convertTo<Float, 3, Int>()`~~  
-            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `add<>()`, so it is not desired to specify them here at all.
+            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
     - `requires` for further restricting the type.
         - ```
           func sq<Number T>(T x) -> T requires (T x) { x * x } {
