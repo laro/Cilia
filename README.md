@@ -689,13 +689,15 @@ No braces around the condition clause.
             - Small classes (as `Complex<Float>`, `StringView`) 
         - As const _reference_ (`const X&`) for:
             - All other cases
-        - Therefore probably best to have const reference as general default, "list of exceptions" for the "value types".
-            - `using<type T> T::InArgumentType = const T&`
+        - Therefore probably best to have const reference as general default,  
+          `using<type T> T::InArgumentType = const T&`  
+          and a "list of exceptions" for the "value types".
             - `using Int32::InArgumentType = const Int32`
             - `using Int64::InArgumentType = const Int64`
             - `using StringView::InArgumentType = const StringView`
             - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
-            - `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
+            - Some rules could be further refined  
+              `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
         - Special trick for types with views, e.g. `String`/`SringView`:
             - `using String::InArgumentType = const StringView`,  
               i.e. a function with an `in String` parameter would implicitly accept a `StringView`, too.  
