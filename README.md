@@ -693,26 +693,26 @@ No braces around the condition clause.
             - Small classes (as `Complex<Float>`, `StringView`) 
         - As const _reference_ (`const X&`) for:
             - All other cases
-        - Therefore probably best to have const reference as general default,  
-          `using<type T> T::InArgumentType = const T&`  
-          and a "list of exceptions" for the "value types".
-            - `using Int32::InArgumentType = const Int32`
-            - `using Int64::InArgumentType = const Int64`
-            - `using StringView::InArgumentType = const StringView`
-            - Some rules could be generic  
-              `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
-                - This rule then could be further refined  
-                  `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
-            - Special trick for **types with views**, e.g. `String`/`SringView`:  
-              `using String::InArgumentType = const StringView`,  
-              so a function with an `in String` parameter would implicitly accept a `String` _and_ a `StringView`, too. But applicable only for types `X` that can implicitly be converted to `XView`,  
-              like:  
-                - `String` -> `StringView`
-                - `Array` -> `ArrayView`
-                - `Vector` -> `VectorView`
-                - `Matrix` -> `MatrixView`
-                - `Image` -> `ImageView`
-                - `MDArray` -> `MDArrayView` (AKA MDSpan?)
+    - Therefore `const&` as general default,  
+      `using<type T> T::InArgumentType = const T&`  
+      and a "list of exceptions" for the "value types".
+        - `using Int32::InArgumentType = const Int32`
+        - `using Int64::InArgumentType = const Int64`
+        - `using StringView::InArgumentType = const StringView`
+        - Some rules could be generic  
+          `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
+            - This rule then could be further refined  
+              `using Complex<Float64>::InArgumentType = const Complex<Float64>&` // Edge case, unclear
+    - Special trick for **types with views**, e.g. `String`/`SringView`:  
+      `using String::InArgumentType = const StringView`,  
+      so a function with an `in String` parameter would implicitly accept a `String` _and_ a `StringView`, too. But applicable only for types `X` that can implicitly be converted to `XView`,  
+      like:  
+        - `String` -> `StringView`
+        - `Array` -> `ArrayView`
+        - `Vector` -> `VectorView`
+        - `Matrix` -> `MatrixView`
+        - `Image` -> `ImageView`
+        - `MDArray` -> `MDArrayView` (AKA MDSpan?)
     - Explicit override with keywords `in`, `inout`, `out`, `move`, `copy`, `forward`
         - Wording fits nicely for function arguments.  
           Also works for `for` loops, then these words describe how the information (i.e. the variables) get into the body of the loop (or out of it).
