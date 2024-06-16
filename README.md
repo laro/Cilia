@@ -474,8 +474,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - Always and only in the trailing return type syntax.
 - `func function2(`**`Int x, y`**`) -> Float` // x _and_ y are Int
 - **Lambdas**
-    - `[](Int i) -> Float { i * 3.14 }`
-        - as in C++
+    - `[](Int i) -> Float { i * 3.14 }`  
+      as in C++
 - **Extension methods**
     - To add "member like" functions to "third party" classes/types.
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
