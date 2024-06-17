@@ -722,8 +722,8 @@ No braces around the condition clause.
     - **`forward`**
         - for perfect forwarding.
         - Technically a right-value reference (`X&&`)?
-- Type traits `InArgumentType` to determine the concrete type to be used for `in`-passing
-    - As const _reference_ (`const&`) as general default 
+- Type traits `InArgumentType` to determine the concrete type to be used for `in`-passing.
+    - Use const _reference_ (`const&`) as general default.
         - `using<type T> T::InArgumentType = const T&`  
     - A "list of exceptions" for the "const _value_ types" (`const X`).
         - `using Bool::InArgumentType = const Bool`
