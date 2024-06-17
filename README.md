@@ -1233,47 +1233,54 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - ~~"*.ciliaB"~~
 
 
-## Fix C++ "wrong defaults"
-[Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
-> C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
-> They may be counter-intuitive, go against expected practice in other languages, leave data in undefined states, or generally be prone to misuse.
-
-I am not familiar with all these issues, but in a new language we certainly coud fix a lot of it.
-
-1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
-    - See [Safety and Security](#safety-and-security)/Initialization
-2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
-    - Only allow safe ones,  
-      otherwise an explicit cast is necessary.
-3. [Implicit narrowing conversions.](http://eel.is/c++draft/conv.integral#3)
-    - Not allowed,  
-      only implicit widening is allowed.
-    - Assigment of integer and float literals to variables of certain precision only possible if "it fits".
-4. [Switches should break rather than fallthrough.](http://eel.is/c++draft/stmt.switch#6)
-    - Use the keyword `fallthrough` instead, as in Swift.
-5. [Operator precedence is complicated and wrong.](http://eel.is/c++draft/expr.compound#expr.bit.and)
-    - If the [suggestion](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#simpler_precedence) of Circle (Sean Baxter) works well, then that would be fine.
-    - Cpp2 (Herb Sutter) has [this precedence](https://hsutter.github.io/cppfront/cpp2/common/?h=operator#binary-operators).
-6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
-    - Use `func` (but not typically `var`)
-7. [Template brackets `< >` are a nightmare to parse.](http://eel.is/c++draft/temp.names#nt:template-argument-list)
-    - I would not like to change this, only if it _really_ has to be.
-    - Cpp2 / Herb Sutter kept `< >` after all.
-8. [Forwarding parameters and `std::forward` are error prone.](http://eel.is/c++draft/temp.deduct#call-3)
-   - I am not familiar with the problem(s), but Cpp2 / Herb Sutter offers the `forward` keyword.
-10. [Braced initializers can choose the wrong constructor.](http://eel.is/c++draft/dcl.init.list#2)
-    - Do without braced initializers altogether.
-    - With `func` there is now a clear distinction between function declaration and variable declaration with initialization.
-    - The classic initialization via `(...)`, ultimately a function call of the constructor, fits better.
-    - Curly brackets only for initializer lists, i.e. for tuples, lists etc.
-    - Square brackets for arrays.
-11. [`0` shouldn't be a null pointer constant.](http://eel.is/c++draft/expr#conv.ptr-1)
-    - Not allowed, use `Null`.
-12. [`this` shouldn't be a pointer.](http://eel.is/c++draft/expr.prim.this#1)
-    - Better it is a reference.
-       
-        
 ## Interesting Features of Other Languages
+- Circle
+    - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
+        - Standardization is better than having multiple different language "dialects"  
+          **but** for
+            - for transitioning of existings source code  and
+            - for the evolution of a language
+        - it is a very interesting idea to selectively enable new language features or defaults.
+    - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
+        - Extending C++ for Rust-level safety. 
+    - **Fix C++ "wrong defaults"**
+        [Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
+        > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
+        > They may be counter-intuitive, go against expected practice in other languages, leave data in undefined states, or generally be prone to misuse.
+        
+        I am not familiar with all these issues, but in a new language we certainly coud fix a lot of it.
+        
+        1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
+            - See [Safety and Security](#safety-and-security)/Initialization
+        2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
+            - Only allow safe ones,  
+              otherwise an explicit cast is necessary.
+        3. [Implicit narrowing conversions.](http://eel.is/c++draft/conv.integral#3)
+            - Not allowed,  
+              only implicit widening is allowed.
+            - Assigment of integer and float literals to variables of certain precision only possible if "it fits".
+        4. [Switches should break rather than fallthrough.](http://eel.is/c++draft/stmt.switch#6)
+            - Use the keyword `fallthrough` instead, as in Swift.
+        5. [Operator precedence is complicated and wrong.](http://eel.is/c++draft/expr.compound#expr.bit.and)
+            - If the [suggestion](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#simpler_precedence) of Circle (Sean Baxter) works well, then that would be fine.
+            - Cpp2 (Herb Sutter) has [this precedence](https://hsutter.github.io/cppfront/cpp2/common/?h=operator#binary-operators).
+        6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
+            - Use `func` (but not typically `var`)
+        7. [Template brackets `< >` are a nightmare to parse.](http://eel.is/c++draft/temp.names#nt:template-argument-list)
+            - I would not like to change this, only if it _really_ has to be.
+            - Cpp2 / Herb Sutter kept `< >` after all.
+        8. [Forwarding parameters and `std::forward` are error prone.](http://eel.is/c++draft/temp.deduct#call-3)
+           - I am not familiar with the problem(s), but Cpp2 / Herb Sutter offers the `forward` keyword.
+        10. [Braced initializers can choose the wrong constructor.](http://eel.is/c++draft/dcl.init.list#2)
+            - Do without braced initializers altogether.
+            - With `func` there is now a clear distinction between function declaration and variable declaration with initialization.
+            - The classic initialization via `(...)`, ultimately a function call of the constructor, fits better.
+            - Curly brackets only for initializer lists, i.e. for tuples, lists etc.
+            - Square brackets for arrays.
+        11. [`0` shouldn't be a null pointer constant.](http://eel.is/c++draft/expr#conv.ptr-1)
+            - Not allowed, use `Null`.
+        12. [`this` shouldn't be a pointer.](http://eel.is/c++draft/expr.prim.this#1)
+            - Better it is a reference.
 - Cpp2 (Herb Sutter)
     - [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
     - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
@@ -1336,12 +1343,3 @@ I am not familiar with all these issues, but in a new language we certainly coud
     - Many kinds of brackets?
         - [https://stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
         - Problem: some of the brackets are also conceivable as operators.
-- Circle
-    - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
-        - Standardization is better than having multiple different language "dialects"  
-          **but** for
-            - for transitioning of existings source code  and
-            - for the evolution of a language
-        - it is a very interesting idea to selectively enable new language features or defaults.
-    - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
-        - Extending C++ for Rust-level safety. 
