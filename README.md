@@ -1055,7 +1055,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - as typically used in numerics: BLAS (Basic Linear Algebra Subprograms)
         - `cilia::numerics::Vector<T = Float>`
         - `cilia::numerics::Matrix<T = Float>`
-            - Stored column-major:
+            - Stored column-major, like:
               ```
               0 3 6
               1 4 7
@@ -1066,7 +1066,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           
 - Image
     - `cilia::Image<T = Float>`
-    - Almost like `cilia::Matrix`, but stored row-major:
+    - Almost like `cilia::Matrix`, but stored row-major, like:
       ```
       0 1 2
       3 4 5
