@@ -711,7 +711,7 @@ No braces around the condition clause.
           }
           ```
     - **`copy`**
-        - to create a (mutable) copy (i.e. "by value"). 
+        - to create a (mutable) copy (i.e. pass "by value"). 
         - Technically a non-const/mutable value (`X`)
         - Examples:
             - `for copy str in stringArray { ... }`
