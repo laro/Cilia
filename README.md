@@ -1243,7 +1243,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - it is a very interesting idea to selectively enable new language features or defaults.
     - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
         - Extending C++ for Rust-level safety. 
-    - **Fix C++ "wrong defaults"**
+    - **Fix C++ "wrong defaults"**  
         [Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
         > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
         > They may be counter-intuitive, go against expected practice in other languages, leave data in undefined states, or generally be prone to misuse.
@@ -1286,14 +1286,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
     -  [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
         - `in`, `inout`, `out`, `move`, `copy`, `forward`
-            - `in` – const reference (`const X&`) or const value (`const X`)
-            - `inout` – non-const/mutable reference (`X&`)
-            - `out` – ?
-            - `move` – right-value reference (`X&&`)
-            - `copy` – non-const/mutable value (`X`)
-            - `forward` – ? `X&&`
-        - Sounds nice for function arguments.
-        - Also works for `for` loops, then these words decribe how the information (i.e. the variables) get into the body of the loop (or out of it).
     - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
       ```
       outer: while true {
