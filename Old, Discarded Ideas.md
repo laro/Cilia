@@ -1,4 +1,4 @@
-# Cilia
+# Old, discarded ideas for Cilia
 For several topics thwre are alternative ideas, that were discarded but are still worth mentioning.
 
 
