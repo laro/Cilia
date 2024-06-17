@@ -102,40 +102,13 @@ Mixed forms of static and dynamic array maybe useful:
 
 
 ## String, Char & CodePoint
-- `cilia::String` with _basic/standard_ unicode support.
-    - Iteration over a `String` or `StringView` by:
-        - **grapheme clusters**
-            - represented by `StringView`.
-            - This is the _default form of iteration_ over a `String` or `StringView`
-            - A single grapheme cluster will typically consist of multiple code units   
-              and may even consist of multiple code points.
-            - `for graphemeCluster in "abc 🥸👮🏻"`
-                - "a", "b", "c", " ", "🥸", "👮🏻"
-                - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
-            - A bit slow, as it has to find grapheme cluster boundaries.
-            - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way. 
-            - Additional/alternative names?
-                - `for graphemeCluster in text.asGraphemeClusters()`?
-                - ~~`for graphemeCluster in text.byGraphemeCluster()`?~~
-        - **code points**
-            - represented by `UInt32`,
-                - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
-                - Called "auto decoding" in D.
-                - ~~`CodePoint` == `UInt32`~~
-                    - ~~No distinct type for code points necessary, or would it be useful?~~
-            - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
-                - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB 
-            - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
-            - Fast with UTF-32, **but** even with UTF-32 not all grapheme clusters fit into a single code point,
-                - so not:
-                    - emoji with modifier characters like skin tone or variation selector,
-                    - diacritical characters (äöü..., depending on the normal form chosen),
-                    - surely some more ...
-                - Often slower than UTF-8, simply due to its size (cache, memory bandwidth).
+- **Code points** could be represented by `UInt32` or by an distinct type `CodePoint` (== `UInt32`) for code points.
+    - Would it be useful?
 - `WideChar` could be useful for portable code (Linux `UInt32` <-> Windows `UInt16`)
     - But you may use `wchar_t` then.
-- Alternative name/syntax to iterate over:
-    - ~~`for codePoint in text.byCodePoint()`?~~
+- Alternative names/syntax to iterate over:
+    - `for graphemeCluster in text.byGraphemeCluster()`
+    - `for codePoint in text.byCodePoint()`
     - `for codeUnit in "abc 🥸👮🏻".asCodeUnits()`
     - `for codeUnit in text.byCodeUnit()`
     - `for codeUnit in text.byChar()`
