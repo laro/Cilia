@@ -670,15 +670,6 @@ No braces around the condition clause.
 ## Function/Loop Parameter Passing
 - Function call arguments and the loop variable of "for ... in" are **by default passed as `in`**.
 - Explicit override with keywords **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, **`forward`**.
-    - Examples:
-        - `for inout str in stringArray { ... }`
-            - `str` is `String&`
-        - `for inout i in [1, 2, 3] { ... }`
-            - `i` is `Int&`
-        - `for copy str in stringArray { ... }`
-            - `str` is `String`
-        - `for copy i in [1, 2, 3] { ... }`
-            - `i` is `Int`
 - Wording fits nicely for function arguments,  
   and also for `for` loops, then these words describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
 - Parameter passing keywords:
@@ -702,6 +693,11 @@ No braces around the condition clause.
         - to mark as mutable/non-const reference.
         - Technically a non-const/mutable reference (`X&`)
         - Also at the caller `swap(inout a, inout b)`
+        - Examples:
+            - `for inout str in stringArray { ... }`
+                - `str` is `String&`
+            - `for inout i in [1, 2, 3] { ... }`
+                - `i` is `Int&`
     - **`out`**
         - to mark as (non-const) reference.
         - Technically, line `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
@@ -715,6 +711,11 @@ No braces around the condition clause.
     - **`copy`**
         - to create a (mutable) copy (i.e. "by value"). 
         - Technically a non-const/mutable value (`X`)
+        - Examples:
+            - `for copy str in stringArray { ... }`
+                - `str` is `String`
+            - `for copy i in [1, 2, 3] { ... }`
+                - `i` is `Int`
     - **`move`**
         - for move sematics.
         - Technically a right-value reference (`X&&`)
