@@ -679,7 +679,7 @@ No braces around the condition clause.
             - `const X&` as default:
                 - **`concat(String first, String second)`**  
                     - is effectively translated to `concat(const String& first, const String& second)`  
-                      (or `concat(const StringView first, const StringView second)`, if the `X`/`XView`-trick is implemented)
+                      (or to `concat(const StringView first, const StringView second)`, if the `X`/`XView`-trick is implemented)
                 - **`String[] stringArray = ["a", "b", "c"]`**  
                   **`for str in stringArray { ... }`**
                     - `str` is `const String&`  
