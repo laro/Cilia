@@ -681,14 +681,14 @@ No braces around the condition clause.
                   instead of ~~`concat(const String& first, const String& second)`~~ or ~~`concat(const StringView first, const StringView second)`~~
                 - **`String[] stringArray = ["a", "b", "c"]`**  
                   **`for str in stringArray { ... }`**
-                    - `str` is `const String&` (or `const StringView`)
+                    - `str` is `const String&` (or `const StringView`, if the `X`/`XView`-trick is implemented)
             - `const X` for "small types":
                 - `for i in [1, 2, 3] { ... }`
                     - `i` is `const Int`
                 - `for i in 1..<10 { ... }`
                     - `i` is `const Int`
                 - `for str in ["a", "b", "c"] { ... }`
-                    - `str` is `const StringView`
+                    - `str` is `const StringView` (a string-literal like `"a"` is a StringView, therefore `["a", "b", "c"]` is an array of StringViews)
     - **`inout`**
         - to mark as mutable/non-const reference.
         - Technically a non-const/mutable reference (`X&`)
