@@ -165,8 +165,8 @@ As in Python, Kotlin, Swift, JavaScript, Julia.
 - Multiple expressions in a single line _are_ separated by semicolon.  
   `x += offset; y += offset`
 - Only in REPL:
-    - Trailing semicolon used to suppress evaluation output,
-        - as in Matlab, Python, Julia.
+    - Trailing semicolon used to suppress evaluation output,  
+      as in Matlab, Python, Julia.
 
 
 ## Better Readable Keywords
