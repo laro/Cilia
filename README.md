@@ -925,7 +925,7 @@ No braces around the condition clause.
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
                 - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
     - `string.toUpper()`, `string.toLower()`
-        - `toUpper(Sting) -> String`, `toLower(Sting) -> String`
+        - `toUpper(String) -> String`, `toLower(String) -> String`
     - `stringArray.sort()`
         - `sort(Container<String>) -> Container<String>`
     - `compare(stringA, stringB) -> Int`
@@ -990,7 +990,7 @@ No braces around the condition clause.
                 - ~~`for sentence in text.bySentence()`~~
         - Depending on locale
             - `string.toUpper(locale)`, `string.toLower(locale)`
-                - `toUpper(Sting, locale) -> String`, `toLower(Sting, locale) -> String`
+                - `toUpper(String, locale) -> String`, `toLower(String, locale) -> String`
             - `stringArray.sort(locale)`
                 - `sort(Container<String>, locale) -> Container<String>`
             - `compare(stringA, stringB, locale) -> Int`
