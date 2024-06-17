@@ -726,12 +726,12 @@ No braces around the condition clause.
     - Use const _reference_ (`const&`) as general default.
         - `using<type T> T::InArgumentType = const T&`  
     - A "list of exceptions" for the "const _value_ types" (`const X`).
-          ```
-          using Bool::InArgumentType = const Bool
-          using Int32::InArgumentType = const Int32
-          using Int64::InArgumentType = const Int64
-          using Float32::InArgumentType = const Float32
-          using Float64::InArgumentType = const Float64
+        - ```
+          using Bool::InArgumentType       = const Bool
+          using Int32::InArgumentType      = const Int32
+          using Int64::InArgumentType      = const Int64
+          using Float32::InArgumentType    = const Float32
+          using Float64::InArgumentType    = const Float64
           using StringView::InArgumentType = const StringView
           ```
         - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
