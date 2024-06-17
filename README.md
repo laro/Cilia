@@ -682,7 +682,7 @@ No braces around the condition clause.
 - Wording fits nicely for function arguments.  
   Also works for `for` loops, then these words describe how the information (i.e. the variables) get into the body of the loop (or out of it).
     - **`in`**
-        - Default
+        - Is the default if no parameter passing keyword is given.
         - Technically either `const X&` or `const X` (sometimes `const XView`)
             - `const X&` as default:
                 - So simply write **`concat(String first, String second)`**  
@@ -698,10 +698,11 @@ No braces around the condition clause.
                 - `for str in ["a", "b", "c"] { ... }`
                     - `str` is `const StringView`
     - **`inout`**
-        - Technically a non-const/mutable reference (`X&`)
         - to mark as mutable/non-const reference.
+        - Technically a non-const/mutable reference (`X&`)
         - Also at the caller `swap(inout a, inout b)`
-    - **`out`**, to mark as (non-const) reference
+    - **`out`**
+        - to mark as (non-const) reference.
         - Technically, line `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
         - Also at the caller
           ```
@@ -711,13 +712,14 @@ No braces around the condition clause.
           }
           ```
     - **`copy`**
+        - to create a (mutable) copy (i.e. "by value"). 
         - Technically a non-const/mutable value (`X`)
     - **`move`**
-        - Technically a right-value reference (`X&&`)
         - for move sematics.
+        - Technically a right-value reference (`X&&`)
     - **`forward`**
-        - Technically a right-value reference (`X&&`)?
         - for perfect forwarding.
+        - Technically a right-value reference (`X&&`)?
 - Type traits `InArgumentType`  
     - As const _reference_ (`const&`) as general default 
         - `using<type T> T::InArgumentType = const T&`  
