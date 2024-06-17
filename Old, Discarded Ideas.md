@@ -102,7 +102,7 @@ Mixed forms of static and dynamic array maybe useful:
 
 
 ## String, Char & CodePoint
-- **Code points** could be represented by `UInt32` or by an distinct type `CodePoint` (== `UInt32`) for code points.
+- **Code points** could be represented by `UInt32` or by an distinct type `CodePoint` (== `UInt32`).
     - Would it be useful?
 - `WideChar` could be useful for portable code (Linux `UInt32` <-> Windows `UInt16`)
     - But you may use `wchar_t` then.
@@ -120,7 +120,7 @@ Mixed forms of static and dynamic array maybe useful:
 ## `cilia` Standard Library
 - "**Alias**" for 
     - member variables could be written as  
-       `alias x = data[0]`~
+       `alias x = data[0]`
     - member functions could use perfect forwarding
         - But this would not work for virtual functions
 
