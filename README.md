@@ -679,8 +679,9 @@ No braces around the condition clause.
             - `str` is `String`
         - `for copy i in [1, 2, 3] { ... }`
             - `i` is `Int`
-- Wording fits nicely for function arguments.  
-  Also works for `for` loops, then these words describe how the information (i.e. the variables) get into the body of the loop (or out of it).
+- Wording fits nicely for function arguments,  
+  and also for `for` loops, then these words describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
+- Parameter passing keywords:
     - **`in`**
         - Is the default if no parameter passing keyword is given.
         - Technically either `const X&` or `const X` (sometimes `const XView`)
