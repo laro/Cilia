@@ -623,10 +623,8 @@ No braces around the condition clause.
             - `const X` for "small types":
                 - `for i in [1, 2, 3] { ... }`
                     - `i` is `const Int`
-                - `for i in 1..<10 { ... }`
-                    - `i` is `const Int`
                 - `for str in ["a", "b", "c"] { ... }`
-                    - `str` is `const StringView` (a string-literal like `"a"` is a `const StringView`, therefore `["a", "b", "c"]` is a `StringView[]`)
+                    - `str` is `const StringView` (a string-literal like `"a"` forms a `const StringView`, therefore `["a", "b", "c"]` is a `StringView[]`)
     - **`inout`**
         - to mark as mutable/non-const reference.
         - Technically a non-const/mutable reference (`X&`)
