@@ -741,7 +741,7 @@ No braces around the condition clause.
     - Special trick for **types with views**, e.g. `String`/`StringView`:  
       `using String::InArgumentType = const StringView`,  
       so _all_ functions with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. So people do not necessarily need to understand the concept of a `StringView`, they simply write `String`, and nonetheless there is no need to define two functions (one for `String` and one for `StringView`).  
-      If you want to change the String argument, a `in String` AKA `const StringView` is not suitable anyway.
+      If you want to change the string argument, a `in String` AKA `const StringView` is not suitable anyway.
         - Example:
             - **`concat(String first, String second)`**  
                 - extends to `concat(const StringView first, const StringView second)`
