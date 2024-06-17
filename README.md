@@ -740,7 +740,7 @@ No braces around the condition clause.
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`
     - Special trick for **types with views**, e.g. `String`/`StringView`:  
       `using String::InArgumentType = const StringView`,  
-      so _all_ functions with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. So there is no need to define two functions (one for `String` and one for `StringView`) anymore. And people to not necessarily need to understand the concept of a `StringView`, the simply write `String`.  
+      so _all_ functions with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. So people do not necessarily need to understand the concept of a `StringView`, the simply write `String`. And there is no need to define two functions (one for `String` and one for `StringView`) anymore.  
       If you want to change the String argument, a StringView is not suitable anyway.
         - Example:
             - **`concat(String first, String second)`**  
