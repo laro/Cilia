@@ -637,10 +637,18 @@ No braces around the condition clause.
     - **`out`**
         - to mark as (non-const) reference.
         - Technically, like `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
-        - Also at the caller
+        - Also at the caller:
           ```
           String errorDetails
           if not open("...", out errorDetails) {
+              cout << errorDetails
+          }
+          ```
+        - Maybe even with ad-hoc declaration of the out variable:
+          ```
+          if open("...", out String errorDetails) {
+              // ...
+          } else {
               cout << errorDetails
           }
           ```
