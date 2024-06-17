@@ -734,7 +734,7 @@ No braces around the condition clause.
         - `using StringView::InArgumentType = const StringView`
         - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
             - A generic rule.
-            - Could be further refined  
+            - Could be further refined/corrected  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`
     - Special trick for **types with views**, e.g. `String`/`SringView`:  
       `using String::InArgumentType = const StringView`,  
