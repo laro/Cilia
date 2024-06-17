@@ -702,7 +702,7 @@ No braces around the condition clause.
                 - `i` is `Int&`
     - **`out`**
         - to mark as (non-const) reference.
-        - Technically, line `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
+        - Technically, like `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
         - Also at the caller
           ```
           String errorDetails
