@@ -35,8 +35,8 @@ For several topics thwre are alternative ideas, that were discarded but are stil
 
 ## Arrays & ArrayViews
 Mixed forms of static and dynamic array maybe useful:
-- not `Int[3,,]`
-- not `Int[3,4,]`
+- `Int[3,,]`
+- `Int[3,4,]`
 
 
 ## Signed Size
@@ -86,40 +86,9 @@ Mixed forms of static and dynamic array maybe useful:
 
 
 ## Templates
-- **Class** templates
-  ```
-  class MyVector<Number T> {
-      T* numbers = Null
-      Int size = 0
-  }
-  ```
 - **Function** templates
-    - _Automatic_ function templates
-        - If (at least) one of the function arguments is a concept, then the function is (in fact) a function template.
-            - Concept `Number`:
-              ```
-              func sq(Number x) -> Number {
-                   return x * x
-              }
-              ```
-                - However, the return type could be a different type than `x` is (as long as it satisfies the concept `Number`)
-            - `func add(Number a, b) -> Number`
-                - Even `a` and `b` (and of course the return type) could each be a _different_ type (as long as they satisfy the concept `Number`)
-            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
-              ```
-               func sqrt(Real x) -> Real {
-                   // ... a series development ...
-                  // (with number of iterations determined from the size of the mantissa)
-              }
-              ```
-        - Like abbreviated function templates in C++ 20, only without `auto`.
-    - _Explicit_ function templates for cases where a common type is required.
-        - ```
-          func add<Number T>(T x, y) -> T {
-               return x + y
-          }
-          ```
-        - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
+    - _Explicit_ function templates could be written as:
+      `func<Number T> add(T x, y) -> T { return x + y }`
     - For extension function templates it is necessary to know the template parameter(s) for the type that shall be extended, before we write the function name.  
       Therefore we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
