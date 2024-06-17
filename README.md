@@ -282,70 +282,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   ```
 
 
-## `is`, `as`, Casting
-- `is` (type query)
-    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
-        - `obj is Int` (i.e. a type)
-        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
-        - `obj is cilia::Array` (i.e. a template)
-        - `obj is cilia::Integer` (i.e. a concept)
-    - Also support value query?
-- `as`
-    - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
-        - `obj as T` instead of `T(obj)`
-        - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
-        - With `Variant v` where T is one alternative:  
-          `v as T` instead of`std::get<T>(v)`
-        - With `Any a`:  
-          `a as T` instead of `std::any_cast<T>(a)`
-        - With `Optional<T> o`:  
-          `o as T` instead of `o.value()`
-- Constructor casting
-    - `Float(3)`
-    - no classic C-style casting: ~~`(Float) 3`~~
-    - but also
-        - ~~const_cast<>~~
-        - mutable_cast<>
-        - reinterpret_cast<>
-        - static_cast<>?
-- Automatic casts
-    - as in Kotlin,
-    - for template types, references and pointers.
-    - ```
-      func getStringLength(Type obj) -> Int {
-           if obj is String {
-               // "obj" is automatically cast to "String" in this branch
-               return obj.length
-           }
-           // "obj" is still a "Type" outside of the type-checked branch
-           return 0
-      }
-      ```
-    - ```
-      func getStringLength(Type obj) -> Int {
-          if not obj is String
-              return 0
-          // "obj" is automatically cast to "String" in this branch
-          return obj.length
-       }
-      ```
-    - ```
-      func getStringLength(Type obj) -> Int {
-          // "obj" is automatically cast to "String" on the right-hand side of "and"
-          if obj is String  and  obj.length > 0 {
-              return obj.length
-          }
-          return 0
-      }
-      ```
-    - Multiple inheritance is problematic here:
-        - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
-        - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
-            - Workaround: Cast back with `Type(obj).functionOfA()`
-        - ~~Therefore maybe better: `if obj is String str ...`~~
-            - ~~as in C#~~
-
-     
 ## Arrays & ArrayViews
 - `Int[] dynamicArrayOfIntegers`
     - „Dynamic array“ with **dynamic size**
@@ -1189,8 +1125,72 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - no _additional_ thread safety measures
         - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
         - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with better solutions than already available/recommended in C++).
-         
-              
+
+
+## `is`, `as`, Casting
+- `is` (type query)
+    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
+        - `obj is Int` (i.e. a type)
+        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
+        - `obj is cilia::Array` (i.e. a template)
+        - `obj is cilia::Integer` (i.e. a concept)
+    - Also support value query?
+- `as`
+    - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
+        - `obj as T` instead of `T(obj)`
+        - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
+        - With `Variant v` where T is one alternative:  
+          `v as T` instead of`std::get<T>(v)`
+        - With `Any a`:  
+          `a as T` instead of `std::any_cast<T>(a)`
+        - With `Optional<T> o`:  
+          `o as T` instead of `o.value()`
+- Constructor casting
+    - `Float(3)`
+    - no classic C-style casting: ~~`(Float) 3`~~
+    - but also
+        - ~~const_cast<>~~
+        - mutable_cast<>
+        - reinterpret_cast<>
+        - static_cast<>?
+- Automatic casts
+    - as in Kotlin,
+    - for template types, references and pointers.
+    - ```
+      func getStringLength(Type obj) -> Int {
+           if obj is String {
+               // "obj" is automatically cast to "String" in this branch
+               return obj.length
+           }
+           // "obj" is still a "Type" outside of the type-checked branch
+           return 0
+      }
+      ```
+    - ```
+      func getStringLength(Type obj) -> Int {
+          if not obj is String
+              return 0
+          // "obj" is automatically cast to "String" in this branch
+          return obj.length
+       }
+      ```
+    - ```
+      func getStringLength(Type obj) -> Int {
+          // "obj" is automatically cast to "String" on the right-hand side of "and"
+          if obj is String  and  obj.length > 0 {
+              return obj.length
+          }
+          return 0
+      }
+      ```
+    - Multiple inheritance is problematic here:
+        - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
+        - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
+            - Workaround: Cast back with `Type(obj).functionOfA()`
+        - ~~Therefore maybe better: `if obj is String str ...`~~
+            - ~~as in C#~~
+
+
 ## Misc
 - Two-Pass Compiler
     - no forward declarations necessary  
