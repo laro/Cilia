@@ -677,9 +677,9 @@ No braces around the condition clause.
         - Is the default if no parameter passing keyword is given.
         - Technically either `const X&` or `const X` (sometimes `const XView`)
             - `const X&` as default:
-                - So simply write **`concat(String first, String second)`**  
-                  instead of ~~`concat(const String& first, const String& second)`~~  
-                  (or ~~`concat(const StringView first, const StringView second)`~~, if the `X`/`XView`-trick is implemented)
+                - **`concat(String first, String second)`**  
+                    - is effectively translated to `concat(const String& first, const String& second)`  
+                      (or `concat(const StringView first, const StringView second)`, if the `X`/`XView`-trick is implemented)
                 - **`String[] stringArray = ["a", "b", "c"]`**  
                   **`for str in stringArray { ... }`**
                     - `str` is `const String&`  
