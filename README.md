@@ -1055,13 +1055,23 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - as typically used in numerics: BLAS (Basic Linear Algebra Subprograms)
         - `cilia::numerics::Vector<T = Float>`
         - `cilia::numerics::Matrix<T = Float>`
-            - stored column-major
+            - Stored column-major:
+              ```
+              0 3 6
+              1 4 7
+              2 5 8
+              ```
         - `cilia::numerics::MDArray<T = Float, Int dimensions>`
             - also see `MDSpan`
           
 - Image
     - `cilia::Image<T = Float>`
-    - Almost like `cilia::Matrix`, but stored row-major.
+    - Almost like `cilia::Matrix`, but stored row-major:
+      ```
+      0 1 2
+      3 4 5
+      6 7 8
+      ```
       
 - Views, Slices
     - `ArrayView`
