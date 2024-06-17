@@ -15,343 +15,74 @@ For several topics thwre are alternative ideas, that were discarded but are stil
 
 
 ## Basic / Arithmetic Types
-- `Bool`
-    - not ~~`bool`~~ nor ~~`Boolean`~~
-- `Int`, `UInt`
-    - `Int` == `Int64`
-        - `Int` == `Int32` on 32 bit systems only (i.e. old/small platforms).
-        - _No_ ~~`Size`~~ or ~~`SSize`~~, use `Int` instead.
-    - `Int8`, `Int16`, `Int32`, `Int64`
-        - like `int32_t` or `qint32`, but no prefix "q" nor postfix "_t", and in CamelCase
-        - maybe `Int128`, `Int256`
-    - `UInt8`, `UInt16`, `UInt32`, `UInt64`
-        - maybe `UInt128`, `UInt256` e.g. for SHA256
-- `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
-- `BigInt` – Arbitrary Precision Integer
-    - for cryptography, maybe computer algebra, numerics
-    - see [Boost.Multiprecision](https://www.boost.org/doc/libs/1_79_0/libs/multiprecision/doc/html/index.html), [GMP](https://gmplib.org)
-- `Float`
-    - `Float` == `Float32`
-        - Among other things because this is how it works in C/C++
-        - Is faster than Float64 and good enough most of the time
-    - ~~`Float` == `Float64`~~
-        - ~~Among other things because already in C/C++ `1.0` == `Float64` and `1.0f` == `Float32`~~
-        - ~~`Float32` only on certain platforms~~
-    - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
-        - maybe `Float128`, `Float256`
-            - typically probably realized as double-double respectively double-double-double-double
-            - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-    - `BFloat16` (Brain Floating Point)
-    - Mixed arithmetic:
-        - `1 * aFloat` is possible
-            - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
-        - `anInt * aFloat` is possible
-            - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`, i.e. with
-                - `aFloat32 * anInt8`  // OK
-                - `aFloat32 * anInt16` // OK
-                - `aFloat32 * anInt32` // Warning
-                - `aFloat32 * anInt64` // Warning
-                - `aFloat64 * anInt8`  // OK
-                - `aFloat64 * anInt16` // OK
-                - `aFloat64 * anInt32` // OK
-                - `aFloat64 * anInt64` // Warning
-    - `BigFloat<>` for arbitrary precision float,
-        - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
-        - The precision is arbitrary but fixed, either
-          - statically, i.e. at compile time, as part of the BigFloat type, or
-          - dynamically, i.e. at runtime, as property of a BigFloat variable.
+- `Float` could be 64-bit float: `Float` == `Float64`
+    - Among other things because already in C/C++ `1.0` == `Float64` (while `1.0f` == `Float32`)
+    - `Float32` only on certain platforms
 
 
 ## Variable Declaration
-`Int i` as variable declaration, just as in C/C++.
-- `var i = 3` only for type inference  
-  instead of ~~`auto i = 3;`~~
-    - ~~Maybe possible to simply write `i = 3`?~~
-    - ~~Maybe `i := 3`?~~
-- Not
-    - ~~`var Int i`~~
-    - ~~`var i : Int`~~
-    - ~~Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?~~
-        - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
-        - ~~Not starting with `var` could be problematic in connection with omitting the trailing semicolons.~~
-- Examples:
-    - `Int anInt`
-    - **`Float* i, j`   // i _and_ j are pointers**
-        - contrary to C/C++.
-    - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
-    - `const Float*`
-    - `const Float const*`
-- Not allowed / syntax error is:
-    - ~~`Float* i, &j`~~
-        - Type variations within multiple-variable declarations are _not_ allowed.
-        - It has to be the exactly same type.
-    - ~~`Float*i`~~
-        - Whitespace _between_ type specification and variable name is mandatory.
-
-
-## Classes
-- Quite as in C++
-  ```
-  class MyVectorOfInt {
-  public:
-      Int* numbers = Null
-      Int size = 0
-  }
-  ```
-
+- Very short variable declaration:
+    - Maybe possible to simply write `i = 3`?
+    - Maybe `i := 3`?
+- More verbose syntax,
+    - as having `func` for function declaration, but not `var` for variable declaration, may still not be clear enough.
+    - Examples:
+        - `var Int i`
+        - `var i : Int`
+    - Swift, Kotlin and Circle always start variable declarations with `var`.
+    - Not starting with `var` could be problematic in connection with omitting the trailing semicolons.
+  
 
 ## Arrays & ArrayViews
-- `Int[] dynamicArrayOfIntegers`
-    - „Dynamic array“ with **dynamic size**
-      ```
-      Int[] array(3)
-      array[2] = 0
-      array[3] = 0  // Runtime error, no compile time bounds check
-      ```
-    - `T[] array` is the short form of `cilia::Array<T> array`
-        - Not called `cilia::Vector<T>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
-          (See Matrix & Vector, even though they are in other sub-namespaces.)
-    - May be confusing because it is so similar to fixed-size arrays,  
-      **but** IMHO the inconsistency is already in C/C++:
-        - while in C/C++ function declarations:
-            - `int[]` and `int*` are actually the same,
-        - for local variables in C/C++ you write:
-            - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
-              but `int* array = new int[3]` for an int-array of unknown size, so
-            - `int[]` and `int*` mean different things.
-- `Int[3] arrayOfThreeIntegers`  
-  (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
-    - „Static array“ with **fixed size**
-      ```
-      Int[3] array
-      array[2] = 0
-      array[3] = 0  // Compilation error, due to compile time bounds check
-      ```
-    - `arrayOfThreeIntegers.size()` -> `3`
-        - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
-- Use `Int*` for "raw" C/C++ arrays of arbitrary size  
-  ```
-  Int* array = new Int[3]  // Array-to-pointer decay possible
-  array[2] = 0
-  array[3] = 0  // Undefined behaviour, no bounds check at all
-  ```
-    - Recommended to _not_ use subscript for raw pointers anyway,  
-      except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
-- Actually this is how to handle pointer to array of `Int` "properly":
-  ```
-  Int[3]* arrayPtr = new Int[3]
-  *arrayPtr[2] = 0
-  *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-  ```
-- Examples:
-    - `Int[] dynamicArrayOfInt`
-    - `Int[3] arrayOfThreeInt`
-    - `Int[3]* pointerToArrayOfThreeInt`
-    - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
-    - `String*[] dynamicArrayOfPointersToString`
-- ArrayViews AKA Slices AKA Subarrays
-    - `var subarray = array[1..2]`
-    - `var subarray = array[1..<3]`
-    - Incomplete ranges (need lower and/or upper bounds before use) are
-      typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
-        - `var subarray = array[..2]`
-        - `var subarray = array[..]`
-    - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
-- Multidimensional arrays
-    - dynamic size
-        - `Int[,] dynamic2DArray`  
-            - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
-        - `Int[,,] multidimensionalDynamicArray`  
-            - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
-        - and so on:  
-            - `cilia::MDArray<T, N>`
-    - static size
-        - `Int[3, 2, 200]`
-            - Multidimensional static array  
-              ```
-              Int[3, 2, 200] intArray3D
-              intArray3D[2, 1, 199] = 1
-              ```
-- Mixed forms of static and dynamic array
-    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`  
-       ~~not `Int[3,,]`~~
-    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`  
-       ~~not `Int[3,4,]`~~
+Mixed forms of static and dynamic array maybe useful:
+- not `Int[3,,]`
+- not `Int[3,4,]`
 
 
 ## Signed Size
-`Int` (i.e. signed) as type for `*.size()`
-- Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
-    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
-- When working with sizes, calculating the difference is common; Then you are limited to `PtrDiff` (i.e. signed integer) anyway.
-- Who needs more than 2GB of data in a single "array", should please use a 64 bit platform.
-- For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
-- Then types `Size` and `SSize`/`PtrDiff` are not necessary anymore, so two types less.
-    - We simply use `Int` instead. Or `UInt` in rare cases.
-- Restricted rules for mixed integer arithmetic:
-    - `Unsigned +-*/ Signed` is an error
-        - you have to cast
-        - `Int` (i.e. signed) is almost always used anyways
-    - Error with `if aUInt < 0`
-        - if the literal on the right is `<= 0`
-    - Error with `if aUInt < anInt`
-        - you have to cast
-- Not:
-    - ~~`UInt` as type for `*.size()` (i.e. still unsigned)~~  
-      ~~but with new rules for mixed integer arithmetic:~~
-        - ~~Unsigned +-*/ Signed -> Signed.~~
-            - ~~Signed is therefore considered the "larger" type compared to unsigned~~
-            - ~~`1` is `Int` (signed)~~
-                - ~~`1u` is `UInt` (unsigned)~~
-            - ~~Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)~~
-            - ~~But then also `aUInt + 1 == anInt`~~
-    - ~~Or~~
-        - ~~`Size` - `Size` -> `SSize`~~
-            - ~~Problem: `-` results in `SSize`, but `+` results in `Size`?!~~
-        - ~~The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.~~
+- `UInt` as type for `*.size()` (i.e. still unsigned)  
+  but with new rules for mixed integer arithmetic:
+    - Unsigned +-*/ Signed -> Signed.
+        - Signed is therefore considered the "larger" type compared to unsigned
+        - `1` is `Int` (signed)
+            - `1u` is `UInt` (unsigned)
+        - Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)
+        - But then also `aUInt + 1 == anInt`
+- Or
+    - `Size` - `Size` -> `SSize`
+        - Problem: `-` results in `SSize`, but `+` results in `Size`?!
+    - The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.
 
 
 ## Functions
-- Function declarations start with the keyword `func`:
-  ```
-  func multiplyAdd(Int x, y, Float z) -> Float {
-      return x * y  +  z
-  }
-  ```
-    - `func` as in Swift
-    - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
-    - Easier parsing due to clear distinction between function vs. variable declaration.
-- Always and only in the trailing return type syntax.
-- `func function2(`**`Int x, y`**`) -> Float` // x _and_ y are Int
-- **Lambdas**
-    - `[](Int i) -> Float { i * 3.14 }`  
-      as in C++
+- Function declarations could start with the keyword
+    - `fn` (Rust, Carbon, New Circle),
+    - `fun` (Kotlin), or
+    - `function` (Julia)
 - **Extension methods**
-    - To add "member like" functions to "third party" classes/types.
-    - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
-    - Also possible for arithmetic types (like `Int i; i.toString()`)
-        - `func Int::toString() -> String { ... }`  // as in Kotlin
-            - ~~or `func toString (Int this) -> String` ~~
+    - Possible, alternative syntax:  
+      `func toString (Int this) -> String` 
 - **Function pointers**
-    - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
-    - Variant A:
-        - **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
-        - **`func(Int)* pointerToFunctionOfInt`**
-        - `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero; is that useful?
-        - `func(Int)& referenceToFunctionOfInt`
-    - ~~Variant B:~~
-        - ~~`func((Int, Int) -> Int)* pointerToFunctionOfIntAndIntToInt`  // Closer to the function declaration but (too) many brackets~~
-    - ~~Variant C:~~
-        - ~~`(Int, Int -> Int)` [Functions are only available as pointers, so you can omit "*"?]~~
-    - ~~Variant D:~~
-        - ~~`func*(Int->Int) pointerToFunctionOfIntAndIntToInt`~~
-        - ~~`func*(Int) pointerToFunctionOfInt`~~
-    - ~~Variant E:~~
-        - ~~`func*(Int, Int)->Int pointerToFunctionOfIntAndIntToInt`~~
-        - ~~`(func*(Int, Int)->Int)[] arrayOfPointersToFunctionOfIntAndIntToInt`~~
+    - Possible, alternative syntax variants:
+    - Variant B:
+        - `func((Int, Int) -> Int)* pointerToFunctionOfIntAndIntToInt`  // Closer to the function declaration but (too) many brackets
+    - Variant C:
+        - `(Int, Int -> Int)` [Functions are only available as pointers, so you can omit "*"?]
+    - Variant D:
+        - `func*(Int->Int) pointerToFunctionOfIntAndIntToInt`
+        - `func*(Int) pointerToFunctionOfInt`
+    - Variant E:
+        - `func*(Int, Int)->Int pointerToFunctionOfIntAndIntToInt`
+        - `(func*(Int, Int)->Int)[] arrayOfPointersToFunctionOfIntAndIntToInt`
 
           
 ## Operators
-- `a^x` for `pow(a, x)` (as Julia)
-    - ~~or `a**x`? (as Python)~~
-- ~~Remove `++i`, `--i`, `i++`, `i--`?~~
-    - ~~as Python~~
-    - ~~only offer/allow `i += 1`, `i -= 1`~~
-- Default `operator==`
-    - If not defined, then
-        - use negated `operator!=` (if defined), or
-        - use `operator<=>` (if defined), or
-        - use elementwise comparison with `==`
-            - Only possible if all elements themselves offer the `operator==`.
-            - Optimization for simple types: Byte-by-byte comparison.
-- Default `operator!=`
-    - If not defined, then
-        - use negated `operator==` (if defined), or
-        - use `operator<=>` (if defined), or
-        - use negated generated `operator==`.
-- `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
-- `<<` Shift left (here a logical shift with UInt is the same as arithmetic shift with Int)
-- `>>>` Rotate right (circular shift right)
-- `<<<` Rotate left (circular shift left)
-
-
-## `if`, `while`, `for ... in` Branches & Loops
-No braces around the condition clause.
-- if
-    - ```
-      if a > b {
-          // ...
-      }
-      ```
-    - ```
-      if a > b {
-          // ...
-      } else {
-          // ...
-      }
-      ```
-    - ```
-      if a > b {
-          // ...
-      } else if a > c {
-          // ...
-      } else {
-          // ...
-      }
-      ```
-    - `if 1 <= x <= 10 { ... }`
-        - as in Python, Julia, Cpp2 (Herb Sutter)
-- while
-  ```
-  while a > b {
-      // ...
-  }
-  ```
-- do ... while
-  ```
-  do {
-      // ...
-  } while a > b
-  ```
-- `for ... in ...`
-    - as in Rust, Swift
-    - Write
-      ```
-      for str in ["a", "b", "c"] {
-          // ...
-      }
-      ```
-      instead of `for (... : ...)` (AKA C++ range-for, C++/CLI `for each`, C# `foreach`)
-    - The loop variable is declared "in the loop", with its type inferred from the range, array, etc. used (similar to `var`).
-    - Use the range literal to write          
-      `for i in 0..<10  { ... }`  
-      instead of `for (Int i = 0; i < 10; ++i) { ... }`
-        - `for i in 1..10 { ... }`  
-          translates to `for i in Range(1, 10) { ... }`
-        - `for i in 1..<10 { ... }`  
-           translates to `for i in RangeExclusiveEnd(1, 10) { ... }`
-        - Write  
-          `for i in 10..1:-1  { ... }`  
-          instead of `for (Int i = 10; i > 0; --i)  { ... }`
-        - Translates to `for i in RangeWithStep(10, 1, -1) { ... }`
-        - Alternatively write
-            - `for i in (1..10).reversed()`
-            - `for i in RangeWithStep(10..1, -1)`
-    - In general you can replace a C/C++ `for`-loop
-      ```
-      for (<Initialization>; <Condition>; <Increment>) {
-          <Body>
-      }  
-      ```
-      with `while`
-      ```
-      <Initialization>
-      while <Condition> {
-          <Body>
-          <Increment>
-      }
-      ```
-      (OK, curly braces around all of this are necessary to be a perfect replacement.)
+- Possible, alternative syntax for `pow(a, x)`:
+  `a**x` (as Python)
+- Maybe remove `++i`, `--i`, `i++`, `i--`?
+    - as Python
+    - only offer/allow `i += 1`, `i -= 1`
+      oven `i = i + 1`, `i = i - 1`
 
 
 ## Templates
