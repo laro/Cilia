@@ -678,10 +678,12 @@ No braces around the condition clause.
         - Technically either `const X&` or `const X` (sometimes `const XView`)
             - `const X&` as default:
                 - So simply write **`concat(String first, String second)`**  
-                  instead of ~~`concat(const String& first, const String& second)`~~ or ~~`concat(const StringView first, const StringView second)`~~
+                  instead of ~~`concat(const String& first, const String& second)`~~  
+                  (or ~~`concat(const StringView first, const StringView second)`~~, if the `X`/`XView`-trick is implemented)
                 - **`String[] stringArray = ["a", "b", "c"]`**  
                   **`for str in stringArray { ... }`**
-                    - `str` is `const String&` (or `const StringView`, if the `X`/`XView`-trick is implemented)
+                    - `str` is `const String&`  
+                      (or `const StringView`, if the `X`/`XView`-trick is implemented)
             - `const X` for "small types":
                 - `for i in [1, 2, 3] { ... }`
                     - `i` is `const Int`
