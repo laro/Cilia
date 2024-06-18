@@ -124,7 +124,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
             - C: `*.c` `*.h`
         - path based rules
             - to handle C or C++ standard headers in certain directories 
-        - can be set in IDE
+        - can be set in the IDE or on the command line
             - for each file individually 
 
 
