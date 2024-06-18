@@ -240,17 +240,18 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - `var i = 3` only for type inference  
   instead of ~~`auto i = 3;`~~
 - Examples:
-    - `Int anInt`
-    - **`Float* i, j`   // i _and_ j are pointers**
+    - `Int i`
+    - `Int i, j`
+    - **`Float* m, n`   // m _and_ n are pointers**
         - contrary to C/C++.
     - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
-    - `const Float*`
-    - `const Float const*`
+    - `const Float* pointerToConstantFloat`
+    - `const Float const* constPointerToConstantFloat`
 - Not allowed / syntax error is:
-    - ~~`Float* i, &j`~~
+    - ~~`Float* m, &n`~~
         - Type variations within multiple-variable declarations are _not_ allowed.
         - It has to be the exact same type.
-    - ~~`Float*i`~~
+    - ~~`Float*m`~~
         - Whitespace _between_ type specification and variable name is mandatory.
 
 
