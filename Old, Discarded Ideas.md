@@ -26,11 +26,11 @@ For several topics there are alternative ideas, that were discarded but are stil
 - Very short variable declaration:
     - Maybe possible to simply write `i = 3`?
     - Maybe `i := 3`?
-- More verbose syntax,
-    - as having `func` for function declaration, but not `var` for variable declaration, may still not be clear enough.
+- Keyword `var`
     - Examples:
         - `var Int i`
         - `var i : Int`
+    - When having `func` for function declaration, but not `var` for variable declaration, is still not clear enough.
     - Swift, Kotlin and Circle always start variable declarations with `var`.
     - Not starting with `var` could be problematic in connection with omitting the trailing semicolons.
   
