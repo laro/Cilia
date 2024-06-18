@@ -13,7 +13,7 @@ When we are at it, after a quick look at Julia and Python.
 ## Introduction
 - Ideas / a wish list for an "improved" C++
     - with a **simplified** syntax,
-    - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Objective-C, Java, JavaScript, Kotlin, Swift
+    - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)** (roughly like Java, JavaScript, Kotlin, Swift)
     - Isomorphic mapping of all C++ functionality to Cilia possible
         - only with other/better/shorter "expression".
 - C++ "Successor Language / Syntax"
@@ -55,7 +55,7 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
 
 I don't know what exact syntax Bjarne Stroustrup would prefer today, but indeed Cpp2 and Carbon do not feel familiar to me. 
 I like many aspects especially of Cpp2, but _not_ its `name: Type` syntax.
-IMHO it is not necessary to go from the "most vexing parse" right to the "most easy parse".
+IMHO it is not necessary to go from the "most vexing parse" right to the "most easy parse" (despite Rust, Kotlin, and Swift all are having the same syntax).
 
 - Cilia
     - `Int`, `Int32`, `Int64`, `Float`
