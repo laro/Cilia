@@ -26,7 +26,7 @@ For several topics there are alternative ideas, that were discarded but are stil
 - Very short variable declaration:
     - Maybe possible to simply write `i = 3`?
     - Maybe `i := 3`?
-- Keyword `var`
+- Always starting with keyword `var`
     - Examples:
         - `var Int i`
         - `var i : Int`
