@@ -1174,14 +1174,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 ## Interesting Ideas from Other Languages
 - Circle
-    - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
-        - Standardization is better than having multiple different language "dialects"  
-          **but**
-            - for transitioning of existings source code  and
-            - for the evolution of a language
-        - it is a very interesting idea to selectively enable new language features or defaults.
-    - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
-        - Extending C++ for Rust-level safety. 
     - **Fix C++ "wrong defaults"**  
         [Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
         > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
@@ -1220,6 +1212,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Not allowed, use `Null`.
         12. [`this` shouldn't be a pointer.](http://eel.is/c++draft/expr.prim.this#1)
             - Better it is a reference.
+    - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
+        - Standardization is better than having multiple different language "dialects"  
+          **but**
+            - for transitioning of existings source code  and
+            - for the evolution of a language
+        - it is a very interesting idea to selectively enable new language features or defaults.
+    - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
+        - Extending C++ for Rust-level safety.
+
 - Cpp2 (Herb Sutter)
     - [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
     - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
@@ -1251,8 +1252,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - [Named Return Values](https://github.com/ntrel/cpp2?tab=readme-ov-file#named-return-values)
     - [Inspect](https://github.com/ntrel/cpp2?tab=readme-ov-file#inspect),
       a kind of pattern matching.
+
 - Rust
     - Security, of course: borrow checker etc.
+
 - [Julia](https://julialang.org/)
   has very strong math support. Some of its features should be easy to copy.
     - `b = 2a` as short form of `b = 2*a`
