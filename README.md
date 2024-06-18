@@ -158,10 +158,8 @@ As in Python, Kotlin, Swift, JavaScript, Julia.
     - Errors are less easily recognized
         - Walter Bright / D: „Redundancy helps“
     - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
-        - ~~As this is difficult & unclear/disputed: Keep C++ semicolons for now?~~
 - Multiline expressions:
-    - Explicitly via `\` or `(...)` / `[...]` / `{...}` as in Python
-    - ~~Implicitly/clever as in Swift, Kotlin and JavaScript?~~
+    - Explicitly via `\` or `(...)` / `[...]` / `{...}` (as in Python).
 - Multiple expressions in a single line _are_ separated by semicolon.  
   `x += offset; y += offset`
 - Only in REPL:
@@ -175,8 +173,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - Cilia has
     - `var` instead of `auto`
     - `func` instead of `auto`
-    - ~~`class ... extends ...` instead of `class ... : ...`~~
-        - ~~`class ... implements ...` instead of `class ... : ...` for pure abstract classes (like interfaces)~~
     - `type` instead of `typename`
     - `await` instead of `co_await`
     - `yield` instead of `co_yield`
@@ -216,9 +212,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `Float` == `Float32`
         - Among other things because this is how it works in C/C++
         - Is faster than Float64 and good enough most of the time
-    - ~~`Float` == `Float64`~~
-        - ~~Among other things because already in C/C++ `1.0` == `Float64` and `1.0f` == `Float32`~~
-        - ~~`Float32` only on certain platforms~~
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
         - maybe `Float128`, `Float256`
             - typically probably realized as double-double respectively double-double-double-double
@@ -248,14 +241,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 `Int i` as variable declaration, just as in C/C++.
 - `var i = 3` only for type inference  
   instead of ~~`auto i = 3;`~~
-    - ~~Maybe possible to simply write `i = 3`?~~
-    - ~~Maybe `i := 3`?~~
-- Not
-    - ~~`var Int i`~~
-    - ~~`var i : Int`~~
-    - ~~Or is having `func` for function declaration, but not `var` for variable declaration, still not clear enough?~~
-        - ~~Swift, Kotlin and Circle always start variable declarations with `var`.~~
-        - ~~Not starting with `var` could be problematic in connection with omitting the trailing semicolons.~~
 - Examples:
     - `Int anInt`
     - **`Float* i, j`   // i _and_ j are pointers**
@@ -355,10 +340,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
               intArray3D[2, 1, 199] = 1
               ```
 - Mixed forms of static and dynamic array
-    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`  
-       ~~not `Int[3,,]`~~
-    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`  
-       ~~not `Int[3,4,]`~~
+    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
+    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
 
 
 ## Signed Size
@@ -378,19 +361,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - if the literal on the right is `<= 0`
     - Error with `if aUInt < anInt`
         - you have to cast
-- Not:
-    - ~~`UInt` as type for `*.size()` (i.e. still unsigned)~~  
-      ~~but with new rules for mixed integer arithmetic:~~
-        - ~~Unsigned +-*/ Signed -> Signed.~~
-            - ~~Signed is therefore considered the "larger" type compared to unsigned~~
-            - ~~`1` is `Int` (signed)~~
-                - ~~`1u` is `UInt` (unsigned)~~
-            - ~~Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)~~
-            - ~~But then also `aUInt + 1 == anInt`~~
-    - ~~Or~~
-        - ~~`Size` - `Size` -> `SSize`~~
-            - ~~Problem: `-` results in `SSize`, but `+` results in `Size`?!~~
-        - ~~The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.~~
 
 
 ## Functions
@@ -401,7 +371,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   }
   ```
     - `func` as in Swift
-    - ~~or `fn` (Rust, Carbon, New Circle), `fun` (Kotlin), `function` (Julia)~~
     - Easier parsing due to clear distinction between function vs. variable declaration.
 - Always and only in the trailing return type syntax.
 - `func function2(`**`Int x, y`**`) -> Float` // x _and_ y are Int
@@ -416,29 +385,15 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
             - ~~or `func toString (Int this) -> String` ~~
 - **Function pointers**
     - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
-    - Variant A:
+    - Examples:
         - **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
         - **`func(Int)* pointerToFunctionOfInt`**
         - `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero; is that useful?
         - `func(Int)& referenceToFunctionOfInt`
-    - ~~Variant B:~~
-        - ~~`func((Int, Int) -> Int)* pointerToFunctionOfIntAndIntToInt`  // Closer to the function declaration but (too) many brackets~~
-    - ~~Variant C:~~
-        - ~~`(Int, Int -> Int)` [Functions are only available as pointers, so you can omit "*"?]~~
-    - ~~Variant D:~~
-        - ~~`func*(Int->Int) pointerToFunctionOfIntAndIntToInt`~~
-        - ~~`func*(Int) pointerToFunctionOfInt`~~
-    - ~~Variant E:~~
-        - ~~`func*(Int, Int)->Int pointerToFunctionOfIntAndIntToInt`~~
-        - ~~`(func*(Int, Int)->Int)[] arrayOfPointersToFunctionOfIntAndIntToInt`~~
 
           
 ## Operators
 - `a^x` for `pow(a, x)` (as Julia)
-    - ~~or `a**x`? (as Python)~~
-- ~~Remove `++i`, `--i`, `i++`, `i--`?~~
-    - ~~as Python~~
-    - ~~only offer/allow `i += 1`, `i -= 1`~~
 - Default `operator==`
     - If not defined, then
         - use negated `operator!=` (if defined), or
@@ -570,14 +525,9 @@ No braces around the condition clause.
                return x + y
           }
           ```
-        - Not ~~`func<Number T> add(T x, y) -> T { return x + y }`~~
     - For extension function templates it is necessary to know the template parameter(s) for the type that shall be extended, before we write the function name.  
       Therefore we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
-            - Not ~~`func T[N]::size<type T, Int N>() -> Int { return N }`~~
-            - Maybe `template<type T, Int N> func T[N]::size() -> Int { return N }`?
-            - ~~Maybe `class<type T, Int N> func T[N]::size() -> Int { return N }`?~~
-                - `T[N]` is not even a `class`, it's a type.
         - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
             - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~  
               as with  
@@ -587,9 +537,6 @@ No braces around the condition clause.
               not  
               ~~`Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Float, 3, Int>()`~~  
             - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
-            - Maybe `template<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?
-            - ~~Maybe `class<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`?~~
-                - `T[N]` is not even a `class`, it's a type.
 
     - `requires` for further restricting the type.
         - ```
@@ -600,7 +547,6 @@ No braces around the condition clause.
         - TODO Really this syntax: `{ ... } { ... }`?
 - Template **type alias** (with `using`, not ~~`typedef`~~)
     - `using<type T> T::InArgumentType = const T&`
-    - ~~Or `template<type T> using T::InArgumentType = const T&`?~~
 
 
 ## Function/Loop Parameter Passing
@@ -715,10 +661,8 @@ No braces around the condition clause.
 - `True`, `False` are Bool,
     - as in Python,
     - as they are constants.  
-    - ~~`true`, `false` are Bool~~
 - `Null` is the null pointer,
     - it is of the type `NullPtr`,
-        - (or should `NullPtr` be the null pointer, and `NullPtrType` its type?)
     - explicit cast necessary to convert any pointer to `Int`.
 - `123` is an integer literal of arbitrary precision
     - Can be converted to any integer type it fits into (signed and unsigned)
@@ -893,16 +837,12 @@ No braces around the condition clause.
             - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way. 
             - Additional/alternative names?
                 - `for graphemeCluster in text.asGraphemeClusters()`?
-                - ~~`for graphemeCluster in text.byGraphemeCluster()`?~~
         - **code points**
             - represented by `UInt32`,
                 - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
                 - Called "auto decoding" in D.
-                - ~~`CodePoint` == `UInt32`~~
-                    - ~~No distinct type for code points necessary, or would it be useful?~~
             - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB 
-            - ~~`for codePoint in text.byCodePoint()`?~~
             - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
             - Fast with UTF-32, **but** even with UTF-32 not all grapheme clusters fit into a single code point,
                 - so not:
@@ -921,9 +861,6 @@ No braces around the condition clause.
                 - same for
                     - `for codeUnit in "abc 🥸👮🏻"utf8.asArray()`
                     - `for codeUnit in UTF8String("abc 🥸👮🏻").asArray()`
-                    - ? `for codeUnit in "abc 🥸👮🏻".asCodeUnits()`
-                    - ~~`for codeUnit in text.byCodeUnit()`?~~
-                    - ~~`for codeUnit in text.byChar()`?~~
             - `for aChar16 in "abc 🥸👮🏻"`**`utf16`**`.asArray()`
                 - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
                 - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
@@ -967,9 +904,6 @@ No braces around the condition clause.
 - `Char8`, `Char16`, `Char32`
     - are considered as _different_ types for parameter overloading,
     - but otherwise are like `UInt8`, `UInt16`, `UInt32`,
-- So no ~~`WideChar`~~
-    - ~~Or is it useful for portable code (Linux `UInt32` <-> Windows `UInt16`)?~~
-        - ~~You may use `wchar_t` then.~~
 
 - [**ICU**](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode") for advanced Unicode support.
     - "The ICU libraries provide support for:
@@ -987,13 +921,10 @@ No braces around the condition clause.
         - Allows iteration over:
             - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
                 - `for word in text.asWords()`
-                - ~~`for word in text.byWord()`~~
             - lines
                 - `for line in text.asLines()`
-                - ~~`for line in text.byLine()`~~
             - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
                 - `for sentence in text.asSentences()`
-                - ~~`for sentence in text.bySentence()`~~
         - Depending on locale
             - `string.toUpper(locale)`, `string.toLower(locale)`
                 - `toUpper(String, locale) -> String`, `toLower(String, locale) -> String`
@@ -1022,7 +953,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - member variables  
       `using x = data[0]`  
       `using y = data[1]`  
-        - ~~or `alias x = data[0]`?~~
         - Not quite possible in C++.
             - With ...  
               `Float& imaginary = im`  
@@ -1032,9 +962,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
     - member functions
         - `using f() = g()`
-        - ~~Or is perfect forwarding enough?~~
-            - ~~https://stackoverflow.com/a/9864472~~
-            - This would not work for virtual functions
 
 - Matrix & Vector
     - Geometry
@@ -1203,8 +1130,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
         - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
             - Workaround: Cast back with `Type(obj).functionOfA()`
-        - ~~Therefore maybe better: `if obj is String str ...`~~
-            - ~~as in C#~~
 
 
 ## Misc
