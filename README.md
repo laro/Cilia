@@ -1022,9 +1022,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Possible to redefine for interoperability with other languages:
         - Objective-C/Swift classes: Use their reference counting mechanism.  
           `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
-        - C#/Java classes: Use garbage collected memory, manage a global list of C#/Java instance pointers.  
-          `using JavaObject::SmartPtrType = JavaGCPtr`  
+        - C#/.NET classes: Use garbage collected memory, add pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).  
           `using DotNetObject::SmartPtrType = DotNetGCPtr`
+        - Java classes: Use garbage collected memory, add pointers to the global list of Java instance pointers.  
+          `using JavaObject::SmartPtrType = JavaGCPtr`  
 
 
 ## Safety and Security
