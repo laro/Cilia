@@ -464,7 +464,7 @@ No braces around the condition clause.
       instead of `for (... : ...)` (AKA C++ range-for, C++/CLI `for each`, C# `foreach`)
     - The loop variable is declared "in the loop", with its type inferred from the range, array, etc. used (similar to `var`).
     - Use the range literal to write          
-      `for i in 0..<10  { ... }`  
+      `for i in 0..<10 { ... }`  
       instead of `for (Int i = 0; i < 10; ++i) { ... }`
         - `for i in 1..10 { ... }`  
           translates to `for i in Range(1, 10) { ... }`
@@ -474,8 +474,8 @@ No braces around the condition clause.
           instead of `for (Int i = 10; i >= 1; --i) { ... }`
             - Translates to `for i in RangeWithStep(10, 1, -1) { ... }`
             - Alternatively write
-                - `for i in (1..10).reversed()`
-                - `for i in RangeWithStep(10..1, -1)`
+                - `for i in (1..10).reversed() { ... }`
+                - `for i in RangeWithStep(10..1, -1) { ... }`
     - In general you can replace a C/C++ `for`-loop
       ```
       for (<Initialization>; <Condition>; <Increment>) {
