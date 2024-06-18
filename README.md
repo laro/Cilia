@@ -1163,8 +1163,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
     - Via file extension: 
         - "*.cilia" – always the latest language version (if not overridden via ".ciliaVersion")
-        - "*.2024.cilia" – Version from the year 2024
-        - "*.2024b.cilia" – Second version from the year 2024
+        - "*.2024.cilia" – version from the year 2024
+        - "*.2024b.cilia" – second version from the year 2024
 
 
 ## Interesting Ideas from Other Languages
