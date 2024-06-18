@@ -31,8 +31,6 @@ When we are at it, after a quick look at Julia and Python.
     - `SharedPtr<T>` / `T^` etc.
 - The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
   as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
-    - "Cilia" signals something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org)  
-      (so maybe I could add some more of Julias interesting features to this wish list).
 - Why a new language, not extending C++?
     - The [CamelCase style](#style) could basically be archieved in C++, too
     - C++ could be extended by some features:
@@ -1174,7 +1172,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 
 ## Interesting Ideas from Other Languages
-- Circle
+- **Circle**
     - **Fix C++ "wrong defaults"**  
         [Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
         > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
@@ -1222,7 +1220,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
         - Extending C++ for Rust-level safety.
 
-- Cpp2 (Herb Sutter)
+- **Cpp2** (Herb Sutter)
     - [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
     - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
     -  [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
@@ -1254,27 +1252,28 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - [Inspect](https://github.com/ntrel/cpp2?tab=readme-ov-file#inspect),
       a kind of pattern matching.
 
-- Rust
+- **Rust**
     - Security, of course: borrow checker etc.
 
-- [Julia](https://julialang.org/)
-  has very strong math support. Some of its features should be easy to copy.
-    - `b = 2a` as short form of `b = 2*a`
-    - `x ÷ y`, integer divide, like `x / y`, truncated to an integer
-    - `sqrt(x)`, `√x`
-    - `cbrt(x)`, `∛x`
-    - `!=`, `≠`
-    - `<=`, `≤`
-    - `>=`, `≥`
-    - Operator overloading
-        - See:
-            - [https://www.geeksforgeeks.org/operator-overloading-in-julia/](https://www.geeksforgeeks.org/operator-overloading-in-julia/)
-                - „Precedence and associativity:  When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
-                    - That seems quite complicated to parse?!
-                    - I cannot find any other reference to this feature, I assume it is a misunderstanding.
-            - [https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm](https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm)
-        - Much more operators
-            - [https://stackoverflow.com/a/60321302](https://stackoverflow.com/a/60321302)
-    - Many kinds of brackets?
-        - [https://stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
-        - TODO: Are these "unusual" brackets meant to be used as operators?
+- [**Julia**](https://julialang.org/)
+    - "Cilia" sounds like something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org), so maybe I could/should add some more of Julias interesting features to the Cilia wish list.
+    - Julia has very strong math support. Some of its features should be easy to copy.
+        - `b = 2a` as short form of `b = 2*a`
+        - `x ÷ y`, integer divide, like `x / y`, truncated to an integer
+        - `sqrt(x)`, `√x`
+        - `cbrt(x)`, `∛x`
+        - `!=`, `≠`
+        - `<=`, `≤`
+        - `>=`, `≥`
+        - Operator overloading
+            - See:
+                - [https://www.geeksforgeeks.org/operator-overloading-in-julia/](https://www.geeksforgeeks.org/operator-overloading-in-julia/)
+                    - „Precedence and associativity:  When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
+                        - That seems quite complicated to parse?!
+                        - I cannot find any other reference to this feature, I assume it is a misunderstanding.
+                - [https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm](https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm)
+            - Much more operators
+                - [https://stackoverflow.com/a/60321302](https://stackoverflow.com/a/60321302)
+        - Many kinds of brackets?
+            - [https://stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
+            - TODO: Are these "unusual" brackets meant to be used as operators?
