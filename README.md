@@ -1041,8 +1041,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - How to handle classes?
         - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
         - ```
-          template<typename T>
-          class Array {
+          class<type T> Array {
               Array(Int size) noinit { ... }
               Array(Int size, T value) { ... }
           }
