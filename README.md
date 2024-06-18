@@ -251,7 +251,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - Not allowed / syntax error is:
     - ~~`Float* i, &j`~~
         - Type variations within multiple-variable declarations are _not_ allowed.
-        - It has to be the exactly same type.
+        - It has to be the exact same type.
     - ~~`Float*i`~~
         - Whitespace _between_ type specification and variable name is mandatory.
 
