@@ -125,6 +125,7 @@ Mixed forms of static and dynamic array maybe useful:
     - member variables could be written as  
        `alias x = data[0]`,
     - member functions could use perfect forwarding,
+        - see https://stackoverflow.com/a/9864472
         - but that would not work for virtual functions.
 
 
