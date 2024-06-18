@@ -9,10 +9,10 @@ For several topics there are alternative ideas, that were discarded but are stil
 
 
 ## Better Readable Keywords
-- Cilia could have
-    - `class ... extends ...` instead of `class ... : ...`
+- Instead of `class ... : ...` Cilia could have
+    - `class ... extends ...` 
        - good for extending base classes
-    - `class ... implements ...` instead of `class ... : ...` for pure abstract classes (like interfaces)
+    - `class ... implements ...` for pure abstract classes (like interfaces)
        - good fit for implementing pure abstract base classes (like interfaces)
 - But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation?
 
@@ -84,7 +84,7 @@ Mixed forms of static and dynamic array maybe useful:
 - Maybe remove `++i`, `--i`, `i++`, `i--`?
     - as Python
     - only offer/allow `i += 1`, `i -= 1`
-      oven `i = i + 1`, `i = i - 1`
+      or even only `i = i + 1`, `i = i - 1`
 
 
 ## Templates
