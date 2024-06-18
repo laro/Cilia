@@ -1020,8 +1020,11 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - defined via type traits `SmartPtrType`:  
           `using<type T> T::SmartPtrType = SharedPtr<T>`
     - Possible to redefine for interoperability with other languages:
-        - Objective-C/Swift classes: Use their reference counting mechanism.
-        - C#/Java classes: Use garbage collected memory, manage a global list of C#/Java instance pointers.
+        - Objective-C/Swift classes: Use their reference counting mechanism.  
+          `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
+        - C#/Java classes: Use garbage collected memory, manage a global list of C#/Java instance pointers.  
+          `using JavaObject::SmartPtrType = JavaGCPtr`  
+          `using DotNetObject::SmartPtrType = DotNetGCPtr`
 
 
 ## Safety and Security
