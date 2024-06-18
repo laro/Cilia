@@ -129,7 +129,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
 
 
 ## CamelCase Style
-Roughly in the style of Qt, Objective-C/C++, Java, JavaScript, TypeScript, Kotlin, Swift
+Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
 
 - All types and **classes in upper CamelCase**.
     - Basic/arithmetic types
