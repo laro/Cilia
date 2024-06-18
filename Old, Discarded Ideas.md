@@ -79,11 +79,11 @@ Mixed forms of static and dynamic array maybe useful:
 
           
 ## Operators
-- Possible, alternative syntax for `pow(a, x)`:
-  `a**x` (as Python)
+- Possible, alternative syntax for `pow(a, x)`:  
+  `a**x` (as Python did)
 - Maybe remove `++i`, `--i`, `i++`, `i--`?
     - as Python
-    - only offer/allow `i += 1`, `i -= 1`
+    - only offer/allow `i += 1`, `i -= 1`  
       or even only `i = i + 1`, `i = i - 1`
 
 
