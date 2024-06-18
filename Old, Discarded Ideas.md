@@ -122,9 +122,9 @@ Mixed forms of static and dynamic array maybe useful:
 ## `cilia` Standard Library
 - "**Alias**" for 
     - member variables could be written as  
-       `alias x = data[0]`
-    - member functions could use perfect forwarding
-        - But this would not work for virtual functions
+       `alias x = data[0]`,
+    - member functions could use perfect forwarding,
+        - but that would not work for virtual functions.
 
 
 ## `is`, `as`, Casting
