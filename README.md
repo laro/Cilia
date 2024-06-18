@@ -377,7 +377,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
     - Also possible for arithmetic types (like `Int i; i.toString()`)
         - `func Int::toString() -> String { ... }`  // as in Kotlin
-            - ~~or `func toString (Int this) -> String` ~~
 - **Function pointers**
     - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Examples:
