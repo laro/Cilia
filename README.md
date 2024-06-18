@@ -184,7 +184,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
                 - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation
                 - `anInt`**`and`**`anotherInt` -> `Int`
-    - `not` in addiition to `!`
+    - `not` in addition to `!`
         - Both `!` and `not` for negation, as we keep `!=` for "not equal" anyways.
 - `Int32` instead of `int32_t` or `qint32`,
     - so no prefix "q" nor postfix "_t".
