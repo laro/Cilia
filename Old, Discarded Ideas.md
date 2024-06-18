@@ -14,7 +14,7 @@ For several topics there are alternative ideas, that were discarded but are stil
        - good for extending base classes
     - `class ... implements ...` instead of `class ... : ...` for pure abstract classes (like interfaces)
        - good fit for implementing pure abstract base classes (like interfaces)
-But the we would havetwo different keywords. And what about mixed case, i.e. abstract classes with partly function implementation?
+- But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation?
 
 ## Basic / Arithmetic Types
 - `Float` could be 64-bit float: `Float` == `Float64`
