@@ -39,7 +39,7 @@ When we are at it, after a quick look at Julia and Python.
         - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow wrapper for the C++ standard library (i.e. a translation layer).
     - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
        - [Const reference as default type](#const-reference-as-default-type) for function arguments
-       - [Fixing C++ "wrong defaults"](#fix-c-wrong-defaults)
+       - [Fixing C++ "wrong defaults"](#interesting-ideas-from-other-languages)
            - Restricted integral promotions and implicit narrowing conversions, etc.
        - New array declaration (`Int[] array` instead of `Int array[]`)
        - [New/simplified keywords](#better-readable-keywords)
@@ -56,6 +56,9 @@ Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax 
 I don't know what exact syntax Bjarne Stroustrup would prefer today, but indeed Cpp2 and Carbon do not feel familiar to me. 
 I like many aspects especially of Cpp2, but _not_ its `name: Type` syntax.
 IMHO it is not necessary to go from the "most vexing parse" right to the "most easy parse" (despite Rust, Kotlin, and Swift all are having the same syntax).
+
+> [!NOTE]
+> I may not be very familiar with Cpp2 or Carbon, or not up to date.
 
 - Cilia
     - `Int`, `Int32`, `Int64`, `Float`
