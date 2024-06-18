@@ -1171,7 +1171,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - Circle
     - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
         - Standardization is better than having multiple different language "dialects"  
-          **but** for
+          **but**
             - for transitioning of existings source code  and
             - for the evolution of a language
         - it is a very interesting idea to selectively enable new language features or defaults.
