@@ -471,7 +471,7 @@ No braces around the condition clause.
         - `for i in 1..<10 { ... }`  
            translates to `for i in RangeExclusiveEnd(1, 10) { ... }`
         - `for i in 10..1:-1  { ... }`  
-          instead of `for (Int i = 10; i >= 1; --i)  { ... }`
+          instead of `for (Int i = 10; i >= 1; --i) { ... }`
             - Translates to `for i in RangeWithStep(10, 1, -1) { ... }`
             - Alternatively write
                 - `for i in (1..10).reversed()`
