@@ -136,3 +136,15 @@ Mixed forms of static and dynamic array maybe useful:
         - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
         - Therefore maybe better: `if obj is String str ...`
             - as in C#
+
+
+## Misc
+- Versioning of the Cilia source code could alternatively be done
+    - via file ".cilia_version" in a (project) directory,
+    - via file extension: 
+        - "*.cilia2024" – Version from the year 2024
+        - "*.cilia2024b" – Second version from the year 2024
+        - "*.cilia_2024" – Version from the year 2024
+        - "*.cilia_2024b" – Second version from the year 2024
+        - "*.ciliaA"
+        - "*.ciliaB"
