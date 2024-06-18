@@ -95,7 +95,7 @@ Mixed forms of static and dynamic array maybe useful:
         - `template<type T, Int N> func T[N]::size() -> Int { return N }`
         - `template<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`
 - Template **type alias** could be written as:
-    - `template<type T> using T::InArgumentType = const T&`?
+    - `template<type T> using T::InArgumentType = const T&`
 
 
 ## Literals
