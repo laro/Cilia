@@ -108,15 +108,16 @@ Mixed forms of static and dynamic array maybe useful:
     - Would it be useful?
 - `WideChar` could be useful for portable code (Linux `UInt32` <-> Windows `UInt16`)
     - But you may use `wchar_t` then.
-- Alternative names/syntax to iterate over:
-    - `for graphemeCluster in text.byGraphemeCluster()`
-    - `for codePoint in text.byCodePoint()`
-    - `for codeUnit in "abc 🥸👮🏻".asCodeUnits()`
-    - `for codeUnit in text.byCodeUnit()`
-    - `for codeUnit in text.byChar()`
-    - `for word in text.byWord()`
-    - `for line in text.byLine()`
-    - `for sentence in text.bySentence()`
+- Alternative names/syntax to iterate over strings:
+    - `for codeUnit in "abc 🥸👮🏻".asCodeUnits()` (a bit more explicit/clear than `.asArray()`)
+    - Is `byWord()` (like in "word by word") a better naming?
+        - `for graphemeCluster in text.byGraphemeCluster()`
+        - `for codePoint in text.byCodePoint()`
+        - `for codeUnit in text.byCodeUnit()`
+        - `for codeUnit in text.byChar()`
+        - `for word in text.byWord()`
+        - `for line in text.byLine()`
+        - `for sentence in text.bySentence()`
      
 
 ## `cilia` Standard Library
