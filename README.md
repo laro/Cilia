@@ -1159,7 +1159,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `a.shiftOneLeft(inout carry)`
 
 - Versioning of the Cilia source code
-    - Via file ".ciliaVersion" ~~".cilia_version"~~ in a (project) directory,
+    - Via file ".ciliaVersion" in a (project) directory,
         - similar to ".clang_format",
         - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
     - Via file extension: 
