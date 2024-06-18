@@ -12,9 +12,9 @@ For several topics there are alternative ideas, that were discarded but are stil
 - Instead of `class ... : ...` Cilia could have
     - `class ... extends ...` 
        - good for extending base classes
-    - `class ... implements ...` for pure abstract classes (like interfaces)
+    - `class ... implements ...`
        - good fit for implementing pure abstract base classes (like interfaces)
-- But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation?
+- But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation? (Probably best to use `implements` then, but still not nice.)
 
 ## Basic / Arithmetic Types
 - `Float` could be 64-bit float: `Float` == `Float64`
