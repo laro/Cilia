@@ -48,7 +48,7 @@ When we are at it, after a quick look at Julia and Python.
 
 ## Comparison with C++, Cpp2, and Carbon
 Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:  
-Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, but both with a syntax more resembling Rust than C++.  
+While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 
 [Bjarne Stroustrup in an interview (2000):](https://www.stroustrup.com/devXinterview.html)
 > Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
