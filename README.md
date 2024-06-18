@@ -177,13 +177,15 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `await` instead of `co_await`
     - `yield` instead of `co_yield`
     - `return` instead of `co_return`
-    - `and`, `or`, `xor`, `not` instead of `&&`, `||`, `^`, `!`
+    - `and`, `or`, `xor` instead of `&&`, `||`, `^`
         - as in Python, Carbon
         - Used for both
             - boolean operation
                 - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation
                 - `anInt`**`and`**`anotherInt` -> `Int`
+    - `not` in addiition to `!`
+        - Both `!` and `not` for negation, as we keep `!=` for "not equal" anyways.
 - `Int32` instead of `int32_t` or `qint32`,
     - so no prefix "q" nor postfix "_t".
 - When translating C++ code to Cilia then change conflicting names, e.g.
