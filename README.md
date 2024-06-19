@@ -277,7 +277,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - Not called `cilia::Vector<T>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
           (See Matrix & Vector, even though they are in other sub-namespaces.)
     - May be confusing because it is so similar to fixed-size arrays,  
-      **but** IMHO the inconsistency is already in C/C++:
+      but IMHO the inconsistency is **already in C/C++**:
         - while in C/C++ function declarations:
             - `int[]` and `int*` are actually the same,
         - for local variables in C/C++ you write:
