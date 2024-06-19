@@ -4,7 +4,7 @@ Many of C++'s shortcomings stem from the fact that it inherited from C or that b
 Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
 
 **C++ with CamelCase Style**  
-I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), and Qt with the standard library classes as base (actuallly _a variant_ of Qt with exceptions and with namespaces instead of the prefix "Q").
+I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), and (a variant of) Qt with the standard library classes as base (and with exceptions, and with namespaces instead of the prefix "Q").
 
 
 ## Introduction
@@ -359,13 +359,13 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 
 
 ## Functions
-- Function declarations start with the keyword `func`:
-  ```
-  func multiplyAdd(Int x, y, Float z) -> Float {
-      return x * y  +  z
-  }
-  ```
-    - `func` as in Swift
+```
+func multiplyAdd(Int x, y, Float z) -> Float {
+    return x * y  +  z
+}
+```
+- Function declarations start with the keyword `func`,
+    - as in Swift
     - Easier parsing due to clear distinction between function vs. variable declaration.
 - Always and only in the trailing return type syntax.
 - `func function2(`**`Int x, y`**`) -> Float` // x _and_ y are Int
