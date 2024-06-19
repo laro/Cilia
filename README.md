@@ -277,13 +277,13 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - Not called `cilia::Vector<T>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
           (See Matrix & Vector, even though they are in other sub-namespaces.)
     - May be confusing because it is so similar to fixed-size arrays,  
-      but IMHO the inconsistency is **already in C/C++**:
-        - while in C/C++ function declarations:
+      but IMHO the inconsistency is **already in C/C++**:  
+        - while in C/C++ function declarations
             - `int[]` and `int*` are actually the same,
-        - for local variables in C/C++ you write:
-            - `int array[3]` and `int array[] = { 1, 2, 3 }` for in-place arrays,  
-              but `int* array = new int[3]` for an int-array of unknown size, so
-            - `int[]` and `int*` mean different things.
+        - but for local variables in C/C++
+            - `int[]` and `int*` mean different things:
+                - `int array[3]` and `int array[] = { 1, 2, 3 }` are used for in-place arrays,
+                - `int* array = new int[3]` is used for an int-array of unknown size.
 - `Int[3] arrayOfThreeIntegers`  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
     - „Static array“ with **fixed size**
