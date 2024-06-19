@@ -621,6 +621,9 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - for perfect forwarding.
         - Technically a right-value reference (`X&&`)?
 - Type traits `InArgumentType` to determine the concrete type to be used for `in`-passing.
+    - The rule of thumb is:
+        - Objects with a size less than or equal to the size of two pointers (i.e. of up to 16 bytes) are passed by value.
+        - Larger objects are passed by reference.
     - Use const _reference_ (`const&`) as general default.
         - `using<type T> T::InArgumentType = const T&`  
     - A "list of exceptions" for the "const _value_ types" (`const X`).
@@ -634,9 +637,9 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ```
         - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
             - A generic rule.
-            - Could be further refined/corrected  
+            - Could be further refined/corrected with  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
-              as `sizeof(Complex<Float128>)` is 32 bytes, and that is more than the size of two pointers (i.e. more than 16 bytes).
+              as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), while `sizeof(Float128)` is 16 (so pass by value).
     - Special trick for **types with views**, e.g. `String`/`StringView`:  
       `using String::InArgumentType = const StringView`,  
       so _all_ functions with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. So people do not necessarily need to understand the concept of a `StringView`, they simply write `String`, and nonetheless there is no need to define two functions (one for `String` and one for `StringView`).  
