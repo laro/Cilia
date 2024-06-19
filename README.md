@@ -5,9 +5,6 @@ Cilia can call into C++ (and vice versa), but is a separate language, so its _sy
 
 **C++ with CamelCase Style**  
 I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), and (a variant of) Qt with the standard library classes as base (and with exceptions, and with namespaces instead of the prefix "Q").
-  
-**C++ without Semicolons**  
-When we are at it, after a quick look at Julia and Python. 
 
 
 ## Introduction
@@ -153,7 +150,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
 
 
 ## No Trailing Semicolons
-As in Python, Kotlin, Swift, JavaScript, Julia.
+When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Julia.
 - Advantage:
     - Better readability
 - Disadvantage:
