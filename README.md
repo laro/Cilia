@@ -533,7 +533,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
                return x + y
           }
           ```
-    - For extension function templates it is necessary to know the template parameter(s) for the type that shall be extended. That is before we write the function name, where the function-specific template parameters (`<...>`) are defined.  
+    - For templates of extension functions it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are defined.  
       Therefore we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
         - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
