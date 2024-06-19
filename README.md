@@ -302,12 +302,12 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   ```
     - Recommended to _not_ use subscript for raw pointers anyway,  
       except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
-- Actually this is how to handle pointer to array of `Int` "properly":
-  ```
-  Int[3]* arrayPtr = new Int[3]
-  *arrayPtr[2] = 0
-  *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-  ```
+    - Actually this is how to handle pointer to array of `Int` "properly":
+      ```
+      Int[3]* arrayPtr = new Int[3]
+      *arrayPtr[2] = 0
+      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+      ```
 - Examples:
     - `Int[] dynamicArrayOfInt`
     - `Int[3] arrayOfThreeInt`
