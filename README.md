@@ -207,8 +207,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - see [Boost.Multiprecision](https://www.boost.org/doc/libs/1_79_0/libs/multiprecision/doc/html/index.html), [GMP](https://gmplib.org)
 - `Float`
     - `Float` == `Float32`
-        - Among other things because this is how it works in C/C++
-        - Is faster than Float64 and good enough most of the time
+        - Among other things because this is how it works in C/C++.
+        - Is faster than Float64 and good enough most of the time.
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
         - maybe `Float128`, `Float256`
             - typically probably realized as double-double respectively double-double-double-double
