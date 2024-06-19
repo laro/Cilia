@@ -497,7 +497,9 @@ No braces around the condition clause.
 
 
 ## Templates
-- **Class** templates
+The basic new idea ist, to define templates (classes and functions) mostly the same as they are used.
+- **Class** templates  
+  The template parameters (`<...>`) are defined after the class name.
   ```
   class MyVector<Number T> {
       T* numbers = Null
@@ -524,13 +526,14 @@ No braces around the condition clause.
               }
               ```
         - Like abbreviated function templates in C++ 20, only without `auto`.
-    - _Explicit_ function templates for cases where a common type is required.
+    - _Explicit_ function templates for cases where a common type is required.  
+      The template parameters (`<...>`) are defined after the function name.
         - ```
           func add<Number T>(T x, y) -> T {
                return x + y
           }
           ```
-    - For extension function templates it is necessary to know the template parameter(s) for the type that shall be extended, before we write the function name.  
+    - For extension function templates it is necessary to know the template parameter(s) for the type that shall be extended. That is before we write the function name, where the function-specific template parameters (`<...>`) are defined.  
       Therefore we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
         - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
