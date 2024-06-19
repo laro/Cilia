@@ -497,7 +497,7 @@ No braces around the condition clause.
 
 
 ## Templates
-The basic new idea ist, to define templates (classes and functions) mostly the same as they are used.
+The basic new idea is, to define templates (classes and functions) mostly the same as they are used.
 - **Class** templates  
   The template parameters (`<...>`) are defined after the class name.
   ```
