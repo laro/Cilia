@@ -365,7 +365,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 }
 ```
 - Function declarations start with the keyword `func`,
-    - as in Swift
+    - as in Swift.
     - Easier parsing due to clear distinction between function vs. variable declaration.
 - Always and only in the trailing return type syntax.
 - `func function2(`**`Int x, y`**`) -> Float` // x _and_ y are Int
