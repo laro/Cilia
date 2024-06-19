@@ -269,7 +269,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - `Int[] dynamicArrayOfIntegers`
     - „Dynamic array“ with **dynamic size**
       ```
-      Int[] array(3)
+      Int[] array = [1, 2, 3]
       array[2] = 0
       array[3] = 0  // Runtime error, no compile time bounds check
       ```
