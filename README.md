@@ -539,7 +539,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
             - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~  
               as with  
-              `Float[3] arrayOfThreeFloat = { 1.0, 2.0, 3.0 }`  
+              `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]`  
               we would write  
               `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()`  
               not  
