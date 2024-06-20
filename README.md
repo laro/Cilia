@@ -692,7 +692,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - `UInt m = UInt(l)` // Works
         - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
             - `Int n = Int(m)`   // Works
-    - `123` is interpreted as `Int`
+    - `123` is interpreted as `Int` (or Int64, Int128, Int256, BigInt, if required due to the size)
         - in case of type inferring, parameter overloading and template matching.
     - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
         - Store as array of `Int`
@@ -717,7 +717,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - otherwise explicit cast necessary: `Float16(3.1415926)`
     - Difficult: Constexpr constructor that accepts an arbitrary precision float literal  and can store that in ROM
         - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
-    - `1.0` is interpreted as `Float`
+    - `1.0` is interpreted as `Float` (or Float64, Float128, Float256, BigFloat, if required due to the size/precision)
         - in case of type inferring, parameter overloading and template matching.
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
