@@ -397,6 +397,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - `anInt`**`and`**`anotherInt` -> `Int`
 - `not` in addition to `!`
     - Both `!` and `not` for negation, as we keep `!=` for "not equal" anyways.
+      (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
 - Default `operator==`
     - If not defined, then
         - use negated `operator!=` (if defined), or
