@@ -496,7 +496,8 @@ No braces around the condition clause.
 ## Templates
 The basic new idea is, to define templates (classes and functions) mostly the same as they are used.
 - **Class** templates  
-  The template parameters (`<...>`) are defined after the class name.
+  The template parameters (`<...>`) are defined after the class name,  
+  so that the definition is as similar as possible to the usage (in a variable declaration).
   ```
   class MyVector<Number T> {
       T* numbers = Null
@@ -524,7 +525,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               ```
         - Like abbreviated function templates in C++ 20, only without `auto`.
     - _Explicit_ function templates for cases where a common type is required.  
-      The template parameters (`<...>`) are defined after the function name.
+      The template parameters (`<...>`) are defined after the function name,  
+      so that the definition is as similar as possible to the function call.
         - ```
           func add<Number T>(T x, y) -> T {
                return x + y
