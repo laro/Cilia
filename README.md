@@ -54,7 +54,8 @@ I like many aspects especially of Cpp2, but _not_ its `name: Type` syntax.
 IMHO it is not necessary to go from the "most vexing parse" right to the "most easy parse" (despite also Rust, Kotlin, and Swift all are having the same syntax).
 
 > [!NOTE]
-> I may not be very familiar with Cpp2 or Carbon, or not up to date.
+> - I may not be very familiar with Cpp2 or Carbon, or not up to date.
+> - I may not sufficiently up to date with C++14/17/20/23/26 either.
 
 - Cilia
     - `Int`, `Int32`, `Int64`, `Float`
