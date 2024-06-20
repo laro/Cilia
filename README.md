@@ -541,9 +541,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               as with  
               `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]`  
               we would write  
-              `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()`  
-              not  
-              ~~`Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Float, 3, Int>()`~~  
+              `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()` not ~~`convertTo<Float, 3, Int>()`~~  
             - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
 
     - `requires` for further restricting the type.
