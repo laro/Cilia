@@ -526,9 +526,9 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               ```
         - Like abbreviated function templates in C++ 20, only without `auto`.
     - _Explicit_ function templates for cases where a common type is required.  
-      The template parameters (`<...>`) are defined after the function name,  
-      so that the definition is as similar as possible to the function call.
-        - ```
+        - The template parameters (`<...>`) are defined after the function name,  
+          so that the definition is as similar as possible to the function call.
+          ```
           func add<Number T>(T x, y) -> T {
                return x + y
           }
@@ -539,7 +539,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
             - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~, as  
                 - then T and N would be used even before they were declared, and
-                - with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we would write  
+                - with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we want to write  
                   `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()`  
                   (not `                                   ...`~~`convertTo<Float, 3, Int>()`~~)
             - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
