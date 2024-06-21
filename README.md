@@ -1290,6 +1290,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 - **Rust**
     - Security, of course: borrow checker etc.
+    - Ranges
 
 - [**Julia**](https://julialang.org/)
     - "Cilia" sounds like something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org), so maybe I could/should add some more of Julias interesting features to the Cilia wish list.
