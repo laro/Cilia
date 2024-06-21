@@ -1052,7 +1052,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
         - Java classes: Use garbage collected memory, add pointers to the global list of Java instance pointers.  
           `using JavaObject::SmartPtrType = JavaGCPtr`
-            - Probably very similar to .NET/C#.
+            - Probably very similar to C#/.NET.
 
 
 ## Safety and Security
