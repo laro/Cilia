@@ -525,12 +525,6 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ... destructor calls delete[] ...
       }
       ```
-    - TODO ?
-      ```
-      class<type T, Int N> MyUniquePtr<T[N]> {
-          ... destructor calls delete[] ...
-      }
-      ```
 - **Function** templates
     - _Automatic_ function templates
         - If (at least) one of the function arguments is a concept, then the function is (in fact) a function template.
