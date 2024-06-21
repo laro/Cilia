@@ -111,7 +111,7 @@ Mixed forms of static and dynamic array maybe useful:
         - `d` is `const Double`
     - `for String str in ["a", "b", "c"] { ... }`
         - ~~`str` is `const String&` (not `const StringView&`)~~
-        - TODO This dosnn't actually make sense here, you can not get a (const) reference to a string, when the underlying array is in fact a `StringView[]`.
+            - TODO This dosnn't actually make sense here, you can not get a (const) reference to a string, when the underlying array is in fact a `StringView[]`.
         - `str` is `const String` (not `const StringView&`)
     - `for inout String str in ["a", "b", "c"] { ... }`
         - `str` is `String&`
