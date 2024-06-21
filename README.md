@@ -516,6 +516,15 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       Int size = 0
   }
   ```
+    - Partial template specialization
+      ```
+      class MyUniquePtr<type T> {
+          ...
+      }
+      class MyUniquePtr<type T[]> {
+          ...
+      }
+      ```
 - **Function** templates
     - _Automatic_ function templates
         - If (at least) one of the function arguments is a concept, then the function is (in fact) a function template.
