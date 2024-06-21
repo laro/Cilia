@@ -527,7 +527,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
     - TODO ?
       ```
-      class<type T, type N> MyUniquePtr<T[N]> {
+      class<type T, Int N> MyUniquePtr<T[N]> {
           ... destructor call delete[] ...
       }
       ```
