@@ -676,15 +676,6 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - `Matrix` -> `MatrixView`
             - `Image` -> `ImageView`
             - `MDArray` -> `MDArrayView` (AKA MDSpan?)
-    - If you want even the basic type to be different:
-        - `for Double d in [1, 2, 3] { ... }`
-            - `d` is `const Double`
-        - `for String str in ["a", "b", "c"] { ... }`
-            - `str` is `const String&` (not `const StringView&`)
-        - `for inout String str in ["a", "b", "c"] { ... }`
-            - `str` is `String&`
-        - `for copy String str in ["a", "b", "c"] { ... }`
-            - `str` is `String`
 
 
 ## Literals
