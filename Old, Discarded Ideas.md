@@ -88,6 +88,13 @@ Mixed forms of static and dynamic array maybe useful:
 
 
 ## Templates
+- **Class** templates  
+    - Partial template specialization coulb be written
+      ```
+      class<type T, Int N> MyUniquePtr<T[N]> {
+          ... destructor calls delete[] ...
+      }
+      ```
 - **Function** templates
     - _Explicit_ function templates could be written as:
       `func<Number T> add(T x, y) -> T { return x + y }`
