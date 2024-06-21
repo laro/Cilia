@@ -519,16 +519,16 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - Partial template specialization
       ```
       class MyUniquePtr<type T> {
-          ... destructor call delete ...
+          ... destructor calls delete ...
       }
       class MyUniquePtr<type T[Int N]> {
-          ... destructor call delete[] ...
+          ... destructor calls delete[] ...
       }
       ```
     - TODO ?
       ```
       class<type T, Int N> MyUniquePtr<T[N]> {
-          ... destructor call delete[] ...
+          ... destructor calls delete[] ...
       }
       ```
 - **Function** templates
