@@ -1074,7 +1074,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       Int j noinit  // No warning
       Int j = 1     // No warning
       ```
-    - How to handle classes?
+    - Classes / custom types
         - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
         - ```
           class Array<type T> {
@@ -1085,7 +1085,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           Array<Float> anArray(10) noinit  // No warning
           Array<Float> anArray(10, 1.0)    // No warning
           ```
-    - Only for stack variables or also for free memory/heap?
+    - Also for free memory/heap
         - ```
           var array = new Array<Float>(10)         // Warning
           var array = new Array<Float>(10) noinit  // No warning
@@ -1182,7 +1182,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `saturating::Uint`
         - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
-- Operations with carry flag  
+- Operations with carry flag or similar  
   (to implement `Int128`, `Int256` etc.)
     - `c = add(a, b, inout carry)`
     - `a.add(b, inout carry)`
