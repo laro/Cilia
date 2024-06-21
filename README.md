@@ -1049,9 +1049,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
         - C#/.NET classes: Use garbage collected memory, add pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
           `using DotNetObject::SmartPtrType = DotNetGCPtr`
-            - Access/dereferencing  creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the Garbage Collector cannot move it during access).
+            - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
         - Java classes: Use garbage collected memory, add pointers to the global list of Java instance pointers.  
-          `using JavaObject::SmartPtrType = JavaGCPtr`  
+          `using JavaObject::SmartPtrType = JavaGCPtr`
+            - Probably very similar to .NET/C#.
 
 
 ## Safety and Security
