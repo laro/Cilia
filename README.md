@@ -521,7 +521,13 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       class MyUniquePtr<type T> {
           ... destructor call delete ...
       }
-      class MyUniquePtr<type T[]> {
+      class MyUniquePtr<type T[type N]> {
+          ... destructor call delete[] ...
+      }
+      ```
+    - TODO ?
+      ```
+      class<type T, type N> MyUniquePtr<T[N]> {
           ... destructor call delete[] ...
       }
       ```
