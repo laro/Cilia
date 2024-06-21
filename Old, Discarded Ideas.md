@@ -105,6 +105,21 @@ Mixed forms of static and dynamic array maybe useful:
     - `template<type T> using T::InArgumentType = const T&`
 
 
+## Function/Loop Parameter Passing
+- If you want even the basic type to be different, we could write:
+    - `for Double d in [1, 2, 3] { ... }`
+        - `d` is `const Double`
+    - `for String str in ["a", "b", "c"] { ... }`
+        - ~~`str` is `const String&` (not `const StringView&`)~~
+        - TODO This dosnn't actually make sense here, you can not get a (const) reference to a string, when the underlying array is in fact a `StringView[]`.
+        - `str` is `const String` (not `const StringView&`)
+    - `for inout String str in ["a", "b", "c"] { ... }`
+        - `str` is `String&`
+        - TODO This dosnn't actually make sense here, you can not get a (mutable/non-const) reference to a string, when the underlying array is in fact a `StringView[]`.
+    - `for copy String str in ["a", "b", "c"] { ... }`
+        - `str` is `String`
+
+
 ## Literals
 - `true`, `false` are Bool
 - `NullPtr` could be the null pointer, and `NullPtrType` its type.
