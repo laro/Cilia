@@ -1182,7 +1182,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `saturating::Uint`
         - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
-- Operations with carry flag or similar  
+- Operations with carry (flag or more)  
   (to implement `Int128`, `Int256` etc.)
     - `c = add(a, b, inout carry)`
     - `a.add(b, inout carry)`
@@ -1192,6 +1192,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `a.shiftLeftAdd(Int steps, inout addAndHigh)`
     - `b = shiftOneLeft(a, inout carry)`
     - `a.shiftOneLeft(inout carry)`
+      
+- Reserved keyword for _future_ use (maybe, maybe not).
+    - `sruct`
+    - `parallel`
+    - `val`, `let` for const values
+    - `template`
 
 - Versioning of the Cilia source code
     - Via file ".ciliaVersion" in a (project) directory,
