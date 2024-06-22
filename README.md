@@ -262,7 +262,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   }
   ```
 - Not ~~`struct`~~, as it is just too similar to `class` with no real benefit.
-   - Keep as a reserved keywords for future use.
+   - Keep as a reserved keyword for future use.
 
 
 ## Arrays & ArrayViews
@@ -1193,7 +1193,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `b = shiftOneLeft(a, inout carry)`
     - `a.shiftOneLeft(inout carry)`
       
-- Reserved keyword for _future_ use (maybe, maybe not).
+- Reserved keywords for _future_ use (maybe, maybe not).
     - `sruct`
     - `parallel`
     - `val`, `let` for const values
