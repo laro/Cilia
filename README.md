@@ -261,6 +261,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       Int size = 0
   }
   ```
+- Not struct, as it is just to similar to class.
+   - Keep as a reserved keyword for future use.
 
 
 ## Arrays & ArrayViews
