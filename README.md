@@ -262,7 +262,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   }
   ```
 - Not ~~`struct`~~, as it is just too similar to `class` with no real benefit.
-   - Keep as a reserved keyword for future use.
+   - Keep as a reserved keywords for future use.
 
 
 ## Arrays & ArrayViews
