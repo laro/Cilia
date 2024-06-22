@@ -261,7 +261,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       Int size = 0
   }
   ```
-- Not struct, as it is just to similar to class.
+- Not ~~`struct`~~, as it is just too similar to `class` with no real benefit.
    - Keep as a reserved keyword for future use.
 
 
