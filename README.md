@@ -585,10 +585,13 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 
 
 ## Function/Loop Parameter Passing
-- Function call arguments and the loop variable of `for ... in` are **by default passed as `in`**.
-- Explicit override with keywords **`inout`**, **`out`**, **`copy`**, **`move`**, **`forward`**.
-- Wording fits nicely for function arguments,  
-  and also for `for` loops, then these words describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
+- Function call arguments are **by default passed as `in`**.
+    - Explicit override with keywords **`inout`**, **`out`**, **`copy`**, **`move`**, **`forward`**.
+    - Wording fits nicely for function arguments.
+- The loop variable of `for ... in` **by default is passed as `in`**.
+    - Explicit override with keywords **`inout`**, **`copy`**, and **`move`**.  
+      **`out`** and **`forward`** are not applicable here.
+    - For `for` loops these words describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
 - Parameter passing keywords:
     - **`in`**
         - Is the default if no parameter passing keyword is given.
