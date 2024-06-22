@@ -1070,7 +1070,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - **Initialization**
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
     - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
-        - But with virtual memory, it is actually (almost) "free" to initialize with zero.
+        - With virtual memory it is actually (almost) "free" to initialize _large_ arrays with zero. (When using heap memory directly.)
     - We could warn (or maybe even consider it an error) if not initialized,  
       and use a keyword `noinit` to avoid that warning/error.  
       ```
