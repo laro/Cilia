@@ -1022,7 +1022,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               1 4 7
               2 5 8
               ```
-        - `cilia::linearAlgebra::MDArray<T = Float, Int dimensions>`
+        - `cilia::MDArray<T = Float, Int dimensions>`
             - also see `MDSpan`
           
 - Image
