@@ -145,7 +145,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
 
 - Namespaces fully lowercase 
     - `cilia`
-    - `cilia::numerics`
+    - `cilia::lapack`
     - `cilia::geometry`
     - I don't think this is that important, but it helps to differentiate between classes and namespaces.
 
@@ -1002,27 +1002,27 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Static/fixed size
         - For small, fixed size vectors & matrices ,
             - as typically used in geometry (i.e. 2D, 3D, 4D).
-        - `cilia::geometry::Vector<T = Float, Int size>`
-            - `cilia::geometry::Vector2<T = Float>`
-            - `cilia::geometry::Vector3<T = Float>`
-            - `cilia::geometry::Vector4<T = Float>`
-        - `cilia::geometry::Matrix<T = Float, Int rows, Int columns>`
-            - `cilia::geometry::Matrix22<T = Float>`
-            - `cilia::geometry::Matrix33<T = Float>`
-            - `cilia::geometry::Matrix44<T = Float>`
-    - Numerics
+        - `cilia::Vector<T = Float, Int size>`
+            - `cilia::Vector2<T = Float>`
+            - `cilia::Vector3<T = Float>`
+            - `cilia::Vector4<T = Float>`
+        - `cilia::Matrix<T = Float, Int rows, Int columns>`
+            - `cilia::Matrix22<T = Float>`
+            - `cilia::Matrix33<T = Float>`
+            - `cilia::Matrix44<T = Float>`
+    - Linear Algebra
         - Dynamic/variable size
         - For large, dynamically sized vectors & matrices,
-            - as typically used in numerics: BLAS (Basic Linear Algebra Subprograms)
-        - `cilia::numerics::Vector<T = Float>`
-        - `cilia::numerics::Matrix<T = Float>`
+            - as typically used in linear algebra: BLAS (Basic Linear Algebra Subprograms)
+        - `cilia::Vector<T = Float>`
+        - `cilia::Matrix<T = Float>`
             - Stored column-major, like:
               ```
               0 3 6
               1 4 7
               2 5 8
               ```
-        - `cilia::numerics::MDArray<T = Float, Int dimensions>`
+        - `cilia::linearAlgebra::MDArray<T = Float, Int dimensions>`
             - also see `MDSpan`
           
 - Image
