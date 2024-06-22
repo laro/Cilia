@@ -786,8 +786,9 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
                 - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when start >= end ans step > 0).
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - `"Text"` is a `StringView`
-    - Pointer to first character and pointer after the last character
-        - in C++ tradition, but length would also work, of course
+    - Like String starts: pointer to first character and length,
+        - so slicing of String to StringView is possible.
+        - TODO What about small string optimization?
     - No null termination
         - If necessary
             - use `"Text\0“`  or
