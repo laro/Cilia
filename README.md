@@ -666,10 +666,10 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           using StringView::InArgumentType = const StringView
           ```
         - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
-            - A generic rule.
+            - A generic rule: `Complex<T>` is passed the same way as `T`.
             - Could be further refined/corrected with  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
-              as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), while `sizeof(Float128)` is 16 (so pass by value).
+              as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value).
     - Special trick for **types with views**, e.g. `String`/`StringView`:  
       `using String::InArgumentType = const StringView`,  
       so _all_ functions with an `in String` parameter would implicitly accept a `String` and _also_ a `StringView`. So people do not necessarily need to understand the concept of a `StringView`, they simply write `String`, and nonetheless there is no need to define two functions (one for `String` and one for `StringView`).  
