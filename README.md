@@ -824,15 +824,15 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - all elements have the same type.
 - `{1, "Text", 3.0}` is an initialization list
     - e.g. for `Tuple`
-- ```
-  {
-      "Key1": "Value1"
-      "Key2": "Value2"
-      "Key3": "Value3"
-      "Key4": "Value4"
-  }
-  ```
-    - is a `Map<String,String>`
+- `Map<String,String>`
+    - ```
+      {
+          "Key1": "Value1"
+          "Key2": "Value2"
+          "Key3": "Value3"
+          "Key4": "Value4"
+      }
+      ```
 - Rules for user defined literals
     - as in C++.
 
