@@ -91,7 +91,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
           `while i < words.ssize() next i++ { ...; } `          
         - `for (5, 7, 11, 13) do (i) { ...; }`
 - Carbon
-    - `i32`, `i64`, `f32`
+    - [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5), `i32`, `i64`, `f32`
     - `var x: i64 = 42;`
         - `var x: auto = 42;`
         - `var circles: Array(Circle);`
