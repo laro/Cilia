@@ -76,8 +76,8 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `map<string, Circle> mapStringsToCircles`
     - `auto multiply(int x, int y) -> int { return x * y; }`
     - `for (int i = 1; i <= 10; ++i) { ...; }`
-    - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
-    - `for (int i : {5, 7, 11, 13}) { ...; }`
+        - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
+        - `for (int i : {5, 7, 11, 13}) { ...; }`
 - Cpp2
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
@@ -87,9 +87,9 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
     - `multiply: (x: int, y: int) -> int = x * y;`
     - `i := 1;`  
       `while i <= 10 next i++ { ...; } `          
-    - `i := 0;`  
-      `while i < words.ssize() next i++ { ...; } `          
-    - `for (5, 7, 11, 13) do (i) { ...; }`
+        - `i := 0;`  
+          `while i < words.ssize() next i++ { ...; } `          
+        - `for (5, 7, 11, 13) do (i) { ...; }`
 - Carbon
     - `i32`, `i64`, `f32`
     - `var x: i64 = 42;`
@@ -99,9 +99,9 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
     - `fn multiply(x: i64, y: i64) -> i64 { return x * y; }`
     - `var i: i64 = 1;`  
       `while (i <= 10) { ...; ++i; }`
-    - `var i: i64 = 0;`  
-      `while (i < words.ssize()) { ...; ++i; } `          
-    - `for (i:i64 in (5, 7, 11, 13)) { ...; }`
+        - `var i: i64 = 0;`  
+          `while (i < words.ssize()) { ...; ++i; } `          
+        - `for (i:i64 in (5, 7, 11, 13)) { ...; }`
 
 
 ## C++ Language Family
