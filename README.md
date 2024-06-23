@@ -686,7 +686,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       `using String::InArgumentType = const StringView`
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String`, and nonetheless there is no need to define two functions (one for `String` and another for `StringView`).
-        - If you need to change the string argument, then a **`in`**` String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway.
+        - If you need to change the string argument, then a **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on `String`.
         - Example:
             - **`concat(String first, String second)`**  
                 - extends to `concat(const StringView first, const StringView second)`
