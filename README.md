@@ -300,6 +300,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   Int* array = new Int[3]  // Array-to-pointer decay possible
   array[2] = 0
   array[3] = 0  // Undefined behaviour, no bounds check at all
+  delete[] array
   ```
     - Recommended to _not_ use subscript for raw pointers anyway,  
       except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
@@ -308,6 +309,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       Int[3]* arrayPtr = new Int[3]
       *arrayPtr[2] = 0
       *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+      delete[] arrayPtr
       ```
 - Examples:
     - `Int[] dynamicArrayOfInt`
