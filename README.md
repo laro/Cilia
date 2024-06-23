@@ -701,7 +701,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - `Matrix` -> `MatrixView`
             - `Image` -> `ImageView`
             - `MDArray` -> `MDArrayView` (AKA MDSpan?)
-        - Small `View`-classes with a size of 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
+        - Small `...View`-classes with a size of 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
             - ```
               using String::InArgumentType = const StringView
               using Array::InArgumentType  = const ArrayView
