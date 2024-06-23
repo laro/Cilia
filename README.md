@@ -79,7 +79,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
     - `for (int i = 1; i <= 10; ++i) { ...; }`
         - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
         - `for (int i : {5, 7, 11, 13}) { ...; }`
-        - for (const var& word : words) { ... }
+        - `for (const var& word : words) { ... }`
 - Cpp2
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
@@ -92,6 +92,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `i := 0;`  
           `while i < words.ssize() next i++ { ...; } `          
         - `for (5, 7, 11, 13) do (i) { ...; }`
+        - `for words do (word) { ...; }`
 - Carbon
     - [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5), `i32`, `i64`, `f32`
     - `var x: i64 = 42;`
@@ -104,6 +105,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `var i: i64 = 0;`  
           `while (i < words.ssize()) { ...; ++i; } `          
         - `for (i:i64 in (5, 7, 11, 13)) { ...; }`
+        - `for (word: String in words) { ...; }`
 
 
 ## C++ Language Family
