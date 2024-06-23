@@ -104,8 +104,8 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
       `while (i <= 10) { ...; ++i; }`
         - `var i: i64 = 0;`  
           `while (i < words.ssize()) { ...; ++i; } `          
-        - `for (i:i64 in (5, 7, 11, 13)) { ...; }`
-        - `for (word: String in words) { ...; }`
+        - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
+        - `for (word: auto in words) { ...; }`
 
 
 ## C++ Language Family
