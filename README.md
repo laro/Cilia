@@ -683,9 +683,10 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value would be the default).
     - Special **trick for types with views**, e.g. `String`/`StringView`:  
-      `using String::InArgumentType = const StringView`,  
-      so _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`). This way people do not necessarily need to understand the concept of a `StringView`, they simply write `String`, and nonetheless there is no need to define two functions (one for `String` and one for `StringView`).  
-      If you want to change the string argument, then a `in String` AKA `const StringView` is not suitable anyway.
+      `using String::InArgumentType = const StringView`
+        - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
+        - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String`, and nonetheless there is no need to define two functions (one for `String` and another for `StringView`).
+        - If you need to change the string argument, then a `in String` (AKA `const StringView`) is not suitable anyway.
         - Example:
             - **`concat(String first, String second)`**  
                 - extends to `concat(const StringView first, const StringView second)`
