@@ -662,7 +662,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - **`forward`**
         - for perfect forwarding.
         - Technically a right-value reference (`X&&`)?
-- Type traits `InArgumentType` to determine the concrete type to be used for `in`-passing.
+- Type traits **`InArgumentType`** to determine the concrete type to be used for `in`-passing.
     - The rule of thumb is:
         - Objects with a size less than or equal to the size of two pointers (i.e. of up to 16 bytes) are passed by value.
         - Larger objects are passed by reference.
