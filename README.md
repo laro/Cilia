@@ -636,6 +636,12 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ```
         - Maybe even with ad-hoc declaration of the out variable:
           ```
+          if not open("...", out String errorDetails) {
+              cout << errorDetails
+          }
+          ```
+        - Maybe even with broader scope:
+          ```
           if open("...", out String errorDetails) {
               // ...
           } else {
