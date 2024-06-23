@@ -55,7 +55,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
 
 > [!NOTE]
 > - I may not be very familiar with Cpp2 or Carbon, or not up to date.
->     - Is there really no range-literal in neither Cpp2 nor Carbon?
+>     - Is there really no range-literal and no classical for-loop in neither Cpp2 nor Carbon?
 > - I may not sufficiently up to date with C++14/17/20/23/26 either.
 
 - Cilia
