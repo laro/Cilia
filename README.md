@@ -66,8 +66,8 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `Map<String, Circle> mapStringsToCircles`
     - `func multiply(Int x, y) -> Int { return x * y }`
     - `for i in 1..10 { ... }`
-    - `for i in 0..<words.size() { ... }`
-    - `for i in [5, 7, 11, 13] { ... }`
+        - `for i in 0..<words.size() { ... }`
+        - `for i in [5, 7, 11, 13] { ... }`
 - C++
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
