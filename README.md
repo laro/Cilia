@@ -62,7 +62,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
         - `var x = 42`
-        - `Circle[] circles` (short form for `Array<Circle> circles`)
+        - `Circle[] circles`
         - `Map<String, Circle> mapStringsToCircles`
     - `func multiply(Int x, y) -> Int { return x * y }`
     - `for i in 1..10 { ... }`
