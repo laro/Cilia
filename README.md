@@ -163,7 +163,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - `Null`
     - `True`, `False`
     - `NaN`, `Infinity`
-    - `Pi`
+    - `Pi`, `Euler` (feel free to bend/break this rule and define a local constant `var e = Euler`)
     - But not _local_ constants:  
         - `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
 
