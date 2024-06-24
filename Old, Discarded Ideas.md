@@ -36,9 +36,18 @@ For several topics there are alternative ideas, that were discarded but are stil
   
 
 ## Arrays & ArrayViews
-Mixed forms of static and dynamic array maybe useful:
-- `Int[3,,]`
-- `Int[3,4,]`
+- `Int[] dynamicArrayOfIntegers`
+    - May be confusing because it is so similar to fixed-size arrays,  
+      but IMHO the inconsistency is **already in C/C++**:  
+        - in function declarations
+            - `int[]` and `int*` are actually the same,
+        - but for local variables
+            - `int[]` and `int*` mean different things:
+                - `int array[3]` and `int array[] = { 1, 2, 3 }` are used for in-place arrays,
+                - `int* array = new int[3]` is used for an int-array of _unknown size_.
+- Mixed forms of static and dynamic array maybe useful:
+    - `Int[3,,]`
+    - `Int[3,4,]`
 
 
 ## Signed Size
