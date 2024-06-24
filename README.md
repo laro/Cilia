@@ -306,7 +306,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       array[3] = 0  // Compilation error, due to compile time bounds check
       ```
     - `arrayOfThreeIntegers.size()` -> `3`
-        - realized as extension function `func<type T, Int N> T[N]::size() -> Int { return N }`
+        - realized as extension function  
+          `func<type T, Int N> T[N]::size() -> Int { return N }`
 - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
   ```
   Int* array = new Int[3]  // Array-to-pointer decay possible
