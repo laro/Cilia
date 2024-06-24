@@ -169,9 +169,8 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
 
 
 ## No Trailing Semicolons
+For better readability.  
 When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Julia.
-- Advantage:
-    - Better readability
 - Disadvantage:
     - Errors are less easily recognized
         - Walter Bright / D: „Redundancy helps“
