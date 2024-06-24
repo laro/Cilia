@@ -164,7 +164,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - `True`, `False`
     - `NaN`, `Infinity`
     - `Pi`
-    - But not local constants:
+    - But not local constants:  
       `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
 
 
