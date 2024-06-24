@@ -154,6 +154,17 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - `cilia::geometry`
     - I don't think this is that important, but it helps to differentiate between classes and namespaces.
 
+- Instances/object in lower camelCase
+    - `Int`**`i`**
+    - 
+- Global constant in upper CamelCase
+    - `Null`
+    - `True`, `False`
+    - `NaN`, `Infinity`
+    - `Pi`
+    - But not local constants:
+      `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
+
 
 ## No Trailing Semicolons
 When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Julia.
