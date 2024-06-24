@@ -155,8 +155,10 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - I don't think this is that important, but it helps to differentiate between classes and namespaces.
 
 - Instances/object in lower camelCase
-    - `Int`**`i`**
-    - 
+    - `Int i`
+    - `String word`
+    - `String[] words` 
+      
 - Global constant in upper CamelCase
     - `Null`
     - `True`, `False`
