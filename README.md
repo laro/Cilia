@@ -293,17 +293,10 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       ```
     - `T[] array` is the short form of `cilia::Array<T> array`
     - Having a short and traditional syntax for dynamic arrays should encourage people to use it.
-    - It is called `Array<T>`, not ~~`Vector<T>`~~, because
-        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many other languages, not even C)
+    - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
+        - that's the more traditional wording,
+        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many other languages, not even C),
         - `Vector` could easily collide with the mathematical vector (as used in linear algebra or geometry).
-    - May be confusing because it is so similar to fixed-size arrays,  
-      but IMHO the inconsistency is **already in C/C++**:  
-        - in function declarations
-            - `int[]` and `int*` are actually the same,
-        - but for local variables
-            - `int[]` and `int*` mean different things:
-                - `int array[3]` and `int array[] = { 1, 2, 3 }` are used for in-place arrays,
-                - `int* array = new int[3]` is used for an int-array of _unknown size_.
 - `Int[3] arrayOfThreeIntegers`  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
     - „Static array“ with **fixed size**
