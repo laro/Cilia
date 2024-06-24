@@ -292,8 +292,10 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       array[3] = 0  // Runtime error, no compile time bounds check
       ```
     - `T[] array` is the short form of `cilia::Array<T> array`
-        - Not called `cilia::Vector<T>`, because this could easily collide with the mathematical (numerical/geometric) Vector.
-          (See Matrix & Vector, even though they are in other sub-namespaces.)
+    - Having a short and traditional syntax for dynamic arrays should encourage people to use it.
+    - It is called `Array<T>`, not ~~`Vector<T>`~~, because
+        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many other languages, not even C)
+        - `Vector` could easily collide with the mathematical vector (as used in linear algebra or geometry).
     - May be confusing because it is so similar to fixed-size arrays,  
       but IMHO the inconsistency is **already in C/C++**:  
         - in function declarations
