@@ -154,12 +154,12 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - `cilia::geometry`
     - I don't think this is that important, but it helps to differentiate between classes and namespaces.
 
-- Instances/object in lower camelCase
+- Variables/instances/objects in lower camelCase
     - `Int i`
     - `String word`
     - `String[] words` 
       
-- Global constant in upper CamelCase
+- Global constants in upper CamelCase
     - `Null`
     - `True`, `False`
     - `NaN`, `Infinity`
