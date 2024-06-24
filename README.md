@@ -256,6 +256,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - Examples:
     - `Int i`
     - `Int i, j`
+    - `Int i = 1, j = 2`
     - **`Float* m, n`   // m _and_ n are pointers**
         - contrary to C/C++.
     - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
