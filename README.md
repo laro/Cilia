@@ -517,13 +517,13 @@ No braces around the condition clause.
             - Alternatively write
                 - `for i in (1..10).reversed() { ... }`
                 - `for i in RangeWithStep(10..1, -1) { ... }`
-    - In general you can replace a C/C++ `for`-loop
+    - In general you can replace the (overly) powerful C/C++ `for`-loop
       ```
       for (<Initialization>; <Condition>; <Increment>) {
           <Body>
       }  
       ```
-      with `while`
+      with a `while`-loop
       ```
       <Initialization>
       while <Condition> {
