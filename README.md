@@ -294,6 +294,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       array[3] = 0  // Runtime error, no compile time bounds check
       ```
     - `T[] array` is the short form of `cilia::Array<T> array`
+    - "Make simple thigs simple"
     - Having a short and traditional syntax for dynamic arrays should encourage people to use it.
     - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
         - that's the more traditional wording,
