@@ -257,8 +257,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   `var i = 3` instead of ~~`auto i = 3;`~~
 - Examples:
     - `Int i`
-    - `Int i, j`
-    - `Int i = 1, j = 2`
+    - `Int x, y`
+    - `Int x = 0, y = 199`
     - **`Float* m, n`   // m _and_ n are pointers**
         - contrary to C/C++.
     - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
