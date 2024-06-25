@@ -109,7 +109,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
 
 
 ## C++ Language Family
-- **Compatible to C++**, C and maybe other languages of this "**language family**" / "**ecosystem**", even future ones,
+- **Compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",
     - as with
         - Java: Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
         - C#: C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
@@ -117,6 +117,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
     - Bi-directional interoperability, so it is possible to include
         - C++ headers and modules from Cilia,
         - Cilia headers and modules from C++.
+    - Can call C functions, access C structs.
     - The compiler recognises the language (C, C++, or Cilia) by
         - the file extension
             - Cilia: `*.cilia` `*.hilia`  &nbsp;  `*.cl` `*.hl`
