@@ -294,7 +294,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       array[3] = 0  // Runtime error, no compile time bounds check
       ```
     - `T[] array` is the short form of `cilia::Array<T> array`
-    - "Make simple thigs simple"
+    - "Make simple things simple"
     - Having a short and traditional syntax for dynamic arrays should encourage people to use it.
     - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
         - that's the more traditional wording,
@@ -1085,6 +1085,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - for C++/Cilia classes,
         - defined via type traits `SmartPtrType`:  
           `using<type T> T::SmartPtrType = SharedPtr<T>`
+        - “Make simple things simple”
+        - Encourage use of smart pointers.
     - Possible to redefine for interoperability with other languages:
         - Objective-C/Swift classes: Use their reference counting mechanism.  
           `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
