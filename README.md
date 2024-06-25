@@ -157,14 +157,16 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
 - Variables/instances/objects in lower camelCase
     - `Int i`
     - `String word`
-    - `String[] words` 
+    - `String[] words`
+    - Feel free to bend/break this rule and define matrices as `Matrix M, R, L`
+
       
 - Global constants in upper CamelCase
     - `Null`
     - `True`, `False`
     - `NaN`, `Infinity`
     - `Pi`, `Euler` (feel free to bend/break this rule and define a local constant `const var e = Euler`)
-    - But not _local_ constants:  
+    - But keep _local_ constants in lower camelCase:  
         - `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
 
 
