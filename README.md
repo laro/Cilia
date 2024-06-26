@@ -1101,16 +1101,16 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Probably very similar to C#/.NET.
 - Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
     - ASCII
-        - `T+ pointer`
-        - `T# pointer`
-        - `T% pointer`
-        - `T§ pointer`
-        - `T> pointer`
+        - `Type+ pointer`
+        - `Type# pointer`
+        - `Type% pointer`
+        - `Type§ pointer`
+        - `Type> pointer`
     - Latin-1
-        - `T° pointer`
-        - `T• pointer`
-        - `T› pointer`
-        - `T¹ pointer`
+        - `Type° pointer`
+        - `Type• pointer`
+        - `Type› pointer`
+        - `Type¹ pointer`
 
 
 ## Safety and Security
