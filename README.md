@@ -114,7 +114,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
     - Bi-directional interoperability, so it is possible to include
         - C++ headers and modules from Cilia,
         - Cilia headers and modules from C++.
-    - Can call C functions, access C structs.
+    - Can call C functions, access C structs (as C++ can do).
     - The compiler recognises the language (C, C++, or Cilia) by
         - the file extension
             - Cilia: `*.cilia` `*.hilia`  &nbsp;  `*.cl` `*.hl`
