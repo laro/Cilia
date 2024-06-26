@@ -1077,13 +1077,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 
 ## Short Smart Pointer Syntax 
-- `Type^ instance`, inspired by C++/CLI.
+- `Type^ instance`
     - `T^` by default is `SharedPtr<T>`
         - for C++/Cilia classes,
         - defined via type traits `SmartPtrType`:  
           `using<type T> T::SmartPtrType = SharedPtr<T>`
         - “Make simple things simple”
         - Encourage use of smart pointers.
+    - Inspired by C++/CLI (so its a proven possiblilty),  
+      and also Sean Baxter is using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
     - Possible to redefine for interoperability with other languages:
         - Objective-C/Swift classes: Use their reference counting mechanism.  
           `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
@@ -1093,6 +1095,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Java classes: Use garbage collected memory, add pointers to the global list of Java instance pointers.  
           `using JavaObject::SmartPtrType = JavaGCPtr`
             - Probably very similar to C#/.NET.
+- Other conceivable variants:
+    - `T+`
+    - `T#`
+    - `T%`
+    - `T§`
+    - `T°`
+    - for `UniquePtr<T>`, `WeakPtr<T>`, ...
 
 
 ## Safety and Security
