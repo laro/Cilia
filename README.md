@@ -61,7 +61,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `var x = 42`
         - `Circle[] circles`
         - `Map<String, Circle> mapStringToCircle`
-    - `func multiply(Int x, y) -> Int { return x * y }`
+    - `func multiply(Int a, b) -> Int { return a * b }`
     - `for i in 1..10 { ... }`
         - `for i in 0..<words.size() { ... }`
         - `for i in [5, 7, 11, 13] { ... }`
@@ -72,7 +72,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `auto x = 42;`
         - `vector<Circle> circles;`
         - `map<string, Circle> mapStringToCircle`
-    - `auto multiply(int x, int y) -> int { return x * y; }`
+    - `auto multiply(int a, int b) -> int { return a * b; }`
     - `for (int i = 1; i <= 10; ++i) { ...; }`
         - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
         - `for (int i : {5, 7, 11, 13}) { ...; }`
@@ -83,7 +83,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `x := 42;`
         - `circles: vector<Circle>;`
         - `mapStringToCircle: map<string, Circle>;`
-    - `multiply: (x: int, y: int) -> int = x * y;`
+    - `multiply: (a: int, b: int) -> int = a * b;`
     - `i := 1;`  
       `while i <= 10 next i++ { ...; } `          
         - `i := 0;`  
@@ -96,7 +96,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `var x: auto = 42;`
         - `var circles: Array(Circle);`
         - `var mapStringToCircle: HashMap(String, Circle);`
-    - `fn multiply(x: i64, y: i64) -> i64 { return x * y; }`
+    - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
     - `var i: i64 = 1;`  
       `while (i <= 10) { ...; ++i; }`
         - `var i: i64 = 0;`  
