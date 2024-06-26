@@ -1095,13 +1095,18 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Java classes: Use garbage collected memory, add pointers to the global list of Java instance pointers.  
           `using JavaObject::SmartPtrType = JavaGCPtr`
             - Probably very similar to C#/.NET.
-- Other conceivable variants:
-    - `T+`
-    - `T#`
-    - `T%`
-    - `T§`
-    - `T°`
-    - for `UniquePtr<T>`, `WeakPtr<T>`, ...
+- Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
+    - ASCII
+        - `T+`
+        - `T#`
+        - `T%`
+        - `T§`
+        - `T>`
+    - Latin-1
+        - `T°`
+        - `T•`
+        - `T›`
+        - `T¹`
 
 
 ## Safety and Security
