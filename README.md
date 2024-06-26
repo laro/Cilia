@@ -1078,7 +1078,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 
 ## Short Smart Pointer Syntax 
-- `Type^ instance`
+- `Type^ pointer`
     - `T^` by default is `SharedPtr<T>`
         - for C++/Cilia classes,
         - defined via type traits `SmartPtrType`:  
@@ -1101,16 +1101,16 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Probably very similar to C#/.NET.
 - Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
     - ASCII
-        - `T+`
-        - `T#`
-        - `T%`
-        - `T§`
-        - `T>`
+        - `T+ pointer`
+        - `T# pointer`
+        - `T% pointer`
+        - `T§ pointer`
+        - `T> pointer`
     - Latin-1
-        - `T°`
-        - `T•`
-        - `T›`
-        - `T¹`
+        - `T° pointer`
+        - `T• pointer`
+        - `T› pointer`
+        - `T¹ pointer`
 
 
 ## Safety and Security
