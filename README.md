@@ -161,7 +161,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
       
 - Global constants in upper CamelCase
     - `Pi`, `Euler` (feel free to bend/break this rule and define a local constant `const var e = Euler`)
-    - `Null`
+    - `NullPtr`
     - `True`, `False`
     - `NaN`, `Infinity`
     - But keep _local_ constants in lower camelCase:  
@@ -274,7 +274,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   ```
   class MyVectorOfInt {
   public:
-      Int* numbers = Null
+      Int* numbers = NullPtr
       Int size = 0
   }
   ```
@@ -538,7 +538,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
   The template parameters (`<...>`) are defined after the class name, so that the definition is as similar as possible to the usage (in a variable declaration).
   ```
   class MyVector<Number T> {
-      T* numbers = Null
+      T* numbers = NullPtr
       Int size = 0
   }
   ```
@@ -728,8 +728,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 - `True`, `False` are Bool,
     - as in Python,
     - as they are constants.  
-- `Null` is the null pointer,
-    - it is of the type `NullType`,
+- `NullPtr` is the null pointer,
+    - it is of the type `NullPtrType`,
     - explicit cast necessary to convert any pointer to `Int`.
 - `123` is an integer literal of arbitrary precision
     - Can be converted to any integer type it fits into (signed and unsigned)
@@ -1149,7 +1149,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - `is` (type query)
     - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
         - `obj is Int` (i.e. a type)
-        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != Null`
+        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != NullPtr`
         - `obj is cilia::Array` (i.e. a template)
         - `obj is cilia::Integer` (i.e. a concept)
     - Also support value query?
@@ -1286,7 +1286,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Curly brackets only for initializer lists, i.e. for tuples, lists etc.
             - Square brackets for arrays.
         11. [`0` shouldn't be a null pointer constant.](http://eel.is/c++draft/expr#conv.ptr-1)
-            - Not allowed, use `Null`.
+            - Not allowed, use `NullPtr`.
         12. [`this` shouldn't be a pointer.](http://eel.is/c++draft/expr.prim.this#1)
             - Better it is a reference.
     - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
