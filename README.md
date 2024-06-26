@@ -1086,6 +1086,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Encourage use of smart pointers.
     - Inspired by C++/CLI (so its a proven possiblilty),  
       and also Sean Baxter is using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
+    - **But** there is an inconsistency in its usage:
+        - A normal pointer `T* pointer` is dereferenced with `*pointer`.
+        - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
     - Possible to redefine for interoperability with other languages:
         - Objective-C/Swift classes: Use their reference counting mechanism.  
           `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
