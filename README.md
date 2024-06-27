@@ -696,19 +696,20 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - Could be further refined/corrected with  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value would be the default).
-- Special **trick for types with views**, e.g. `String`/`StringView`:
-    - `using String::InArgumentType = const StringView`
+- Special **trick for types with views**
+    - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
+      like:  
+        - `String` -> `StringView`
+        - `Array` -> `ArrayView`
+        - `Vector` -> `VectorView`
+        - `Matrix` -> `MatrixView`
+        - `Image` -> `ImageView`
+        - `MDArray` -> `MDArrayView` (AKA MDSpan?)
+    - With `String`/`StringView`:  
+     `using String::InArgumentType = const StringView`
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String`, and nonetheless there is no need to define two functions (one for `String` and another for `StringView`).
         - If you need to change the string argument, then a **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on `String`.
-        - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
-          like:  
-            - `String` -> `StringView`
-            - `Array` -> `ArrayView`
-            - `Vector` -> `VectorView`
-            - `Matrix` -> `MatrixView`
-            - `Image` -> `ImageView`
-            - `MDArray` -> `MDArrayView` (AKA MDSpan?)
         - Example:
             - **`concat(String first, String second)`**  
                 - extends to `concat(const StringView first, const StringView second)`
@@ -718,7 +719,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - Small `...View`-classes with a size of 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
             - ```
               using String::InArgumentType = const StringView
-              using Array::InArgumentType  = const ArrayView
+              using  Array::InArgumentType = const ArrayView
               using Vector::InArgumentType = const VectorView
               ```
         - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixView`, `ImageView`, and `MDArrayView`) will be passed by reference:
@@ -727,7 +728,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               using Image::InArgumentType   = const ImageView&
               using MDArray::InArgumentType = const MDArrayView&
               ```
-    - `CopyArgumentType`
+    - **`CopyArgumentType`**
         - of a type `T` typically simply is `T`  
           `using<type T> T::CopyArgumentType = T`  
         - but for `View`-types it is:
@@ -735,9 +736,9 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           using  StringView::CopyArgumentType = String
           using   ArrayView::CopyArgumentType = Array
           using  VectorView::CopyArgumentType = Vector
-          using  MatrixView::CopyArgumentType = MatrixView
-          using   ImageView::CopyArgumentType = ImageView
-          using MDArrayView::CopyArgumentType = MDArrayView
+          using  MatrixView::CopyArgumentType = Matrix
+          using   ImageView::CopyArgumentType = Image
+          using MDArrayView::CopyArgumentType = MDArray
           ```
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
