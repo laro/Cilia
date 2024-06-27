@@ -297,7 +297,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - Having a short and traditional syntax for dynamic arrays should encourage people to use it.
     - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
         - that's the more traditional wording,
-        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many other languages, not even C),
+        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many other languages than C++, not even C),
         - `Vector` could easily collide with the mathematical vector (as used in linear algebra or geometry).
 - `Int[3] arrayOfThreeIntegers`  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
