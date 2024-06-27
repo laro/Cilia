@@ -263,7 +263,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
     - `const Float* pointerToConstantFloat`
     - `const Float const* constPointerToConstantFloat`
-- Not allowed / syntax error is:
+- Not allowed / a syntax error is:
     - ~~`Float* m, &n`~~
         - Type variations within multiple-variable declarations are _not_ allowed.
         - It has to be the exact same type.
