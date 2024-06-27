@@ -663,18 +663,13 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - to create a (mutable) copy (i.e. pass "by value"). 
         - Technically a non-const/mutable value (`X`)
         - Examples:
-            - `for copy str in stringArray { ... }`
-                - `str` is `String`
             - `for copy i in [1, 2, 3] { ... }`
                 - `i` is `Int`
-            - When we have a **`CopyArgumentType`**
-              ```
-              using<type T> T::CopyArgumentType  = T
-              using StringView::CopyArgumentType = String
-              ```
-              then
-                - `for copy str in ["an", "array", "of", "words"] { ... }`
-                    - `str` is `String` (not ~~`StringView`~~)
+            - `for copy str in stringArray { ... }`
+                - `str` is `String`
+            - `for copy str in ["an", "array", "of", "words"] { ... }`
+                - `str` is `StringView` (not ~~`StringView`~~)
+                  (or `const String`, if the `X`/`XView`-copy-trick is implemented)
     - **`move`**
         - for move sematics.
         - Technically a right-value reference (`X&&`)
@@ -701,8 +696,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - Could be further refined/corrected with  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value would be the default).
-    - Special **trick for types with views**, e.g. `String`/`StringView`:  
-      `using String::InArgumentType = const StringView`
+- Special **trick for types with views**, e.g. `String`/`StringView`:
+    - `using String::InArgumentType = const StringView`
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String`, and nonetheless there is no need to define two functions (one for `String` and another for `StringView`).
         - If you need to change the string argument, then a **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on `String`.
@@ -712,14 +707,6 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - **`String[] stringArray = ["a", "b", "c"]`**  
               **`for str in stringArray { ... }`**
                 - `str` is `const StringView`
-        - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
-          like:  
-            - `String` -> `StringView`
-            - `Array` -> `ArrayView`
-            - `Vector` -> `VectorView`
-            - `Matrix` -> `MatrixView`
-            - `Image` -> `ImageView`
-            - `MDArray` -> `MDArrayView` (AKA MDSpan?)
         - Small `...View`-classes with a size of 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
             - ```
               using String::InArgumentType = const StringView
@@ -732,6 +719,22 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               using Image::InArgumentType   = const ImageView&
               using MDArray::InArgumentType = const MDArrayView&
               ```
+        - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
+          like:  
+            - `String` -> `StringView`
+            - `Array` -> `ArrayView`
+            - `Vector` -> `VectorView`
+            - `Matrix` -> `MatrixView`
+            - `Image` -> `ImageView`
+            - `MDArray` -> `MDArrayView` (AKA MDSpan?)
+    - `CopyArgumentType`
+      ```
+      using<type T>  T::CopyArgumentType = T
+      using StringView::CopyArgumentType = String
+      ```
+      then
+        - `for copy str in ["an", "array", "of", "words"] { ... }`
+            - `str` is `String` (not ~~`StringView`~~)
 
 
 ## Literals
