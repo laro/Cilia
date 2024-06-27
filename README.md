@@ -697,15 +697,17 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value would be the default).
 - Special **trick for types with views**
-    - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
-      like:  
-        - `String` -> `StringView`
-        - `Array` -> `ArrayView`
-        - `Vector` -> `VectorView`
-        - `Matrix` -> `MatrixView`
-        - `Image` -> `ImageView`
-        - `MDArray` -> `MDArrayView` (AKA MDSpan?)
-    - With `String`/`StringView`:  
+    - Applicable only for types `X` that have an `XView` counterpart and where
+        - `X` can implicitly be converted/reduced to `XView` and
+        - `XView` can (explicitly) be converted to `X`,
+    - like:  
+        - `String` - `StringView`
+        - `Array` - `ArrayView`
+        - `Vector` - `VectorView`
+        - `Matrix` - `MatrixView`
+        - `Image` - `ImageView`
+        - `MDArray` - `MDArrayView` (AKA MDSpan?)
+    - As example, with `String`/`StringView`:  
      `using String::InArgumentType = const StringView`
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String`, and nonetheless there is no need to define two functions (one for `String` and another for `StringView`).
