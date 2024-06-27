@@ -1256,6 +1256,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 
 ## Misc
+- Casting via constructor is `explicit` by default, `implicit` as option.
+  
 - Two-Pass Compiler
     - no forward declarations necessary  
       as in C#, Java
@@ -1286,6 +1288,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `parallel`
     - `val`, `let` for const values
     - `template`
+    - `interface` for pure abstract base classes
 
 - Versioning of the Cilia source code
     - Via file ".ciliaVersion" in a (project) directory,
