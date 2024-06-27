@@ -471,7 +471,7 @@ No braces around the condition clause.
       }
       ```
     - `if 1 <= x <= 10 { ... }`
-        - as in Python, Julia, Cpp2 (Herb Sutter)
+        - chained comparison as in Cpp2 (Herb Sutter), Python, Julia
 - while
   ```
   while a > b {
