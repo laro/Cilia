@@ -5,7 +5,7 @@ For several topics there are alternative ideas, that were discarded but are stil
 ## No Trailing Semicolons
 - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
 - Implicitly/clever multiline expressions as in Swift, Kotlin and JavaScript?  
-  (Actually I don't know ot don't remember the rules anymore.)
+  (Actually I don't know / remember the rules anymore.)
 
 
 ## Better Readable Keywords
