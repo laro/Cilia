@@ -138,7 +138,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
         - `Int`, `Int8`, `Int16`, `Int32`, `Int64`, `UInt`, `BigInt`
         - `Byte`, `Char`
         - `Float`, `Float32`, `Float64`, `BFloat16`, `BigFloat`
-    - Cilia standard library (`cilia::` instead of `std::`)
+    - Cilia standard library
         - `cilia::String` instead of `std::string`
         - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
