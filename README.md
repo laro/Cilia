@@ -336,7 +336,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `var subarray = array[1..2]`
     - `var subarray = array[1..<3]`
     - Incomplete ranges (need lower and/or upper bounds before use) are
-      typcally implemented as inline functions that determine the concrete bounds an then call `array[start..end]` (or one of the exclusive counterparts).
+      typcally implemented as inline functions that determine the concrete bounds and then call `array[start..end]` (or one of the exclusive counterparts).
         - `var subarray = array[..2]`
         - `var subarray = array[..]`
     - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
