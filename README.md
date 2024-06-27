@@ -161,9 +161,10 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
       
 - Global constants in upper CamelCase
     - `Pi`, `Euler` (feel free to bend/break this rule and define a local constant `const var e = Euler`)
-    - `NullPtr`
-    - `True`, `False`
-    - `NaN`, `Infinity`
+    - Constant-like keywords
+        - `NullPtr`
+        - `True`, `False`
+        - `NaN`, `Infinity`
     - But keep _local_ constants in lower camelCase:  
         - `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
 
