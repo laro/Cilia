@@ -726,8 +726,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               ```
         - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixView`, `ImageView`, and `MDArrayView`) will be passed by reference:
             - ```
-              using Matrix::InArgumentType  = const MatrixView&
-              using Image::InArgumentType   = const ImageView&
+              using  Matrix::InArgumentType = const MatrixView&
+              using   Image::InArgumentType = const ImageView&
               using MDArray::InArgumentType = const MDArrayView&
               ```
     - **`CopyArgumentType`**
