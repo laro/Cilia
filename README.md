@@ -668,7 +668,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - `for copy str in stringArray { ... }`
                 - `str` is `String`
             - `for copy str in ["an", "array", "of", "words"] { ... }`
-                - `str` is `StringView` (not ~~`StringView`~~)
+                - `str` is `StringView`  
                   (or `const String`, if the `X`/`XView`-copy-trick is implemented)
     - **`move`**
         - for move sematics.
