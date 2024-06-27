@@ -298,7 +298,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
         - that's the more traditional wording,
         - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many other languages than C++, not even C),
-        - `Vector` could easily collide with the mathematical vector (as used in linear algebra or geometry).
+        - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
 - `Int[3] arrayOfThreeIntegers`  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
     - „Static array“ with **fixed size**
