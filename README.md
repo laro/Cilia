@@ -105,7 +105,7 @@ IMHO it is not necessary to go from the "most vexing parse" right to the "most e
         - `for (word: auto in words) { ...; }`
 
 
-## C++ Compatibility
+## C++ Compatibility / Interoperability
 - **Compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",
     - as with
         - Java: Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
