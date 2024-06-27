@@ -633,7 +633,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - Examples:
             - `for inout str in stringArray { ... }`
                 - `str` is `String&`
-            - `for inout i in [1, 2, 3] { ... }`
+            - `for inout i in intArray { ... }`
                 - `i` is `Int&`
     - **`out`**
         - to mark as (non-const) reference.
@@ -667,6 +667,14 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
                 - `str` is `String`
             - `for copy i in [1, 2, 3] { ... }`
                 - `i` is `Int`
+            - When we have a `CopyArgumentType`
+              ```
+              using<type T> T::CopyArgumentType  = T
+              using StringView::CopyArgumentType = String
+              ```
+              then
+                - `for copy str in ["an", "array", "of", "words"] { ... }`
+                    - `str` is `String` (not ~~`StringView`~~)
     - **`move`**
         - for move sematics.
         - Technically a right-value reference (`X&&`)
