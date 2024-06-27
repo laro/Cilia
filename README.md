@@ -684,11 +684,11 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `using<type T> T::InArgumentType = const T&`  
     - A "list of exceptions" for the "const _value_ types".
         - ```
-          using Bool::InArgumentType       = const Bool
-          using Int32::InArgumentType      = const Int32
-          using Int64::InArgumentType      = const Int64
-          using Float32::InArgumentType    = const Float32
-          using Float64::InArgumentType    = const Float64
+          using       Bool::InArgumentType = const Bool
+          using      Int32::InArgumentType = const Int32
+          using      Int64::InArgumentType = const Int64
+          using    Float32::InArgumentType = const Float32
+          using    Float64::InArgumentType = const Float64
           using StringView::InArgumentType = const StringView
           ```
         - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
@@ -719,14 +719,6 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               using Image::InArgumentType   = const ImageView&
               using MDArray::InArgumentType = const MDArrayView&
               ```
-        - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
-          like:  
-            - `String` -> `StringView`
-            - `Array` -> `ArrayView`
-            - `Vector` -> `VectorView`
-            - `Matrix` -> `MatrixView`
-            - `Image` -> `ImageView`
-            - `MDArray` -> `MDArrayView` (AKA MDSpan?)
     - `CopyArgumentType`
       ```
       using<type T>  T::CopyArgumentType = T
@@ -735,6 +727,14 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       then
         - `for copy str in ["an", "array", "of", "words"] { ... }`
             - `str` is `String` (not ~~`StringView`~~)
+    - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
+      like:  
+        - `String` -> `StringView`
+        - `Array` -> `ArrayView`
+        - `Vector` -> `VectorView`
+        - `Matrix` -> `MatrixView`
+        - `Image` -> `ImageView`
+        - `MDArray` -> `MDArrayView` (AKA MDSpan?)
 
 
 ## Literals
