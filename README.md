@@ -701,6 +701,14 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String`, and nonetheless there is no need to define two functions (one for `String` and another for `StringView`).
         - If you need to change the string argument, then a **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on `String`.
+        - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
+          like:  
+            - `String` -> `StringView`
+            - `Array` -> `ArrayView`
+            - `Vector` -> `VectorView`
+            - `Matrix` -> `MatrixView`
+            - `Image` -> `ImageView`
+            - `MDArray` -> `MDArrayView` (AKA MDSpan?)
         - Example:
             - **`concat(String first, String second)`**  
                 - extends to `concat(const StringView first, const StringView second)`
@@ -720,21 +728,20 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               using MDArray::InArgumentType = const MDArrayView&
               ```
     - `CopyArgumentType`
-      ```
-      using<type T>  T::CopyArgumentType = T
-      using StringView::CopyArgumentType = String
-      ```
-      then
+        - of a type `T` typically simply is `T`  
+          `using<type T> T::CopyArgumentType = T`  
+        - but for `View`-types it is:
+          ```
+          using  StringView::CopyArgumentType = String
+          using   ArrayView::CopyArgumentType = Array
+          using  VectorView::CopyArgumentType = Vector
+          using  MatrixView::CopyArgumentType = MatrixView
+          using   ImageView::CopyArgumentType = ImageView
+          using MDArrayView::CopyArgumentType = MDArrayView
+          ```
+    - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
             - `str` is `String` (not ~~`StringView`~~)
-    - Applicable only for types `X` that can implicitly be converted/reduced to `XView`,  
-      like:  
-        - `String` -> `StringView`
-        - `Array` -> `ArrayView`
-        - `Vector` -> `VectorView`
-        - `Matrix` -> `MatrixView`
-        - `Image` -> `ImageView`
-        - `MDArray` -> `MDArrayView` (AKA MDSpan?)
 
 
 ## Literals
