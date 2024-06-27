@@ -1213,7 +1213,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           `o as T` instead of `o.value()`
 - Constructor casting
     - `Float(3)`
-    - no classic C-style casting: ~~`(Float) 3`~~
+    - Casting via constructor is `explicit` by default, `implicit` as option.
+    - No classic C-style casting: ~~`(Float) 3`~~
     - but also
         - ~~const_cast<>~~
         - mutable_cast<>
@@ -1255,9 +1256,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Workaround: Cast back with `Type(obj).functionOfA()`
 
 
-## Misc
-- Casting via constructor is `explicit` by default, `implicit` as option.
-  
+## Misc 
 - Two-Pass Compiler
     - no forward declarations necessary  
       as in C#, Java
