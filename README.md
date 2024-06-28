@@ -745,6 +745,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
             - `str` is `String` (not ~~`StringView`~~)
+            - (This is currently the only useful example I can think of.)
 
 
 ## Literals
