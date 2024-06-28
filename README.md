@@ -1124,7 +1124,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Probably very similar to C#/.NET.
 - Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
     - ASCII
-        - **`Type+ pointer`** (my favourite, maybe even better than `Type^ pointer`)
+        - **`Type+ pointer`** ("plus pointer", my favourite, maybe even better than `Type^ pointer`)
         - `Type> pointer` (IMHO nice idea for a pointer, but very difficult to read with template types, e.g. `Matrix<Float64>> matrix`)
         - `Type~ pointer` (IMHO nice for `WeakPtr<T>`, but also used for binary not and destructor syntax, so not a perfect fit)
         - `Type# pointer`
