@@ -133,6 +133,10 @@ For several topics there are alternative ideas, that were discarded but are stil
 - `true`, `false` are Bool
 - `Null` could be the null pointer, and `NullType` its type.
     - Shorter and more similar to C `NULL`.
+- Some more kinds of range literals could be useful:
+    - `0<..2` – RangeExclusiveStart(0, 2)
+    - Incomplete ranges
+        - `0<..` – RangeFromExclusiveStart(0)
 
 
 ## String, Char & CodePoint
