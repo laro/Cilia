@@ -1180,6 +1180,19 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           var arrayPtr = new Array<Float>(10) noinit  // No warning
           var arrayPtr = new Array<Float>(10, 1.0)    // No warning
           ```
+- `safe` as default, `unsafe` blocks as escape
+    - `unsafe` is necessary to implement certain abstractions (as container classes), but that's nothing normal programmers regularly do.
+    - Normally you just use the _existing_, carefully developed and tested abstractions.
+    - ```
+      func Array<T>::operator[] (Int i) -> T& {
+          if i >= size {
+              terminate()
+          }
+          unsafe {
+              return data[i]
+          }
+      }
+      ```
 - `cilia::safe::Int`
     - Like `cilia::Int`, but with **overflow check** for all operations,
         - may throw OverflowException (or abort the program).
