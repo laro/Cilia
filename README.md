@@ -1131,12 +1131,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `Type% pointer`
         - `Type§ pointer`
     - Latin-1 (but a character that is difficult to find on the keyboard would not actaully encourage people to use this syntax)
-        - `Type° pointer`
+        - `Type° pointer` (for `SmartPtr<T>`)
+        - `Type¹ pointer` (for `UniquePtr<T>`)
         - `Type• pointer`
         - `Type› pointer`
-        - `Type¹ pointer` (for `UniquePtr<T>`)
     - Multiple, combined characters
-        - `Type*° pointer` (for `SmartPtr<T>`?)
+        - `Type*° pointer` (for `SmartPtr<T>`)
         - `Type*¹ pointer` (for `UniquePtr<T>`)
         - `Type*+ pointer` (for `WeakPtr<T>`?)
         - `Type*> pointer` (for `SmartPtr<T>`?)
