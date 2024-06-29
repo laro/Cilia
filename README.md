@@ -817,31 +817,31 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - I like `...` to be reserved for ellipsis in human language like comments.
         - Rust would be ~~`1..=10`~~ and ~~`1..10`~~
     - Different kinds of ranges:
-        - `1..2` – Range(1, 2)
-        - `1..<3` – RangeExclusiveEnd(1, 3)
+        - `0..2` – Range(0, 2)
+        - `0..<3` – RangeExclusiveEnd(0, 3)
+        - Range with step  
+            - `0..2:2` – RangeWithStep(0, 2, 2)
+            - `0..<3:2` – RangeExclusiveEndWithStep(0, 2, 2)
+            - With negative step used for downwards iterating ranges: 
+                - `2..0:-1` – RangeWithStep(2, 0, -1)
+                - `3>..0:-1` – RangeExclusiveStartWithStep(3, 0, -1)
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – RangeTo(2)
             - `..<2` – RangeToExclusiveEnd(2)
             - `1..` – RangeFrom(1)
             - `..` – RangeFull()
-        - Range with step  
-            - `0..2:2` – RangeWithStep(0, 2, 2)
-            - `0..<2:2` – RangeExclusiveEndWithStep(0, 2, 2)
-            - Incomplete ranges
-                - `..2:2` – RangeWithStepTo(2, 2)
+            - Range with step
+                - `..2:2` – RangeToWithStep(2, 2)
                 - `..<2:2` – RangeToExclusiveEndWithStep(2, 2)
                 - `0..:2` – RangeFromWithStep(0, 2)
                 - `..:2` – RangeFullWithStep(2)
-            - With negative step used for downwards iterating ranges: 
-                - `2..1:-1` – RangeWithStep(2, 1, -1)
-                - `3>..1:-1` – RangeExclusiveStartWithStep(3, 1, -1)
-                - Incomplete ranges
+                - With negative step used for downwards iterating ranges: 
                     - `..1:-1` – RangeToWithStep(1, -1)
                     - `2..:-1` – RangeFromWithStep(2, -1)
                     - `3>..:-1` – RangeFromExclusiveStartWithStep(3, -1)
                     - `..:-1` – RangeFullWithStep(-1)
             - Maybe warn:
-                - When (with the exclusive ranges) `<` or `>` (i.e. the direction) is used nonsensical,
+                - When (with the exclusive ranges) `<` or `>` (i.e. the direction) is used nonsensical.
                 - In case the step value is a compile time constant, then warn
                     - if `>` ("greater than") is used for positive steps (i.e. for `1`), or
                     - if `<` ("less than") is used for negative steps (e.g. for `-1`).
