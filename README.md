@@ -1183,8 +1183,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - `safe` as default, `unsafe` blocks as escape.
     - Normally you just use the _existing_, carefully developed and tested abstractions.
     - Not allowed in safe code:
-        - Subscript access to raw pointers
-        - Calling functions marked as `unsafe`
+        - Subscript access to raw pointers,
+        - calling functions marked as `unsafe`.
+    - Still allowed/undetected in unsafe code:
+        - Integer overflow (checking that always seems too costly)
     - `unsafe` is necessary to implement certain abstractions (as container classes), but that's nothing normal programmers regularly do.
         - ```
           func Array<T>::operator[] (Int i) -> T& {
@@ -1196,6 +1198,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               }
           }
           ```
+    - Not every function with unsafe code needs to be marked as unsafe.
+    - Unsafe is just a marker for code, that needs to be checked carefully.
 - `cilia::safe::Int`
     - Like `cilia::Int`, but with **overflow check** for all operations,
         - may throw OverflowException (or abort the program).
@@ -1300,11 +1304,11 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `a.shiftOneLeft(inout carry)`
       
 - Reserved keywords for _future_ use (maybe, maybe not).
-    - `sruct`
     - `parallel`
-    - `val`, `let` for const values
+    - `let`, `val` for const values
+    - `sruct` for some variant of C++ strcuts/classes
+    - `interface` for pure abstract base classes or similar constructs
     - `template`
-    - `interface` for pure abstract base classes
 
 - Versioning of the Cilia source code
     - Via file ".ciliaVersion" in a (project) directory,
