@@ -311,12 +311,12 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
 - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
-  ```
-  Int* array = new Int[3]  // Array-to-pointer decay possible
-  array[2] = 0
-  array[3] = 0  // Undefined behaviour, no bounds check at all
-  delete[] array
-  ```
+    - ```
+      Int* array = new Int[3]  // Array-to-pointer decay possible
+      array[2] = 0
+      array[3] = 0  // Undefined behaviour, no bounds check at all
+      delete[] array
+      ```
     - Subscript access for raw pointers is `unsafe`:  
       Recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
     - Actually this is how to handle pointer to array of `Int` "properly":  
