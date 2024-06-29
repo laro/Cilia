@@ -1180,9 +1180,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           var arrayPtr = new Array<Float>(10) noinit  // No warning
           var arrayPtr = new Array<Float>(10, 1.0)    // No warning
           ```
-- `safe` as default, `unsafe` blocks as escape,  
-  mainly to guide developers.
-    - `unsafe` is not regularly used,  
+- **`safe`** as default, **`unsafe`** blocks as escape.
+    - Mainly to guide developers: `unsafe` is not regularly used,  
       normally you just use the already _existing_, carefully developed and tested abstractions.
     - Not allowed in safe code:
         - Subscript access to raw pointers,
