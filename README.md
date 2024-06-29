@@ -1181,16 +1181,17 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           var arrayPtr = new Array<Float>(10, 1.0)    // No warning
           ```
 - `safe` as default, `unsafe` blocks as escape.
-    - Normally you just use the _existing_, carefully developed and tested abstractions.
+    - `unsafe` is not regularly used,  
+      normally you just use the already _existing_, carefully developed and tested abstractions.
     - Not allowed in safe code:
         - Subscript access to raw pointers,
         - calling functions marked as `unsafe`.
     - Still allowed/undetected in unsafe code:
-        - Integer overflow (checking that always seems too costly)
-    - `unsafe` is necessary to implement certain abstractions (as container classes), but that's nothing normal programmers regularly do.
+        - Integer overflow (checking that all the time seems too costly)
+    - But `unsafe` is necessary to implement certain abstractions (as container classes):
         - ```
-          func Array<T>::operator[] (Int i) -> T& {
-              if i >= size {
+          func Array<T>::operator[](Int i) -> T& {
+              if i < 0 or i >= size {
                   terminate()
               }
               unsafe {
