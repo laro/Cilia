@@ -513,10 +513,10 @@ No braces around the condition clause.
           translates to `for i in RangeExclusiveEnd(0, 10) { ... }`.
         - `for i in 10..1:-1  { ... }`  
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
-          translates to `for i in RangeWithStep(10, 1, -1) { ... }`.
+          translates to `for i in RangeByStep(10, 1, -1) { ... }`.
             - Alternatively write
                 - `for i in (1..10).reversed() { ... }`
-                - `for i in RangeWithStep(10..1, -1) { ... }`
+                - `for i in RangeByStep(10..1, -1) { ... }`
     - In general you can replace the (overly) powerful C/C++ `for`-loop like
       ```
       for (<Initialization>; <Condition>; <Increment>) {
@@ -820,32 +820,23 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `0..2` – Range(0, 2)
         - `0..<3` – RangeExclusiveEnd(0, 3)
         - Range with step  
-            - `0..2:2` – RangeWithStep(0, 2, 2)
-            - `0..<3:2` – RangeExclusiveEndWithStep(0, 2, 2)
-            - With negative step used for downwards iterating ranges: 
-                - `2..0:-1` – RangeWithStep(2, 0, -1)
-                - `3>..0:-1` – RangeExclusiveStartWithStep(3, 0, -1)
+            - `(0..2).byStep(2)` – RangeByStep(0, 2, 2)
+            - `(0..<3).byStep(2)` – RangeExclusiveEndByStep(0, 3, 2)
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – RangeTo(2)
-            - `..<2` – RangeToExclusiveEnd(2)
-            - `1..` – RangeFrom(1)
+            - `..<3` – RangeToExclusiveEnd(3)
+            - `0..` – RangeFrom(0)
             - `..` – RangeFull()
-            - Range with step
-                - `..2:2` – RangeToWithStep(2, 2)
-                - `..<2:2` – RangeToExclusiveEndWithStep(2, 2)
-                - `0..:2` – RangeFromWithStep(0, 2)
-                - `..:2` – RangeFullWithStep(2)
-                - With negative step used for downwards iterating ranges: 
-                    - `..1:-1` – RangeToWithStep(1, -1)
-                    - `2..:-1` – RangeFromWithStep(2, -1)
-                    - `3>..:-1` – RangeFromExclusiveStartWithStep(3, -1)
-                    - `..:-1` – RangeFullWithStep(-1)
-            - Maybe warn:
-                - When (with the exclusive ranges) `<` or `>` (i.e. the direction) is used nonsensical.
-                - In case the step value is a compile time constant, then warn
-                    - if `>` ("greater than") is used for positive steps (i.e. for `1`), or
-                    - if `<` ("less than") is used for negative steps (e.g. for `-1`).
-                - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when start >= end ans step > 0).
+            - Incomplete range with step
+                - `(..2).byStep(2)` – RangeTobyStep(2, 2)
+                - `(..<3).byStep(2)` – RangeToExclusiveEndByStep(3, 2)
+                - `(0..).byStep(2)` – RangeFromByStep(0, 2)
+                - `(..).byStep(2)` – RangeFullByStep(2)
+        - Downwards iterating range
+            - `(0..<3).reversed()` – RangeExclusiveStartByStep(3, 0, -1) – 2, 1, 0
+            - `(0..<3).byStep(2).reversed()` – RangeExclusiveStartByStep(3, 0, -2) – 2, 0
+            - `(0..<3).reversed().byStep(2)` – RangeExclusiveStartByStep(3, 0, -2) – 2, 0
+        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when start >= end ans step > 0).
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - `"Text"` is a `StringView`
     - Like String starts: pointer to first character and length,
