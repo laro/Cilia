@@ -419,10 +419,10 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 ## Operators
 - **Range operator** `..` and `..<`
     - `1..10` and `0..<10` are ranges
-    - as in Kotlin
+        - as in Kotlin
         - Similar, but diffentent:
             - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
-                - I like `...` to be reserved for ellipsis in human language like comments.
+                - I like `...` to be reserved for ellipsis in human language, like comments.
             - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
     - Different kinds of ranges:
         - `1..3` – Range(1, 3) – 1, 2, 3
@@ -441,9 +441,24 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `(0..).byStep(2)` – RangeFromByStep(0, 2)
                 - `(..).byStep(2)` – RangeFullByStep(2)
         - Downwards iterating range
-            - `(0..<8).reversed()` – RangeExclusiveStartByStep(5, 0, -1) – 7, 6, 5, 4, 3, 2, 1, 0
-            - `(0..<8).byStep(3).reversed()` – RangeExclusiveStartByStep(5, 0, -2) – 6, 3, 0
-            - `(0..<8).reversed().byStep(3)` – RangeExclusiveStartByStep(5, 0, -2) – 7, 4, 1
+            - `(0..<8).reversed()`
+                - RangeExclusiveEnd(0, 8).reversed()
+                - ~~RangeExclusiveStartByStep(8, 0, -1)~~
+                - RangeByStep(7, 0, -1)
+                - 7, 6, 5, 4, 3, 2, 1, 0
+            - `(0..<8).byStep(3).reversed()`
+                - RangeExclusiveEnd(0, 8).byStep(3).reversed()
+                - RangeExclusiveEndByStep(0, 8, 3).reversed()
+                - (... difficult to transform ...)
+                - RangeByStep(6, 0, -3)
+                - 6, 3, 0
+            - `(0..<8).reversed().byStep(3)`
+                - RangeExclusiveEnd(0, 8).reversed().byStep(3)
+                - ~~RangeExclusiveStartByStep(8, 0, -1).byStep(3)~~
+                - ~~RangeExclusiveStartByStep(8, 0, -3)~~
+                - RangeByStep(7, 0, -1).byStep(3)
+                - RangeByStep(7, 0, -3)
+                - 7, 4, 1
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Power function
@@ -538,18 +553,15 @@ No braces around the condition clause.
       }
       ```
     - Use the range operator to write          
-        - `for i in 0..10 { ... }`  
-          instead of ~~`for (Int i = 0; i <= 10; ++i) { ... }`~~,  
-          translates to `for i in Range(0, 10) { ... }`.
+        - `for i in 1..10 { ... }`  
+          instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
+          translates to `for i in Range(1, 10) { ... }`.
         - `for i in 0..<10 { ... }`  
           instead of ~~`for (Int i = 0; i < 10; ++i) { ... }`~~,  
           translates to `for i in RangeExclusiveEnd(0, 10) { ... }`.
-        - `for i in 10..1:-1  { ... }`  
+        - `for i in (1..10).reversed() { ... }`  
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
           translates to `for i in RangeByStep(10, 1, -1) { ... }`.
-            - Alternatively write
-                - `for i in (1..10).reversed() { ... }`
-                - `for i in RangeByStep(10..1, -1) { ... }`
     - In general you can replace the (overly) powerful C/C++ `for`-loop like
       ```
       for (<Initialization>; <Condition>; <Increment>) {
