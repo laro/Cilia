@@ -418,17 +418,17 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           
 ## Operators
 - **Range operator** `..` and `..<`
-    - `1..10` and `1..<10` are ranges
+    - `1..10` and `0..<10` are ranges
     - as in Kotlin
         - Similar, but diffentent:
-            - Swift would be ~~`1...10`~~ and ~~`1..<10`~~
+            - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
                 - I like `...` to be reserved for ellipsis in human language like comments.
-            - Rust would be ~~`1..=10`~~ and ~~`1..10`~~
+            - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
     - Different kinds of ranges:
-        - `0..2` – Range(0, 2) – 0, 1, 2
+        - `1..3` – Range(1, 3) – 1, 2, 3
         - `0..<3` – RangeExclusiveEnd(0, 3) – 0, 1, 2
         - Range with step  
-            - `(0..2).byStep(2)` – RangeByStep(0, 2, 2) – 0, 2
+            - `(1..3).byStep(2)` – RangeByStep(0, 2, 2) – 1, 3
             - `(0..<3).byStep(2)` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – RangeTo(2)
@@ -444,7 +444,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - `(0..<8).reversed()` – RangeExclusiveStartByStep(5, 0, -1) – 7, 6, 5, 4, 3, 2, 1, 0
             - `(0..<8).byStep(3).reversed()` – RangeExclusiveStartByStep(5, 0, -2) – 6, 3, 0
             - `(0..<8).reversed().byStep(3)` – RangeExclusiveStartByStep(5, 0, -2) – 7, 4, 1
-        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when start >= end ans step > 0).
+        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Power function
     - `a^x` for `pow(a, x)` (as Julia)
