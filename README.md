@@ -317,8 +317,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
   array[3] = 0  // Undefined behaviour, no bounds check at all
   delete[] array
   ```
-    - Recommended to _not_ use subscript for raw pointers anyway,  
-      except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
+    - Subscript access for raw pointers is `unsafe`:  
+      Recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
     - Actually this is how to handle pointer to array of `Int` "properly":  
       ```
       Int[3]* arrayPtr = new Int[3]
