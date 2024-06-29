@@ -137,6 +137,14 @@ For several topics there are alternative ideas, that were discarded but are stil
     - `0<..2` – RangeExclusiveStart(0, 2)
     - Incomplete ranges
         - `0<..` – RangeFromExclusiveStart(0)
+    - Range with negative step used for downwards iterating ranges: 
+        - `2..0:-1` – RangeWithStep(2, 0, -1)
+        - `3>..0:-1` – RangeExclusiveStartWithStep(3, 0, -1)
+        - Incomplete ranges with negative step: 
+            - `..1:-1` – RangeToWithStep(1, -1)
+            - `2..:-1` – RangeFromWithStep(2, -1)
+            - `3>..:-1` – RangeFromExclusiveStartWithStep(3, -1)
+            - `..:-1` – RangeFullWithStep(-1)
 
 
 ## String, Char & CodePoint
