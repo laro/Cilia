@@ -417,33 +417,66 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 
           
 ## Operators
-- `a^x` for `pow(a, x)` (as Julia)
-- `and`, `or`, `xor` instead of `&&`, `||`, `^`
-    - as in Python, Carbon
-    - Used for both
-        - boolean operation
-            - `aBool`**`and`**`anotherBool` -> `Bool`
-        - bitwise operation
-            - `anInt`**`and`**`anotherInt` -> `Int`
-- `not` in addition to `!`
-    - Both `!` and `not` for negation, as we keep `!=` for "not equal" anyways.  
-      (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
-- Default `operator==`
-    - If not defined, then
-        - use negated `operator!=` (if defined), or
-        - use `operator<=>` (if defined), or
-        - use elementwise comparison with `==`
-            - Only possible if all elements themselves offer the `operator==`.
-            - Optimization for simple types: Byte-by-byte comparison.
-- Default `operator!=`
-    - If not defined, then
-        - use negated `operator==` (if defined), or
-        - use `operator<=>` (if defined), or
-        - use negated generated `operator==`.
-- `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
-- `<<` Shift left (here a logical shift with UInt is the same as arithmetic shift with Int)
-- `>>>` Rotate right (circular shift right)
-- `<<<` Rotate left (circular shift left)
+- **Range operator** `..` and `..<`
+    - `1..10` and `1..<10` are ranges
+    - as in Kotlin
+        - Similar, but diffentent:
+            - Swift would be ~~`1...10`~~ and ~~`1..<10`~~
+                - I like `...` to be reserved for ellipsis in human language like comments.
+            - Rust would be ~~`1..=10`~~ and ~~`1..10`~~
+    - Different kinds of ranges:
+        - `0..2` – Range(0, 2) – 0, 1, 2
+        - `0..<3` – RangeExclusiveEnd(0, 3) – 0, 1, 2
+        - Range with step  
+            - `(0..2).byStep(2)` – RangeByStep(0, 2, 2) – 0, 2
+            - `(0..<3).byStep(2)` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
+        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
+            - `..2` – RangeTo(2)
+            - `..<3` – RangeToExclusiveEnd(3)
+            - `0..` – RangeFrom(0)
+            - `..` – RangeFull()
+            - Incomplete range with step
+                - `(..2).byStep(2)` – RangeToByStep(2, 2)
+                - `(..<3).byStep(2)` – RangeToExclusiveEndByStep(3, 2)
+                - `(0..).byStep(2)` – RangeFromByStep(0, 2)
+                - `(..).byStep(2)` – RangeFullByStep(2)
+        - Downwards iterating range
+            - `(0..<8).reversed()` – RangeExclusiveStartByStep(5, 0, -1) – 7, 6, 5, 4, 3, 2, 1, 0
+            - `(0..<8).byStep(3).reversed()` – RangeExclusiveStartByStep(5, 0, -2) – 6, 3, 0
+            - `(0..<8).reversed().byStep(3)` – RangeExclusiveStartByStep(5, 0, -2) – 7, 4, 1
+        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when start >= end ans step > 0).
+        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- Power function
+    - `a^x` for `pow(a, x)` (as Julia)
+- Boolean operators
+    - `and`, `or`, `xor` instead of `&&`, `||`, `^`
+        - as in Python, Carbon
+        - Used for both
+            - boolean operation
+                - `aBool`**`and`**`anotherBool` -> `Bool`
+            - bitwise operation
+                - `anInt`**`and`**`anotherInt` -> `Int`
+    - `not` in addition to `!`
+        - Both `!` and `not` for negation, as we keep `!=` for "not equal" anyways.  
+          (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
+- Equality
+    - Default `operator==`
+        - If not defined, then
+            - use negated `operator!=` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use elementwise comparison with `==`
+                - Only possible if all elements themselves offer the `operator==`.
+                - Optimization for simple types: Byte-by-byte comparison.
+    - Default `operator!=`
+        - If not defined, then
+            - use negated `operator==` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use negated generated `operator==`.
+- Bit-Shift & Rotation
+    - `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
+    - `<<` Shift left (here a logical shift with UInt is the same as arithmetic shift with Int)
+    - `>>>` Rotate right (circular shift right)
+    - `<<<` Rotate left (circular shift left)
 
 
 ## `if`, `while`, `for ... in` Branches & Loops
@@ -504,7 +537,7 @@ No braces around the condition clause.
           }
       }
       ```
-    - Use the range literal to write          
+    - Use the range operator to write          
         - `for i in 0..10 { ... }`  
           instead of ~~`for (Int i = 0; i <= 10; ++i) { ... }`~~,  
           translates to `for i in Range(0, 10) { ... }`.
@@ -810,34 +843,6 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - Can be converted to any float type
     - Is interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
-- `1..10` and `1..<10` are **range literals** (or a range _operator_?)
-    - as in Kotlin
-    - Similar, but diffentent:
-        - Swift would be ~~`1...10`~~ and ~~`1..<10`~~
-            - I like `...` to be reserved for ellipsis in human language like comments.
-        - Rust would be ~~`1..=10`~~ and ~~`1..10`~~
-    - Different kinds of ranges:
-        - `0..2` – Range(0, 2)
-        - `0..<3` – RangeExclusiveEnd(0, 3)
-        - Range with step  
-            - `(0..2).byStep(2)` – RangeByStep(0, 2, 2)
-            - `(0..<3).byStep(2)` – RangeExclusiveEndByStep(0, 3, 2)
-        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
-            - `..2` – RangeTo(2)
-            - `..<3` – RangeToExclusiveEnd(3)
-            - `0..` – RangeFrom(0)
-            - `..` – RangeFull()
-            - Incomplete range with step
-                - `(..2).byStep(2)` – RangeTobyStep(2, 2)
-                - `(..<3).byStep(2)` – RangeToExclusiveEndByStep(3, 2)
-                - `(0..).byStep(2)` – RangeFromByStep(0, 2)
-                - `(..).byStep(2)` – RangeFullByStep(2)
-        - Downwards iterating range
-            - `(0..<3).reversed()` – RangeExclusiveStartByStep(3, 0, -1) – 2, 1, 0
-            - `(0..<3).byStep(2).reversed()` – RangeExclusiveStartByStep(3, 0, -2) – 2, 0
-            - `(0..<3).reversed().byStep(2)` – RangeExclusiveStartByStep(3, 0, -2) – 2, 0
-        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when start >= end ans step > 0).
-        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - `"Text"` is a `StringView`
     - Like String starts: pointer to first character and length,
         - so slicing of String to StringView is possible.
