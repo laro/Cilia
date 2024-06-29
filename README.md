@@ -1136,9 +1136,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `Type› pointer`
         - `Type¹ pointer` (for `UniquePtr<T>`)
     - Multiple, combined characters
-        - `Type*+ pointer` (for `WeakPtr<T>`?)
         - `Type*° pointer` (for `SmartPtr<T>`?)
         - `Type*¹ pointer` (for `UniquePtr<T>`)
+        - `Type*+ pointer` (for `WeakPtr<T>`?)
         - `Type*> pointer` (for `SmartPtr<T>`?)
         - `Type*1> pointer` (for `UniquePtr<T>`)
         - `Type*¹> pointer` (for `UniquePtr<T>`)
