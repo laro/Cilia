@@ -810,7 +810,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - Can be converted to any float type
     - Is interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
-- `1..10` and `1..<10` are **range literals**
+- `1..10` and `1..<10` are **range literals** (or a range _operator_?)
     - as in Kotlin
     - Similar, but diffentent:
         - Swift would be ~~`1...10`~~ and ~~`1..<10`~~
@@ -819,26 +819,30 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - Different kinds of ranges:
         - `1..2` – Range(1, 2)
         - `1..<3` – RangeExclusiveEnd(1, 3)
-        - `0<..2` – RangeExclusiveStart(0, 2)
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – RangeTo(2)
             - `..<2` – RangeToExclusiveEnd(2)
             - `1..` – RangeFrom(1)
-            - `0<..` – RangeFromExclusiveStart(0)
             - `..` – RangeFull()
-        - Range with step, also used for downwards iterating ranges.  
-            - `2..1:-1` – RangeWithStep(2, 1, -1)
-            - `2..>0:-1` – RangeWithStepExclusiveEnd(2, 0, -1)
-            - `3>..1:-1` – RangeWithStepExclusiveStart(3, 1, -1)
+        - Range with step  
+            - `0..2:2` – RangeWithStep(0, 2, 2)
+            - `0..<2:2` – RangeExclusiveEndWithStep(0, 2, 2)
             - Incomplete ranges
-                - `..1:-1` – RangeWithStepTo(1, -1)
-                - `..>0:-1` – RangeWithStepToExclusiveEnd(1, -1)
-                - `2..:-1` – RangeWithStepFrom(2, -1)
-                - `3>..:-1` – RangeWithStepFromExclusiveStart(3, -1)
-                - `..:-1` – RangeWithStepFull(-1)
-            - Wheather (with the exclusive ranges) `<` or `>` is used (i.e. the direction) does not matter.
-            - Compile time checks:
-                - In case the step value is a compile time constant, then it may be _warned_
+                - `..2:2` – RangeWithStepTo(2, 2)
+                - `..<2:2` – RangeToExclusiveEndWithStep(2, 2)
+                - `0..:2` – RangeFromWithStep(0, 2)
+                - `..:2` – RangeFullWithStep(2)
+            - With negative step used for downwards iterating ranges: 
+                - `2..1:-1` – RangeWithStep(2, 1, -1)
+                - `3>..1:-1` – RangeExclusiveStartWithStep(3, 1, -1)
+                - Incomplete ranges
+                    - `..1:-1` – RangeToWithStep(1, -1)
+                    - `2..:-1` – RangeFromWithStep(2, -1)
+                    - `3>..:-1` – RangeFromExclusiveStartWithStep(3, -1)
+                    - `..:-1` – RangeFullWithStep(-1)
+            - Maybe warn:
+                - When (with the exclusive ranges) `<` or `>` (i.e. the direction) is used nonsensical,
+                - In case the step value is a compile time constant, then warn
                     - if `>` ("greater than") is used for positive steps (i.e. for `1`), or
                     - if `<` ("less than") is used for negative steps (e.g. for `-1`).
                 - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when start >= end ans step > 0).
