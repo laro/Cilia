@@ -1304,7 +1304,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `saturating::Uint`
         - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
-- Integer operations **with carry** (flag or more)  
+- Integer operations **with carry** (flag or UInt)  
   (to implement `Int128`, `Int256` etc.)
     - Add with carry (flag, i.e. one bit only)
         - `UInt c = add(UInt a, UInt b, inout Bool carryFlag)`
