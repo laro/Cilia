@@ -428,13 +428,37 @@ func multiplyAdd(Int x, y, Float z) -> Float {
         - `1..3` – Range(1, 3) – 1, 2, 3
         - `0..<3` – RangeExclusiveEnd(0, 3) – 0, 1, 2
         - Range with step  
-            - `(1..3).byStep(2)` – RangeByStep(0, 2, 2) – 1, 3
-            - `(0..<3).byStep(2)` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
+            - `1..3:2` – RangeByStep(0, 2, 2) – 1, 3
+            - `0..<3:2` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – RangeTo(2)
             - `..<3` – RangeToExclusiveEnd(3)
             - `0..` – RangeFrom(0)
             - `..` – RangeFull()
+            - Incomplete range with step
+                - `..2:2` – RangeToByStep(2, 2)
+                - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
+                - `0..:2` – RangeFromByStep(0, 2)
+                - `8>..` – RangeFromExclusiveStartByStep(8, -1)
+                - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
+                - `..:2` – RangeFullByStep(2)
+        - Downwards iterating range
+            - `8..0:-1`
+                - RangeByStep(8, 0, -1)
+                - 8, 7, 6, 5, 4, 3, 2, 1, 0
+                - Not ~~`8..0`~~
+                    - Range(8, 0) is empty!
+            - `8>..0`
+                - RangeExclusiveStartByStep(8, 0, -1)
+                - 7, 6, 5, 4, 3, 2, 1, 0
+            - `8>..0:3`
+                - RangeExclusiveStartByStep(8, 0, -3)
+                - 7, 4, 1
+    - Different kinds of ranges:
+        - Range with step  
+            - `(1..3).byStep(2)` – RangeByStep(0, 2, 2) – 1, 3
+            - `(0..<3).byStep(2)` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
+        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - Incomplete range with step
                 - `(..2).byStep(2)` – RangeToByStep(2, 2)
                 - `(..<3).byStep(2)` – RangeToExclusiveEndByStep(3, 2)
