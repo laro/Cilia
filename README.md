@@ -422,7 +422,6 @@ func multiplyAdd(Int x, y, Float z) -> Float {
         - as in Kotlin
         - Similar, but diffentent:
             - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
-                - I like `...` to be reserved for ellipsis in human language, like comments.
             - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
     - Different kinds of ranges:
         - `1..3` – Range(1, 3) – 1, 2, 3
