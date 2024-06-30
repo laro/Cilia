@@ -439,19 +439,23 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `..2:2` – RangeToByStep(2, 2)
                 - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
                 - `0..:2` – RangeFromByStep(0, 2)
-                - `8>..` – RangeFromExclusiveStartByStep(8, -1)
+                - `8>..:-1` – RangeFromExclusiveStartByStep(8, -1)
                 - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
                 - `..:2` – RangeFullByStep(2)
-        - Downwards iterating range
+        - Downwards iterating range,  
+          step size is mandatory (to make it clear, that we are counting down, to avoid wrong conclusions).
             - `8..0:-1`
                 - RangeByStep(8, 0, -1)
                 - 8, 7, 6, 5, 4, 3, 2, 1, 0
                 - Not ~~`8..0`~~
                     - Range(8, 0) is empty!
-            - `8>..0`
+            - `8>..0:-1`
                 - RangeExclusiveStartByStep(8, 0, -1)
                 - 7, 6, 5, 4, 3, 2, 1, 0
-            - `8>..0:3`
+            - `8..>0:-1`
+                - RangeExclusiveEndByStep(8, 0, -1)
+                - 8, 7, 6, 5, 4, 3, 2, 1
+            - `8>..0:-3`
                 - RangeExclusiveStartByStep(8, 0, -3)
                 - 7, 4, 1
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
