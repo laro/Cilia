@@ -434,8 +434,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - `8..0:-1`
                 - RangeByStep(8, 0, -1)
                 - 8, 7, 6, 5, 4, 3, 2, 1, 0
-                - Not ~~`8..0`~~
-                    - Range(8, 0) is empty!
+                - Not ~~`8..0`~~, as Range(8, 0) is always empty!
             - `8>..0:-1`
                 - RangeExclusiveStartByStep(8, 0, -1)
                 - 7, 6, 5, 4, 3, 2, 1, 0
@@ -447,9 +446,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - 7, 4, 1
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
-            - `..2` – RangeTo(2)
-            - `..<3` – RangeToExclusiveEnd(3)
-            - `0..` – RangeFrom(0)
+            - `..2` – RangeTo(2) – ..., 1, 2
+            - `..<3` – RangeToExclusiveEnd(3) – ..., 1, 2
+            - `0..` – RangeFrom(0) – 0, 1, 2, ...
             - `..` – RangeFull()
             - Incomplete range with step
                 - `..2:2` – RangeToByStep(2, 2)
