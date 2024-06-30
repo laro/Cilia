@@ -1307,31 +1307,31 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - Integer operations with carry (flag or more)  
   (to implement `Int128`, `Int256` etc.)
     - Add with carry (flag, i.e. one bit only)
-        - `c = add(a, b, inout carryFlag)`
+        - `UInt c = add(UInt a, UInt b, inout Bool carryFlag)`
             - `c = bits63..0(a + b + carryFlag)`  
               `carryFlag = bit64(a + b + carryFlag)`
-        - `a.add(b, inout carryFlag)`
+        - `a.add(UInt b, inout Bool carryFlag)`
             - `a = bits63..0(a + b + carryFlag)`  
               `carryFlag = bit64(a + b + carryFlag)`
-    - Mutiply with carry (high data, i.e. one Int)
-        - `c = multiply(a, b, out cHigh)`
+    - Mutiply with carry (high data, i.e. one UInt)
+        - `UInt c = multiply(UInt a, UInt b, out UInt cHigh)`
             - `c = bits63..0(a * b)`  
               `cHigh = bit127..64(a * b)`
-        - `a.multiply(b, out aHigh)`
+        - `a.multiply(UInt b, out UInt aHigh)`
             - `a = bits63..0(a * b)`  
               `aHigh = bit127..64(a * b)`
-        - Mutiply-Add with carry (high data, i.e. one Int)
-            - `d = multiplyAdd(a, b, c, out dHigh)`
+        - Mutiply-Add with carry (high data, i.e. one UInt)
+            - `UInt d = multiplyAdd(UInt a, UInt b, UInt c, out UInt dHigh)`
                 - `d = bits63..0(a * b + c)`  
                   `dHigh = bit127..64(a * b)`
-            - `a.multiplyAdd(b, c, out aHigh)`
+            - `a.multiplyAdd(UInt b, UInt c, out UInt aHigh)`
                 - `a = bits63..0(a * b + c)`  
                   `aHigh = bit127..64(a * b + c)`
     - Shift
-        - `b = shiftLeftAdd(a, Int steps, inout addAndHigh)`
-        - `a.shiftLeftAdd(Int steps, inout addAndHigh)`
-        - `b = shiftOneLeft(a, inout carry)`
-        - `a.shiftOneLeft(inout carry)`
+        - `b = shiftLeftAdd(UInt a, Int steps, inout UInt addAndHigh)`
+        - `a.shiftLeftAdd(Int steps, inout UInt addAndHigh)`
+        - `b = shiftOneLeft(UInt a, inout Bool carryFlag)`
+        - `a.shiftOneLeft(inout carryFlag)`
       
 - Reserved keywords for _future_ use (maybe, maybe not).
     - `parallel`
