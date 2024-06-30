@@ -454,7 +454,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - `8>..0:3`
                 - RangeExclusiveStartByStep(8, 0, -3)
                 - 7, 4, 1
-    - Different kinds of ranges:
+    - Range construction:
         - Range with step  
             - `(1..3).byStep(2)` – RangeByStep(0, 2, 2) – 1, 3
             - `(0..<3).byStep(2)` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
