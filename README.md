@@ -462,7 +462,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Power function
-    - `a^x` for `pow(a, x)` (as Julia)
+    - **`a^x`** for `pow(a, x)` (as Julia)
 - Boolean operators
     - `and`, `or`, `xor` instead of `&&`, `||`, `^`
         - as in Python, Carbon
