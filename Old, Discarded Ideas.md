@@ -32,7 +32,7 @@ For several topics there are alternative ideas, that were discarded but are stil
         - `var i : Int`
     - When having `func` for function declaration, but not `var` for variable declaration, is still not clear enough.
     - Swift, Kotlin and Circle always start variable declarations with `var`.
-    - Not starting with `var` could be problematic in connection with omitting the trailing semicolons.
+    - Not starting with `var` could be especially problematic in connection with omitting the trailing semicolons.
   
 
 ## Arrays & ArrayViews
