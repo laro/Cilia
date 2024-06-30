@@ -429,18 +429,6 @@ func multiplyAdd(Int x, y, Float z) -> Float {
         - Range with step  
             - `1..3:2` – RangeByStep(0, 2, 2) – 1, 3
             - `0..<3:2` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
-        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
-            - `..2` – RangeTo(2)
-            - `..<3` – RangeToExclusiveEnd(3)
-            - `0..` – RangeFrom(0)
-            - `..` – RangeFull()
-            - Incomplete range with step
-                - `..2:2` – RangeToByStep(2, 2)
-                - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
-                - `0..:2` – RangeFromByStep(0, 2)
-                - `8>..:-1` – RangeFromExclusiveStartByStep(8, -1)
-                - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
-                - `..:2` – RangeFullByStep(2)
         - Downwards iterating range,  
           step size is mandatory (to make it clear, that we are counting down, to avoid wrong conclusions).
             - `8..0:-1`
@@ -458,6 +446,18 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - RangeExclusiveStartByStep(8, 0, -3)
                 - 7, 4, 1
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
+        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
+            - `..2` – RangeTo(2)
+            - `..<3` – RangeToExclusiveEnd(3)
+            - `0..` – RangeFrom(0)
+            - `..` – RangeFull()
+            - Incomplete range with step
+                - `..2:2` – RangeToByStep(2, 2)
+                - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
+                - `0..:2` – RangeFromByStep(0, 2)
+                - `8>..:-1` – RangeFromExclusiveStartByStep(8, -1)
+                - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
+                - `..:2` – RangeFullByStep(2)
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Power function
     - **`a^x`** for `pow(a, x)` (as Julia)
