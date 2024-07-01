@@ -48,8 +48,7 @@ While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new s
 > Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
 
 I don't know what exact syntax Bjarne Stroustrup would prefer today, but indeed Cpp2 and Carbon do not feel familiar to me. 
-I like many aspects especially of Cpp2, but _not_ its `name: Type` syntax.
-IMHO it is not necessary to go from the "most vexing parse" right to the "most easy parse" (despite also Rust, Kotlin, and Swift all are having a similar syntax).
+I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia is a bit more conservative here.
 
 > [!NOTE]
 > - I may not be very familiar with Cpp2 or Carbon, or not up to date.
