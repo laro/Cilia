@@ -62,7 +62,7 @@ I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia i
         - `Circle[] circles`
         - `Map<String, Circle> mapStringToCircle`
     - `func multiply(Int a, b) -> Int { return a * b }`
-    - `func concat(String a, b) -> String { return a + b }`
+        - `func concat(String a, b) -> String { return a + b }`
     - `for i in 1..10 { ... }`
         - `for i in 0..<words.size() { ... }`
         - `for i in [5, 7, 11, 13] { ... }`
@@ -74,7 +74,7 @@ I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia i
         - `vector<Circle> circles;`
         - `map<string, Circle> mapStringToCircle`
     - `auto multiply(int a, int b) -> int { return a * b; }`
-    - `auto concat(const string_view a, const string_view b) -> string { return a + b; }`
+        - `auto concat(const string_view a, const string_view b) -> string { return a + b; }`
     - `for (int i = 1; i <= 10; ++i) { ...; }`
         - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
         - `for (int i : {5, 7, 11, 13}) { ...; }`
@@ -86,7 +86,7 @@ I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia i
         - `circles: vector<Circle>;`
         - `mapStringToCircle: map<string, Circle>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
-    - `concat: (a: String, b: String) -> String = a + b;`
+        - `concat: (a: String, b: String) -> String = a + b;`
     - `i := 1;`  
       `while i <= 10 next i++ { ...; } `          
         - `i := 0;`  
@@ -100,7 +100,7 @@ I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia i
         - `var circles: Array(Circle);`
         - `var mapStringToCircle: HashMap(String, Circle);`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
-    - `fn concat(a: StringView, b: StringView) -> String { return a + b; }`
+        - `fn concat(a: StringView, b: StringView) -> String { return a + b; }`
     - `var i: i64 = 1;`  
       `while (i <= 10) { ...; ++i; }`
         - `var i: i64 = 0;`  
