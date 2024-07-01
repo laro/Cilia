@@ -13,9 +13,11 @@ I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt
     - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)** (roughly like Java, JavaScript, Kotlin, Swift)
     - Isomorphic mapping of all C++ functionality to Cilia possible
         - only with other/better/shorter "expression".
-- C++ "Successor Language / Syntax"
-    - like [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle)
-    - Similar to C -> C++, Java -> Kotlin, Objective-C -> Swift, JavaScript -> TypeScript
+- C++ "Successor Syntax"
+    - much like [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront).
+        - Similar to C -> C++, Java -> Kotlin, Objective-C -> Swift, JavaScript -> TypeScript
+    - Not really a successor _language_.
+    - Other similar languages are [Carbon](https://github.com/carbon-language/carbon-lang) and [Circle](https://github.com/seanbaxter/circle)
 - Uses the same compiler backend as C++ (clang, gcc, ...)  
   with an own / a new compiler frontend (or a precompiler).
 - So _no_ garbage collection,  
