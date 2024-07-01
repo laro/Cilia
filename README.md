@@ -562,7 +562,7 @@ No braces around the condition clause.
         - `for i in 0..<10 { ... }`  
           instead of ~~`for (Int i = 0; i < 10; ++i) { ... }`~~,  
           translates to `for i in RangeExclusiveEnd(0, 10) { ... }`.
-        - `for i in (1..10).reversed() { ... }`  
+        - `for i in 10..1:-1 { ... }`  
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
           translates to `for i in RangeByStep(10, 1, -1) { ... }`.
     - In general you can replace the (overly) powerful C/C++ `for`-loop like
