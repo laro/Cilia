@@ -44,7 +44,7 @@ I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt
 Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:  
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 
-[Bjarne Stroustrup in an interview (2000):](https://www.stroustrup.com/devXinterview.html)
+[Bjarne Stroustrup in an interview (back in 2000):](https://www.stroustrup.com/devXinterview.html)
 > Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
 
 I don't know what exact syntax Bjarne Stroustrup would prefer today, but indeed Cpp2 and Carbon do not feel familiar to me. 
