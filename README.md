@@ -313,8 +313,10 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - Use `Int*` for "raw" C/C++ arrays of arbitrary size  
     - ```
       Int* array = new Int[3]  // Array-to-pointer decay possible
-      array[2] = 0
-      array[3] = 0  // Undefined behaviour, no bounds check at all
+      unsafe {
+          array[2] = 0
+          array[3] = 0  // Undefined behaviour, no bounds check at all
+      }
       delete[] array
       ```
     - Subscript access for raw pointers is `unsafe`:  
