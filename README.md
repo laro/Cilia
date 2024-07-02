@@ -64,6 +64,7 @@ The follwing comparison aims to show the _exact_ equivalent in Cilia, C++, Cpp2,
         - `Circle[] circles`
         - `Map<String, Circle> mapStringToCircle`
     - `func multiply(Int a, b) -> Int { return a * b }`
+        - `func print(Circle a) { ... }`
         - `func concat(String a, b) -> String { return a + b }`
     - `for i in 1..10 { ... }`
         - `for i in 0..<words.size() { ... }`
@@ -76,6 +77,7 @@ The follwing comparison aims to show the _exact_ equivalent in Cilia, C++, Cpp2,
         - `vector<Circle> circles;`
         - `map<string, Circle> mapStringToCircle`
     - `auto multiply(int a, int b) -> int { return a * b; }`
+        - `auto print(const Circle& a) { ...; }`
         - `auto concat(const string_view a, const string_view b) -> string { return a + b; }`
     - `for (int i = 1; i <= 10; ++i) { ...; }`
         - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
@@ -88,6 +90,7 @@ The follwing comparison aims to show the _exact_ equivalent in Cilia, C++, Cpp2,
         - `circles: vector<Circle>;`
         - `mapStringToCircle: map<string, Circle>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
+        - `print: (a: Circle) { ...; }`
         - `concat: (a: string_view, b: string_view) -> String = a + b;`
     - `i := 1;`  
       `while i <= 10 next i++ { ...; } `          
@@ -102,6 +105,7 @@ The follwing comparison aims to show the _exact_ equivalent in Cilia, C++, Cpp2,
         - `var circles: Array(Circle);`
         - `var mapStringToCircle: HashMap(String, Circle);`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
+        - `fn print(a: Circle) { ...; }`
         - `fn concat(a: StringView, b: StringView) -> String { return a + b; }`
     - `var i: i64 = 1;`  
       `while (i <= 10) { ...; ++i; }`
