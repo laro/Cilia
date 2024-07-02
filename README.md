@@ -48,12 +48,14 @@ While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new s
 > Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
 
 I don't know what exact syntax Bjarne Stroustrup would prefer today, but indeed Cpp2 and Carbon do not feel familiar to me. 
-I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia is a bit more conservative here.
+I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia is a bit more conservative/traditional here.
+
+The follwing comparison aims to show the _exact_ equivalent in Cilia, C++, Cpp2, and Carbon:
 
 > [!NOTE]
 > - I may not be very familiar with Cpp2 or Carbon, or not up to date.
 >     - Is there really no range-literal and no classical for-loop in neither Cpp2 nor Carbon?
-> - I may not sufficiently up to date with C++14/17/20/23/26 either.
+> - I may not be up to date sufficiently with C++14/17/20/23/26 either.
 
 - Cilia
     - `Int`, `Int32`, `Int64`, `Float`
@@ -86,7 +88,7 @@ I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia i
         - `circles: vector<Circle>;`
         - `mapStringToCircle: map<string, Circle>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
-        - `concat: (a: String, b: String) -> String = a + b;`
+        - `concat: (a: string_view, b: string_view) -> String = a + b;`
     - `i := 1;`  
       `while i <= 10 next i++ { ...; } `          
         - `i := 0;`  
