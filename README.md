@@ -183,7 +183,8 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - Walter Bright / D: „Redundancy helps“
     - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
 - Multiline expressions:
-    - Explicitly via `\` or `(...)` / `[...]` / `{...}` (as in Python).
+    - Explicitly via `\` at of line, or
+    - up to closing of `(...)` or `[...]` (as in Python).
 - Multiple expressions in a single line _are_ separated by semicolon.  
   `x += offset; y += offset`
 - Only in REPL:
