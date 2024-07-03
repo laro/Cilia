@@ -443,7 +443,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - `1..3:2` – RangeByStep(0, 2, 2) – 1, 3
             - `0..<3:2` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
         - Downwards iterating range,  
-          step size is mandatory (to make it clear, that we are counting down, to avoid wrong conclusions).
+          step size is mandatory (to make it clear that we are counting down, to avoid wrong conclusions).
             - `8..0:-1`
                 - RangeByStep(8, 0, -1)
                 - 8, 7, 6, 5, 4, 3, 2, 1, 0
