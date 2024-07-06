@@ -325,12 +325,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
 - Use `Int*` for "raw" C/C++ arrays of arbitrary size.
-    - `safe` / `unsafe` as border to signal what to do and what not to do.
-        - Subscript access to raw pointers is considered `unsafe`,
-            - recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
-        - `reinterpretCastTo<T>(...)` is considered `unsafe`.
-        - `new` and `delete` is considered `unsafe`:  
-            - Recommended to use `makeUnique<T>()` or `makeShared<T>()` instead.
     - ```
       unsafe {
           Int* array = new Int[3]  // Array-to-pointer decay possible
@@ -1229,12 +1223,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           var arrayPtr = new Array<Float>(10) noinit  // No warning
           var arrayPtr = new Array<Float>(10, 1.0)    // No warning
           ```
-- **`safe`** as default, **`unsafe`** blocks as escape.
-    - Mainly to guide developers: `unsafe` is not regularly used,  
-      normally you just use the already _existing_, carefully developed and tested abstractions.
+- **`safe`** as default, **`unsafe`** code blocks as escape.
+    - Mainly to guide developers: to signal what to do and what not to do,
+      `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
     - Not allowed in safe code:
         - Subscript access to raw pointers,
-        - calling functions marked as `unsafe`.
+        - `reinterpretCastTo<T>(...)`,
+        - `new` and `delete`,
+            - it is recommended to use `makeUnique<T>()` or `makeShared<T>()` instead,
+        - calling functions marked as `unsafe`,
     - Still allowed/undetected in unsafe code:
         - Integer overflow (checking that all the time seems too costly)
     - But `unsafe` is necessary to implement certain abstractions (as container classes):
