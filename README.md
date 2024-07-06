@@ -324,7 +324,10 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
-- Use `Int*` for "raw" C/C++ arrays of arbitrary size  
+- Use `Int*` for "raw" C/C++ arrays of arbitrary size.
+    - `new`, `delete` and accessing raw pointers is considered `unsafe`:  
+        - Recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
+        - `safe` / `unsafe` as border to signal what to do and what not to do.
     - ```
       unsafe {
           Int* array = new Int[3]  // Array-to-pointer decay possible
@@ -341,14 +344,14 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
           free(array)
       }
       ```
-    - Accessing raw pointers is consifered `unsafe`:  
-      Recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
     - Actually this is how to handle pointer to array of `Int` "properly":  
       ```
-      Int[3]* arrayPtr = new Int[3]
-      *arrayPtr[2] = 0
-      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-      delete[] arrayPtr
+      unsafe {
+          Int[3]* arrayPtr = new Int[3]
+          *arrayPtr[2] = 0
+          *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+          delete[] arrayPtr
+      }
       ```
 - Examples:
     - `Int[] dynamicArrayOfInt`
