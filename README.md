@@ -329,7 +329,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - Subscript access to raw pointers is considered `unsafe`,
             - recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
         - `reinterpretCastTo<T>(...)` is considered `unsafe`.
-        - ? `new` and `delete` is considered `unsafe`:  
+        - `new` and `delete` is considered `unsafe`:  
             - Recommended to use `makeUnique<T>()` or `makeShared<T>()` instead.
     - ```
       unsafe {
@@ -347,12 +347,14 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
           free(array)
       }
       ```
-    - Actually this is how to handle pointer to array of `Int` "properly":  
+    - Actually this is how to handle pointer to array of `Int` "properly" (but still `unsafe`):  
       ```
-      Int[3]* arrayPtr = new Int[3]
-      *arrayPtr[2] = 0
-      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-      delete[] arrayPtr
+      unsafe {
+          Int[3]* arrayPtr = new Int[3]
+          *arrayPtr[2] = 0
+          *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+          delete[] arrayPtr
+      }
       ```
 - Examples:
     - `Int[] dynamicArrayOfInt`
