@@ -333,6 +333,14 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       }
       delete[] array
       ```
+    - ```
+      Int* array = (Int*)(malloc(3 * sizeof(Int)))
+      unsafe {
+          array[2] = 0
+          array[3] = 0  // Undefined behaviour, no bounds check at all
+      }
+      free(array)
+      ```
     - Subscript access for raw pointers is `unsafe`:  
       Recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
     - Actually this is how to handle pointer to array of `Int` "properly":  
