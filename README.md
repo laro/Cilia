@@ -7,56 +7,8 @@ Cilia can call into C++ (and vice versa), but is a separate language, so its _sy
 I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), and (a variant of) Qt with the standard library classes as base (but with exceptions, and with namespaces instead of the prefix "Q").
 
 
-## Introduction
-- Ideas / a wish list for an "improved" C++
-    - with a **simplified** syntax,
-    - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)** (roughly like Java, JavaScript, Kotlin, Swift)
-    - Isomorphic mapping of all C++ functionality to Cilia possible
-        - only with other/better/shorter "expression".
-- C++ "Successor Language / Syntax"
-     - similar to [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle).
-     - Like the transitions from C to C++, Java to Kotlin, Objective-C to Swift, JavaScript to TypeScript
-- Uses the same compiler backend as C++ (clang comes to mind)  
-  with an own / a new compiler frontend.
-    - Or a precompiler, like Cpp2, if that is significantly easier to do.
-- So _no_ garbage collection,  
-  instead in Cilia you use, as in C++:
-    - automatic/stack variables,
-    - **RAII** (Resource Acquisition is Initialization)
-        - I'd like to call it "RROD" (Resource Release on Object Destruction)
-    - shared pointers (`T^`).
-- The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
-  as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
-- Why a new language, not extending C++?
-    - The [CamelCase style](#style) could basically be archieved in C++, too
-    - C++ could be extended by some features:
-        - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow wrapper for the C++ standard library (i.e. a translation layer).
-    - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
-       - [Const reference as default type](#const-reference-as-default-type) for function arguments
-       - [Fixing C++ "wrong defaults"](#interesting-ideas-from-other-languages)
-           - Restricted integral promotions and implicit narrowing conversions, etc.
-       - New array declaration (`Int[] array` instead of `Int array[]`)
-       - [New/simplified keywords](#better-readable-keywords)
-       - [No trailing semicolons](#No-trailing-semicolons)
-
-
-## Comparison with C++, Cpp2, and Carbon
-Cilia is, in my opinion, a collection of quite obvious ideas, but tastes and opinions differ:  
-While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
-
-[Bjarne Stroustrup in an interview (back in 2000):](https://www.stroustrup.com/devXinterview.html)
-> Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
-
-I don't know what exact syntax Bjarne Stroustrup would prefer today, but indeed Cpp2 and Carbon do not feel familiar to me. 
-I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia is a bit more conservative/traditional here.
-
-The follwing comparison aims to show the _exact_ equivalent in Cilia, C++, Cpp2, and Carbon:
-
-> [!NOTE]
-> - I may not be very familiar with Cpp2 or Carbon, or not up to date.
->     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
-> - I may not be up to date sufficiently with C++14/17/20/23/26 either.
-
+## Introduction by Example
+Cilia is, in my opinion, a collection of quite obvious ideas:
 - Cilia
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
@@ -70,6 +22,10 @@ The follwing comparison aims to show the _exact_ equivalent in Cilia, C++, Cpp2,
         - `for i in 0..<words.size() { ... }`
         - `for i in [5, 7, 11, 13] { ... }`
         - `for word in words { ... }`
+
+
+## Comparison with C++, Cpp2, and Carbon
+The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, and Carbon:
 - C++
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
@@ -113,6 +69,53 @@ The follwing comparison aims to show the _exact_ equivalent in Cilia, C++, Cpp2,
           `while (i < words.ssize()) { ...; ++i; } `          
         - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
         - `for (word: auto in words) { ...; }`
+
+> [!NOTE]
+> - I may not be very familiar with Cpp2 or Carbon, or not up to date.
+>     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
+> - I may not be up to date sufficiently with C++14/17/20/23/26 either.
+
+Tastes and opinions differ:  
+While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
+
+[Bjarne Stroustrup in an interview (back in 2000):](https://www.stroustrup.com/devXinterview.html)
+> Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
+
+I don't know what exact syntax Bjarne Stroustrup would prefer today, but indeed Cpp2 and Carbon do not feel familiar to me. 
+I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia is a bit more conservative/traditional here.
+
+
+## Introduction
+- Ideas / a wish list for an "improved" C++
+    - with a **simplified** syntax,
+    - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)** (roughly like Java, JavaScript, Kotlin, Swift)
+    - Isomorphic mapping of all C++ functionality to Cilia possible
+        - only with other/better/shorter "expression".
+- C++ "Successor Language / Syntax"
+     - similar to [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle).
+     - Like the transitions from C to C++, Java to Kotlin, Objective-C to Swift, JavaScript to TypeScript
+- Uses the same compiler backend as C++ (clang comes to mind)  
+  with an own / a new compiler frontend.
+    - Or a precompiler, like Cpp2, if that is significantly easier to do.
+- So _no_ garbage collection,  
+  instead in Cilia you use, as in C++:
+    - automatic/stack variables,
+    - **RAII** (Resource Acquisition is Initialization)
+        - I'd like to call it "RROD" (Resource Release on Object Destruction)
+    - shared pointers (`T^`).
+- The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
+  as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
+- Why a new language, not extending C++?
+    - The [CamelCase style](#style) could basically be archieved in C++, too
+    - C++ could be extended by some features:
+        - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow wrapper for the C++ standard library (i.e. a translation layer).
+    - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
+       - [Const reference as default type](#const-reference-as-default-type) for function arguments
+       - [Fixing C++ "wrong defaults"](#interesting-ideas-from-other-languages)
+           - Restricted integral promotions and implicit narrowing conversions, etc.
+       - New array declaration (`Int[] array` instead of `Int array[]`)
+       - [New/simplified keywords](#better-readable-keywords)
+       - [No trailing semicolons](#No-trailing-semicolons)
 
 
 ## C++ Compatibility / Interoperability
