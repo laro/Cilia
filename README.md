@@ -338,8 +338,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
           Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
           array[2] = 0
           array[3] = 0  // Undefined behaviour, no bounds check at all
+          free(array)
       }
-      free(array)
       ```
     - Subscript access for raw pointers is `unsafe`:  
       Recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
