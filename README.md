@@ -73,7 +73,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, and Ca
 > [!NOTE]
 > - I may not be very familiar with Cpp2 or Carbon, or not up to date.
 >     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
-> - I may not be up to date sufficiently with C++14/17/20/23/26 either.
+> - I may not be sufficiently up to date with C++14/17/20/23/26 either.
 
 Tastes and opinions differ:  
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
