@@ -325,7 +325,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
 - Use `Int*` for "raw" C/C++ arrays of arbitrary size.
-    - `new`, `delete` and accessing raw pointers is considered `unsafe`:  
+    - But `new`, `delete` and accessing raw pointers is considered `unsafe`:  
         - Recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
         - `safe` / `unsafe` as border to signal what to do and what not to do.
     - ```
