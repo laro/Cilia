@@ -9,7 +9,7 @@ I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt
 
 ## Introduction by Example
 Cilia is, in my opinion, a collection of quite obvious ideas:
-- Cilia
+- **Cilia**
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
         - `var x = 42`
@@ -26,7 +26,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas:
 
 ## Comparison with C++, Cpp2, and Carbon
 The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, and Carbon:
-- C++
+- **C++**
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
         - `auto x = 42;`
@@ -39,7 +39,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, and Ca
         - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
         - `for (int i : {5, 7, 11, 13}) { ...; }`
         - `for (const var& word : words) { ... }`
-- Cpp2
+- **Cpp2**
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
         - `x := 42;`
@@ -54,7 +54,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, and Ca
           `while i < words.ssize() next i++ { ...; } `          
         - `for (5, 7, 11, 13) do (i) { ...; }`
         - `for words do (word) { ...; }`
-- Carbon
+- **Carbon**
     - [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5), `i32`, `i64`, `f32`
     - `var x: i64 = 42;`
         - `var x: auto = 42;`
