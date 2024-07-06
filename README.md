@@ -325,11 +325,12 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
 - Use `Int*` for "raw" C/C++ arrays of arbitrary size.
-    - But accessing raw pointers is considered `unsafe`,
-        - recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
-    - `new` and `delete` is considered `unsafe`:  
-        - Recommended to use `makeUnique<T>()` or `makeShared<T>()` instead.
     - `safe` / `unsafe` as border to signal what to do and what not to do.
+        - Subscript access to raw pointers is considered `unsafe`,
+            - recommended to _not_ use it anyway, except for implementation of abstractions (like `Array`, `Vector`, `Matrix`, ...).
+        - `reinterpretCastTo<T>(...)` is considered `unsafe`.
+        - ? `new` and `delete` is considered `unsafe`:  
+            - Recommended to use `makeUnique<T>()` or `makeShared<T>()` instead.
     - ```
       unsafe {
           Int* array = new Int[3]  // Array-to-pointer decay possible
@@ -348,12 +349,10 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       ```
     - Actually this is how to handle pointer to array of `Int` "properly":  
       ```
-      unsafe {
-          Int[3]* arrayPtr = new Int[3]
-          *arrayPtr[2] = 0
-          *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-          delete[] arrayPtr
-      }
+      Int[3]* arrayPtr = new Int[3]
+      *arrayPtr[2] = 0
+      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+      delete[] arrayPtr
       ```
 - Examples:
     - `Int[] dynamicArrayOfInt`
