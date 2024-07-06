@@ -266,7 +266,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 
 ## Variable Declaration
 `Int i` as variable declaration, just as in C/C++.
-- `var` for type inference only:  
+- `var` for type inference:  
   `var i = 3` instead of ~~`auto i = 3;`~~
 - Examples:
     - `Int i`
