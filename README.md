@@ -1284,10 +1284,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Casting via constructor is `explicit` by default, `implicit` as option.
     - No classic C-style casting: ~~`(Float) 3`~~
     - but also
-        - ~~const_cast<>~~
-        - mutable_cast<>
-        - reinterpret_cast<>
-        - static_cast<>?
+        - `castToMutable<T>(...)` or `mutableCastTo<T>(...)`
+            - instead of ~~`constCastTo<>(...)`~~
+        - `reinterpretCastTo<T>(...)`
+        - `staticCastTo<T>(...)`?
 - Automatic casts
     - as in Kotlin,
     - for template types, references and pointers.
