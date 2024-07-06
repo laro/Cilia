@@ -334,7 +334,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
       delete[] array
       ```
     - ```
-      Int* array = (Int*)(malloc(3 * sizeof(Int)))
+      Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
       unsafe {
           array[2] = 0
           array[3] = 0  // Undefined behaviour, no bounds check at all
