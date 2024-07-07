@@ -24,8 +24,8 @@ Cilia is, in my opinion, a collection of quite obvious ideas:
         - `for word in words { ... }`
 
 
-## Comparison with C++, Cpp2, and Carbon
-The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, and Carbon:
+## Comparison with C++, Cpp2, Carbon, and Rust
+The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon, and Rust:
 - **C++**
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
@@ -67,6 +67,21 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, and Ca
       `while (i <= 10) { ...; ++i; }`
         - `var i: i64 = 0;`  
           `while (i < words.ssize()) { ...; ++i; } `          
+        - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
+        - `for (word: auto in words) { ...; }`
+- **Rust**
+    - `i32`, `i64`, `f32`
+    - `let mut x: i64 = 42;`
+        - `let mut x = 42;`
+        - `let mut circles: Array(Circle);`
+        - `let mut mapStringToCircle: Map(String, Circle);`
+    - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
+        - `fn print(a: Circle) { ...; }`
+        - `fn concat(a: str, b: str) -> String { return a + b; }`
+    - `let mut i = 1;`  
+      `while i <= 10 { ...; ++i; }`
+        - `let mut i = 0;`  
+          `while i < words.ssize() { ...; ++i; } `          
         - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
         - `for (word: auto in words) { ...; }`
 
