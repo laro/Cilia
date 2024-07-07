@@ -1264,7 +1264,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           }
           ```
     - Not every function with unsafe code needs to be marked as unsafe.  
-      Unsafe is just a marker for code, that needs to be checked carefully.
+      Unsafe is just a marker for code that needs to be checked carefully.
 - `cilia::safe::Int`
     - Like `cilia::Int`, but with **overflow check** for all operations,
         - may throw OverflowException (or abort the program).
