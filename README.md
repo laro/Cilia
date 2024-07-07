@@ -571,7 +571,7 @@ No braces around the condition clause.
   } while a > b
   ```
 - `for ... in ...`
-    - as in Rust, Swift
+    - as in Swift, Rust
     - Write
       ```
       for str in ["a", "b", "c"] {
