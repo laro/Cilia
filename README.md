@@ -72,19 +72,19 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
 - **Rust**
     - `isize`, `i32`, `i64`, `f32`
     - `let mut x: i64 = 42;`
-        - `let mut x = 42;`
-        - `let mut circles: Array(Circle);`
-        - `let mut mapStringToCircle: Map(String, Circle);`
+        - `let mut x = 42i64;`
+        - `let mut circles: Vec<Circle> let mut vec = Vec::new();`
+        - `let mut mapStringToCircle: HashMap<String, Circle> = HasMap::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
-        - `fn print(a: Circle) { ...; }`
-        - `fn concat(a: str, b: str) -> String { return a + b; }`
+        - `fn print(a: &Circle) { ...; }`
+        - `fn concat(a: &str, b: &str) -> String { return a + b; }`
     - `for i in 1..=10 { ...; }`
-        - `for i in 1..words.ssize() { ...; } `          
-        - `for i in [5, 7, 11, 13] { ...; }`
-        - `for word in words { ...; }`
+        - `for i in 1..words.len() { ...; } `          
+        - `for i in [5, 7, 11, 13].iter() { ...; }`
+        - `for word in words.iter() { ...; }`
 
 > [!NOTE]
-> - I may not be very familiar with Cpp2 or Carbon, or not up to date.
+> - I may not be very familiar with Cpp2, Carbon, or Rust or not up to date.
 >     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
 > - I may not be sufficiently up to date with C++14/17/20/23/26 either.
 
