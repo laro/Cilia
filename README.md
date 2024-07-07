@@ -75,14 +75,12 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, and Ca
 >     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
 > - I may not be sufficiently up to date with C++14/17/20/23/26 either.
 
-Tastes and opinions differ:  
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 
-[Bjarne Stroustrup in an interview (back in 2000):](https://www.stroustrup.com/devXinterview.html)
+[Someone said in an interview (back in 2000):](https://www.stroustrup.com/devXinterview.html)
 > Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
 
-I don't know what exact syntax Bjarne Stroustrup would prefer today, but indeed Cpp2 and Carbon do not feel familiar to me. 
-I like many aspects especially of Cpp2, but not its `name: Type` syntax. Cilia is a bit more conservative/traditional here.
+Indeed Cpp2 and Carbon do not feel familiar to me. I like many aspects, especially of Cpp2, but not the `name: Type` syntax. Cilia is a bit more conservative/traditional here. And I hope its syntax is "easy enough" to parse.
 
 
 ## Introduction
