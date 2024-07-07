@@ -70,7 +70,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
         - `for (word: auto in words) { ...; }`
 - **Rust**
-    - `i32`, `i64`, `f32`
+    - `isize`, `i32`, `i64`, `f32`
     - `let mut x: i64 = 42;`
         - `let mut x = 42;`
         - `let mut circles: Array(Circle);`
@@ -78,12 +78,10 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: Circle) { ...; }`
         - `fn concat(a: str, b: str) -> String { return a + b; }`
-    - `let mut i = 1;`  
-      `while i <= 10 { ...; ++i; }`
-        - `let mut i = 0;`  
-          `while i < words.ssize() { ...; ++i; } `          
-        - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
-        - `for (word: auto in words) { ...; }`
+    - `for i in 1..=10 { ...; }`
+        - `for i in 1..words.ssize() { ...; } `          
+        - `for i in [5, 7, 11, 13] { ...; }`
+        - `for word in words { ...; }`
 
 > [!NOTE]
 > - I may not be very familiar with Cpp2 or Carbon, or not up to date.
