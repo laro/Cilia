@@ -578,7 +578,7 @@ No braces around the condition clause.
           // ...
       }
       ```
-      instead of `for (... : ...)` (AKA C++ range-for, C++/CLI `for each`, C# `foreach`)
+      instead of `for (... : ...)` (AKA range-for in C++, `for each` in C++/CLI, `foreach` in C#)
     - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`),  
       so `for i in 0..<10 { ... }` is equivalent to:
       ```
