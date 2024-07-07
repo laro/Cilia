@@ -757,7 +757,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - The rule of thumb is:
         - Objects with a size less than or equal to the size of two pointers (i.e. of up to 16 bytes) are passed by value.
         - Larger objects are passed by reference.
-    - Use const _reference_ as general default.
+    - So use const _reference_ as general default.
         - `using<type T> T::InArgumentType = const T&`  
     - A "list of exceptions" for the "const _value_ types".
         - ```
