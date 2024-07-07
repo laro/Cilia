@@ -80,7 +80,7 @@ While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new s
 [Someone said in an interview (back in 2000):](https://www.stroustrup.com/devXinterview.html)
 > Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
 
-Indeed Cpp2 and Carbon do not feel familiar to me. I like many aspects, especially of Cpp2, but not the `name: Type` syntax. Cilia is a bit more conservative/traditional here. And I hope its syntax is "easy enough" to parse.
+I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I hope its syntax is / will be "easy enough" to parse.
 
 
 ## Introduction
