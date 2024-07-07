@@ -13,6 +13,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas:
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
         - `var x = 42`
+        - `let x = 42`
         - `Circle[] circles`
         - `Map<String, Circle> mapStringToCircle`
     - `func multiply(Int a, b) -> Int { return a * b }`
@@ -30,6 +31,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
         - `auto x = 42;`
+        - `const auto x = 42;`
         - `vector<Circle> circles;`
         - `map<string, Circle> mapStringToCircle`
     - `auto multiply(int a, int b) -> int { return a * b; }`
@@ -43,6 +45,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
         - `x := 42;`
+        - `x : const int = 42;`
         - `circles: vector<Circle>;`
         - `mapStringToCircle: map<string, Circle>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
@@ -58,6 +61,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5), `i32`, `i64`, `f32`
     - `var x: i64 = 42;`
         - `var x: auto = 42;`
+        - `let x: auto = 42;`
         - `var circles: Array(Circle);`
         - `var mapStringToCircle: HashMap(String, Circle);`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
@@ -72,7 +76,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
 - **Rust**
     - `isize`, `i32`, `i64`, `f32`
     - `let mut x: i64 = 42;`
-        - `let mut x = 42;` (actually, this is `i32`, but IMHO that's fine)
+        - `let mut x = 42;` (actually, this is `i32`, but that's fine with me)
+        - `let x = 42;`
         - `let mut circles: Vec<Circle> = Vec::new();`
         - `let mut mapStringToCircle: HashMap<String, Circle> = HasMap::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
@@ -277,8 +282,9 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 
 ## Variable Declaration
 `Int i` as variable declaration, just as in C/C++.
-- `var` for type inference:  
-  `var i = 3` instead of ~~`auto i = 3;`~~
+- `var` / `let` for type inference:  
+    - `var i = 3` instead of ~~`auto i = 3;`~~
+    - `let i = 3` instead of ~~`const auto i = 3;`~~ (mainly because "there is no const variable")
 - Examples:
     - `Int i`
     - `Int i = 0`
@@ -1382,7 +1388,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       
 - Reserved keywords for _future_ use (maybe, maybe not).
     - `parallel`
-    - `let`, `val` for const values
     - `sruct` for some variant of C++ strcuts/classes
     - `interface` for pure abstract base classes or similar constructs
     - `template`
