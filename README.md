@@ -72,8 +72,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
 - **Rust**
     - `isize`, `i32`, `i64`, `f32`
     - `let mut x: i64 = 42;`
-        - `let mut x = 42i64;`
-        - `let mut circles: Vec<Circle> let mut vec = Vec::new();`
+        - `let mut x = 42;` (actually, this is `i32`, but IMHO that's fine)
+        - `let mut circles: Vec<Circle> = Vec::new();`
         - `let mut mapStringToCircle: HashMap<String, Circle> = HasMap::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: &Circle) { ...; }`
