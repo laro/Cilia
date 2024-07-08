@@ -14,7 +14,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas:
     - `Int x = 42`
         - `var x = 42`
         - `let x = 42`
-        - `Circle[] circles`
+        - `String[] words`
         - `Map<String, Circle> mapStringToCircle`
     - `func multiply(Int a, b) -> Int { return a * b }`
         - `func print(Circle a) { ... }`
@@ -32,7 +32,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - `int x = 42;`
         - `auto x = 42;`
         - `const auto x = 42;`
-        - `vector<Circle> circles;`
+        - `vector<string> words;`
         - `map<string, Circle> mapStringToCircle`
     - `auto multiply(int a, int b) -> int { return a * b; }`
         - `auto print(const Circle& a) { ...; }`
@@ -46,7 +46,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - `x: int = 42;`
         - `x := 42;`
         - `x : const int = 42;`
-        - `circles: vector<Circle>;`
+        - `words: vector<string>;`
         - `mapStringToCircle: map<string, Circle>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
         - `print: (a: Circle) { ...; }`
@@ -62,7 +62,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - `var x: i64 = 42;`
         - `var x: auto = 42;`
         - `let x: auto = 42;`
-        - `var circles: Array(Circle);`
+        - `var words: Array(String);`
         - `var mapStringToCircle: HashMap(String, Circle);`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: Circle) { ...; }`
@@ -78,7 +78,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - `let mut x: i64 = 42;`
         - `let mut x = 42;` (actually, this is `i32`, but that's fine with me)
         - `let x = 42;`
-        - `let mut circles: Vec<Circle> = Vec::new();`
+        - `let mut words: Vec<String> = Vec::new();`
         - `let mut mapStringToCircle: HashMap<String, Circle> = HasMap::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: &Circle) { ...; }`
