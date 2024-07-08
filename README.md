@@ -468,8 +468,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
         - `1..3` – Range(1, 3) – 1, 2, 3
         - `0..<3` – RangeExclusiveEnd(0, 3) – 0, 1, 2
         - Range with step  
-            - `1..3:2` – RangeByStep(0, 2, 2) – 1, 3
-            - `0..<3:2` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2
+            - `1..6:2` – RangeByStep(1, 3, 2) – 1, 3, 5
+            - `0..<6:2` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2, 4
         - Downwards iterating range,  
           step size is mandatory (to make it clear that we are counting down, to avoid wrong conclusions).
             - `8..0:-1`
