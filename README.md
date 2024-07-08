@@ -465,32 +465,36 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
             - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
     - Different kinds of ranges:
-        - `1..3` – Range(1, 3) – 1, 2, 3
-        - `0..<3` – RangeExclusiveEnd(0, 3) – 0, 1, 2
+        - `1..3` – 1, 2, 3
+            - Range(1, 3)
+        - `0..<3` – 0, 1, 2
+            - RangeExclusiveEnd(0, 3)
         - Range with step  
-            - `1..6:2` – RangeByStep(1, 3, 2) – 1, 3, 5
-            - `0..<6:2` – RangeExclusiveEndByStep(0, 3, 2) – 0, 2, 4
+            - `1..6:2` – 1, 3, 5
+                - RangeByStep(1, 3, 2)
+            - `0..<6:2` – 0, 2, 4
+                - RangeExclusiveEndByStep(0, 3, 2)
         - Downwards iterating range,  
           step size is mandatory (to make it clear that we are counting down, to avoid wrong conclusions).
-            - `8..0:-1`
+            - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
                 - RangeByStep(8, 0, -1)
-                - 8, 7, 6, 5, 4, 3, 2, 1, 0
                 - Not ~~`8..0`~~, as Range(8, 0) is always empty!
-            - `8>..0:-1`
+            - `8>..0:-1` – 7, 6, 5, 4, 3, 2, 1, 0
                 - RangeExclusiveStartByStep(8, 0, -1)
-                - 7, 6, 5, 4, 3, 2, 1, 0
-            - `8..>0:-1`
+            - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
                 - RangeExclusiveEndByStep(8, 0, -1)
-                - 8, 7, 6, 5, 4, 3, 2, 1
-            - `8>..0:-3`
+            - `8>..0:-3` – 5, 2
                 - RangeExclusiveStartByStep(8, 0, -3)
-                - 7, 4, 1
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
-            - `..2` – RangeTo(2) – ..., 1, 2
-            - `..<3` – RangeToExclusiveEnd(3) – ..., 1, 2
-            - `0..` – RangeFrom(0) – 0, 1, 2, ...
-            - `..` – RangeFull()
+            - `..2` – ..., 1, 2
+                - RangeTo(2)
+            - `..<3` – ..., 1, 2
+                - RangeToExclusiveEnd(3)
+            - `0..` – 0, 1, 2, ...
+                - RangeFrom(0)
+            - `..`
+                - RangeFull()
             - Incomplete range with step
                 - `..2:2` – RangeToByStep(2, 2)
                 - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
