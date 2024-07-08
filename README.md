@@ -701,18 +701,22 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - Is the default if no parameter passing keyword is given.
         - Technically either `const X&` or `const X` (sometimes `const XView`)
             - `const X&` as default:
-                - **`concat(String first, String second)`**  
-                    - is effectively translated to `concat(const String& first, const String& second)`  
-                      (or to `concat(const StringView first, const StringView second)`, if the `X`/`XView`-trick is implemented)
-                - **`String[] stringArray = ["a", "b", "c"]`**  
-                  **`for str in stringArray { ... }`**
-                    - `str` is `const String&`  
-                      (or `const StringView`, if the `X`/`XView`-trick is implemented)
+                - **`add(BigInt a, BigInt b)`**  
+                    - is effectively translated to `add(const BigInt& a, const BigInt& b)`  
+                - **`BigInt[] bigIntArray = ...`**  
+                  **`for i in bigIntArray { ... }`**
+                    - `i` is `const BigInt&`  
             - `const X` for "small types":
                 - `for i in [1, 2, 3] { ... }`
                     - `i` is `const Int`
                 - `for str in ["a", "b", "c"] { ... }`
                     - `str` is `const StringView` (a string-literal like `"a"` forms a `const StringView`, therefore `["a", "b", "c"]` is a `StringView[]`)
+            - `const XView` for types that have a corresponding view type:
+                - **`concat(String first, String second)`**  
+                    - is effectively translated to `concat(const StringView first, const StringView second)`
+                - **`String[] stringArray = ["a", "b", "c"]`**  
+                  **`for str in stringArray { ... }`**
+                    - `str` is `const StringView`
     - **`inout`**
         - to mark as mutable/non-const reference.
         - Technically a non-const/mutable reference (`X&`)
