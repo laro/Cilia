@@ -769,7 +769,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - Technically a right-value reference (`X&&`)?
 - Type traits **`InArgumentType`** to determine the concrete type to be used for `in`-passing.
     - The rule of thumb is:
-        - Objects with a size less than or equal to the size of two pointers (i.e. of up to 16 bytes) are passed by value.
+        - POD-objects (Plain Old Data) with a size less than or equal to the size of two pointers (i.e. of up to 16 bytes) are passed by value.
         - Larger objects are passed by reference.
     - So use const _reference_ as general default.
         - `using<type T> T::InArgumentType = const T&`  
