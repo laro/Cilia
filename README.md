@@ -40,7 +40,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
     - `for (int i = 1; i <= 10; ++i) { ...; }`
         - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
         - `for (int i : {5, 7, 11, 13}) { ...; }`
-        - `for (const var& word : words) { ... }`
+        - `for (const auto& word : words) { ... }`
 - **Cpp2**
     - `int`, `i32`, `i64`, `f32`
     - `x: int = 42;`
@@ -189,7 +189,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
 
       
 - Global constants in upper CamelCase
-    - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a local constant `const var e = Euler`)
+    - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a local constant `const e = Euler`)
     - Constant-like keywords
         - `NullPtr`
         - `True`, `False`
@@ -284,7 +284,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 `Int i` as variable declaration, just as in C/C++.
 - `var` / `const` for type inference:  
     - `var i = 3` instead of ~~`auto i = 3;`~~
-    - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no thing as a "constant variable".)
+    - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no such thing as a "constant variable".)
 - Examples:
     - `Int i`
     - `Int i = 0`
