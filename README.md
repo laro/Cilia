@@ -201,18 +201,19 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
 ## No Trailing Semicolons
 For better readability.  
 When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Julia.
-- Disadvantage:
-    - Errors are less easily recognized
-        - Walter Bright / D: „Redundancy helps“
-    - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
+- Typically a statement or expression ends with the end of a line.
 - Multiline expressions:
-    - Explicitly via `\` at of line, or
+    - Explicitly via `\` at end of line, or
     - up to closing of `(...)` or `[...]` (as in Python).
 - Multiple expressions in a single line _are_ separated by semicolon.  
   `x += offset; y += offset`
 - Only in REPL:
     - Trailing semicolon used to suppress evaluation output,  
       as in Matlab, Python, Julia.
+- Disadvantage:
+    - Errors are less easily recognized
+        - Walter Bright / D: „Redundancy helps“
+    - This probably means that a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
 
 
 ## Better Readable Keywords
