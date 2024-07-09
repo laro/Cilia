@@ -27,7 +27,9 @@ For several topics there are alternative ideas, that were discarded but are stil
     - Maybe possible to simply write `i = 3`?
     - Maybe `i := 3`?
 - `let i = 0` instead of `const i = 0`
-    - similar to Swift, Rust, and Carbon.
+    - similar to Swift and Carbon.
+    - In Rust `let mut` is used for variables,
+    - in JavaScript `let` and `const` are very similar with slight differences.
 - Always starting with keyword `var`
     - Examples:
         - `var Int i`
