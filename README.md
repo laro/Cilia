@@ -789,15 +789,17 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value would be the default).
 - Special **trick for types with views**
     - Applicable only for types `X` that have an `XView` counterpart and where
-        - `X` can implicitly be converted/reduced to `XView` and
-        - `XView` can (explicitly) be converted to `X`,
+        - `X` can implicitly be converted/reduced to `XView`,
+        - `XView` can (explicitly) be converted to `X`, and
+        - `XView` has the same "interface" as `X` (i.e. contiguous memory).
     - like:  
         - `String` - `StringView`
         - `Array` - `ArrayView`
         - `Vector` - `VectorView`
-        - `Matrix` - `MatrixView`
-        - `Image` - `ImageView`
-        - `MDArray` - `MDArrayView` (AKA MDSpan?)
+    - not (as the views typically do not guarantee contiguous memory access, i.e. support stride):
+        - ~~`Matrix` - `MatrixView`~~
+        - ~~`Image` - `ImageView`~~
+        - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
     - As example, with `String`/`StringView`:  
      `using String::InArgumentType = const StringView`
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
@@ -816,11 +818,12 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               using Vector::InArgumentType = const VectorView
               ```
         - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixView`, `ImageView`, and `MDArrayView`) will be passed by reference:
-            - ```
+            - (Not practical example known) 
+            - ~~```
               using  Matrix::InArgumentType = const MatrixView&
               using   Image::InArgumentType = const ImageView&
               using MDArray::InArgumentType = const MDArrayView&
-              ```
+              ```~~
     - **`CopyArgumentType`**
         - of a type `T` typically simply is `T`  
           `using<type T> T::CopyArgumentType = T`  
