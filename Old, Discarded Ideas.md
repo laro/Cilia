@@ -26,6 +26,7 @@ For several topics there are alternative ideas, that were discarded but are stil
 - Very short variable declaration:
     - Maybe possible to simply write `i = 3`?
     - Maybe `i := 3`?
+- `let i = 0` instead of `const i = 0`
 - Always starting with keyword `var`
     - Examples:
         - `var Int i`
