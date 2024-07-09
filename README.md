@@ -13,7 +13,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas:
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
         - `var x = 42`
-        - `let x = 42`
+        - `const x = 42`
         - `String[] words`
         - `Map<String, Circle> mapStringToCircle`
     - `func multiply(Int a, b) -> Int { return a * b }`
