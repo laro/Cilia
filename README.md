@@ -753,15 +753,14 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ```
     - **`copy`**
         - to create a (mutable) copy (i.e. pass "by value"). 
-        - Technically a non-const/mutable value (`X`)
+        - Technically a non-const/mutable value (`X`), sometimes the "full class" `X` of a view class `XView`.
         - Examples:
             - `for copy i in [1, 2, 3] { ... }`
                 - `i` is `Int`
             - `for copy str in stringArray { ... }`
                 - `str` is `String`
             - `for copy str in ["an", "array", "of", "words"] { ... }`
-                - `str` is `StringView`  
-                  (or `String`, if the `X`/`XView`-copy-trick is implemented)
+                - `str` is `String` (if the `X`/`XView`-copy-trick is implemented)
     - **`move`**
         - for move sematics.
         - Technically a right-value reference (`X&&`)
@@ -797,12 +796,12 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `String` - `StringView`
         - `Array` - `ArrayView`
         - `Vector` - `VectorView`
-    - not (as the views typically do not guarantee contiguous memory access, i.e. support stride):
+    - not (as the views typically do not guarantee contiguous memory access, i.e. they do support stride):
         - ~~`Matrix` - `MatrixView`~~
         - ~~`Image` - `ImageView`~~
         - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
-        - Maybe having XBaseView explicitly _without_ stride:
-            - Can cut off at start and end, but no slicing.
+        - Maybe having some `XBaseView` explicitly _without_ stride support,  
+          that can cut off at start and end, but no slicing:
             - `Matrix` - `MatrixBaseView`
             - `Image` - `ImageBaseView`
             - `MDArray` - `MDArrayBaseView`
