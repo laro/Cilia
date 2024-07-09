@@ -800,7 +800,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - ~~`Matrix` - `MatrixView`~~
         - ~~`Image` - `ImageView`~~
         - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
-        - Maybe having XBaseView explicitly without stride:
+        - Maybe having XBaseView explicitly _without_ stride:
+            - Can cut off at start and end, but no slicing.
             - `Matrix` - `MatrixBaseView`
             - `Image` - `ImageBaseView`
             - `MDArray` - `MDArrayBaseView`
@@ -822,7 +823,6 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               using Vector::InArgumentType = const VectorView
               ```
         - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBaseView`, `ImageBaseView`, and `MDArrayBaseView`) will be passed by reference:
-            - (Not practical example known) 
             - ```
               using  Matrix::InArgumentType = const MatrixBaseView&
               using   Image::InArgumentType = const ImageBaseView&
