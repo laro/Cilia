@@ -800,6 +800,10 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - ~~`Matrix` - `MatrixView`~~
         - ~~`Image` - `ImageView`~~
         - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
+        - Maybe having XBaseView explicitly without stride:
+            - `Matrix` - `MatrixBaseView`
+            - `Image` - `ImageBaseView`
+            - `MDArray` - `MDArrayBaseView`
     - As example, with `String`/`StringView`:  
      `using String::InArgumentType = const StringView`
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
@@ -817,13 +821,13 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               using  Array::InArgumentType = const ArrayView
               using Vector::InArgumentType = const VectorView
               ```
-        - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixView`, `ImageView`, and `MDArrayView`) will be passed by reference:
+        - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBaseView`, `ImageBaseView`, and `MDArrayBaseView`) will be passed by reference:
             - (Not practical example known) 
-            - ~~```
-              using  Matrix::InArgumentType = const MatrixView&
-              using   Image::InArgumentType = const ImageView&
-              using MDArray::InArgumentType = const MDArrayView&
-              ```~~
+            - ```
+              using  Matrix::InArgumentType = const MatrixBaseView&
+              using   Image::InArgumentType = const ImageBaseView&
+              using MDArray::InArgumentType = const MDArrayBaseView&
+              ```
     - **`CopyArgumentType`**
         - of a type `T` typically simply is `T`  
           `using<type T> T::CopyArgumentType = T`  
