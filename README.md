@@ -282,9 +282,9 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 
 ## Variable Declaration
 `Int i` as variable declaration, just as in C/C++.
-- `var` / `let` for type inference:  
+- `var` / `const` for type inference:  
     - `var i = 3` instead of ~~`auto i = 3;`~~
-    - `let i = 3` instead of ~~`const auto i = 3;`~~ (mainly because "there is no constant variable", i.e. `const var` would be a contradiction in terms)
+    - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no thing as a "constant variable".)
 - Examples:
     - `Int i`
     - `Int i = 0`
