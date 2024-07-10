@@ -504,7 +504,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `..:2` – RangeFullByStep(2)
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Power function
-    - **`a^x`** for `pow(a, x)` (as Julia)
+    - **`a^x`** for `pow(a, x)` (as in Julia)
 - Boolean operators
     - `and`, `or`, `xor` instead of `&&`, `||`, `^`
         - as in Python, Carbon
