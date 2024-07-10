@@ -760,7 +760,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - `for copy str in stringArray { ... }`
                 - `str` is `String`
             - `for copy str in ["an", "array", "of", "words"] { ... }`
-                - `str` is `String` (if the `X`/`XView`-copy-trick is implemented)
+                - `str` is `String` (not ~~`StringView`~~, due to the `X`/`XView`-copy-trick)
     - **`move`**
         - for move sematics.
         - Technically a right-value reference (`X&&`)
@@ -843,7 +843,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       using      MDArrayView::CopyArgumentType = MDArray
       using MDArrayBasicView::CopyArgumentType = MDArray
       ```
-    - The idea is to get a mutable copy of the object, even without understanding the concept of a `View`.
+    - The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
             - `str` is `String` (not ~~`StringView`~~)
