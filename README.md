@@ -833,12 +833,15 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       `using<type T> T::CopyArgumentType = T`  
     - but for `View`-types it is:
       ```
-      using  StringView::CopyArgumentType = String
-      using   ArrayView::CopyArgumentType = Array
-      using  VectorView::CopyArgumentType = Vector
-      using  MatrixView::CopyArgumentType = Matrix
-      using   ImageView::CopyArgumentType = Image
-      using MDArrayView::CopyArgumentType = MDArray
+      using       StringView::CopyArgumentType = String
+      using        ArrayView::CopyArgumentType = Array
+      using       VectorView::CopyArgumentType = Vector
+      using       MatrixView::CopyArgumentType = Matrix
+      using  MatrixBasicView::CopyArgumentType = Matrix
+      using        ImageView::CopyArgumentType = Image
+      using   ImageBasicView::CopyArgumentType = Image
+      using      MDArrayView::CopyArgumentType = MDArray
+      using MDArrayBasicView::CopyArgumentType = MDArray
       ```
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
