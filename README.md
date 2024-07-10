@@ -807,7 +807,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - **`String[] stringArray = ["a", "b", "c"]`**  
               **`for str in stringArray { ... }`**
                 - `str` is `const StringView`
-    - Not every view type (because the views typically do not guarantee contiguous memory access as they do support stride):
+    - Not every view type (because the views typically do not guarantee contiguous memory access as they often do support stride):
         - ~~`Matrix` - `MatrixView`~~
         - ~~`Image` - `ImageView`~~
         - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
