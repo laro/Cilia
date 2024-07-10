@@ -791,7 +791,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - Applicable only for types `X` that have an `XView` counterpart and where
         - `X` can implicitly be converted/reduced to `XView`,
         - `XView` can (explicitly) be converted to `X`, and
-        - `XView` has the same "interface" as `X` (i.e. contiguous memory).
+        - `XView` has the same "interface" as `const X` (i.e. contiguous memory).
     - like:  
         - `String` - `StringView`
         - `Array` - `ArrayView`
