@@ -828,10 +828,10 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           using   Image::InArgumentType = const ImageBasicView&
           using MDArray::InArgumentType = const MDArrayBasicView&
           ```
-- Type traits **`CopyArgumentType`**
+- Type trait **`CopyArgumentType`**
     - of a type `T` typically simply is `T`  
       `using<type T> T::CopyArgumentType = T`  
-    - but for `View`-types it is:
+    - but for `View`-types it is the corresponding "full" type:
       ```
       using       StringView::CopyArgumentType = String
       using        ArrayView::CopyArgumentType = Array
@@ -843,6 +843,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       using      MDArrayView::CopyArgumentType = MDArray
       using MDArrayBasicView::CopyArgumentType = MDArray
       ```
+    - The idea is to get a mutable copy of the object, even without understanding the concept of a `View`.
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
             - `str` is `String` (not ~~`StringView`~~)
