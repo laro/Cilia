@@ -796,7 +796,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `String` - `StringView`
         - `Array` - `ArrayView`
         - `Vector` - `VectorView`
-    - not (as the views typically do not guarantee contiguous memory access, i.e. they do support stride):
+    - not (because the views typically do not guarantee contiguous memory access as they do support stride):
         - ~~`Matrix` - `MatrixView`~~
         - ~~`Image` - `ImageView`~~
         - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
