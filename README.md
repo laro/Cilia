@@ -796,15 +796,6 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `String` - `StringView`
         - `Array` - `ArrayView`
         - `Vector` - `VectorView`
-    - not (because the views typically do not guarantee contiguous memory access as they do support stride):
-        - ~~`Matrix` - `MatrixView`~~
-        - ~~`Image` - `ImageView`~~
-        - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
-        - Maybe having some `XBasicView` explicitly _without_ stride support,  
-          that can cut off at start and end, but no slicing:
-            - `Matrix` - `MatrixBasicView`
-            - `Image` - `ImageBasicView`
-            - `MDArray` - `MDArrayBasicView`
     - As example, with `String`/`StringView`:  
      `using String::InArgumentType = const StringView`
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
@@ -816,30 +807,39 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - **`String[] stringArray = ["a", "b", "c"]`**  
               **`for str in stringArray { ... }`**
                 - `str` is `const StringView`
-        - Small `...View`-classes with a size of 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
-            - ```
-              using String::InArgumentType = const StringView
-              using  Array::InArgumentType = const ArrayView
-              using Vector::InArgumentType = const VectorView
-              ```
-        - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
-            - ```
-              using  Matrix::InArgumentType = const MatrixBasicView&
-              using   Image::InArgumentType = const ImageBasicView&
-              using MDArray::InArgumentType = const MDArrayBasicView&
-              ```
-    - **`CopyArgumentType`**
-        - of a type `T` typically simply is `T`  
-          `using<type T> T::CopyArgumentType = T`  
-        - but for `View`-types it is:
+    - Not everey view type (because the views typically do not guarantee contiguous memory access as they do support stride):
+        - ~~`Matrix` - `MatrixView`~~
+        - ~~`Image` - `ImageView`~~
+        - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
+        - Maybe having some `XBasicView` instead, explicitly _without_ stride support,  
+          that can cut off at start and end, but no slicing:
+            - `Matrix` - `MatrixBasicView`
+            - `Image` - `ImageBasicView`
+            - `MDArray` - `MDArrayBasicView`
+    - Small `...View`-classes with a size of 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
+        - ```
+          using String::InArgumentType = const StringView
+          using  Array::InArgumentType = const ArrayView
+          using Vector::InArgumentType = const VectorView
           ```
-          using  StringView::CopyArgumentType = String
-          using   ArrayView::CopyArgumentType = Array
-          using  VectorView::CopyArgumentType = Vector
-          using  MatrixView::CopyArgumentType = Matrix
-          using   ImageView::CopyArgumentType = Image
-          using MDArrayView::CopyArgumentType = MDArray
+    - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
+        - ```
+          using  Matrix::InArgumentType = const MatrixBasicView&
+          using   Image::InArgumentType = const ImageBasicView&
+          using MDArray::InArgumentType = const MDArrayBasicView&
           ```
+- Type traits **`CopyArgumentType`**
+    - of a type `T` typically simply is `T`  
+      `using<type T> T::CopyArgumentType = T`  
+    - but for `View`-types it is:
+      ```
+      using  StringView::CopyArgumentType = String
+      using   ArrayView::CopyArgumentType = Array
+      using  VectorView::CopyArgumentType = Vector
+      using  MatrixView::CopyArgumentType = Matrix
+      using   ImageView::CopyArgumentType = Image
+      using MDArrayView::CopyArgumentType = MDArray
+      ```
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
             - `str` is `String` (not ~~`StringView`~~)
