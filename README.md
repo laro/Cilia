@@ -787,17 +787,17 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value would be the default).
 - Special **trick for types with views**
-    - Applicable only for types `X` that have an `XView` counterpart and where
-        - `X` can implicitly be converted/reduced to `XView`,
+    - Applicable only for types `X` that have an `XView` counterpart where
+        - `X` can implicitly be converted to `XView`,
         - `XView` can (explicitly) be converted to `X`, and
-        - `XView` has the same "interface" as `const X` (i.e. contiguous memory).
+        - `XView` has the same "interface" as `const X` (i.e. contiguous memory access).
     - like:  
         - `String` - `StringView`
         - `Array` - `ArrayView`
         - `Vector` - `VectorView`
     - As example, with **`String`**/`StringView`:  
      **`using String::InArgumentType = const StringView`**
-        - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
+        - So _all_ functions with an `in String` parameter would implicitly accept not only a `String` (as that can implicitly be converted to `StringView`) but _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String`, and nonetheless there is no need to define two functions (one for `String` and another for `StringView`).
         - If you need to change the string argument, then a **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on `String`.
         - Example:
