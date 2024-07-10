@@ -800,11 +800,11 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - ~~`Matrix` - `MatrixView`~~
         - ~~`Image` - `ImageView`~~
         - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
-        - Maybe having some `XBaseView` explicitly _without_ stride support,  
+        - Maybe having some `XBasicView` explicitly _without_ stride support,  
           that can cut off at start and end, but no slicing:
-            - `Matrix` - `MatrixBaseView`
-            - `Image` - `ImageBaseView`
-            - `MDArray` - `MDArrayBaseView`
+            - `Matrix` - `MatrixBasicView`
+            - `Image` - `ImageBasicView`
+            - `MDArray` - `MDArrayBasicView`
     - As example, with `String`/`StringView`:  
      `using String::InArgumentType = const StringView`
         - So _all_ functions with an `in String` parameter would implicitly accept a `String` (as that can implicitly be converted to `StringView`) and _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
@@ -822,11 +822,11 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               using  Array::InArgumentType = const ArrayView
               using Vector::InArgumentType = const VectorView
               ```
-        - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBaseView`, `ImageBaseView`, and `MDArrayBaseView`) will be passed by reference:
+        - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
             - ```
-              using  Matrix::InArgumentType = const MatrixBaseView&
-              using   Image::InArgumentType = const ImageBaseView&
-              using MDArray::InArgumentType = const MDArrayBaseView&
+              using  Matrix::InArgumentType = const MatrixBasicView&
+              using   Image::InArgumentType = const ImageBasicView&
+              using MDArray::InArgumentType = const MDArrayBasicView&
               ```
     - **`CopyArgumentType`**
         - of a type `T` typically simply is `T`  
