@@ -693,7 +693,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 - Function call arguments are **by default passed as `in`**.
     - Explicit override with keywords **`inout`**, **`out`**, **`copy`**, **`move`**, **`forward`**.
     - Wording fits nicely for function arguments.
-- The loop variable of `for ... in` **by default is passed as `in`**.
+- The loop variable of `for ... in` is **by default passed as `in`**.
     - Explicit override with keywords **`inout`**, **`copy`**, and **`move`**  
       (**`out`** and **`forward`** are not applicable here).
     - For `for` loops these words describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
