@@ -1287,6 +1287,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - `cilia::safe::Int`
     - Like `cilia::Int`, but with **overflow check** for all operations,
         - may throw OverflowException (or abort the program).
+    - Generally considered to be too costly, even in language that are otherwise considered as "safe".
     - `safe::Int8`/`Int16`/`Int32`/`Int64`
     - `safe::Uint`
         - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
