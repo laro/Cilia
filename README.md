@@ -15,7 +15,8 @@ Cilia is, in my opinion, a collection of quite obvious ideas:
         - `var x = 42`
         - `const x = 42`
         - `String[] words`
-        - `Map<String, Circle> mapStringToCircle`
+        - `Circle[String] circleForString`
+        - `List<String> paragraphs`
     - `func multiply(Int a, b) -> Int { return a * b }`
         - `func print(Circle a) { ... }`
         - `func concat(String a, b) -> String { return a + b }`
@@ -33,7 +34,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `auto x = 42;`
         - `const auto x = 42;`
         - `vector<string> words;`
-        - `map<string, Circle> mapStringToCircle`
+        - `map<string, Circle> circleForString`
+        - `list<string> paragraphs`
     - `auto multiply(int a, int b) -> int { return a * b; }`
         - `auto print(const Circle& a) { ...; }`
         - `auto concat(const string_view a, const string_view b) -> string { return a + b; }`
@@ -47,7 +49,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `x := 42;`
         - `x : const int = 42;`
         - `words: vector<string>;`
-        - `mapStringToCircle: map<string, Circle>;`
+        - `circleForString: map<string, Circle>;`
+        - `paragraphs: list<string>`
     - `multiply: (a: int, b: int) -> int = a * b;`
         - `print: (a: Circle) { ...; }`
         - `concat: (a: string_view, b: string_view) -> String = a + b;`
@@ -63,7 +66,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `var x: auto = 42;`
         - `let x: auto = 42;`
         - `var words: Array(String);`
-        - `var mapStringToCircle: HashMap(String, Circle);`
+        - `var circleForString: HashMap(String, Circle);`
+        - `var paragraphs: List<String>`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: Circle) { ...; }`
         - `fn concat(a: StringView, b: StringView) -> String { return a + b; }`
@@ -79,7 +83,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `let mut x = 42;` (actually, this is `i32`, but that's fine with me)
         - `let x = 42;`
         - `let mut words: Vec<String> = Vec::new();`
-        - `let mut mapStringToCircle: HashMap<String, Circle> = HasMap::new();`
+        - `let mut circleForString: HashMap<String, Circle> = HasMap::new();`
+        - `let mut paragraphs: LinkedList<String> = LinkedList::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: &Circle) { ...; }`
         - `fn concat(a: &str, b: &str) -> String { return a + b; }`
