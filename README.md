@@ -406,6 +406,14 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
 
 
+## Associative Arrays
+- AKA Maps (or Dictionaries)
+- `TValue[TKey]` as short form of `Map<TKey, TValue>`
+    - e.g. `Circle[String] circleForString` as short form of `Map<String, Circle>`
+- "Make simple things simple"
+- Having a short and traditional syntax for associative arrays should encourage people to use it.
+
+
 ## Signed Size
 `Int` (i.e. signed) as type for `*.size()`
 - Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
