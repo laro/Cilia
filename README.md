@@ -1180,13 +1180,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 ## Short Smart Pointer Syntax 
 - `Type^ pointer`
     - `T^` by default is `SharedPtr<T>`
-        - for C++/Cilia classes,
-        - defined via type traits `SmartPtrType`:  
-          `using<type T> T::SmartPtrType = SharedPtr<T>`
+        - defined via type traits `SmartPtrType`,  
+          for C++/Cilia classes it is:
+            - `using<type T> T::SmartPtrType = SharedPtr<T>`
         - “Make simple things simple”
         - Encourage use of smart pointers.
     - Inspired by C++/CLI (so its a proven possiblilty),  
-      and also Sean Baxter is using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
+      Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
     - **But** there is an inconsistency in its usage:
         - A normal pointer `T* pointer` is dereferenced with `*pointer`.
         - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
