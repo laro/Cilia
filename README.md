@@ -34,8 +34,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `auto x = 42;`
         - `const auto x = 42;`
         - `vector<string> words;`
-        - `map<string, Circle> circleForString`
-        - `list<string> paragraphs`
+        - `map<string, Circle> circleForString;`
+        - `list<string> paragraphs;`
     - `auto multiply(int a, int b) -> int { return a * b; }`
         - `auto print(const Circle& a) { ...; }`
         - `auto concat(const string_view a, const string_view b) -> string { return a + b; }`
@@ -50,7 +50,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `x : const int = 42;`
         - `words: vector<string>;`
         - `circleForString: map<string, Circle>;`
-        - `paragraphs: list<string>`
+        - `paragraphs: list<string>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
         - `print: (a: Circle) { ...; }`
         - `concat: (a: string_view, b: string_view) -> String = a + b;`
@@ -67,7 +67,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `let x: auto = 42;`
         - `var words: Array(String);`
         - `var circleForString: HashMap(String, Circle);`
-        - `var paragraphs: List<String>`
+        - `var paragraphs: List<String>;`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: Circle) { ...; }`
         - `fn concat(a: StringView, b: StringView) -> String { return a + b; }`
