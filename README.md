@@ -450,8 +450,11 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - **Extension methods**
     - To add "member like" functions to "third party" classes/types.
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
-    - Also possible for arithmetic types (like `Int i; i.toString()`)
-        - `func Int::toString() -> String { ... }`  // as in Kotlin
+    - Also possible for arithmetic types, e.g.:
+      `Int i`  
+      `i.toString()`  
+      based on  
+      `func Int::toString() -> String { ... }`  // as in Kotlin
 - **`constexpr`** and `consteval`
   ```
   constexpr multiply(Int x, y) -> Int {
