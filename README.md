@@ -775,17 +775,24 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - A "list of exceptions" for the "const _value_ types".
         - ```
           using       Bool::InArgumentType = const Bool
+          using       Int8::InArgumentType = const Int8
+          using      Int16::InArgumentType = const Int16
           using      Int32::InArgumentType = const Int32
           using      Int64::InArgumentType = const Int64
+          ...
+          using     UInt64::InArgumentType = const UInt64
           using    Float32::InArgumentType = const Float32
           using    Float64::InArgumentType = const Float64
           using StringView::InArgumentType = const StringView
+          using  ArrayView::InArgumentType = const ArrayView
+          ...
           ```
         - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
             - A generic rule: `Complex<T>` is passed the same way as `T`.
             - Could be further refined/corrected with  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value would be the default).
+        - This way developers only need to extend this list if they create _small_ classes (and if they want/need maximum performance). And I expect most custom class to be larger than 16 bytes (so nothing to do for those).
 - Special **trick for types with views**
     - Applicable only for types `X` that have an `XView` counterpart where
         - `X` can implicitly be converted to `XView`,
