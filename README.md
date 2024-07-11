@@ -1191,13 +1191,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - A normal pointer `T* pointer` is dereferenced with `*pointer`.
         - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
     - Possible to redefine for interoperability with other languages:
-        - Objective-C/Swift classes: Use their reference counting mechanism.  
-          `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
-        - C#/.NET classes: Use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
-          `using DotNetObject::SmartPtrType = DotNetGCPtr`
+        - Objective-C/Swift classes use their reference counting mechanism:
+            - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
+        - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
+            - `using DotNetObject::SmartPtrType = DotNetGCPtr`
             - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
-        - Java classes: Use garbage collected memory, add pointers to the global list of Java instance pointers.  
-          `using JavaObject::SmartPtrType = JavaGCPtr`
+        - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
+            - `using JavaObject::SmartPtrType = JavaGCPtr`
             - Probably very similar to C#/.NET.
 - Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
     - ASCII
