@@ -702,6 +702,13 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - TODO Really this syntax: `{ ... } { ... }`?
 - Template **type alias** (with `using`, not ~~`typedef`~~)
     - `using<type T> T::InArgumentType = const T&`
+- Template static variables/constants as type traits
+    - `using Float32::IsFloatingPoint = True`
+    - `using Float64::IsFloatingPoint = True`
+    - `using   Int32::IsFloatingPoint = False`
+    - `using   Int64::IsFloatingPoint = False`
+    - `using<type T> Complex<T>::IsFloatingPoint = T::IsFloatingPoint`
+    - `using<type T> T::IsFloatingPoint = True`
 
 
 ## Function/Loop Parameter Passing
