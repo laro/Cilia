@@ -802,12 +802,12 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `String` - `StringView`
         - `Array` - `ArrayView`
         - `Vector` - `VectorView`
-    - As example, with **`String`**/`StringView`:  
+    - As example, with `String`/`StringView`:  
       `using String::InArgumentType = const StringView`
-        - i.e. **for a `String` _in fact_ a `StringView`** is used as parameter type.
+        - i.e. **for a `String` _in fact_ a `const StringView`** is used as parameter type.
         - So _all_ functions with an `in String` parameter would implicitly accept not only a `String` (as that can implicitly be converted to `StringView`) but _also_ a `StringView` (that somehow is the more versatile variant of `const String&`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String`, and nonetheless there is no need to define two functions (one for `String` and another for `StringView`).
-        - If you need to change the string argument, then a **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on `String`.
+        - For cases where you need to change the string argument, a **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on `String`.
         - Example:
             - `concat(String first, String second)`
                 - extends to `concat(const StringView first, const StringView second)`
