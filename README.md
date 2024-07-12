@@ -833,6 +833,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - Example:
             - `concat(String first, String second)`
                 - extends to `concat(const StringView first, const StringView second)`
+        - While I see no advantage with the `for ... in` loop here, I would still apply the same rules here, just for consistency.
+        - Example:
             - `String[] stringArray = ["a", "b", "c"]`  
               `for str in stringArray { ... }`
                 - `str` is `const StringView`
