@@ -15,7 +15,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas:
         - `var x = 42`
         - `const x = 42`
         - `String[] words`
-        - `Circle[String] circleForString`
+        - `ContactInfo[String] contactInfoForID`
         - `List<String> paragraphs`
     - `func multiply(Int a, b) -> Int { return a * b }`
         - `func print(Circle a) { ... }`
@@ -34,7 +34,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `auto x = 42;`
         - `const auto x = 42;`
         - `vector<string> words;`
-        - `map<string, Circle> circleForString;`
+        - `map<string, ContactInfo> contactInfoForID;`
         - `list<string> paragraphs;`
     - `auto multiply(int a, int b) -> int { return a * b; }`
         - `auto print(const Circle& a) { ...; }`
@@ -49,7 +49,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `x := 42;`
         - `x : const int = 42;`
         - `words: vector<string>;`
-        - `circleForString: map<string, Circle>;`
+        - `contactInfoForID: map<string, ContactInfo>;`
         - `paragraphs: list<string>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
         - `print: (a: Circle) { ...; }`
@@ -66,7 +66,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `var x: auto = 42;`
         - `let x: auto = 42;`
         - `var words: Array(String);`
-        - `var circleForString: HashMap(String, Circle);`
+        - `var contactInfoForID: HashMap(String, ContactInfo);`
         - `var paragraphs: List<String>;`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: Circle) { ...; }`
@@ -83,7 +83,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `let mut x = 42;` (actually, this is `i32`, but that's fine with me)
         - `let x = 42;`
         - `let mut words: Vec<String> = Vec::new();`
-        - `let mut circleForString: HashMap<String, Circle> = HasMap::new();`
+        - `let mut contactInfoForID: HashMap<String, ContactInfo> = HasMap::new();`
         - `let mut paragraphs: LinkedList<String> = LinkedList::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: &Circle) { ...; }`
