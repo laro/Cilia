@@ -411,7 +411,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - `TValue[TKey]` as short form of `Map<TKey, TValue>`
     - e.g. `Circle[String] circleForString` as short form of `Map<String, Circle>`
 - "Make simple things simple"
-- Having a short and traditional syntax for associative arrays should encourage people to use it.
+- Having a short syntax for associative arrays should encourage people to use it.
 
 
 ## Signed Size
