@@ -1245,17 +1245,17 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - The low hanging fruit would be to enable range checks _by default_, also in release builds (not only in debug), to detect **buffer overflows** or similar. This should fix the majority of C/C++ security issues.  
       To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
       So we would have:
-        - Debug
+        - **Debug**
             - for debugging,
             - with line by line debug info,
             - with range checks, and
             - often with a modified memory layout (to find more types of errors).
-        - Release
+        - **Release**
             - for deployment,
             - with range checks,
             - with memory layout compatible to ~~EvenFasterBut~~UnsafeRelease,
             - suitable for most situations.
-        - ~~EvenFasterBut~~UnsafeRelease
+        - **~~EvenFasterBut~~UnsafeRelease**
             - for deployment when maximum performance is desired,
             - _without_ range checks.
 - **Initialization**
