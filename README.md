@@ -1215,9 +1215,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
     - `Type+ pointer`
         - `T+` is short for `UniquePtr<T>`
-    - `T+`/`UniquePtr<T>` should be the general default (for pointers, when stack variables are not suitable).
-        - `ContactInfo+ aUniquePointerToContactInfo = ContactInfo::new()`
-  -  - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
+- `T+`/`UniquePtr<T>` should be the general default (for pointers, when stack variables are not suitable).
+    - `ContactInfo+ aUniquePointerToContactInfo = ContactInfo::new()`
+    - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
         - `ContactInfo^ aSharedPointerToContactInfo = aUniquePointerToContactInfo`
         - The UniquePtr is NullPtr afterwards.
 - But a classical C/C++ "raw" pointer should still be possible.
