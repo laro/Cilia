@@ -1222,7 +1222,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - The UniquePtr is NullPtr afterwards.
 - But a classical C/C++ "raw" pointer should still be possible.
     - `ContactInfo* contactInfoPtr = new ContactInfo`  
-      `delete aPointerToContactInfo`
+      `delete contactInfoPtr`
 - Redefine `T^` and `T+` for special cases / interoperability with other languages:
     - `T^` is defined via type traits `SharedPtrType`,  
         - For C++/Cilia classes `T^` is `SharedPtr<T>`:
