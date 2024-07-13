@@ -1255,7 +1255,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - with range checks,
             - with memory layout compatible to ~~EvenFasterBut~~UnsafeRelease,
             - suitable for most situations.
-        - **~~EvenFasterBut~~UnsafeRelease**
+        - ~~EvenFasterBut~~**UnsafeRelease**
             - for deployment when maximum performance is desired,
             - _without_ range checks.
 - **Initialization**
