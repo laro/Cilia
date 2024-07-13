@@ -1207,15 +1207,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - “Make simple things simple”,  
       encourage use of smart pointers.
     - `Type^ pointer`
-        - `T^` is `SharedPtr<T>`
+        - `T^` is short for `SharedPtr<T>`
         - Inspired by C++/CLI (so its a proven possiblilty),  
           Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
         - **But** there is an inconsistency in its usage:
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
     - `Type+ pointer`
-        - `T+` is `UniquePtr<T>`
-- `UniquePtr<>` should be the general default (for pointers, when RAII/RROD is not suitable).
+        - `T+` is short for `UniquePtr<T>`
+- `T+`/`UniquePtr<T>` should be the general default (for pointers, when RAII/RROD is not suitable).
     - `ContactInfo+ aUniquePointerToContactInfo = new<ContactInfo>()`
 - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
   The UniquePtr is NullPtr afterwards.
