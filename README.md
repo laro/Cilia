@@ -1202,48 +1202,59 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `MDArrayView`
 
 
-## Short Smart Pointer Syntax 
-- `Type^ pointer`
-    - `T^` by default is `SharedPtr<T>`
-        - defined via type traits `SmartPtrType`,  
-          for C++/Cilia classes it is:
-            - `using<type T> T::SmartPtrType = SharedPtr<T>`
-        - “Make simple things simple”
-        - Encourage use of smart pointers.
-    - Inspired by C++/CLI (so its a proven possiblilty),  
-      Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
-    - **But** there is an inconsistency in its usage:
-        - A normal pointer `T* pointer` is dereferenced with `*pointer`.
-        - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-    - Possible to redefine for interoperability with other languages:
-        - Objective-C/Swift classes use their reference counting mechanism:
-            - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
-        - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
-            - `using DotNetObject::SmartPtrType = DotNetGCPtr`
-            - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
-        - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
-            - `using JavaObject::SmartPtrType = JavaGCPtr`
-            - Probably very similar to C#/.NET.
-- Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
-    - ASCII
-        - **`Type+ pointer`** ("plus pointer", my favourite, maybe even better than `Type^ pointer`)
-        - `Type> pointer` (IMHO nice idea for a pointer, but very difficult to read with template types, e.g. `Matrix<Float64>> matrix`)
-        - `Type~ pointer` (IMHO nice for `WeakPtr<T>`, but also used for binary not and destructor syntax, so not a perfect fit)
-        - `Type# pointer`
-        - `Type% pointer`
-        - `Type§ pointer`
-    - Latin-1 (but a character that is difficult to find on the keyboard would not actaully encourage people to use this syntax)
-        - `Type° pointer` (for `SmartPtr<T>`)
-        - `Type¹ pointer` (for `UniquePtr<T>`)
-        - `Type• pointer`
-        - `Type› pointer`
-    - Multiple, combined characters
-        - `Type*° pointer` (for `SmartPtr<T>`)
-        - `Type*¹ pointer` (for `UniquePtr<T>`)
-        - `Type*+ pointer` (for `WeakPtr<T>`?)
-        - `Type*> pointer` (for `SmartPtr<T>`?)
-        - `Type*1> pointer` (for `UniquePtr<T>`)
-        - `Type*¹> pointer` (for `UniquePtr<T>`)
+## (Smart) Pointers
+- Short Smart Pointer Syntax
+    - `Type^ pointer`
+        - `T^` by default is `SharedPtr<T>`
+            - defined via type traits `SmartPtrType`,  
+              for C++/Cilia classes it is:
+                - `using<type T> T::SmartPtrType = SharedPtr<T>`
+            - “Make simple things simple”
+            - Encourage use of smart pointers.
+        - Inspired by C++/CLI (so its a proven possiblilty),  
+          Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
+        - **But** there is an inconsistency in its usage:
+            - A normal pointer `T* pointer` is dereferenced with `*pointer`.
+            - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
+        - Possible to redefine for interoperability with other languages:
+            - Objective-C/Swift classes use their reference counting mechanism:
+                - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
+            - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
+                - `using DotNetObject::SmartPtrType = DotNetGCPtr`
+                - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
+            - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
+                - `using JavaObject::SmartPtrType = JavaGCPtr`
+                - Probably very similar to C#/.NET.
+    - Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
+        - ASCII
+            - **`Type+ pointer`** ("plus pointer", my favourite, maybe even better than `Type^ pointer`)
+            - `Type> pointer` (IMHO nice idea for a pointer, but very difficult to read with template types, e.g. `Matrix<Float64>> matrix`)
+            - `Type~ pointer` (IMHO nice for `WeakPtr<T>`, but also used for binary not and destructor syntax, so not a perfect fit)
+            - `Type# pointer`
+            - `Type% pointer`
+            - `Type§ pointer`
+        - Latin-1 (but a character that is difficult to find on the keyboard would not actaully encourage people to use this syntax)
+            - `Type° pointer` (for `SmartPtr<T>`)
+            - `Type¹ pointer` (for `UniquePtr<T>`)
+            - `Type• pointer`
+            - `Type› pointer`
+        - Multiple, combined characters
+            - `Type*° pointer` (for `SmartPtr<T>`)
+            - `Type*¹ pointer` (for `UniquePtr<T>`)
+            - `Type*+ pointer` (for `WeakPtr<T>`?)
+            - `Type*> pointer` (for `SmartPtr<T>`?)
+            - `Type*1> pointer` (for `UniquePtr<T>`)
+            - `Type*¹> pointer` (for `UniquePtr<T>`)
+- `UniquePtr<>` should be the default.
+    - `ContactInfo+ aUniquePointerToContactInfo = new<ContactInfo>()`  
+      `UniquePtr<ContactInfo> aUniquePointerToContactInfo = new<ContactInfo>()`
+- Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).  
+  The UniquePtr is NullPtr afterwards.
+    - `ContactInfo^ aSharedPointerToContactInfo = aUniquePointerToContactInfo`  
+      `SharedPtr<ContactInfo> aSharedPointerToContactInfo = aUniquePointerToContactInfo`
+- But a classical C/C++ "raw" point should still be possible.
+    - `ContactInfo* aPointerToContactInfo = new ContactInfo`  
+      `delete aPointerToContactInfo`
 
 
 ## Safety and Security
