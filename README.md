@@ -1204,13 +1204,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 ## (Smart) Pointers
 - Short Smart Pointer Syntax
+    - “Make simple things simple”,  
+      encourage use of smart pointers.
     - `Type^ pointer`
         - `T^` by default is `SharedPtr<T>`
-            - defined via type traits `SmartPtrType`,  
+            - defined via type traits `SharedPtrType`,  
               for C++/Cilia classes it is:
-                - `using<type T> T::SmartPtrType = SharedPtr<T>`
-            - “Make simple things simple”
-            - Encourage use of smart pointers.
+                - `using<type T> T::SharedPtrType = SharedPtr<T>`
         - Inspired by C++/CLI (so its a proven possiblilty),  
           Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
         - **But** there is an inconsistency in its usage:
@@ -1225,13 +1225,16 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
                 - `using JavaObject::SmartPtrType = JavaGCPtr`
                 - Probably very similar to C#/.NET.
-- `UniquePtr<>` should be the default.
-    - `ContactInfo+ aUniquePointerToContactInfo = new<ContactInfo>()`  
-      `UniquePtr<ContactInfo> aUniquePointerToContactInfo = new<ContactInfo>()`
+    - `Type+ pointer`
+        - `T+` by default is `UniquePtr<T>`
+            - defined via type traits `UniquePtrType`,  
+              for C++/Cilia classes it is:
+                - `using<type T> T::UniquePtrType = UniquePtr<T>`
+- `UniquePtr<>` should be the general default (for pointers, when RAII/RROD is not suitable).
+    - `ContactInfo+ aUniquePointerToContactInfo = new<ContactInfo>()`
 - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).  
   The UniquePtr is NullPtr afterwards.
     - `ContactInfo^ aSharedPointerToContactInfo = aUniquePointerToContactInfo`  
-      `SharedPtr<ContactInfo> aSharedPointerToContactInfo = aUniquePointerToContactInfo`
 - But a classical C/C++ "raw" point should still be possible.
     - `ContactInfo* aPointerToContactInfo = new ContactInfo`  
       `delete aPointerToContactInfo`
