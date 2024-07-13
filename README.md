@@ -1218,9 +1218,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - `T+`/`UniquePtr<T>` should be the general default (for pointers, when RAII/RROD is not suitable).
     - `ContactInfo+ aUniquePointerToContactInfo = new<ContactInfo>()`
 - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
-  The UniquePtr is NullPtr afterwards.
-    - `ContactInfo^ aSharedPointerToContactInfo = aUniquePointerToContactInfo`  
-- But a classical C/C++ "raw" point should still be possible.
+    - `ContactInfo^ aSharedPointerToContactInfo = aUniquePointerToContactInfo`
+    - The UniquePtr is NullPtr afterwards.
+- But a classical C/C++ "raw" pointer should still be possible.
     - `ContactInfo* aPointerToContactInfo = new ContactInfo`  
       `delete aPointerToContactInfo`
 - Redefine `T^` and `T+` for special cases / interoperability with other languages:
