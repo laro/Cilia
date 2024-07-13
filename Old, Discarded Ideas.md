@@ -177,6 +177,29 @@ For several topics there are alternative ideas, that were discarded but are stil
         - but that would not work for virtual functions.
 
 
+## (Smart) Pointers
+- Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
+    - ASCII
+        - **`Type+ pointer`** ("plus pointer", my favourite, maybe even better than `Type^ pointer`)
+        - `Type> pointer` (IMHO nice idea for a pointer, but very difficult to read with template types, e.g. `Matrix<Float64>> matrix`)
+        - `Type~ pointer` (IMHO nice for `WeakPtr<T>`, but also used for binary not and destructor syntax, so not a perfect fit)
+        - `Type# pointer`
+        - `Type% pointer`
+        - `Type§ pointer`
+    - Latin-1 (but a character that is difficult to find on the keyboard would not actaully encourage people to use this syntax)
+        - `Type° pointer` (for `SmartPtr<T>`)
+        - `Type¹ pointer` (for `UniquePtr<T>`)
+        - `Type• pointer`
+        - `Type› pointer`
+    - Multiple, combined characters
+        - `Type*° pointer` (for `SmartPtr<T>`)
+        - `Type*¹ pointer` (for `UniquePtr<T>`)
+        - `Type*+ pointer` (for `WeakPtr<T>`?)
+        - `Type*> pointer` (for `SmartPtr<T>`?)
+        - `Type*1> pointer` (for `UniquePtr<T>`)
+        - `Type*¹> pointer` (for `UniquePtr<T>`)
+
+
 ## `is`, `as`, Casting
 - Automatic casts
     - As multiple inheritance is problematic here:
