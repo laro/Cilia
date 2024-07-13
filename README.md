@@ -1207,37 +1207,37 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - “Make simple things simple”,  
       encourage use of smart pointers.
     - `Type^ pointer`
-        - `T^` by default is `SharedPtr<T>`
-            - defined via type traits `SharedPtrType`,  
-              for C++/Cilia classes it is:
-                - `using<type T> T::SharedPtrType = SharedPtr<T>`
+        - `T^` is `SharedPtr<T>`
         - Inspired by C++/CLI (so its a proven possiblilty),  
           Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
         - **But** there is an inconsistency in its usage:
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-        - Possible to redefine for interoperability with other languages:
-            - Objective-C/Swift classes use their reference counting mechanism:
-                - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
-            - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
-                - `using DotNetObject::SmartPtrType = DotNetGCPtr`
-                - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
-            - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
-                - `using JavaObject::SmartPtrType = JavaGCPtr`
-                - Probably very similar to C#/.NET.
     - `Type+ pointer`
-        - `T+` by default is `UniquePtr<T>`
-            - defined via type traits `UniquePtrType`,  
-              for C++/Cilia classes it is:
-                - `using<type T> T::UniquePtrType = UniquePtr<T>`
+        - `T+` is `UniquePtr<T>`
 - `UniquePtr<>` should be the general default (for pointers, when RAII/RROD is not suitable).
     - `ContactInfo+ aUniquePointerToContactInfo = new<ContactInfo>()`
-- Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).  
+- Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
   The UniquePtr is NullPtr afterwards.
     - `ContactInfo^ aSharedPointerToContactInfo = aUniquePointerToContactInfo`  
 - But a classical C/C++ "raw" point should still be possible.
     - `ContactInfo* aPointerToContactInfo = new ContactInfo`  
       `delete aPointerToContactInfo`
+- Redefine `T^` and `T+` for special cases / interoperability with other languages:
+    - `T^` is defined via type traits `SharedPtrType`,  
+        - For C++/Cilia classes `T^` is `SharedPtr<T>`:
+            - `using<type T> T::SharedPtrType = SharedPtr<T>`
+        - Objective-C/Swift classes use their reference counting mechanism:
+            - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
+        - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
+            - `using DotNetObject::SmartPtrType = DotNetGCPtr`
+            - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
+        - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
+            - `using JavaObject::SmartPtrType = JavaGCPtr`
+            - Probably very similar to C#/.NET.
+    - `T+` is defined via type traits `UniquePtrType`.
+        - For C++/Cilia classes `T+` is `UniquePtr<T>`:
+            - `using<type T> T::UniquePtrType = UniquePtr<T>`
 
 
 ## Safety and Security
