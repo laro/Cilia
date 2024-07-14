@@ -393,16 +393,8 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - When working with sizes, calculating the difference is common; Then you are limited to `PtrDiff` (i.e. signed integer) anyway.
 - Who needs more than 2GB of data in a single "array", should please use a 64 bit platform.
 - For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
-- Then types `Size` and `SSize`/`PtrDiff` are not necessary anymore, so two types less.
+- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
     - We simply use `Int` instead. Or `UInt` in rare cases.
-- Restricted rules for mixed integer arithmetic:
-    - `Unsigned +-*/ Signed` is an error
-        - you have to cast
-        - `Int` (i.e. signed) is almost always used anyways
-    - Error with `if aUInt < 0`
-        - if the literal on the right is `<= 0`
-    - Error with `if aUInt < anInt`
-        - you have to cast
 
 
 ## Functions
@@ -1383,6 +1375,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `BFloat16` (Brain Floating Point)
 
 - Mixed arithmetic
+- Float
     - `1 * aFloat` is possible
         - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
     - `anInt * aFloat` is possible
@@ -1395,6 +1388,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - `aFloat64 * anInt16` // OK
             - `aFloat64 * anInt32` // OK
             - `aFloat64 * anInt64` // Warning
+- Restricted rules for mixed integer arithmetic:
+    - `Unsigned +-*/ Signed` is an error
+        - you have to cast
+        - `Int` (i.e. signed) is almost always used anyways
+    - Error with `if aUInt < 0`
+        - if the literal on the right is `<= 0`
+    - Error with `if aUInt < anInt`
+        - you have to cast
 
 - `cilia::saturating::Int`
     - Like `cilia::Int`, but with **saturation** for all operations.
