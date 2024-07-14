@@ -233,7 +233,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `and`, `or`, `xor` instead of ~~`&&`~~, ~~`||`~~, ~~`^`~~
     - `not` in addition to `!`
 - `Int32` instead of `int32_t` or `qint32`,
-    - so no prefix "q" nor postfix "_t".
+    - so no prefix "q" nor postfix "_t", and in CamelCase.
 - When translating C++ code to Cilia then change conflicting names, e.g.
     - `int var` -> `Int __variable_var`
     - `class func` -> `class __class_func`
@@ -248,41 +248,14 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - `Int` == `Int32` on 32 bit systems only (i.e. old/small platforms).
         - _No_ ~~`Size`~~ or ~~`SSize`~~, use `Int` instead.
     - `Int8`, `Int16`, `Int32`, `Int64`
-        - like `int32_t` or `qint32`, but no prefix "q" nor postfix "_t", and in CamelCase
-        - maybe `Int128`, `Int256`
     - `UInt8`, `UInt16`, `UInt32`, `UInt64`
         - maybe `UInt128`, `UInt256` e.g. for SHA256
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
-- `BigInt` – Arbitrary Precision Integer
-    - for cryptography, maybe computer algebra, numerics
-    - see [Boost.Multiprecision](https://www.boost.org/doc/libs/1_79_0/libs/multiprecision/doc/html/index.html), [GMP](https://gmplib.org)
 - `Float`
     - `Float` == `Float32`
         - Among other things because this is how it works in C/C++.
         - Is faster than Float64 and good enough most of the time.
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
-        - maybe `Float128`, `Float256`
-            - typically probably realized as double-double respectively double-double-double-double
-            - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-    - `BFloat16` (Brain Floating Point)
-    - Mixed arithmetic:
-        - `1 * aFloat` is possible
-            - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
-        - `anInt * aFloat` is possible
-            - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`, i.e. with
-                - `aFloat32 * anInt8`  // OK
-                - `aFloat32 * anInt16` // OK
-                - `aFloat32 * anInt32` // Warning
-                - `aFloat32 * anInt64` // Warning
-                - `aFloat64 * anInt8`  // OK
-                - `aFloat64 * anInt16` // OK
-                - `aFloat64 * anInt32` // OK
-                - `aFloat64 * anInt64` // Warning
-    - `BigFloat<>` for arbitrary precision float,
-        - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
-        - The precision is arbitrary but fixed, either
-          - statically, i.e. at compile time, as part of the BigFloat type, or
-          - dynamically, i.e. at runtime, as property of a BigFloat variable.
 
 
 ## Variable Declaration
@@ -1393,6 +1366,36 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - no forward declarations necessary  
       as in C#, Java
     - no single-pass as in C/C++
+
+- Exzended & Arbitrary Precision Interg & Float
+    - `Int128`, `Int256`
+    - `UInt128`, `UInt256` e.g. for SHA256
+    - `BigInt` – Arbitrary Precision Integer
+        - for cryptography, maybe computer algebra, numerics
+        - see [Boost.Multiprecision](https://www.boost.org/doc/libs/1_79_0/libs/multiprecision/doc/html/index.html), [GMP](https://gmplib.org)
+    - `Float128`, `Float256`
+        - typically probably realized as double-double respectively double-double-double-double
+        - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
+    - `BigFloat<>` for arbitrary precision float,
+        - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
+        - The precision is arbitrary but fixed, either
+          - statically, i.e. at compile time, as part of the BigFloat type, or
+          - dynamically, i.e. at runtime, as property of a BigFloat variable.
+    - `BFloat16` (Brain Floating Point)
+
+- Mixed arithmetic
+    - `1 * aFloat` is possible
+        - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
+    - `anInt * aFloat` is possible
+        - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`, i.e. with
+            - `aFloat32 * anInt8`  // OK
+            - `aFloat32 * anInt16` // OK
+            - `aFloat32 * anInt32` // Warning
+            - `aFloat32 * anInt64` // Warning
+            - `aFloat64 * anInt8`  // OK
+            - `aFloat64 * anInt16` // OK
+            - `aFloat64 * anInt32` // OK
+            - `aFloat64 * anInt64` // Warning
 
 - `cilia::saturating::Int`
     - Like `cilia::Int`, but with **saturation** for all operations.
