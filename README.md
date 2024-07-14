@@ -249,7 +249,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - _No_ ~~`Size`~~ or ~~`SSize`~~, use `Int` instead.
     - `Int8`, `Int16`, `Int32`, `Int64`
     - `UInt8`, `UInt16`, `UInt32`, `UInt64`
-        - maybe `UInt128`, `UInt256` e.g. for SHA256
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
 - `Float`
     - `Float` == `Float32`
