@@ -1181,6 +1181,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `T+` is short for `UniquePtr<T>`
 - `T+`/`UniquePtr<T>` should be the general default (for pointers, when stack variables are not suitable).
     - `ContactInfo+ contactInfoUniquePtr = ContactInfo::new()`
+        - Unclear:
+            - `new ContactInfo`
+            - `ContactInfo::new()`
+            - `new<ContactInfo>()`
     - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
         - `ContactInfo^ contactInfoSharedPtr = contactInfoUniquePtr`
         - The UniquePtr is NullPtr afterwards.
