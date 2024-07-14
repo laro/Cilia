@@ -1359,6 +1359,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - no forward declarations necessary (as it is in C/C++, due to the single-pass compiler).
 
 - Mixed arithmetic
+    - Mixing signed with unsigned integer
+        - `Signed + - * / Unsigned` is an error
+            - you have to cast explicitly,
+            - i.e. no implicit cast (neither ~~`UInt` -> `Int`~~ nor ~~`Int` -> `UInt`~~).
+            - `Int` (i.e. signed) is almost always used anyways.
+        - Error with `if aUInt < anInt`
+            - you have to cast
+        - Error with `if aUInt < 0`
+            - if the literal on the right is `<= 0`
     - Mixing integer and float
         - `1 * aFloat` is possible
             - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
@@ -1372,15 +1381,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - `aFloat64 * anInt16` // OK
                 - `aFloat64 * anInt32` // OK
                 - `aFloat64 * anInt64` // Warning
-    - Mixing signed with unsigned integer
-        - `Signed + - * / Unsigned` is an error
-            - you have to cast explicitly,
-            - i.e. no implicit cast (neither ~~`UInt` -> `Int`~~ nor ~~`Int` -> `UInt`~~).
-            - `Int` (i.e. signed) is almost always used anyways.
-        - Error with `if aUInt < anInt`
-            - you have to cast
-        - Error with `if aUInt < 0`
-            - if the literal on the right is `<= 0`
 
 - Extended & Arbitrary Precision Integer & Float
     - `Int128`, `Int256`
