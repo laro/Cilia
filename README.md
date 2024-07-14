@@ -1211,17 +1211,18 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       So we would have:
         - **Debug**
             - for debugging,
-            - with line by line debug info,
-            - with range checks, and
+            - with range checks,
+            - with line by line debug info, and
             - often with a modified memory layout (to find more types of errors).
         - **Release**
             - for deployment,
-            - with range checks,
-            - with memory layout compatible to ~~EvenFasterBut~~UnsafeRelease,
-            - suitable for most situations.
+            - _with_ range checks,
+            - suitable for most situations,
+            - with memory layout compatible to ~~EvenFasterBut~~UnsafeRelease.
         - ~~EvenFasterBut~~**UnsafeRelease**
-            - for deployment when maximum performance is desired,
+            - for deployment,
             - _without_ range checks.
+            - when maximum performance is desired.
 - **Initialization**
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
     - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
