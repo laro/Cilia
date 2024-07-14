@@ -1439,7 +1439,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 - Reserved keywords for _future_ use (maybe, maybe not).
     - `parallel`
-    - `sruct` for some variant of C++ strcuts/classes
+    - `struct` for some variant of C++ strcuts/classes
     - `interface` for pure abstract base classes or similar constructs
     - `template`
 
