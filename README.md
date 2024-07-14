@@ -1355,9 +1355,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 ## Misc 
 - Two-Pass Compiler
-    - no forward declarations necessary  
-      as in C#, Java
-    - no single-pass as in C/C++
+    - as with C#, Java,
+    - no forward declarations necessary (as it is in C/C++, due to the single-pass compiler).
 
 - Extended & Arbitrary Precision Integer & Float
     - `Int128`, `Int256`
