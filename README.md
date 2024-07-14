@@ -1358,7 +1358,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       as in C#, Java
     - no single-pass as in C/C++
 
-- Exzended & Arbitrary Precision Interg & Float
+- Extended & Arbitrary Precision Integer & Float
     - `Int128`, `Int256`
     - `UInt128`, `UInt256` e.g. for SHA256
     - `BigInt` – Arbitrary Precision Integer
