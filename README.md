@@ -1375,27 +1375,27 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `BFloat16` (Brain Floating Point)
 
 - Mixed arithmetic
-- Float
-    - `1 * aFloat` is possible
-        - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
-    - `anInt * aFloat` is possible
-        - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`, i.e. with
-            - `aFloat32 * anInt8`  // OK
-            - `aFloat32 * anInt16` // OK
-            - `aFloat32 * anInt32` // Warning
-            - `aFloat32 * anInt64` // Warning
-            - `aFloat64 * anInt8`  // OK
-            - `aFloat64 * anInt16` // OK
-            - `aFloat64 * anInt32` // OK
-            - `aFloat64 * anInt64` // Warning
-- Restricted rules for mixed integer arithmetic:
-    - `Unsigned +-*/ Signed` is an error
-        - you have to cast
-        - `Int` (i.e. signed) is almost always used anyways
-    - Error with `if aUInt < 0`
-        - if the literal on the right is `<= 0`
-    - Error with `if aUInt < anInt`
-        - you have to cast
+    - Float with integer
+        - `1 * aFloat` is possible
+            - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
+        - `anInt * aFloat` is possible
+            - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`, i.e. with
+                - `aFloat32 * anInt8`  // OK
+                - `aFloat32 * anInt16` // OK
+                - `aFloat32 * anInt32` // Warning
+                - `aFloat32 * anInt64` // Warning
+                - `aFloat64 * anInt8`  // OK
+                - `aFloat64 * anInt16` // OK
+                - `aFloat64 * anInt32` // OK
+                - `aFloat64 * anInt64` // Warning
+    - Signed with unsigned integer
+        - `Unsigned +-*/ Signed` is an error
+            - you have to cast
+            - `Int` (i.e. signed) is almost always used anyways
+        - Error with `if aUInt < 0`
+            - if the literal on the right is `<= 0`
+        - Error with `if aUInt < anInt`
+            - you have to cast
 
 - `cilia::saturating::Int`
     - Like `cilia::Int`, but with **saturation** for all operations.
