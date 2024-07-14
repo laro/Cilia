@@ -7,7 +7,7 @@ Cilia can call into C++ (and vice versa), but is a separate language, so its _sy
 I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), and (a variant of) Qt with the standard library classes as base (but with exceptions, and with namespaces instead of the prefix "Q").
 
 
-## Introduction by Example
+## By Example
 Cilia is, in my opinion, a collection of quite obvious ideas:
 - **Cilia**
     - `Int`, `Int32`, `Int64`, `Float`
