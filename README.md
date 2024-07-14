@@ -1391,6 +1391,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `Float128`, `Float256`
         - typically probably realized as double-double respectively double-double-double-double
         - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
+        - Problem: Should be saved in IEEE 754 compatible format.
     - `BigFloat<>` for arbitrary precision float,
         - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
         - The precision is arbitrary but fixed, either
