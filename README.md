@@ -1358,6 +1358,30 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - as with C#, Java,
     - no forward declarations necessary (as it is in C/C++, due to the single-pass compiler).
 
+- Mixed arithmetic
+    - Mixing integer and float
+        - `1 * aFloat` is possible
+            - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
+        - `anInt * aFloat` is possible
+            - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`, i.e. with
+                - `aFloat32 * anInt8`  // OK
+                - `aFloat32 * anInt16` // OK
+                - `aFloat32 * anInt32` // Warning
+                - `aFloat32 * anInt64` // Warning
+                - `aFloat64 * anInt8`  // OK
+                - `aFloat64 * anInt16` // OK
+                - `aFloat64 * anInt32` // OK
+                - `aFloat64 * anInt64` // Warning
+    - Mixing signed with unsigned integer
+        - `Signed + - * / Unsigned` is an error
+            - you have to cast explicitly,
+            - i.e. no implicit cast (neither ~~`UInt` -> `Int`~~ nor ~~`Int` -> `UInt`~~).
+            - `Int` (i.e. signed) is almost always used anyways.
+        - Error with `if aUInt < anInt`
+            - you have to cast
+        - Error with `if aUInt < 0`
+            - if the literal on the right is `<= 0`
+
 - Extended & Arbitrary Precision Integer & Float
     - `Int128`, `Int256`
     - `UInt128`, `UInt256` e.g. for SHA256
@@ -1373,38 +1397,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           - statically, i.e. at compile time, as part of the BigFloat type, or
           - dynamically, i.e. at runtime, as property of a BigFloat variable.
     - `BFloat16` (Brain Floating Point)
-
-- Mixed arithmetic
-    - Float with integer
-        - `1 * aFloat` is possible
-            - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
-        - `anInt * aFloat` is possible
-            - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`, i.e. with
-                - `aFloat32 * anInt8`  // OK
-                - `aFloat32 * anInt16` // OK
-                - `aFloat32 * anInt32` // Warning
-                - `aFloat32 * anInt64` // Warning
-                - `aFloat64 * anInt8`  // OK
-                - `aFloat64 * anInt16` // OK
-                - `aFloat64 * anInt32` // OK
-                - `aFloat64 * anInt64` // Warning
-    - Signed with unsigned integer
-        - `Unsigned +-*/ Signed` is an error
-            - you have to cast
-            - `Int` (i.e. signed) is almost always used anyways
-        - Error with `if aUInt < 0`
-            - if the literal on the right is `<= 0`
-        - Error with `if aUInt < anInt`
-            - you have to cast
-
-- `cilia::saturating::Int`
-    - Like `cilia::Int`, but with **saturation** for all operations.
-        - Limit to maximum, no wrap around.
-        - Typically using SIMD (as those „media/DSP instructions“ do support saturation natively).
-    - see https://en.wikipedia.org/wiki/Saturation_arithmetic 
-    - `saturating::Int8`/`Int16`/`Int32`/`Int64`
-    - `saturating::Uint`
-        - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
 - Integer operations **with carry** (flag or UInt)  
   (to implement `Int128`, `Int256` etc.)
@@ -1435,6 +1427,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `b = shiftOneLeft(UInt a, inout Bool carryFlag)`
         - `a.shiftOneLeft(inout carryFlag)`
       
+- `cilia::saturating::Int`
+    - Like `cilia::Int`, but with **saturation** for all operations.
+        - Limit to maximum, no wrap around.
+        - Typically using SIMD (as those „media/DSP instructions“ do support saturation natively).
+    - see https://en.wikipedia.org/wiki/Saturation_arithmetic 
+    - `saturating::Int8`/`Int16`/`Int32`/`Int64`
+    - `saturating::Uint`
+        - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
+
 - Reserved keywords for _future_ use (maybe, maybe not).
     - `parallel`
     - `sruct` for some variant of C++ strcuts/classes
