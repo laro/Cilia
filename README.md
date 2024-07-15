@@ -18,7 +18,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas:
         - `ContactInfo[String] contactInfoForID`
         - `List<String> paragraphs`
     - `func multiply(Int a, b) -> Int { return a * b }`
-        - `func print(Circle a) { ... }`
+        - `func print(ContactInfo a) { ... }`
         - `func concat(String a, b) -> String { return a + b }`
     - `for i in 1..10 { ... }`
         - `for i in 0..<words.size() { ... }`
@@ -37,7 +37,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `map<string, ContactInfo> contactInfoForID;`
         - `list<string> paragraphs;`
     - `auto multiply(int a, int b) -> int { return a * b; }`
-        - `auto print(const Circle& a) { ...; }`
+        - `auto print(const ContactInfo& a) { ...; }`
         - `auto concat(const string_view a, const string_view b) -> string { return a + b; }`
     - `for (int i = 1; i <= 10; ++i) { ...; }`
         - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
@@ -52,7 +52,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `contactInfoForID: map<string, ContactInfo>;`
         - `paragraphs: list<string>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
-        - `print: (a: Circle) { ...; }`
+        - `print: (a: ContactInfo) { ...; }`
         - `concat: (a: string_view, b: string_view) -> String = a + b;`
     - `i := 1;`  
       `while i <= 10 next i++ { ...; } `          
@@ -69,7 +69,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `var contactInfoForID: HashMap(String, ContactInfo);`
         - `var paragraphs: List<String>;`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
-        - `fn print(a: Circle) { ...; }`
+        - `fn print(a: ContactInfo) { ...; }`
         - `fn concat(a: StringView, b: StringView) -> String { return a + b; }`
     - `var i: i64 = 1;`  
       `while (i <= 10) { ...; ++i; }`
@@ -86,7 +86,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `let mut contactInfoForID: HashMap<String, ContactInfo> = HasMap::new();`
         - `let mut paragraphs: LinkedList<String> = LinkedList::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
-        - `fn print(a: &Circle) { ...; }`
+        - `fn print(a: &ContactInfo) { ...; }`
         - `fn concat(a: &str, b: &str) -> String { return a + b; }`
     - `for i in 1..=10 { ...; }`
         - `for i in 1..words.len() { ...; } `          
