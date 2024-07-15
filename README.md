@@ -1442,6 +1442,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
 - Reserved keywords for _future_ use (maybe, maybe not).
+    - `Null`
     - `parallel`
     - `struct` for some variant of C++ strcuts/classes
     - `interface` for pure abstract base classes or similar constructs
