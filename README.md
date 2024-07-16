@@ -298,7 +298,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
-- Use `T+`/`UniquePtrˋT>` for "raw" C/C++ arrays of arbitrary size.
+- Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.
     - ```
       Int+ array = new Int[3]  // Array-to-pointer decay possible
       array[2] = 0
