@@ -301,7 +301,14 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - Use `Int*` for "raw" C/C++ arrays of arbitrary size.
     - ```
       unsafe {
-          Int* array = new Int[3]  // Array-to-pointer decay possible
+          Int+ array = new Int[3]  // Array-to-pointer decay possible
+          array[2] = 0
+          array[3] = 0  // Undefined behaviour, no bounds check at all
+      }
+      ```
+    - ```
+      unsafe {
+          Int* array = (new Int[3]).release()  // Array-to-pointer decay possible
           array[2] = 0
           array[3] = 0  // Undefined behaviour, no bounds check at all
           delete[] array
