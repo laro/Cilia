@@ -298,28 +298,29 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
-- Use `Int*`/`Int+` for "raw" C/C++ arrays of arbitrary size.
+- Use `T+`/`UniquePtrˋT>` for "raw" C/C++ arrays of arbitrary size.
     - ```
       Int+ array = new Int[3]  // Array-to-pointer decay possible
       array[2] = 0
       array[3] = 0  // Undefined behaviour, no bounds check at all
       ```
-    - ```
-      unsafe {
-          Int* array = (new Int[3]).release()  // Array-to-pointer decay possible
-          array[2] = 0
-          array[3] = 0  // Undefined behaviour, no bounds check at all
-          delete[] array
-      }
-      ```
-    - ```
-      unsafe {
-          Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
-          array[2] = 0
-          array[3] = 0  // Undefined behaviour, no bounds check at all
-          free(array)
-      }
-      ```
+    - Using `Int*` is possible but unsafe.
+        - ```
+          unsafe {
+              Int* array = (new Int[3]).release()  // Array-to-pointer decay possible
+              array[2] = 0
+              array[3] = 0  // Undefined behaviour, no bounds check at all
+              delete[] array
+          }
+          ```
+        - ```
+          unsafe {
+              Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
+              array[2] = 0
+              array[3] = 0  // Undefined behaviour, no bounds check at all
+              free(array)
+          }
+          ```
     - Actually this is how to handle pointer to array of `Int` "properly":  
       ```
       Int[3]+ arrayPtr = new Int[3]
