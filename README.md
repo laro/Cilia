@@ -630,8 +630,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
                 - Even `a` and `b` (and of course the return type) could each be a _different_ type (as long as they satisfy the concept `Number`)
             - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
               ```
-               func sqrt(Real x) -> Real {
-                   // ... a series development ...
+              func sqrt(Real x) -> Real {
+                  // ... a series development ...
                   // (with number of iterations determined from the size of the mantissa)
               }
               ```
@@ -1196,11 +1196,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `Type+ pointer`
         - `T+` is short for `UniquePtr<T>`
 - `T+`/`UniquePtr<T>` should be the general default (for pointers, when stack variables are not suitable).
-    - `ContactInfo+ contactInfoUniquePtr = ContactInfo::new()`
-        - Unclear:
-            - `new ContactInfo`
-            - `ContactInfo::new()`
-            - `new<ContactInfo>()`
+    - `ContactInfo+ contactInfoUniquePtr = new ContactInfo`
+        - TODO
+            - `Int+ array = new Int[3]`
     - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
         - `ContactInfo^ contactInfoSharedPtr = contactInfoUniquePtr`
         - The UniquePtr is NullPtr afterwards.
