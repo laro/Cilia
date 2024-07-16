@@ -927,7 +927,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - Also as single line string literal with very few restrictions, good for RegEx
         - `"""(.* )whatever(.*)"""`
 - Interpolated Strings
-    - `$“M[{i},{j}] = {M[i, j]}"`
+    - `$"M[{i},{j}] = {M[i, j]}"`
         - as in C#
         - Any reason to use/prefer any other syntax?
 - Alternative string literals
