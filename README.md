@@ -372,7 +372,8 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 ## Associative Arrays
 - AKA Maps (or Dictionaries)
 - `TValue[TKey]` as short form of `Map<TKey, TValue>`
-    - e.g. `ContactInfo[String] contactInfoForID` as short form of `Map<String, ContactInfo>`
+    - e.g. `ContactInfo[String] contactInfoForID` as short form  
+      of `Map<String, ContactInfo> contactInfoForID`
 - "Make simple things simple"
 - Having a short syntax for associative arrays should encourage people to use it.
 
