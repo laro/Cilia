@@ -329,7 +329,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - But raw pointer access is still `unsafe`:  
           ```
           unsafe {
-              Int[3]* arrayPtr = new Int[3]
+              Int[3]* arrayPtr = (new Int[3]).release()
               *arrayPtr[2] = 0
               *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
               delete[] arrayPtr
