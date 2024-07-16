@@ -378,8 +378,8 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - "Make simple things simple"
 - Having a short syntax for associative arrays should encourage people to use it.
 - Maybe template specialization:
-    - Map<Int, ...> is a HashMap
-    - Map<String, ...> is a SortedMap
+    - `Map<Int, ...>` is a `HashMap`
+    - `Map<String, ...>` is a `SortedMap`
 
 
 ## Signed Size
