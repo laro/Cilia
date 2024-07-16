@@ -320,15 +320,21 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
           free(array)
       }
       ```
-    - Actually this is how to handle pointer to array of `Int` "properly" (but still `unsafe`):  
+    - Actually this is how to handle pointer to array of `Int` "properly":  
       ```
-      unsafe {
-          Int[3]* arrayPtr = new Int[3]
-          *arrayPtr[2] = 0
-          *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-          delete[] arrayPtr
-      }
+      Int[3]+ arrayPtr = new Int[3]
+      *arrayPtr[2] = 0
+      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
       ```
+        - But raw pointer access is still `unsafe`:  
+          ```
+          unsafe {
+              Int[3]* arrayPtr = new Int[3]
+              *arrayPtr[2] = 0
+              *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+              delete[] arrayPtr
+          }
+          ```
 - Examples:
     - `Int[] dynamicArrayOfInt`
     - `Int[3] arrayOfThreeInt`
