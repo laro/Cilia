@@ -298,13 +298,11 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
-- Use `Int*` for "raw" C/C++ arrays of arbitrary size.
+- Use `Int*`/`Int+` for "raw" C/C++ arrays of arbitrary size.
     - ```
-      unsafe {
-          Int+ array = new Int[3]  // Array-to-pointer decay possible
-          array[2] = 0
-          array[3] = 0  // Undefined behaviour, no bounds check at all
-      }
+      Int+ array = new Int[3]  // Array-to-pointer decay possible
+      array[2] = 0
+      array[3] = 0  // Undefined behaviour, no bounds check at all
       ```
     - ```
       unsafe {
