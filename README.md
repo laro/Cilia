@@ -239,7 +239,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 ## Variable Declaration
 `Int i` as variable declaration, very much as in C/C++, plus some simplifications/restrictions.
-- `var` / `const` for type inference:  
+- `var` / `const` for **type inference**:  
     - `var i = 3` instead of ~~`auto i = 3;`~~
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no such thing as a "constant variable".)
 - Examples:
@@ -298,11 +298,14 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
-- Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.
+- Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
+  But array subscript with `Int+` is unsafe.
     - ```
       Int+ array = new Int[3]  // Array-to-pointer decay possible
-      array[2] = 0
-      array[3] = 0  // Undefined behaviour, no bounds check at all
+      unsafe {
+          array[2] = 0
+          array[3] = 0  // Undefined behaviour, no bounds check at all
+      }
       ```
     - Using `Int*` is possible but unsafe.
         - ```
