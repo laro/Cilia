@@ -595,7 +595,7 @@ No braces around the condition clause.
       }
       ```
       (OK, curly braces around all of this are necessary to be a perfect replacement.)
-- switch/case with `fallthrough` instead of ~~`break`~~
+- **switch/case** with `fallthrough` instead of ~~`break`~~
     - ```
       switch i {
       case 0:
