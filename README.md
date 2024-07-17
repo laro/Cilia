@@ -512,9 +512,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
     - `<<<` Rotate left (circular shift left)
 
 
-## `if`, `while`, `for ... in` Branches & Loops
+## Branches & Loops
 No braces around the condition clause.
-- if
+- **if**
     - ```
       if a > b {
           // ...
@@ -538,19 +538,19 @@ No braces around the condition clause.
       ```
     - `if 1 <= x <= 10 { ... }`
         - chained comparison as in Cpp2 (Herb Sutter), Python, Julia
-- while
+- **while**
   ```
   while a > b {
       // ...
   }
   ```
-- do ... while
+- **do ... while**
   ```
   do {
       // ...
   } while a > b
   ```
-- `for ... in ...`
+- **`for ... in ...`**
     - as in Swift, Rust
     - Write
       ```
@@ -595,6 +595,27 @@ No braces around the condition clause.
       }
       ```
       (OK, curly braces around all of this are necessary to be a perfect replacement.)
+- switch/case with `fallthrough` instead of ~~`break`~~
+    - ```
+      switch i {
+      case 0:
+          print("0")
+          // implicit break
+      
+      case 1:
+          print("1")
+      
+      case 2:
+          print("2")
+      
+      case 3:
+          print("3")
+          fallthrough
+      
+      default:
+          print("default")
+      }
+      ```
 
 
 ## Templates
