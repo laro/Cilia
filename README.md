@@ -410,7 +410,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - **Extension methods**
     - To add "member like" functions to "third party" classes/types.
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
-    - Also possible for arithmetic types, e.g.:  
+    - Also possible for basic/arithmetic types, e.g.:  
       `Int i`  
       `i.toString()`  
       based on  
@@ -1395,7 +1395,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - as with C#, Java,
     - no forward declarations necessary (as it is in C/C++, due to the single-pass compiler).
 
-- Mixed arithmetic
+- **Mixed arithmetic**
     - Mixing signed with unsigned integer
         - `Signed + - * / Unsigned` is an error
             - you have to cast explicitly,
@@ -1405,7 +1405,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - you have to cast
         - Error with `if aUInt < 0`
             - if the literal on the right is `<= 0`
-    - Mixing integer and float
+    - Mixing integer with float
         - `1 * aFloat` is possible
             - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
         - `anInt * aFloat` is possible
