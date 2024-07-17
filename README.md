@@ -1273,14 +1273,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Mainly to guide developers: to signal what to do and what not to do,
       `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
     - Not allowed in safe code:
-        - Subscript access to raw pointers,
+        - Subscript access to pointers,
         - `reinterpretCastTo<T>(...)`,
-        - `new` and `delete`,
-            - it is recommended to use `makeUnique<T>()` or `makeShared<T>()` instead,
         - calling functions marked as `unsafe`,
     - Still allowed/undetected in unsafe code:
         - Integer overflow (checking that all the time seems too costly)
-    - But `unsafe` is necessary to implement certain abstractions (as container classes):
+    - But `unsafe` code is necessary to implement certain abstractions (as container classes):
         - ```
           func Array<T>::operator[](Int i) -> T& {
               if i < 0 or i >= size {
