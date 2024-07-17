@@ -370,6 +370,17 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
 
 
+## Signed Size
+`Int` (i.e. signed) as type for `*.size()`
+- Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
+    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
+- When working with sizes, calculating the difference is common; Then you are limited to `SSize`/`PtrDiff` (i.e. signed integer) anyway.
+- Who needs more than 2GB of data in a single "array", should please use a 64 bit platform.
+- For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
+- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
+    - We simply use `Int` instead. Or `UInt` in rare cases.
+
+
 ## Associative Arrays
 - AKA Maps (or Dictionaries)
 - `TValue[TKey]` as short form of `Map<TKey, TValue>`
@@ -380,17 +391,6 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - Maybe template specialization:
     - `Map<Int, ...>` is a `HashMap`
     - `Map<String, ...>` is a `SortedMap`
-
-
-## Signed Size
-`Int` (i.e. signed) as type for `*.size()`
-- Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
-    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
-- When working with sizes, calculating the difference is common; Then you are limited to `SSize`/`PtrDiff` (i.e. signed integer) anyway.
-- Who needs more than 2GB of data in a single "array", should please use a 64 bit platform.
-- For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
-- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
-    - We simply use `Int` instead. Or `UInt` in rare cases.
 
 
 ## Functions
