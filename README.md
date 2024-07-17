@@ -618,6 +618,46 @@ No braces around the condition clause.
       ```
 
 
+## (Smart) Pointers
+- Short Smart Pointer Syntax
+    - “Make simple things simple”,  
+      encourage use of smart pointers.
+    - `Type^ pointer`
+        - `T^` is short for `SharedPtr<T>`
+        - Inspired by C++/CLI (so its a proven possiblilty),  
+          Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
+        - **But** there is an inconsistency in its usage:
+            - A normal pointer `T* pointer` is dereferenced with `*pointer`.
+            - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
+    - `Type+ pointer`
+        - `T+` is short for `UniquePtr<T>`
+- `T+`/`UniquePtr<T>` should be the general default (for pointers, when stack variables are not suitable).
+    - `ContactInfo+ contactInfoUniquePtr = new ContactInfo`
+        - TODO
+            - `Int+ array = new Int[3]`
+    - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
+        - `ContactInfo^ contactInfoSharedPtr = contactInfoUniquePtr`
+        - The UniquePtr is NullPtr afterwards.
+- But a classical C/C++ "raw" pointer should still be possible.
+    - `ContactInfo* contactInfoPtr = new ContactInfo`  
+      `delete contactInfoPtr`
+- Redefine `T^` and `T+` for special cases / interoperability with other languages:
+    - `T^` is defined via type traits `SharedPtrType`,  
+        - For C++/Cilia classes `T^` is `SharedPtr<T>`:
+            - `using<type T> T::SharedPtrType = SharedPtr<T>`
+        - Objective-C/Swift classes use their reference counting mechanism:
+            - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
+        - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
+            - `using DotNetObject::SmartPtrType = DotNetGCPtr`
+            - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
+        - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
+            - `using JavaObject::SmartPtrType = JavaGCPtr`
+            - Probably very similar to C#/.NET.
+    - `T+` is defined via type traits `UniquePtrType`.
+        - For C++/Cilia classes `T+` is `UniquePtr<T>`:
+            - `using<type T> T::UniquePtrType = UniquePtr<T>`
+
+
 ## Templates
 The basic new idea is, to define templates (classes and functions) mostly the same as they are used.
 - **Class** templates  
@@ -1017,6 +1057,81 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `yield()` -> `func __function_yield()`
 
 
+## `cilia` Standard Library
+Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
+- With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
+    - `cilia::String` instead of `std::string`
+    - `Map` instead of `map`
+        - `Dictionary` as alias with deprecation warning, as a hint for C# programmers.
+    - `ForwardList` instead of `forward_list`
+    - `UnorderedMap` instead of `unordered_map`
+    - `ValueType` instead of `value_type`
+    - Maybe some exceptions/variations:
+        - `Array` instead of `vector`
+        - `Stringstream` or `StringStream` instead of `stringstream`?
+            - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, ...
+        - `Multimap` or `MultiMap` instead of `multimap`?
+- Shallow wrapper,
+    - e.g. `cilia::String : public std::string`
+- "**Alias**" for 
+    - member variables  
+      `using x = data[0]`  
+      `using y = data[1]`  
+        - Not quite possible in C++.
+            - With ...  
+              `Float& imaginary = im`  
+              or  
+              `T& x = data[0]`  
+              ... unfortunately memory is created for the reference (the pointer).
+            - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
+    - member functions
+        - `using func f() = g()`
+
+- Matrix & Vector
+    - Geometry
+        - Static/fixed size
+        - For small, fixed size vectors & matrices ,
+            - as typically used in geometry (i.e. 2D, 3D, 4D).
+        - `cilia::Vector<T = Float, Int size>`
+            - `cilia::Vector2<T = Float>`
+            - `cilia::Vector3<T = Float>`
+            - `cilia::Vector4<T = Float>`
+        - `cilia::Matrix<T = Float, Int rows, Int columns>`
+            - `cilia::Matrix22<T = Float>`
+            - `cilia::Matrix33<T = Float>`
+            - `cilia::Matrix44<T = Float>`
+    - Linear Algebra
+        - Dynamic/variable size
+        - For large, dynamically sized vectors & matrices,
+            - as typically used in linear algebra: BLAS (Basic Linear Algebra Subprograms)
+        - `cilia::Vector<T = Float>`
+        - `cilia::Matrix<T = Float>`
+            - Stored column-major, like:
+              ```
+              0 3 6
+              1 4 7
+              2 5 8
+              ```
+        - `cilia::MDArray<T = Float, Int dimensions>`
+            - also see `MDSpan`
+          
+- Image
+    - `cilia::Image<T = Float>`
+    - Almost like `cilia::Matrix`, but stored row-major, like:
+      ```
+      0 1 2
+      3 4 5
+      6 7 8
+      ```
+      
+- Views, Slices
+    - `ArrayView`
+    - `VectorView`
+    - `MatrixView`
+    - `ImageView`
+    - `MDArrayView`
+
+
 ## String, Char & CodePoint
 - `cilia::String` with _basic/standard_ unicode support.
     - Iteration over a `String` or `StringView` by:
@@ -1127,121 +1242,6 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
                 - `sort(Container<String>, locale) -> Container<String>`
             - `compare(stringA, stringB, locale) -> Int`
      
-
-## `cilia` Standard Library
-Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
-- With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
-    - `cilia::String` instead of `std::string`
-    - `Map` instead of `map`
-        - `Dictionary` as alias with deprecation warning, as a hint for C# programmers.
-    - `ForwardList` instead of `forward_list`
-    - `UnorderedMap` instead of `unordered_map`
-    - `ValueType` instead of `value_type`
-    - Maybe some exceptions/variations:
-        - `Array` instead of `vector`
-        - `Stringstream` or `StringStream` instead of `stringstream`?
-            - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, ...
-        - `Multimap` or `MultiMap` instead of `multimap`?
-- Shallow wrapper,
-    - e.g. `cilia::String : public std::string`
-- "**Alias**" for 
-    - member variables  
-      `using x = data[0]`  
-      `using y = data[1]`  
-        - Not quite possible in C++.
-            - With ...  
-              `Float& imaginary = im`  
-              or  
-              `T& x = data[0]`  
-              ... unfortunately memory is created for the reference (the pointer).
-            - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
-    - member functions
-        - `using func f() = g()`
-
-- Matrix & Vector
-    - Geometry
-        - Static/fixed size
-        - For small, fixed size vectors & matrices ,
-            - as typically used in geometry (i.e. 2D, 3D, 4D).
-        - `cilia::Vector<T = Float, Int size>`
-            - `cilia::Vector2<T = Float>`
-            - `cilia::Vector3<T = Float>`
-            - `cilia::Vector4<T = Float>`
-        - `cilia::Matrix<T = Float, Int rows, Int columns>`
-            - `cilia::Matrix22<T = Float>`
-            - `cilia::Matrix33<T = Float>`
-            - `cilia::Matrix44<T = Float>`
-    - Linear Algebra
-        - Dynamic/variable size
-        - For large, dynamically sized vectors & matrices,
-            - as typically used in linear algebra: BLAS (Basic Linear Algebra Subprograms)
-        - `cilia::Vector<T = Float>`
-        - `cilia::Matrix<T = Float>`
-            - Stored column-major, like:
-              ```
-              0 3 6
-              1 4 7
-              2 5 8
-              ```
-        - `cilia::MDArray<T = Float, Int dimensions>`
-            - also see `MDSpan`
-          
-- Image
-    - `cilia::Image<T = Float>`
-    - Almost like `cilia::Matrix`, but stored row-major, like:
-      ```
-      0 1 2
-      3 4 5
-      6 7 8
-      ```
-      
-- Views, Slices
-    - `ArrayView`
-    - `VectorView`
-    - `MatrixView`
-    - `ImageView`
-    - `MDArrayView`
-
-
-## (Smart) Pointers
-- Short Smart Pointer Syntax
-    - “Make simple things simple”,  
-      encourage use of smart pointers.
-    - `Type^ pointer`
-        - `T^` is short for `SharedPtr<T>`
-        - Inspired by C++/CLI (so its a proven possiblilty),  
-          Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
-        - **But** there is an inconsistency in its usage:
-            - A normal pointer `T* pointer` is dereferenced with `*pointer`.
-            - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-    - `Type+ pointer`
-        - `T+` is short for `UniquePtr<T>`
-- `T+`/`UniquePtr<T>` should be the general default (for pointers, when stack variables are not suitable).
-    - `ContactInfo+ contactInfoUniquePtr = new ContactInfo`
-        - TODO
-            - `Int+ array = new Int[3]`
-    - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
-        - `ContactInfo^ contactInfoSharedPtr = contactInfoUniquePtr`
-        - The UniquePtr is NullPtr afterwards.
-- But a classical C/C++ "raw" pointer should still be possible.
-    - `ContactInfo* contactInfoPtr = new ContactInfo`  
-      `delete contactInfoPtr`
-- Redefine `T^` and `T+` for special cases / interoperability with other languages:
-    - `T^` is defined via type traits `SharedPtrType`,  
-        - For C++/Cilia classes `T^` is `SharedPtr<T>`:
-            - `using<type T> T::SharedPtrType = SharedPtr<T>`
-        - Objective-C/Swift classes use their reference counting mechanism:
-            - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
-        - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
-            - `using DotNetObject::SmartPtrType = DotNetGCPtr`
-            - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
-        - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
-            - `using JavaObject::SmartPtrType = JavaGCPtr`
-            - Probably very similar to C#/.NET.
-    - `T+` is defined via type traits `UniquePtrType`.
-        - For C++/Cilia classes `T+` is `UniquePtr<T>`:
-            - `using<type T> T::UniquePtrType = UniquePtr<T>`
-
 
 ## Safety and Security
 - **Range Checks**
