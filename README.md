@@ -1057,6 +1057,153 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `yield()` -> `func __function_yield()`
 
 
+## Safety and Security
+- **Range Checks**
+    - The low hanging fruit would be to enable range checks _by default_, also in release builds (not only in debug), to detect **buffer overflows** or similar. This should fix the majority of C/C++ security issues.  
+      To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
+      So we would have:
+        - **Debug**
+            - for debugging,
+            - with range checks,
+            - with line by line debug info, and
+            - often with a modified memory layout (to find more types of errors).
+        - **Release**
+            - for deployment,
+            - _with_ range checks,
+            - suitable for most situations,
+            - with memory layout compatible to ~~EvenFasterBut~~UnsafeRelease.
+        - ~~EvenFasterBut~~**UnsafeRelease**
+            - for deployment,
+            - _without_ range checks.
+            - when maximum performance is desired.
+- **Initialization**
+    - No initialization means random values. In this case they are in fact often zero, but _not always_.
+    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
+        - With virtual memory it is actually (almost) "free" to initialize _large_ arrays with zero. (When using heap memory directly.)
+    - We could warn (or maybe even consider it an error) if not initialized,  
+      and use a keyword `noinit` to avoid that warning/error.  
+      ```
+      Int i         // Warning
+      Int j noinit  // No warning
+      Int j = 1     // No warning
+      ```
+    - Classes / custom types
+        - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
+        - ```
+          class Array<type T> {
+              Array(Int size) noinit { ... }
+              Array(Int size, T value) { ... }
+          }
+          Array<Float> anArray(10)         // Warning
+          Array<Float> anArray(10) noinit  // No warning
+          Array<Float> anArray(10, 1.0)    // No warning
+          ```
+    - Also for free memory/heap
+        - ```
+          var arrayPtr = new Array<Float>(10)         // Warning
+          var arrayPtr = new Array<Float>(10) noinit  // No warning
+          var arrayPtr = new Array<Float>(10, 1.0)    // No warning
+          ```
+- **`safe`** as default, **`unsafe`** code blocks as escape.
+    - Mainly to guide developers: to signal what to do and what not to do,
+      `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
+    - Not allowed in safe code:
+        - Subscript access to pointers,
+        - `reinterpretCastTo<T>(...)`,
+        - calling functions marked as `unsafe`,
+    - Still allowed/undetected in unsafe code:
+        - Integer overflow (checking that all the time seems too costly)
+    - But `unsafe` code is necessary to implement certain abstractions (as container classes):
+        - ```
+          func Array<T>::operator[](Int i) -> T& {
+              if i < 0 or i >= size {
+                  terminate()
+              }
+              unsafe {
+                  return data[i]
+              }
+          }
+          ```
+    - Not every function with unsafe code needs to be marked as unsafe.  
+      Unsafe is just a marker for code that needs to be checked carefully.
+- `cilia::safe::Int`
+    - Like `cilia::Int`, but with **overflow check** for all operations,
+        - may throw OverflowException (or abort the program).
+    - Generally considered to be too costly, even in language that are otherwise considered as "safe".
+    - `safe::Int8`/`Int16`/`Int32`/`Int64`
+    - `safe::Uint`
+        - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
+- No further security features planned beyond C++
+    - not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
+        - that is just out of scope,
+    - no _additional_ thread safety measures
+        - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
+        - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with better solutions than already available/recommended in C++).
+
+
+## `is`, `as`, Casting
+- `is` (type query)
+    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
+        - `obj is Int` (i.e. a type)
+        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != NullPtr`
+        - `obj is cilia::Array` (i.e. a template)
+        - `obj is cilia::Integer` (i.e. a concept)
+    - Also support value query?
+- `as`
+    - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
+        - `obj as T` instead of `T(obj)`
+        - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
+        - With `Variant v` where T is one alternative:  
+          `v as T` instead of`std::get<T>(v)`
+        - With `Any a`:  
+          `a as T` instead of `std::any_cast<T>(a)`
+        - With `Optional<T> o`:  
+          `o as T` instead of `o.value()`
+- Constructor casting
+    - `Float(3)`
+    - Casting via constructor is `explicit` by default, `implicit` as option.
+    - No classic C-style casting: ~~`(Float) 3`~~
+    - but also
+        - `castToMutable<T>(...)` or `mutableCastTo<T>(...)`
+            - instead of ~~`constCastTo<>(...)`~~
+        - `reinterpretCastTo<T>(...)`
+        - `staticCastTo<T>(...)`?
+- Automatic casts
+    - as in Kotlin,
+    - for template types, references and pointers.
+    - ```
+      func getStringLength(Type obj) -> Int {
+           if obj is String {
+               // "obj" is automatically cast to "String" in this branch
+               return obj.length
+           }
+           // "obj" is still a "Type" outside of the type-checked branch
+           return 0
+      }
+      ```
+    - ```
+      func getStringLength(Type obj) -> Int {
+          if not obj is String
+              return 0
+          // "obj" is automatically cast to "String" in this branch
+          return obj.length
+       }
+      ```
+    - ```
+      func getStringLength(Type obj) -> Int {
+          // "obj" is automatically cast to "String" on the right-hand side of "and"
+          if obj is String  and  obj.length > 0 {
+              return obj.length
+          }
+          return 0
+      }
+      ```
+    - Multiple inheritance is problematic here:
+        - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
+        - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
+            - Workaround: Cast back with `Type(obj).functionOfA()`
+
+
 ## `cilia` Standard Library
 Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
 - With Cilia version of every standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
@@ -1242,153 +1389,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - `sort(Container<String>, locale) -> Container<String>`
             - `compare(stringA, stringB, locale) -> Int`
      
-
-## Safety and Security
-- **Range Checks**
-    - The low hanging fruit would be to enable range checks _by default_, also in release builds (not only in debug), to detect **buffer overflows** or similar. This should fix the majority of C/C++ security issues.  
-      To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
-      So we would have:
-        - **Debug**
-            - for debugging,
-            - with range checks,
-            - with line by line debug info, and
-            - often with a modified memory layout (to find more types of errors).
-        - **Release**
-            - for deployment,
-            - _with_ range checks,
-            - suitable for most situations,
-            - with memory layout compatible to ~~EvenFasterBut~~UnsafeRelease.
-        - ~~EvenFasterBut~~**UnsafeRelease**
-            - for deployment,
-            - _without_ range checks.
-            - when maximum performance is desired.
-- **Initialization**
-    - No initialization means random values. In this case they are in fact often zero, but _not always_.
-    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
-        - With virtual memory it is actually (almost) "free" to initialize _large_ arrays with zero. (When using heap memory directly.)
-    - We could warn (or maybe even consider it an error) if not initialized,  
-      and use a keyword `noinit` to avoid that warning/error.  
-      ```
-      Int i         // Warning
-      Int j noinit  // No warning
-      Int j = 1     // No warning
-      ```
-    - Classes / custom types
-        - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
-        - ```
-          class Array<type T> {
-              Array(Int size) noinit { ... }
-              Array(Int size, T value) { ... }
-          }
-          Array<Float> anArray(10)         // Warning
-          Array<Float> anArray(10) noinit  // No warning
-          Array<Float> anArray(10, 1.0)    // No warning
-          ```
-    - Also for free memory/heap
-        - ```
-          var arrayPtr = new Array<Float>(10)         // Warning
-          var arrayPtr = new Array<Float>(10) noinit  // No warning
-          var arrayPtr = new Array<Float>(10, 1.0)    // No warning
-          ```
-- **`safe`** as default, **`unsafe`** code blocks as escape.
-    - Mainly to guide developers: to signal what to do and what not to do,
-      `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
-    - Not allowed in safe code:
-        - Subscript access to pointers,
-        - `reinterpretCastTo<T>(...)`,
-        - calling functions marked as `unsafe`,
-    - Still allowed/undetected in unsafe code:
-        - Integer overflow (checking that all the time seems too costly)
-    - But `unsafe` code is necessary to implement certain abstractions (as container classes):
-        - ```
-          func Array<T>::operator[](Int i) -> T& {
-              if i < 0 or i >= size {
-                  terminate()
-              }
-              unsafe {
-                  return data[i]
-              }
-          }
-          ```
-    - Not every function with unsafe code needs to be marked as unsafe.  
-      Unsafe is just a marker for code that needs to be checked carefully.
-- `cilia::safe::Int`
-    - Like `cilia::Int`, but with **overflow check** for all operations,
-        - may throw OverflowException (or abort the program).
-    - Generally considered to be too costly, even in language that are otherwise considered as "safe".
-    - `safe::Int8`/`Int16`/`Int32`/`Int64`
-    - `safe::Uint`
-        - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
-- No further security features planned beyond C++
-    - not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
-        - that is just out of scope,
-    - no _additional_ thread safety measures
-        - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
-        - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with better solutions than already available/recommended in C++).
-
-
-## `is`, `as`, Casting
-- `is` (type query)
-    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
-        - `obj is Int` (i.e. a type)
-        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != NullPtr`
-        - `obj is cilia::Array` (i.e. a template)
-        - `obj is cilia::Integer` (i.e. a concept)
-    - Also support value query?
-- `as`
-    - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
-        - `obj as T` instead of `T(obj)`
-        - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
-        - With `Variant v` where T is one alternative:  
-          `v as T` instead of`std::get<T>(v)`
-        - With `Any a`:  
-          `a as T` instead of `std::any_cast<T>(a)`
-        - With `Optional<T> o`:  
-          `o as T` instead of `o.value()`
-- Constructor casting
-    - `Float(3)`
-    - Casting via constructor is `explicit` by default, `implicit` as option.
-    - No classic C-style casting: ~~`(Float) 3`~~
-    - but also
-        - `castToMutable<T>(...)` or `mutableCastTo<T>(...)`
-            - instead of ~~`constCastTo<>(...)`~~
-        - `reinterpretCastTo<T>(...)`
-        - `staticCastTo<T>(...)`?
-- Automatic casts
-    - as in Kotlin,
-    - for template types, references and pointers.
-    - ```
-      func getStringLength(Type obj) -> Int {
-           if obj is String {
-               // "obj" is automatically cast to "String" in this branch
-               return obj.length
-           }
-           // "obj" is still a "Type" outside of the type-checked branch
-           return 0
-      }
-      ```
-    - ```
-      func getStringLength(Type obj) -> Int {
-          if not obj is String
-              return 0
-          // "obj" is automatically cast to "String" in this branch
-          return obj.length
-       }
-      ```
-    - ```
-      func getStringLength(Type obj) -> Int {
-          // "obj" is automatically cast to "String" on the right-hand side of "and"
-          if obj is String  and  obj.length > 0 {
-              return obj.length
-          }
-          return 0
-      }
-      ```
-    - Multiple inheritance is problematic here:
-        - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
-        - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
-            - Workaround: Cast back with `Type(obj).functionOfA()`
-
 
 ## Misc 
 - Two-Pass Compiler
