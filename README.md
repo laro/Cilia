@@ -509,7 +509,7 @@ No braces around the condition clause.
         - _But_ there is an inconsistency in its usage:
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-- `new T` returns a `T+`/`UniquePtr<T>`,
+- **`new T` returns a `T+`/`UniquePtr<T>`**,
     - so`T+`/`UniquePtr<T>` is the "default type" for pointers,
     - e.g. `ContactInfo+ contactInfoUniquePtr = new ContactInfo`.
     - `T^`/`SharedPtr<T>` can take over the pointer from rvalue `T+`/`UniquePtr<T>` (as in C/C++).
@@ -521,7 +521,7 @@ No braces around the condition clause.
 - A classical C/C++ "raw" pointer is still possible, but inconvenient to use.
     - `ContactInfo* contactInfoPtr = (new ContactInfo).release()`  
       `delete contactInfoPtr`
-- Redefine `T^` and `T+` for special cases / interoperability with other languages:
+- Redefine `T^` and `T+` for special cases / **interoperability with other languages**:
     - `T^` is defined via type traits `SharedPtrType`,  
         - For C++/Cilia classes `T^` is `SharedPtr<T>`:
             - `using<type T> T::SharedPtrType = SharedPtr<T>`
