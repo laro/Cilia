@@ -281,8 +281,8 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
       array[3] = 0  // Runtime error, no compile time bounds check
       ```
     - `T[] array` is the short form of `cilia::Array<T> array`
-    - "Make simple things simple"
-    - Having a short and traditional syntax for dynamic arrays should encourage people to use it.
+    - "Make simple things simple",  
+      having a short and traditional syntax for dynamic arrays should encourage people to use it.
     - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
         - that's the more traditional wording,
         - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
@@ -389,8 +389,8 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - `TValue[TKey]` as short form of `Map<TKey, TValue>`
     - e.g. `ContactInfo[String] contactInfoForID` as short form  
       of `Map<String, ContactInfo> contactInfoForID`
-- "Make simple things simple"
-- Having a short syntax for associative arrays should encourage people to use it.
+- "Make simple things simple",
+  having a short syntax for associative arrays should encourage people to use it.
 - Maybe template specialization:
     - `Map<Int, ...>` is a `HashMap`
     - `Map<String, ...>` is a `SortedMap`
@@ -623,24 +623,26 @@ No braces around the condition clause.
 - Short Smart Pointer Syntax
     - “Make simple things simple”,  
       encourage use of smart pointers.
-    - `Type^ pointer`
-        - `T^` is short for `SharedPtr<T>`
+    - **`Type+ pointer`**
+        - `T+` is short for **`UniquePtr<T>`**
+    - **`Type^ pointer`**
+        - `T^` is short for **`SharedPtr<T>`**
         - Inspired by C++/CLI (so its a proven possiblilty),  
           Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
-        - **But** there is an inconsistency in its usage:
+        - _But_ there is an inconsistency in its usage:
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-    - `Type+ pointer`
-        - `T+` is short for `UniquePtr<T>`
-- `T+`/`UniquePtr<T>` should be the general default (for pointers, when stack variables are not suitable).
+- `T+`/`UniquePtr<T>` is the default type for pointers (i.e. when stack variables are not suitable only).
     - `ContactInfo+ contactInfoUniquePtr = new ContactInfo`
+        - `new T` returns a `T+`/`UniquePtr<T>`
         - TODO
             - `Int+ array = new Int[3]`
-    - Implicit change from `T+`/`UniquePtr<T>` to `T^`/`SharedPtr<T>` is possible (as it is in C/C++).
-        - `ContactInfo^ contactInfoSharedPtr = contactInfoUniquePtr`
-        - The UniquePtr is NullPtr afterwards.
-- But a classical C/C++ "raw" pointer should still be possible.
-    - `ContactInfo* contactInfoPtr = new ContactInfo`  
+    - `T^`/`SharedPtr<T>` can take over the pointer from rvalue `T+`/`UniquePtr<T>` (as in C/C++).
+        - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
+        - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
+        - The `UniquePtr` is `NullPtr` afterwards.
+- A classical C/C++ "raw" pointer is still possible, but inconvenient.
+    - `ContactInfo* contactInfoPtr = (new ContactInfo).release()`  
       `delete contactInfoPtr`
 - Redefine `T^` and `T+` for special cases / interoperability with other languages:
     - `T^` is defined via type traits `SharedPtrType`,  
