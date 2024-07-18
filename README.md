@@ -508,7 +508,7 @@ No braces around the condition clause.
         - _But_ there is an inconsistency in its usage:
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-- `T+`/`UniquePtr<T>` is the default type for pointers (i.e. when stack variables are not suitable only).
+- `T+`/`UniquePtr<T>` is the default type for pointers (i.e. when stack variables are not suitable).
     - `ContactInfo+ contactInfoUniquePtr = new ContactInfo`
         - `new T` returns a `T+`/`UniquePtr<T>`
         - TODO
