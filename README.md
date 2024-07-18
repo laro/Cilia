@@ -517,7 +517,7 @@ No braces around the condition clause.
         - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
         - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
         - The `UniquePtr` is `NullPtr` afterwards.
-- A classical C/C++ "raw" pointer is still possible, but inconvenient.
+- A classical C/C++ "raw" pointer is still possible, but inconvenient to use.
     - `ContactInfo* contactInfoPtr = (new ContactInfo).release()`  
       `delete contactInfoPtr`
 - Redefine `T^` and `T+` for special cases / interoperability with other languages:
