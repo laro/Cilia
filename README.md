@@ -608,12 +608,10 @@ No braces around the condition clause.
       case 1:
           print("1")
       
-      case 2:
-          print("2")
-      
-      case 3:
-          print("3")
+      case 2:      
           fallthrough
+      case 3:
+          print("2 or 3")
       
       default:
           print("default")
