@@ -272,130 +272,6 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
    - Keep as a reserved keyword for future use.
 
 
-## Arrays & ArrayViews
-- `Int[] dynamicArrayOfIntegers`
-    - „Dynamic array“ with **dynamic size**
-      ```
-      Int[] array = [0, 1, 2]
-      array[2] = 0
-      array[3] = 0  // Runtime error, no compile time bounds check
-      ```
-    - `T[] array` is the short form of `cilia::Array<T> array`
-    - "Make simple things simple",  
-      having a short and traditional syntax for dynamic arrays should encourage people to use it.
-    - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
-        - that's the more traditional wording,
-        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
-        - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
-- `Int[3] arrayOfThreeIntegers`  
-  (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
-    - „Static array“ with **fixed size**
-      ```
-      Int[3] array = [0, 1, 2]
-      array[2] = 0
-      array[3] = 0  // Compilation error, due to compile time bounds check
-      ```
-    - `arrayOfThreeIntegers.size()` -> `3`
-        - realized as extension function  
-          `func<type T, Int N> T[N]::size() -> Int { return N }`
-- Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
-  But array subscript with `Int+` is unsafe.
-    - ```
-      Int+ array = new Int[3]  // Array-to-pointer decay possible
-      unsafe {
-          array[2] = 0
-          array[3] = 0  // Undefined behaviour, no bounds check at all
-      }
-      ```
-    - Using `Int*` is possible but unsafe.
-        - ```
-          unsafe {
-              Int* array = (new Int[3]).release()  // Array-to-pointer decay possible
-              array[2] = 0
-              array[3] = 0  // Undefined behaviour, no bounds check at all
-              delete[] array
-          }
-          ```
-        - ```
-          unsafe {
-              Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
-              array[2] = 0
-              array[3] = 0  // Undefined behaviour, no bounds check at all
-              free(array)
-          }
-          ```
-    - Actually this is how to handle pointer to array of `Int` "properly":  
-      ```
-      Int[3]+ arrayPtr = new Int[3]
-      *arrayPtr[2] = 0
-      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-      ```
-        - But raw pointer access is still `unsafe`:  
-          ```
-          unsafe {
-              Int[3]* arrayPtr = (new Int[3]).release()
-              *arrayPtr[2] = 0
-              *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
-              delete[] arrayPtr
-          }
-          ```
-- Examples:
-    - `Int[] dynamicArrayOfInt`
-    - `Int[3] arrayOfThreeInt`
-    - `Int[3]* pointerToArrayOfThreeInt`
-    - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
-    - `String*[] dynamicArrayOfPointersToString`
-- ArrayViews AKA Slices AKA Subarrays
-    - `var subarray = array[1..2]`
-    - `var subarray = array[1..<3]`
-    - Incomplete ranges (need lower and/or upper bounds before use) are
-      typcally implemented as inline functions that determine the concrete bounds and then call `array[start..end]` (or one of the exclusive counterparts).
-        - `var subarray = array[..2]`
-        - `var subarray = array[..]`
-    - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
-- Multidimensional arrays
-    - dynamic size
-        - `Int[,] dynamic2DArray`  
-            - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
-        - `Int[,,] multidimensionalDynamicArray`  
-            - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
-        - and so on:  
-            - `cilia::MDArray<T, N>`
-    - static size
-        - `Int[3, 2, 200]`
-            - Multidimensional static array  
-              ```
-              Int[3, 2, 200] intArray3D
-              intArray3D[2, 1, 199] = 1
-              ```
-- Mixed forms of static and dynamic array
-    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
-    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
-
-
-## Signed Size
-`Int` (i.e. signed) as type for `*.size()`
-- Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
-    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
-- When working with sizes, calculating the difference is common; Then you are limited to `SSize`/`PtrDiff` (i.e. signed integer) anyway.
-- Who needs more than 2GB of data in a single "array", should please use a 64 bit platform.
-- For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
-- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
-    - We simply use `Int` instead. Or `UInt` in rare cases.
-
-
-## Associative Arrays
-- AKA Maps (or Dictionaries)
-- `TValue[TKey]` as short form of `Map<TKey, TValue>`
-    - e.g. `ContactInfo[String] contactInfoForID` as short form  
-      of `Map<String, ContactInfo> contactInfoForID`
-- "Make simple things simple",
-  having a short syntax for associative arrays should encourage people to use it.
-- Maybe template specialization:
-    - `Map<Int, ...>` is a `HashMap`
-    - `Map<String, ...>` is a `SortedMap`
-
-
 ## Functions
 ```
 func multiplyAdd(Int x, y, Float z) -> Float {
@@ -732,6 +608,130 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - `using   Int32::IsFloatingPoint = False`
     - `using   Int64::IsFloatingPoint = False`
     - `using<type T> Complex<T>::IsFloatingPoint = T::IsFloatingPoint`
+
+
+## Arrays & ArrayViews
+- `Int[] dynamicArrayOfIntegers`
+    - „Dynamic array“ with **dynamic size**
+      ```
+      Int[] array = [0, 1, 2]
+      array[2] = 0
+      array[3] = 0  // Runtime error, no compile time bounds check
+      ```
+    - `T[] array` is the short form of `cilia::Array<T> array`
+    - "Make simple things simple",  
+      having a short and traditional syntax for dynamic arrays should encourage people to use it.
+    - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
+        - that's the more traditional wording,
+        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
+        - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
+- `Int[3] arrayOfThreeIntegers`  
+  (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
+    - „Static array“ with **fixed size**
+      ```
+      Int[3] array = [0, 1, 2]
+      array[2] = 0
+      array[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+    - `arrayOfThreeIntegers.size()` -> `3`
+        - realized as extension function  
+          `func<type T, Int N> T[N]::size() -> Int { return N }`
+- Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
+  But array subscript with `Int+` is unsafe.
+    - ```
+      Int+ array = new Int[3]  // Array-to-pointer decay possible
+      unsafe {
+          array[2] = 0
+          array[3] = 0  // Undefined behaviour, no bounds check at all
+      }
+      ```
+    - Using `Int*` is possible but unsafe.
+        - ```
+          unsafe {
+              Int* array = (new Int[3]).release()  // Array-to-pointer decay possible
+              array[2] = 0
+              array[3] = 0  // Undefined behaviour, no bounds check at all
+              delete[] array
+          }
+          ```
+        - ```
+          unsafe {
+              Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
+              array[2] = 0
+              array[3] = 0  // Undefined behaviour, no bounds check at all
+              free(array)
+          }
+          ```
+    - Actually this is how to handle pointer to array of `Int` "properly":  
+      ```
+      Int[3]+ arrayPtr = new Int[3]
+      *arrayPtr[2] = 0
+      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+        - But raw pointer access is still `unsafe`:  
+          ```
+          unsafe {
+              Int[3]* arrayPtr = (new Int[3]).release()
+              *arrayPtr[2] = 0
+              *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+              delete[] arrayPtr
+          }
+          ```
+- Examples:
+    - `Int[] dynamicArrayOfInt`
+    - `Int[3] arrayOfThreeInt`
+    - `Int[3]* pointerToArrayOfThreeInt`
+    - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
+    - `String*[] dynamicArrayOfPointersToString`
+- ArrayViews AKA Slices AKA Subarrays
+    - `var subarray = array[1..2]`
+    - `var subarray = array[1..<3]`
+    - Incomplete ranges (need lower and/or upper bounds before use) are
+      typcally implemented as inline functions that determine the concrete bounds and then call `array[start..end]` (or one of the exclusive counterparts).
+        - `var subarray = array[..2]`
+        - `var subarray = array[..]`
+    - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- Multidimensional arrays
+    - dynamic size
+        - `Int[,] dynamic2DArray`  
+            - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
+        - `Int[,,] multidimensionalDynamicArray`  
+            - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
+        - and so on:  
+            - `cilia::MDArray<T, N>`
+    - static size
+        - `Int[3, 2, 200]`
+            - Multidimensional static array  
+              ```
+              Int[3, 2, 200] intArray3D
+              intArray3D[2, 1, 199] = 1
+              ```
+- Mixed forms of static and dynamic array
+    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
+    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
+
+
+## Signed Size
+`Int` (i.e. signed) as type for `*.size()`
+- Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
+    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
+- When working with sizes, calculating the difference is common; Then you are limited to `SSize`/`PtrDiff` (i.e. signed integer) anyway.
+- Who needs more than 2GB of data in a single "array", should please use a 64 bit platform.
+- For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
+- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
+    - We simply use `Int` instead. Or `UInt` in rare cases.
+
+
+## Associative Arrays
+- AKA Maps (or Dictionaries)
+- `TValue[TKey]` as short form of `Map<TKey, TValue>`
+    - e.g. `ContactInfo[String] contactInfoForID` as short form  
+      of `Map<String, ContactInfo> contactInfoForID`
+- "Make simple things simple",
+  having a short syntax for associative arrays should encourage people to use it.
+- Maybe template specialization:
+    - `Map<Int, ...>` is a `HashMap`
+    - `Map<String, ...>` is a `SortedMap`
 
 
 ## Function/Loop Parameter Passing
