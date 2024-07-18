@@ -467,13 +467,14 @@ No braces around the condition clause.
       ```
       with a `while`-loop:
       ```
-      <Initialization>
-      while <Condition> {
-          <Body>
-          <Increment>
+      {
+          <Initialization>
+          while <Condition> {
+              <Body>
+              <Increment>
+          }
       }
       ```
-      (OK, curly braces around all of this are necessary to be a perfect replacement.)
 - **switch/case** with `fallthrough` instead of ~~`break`~~
     - ```
       switch i {
