@@ -497,7 +497,7 @@ No braces around the condition clause.
 
 
 ## (Smart) Pointers
-- Short Smart Pointer Syntax
+- **Short Smart Pointer Syntax**
     - “Make simple things simple”,  
       encourage use of smart pointers.
     - **`Type+ pointer`**
