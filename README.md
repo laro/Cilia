@@ -509,15 +509,15 @@ No braces around the condition clause.
         - _But_ there is an inconsistency in its usage:
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-- `T+`/`UniquePtr<T>` is the default type for pointers (i.e. when stack variables are not suitable).
-    - `ContactInfo+ contactInfoUniquePtr = new ContactInfo`
-        - `new T` returns a `T+`/`UniquePtr<T>`
-        - TODO
-            - `Int+ array = new Int[3]`
+- `new T` returns a `T+`/`UniquePtr<T>`,
+    - so`T+`/`UniquePtr<T>` is the "default type" for pointers,
+    - e.g. `ContactInfo+ contactInfoUniquePtr = new ContactInfo`.
     - `T^`/`SharedPtr<T>` can take over the pointer from rvalue `T+`/`UniquePtr<T>` (as in C/C++).
         - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
         - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
         - The `UniquePtr` is `NullPtr` afterwards.
+    - TODO Is array-to-pointer decay possible with `UniquePtr`?
+        - `Int+ array = new Int[3]`
 - A classical C/C++ "raw" pointer is still possible, but inconvenient to use.
     - `ContactInfo* contactInfoPtr = (new ContactInfo).release()`  
       `delete contactInfoPtr`
