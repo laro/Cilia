@@ -603,11 +603,11 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 - Template **type alias** (with `using`, not ~~`typedef`~~)
     - `using<type T> T::InArgumentType = const T&`
 - Template static variables/constants as type traits
-    - `using Float32::IsFloatingPoint = True`
-    - `using Float64::IsFloatingPoint = True`
-    - `using   Int32::IsFloatingPoint = False`
-    - `using   Int64::IsFloatingPoint = False`
-    - `using<type T> Complex<T>::IsFloatingPoint = T::IsFloatingPoint`
+    - `using Bool Float32::IsFloatingPoint = True`
+    - `using Bool Float64::IsFloatingPoint = True`
+    - `using Bool Int32::IsFloatingPoint = False`
+    - `using Bool Int64::IsFloatingPoint = False`
+    - `using<type T> Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint`
 
 
 ## Arrays & ArrayViews
