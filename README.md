@@ -169,7 +169,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
 - All types and **classes in upper CamelCase**.
     - Basic/arithmetic types
         - `Bool`
-        - `Int`, `Int8`, `Int32`, `Int64`, `UInt`, `BigInt`
+        - `Int`, `Int32`, `Int64`, `UInt`, `BigInt`
         - `Float`, `Float32`, `Float64`, `BFloat16`, `BigFloat`
     - Cilia standard library
         - `cilia::String` instead of `std::string`
