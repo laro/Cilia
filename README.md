@@ -1224,8 +1224,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - e.g. `cilia::String : public std::string`
 - "**Alias**" for 
     - member variables  
-      `using x = data[0]`  
-      `using y = data[1]`  
+      `using var x = data[0]`  
+      `using var y = data[1]`  
         - Not quite possible in C++.
             - With ...  
               `Float& imaginary = im`  
