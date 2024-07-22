@@ -602,10 +602,10 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - `using<type T> T::InArgumentType = const T&`
 - Template static variables/constants as type traits
     - ```
-      static<type T> Bool          T::IsFloatingPoint = False
-      static         Bool    Float32::IsFloatingPoint = True
-      static         Bool    Float64::IsFloatingPoint = True
-      static<type T> Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
+      static<type T> const Bool          T::IsFloatingPoint = False
+      static         const Bool    Float32::IsFloatingPoint = True
+      static         const Bool    Float64::IsFloatingPoint = True
+      static<type T> const Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
       ```
 
 
