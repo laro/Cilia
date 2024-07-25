@@ -151,7 +151,7 @@ I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It ind
     - Can call C functions, access C structs (as C++ can do).
     - The compiler recognizes the language (C, C++, or Cilia) by
         - the file extension
-            - Cilia: `*.cilia` `*.hilia`  &nbsp;  `*.cl` `*.hl`
+            - Cilia: `*.cilia` `*.hilia`  &nbsp;  `*.cil` `*.hil`
             - C++: `*.cpp` `*.hpp` &nbsp; `*.cxx` `*.hxx` &nbsp; `*.h`
                 - `*.h` is of course a problem, as the header could be C or C++ code.  
                   So use of `*.hpp` is recommended for C++ code.  
