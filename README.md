@@ -8,7 +8,7 @@ I'd like to have the standard library in the [style of Qt](https://wiki.qt.io/Qt
 
 
 ## By Example
-Cilia is, in my opinion, a collection of ideas that are either quite obvious or taken from other programming languages:
+Cilia is, in my opinion, a collection of quite obvious ideas (mostly taken from other programming languages, of course):
 - **Cilia**
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
