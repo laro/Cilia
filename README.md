@@ -177,6 +177,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - `Int i`
     - `String word`
     - `String[] words`
+    - `ContactInfo[String] contactInfoForID`
     - Feel free to bend/break this rule, e.g. name matrices as `Matrix M, R, L`
       
 - **Functions in lower camelCase**
