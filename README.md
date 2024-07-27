@@ -310,6 +310,32 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 
           
 ## Operators
+- Power function
+    - **`a^x`** for `pow(a, x)` (as in Julia)
+- Boolean operators
+    - `and`, `or`, `xor` instead of `&&`, `||`, `^`
+        - as in Python, Carbon
+        - Used for both
+            - boolean operation
+                - `aBool`**`and`**`anotherBool` -> `Bool`
+            - bitwise operation
+                - `anInt`**`and`**`anotherInt` -> `Int`
+    - `not` in addition to `!`
+        - Both `!` and `not` for negation, as we keep `!=` for "not equal" anyways.  
+          (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
+- Equality
+    - Default `operator==`
+        - If not defined, then
+            - use negated `operator!=` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use elementwise comparison with `==`
+                - Only possible if all elements themselves offer the `operator==`.
+                - Optimization for simple types: Byte-by-byte comparison.
+    - Default `operator!=`
+        - If not defined, then
+            - use negated `operator==` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use negated generated `operator==`.
 - **Range operator** `..` and `..<`
     - `1..10` and `0..<10` are ranges
         - as in Kotlin
@@ -355,32 +381,6 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
                 - `..:2` – RangeFullByStep(2)
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
-- Power function
-    - **`a^x`** for `pow(a, x)` (as in Julia)
-- Boolean operators
-    - `and`, `or`, `xor` instead of `&&`, `||`, `^`
-        - as in Python, Carbon
-        - Used for both
-            - boolean operation
-                - `aBool`**`and`**`anotherBool` -> `Bool`
-            - bitwise operation
-                - `anInt`**`and`**`anotherInt` -> `Int`
-    - `not` in addition to `!`
-        - Both `!` and `not` for negation, as we keep `!=` for "not equal" anyways.  
-          (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
-- Equality
-    - Default `operator==`
-        - If not defined, then
-            - use negated `operator!=` (if defined), or
-            - use `operator<=>` (if defined), or
-            - use elementwise comparison with `==`
-                - Only possible if all elements themselves offer the `operator==`.
-                - Optimization for simple types: Byte-by-byte comparison.
-    - Default `operator!=`
-        - If not defined, then
-            - use negated `operator==` (if defined), or
-            - use `operator<=>` (if defined), or
-            - use negated generated `operator==`.
 - Bit-Shift & Rotation
     - `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
     - `<<` Shift left (here a logical shift with UInt is the same as arithmetic shift with Int)
