@@ -185,7 +185,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - Feel free to bend/break this rule, e.g. name matrices as `Matrix M, R, L`
       
 - Global constants in upper CamelCase
-    - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a local constant `const e = Euler`)
+    - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)
     - Constant-like keywords
         - `NullPtr`
         - `True`, `False`
