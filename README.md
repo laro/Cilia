@@ -1215,11 +1215,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `ForwardList` instead of `forward_list`
     - `UnorderedMap` instead of `unordered_map`
     - `ValueType` instead of `value_type`
-    - Maybe some exceptions/variations:
+    - Some exceptions/variations:
         - `Array` instead of `vector`
-        - `Stringstream` or `StringStream` instead of `stringstream`?
-            - `Textstream` or `TextStream`, `Bytestream` or `ByteStream`, ...
-        - `Multimap` or `MultiMap` instead of `multimap`?
+        - `StringStream` instead of `stringstream`
+            - `TextStream`, `ByteStream`, ...
 - Shallow wrapper,
     - e.g. `cilia::String : public std::string`
 - "**Alias**" for 
