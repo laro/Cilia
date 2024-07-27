@@ -236,9 +236,6 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 ## Variable Declaration
 `Int i` as variable declaration, very much as in C/C++, plus some simplifications/restrictions.
-- **Type inference** with `var` / `const`:
-    - `var i = 3` instead of ~~`auto i = 3;`~~
-    - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no such thing as a "constant variable".)
 - Examples:
     - `Int i`
     - `Int i = 0`
@@ -254,6 +251,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - It has to be the exact same type.
     - ~~`Float*m`~~
         - Whitespace _between_ type specification and variable name is mandatory.
+- **Type inference** with `var` / `const`:
+    - `var i = 3` instead of ~~`auto i = 3;`~~
+    - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no such thing as a "constant variable".)
 
 
 ## Classes
