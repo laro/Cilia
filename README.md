@@ -513,7 +513,7 @@ No braces around the condition clause.
     - `T^`/`SharedPtr<T>` can take over the pointer from rvalue `T+`/`UniquePtr<T>` (as in C/C++).
         - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
         - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
-        - The `UniquePtr` is `NullPtr` afterwards.
+            - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
     - TODO Is array-to-pointer decay possible with `UniquePtr`?
         - `Int+ array = new Int[3]`
 - A classical C/C++ "raw" pointer is still possible, but inconvenient to use.
