@@ -173,6 +173,11 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
         - `cilia::String` instead of `std::string`
         - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
+- **Functions in lower camelCase**
+    - `str.findFirstOf(...)`
+    - `vec.pushBack(...)`
+    - `Thread::hardwareConcurrency()`
+
 - Variables/instances/objects in lower camelCase
     - `Int i`
     - `String word`
@@ -180,16 +185,6 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - `ContactInfo[String] contactInfoForID`
     - Feel free to bend/break this rule, e.g. name matrices as `Matrix M, R, L`
       
-- **Functions in lower camelCase**
-    - `str.findFirstOf(...)`
-    - `vec.pushBack(...)`
-
-- Namespaces fully lowercase 
-    - `cilia`
-    - `cilia::lapack`
-    - `cilia::geometry`
-    - I don't think this is that important, but it helps to differentiate between classes and namespaces.
-
 - Global constants in upper CamelCase
     - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a local constant `const e = Euler`)
     - Constant-like keywords
@@ -198,6 +193,12 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
         - `NaN`, `Infinity`
     - But keep _local_ constants in lower camelCase:  
         - `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
+
+- Namespaces fully lowercase 
+    - `cilia`
+    - `cilia::lapack`
+    - `cilia::geometry`
+    - I don't think this is that important, but it helps to differentiate between classes and namespaces.
 
 
 ## No Trailing Semicolons
