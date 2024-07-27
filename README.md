@@ -170,8 +170,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
     - Basic/arithmetic types
         - `Bool`, `Int`, `Int64`, `UInt`, `BigInt`, `Float`, `Float64`, `BFloat16`, `BigFloat`
     - Cilia standard library
-        - `cilia::String` instead of `std::string`
-        - `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
+        - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
 - **Functions in lower camelCase**
     - `str.findFirstOf(...)`
