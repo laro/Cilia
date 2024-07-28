@@ -861,7 +861,6 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - `concat(String first, String second)`
                 - is short for `concat(in String first, in String second)`
                 - and extends to `concat(const StringView first, const StringView second)`
-        - While I see no advantage with the `for ... in` loop here, I would still apply the same rules here, just for consistency.
         - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just to ensure consistency.
         - Example:
             - `String[] stringArray = ["a", "b", "c"]`  
