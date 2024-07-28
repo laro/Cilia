@@ -15,8 +15,8 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - `var x = 42`
         - `const x = 42`
         - `String[] words`
-        - `ContactInfo[String] contactInfoForID`
         - `List<String> paragraphs`
+        - `ContactInfo[String] contactInfoForID`
     - `func multiply(Int a, b) -> Int { return a * b }`
         - `func print(ContactInfo a) { ... }`
         - `func concat(String a, b) -> String { return a + b }`
@@ -34,8 +34,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `auto x = 42;`
         - `const auto x = 42;`
         - `vector<string> words;`
-        - `map<string, ContactInfo> contactInfoForID;`
         - `list<string> paragraphs;`
+        - `map<string, ContactInfo> contactInfoForID;`
     - `auto multiply(int a, int b) -> int { return a * b; }`
         - `auto print(const ContactInfo& a) { ...; }`
         - `auto concat(const string_view a, const string_view b) -> string { return a + b; }`
@@ -49,8 +49,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `x := 42;`
         - `x : const int = 42;`
         - `words: vector<string>;`
-        - `contactInfoForID: map<string, ContactInfo>;`
         - `paragraphs: list<string>;`
+        - `contactInfoForID: map<string, ContactInfo>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
         - `print: (a: ContactInfo) { ...; }`
         - `concat: (a: string_view, b: string_view) -> String = a + b;`
@@ -66,8 +66,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `var x: auto = 42;`
         - `let x: auto = 42;`
         - `var words: Array(String);`
-        - `var contactInfoForID: HashMap(String, ContactInfo);`
         - `var paragraphs: List<String>;`
+        - `var contactInfoForID: HashMap(String, ContactInfo);`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: ContactInfo) { ...; }`
         - `fn concat(a: StringView, b: StringView) -> String { return a + b; }`
@@ -83,8 +83,8 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `let mut x = 42;` (actually, this is `i32`, but that's fine with me)
         - `let x = 42;`
         - `let mut words: Vec<String> = Vec::new();`
-        - `let mut contactInfoForID: HashMap<String, ContactInfo> = HasMap::new();`
         - `let mut paragraphs: LinkedList<String> = LinkedList::new();`
+        - `let mut contactInfoForID: HashMap<String, ContactInfo> = HasMap::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: &ContactInfo) { ...; }`
         - `fn concat(a: &str, b: &str) -> String { return a + b; }`
