@@ -859,7 +859,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - For cases where you need to _change_ the string argument, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
         - Example:
             - `concat(String first, String second)`
-                - extends to `concat(const StringView first, const StringView second)`
+                - is short for `concat(in String first, in String second)`
+                - and extends to `concat(const StringView first, const StringView second)`
         - While I see no advantage with the `for ... in` loop here, I would still apply the same rules here, just for consistency.
         - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just to ensure consistency.
         - Example:
