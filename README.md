@@ -135,7 +135,7 @@ I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It ind
        - New array declaration (`Int[] array` instead of `Int array[]`)
        - [New/simplified keywords](#better-readable-keywords)
        - [No trailing semicolons](#No-trailing-semicolons)
-- The names [D](https://dlang.org/), [C2](http://c2lang.org/), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
+- The names [D](https://dlang.org/), [C2](http://c2lang.org/), [C3](https://c3-lang.org), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
   as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
 
 
