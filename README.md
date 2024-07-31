@@ -279,7 +279,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
     - as in Swift.
     - Easier parsing due to clear distinction between function vs. variable declaration.
 - Always and only in the trailing return type syntax.
-- `func function2(`**`Int x, y`**`) -> Float` // x _and_ y are Int
+- `func divide(`**`Int x, y`**`) -> Float` // x _and_ y are Int
 - **Lambdas**
     - `[](Int i) -> Float { i * 3.14 }`  
       as in C++
