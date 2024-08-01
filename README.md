@@ -612,7 +612,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       }
       ```
     - ```
-      class SlidingAverage<Number T, Int TSize>
+      class SlidingAverage<Number T>
       requires {
           T + T    // required addition
           T / Int  // required to divide sum by Int
@@ -623,6 +623,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           Int index = 0
           T sum = T(0)
       
+      public:
+          SlidingAverage(Int size) { ... }
           average() { ... }
           append(T value) { ... }
           reset() { ... }
