@@ -603,13 +603,22 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
                   `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()` (not ~~`...convertTo<Float, 3, Int>()`~~)
             - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
 
-    - `requires` for further restricting the type.
-        - ```
-          func sq<Number T>(T x) -> T requires (T x) { x * x } {
-               return x * x
-          }
-          ```
-        - TODO Really this syntax: `{ ... } { ... }`?
+- Further restrict the type with `requires`:
+    - ```
+      func sq<Number T>(T x) -> T requires (T x) { x * x } {
+           return x * x
+      }
+      ```
+    - ```
+      class MyThing<Number T> requires {
+          typename T::Inner; // required nested member name
+      }
+      {
+          T::Inner* numbers = NullPtr
+          Int size = 0
+      }
+      ```
+    - TODO Really this syntax: `{ ... } { ... }`?
 - Template **type alias** (with `using`, not ~~`typedef`~~)
     - `using<type T> T::InArgumentType = const T&`
 - Template static variables/constants as type traits
