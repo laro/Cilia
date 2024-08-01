@@ -577,7 +577,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
               }
               ```
                 - However, the return type could be a _different_ type than `x` is (as long as it satisfies the concept `Number`)
-                - With `func add(Number a, b) -> Number` even `a` and `b` (and of course the return type) could _each_ be a different type (as long as they satisfy the concept `Number`)
+                - With `func add(Number a, b) -> Number` even `a` and `b` (and of course the return type) could _each_ be a different type (as long as each satisfies the concept `Number`)
             - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
               ```
               func sqrt(Real x) -> Real {
