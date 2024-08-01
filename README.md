@@ -546,13 +546,22 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       Int size = 0
   }
   ```
-    - Partial template specialization
+    - Template specialization
       ```
       class MyUniquePtr<type T> {
           ... destructor calls delete ...
       }
       class MyUniquePtr<type T[Int N]> {
           ... destructor calls delete[] ...
+      }
+      ```
+    - TODO? Partial template specialization
+      ```
+      class MyClass<type T1, type T2> {
+          ...
+      }
+      class MyClass<type T1, int> {
+          ...
       }
       ```
 - **Function** templates
