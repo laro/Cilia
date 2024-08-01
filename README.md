@@ -605,17 +605,27 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 
 - Further restrict the type with `requires`:
     - ```
-      func sq<Number T>(T x) -> T requires (T x) { x * x } {
+      func sq<Number T>(T x) -> T
+      requires (T x) { x * x }
+      {
            return x * x
       }
       ```
     - ```
-      class MyThing<Number T> requires {
-          typename T::Inner; // required nested member name
+      class SlidingAverage<Number T, Int TSize>
+      requires {
+          T + T    // required addition
+          T / Int  // required to divide sum by Int
       }
       {
-          T::Inner* numbers = NullPtr
+          T* numbers = new T[TSize]
           Int size = 0
+          Int index = 0
+          T sum = T(0)
+      
+          average() { ... }
+          append(T value) { ... }
+          reset() { ... }
       }
       ```
     - TODO Really this syntax: `{ ... } { ... }`?
