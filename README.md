@@ -557,13 +557,13 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
     - Partial template specialization
       ```
-      class KeyValuePair<type T1, type T2> {
+      class KeyValuePair<type TKey, type TValue> {
           ...
       }
-      class KeyValuePair<int, type T2> {
+      class KeyValuePair<int, type TValue> {
           ...
       }
-      class KeyValuePair<type T1, String> {
+      class KeyValuePair<type TKey, String> {
           ...
       }
       ```
