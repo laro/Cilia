@@ -752,6 +752,9 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 - For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
 - Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
     - We simply use `Int` instead. Or `UInt` in rare cases.
+- See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
+    - (42:41 - 45:28)[https://youtu.be/Puio5dly9N8?feature=shared&t=2561]
+    - (1:02:51 - 1:03:14)[https://youtu.be/Puio5dly9N8?feature=shared&t=3771]
 
 
 ## Associative Arrays
