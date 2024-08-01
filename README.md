@@ -612,7 +612,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       }
       ```
     - ```
-      class SlidingAverage<Number T>
+      class SlidingAverage<type T>
       requires {
           T + T    // required addition
           T / Int  // required to divide sum by Int
