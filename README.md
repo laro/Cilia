@@ -555,12 +555,15 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ... destructor calls delete[] ...
       }
       ```
-    - TODO? Partial template specialization
+    - Partial template specialization
       ```
-      class MyClass<type T1, type T2> {
+      class KeyValuePair<type T1, type T2> {
           ...
       }
-      class MyClass<type T1, int> {
+      class KeyValuePair<int, type T2> {
+          ...
+      }
+      class KeyValuePair<type T1, String> {
           ...
       }
       ```
