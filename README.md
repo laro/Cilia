@@ -891,11 +891,11 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - a `StringView` (that somehow is the more versatile variant of `const String&`),
             - and therefore also _every third-party string_ class (as long as it is implicitly convertable to `StringView`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
-        - For cases where you need to _change_ the string argument, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
         - Example:
             - `concat(String first, String second)`
                 - is short for `concat(in String first, in String second)`
                 - and extends to `concat(const StringView first, const StringView second)`
+        - For cases where you need to _change_ the string argument, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
         - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just to ensure consistency.
         - Example:
             - `String[] stringArray = ["a", "b", "c"]`  
