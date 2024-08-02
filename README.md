@@ -164,7 +164,7 @@ I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It ind
 
 
 ## CamelCase Style
-Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift
+Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
 
 - All types and **classes in upper CamelCase**.
     - Basic/arithmetic types
