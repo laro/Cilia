@@ -1146,8 +1146,9 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
           var arrayPtr = new Array<Float>(10, 1.0)    // No warning
           ```
 - **`safe`** as default, **`unsafe`** code blocks as escape.
-    - Mainly to guide developers: to signal what to do and what not to do,
-      `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
+    - Mainly to guide developers:
+        - to signal what to do and what not to do,
+        - `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
     - Not allowed in safe code:
         - Subscript access to pointers,
         - `reinterpretCastTo<T>(...)`,
