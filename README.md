@@ -633,7 +633,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       }
       ```
     - TODO Really this syntax: `{ ... } { ... }`?
-- Template **type alias** (with `using`, not ~~`typedef`~~)
+- Template **type alias** with `using` (not ~~`typedef`~~)
     - `using<type T> T::InArgumentType = const T&`
 - Template static variables/constants as type traits
     - ```
