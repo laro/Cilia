@@ -659,6 +659,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - that's the more traditional wording,
         - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
         - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
+    - C/C++ arrays like `T[]` are handled by `T*`instead.
+    - `std::array` is called `cilia::FixedSizeArray` instead.
 - `Int[3] arrayOfThreeIntegers`  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
     - „Static array“ with **fixed size**
