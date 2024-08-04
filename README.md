@@ -422,13 +422,13 @@ No braces around the condition clause.
       // ...
   }
   ```
-- **do ... while**
+- **do-while**
   ```
   do {
       // ...
   } while a > b
   ```
-- **`for ... in`**
+- **for-in**
     - as in Swift, Rust
     - Write
       ```
@@ -458,7 +458,7 @@ No braces around the condition clause.
         - `for i in 10..1:-1 { ... }`  
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
           translates to `for i in RangeByStep(10, 1, -1) { ... }`.
-    - I find this for-loop-syntax so tempting that I accept the somewhat complex details of the range operator (with all its variants).
+        - I find this for-loop-syntax so tempting that I accept the somewhat complex details of the range operator (with all its variants).
     - In general you can replace the (overly) powerful C/C++ for-loop like
       ```
       for (<Initialization>; <Condition>; <Increment>) {
