@@ -465,7 +465,7 @@ No braces around the condition clause.
           <Body>
       }  
       ```
-      with a `while`-loop:
+      with a while-loop:
       ```
       {
           <Initialization>
