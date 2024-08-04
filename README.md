@@ -321,7 +321,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation
                 - `anInt`**`and`**`anotherInt` -> `Int`
-    - `not` in addition to `!`
+    - **`not`** in addition to `!`
         - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
         - Both `!` and `not` for negation, as we keep `!=` for "not equal" anyways.  
           (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
