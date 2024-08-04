@@ -459,7 +459,7 @@ No braces around the condition clause.
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
           translates to `for i in RangeByStep(10, 1, -1) { ... }`.
         - I find this for-loop-syntax so tempting that I accept the somewhat complex details of the range operator (with all its variants).
-    - In general you can replace the (overly) powerful C/C++ `for`-loop like
+    - In general you can replace the (overly) powerful C/C++ for-loop like
       ```
       for (<Initialization>; <Condition>; <Increment>) {
           <Body>
