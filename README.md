@@ -448,7 +448,7 @@ No braces around the condition clause.
           }
       }
       ```
-    - Use the range operator to write          
+    - Use the **range operator** to write          
         - `for i in 1..10 { ... }`  
           instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
           translates to `for i in Range(1, 10) { ... }`.
