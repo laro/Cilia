@@ -338,7 +338,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - use negated `operator==` (if defined), or
             - use `operator<=>` (if defined), or
             - use negated generated `operator==`.
-- Range operator **`..`** and **`..<`**
+- **Range operator** `..` and `..<`
     - `1..10` and `0..<10` are ranges
         - as in Kotlin
         - Similar, but diffentent:
