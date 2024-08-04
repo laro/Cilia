@@ -437,17 +437,6 @@ No braces around the condition clause.
       }
       ```
       instead of `for (... : ...)` (AKA range-for in C++, `for each` in C++/CLI, `foreach` in C#)
-    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var` but with `in` (the default), `inout`, `copy`, `move`),  
-      so `for i in 0..<10 { ... }` is equivalent to:
-      ```
-      {
-          var i = 0
-          while i < 10 {
-              ...
-              ++i
-          }
-      }
-      ```
     - Use the **range operator** to write          
         - `for i in 1..10 { ... }`  
           instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
@@ -459,6 +448,17 @@ No braces around the condition clause.
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
           translates to `for i in RangeByStep(10, 1, -1) { ... }`.
         - I find this for-loop-syntax so tempting that I accept the somewhat complex details of the range operator (with all its variants).
+    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var` but with `in` (the default), `inout`, `copy`, `move`),  
+      so `for i in 0..<10 { ... }` is equivalent to:
+      ```
+      {
+          var i = 0
+          while i < 10 {
+              ...
+              ++i
+          }
+      }
+      ```
     - In general you can replace the (overly) powerful C/C++ for-loop like
       ```
       for (<Initialization>; <Condition>; <Increment>) {
