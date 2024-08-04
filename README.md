@@ -428,7 +428,7 @@ No braces around the condition clause.
       // ...
   } while a > b
   ```
-- **`for ... in ...`**
+- **`for ... in`**
     - as in Swift, Rust
     - Write
       ```
@@ -437,7 +437,7 @@ No braces around the condition clause.
       }
       ```
       instead of `for (... : ...)` (AKA range-for in C++, `for each` in C++/CLI, `foreach` in C#)
-    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`),  
+    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var` but with `in` (the default), `inout`, `copy`, `move`),  
       so `for i in 0..<10 { ... }` is equivalent to:
       ```
       {
