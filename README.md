@@ -620,13 +620,12 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           T / Int  // required to divide sum by Int
       }
       {
-          T* numbers = new T[TSize]
+          T+ numbers = NullPtr
           Int size = 0
           Int index = 0
           T sum = T(0)
-      
       public:
-          SlidingAverage(Int size) { ... }
+          SlidingAverage(Int size) { numbers = new T[size] }
           average() { ... }
           append(T value) { ... }
           reset() { ... }
