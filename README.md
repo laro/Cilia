@@ -620,7 +620,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           T / Int  // required to divide sum by Int
       }
       {
-          T+ numbers = NullPtr
+          T+ numbers
           Int size = 0
           Int index = 0
           T sum = T(0)
