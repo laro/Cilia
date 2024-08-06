@@ -513,7 +513,7 @@ To add "member like" functions/methods, variables, constants and/or types to "th
       `i.toString()`  
       based on  
       `func Int::toString() -> String { ... }`  // as in Kotlin
-- **External** alias (with `using`) for 
+- **External alias** (with `using`) for 
     - member **variables**  
       `using var Vector2::x = Vector2::data[0]`  
       `using var Vector2::y = Vector2::data[1]`  
