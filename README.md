@@ -605,7 +605,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
                   `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()` (not ~~`...convertTo<Float, 3, Int>()`~~)
             - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
 
-- Further restrict the type with `requires`:
+- Further restrict the type with `requires` (as in C++):
     - ```
       func sq<Number T>(T x) -> T
       requires (T x) { x * x }
@@ -614,21 +614,28 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       }
       ```
     - ```
-      class SlidingAverage<type T>
-      requires {
-          T + T    // required addition
-          T / Int  // required to divide sum by Int
+      class SlidingAverage<type T, type TSum = T>
+      requires (T x, TSum sum) {
+          x + x        // requires addition
+          sum = 0      // requires assignemnt 0
+          sum = x + x  // requires assignemnt of type after addition
+          x / 1        // requires to divide sum by 1 (i.e. an Int)
       }
       {
           T+ numbers
           Int size = 0
+          Int sizeMax = 0
           Int index = 0
-          T sum = T(0)
+          TSum sum = 0
       public:
-          SlidingAverage(Int size) { numbers = new T[size] }
-          average() { ... }
-          append(T value) { ... }
-          reset() { ... }
+          SlidingAverage(Int size) {
+             sizeMax = size
+             numbers = new T[sizeMax]
+          }
+          func append(T value) { ... }
+          func average() -> TSum { ... }
+          func reset() { ... }
+          func reset(Int newSize) { ... }
       }
       ```
     - TODO Really this syntax: `{ ... } { ... }`?
