@@ -284,14 +284,6 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - **Lambdas**
     - `[](Int i) -> Float { i * 3.14 }`  
       as in C++
-- **Extension methods**
-    - To add "member like" functions to "third party" classes/types.
-    - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
-    - Also possible for basic/arithmetic types, e.g.:  
-      `Int i`  
-      `i.toString()`  
-      based on  
-      `func Int::toString() -> String { ... }`  // as in Kotlin
 - **`constexpr`** and `consteval`
   ```
   constexpr multiply(Int x, y) -> Int {
@@ -493,6 +485,24 @@ No braces around the condition clause.
       default:
           print("default")
       }
+      ```
+
+
+## Type Extension & Aliasing
+- **Extension methods**
+    - To add "member like" functions to "third party" classes/types.
+    - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
+    - Also possible for basic/arithmetic types, e.g.:  
+      `Int i`  
+      `i.toString()`  
+      based on  
+      `func Int::toString() -> String { ... }`  // as in Kotlin
+- **Type alias** with `using` (not ~~`typedef`~~)
+    - `using StringView::InArgumentType = const StringView`
+- Static variables/constants as type traits
+    - ```
+      static const Bool Float32::IsFloatingPoint = True
+      static const Bool Float64::IsFloatingPoint = True
       ```
 
 
