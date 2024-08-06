@@ -552,7 +552,7 @@ In case on conflicts local definitions (inside the class) have priority (then a 
         - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
         - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
             - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
-    - TODO Is array-to-pointer decay possible with `UniquePtr`?
+    - TODO AFAIK there is no array-to-pointer decay possible with `UniquePtr`
         - `Int+ array = new Int[3]`
 - A classical C/C++ "raw" pointer is still possible, but inconvenient to use.
     - `ContactInfo* contactInfoPtr = (new ContactInfo).release()`  
