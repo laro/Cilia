@@ -616,10 +616,10 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - ```
       class SlidingAverage<type T, type TSum = T>
       requires (T x, TSum sum) {
-          x + x        // requires addition
-          sum = 0      // requires assignment 0
-          sum = x + x  // requires assignment of type after addition
-          x / 1        // requires to divide sum by 1 (i.e. an Int)
+          sum = 0   // requires assignment of 0
+          sum += x  // requires addition of type T to type TSum
+          sum -= x  // requires subtraction of type T from type TSum
+          sum / 1   // requires to divide sum by 1 (i.e. an Int)
       }
       {
           T+ numbers
