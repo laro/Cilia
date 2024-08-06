@@ -488,7 +488,23 @@ No braces around the condition clause.
       ```
 
 
-## Type Extension & Aliasing
+## Aliasing
+Alias with `using` for 
+- Member **variables**  
+  `using var x = data[0]`  
+  `using var y = data[1]`  
+    - Not quite possible in C++.
+        - With `T& x = data[0]` unfortunately memory is created for the reference (the pointer).
+        - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
+- Member **functions**
+    - `using func f(String) = g(String)` to alias the function `g(String)`.
+    - `using func f = g` to alias _all_ overloads of the function `g`.
+- **Types**
+    - `using StringView::InArgumentType = const StringView`  
+      (no ~~`typedef`~~)
+
+
+## Type Extension
 - **Extension methods**
     - To add "member like" functions to "third party" classes/types.
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
@@ -497,17 +513,14 @@ No braces around the condition clause.
       `i.toString()`  
       based on  
       `func Int::toString() -> String { ... }`  // as in Kotlin
-- "**Alias**" for 
+- **External** alias for 
     - member variables  
-      `using var x = data[0]`  
-      `using var y = data[1]`  
-        - Not quite possible in C++.
-            - With `T& x = data[0]` unfortunately memory is created for the reference (the pointer).
-            - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
+      `using var Vector2::x = Vector2::data[0]`  
+      `using var Vector2::y = Vector2::data[1]`  
     - member functions
-        - `using func f(String) = g(String)` to alias the function `g(String)`.
-        - `using func f = g` to alias _all_ overloads of the function `g`.
-- **Type alias** with `using` (not ~~`typedef`~~)
+        - `using func Array::pushBack(String) = Array::push_back(String)` to alias the function `push_back(String)`.
+        - `using func Array::pushBack = Array::push_back` to alias _all_ overloads of the function `g`.
+- External **type alias** with `using`
     - `using StringView::InArgumentType = const StringView`
 - Static variables/constants as type traits
   ```
