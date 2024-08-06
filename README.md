@@ -500,10 +500,10 @@ No braces around the condition clause.
 - **Type alias** with `using` (not ~~`typedef`~~)
     - `using StringView::InArgumentType = const StringView`
 - Static variables/constants as type traits
-    - ```
-      static const Bool Float32::IsFloatingPoint = True
-      static const Bool Float64::IsFloatingPoint = True
-      ```
+  ```
+  static const Bool Float32::IsFloatingPoint = True
+  static const Bool Float64::IsFloatingPoint = True
+  ```
 
 
 ## (Smart) Pointers
