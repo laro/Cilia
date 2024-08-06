@@ -520,7 +520,7 @@ To add "member like" functions/methods, variables, constants and/or types to "th
     - member **functions**  
       `using func Array::pushBack(String) = Array::push_back(String)` to alias the function `push_back(String)`.  
       `using func Array::pushBack = Array::push_back` to alias _all_ overloads of the function `g`.
-    - **types**
+    - **types**  
       `using StringView::InArgumentType = const StringView`
 - Static constants, typically for type traits
   ```
