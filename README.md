@@ -513,15 +513,15 @@ To add "member like" functions/methods, variables, constants and/or types to "th
       `i.toString()`  
       based on  
       `func Int::toString() -> String { ... }`  // as in Kotlin
-- **External** alias for 
-    - member variables  
+- **External** alias (with `using`) for 
+    - member **variables**  
       `using var Vector2::x = Vector2::data[0]`  
       `using var Vector2::y = Vector2::data[1]`  
-    - member functions
+    - member **functions**
       `using func Array::pushBack(String) = Array::push_back(String)` to alias the function `push_back(String)`.
       `using func Array::pushBack = Array::push_back` to alias _all_ overloads of the function `g`.
-- External **type alias** with `using`
-    - `using StringView::InArgumentType = const StringView`
+    - **types**
+        - `using StringView::InArgumentType = const StringView`
 - Static constants, typically for type traits
   ```
   static const Bool Float32::IsFloatingPoint = True
