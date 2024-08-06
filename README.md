@@ -505,7 +505,7 @@ Alias with `using` for
 
 
 ## Type Extension
-To add "member like" types, functions/methods, constants (and maybe variables) to "third party" classes/types.
+To add "member like" types, functions/methods, constants (and maybe variables) to "third party" classes/types.  
 In case on conflicts local definitions (inside the class) have priority (then a warning is issued).
 - **Extension methods**
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
