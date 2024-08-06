@@ -505,7 +505,8 @@ Alias with `using` for
 
 
 ## Type Extension
-To add "member like" functions/methods, variables, constants and/or types to "third party" classes/types.
+To add "member like" types, functions/methods, constants (and maybe variables) to "third party" classes/types.
+In case on conflicts local definitions (inside the class) have priority (then a warning is issued).
 - **Extension methods**
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
     - Also possible for basic/arithmetic types, e.g.:  
@@ -513,14 +514,14 @@ To add "member like" functions/methods, variables, constants and/or types to "th
       `i.toString()`  
       based on  
       `func Int::toString() -> String { ... }`  // as in Kotlin
-- **External alias** (with `using`) for 
-    - member **variables**  
+- **Externally defined alias** (with `using`) for members:
+    - **Variables**  
       `using var Vector2::x = Vector2::data[0]`  
       `using var Vector2::y = Vector2::data[1]`  
-    - member **functions**  
+    - **Functions**  
       `using func Array::pushBack(String) = Array::push_back(String)` to alias the function `push_back(String)`.  
       `using func Array::pushBack = Array::push_back` to alias _all_ overloads of the function `g`.
-    - **types**  
+    - **Types**  
       `using StringView::InArgumentType = const StringView`
 - Static constants, typically for type traits
   ```
@@ -528,6 +529,7 @@ To add "member like" functions/methods, variables, constants and/or types to "th
   static const Bool Float64::IsFloatingPoint = True
   ```
     - TODO: Allow external static _variables_, too?
+        - Why not. But for what would it be useful?
 
 
 ## (Smart) Pointers
