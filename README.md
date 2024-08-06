@@ -505,8 +505,8 @@ Alias with `using` for
 
 
 ## Type Extension
+To add "member like" functions/methods, variables, constants and/or types to "third party" classes/types.
 - **Extension methods**
-    - To add "member like" functions to "third party" classes/types.
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
     - Also possible for basic/arithmetic types, e.g.:  
       `Int i`  
@@ -518,15 +518,16 @@ Alias with `using` for
       `using var Vector2::x = Vector2::data[0]`  
       `using var Vector2::y = Vector2::data[1]`  
     - member functions
-        - `using func Array::pushBack(String) = Array::push_back(String)` to alias the function `push_back(String)`.
-        - `using func Array::pushBack = Array::push_back` to alias _all_ overloads of the function `g`.
+      `using func Array::pushBack(String) = Array::push_back(String)` to alias the function `push_back(String)`.
+      `using func Array::pushBack = Array::push_back` to alias _all_ overloads of the function `g`.
 - External **type alias** with `using`
     - `using StringView::InArgumentType = const StringView`
-- Static variables/constants as type traits
+- Static constants, typically for type traits
   ```
   static const Bool Float32::IsFloatingPoint = True
   static const Bool Float64::IsFloatingPoint = True
   ```
+    - TODO: No external variables?
 
 
 ## (Smart) Pointers
