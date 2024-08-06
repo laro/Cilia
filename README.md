@@ -497,6 +497,16 @@ No braces around the condition clause.
       `i.toString()`  
       based on  
       `func Int::toString() -> String { ... }`  // as in Kotlin
+- "**Alias**" for 
+    - member variables  
+      `using var x = data[0]`  
+      `using var y = data[1]`  
+        - Not quite possible in C++.
+            - With `T& x = data[0]` unfortunately memory is created for the reference (the pointer).
+            - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
+    - member functions
+        - `using func f = g` to alias _all_ overloads of the function `g`.
+        - `using func f(String) = g(String)` to alias only this overload of the function `g(String)`.
 - **Type alias** with `using` (not ~~`typedef`~~)
     - `using StringView::InArgumentType = const StringView`
 - Static variables/constants as type traits
@@ -1287,14 +1297,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - "**Alias**" for 
     - member variables  
       `using var x = data[0]`  
-      `using var y = data[1]`  
-        - Not quite possible in C++.
-            - With ...  
-              `Float& imaginary = im`  
-              or  
-              `T& x = data[0]`  
-              ... unfortunately memory is created for the reference (the pointer).
-            - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
+      `using var y = data[1]`
     - member functions
         - `using func f() = g()`
 
