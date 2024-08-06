@@ -500,7 +500,7 @@ Alias with `using` for
     - `using func f(String) = g(String)` to alias the function `g(String)`.
     - `using func f = g` to alias _all_ overloads of the function `g`.
 - **Types**
-    - `using StringView::InArgumentType = const StringView`  
+    - `using InArgumentType = const StringView`  
       (no ~~`typedef`~~)
 
 
