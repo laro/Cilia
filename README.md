@@ -527,7 +527,7 @@ To add "member like" functions/methods, variables, constants and/or types to "th
   static const Bool Float32::IsFloatingPoint = True
   static const Bool Float64::IsFloatingPoint = True
   ```
-    - TODO: Allow external _variables_, too?
+    - TODO: Allow external static _variables_, too?
 
 
 ## (Smart) Pointers
