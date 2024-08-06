@@ -687,10 +687,11 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           array[3] = 0  // Undefined behaviour, no bounds check at all
       }
       ```
-    - Using `Int*` is possible but unsafe.
+    - Using `Int*` for arrays is possible but generally unsafe.
         - ```
+          Int+ uniquePtrToArray = new Int[3]  // Array-to-pointer decay possible
           unsafe {
-              Int* array = (new Int[3]).release()  // Array-to-pointer decay possible
+              Int* array = uniquePtrToArray.release()
               array[2] = 0
               array[3] = 0  // Undefined behaviour, no bounds check at all
               delete[] array
