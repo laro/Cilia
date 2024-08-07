@@ -66,7 +66,7 @@ The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon
         - `var x: auto = 42;`
         - `let x: auto = 42;`
         - `var words: Array(String);`
-        - `var paragraphs: List<String>;`
+        - `var paragraphs: List(String);`
         - `var contactInfoForID: HashMap(String, ContactInfo);`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: ContactInfo) { ...; }`
