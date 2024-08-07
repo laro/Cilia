@@ -703,6 +703,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
     - "Raw" C/C++ arrays (in some contexts represented by `T[]`) are handled with `T*` instead.
     - `std::array` is called `cilia::FixedSizeArray` instead.
+    - TODO Only possible, if `T[]` is not necessary to mean "array of certain (but unknown) size".
+        - Can it really be fully replaced with `T[N]` and `T*`?
 - `Int[3] arrayOfThreeIntegers`  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
     - „Static array“ with **fixed size**
