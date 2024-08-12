@@ -306,8 +306,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - Declaration
     - Keyword `operator` instead of `func`:
       ```
-      operator+(Int x, y) -> Int {
-          return ...
+      operator+(Complex<T> a, b) -> Complex<T> {
+          return Complex<T>(a.real() + b.real(), a.imag() + b.imag())
       }
       ```
     - Subscript/bracket/parenthesis/functor `operator`s:
@@ -317,8 +317,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       }
       ```
       ```
-      operator[Int i, j] -> T {
-          return data[i + j*stride]
+      operator[Int x, y] -> T {
+          return data[x + y*stride]
       }
       ```
       ```
