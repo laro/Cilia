@@ -329,7 +329,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - Power function
     - **`a^x`** for `pow(a, x)` (as in Julia)
 - Boolean operators
-    - **`and`**, **`or`**, **`xor`** instead of `&&`/`&`, `||`/`|`, `!=`/`^`
+    - **`and`**, **`or`**, **`xor`** instead of `&&`/`&`, `||`/`|`, `^`/`!=`
         - as in Python, Carbon
         - Used for both
             - boolean operation
