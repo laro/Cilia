@@ -1314,7 +1314,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `StringStream` instead of `stringstream`
             - `TextStream`, `ByteStream`, ...
 - Mostly a shallow wrapper,
-    - e.g. `cilia::String : public std::string`
+    - e.g. `class cilia::String : public std::string { ... }`
     - with "**aliases**" for 
         - member variables  
           `using var x = data[0]`  
