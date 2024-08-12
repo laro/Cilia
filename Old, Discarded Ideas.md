@@ -101,7 +101,9 @@ For several topics there are alternative ideas, that were discarded but are stil
         - RangeExclusiveEndByStep(8, 0, -1)
     - `8>..0:-3` – 7, 4, 1
         - RangeExclusiveStartByStep(8, 0, -3)
-
+    - Incomplete range with step
+        - `8>..:-1` – RangeFromExclusiveStartByStep(8, -1)
+        - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
 - Maybe remove `++i`, `--i`, `i++`, `i--`?
     - as Python
     - only offer/allow `i += 1`, `i -= 1`  
