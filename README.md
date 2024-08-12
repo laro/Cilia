@@ -571,9 +571,11 @@ In case on conflicts local definitions (inside the class) have priority (then a 
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
             - So maybe use `T*+`, `T*-`, and `T*^` instead?
-- **`new T` returns a `T+`/`UniquePtr<T>`**,
-    - so `T+`/`UniquePtr<T>` is the "default type" for pointers,
-    - e.g. `ContactInfo+ contactInfoUniquePtr = new ContactInfo`.
+- **`new T` returns a `T-`/`UniquePtr<T>`**,
+    - so `T+`/`UniquePtr<T[N]>` is the "default type" for pointers to array,  
+      e.g. `ContactInfo+ contactInfoUniqueArrayPtr = new ContactInfo[10]`.
+    - `T-`/`UniquePtr<T>` is the "default type" for pointers,  
+      e.g. `ContactInfo- contactInfoUniquePtr = new ContactInfo`.
     - `T^`/`SharedPtr<T>` can take over the pointer from rvalue `T+`/`UniquePtr<T>` (as in C/C++):
         - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
         - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
