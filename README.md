@@ -303,6 +303,29 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 
           
 ## Operators
+- Declaration
+    - Keyword `operator` instead of `func`:
+      ```
+      operator+(Int x, y) -> Int {
+          return ...
+      }
+      ```
+    - Subscript/bracket/parenthesis `operator`s:
+      ```
+      operator[Int i] -> T {
+          return data[i]
+      }
+      ```
+      ```
+      operator[Int i, j] -> T {
+          return data[i + j*stride]
+      }
+      ```
+      ```
+      operator(Int a, Float b) {
+          ...
+      }
+      ```
 - Power function
     - **`a^x`** for `pow(a, x)` (as in Julia)
 - Boolean operators
@@ -1210,7 +1233,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - Integer overflow (checking that all the time seems too costly)
     - `unsafe` code is _necessary_ to implement certain abstractions (as container classes):
         - ```
-          func Array<T>::operator[Int i] -> T& {
+          operator[Int i] -> T& {
               if i < 0 or i >= size {
                   terminate()
               }
