@@ -1205,11 +1205,12 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - Subscript access to pointers,
         - `reinterpretCastTo<T>(...)`,
         - calling functions marked as `unsafe`,
+        - use of `noinit`.
     - Still allowed/undetected in unsafe code:
         - Integer overflow (checking that all the time seems too costly)
-    - But `unsafe` code is necessary to implement certain abstractions (as container classes):
+    - `unsafe` code is _necessary_ to implement certain abstractions (as container classes):
         - ```
-          func Array<T>::operator[](Int i) -> T& {
+          func Array<T>::operator[Int i] -> T& {
               if i < 0 or i >= size {
                   terminate()
               }
@@ -1218,7 +1219,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
               }
           }
           ```
-    - Not every function with unsafe code needs to be marked as `unsafe`.
+    - Not every function with unsafe code blocks needs to be marked as `unsafe` itself.
         - `unsafe` is a marker for those parts that need to be checked carefully.
         - Functions containing unsafe code not enclosed in an `unsafe` block need to be marked themselves with `unsafe`.
         - Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited by `unsafe` blocks.
