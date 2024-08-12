@@ -310,7 +310,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           return ...
       }
       ```
-    - Subscript/bracket/parenthesis `operator`s:
+    - Subscript/bracket/parenthesis/functor `operator`s:
       ```
       operator[Int i] -> T {
           return data[i]
