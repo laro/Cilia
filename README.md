@@ -132,7 +132,7 @@ I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It ind
        - [Const reference as default type](#const-reference-as-default-type) for function arguments
        - [Fixing C++ "wrong defaults"](#interesting-ideas-from-other-languages)
            - Restricted integral promotions and implicit narrowing conversions, etc.
-       - New array declaration (`Int[] array` instead of `Int array[]`)
+       - New array declaration (`Int[3] array` instead of `Int array[3]`, `Int[] array` instead of `vector<Int> array`)
        - [New/simplified keywords](#better-readable-keywords)
        - [No trailing semicolons](#No-trailing-semicolons)
 - The names [D](https://dlang.org/), [C2](http://c2lang.org/), [C3](https://c3-lang.org), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
