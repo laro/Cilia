@@ -537,14 +537,17 @@ In case on conflicts local definitions (inside the class) have priority (then a 
     - “Make simple things simple”,  
       encourage use of smart pointers.
     - **`Type+ pointer`**
-        - `T+` is short for **`UniquePtr<T>`**
+        - `T+` is short for **`UniquePtr<T[N]>`** (i.e. a unique pointer to a C/C++ array)
+    - **`Type- pointer`**
+        - `T-` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
     - **`Type^ pointer`**
         - `T^` is short for **`SharedPtr<T>`**
-        - Inspired by C++/CLI (so its a proven possiblilty),  
+        - Inspired by C++/CLI (so its a proven possiblilty), but  
           Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
-        - _But_ there is an inconsistency in its usage:
+        - And there is an inconsistency in its usage:
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
+            - So maybe use `T*+`, `T*-`, and `T*^` instead?
 - **`new T` returns a `T+`/`UniquePtr<T>`**,
     - so `T+`/`UniquePtr<T>` is the "default type" for pointers,
     - e.g. `ContactInfo+ contactInfoUniquePtr = new ContactInfo`.
