@@ -1319,7 +1319,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - member variables  
           `using var x = data[0]`  
           `using var y = data[1]`
-        - member functions
+        - member functions  
           `using func pushBack = push_back`
 
 - Matrix & Vector
