@@ -377,7 +377,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Bit-Shift & Rotation
     - `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
-    - `<<` Shift left (here a logical shift with UInt is the same as arithmetic shift with Int)
+    - `<<` Shift left (here a logical shift left with UInt is the same as an arithmetic shift left with Int)
     - `>>>` Rotate right (circular shift right)
     - `<<<` Rotate left (circular shift left)
 
@@ -440,7 +440,7 @@ No braces around the condition clause.
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
           translates to `for i in RangeByStep(10, 1, -1) { ... }`.
         - I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
-    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var` but with `in` (the default), `inout`, `copy`, `move`),  
+    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var` but only with the options `in` (the default), `inout`, `copy`, `move`),  
       so `for i in 0..<10 { ... }` is equivalent to:
       ```
       {
