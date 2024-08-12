@@ -94,6 +94,14 @@ For several topics there are alternative ideas, that were discarded but are stil
 ## Operators
 - Possible, alternative syntax for `pow(a, x)`:  
   `a**x` (as Python did)
+- Range operator
+    - `8>..0:-1` – 7, 6, 5, 4, 3, 2, 1, 0
+        - RangeExclusiveStartByStep(8, 0, -1)
+    - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
+        - RangeExclusiveEndByStep(8, 0, -1)
+    - `8>..0:-3` – 7, 4, 1
+        - RangeExclusiveStartByStep(8, 0, -3)
+
 - Maybe remove `++i`, `--i`, `i++`, `i--`?
     - as Python
     - only offer/allow `i += 1`, `i -= 1`  
