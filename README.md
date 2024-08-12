@@ -1313,14 +1313,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `Array` instead of `vector`
         - `StringStream` instead of `stringstream`
             - `TextStream`, `ByteStream`, ...
-- Shallow wrapper,
+- Mostly a shallow wrapper,
     - e.g. `cilia::String : public std::string`
-- "**Alias**" for 
-    - member variables  
-      `using var x = data[0]`  
-      `using var y = data[1]`
-    - member functions
-        - `using func pushBack = push_back`
+    - with "**aliases**" for 
+        - member variables  
+          `using var x = data[0]`  
+          `using var y = data[1]`
+        - member functions
+          `using func pushBack = push_back`
 
 - Matrix & Vector
     - Geometry
