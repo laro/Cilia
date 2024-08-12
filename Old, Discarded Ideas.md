@@ -97,10 +97,12 @@ For several topics there are alternative ideas, that were discarded but are stil
 - Range operator
     - `8>..0:-1` – 7, 6, 5, 4, 3, 2, 1, 0
         - RangeExclusiveStartByStep(8, 0, -1)
-    - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
-        - RangeExclusiveEndByStep(8, 0, -1)
     - `8>..0:-3` – 7, 4, 1
         - RangeExclusiveStartByStep(8, 0, -3)
+    - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
+        - RangeExclusiveEndByStep(8, 0, -1)
+    - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
+        - RangeDownwardsExclusiveEndByStep(8, 0, -1)
     - Incomplete range with step
         - `8>..:-1` – RangeFromExclusiveStartByStep(8, -1)
         - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
