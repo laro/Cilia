@@ -373,13 +373,11 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           Step size is mandatory (to make it clear that we are counting down, to avoid wrong conclusions).
             - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
                 - RangeByStep(8, 0, -1)
-                - Not ~~`8..0`~~, as Range(8, 0) is always empty!
-            - `8>..0:-1` – 7, 6, 5, 4, 3, 2, 1, 0
-                - RangeExclusiveStartByStep(8, 0, -1)
-            - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
-                - RangeExclusiveEndByStep(8, 0, -1)
-            - `8>..0:-3` – 5, 2
-                - RangeExclusiveStartByStep(8, 0, -3)
+                - Not ~~`8..0`~~, as Range(8, 0) is always empty (it is counting up, not down!)
+                - Not `8..<0:-1`, staticAssert in RangeExclusiveEndByStep that `step > 0`:
+                    - "The range operator with exclusive end (`..<`) is not compatible with negative increments, because then it would be necessary to write `..>0` and that is not available."
+                    - It simply would be too much, IMHO.
+                    - Use `8..1:-1` instead.
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – ..., 1, 2
@@ -394,8 +392,6 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `..2:2` – RangeToByStep(2, 2)
                 - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
                 - `0..:2` – RangeFromByStep(0, 2)
-                - `8>..:-1` – RangeFromExclusiveStartByStep(8, -1)
-                - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
                 - `..:2` – RangeFullByStep(2)
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Bit-Shift & Rotation
