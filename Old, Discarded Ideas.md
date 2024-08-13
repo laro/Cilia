@@ -190,6 +190,8 @@ For several topics there are alternative ideas, that were discarded but are stil
 
 
 ## (Smart) Pointers
+- `Type- pointer`**
+    - `T-` is short for `UniquePtr<T[0]>` (i.e. a unique pointer to a C/C++ array of fixed but unknown size)
 - Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
     - ASCII
         - **`Type+ pointer`** ("plus pointer", my favourite, maybe even better than `Type^ pointer`)
