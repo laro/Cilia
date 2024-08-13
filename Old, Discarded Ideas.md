@@ -192,6 +192,16 @@ For several topics there are alternative ideas, that were discarded but are stil
 ## (Smart) Pointers
 - `Type- pointer`**
     - `T-` is short for `UniquePtr<T[0]>` (i.e. a unique pointer to a C/C++ array of fixed but unknown size)
+- `new T` returns a `T+`/`UniquePtr<T>`,
+    - so `T+`/`UniquePtr<T>` is the "default type" for pointers,  
+      e.g. `ContactInfo+ contactInfoUniquePtr = new ContactInfo`.
+    - `T[0]+`/`UniquePtr<T[0]>` is the "default type" for pointers to array,  
+      e.g. `ContactInfo[0]+ contactInfoUniqueArrayPtr = new ContactInfo[10]`.
+- A classical C/C++ "raw" pointer is still possible, but inconvenient to use.
+    - `ContactInfo* contactInfoPtr = (new ContactInfo).release()`  
+      `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
+    - `ContactInfo* contactInfoPtr = (new ContactInfo[10]).release()`  
+      `delete[] contactInfoPtr` (you need to distinguish single-element- and array-pointers yourself)
 - Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
     - ASCII
         - **`Type+ pointer`** ("plus pointer", my favourite, maybe even better than `Type^ pointer`)
