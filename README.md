@@ -553,12 +553,13 @@ In case on conflicts local definitions (inside the class) have priority (then a 
 
 ## (Smart) Pointers
 - **Short Smart Pointer Syntax**
-    - “Make simple things simple”,  
+    - “Make simple things simple” (or at least short to write),  
       encourage use of smart pointers.
     - **`Type+ pointer`**
-        - `T+` is short for **`UniquePtr<T[N]>`** (i.e. a unique pointer to a C/C++ array)
+        - `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
     - **`Type- pointer`**
-        - `T-` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
+        - `T-` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size)
+            - TODO `UniquePtr<T[]>` seems possible in C++ (its an "incomplete type"), but in Cilia `T[]` is an Array<T>. So we use `T[0]` instead.
     - **`Type^ pointer`**
         - `T^` is short for **`SharedPtr<T>`**
         - Inspired by C++/CLI (so its a proven possiblilty), but  
@@ -567,21 +568,20 @@ In case on conflicts local definitions (inside the class) have priority (then a 
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
             - So maybe use `T*+`, `T*-`, and `T*^` instead?
-- **`new T` returns a `T-`/`UniquePtr<T>`**,
-    - so `T+`/`UniquePtr<T[N]>` is the "default type" for pointers to array,  
-      e.g. `ContactInfo+ contactInfoUniqueArrayPtr = new ContactInfo[10]`.
-    - `T-`/`UniquePtr<T>` is the "default type" for pointers,  
-      e.g. `ContactInfo- contactInfoUniquePtr = new ContactInfo`.
-    - `T^`/`SharedPtr<T>` can take over the pointer from rvalue `T+`/`UniquePtr<T>` (as in C/C++):
+- **`new T` returns a `T+`/`UniquePtr<T>`**,
+    - so `T+`/`UniquePtr<T[0]>` is the "default type" for pointers,  
+      e.g. `ContactInfo+ contactInfoUniquePtr = new ContactInfo`.
+    - `T-`/`UniquePtr<T>` is the "default type" for pointers to array,  
+      e.g. `ContactInfo- contactInfoUniqueArrayPtr = new ContactInfo[10]`  
+      not ~~`ContactInfo+ contactInfoUniqueArrayPtr = new ContactInfo[10]`~~ (there is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
+    - `T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T-`/`UniquePtr<T[0]>` (as in C/C++):
         - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
         - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
             - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
-    - TODO AFAIK there is no array-to-pointer decay possible with `UniquePtr`
-        - `Int+ array = new Int[3]`
 - A classical C/C++ "raw" pointer is still possible, but inconvenient to use.
     - `ContactInfo* contactInfoPtr = (new ContactInfo).release()`  
-      `delete contactInfoPtr`
-- Redefine `T^` and `T+` for special cases / **interoperability with other languages**:
+      `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
+- Redefine `T^` and `T+`/`T-` for special cases / **interoperability with other languages**:
     - `T^` is defined via type traits `SharedPtrType`,  
         - For C++/Cilia classes `T^` is `SharedPtr<T>`:
             - `using<type T> T::SharedPtrType = SharedPtr<T>`
