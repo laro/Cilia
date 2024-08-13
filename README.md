@@ -557,10 +557,12 @@ In case on conflicts local definitions (inside the class) have priority (then a 
       encourage use of smart pointers.
     - **`Type+ pointer`**
         - `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
-    - **`Type- pointer`**
-        - `T-` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size)
+        - `T[0]+` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here)
             - TODO `UniquePtr<T[]>` seems possible in C++ (its an "incomplete type"), but in Cilia `T[]` is an Array<T>. So we use `T[0]` instead.
-                - Would `T[0]+` be sufficient then?
+        - **`makeUnique<T>(...)`**,
+            - `ContactInfo+ contactInfoUniquePtr = makeUnique<ContactInfo>()`.
+            - `ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`  
+              not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (there is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
     - **`Type^ pointer`**
         - `T^` is short for **`SharedPtr<T>`**
         - Inspired by C++/CLI (so its a proven possiblilty), but  
@@ -568,21 +570,21 @@ In case on conflicts local definitions (inside the class) have priority (then a 
         - And there is an inconsistency in its usage:
             - A normal pointer `T* pointer` is dereferenced with `*pointer`.
             - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-            - So maybe use `T*+`, `T*-`, and `T*^` instead?
-- **`new T` returns a `T+`/`UniquePtr<T>`**,
-    - so `T+`/`UniquePtr<T[0]>` is the "default type" for pointers,  
-      e.g. `ContactInfo+ contactInfoUniquePtr = new ContactInfo`.
-    - `T-`/`UniquePtr<T>` is the "default type" for pointers to array,  
-      e.g. `ContactInfo- contactInfoUniqueArrayPtr = new ContactInfo[10]`  
-      not ~~`ContactInfo+ contactInfoUniqueArrayPtr = new ContactInfo[10]`~~ (there is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
-    - `T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T-`/`UniquePtr<T[0]>` (as in C/C++):
-        - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
-        - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
-            - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
-- A classical C/C++ "raw" pointer is still possible, but inconvenient to use.
-    - `ContactInfo* contactInfoPtr = (new ContactInfo).release()`  
+            - So maybe use `T*+` and `T*^` instead?
+        - **`makeShared<T>(...)`**,
+            - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
+            - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
+              also possibler (but not recommended) is ~~`ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
+        - `T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T[0]+`/`UniquePtr<T[0]>` (as in C/C++):
+            - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
+            - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
+                - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
+- A classical C/C++ "raw" pointer is still possible, but unsafe.
+    - `ContactInfo* contactInfoPtr = new ContactInfo`  
       `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
-- Redefine `T^` and `T+`/`T-` for special cases / **interoperability with other languages**:
+    - `ContactInfo* contactInfoPtr = new ContactInfo[10]`  
+      `delete[] contactInfoPtr` (you need to distinguish single-element- and array-pointers yourself)
+- Redefine `T^` and `T+` for special cases / **interoperability with other languages**:
     - `T^` is defined via type traits `SharedPtrType`,  
         - For C++/Cilia classes `T^` is `SharedPtr<T>`:
             - `using<type T> T::SharedPtrType = SharedPtr<T>`
