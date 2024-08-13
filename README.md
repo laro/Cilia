@@ -560,6 +560,7 @@ In case on conflicts local definitions (inside the class) have priority (then a 
     - **`Type- pointer`**
         - `T-` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size)
             - TODO `UniquePtr<T[]>` seems possible in C++ (its an "incomplete type"), but in Cilia `T[]` is an Array<T>. So we use `T[0]` instead.
+                - Would `T[0]+` be sufficient then?
     - **`Type^ pointer`**
         - `T^` is short for **`SharedPtr<T>`**
         - Inspired by C++/CLI (so its a proven possiblilty), but  
