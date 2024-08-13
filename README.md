@@ -565,12 +565,12 @@ In case on conflicts local definitions (inside the class) have priority (then a 
               not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (there is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
     - **`Type^ pointer`**
         - `T^` is short for **`SharedPtr<T>`**
-        - Inspired by C++/CLI (so its a proven possiblilty), but  
-          Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
-        - And there is an inconsistency in its usage:
-            - A normal pointer `T* pointer` is dereferenced with `*pointer`.
-            - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-            - So maybe use `T*+` and `T*^` instead?
+        - Inspired by C++/CLI (so its a proven possiblilty), _but_  
+           - Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
+            - And there is an inconsistency in its usage:
+                - A normal pointer `T* pointer` is dereferenced with `*pointer`.
+                - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
+                - So maybe use `T*^` and `T*+` instead?
         - **`makeShared<T>(...)`**,
             - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
             - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
