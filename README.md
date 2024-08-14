@@ -732,6 +732,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - `std::array` is called `cilia::FixedSizeArray` instead.
     - TODO Only possible, if `T[]` is not necessary to mean "array of certain (but unknown) size".
         - Can it really be fully replaced with `T[N]` and `T*`?
+        - Also see https://cplusplus.com/forum/beginner/267321/#msg1150228
 - `Int[3] arrayOfThreeIntegers`  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
     - „Static array“ with **fixed size**
