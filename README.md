@@ -350,6 +350,14 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator>(Complex<T> a, b) { ... }
       operator<=(Complex<T> a, b) { ... }
       operator>=(Complex<T> a, b) { ... }
+      operator<=>(Complex<T> a, b) { ... }
+      ```
+    - Logical
+      ```
+      operator not() { ... }
+      operator and(Complex<T> a, b) { ... }
+      operator or(Complex<T> a, b) { ... }
+      operator xor(Complex<T> a, b) { ... }
       ```
     - Subscript/bracket/parenthesis/functor `operator`s:
       ```
