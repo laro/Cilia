@@ -310,6 +310,47 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           return Complex<T>(a.real() + b.real(), a.imag() + b.imag())
       }
       ```
+    - Assignement  
+      `operator=(Complex<T> other) { ... }`
+    - Arithmetic operators
+      ```
+      operator+(Complex<T> a, b) -> Complex<T> { ... }
+      operator-(Complex<T> a, b) -> Complex<T> { ... }
+      operator*(Complex<T> a, b) -> Complex<T> { ... }
+      operator/(Complex<T> a, b) -> Complex<T> { ... }
+      operator%(Complex<T> a, b) -> Complex<T> { ... }
+      ```
+    - Compound assignment
+      ```
+      operator+=(Complex<T> other) { ... }
+      operator-=(Complex<T> other) { ... }
+      operator*=(Complex<T> other) { ... }
+      operator/=(Complex<T> other) { ... }
+      operator%=(Complex<T> other) { ... }
+      operator<<=(Complex<T> other) { ... }
+      operator>>=(Complex<T> other) { ... }
+      operator<<<=(Complex<T> other) { ... }
+      operator>>>=(Complex<T> other) { ... }
+      ```
+      ~~`operator&=(Complex<T> other) { ... }`~~
+      ~~`operator|=(Complex<T> other) { ... }`~~
+      ~~`operator^=(Complex<T> other) { ... }`~~
+    - Increment and decrement
+      ```
+      operator++() { ... }
+      operator++(Int dummy) { ... } // post-increment
+      operator--() { ... }
+      operator--(Int dummy) { ... } // post-decrement
+      ```
+    - Relational and comparison operators
+      ```
+      operator==(Complex<T> a, b) { ... }
+      operator!=(Complex<T> a, b) { ... }
+      operator<(Complex<T> a, b) { ... }
+      operator>(Complex<T> a, b) { ... }
+      operator<=(Complex<T> a, b) { ... }
+      operator>=(Complex<T> a, b) { ... }
+      ```
     - Subscript/bracket/parenthesis/functor `operator`s:
       ```
       operator[Int i] -> T {
