@@ -524,7 +524,7 @@ Alias with `using` for
 
 
 ## Type Extension
-To add "member like" types, functions/methods, constants (and maybe variables) to "third party" classes/types.  
+To add "member like" types, functions/methods, constants (and maybe static variables) to "third party" classes/types.  
 In case on conflicts local definitions (inside the class) have priority (then a warning is issued).
 - **Extension methods**
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
@@ -547,7 +547,7 @@ In case on conflicts local definitions (inside the class) have priority (then a 
   static const Bool Float32::IsFloatingPoint = True
   static const Bool Float64::IsFloatingPoint = True
   ```
-    - TODO: Allow external static _variables_, too?
+    - TODO: Allow external static _variables_ (i.e. mutable), too?
         - Why not. But for what would it be useful?
 
 
