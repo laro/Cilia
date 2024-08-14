@@ -332,8 +332,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator<<<=(Complex<T> other) { ... }
       operator>>>=(Complex<T> other) { ... }
       ```
-      ~~`operator&=(Complex<T> other) { ... }`~~
-      ~~`operator|=(Complex<T> other) { ... }`~~
+      ~~`operator&=(Complex<T> other) { ... }`~~  
+      ~~`operator|=(Complex<T> other) { ... }`~~  
       ~~`operator^=(Complex<T> other) { ... }`~~
     - Increment and decrement
       ```
