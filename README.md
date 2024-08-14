@@ -558,7 +558,7 @@ In case on conflicts, in-class definitions (inside the class) have priority (and
     - **`Type+ pointer`**
         - `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
         - `T[0]+` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here)
-            - TODO `UniquePtr<T[]>` seems possible in C++ (its an "incomplete type"), but in Cilia `T[]` is an `Array<T>`. So we use `T[0]` instead.
+            - TODO `UniquePtr<T[]>` seems possible in C++ (it is an "incomplete type"), but in Cilia `T[]` is an `Array<T>`. So we use `T[0]` instead.
         - **`makeUnique<T>(...)`**,
             - `ContactInfo+ contactInfoUniquePtr = makeUnique<ContactInfo>()`.
             - `ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`  
