@@ -243,6 +243,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Int x, y`
     - `Int x = 99, y = 199`
     - **`Float* m, n`   // m _and_ n are pointers** (contrary to C/C++)
+    - `Image image(width, height, 0.0)`
     - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
     - `const Float* pointerToConstantFloat`
     - `const Float const* constPointerToConstantFloat`
@@ -252,6 +253,10 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - It has to be the exact same type.
     - ~~`Float*m`~~
         - Whitespace _between_ type specification and variable name is mandatory.
+    - ~~`Image image { width, height, 0.0 }`~~
+        - No list initialization for plain constructors, as there is no need anymore.
+        - There are generally _no_ unsafe integral promotions and _no_ implicit narrowing conversions.
+        - See [Misc](#misc) / Mixed arithmetic
 - **Type inference** with `var` / `const`:
     - `var i = 3` instead of ~~`auto i = 3;`~~
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no such thing as a "constant variable".)
@@ -278,7 +283,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 ```
 - Function declarations start with the keyword `func`,
     - as in Swift.
-    - Easier parsing due to clear distinction between function vs. variable declaration.
+    - Easier parsing due to clear distinction between function declaration vs. variable declaration,  
+      avoiding the [most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse).
 - Always and only in the trailing return type syntax.
 - `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
 - **Lambdas**
