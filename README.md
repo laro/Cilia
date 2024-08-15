@@ -327,10 +327,10 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator *=(Complex<T> other) { ... }
       operator /=(Complex<T> other) { ... }
       operator %=(Complex<T> other) { ... }
-      operator <<=(Complex<T> other) { ... }
-      operator >>=(Complex<T> other) { ... }
-      operator <<<=(Complex<T> other) { ... }
-      operator >>>=(Complex<T> other) { ... }
+      operator <<=(Int shift) { ... }
+      operator >>=(Int shift) { ... }
+      operator <<<=(Int shift) { ... }
+      operator >>>=(Int shift) { ... }
       ```
       ~~`operator &=(Complex<T> other) { ... }`~~  
       ~~`operator |=(Complex<T> other) { ... }`~~  
