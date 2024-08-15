@@ -306,77 +306,77 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - Declaration
     - Keyword `operator` instead of `func`:
       ```
-      operator +(Complex<T> a, b) -> Complex<T> {
-          return Complex<T>(a.real() + b.real(), a.imag() + b.imag())
+      operator +(BigInt a, b) -> BigInt {
+          return ...
       }
       ```
     - Assignment operators
       ```
-      class Complex<type T> {
-          operator =(Complex<T> other) { ... }
+      class BigInt {
+          operator =(BigInt other) { ... }
       }
       ```
     - Arithmetic operators
       ```
-      operator +(Complex<T> a, b) -> Complex<T> { ... }
-      operator -(Complex<T> a, b) -> Complex<T> { ... }
-      operator *(Complex<T> a, b) -> Complex<T> { ... }
-      operator /(Complex<T> a, b) -> Complex<T> { ... }
-      operator %(Complex<T> a, b) -> Complex<T> { ... }
+      operator +(BigInt a, b) -> BigInt { ... }
+      operator -(BigInt a, b) -> BigInt { ... }
+      operator *(BigInt a, b) -> BigInt { ... }
+      operator /(BigInt a, b) -> BigInt { ... }
+      operator %(BigInt a, b) -> BigInt { ... }
       ```
     - Compound assignment operators
       ```
       class Complex<type T> {
-          operator +=(Complex<T> other) { ... }
-          operator -=(Complex<T> other) { ... }
-          operator *=(Complex<T> other) { ... }
-          operator /=(Complex<T> other) { ... }
-          operator %=(Complex<T> other) { ... }
+          operator +=(BigInt other) { ... }
+          operator -=(BigInt other) { ... }
+          operator *=(BigInt other) { ... }
+          operator /=(BigInt other) { ... }
+          operator %=(BigInt other) { ... }
           operator <<=(Int shift) { ... }
           operator >>=(Int shift) { ... }
           operator <<<=(Int shift) { ... }
           operator >>>=(Int shift) { ... }
       }
       ```
-      ~~`operator &=(Complex<T> other) { ... }`~~  
-      ~~`operator |=(Complex<T> other) { ... }`~~  
-      ~~`operator ^=(Complex<T> other) { ... }`~~
+      ~~`operator &=(BigInt other) { ... }`~~  
+      ~~`operator |=(BigInt other) { ... }`~~  
+      ~~`operator ^=(BigInt other) { ... }`~~
     - Increment and decrement operators
       ```
-      class Complex<type T> {
+      class BigInt {
           operator ++() { ... }
-          operator ++(Int dummy) -> Complex<T> { ... } // post-increment
+          operator ++(Int dummy) -> BigInt { ... } // post-increment
           operator --() { ... }
-          operator --(Int dummy) -> Complex<T>  { ... } // post-decrement
+          operator --(Int dummy) -> BigInt  { ... } // post-decrement
       }
       ```
     - Relational and comparison operators
       ```
-      operator ==(Complex<T> a, b) -> Bool { ... }
-      operator !=(Complex<T> a, b) -> Bool { ... }
-      operator <(Complex<T> a, b) -> Bool { ... }
-      operator >(Complex<T> a, b) -> Bool { ... }
-      operator <=(Complex<T> a, b) -> Bool { ... }
-      operator >=(Complex<T> a, b) -> Bool { ... }
-      operator <=>(Complex<T> a, b) -> Int { ... }
+      operator ==(BigInt a, b) -> Bool { ... }
+      operator !=(BigInt a, b) -> Bool { ... }
+      operator <(BigInt a, b) -> Bool { ... }
+      operator >(BigInt a, b) -> Bool { ... }
+      operator <=(BigInt a, b) -> Bool { ... }
+      operator >=(BigInt a, b) -> Bool { ... }
+      operator <=>(BigInt a, b) -> Int { ... }
       ```
     - Logical operators
       ```
-      operator not(Complex<T> a) -> Complex<T> { ... }
-      operator and(Complex<T> a, b) -> Complex<T> { ... }
-      operator or(Complex<T> a, b) -> Complex<T> { ... }
-      operator xor(Complex<T> a, b) -> Complex<T> { ... }
+      operator not(BigInt a) -> BigInt { ... }
+      operator and(BigInt a, b) -> BigInt { ... }
+      operator or(BigInt a, b) -> BigInt { ... }
+      operator xor(BigInt a, b) -> BigInt { ... }
       ```
     - Subscript/bracket/parenthesis/functor operators:
       ```
       class MyImage<type T> {
           // Array subscript
-          operator [Int i] -> Complex<T>& {
+          operator [Int i] -> T& {
               return data[i]
           }
     
           // 2D array (i.e. image like) subscript
-          operator [Int x, y] -> Complex<T>& {
+          operator [Int x, y] -> T& {
               return data[x + y*stride]
           }
           
