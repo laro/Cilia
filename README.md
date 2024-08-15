@@ -256,7 +256,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - ~~`Image image { width, height, 0.0 }`~~
         - No list initialization for plain constructors, as there is no need anymore.
         - There are generally _no_ unsafe integral promotions and _no_ implicit narrowing conversions.
-        - See [Misc](#misc) / Mixed arithmetic
+        - See [Misc](#misc) / Mixed arithmetic and https://stackoverflow.com/a/18222927
 - **Type inference** with `var` / `const`:
     - `var i = 3` instead of ~~`auto i = 3;`~~
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no such thing as a "constant variable".)
