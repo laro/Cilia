@@ -369,7 +369,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       ```
     - Subscript/bracket/parenthesis/functor operators:
       ```
-      class Complex<type T> {
+      class MyImage<type T> {
           // Array subscript
           operator [Int i] -> Complex<T>& {
               return data[i]
