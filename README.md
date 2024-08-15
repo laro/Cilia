@@ -332,7 +332,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       ```
     - Compound assignment operators
       ```
-      class Complex<type T> {
+      class BigInt {
           operator +=(BigInt other) { ... }
           operator -=(BigInt other) { ... }
           operator *=(BigInt other) { ... }
