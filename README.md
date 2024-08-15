@@ -310,7 +310,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           return Complex<T>(a.real() + b.real(), a.imag() + b.imag())
       }
       ```
-    - Assignement  
+    - Assignment operators  
       `operator =(Complex<T> other) { ... }`
     - Arithmetic operators
       ```
@@ -320,7 +320,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator /(Complex<T> a, b) -> Complex<T> { ... }
       operator %(Complex<T> a, b) -> Complex<T> { ... }
       ```
-    - Compound assignment
+    - Compound assignment operators
       ```
       operator +=(Complex<T> other) { ... }
       operator -=(Complex<T> other) { ... }
@@ -335,7 +335,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       ~~`operator &=(Complex<T> other) { ... }`~~  
       ~~`operator |=(Complex<T> other) { ... }`~~  
       ~~`operator ^=(Complex<T> other) { ... }`~~
-    - Increment and decrement
+    - Increment and decrement operators
       ```
       operator ++() { ... }
       operator ++(Int dummy) { ... } // post-increment
@@ -352,14 +352,14 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator >=(Complex<T> a, b) { ... }
       operator <=>(Complex<T> a, b) { ... }
       ```
-    - Logical
+    - Logical operators
       ```
       operator not() { ... }
       operator and(Complex<T> a, b) { ... }
       operator or(Complex<T> a, b) { ... }
       operator xor(Complex<T> a, b) { ... }
       ```
-    - Subscript/bracket/parenthesis/functor `operator`s:
+    - Subscript/bracket/parenthesis/functor operators:
       ```
       // Array subscript
       operator [Int i] -> T {
