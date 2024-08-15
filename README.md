@@ -361,17 +361,20 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       ```
     - Subscript/bracket/parenthesis/functor `operator`s:
       ```
+      // Array subscript
       operator [Int i] -> T {
           return data[i]
       }
       ```
       ```
+      // 2D array (i.e. image like) subscript
       operator [Int x, y] -> T {
           return data[x + y*stride]
       }
       ```
       ```
-      operator (Int a, Float b) {
+      // Functor call
+      operator (Int a, Float b, String c) {
           ...
       }
       ```
