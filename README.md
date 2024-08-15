@@ -310,72 +310,80 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           return Complex<T>(a.real() + b.real(), a.imag() + b.imag())
       }
       ```
-    - Assignment operators  
-      `operator =(Complex<T> other) { ... }`
+    - Assignment operators
+      ```
+      class Complex<type T> {
+          operator =(Complex<T> other) { ... }
+      }
+      ```
     - Arithmetic operators
       ```
-      static operator +(Complex<T> a, b) -> Complex<T> { ... }
-      static operator -(Complex<T> a, b) -> Complex<T> { ... }
-      static operator *(Complex<T> a, b) -> Complex<T> { ... }
-      static operator /(Complex<T> a, b) -> Complex<T> { ... }
-      static operator %(Complex<T> a, b) -> Complex<T> { ... }
+      operator +(Complex<T> a, b) -> Complex<T> { ... }
+      operator -(Complex<T> a, b) -> Complex<T> { ... }
+      operator *(Complex<T> a, b) -> Complex<T> { ... }
+      operator /(Complex<T> a, b) -> Complex<T> { ... }
+      operator %(Complex<T> a, b) -> Complex<T> { ... }
       ```
     - Compound assignment operators
       ```
-      operator +=(Complex<T> other) { ... }
-      operator -=(Complex<T> other) { ... }
-      operator *=(Complex<T> other) { ... }
-      operator /=(Complex<T> other) { ... }
-      operator %=(Complex<T> other) { ... }
-      operator <<=(Int shift) { ... }
-      operator >>=(Int shift) { ... }
-      operator <<<=(Int shift) { ... }
-      operator >>>=(Int shift) { ... }
+      class Complex<type T> {
+          operator +=(Complex<T> other) { ... }
+          operator -=(Complex<T> other) { ... }
+          operator *=(Complex<T> other) { ... }
+          operator /=(Complex<T> other) { ... }
+          operator %=(Complex<T> other) { ... }
+          operator <<=(Int shift) { ... }
+          operator >>=(Int shift) { ... }
+          operator <<<=(Int shift) { ... }
+          operator >>>=(Int shift) { ... }
+      }
       ```
       ~~`operator &=(Complex<T> other) { ... }`~~  
       ~~`operator |=(Complex<T> other) { ... }`~~  
       ~~`operator ^=(Complex<T> other) { ... }`~~
     - Increment and decrement operators
       ```
-      operator ++() { ... }
-      operator ++(Int dummy) { ... } // post-increment
-      operator --() { ... }
-      operator --(Int dummy) { ... } // post-decrement
+      class Complex<type T> {
+          operator ++() { ... }
+          operator ++(Int dummy) -> Complex<T> { ... } // post-increment
+          operator --() { ... }
+          operator --(Int dummy) -> Complex<T>  { ... } // post-decrement
+      }
       ```
     - Relational and comparison operators
       ```
-      static operator ==(Complex<T> a, b) { ... }
-      static operator !=(Complex<T> a, b) { ... }
-      static operator <(Complex<T> a, b) { ... }
-      static operator >(Complex<T> a, b) { ... }
-      static operator <=(Complex<T> a, b) { ... }
-      static operator >=(Complex<T> a, b) { ... }
-      static operator <=>(Complex<T> a, b) { ... }
+      operator ==(Complex<T> a, b) -> Bool { ... }
+      operator !=(Complex<T> a, b) -> Bool { ... }
+      operator <(Complex<T> a, b) -> Bool { ... }
+      operator >(Complex<T> a, b) -> Bool { ... }
+      operator <=(Complex<T> a, b) -> Bool { ... }
+      operator >=(Complex<T> a, b) -> Bool { ... }
+      operator <=>(Complex<T> a, b) -> Int { ... }
       ```
     - Logical operators
       ```
-      operator not() { ... }
-      static operator and(Complex<T> a, b) { ... }
-      static operator or(Complex<T> a, b) { ... }
-      static operator xor(Complex<T> a, b) { ... }
+      operator not(Complex<T> a) -> Complex<T> { ... }
+      operator and(Complex<T> a, b) -> Complex<T> { ... }
+      operator or(Complex<T> a, b) -> Complex<T> { ... }
+      operator xor(Complex<T> a, b) -> Complex<T> { ... }
       ```
     - Subscript/bracket/parenthesis/functor operators:
       ```
-      // Array subscript
-      operator [Int i] -> T {
-          return data[i]
-      }
-      ```
-      ```
-      // 2D array (i.e. image like) subscript
-      operator [Int x, y] -> T {
-          return data[x + y*stride]
-      }
-      ```
-      ```
-      // Functor call
-      operator (Int a, Float b, String c) {
-          ...
+      class Complex<type T> {
+          // Array subscript
+          operator [Int i] -> Complex<T>& {
+              return data[i]
+          }
+    
+          // 2D array (i.e. image like) subscript
+          operator [Int x, y] -> Complex<T>& {
+              return data[x + y*stride]
+          }
+          
+          // Functor call
+          operator (Int a, Float b, String c) {
+              ...
+          }
       }
       ```
 - Power function
