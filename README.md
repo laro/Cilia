@@ -312,66 +312,66 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - Declaration
     - Keyword `operator` instead of `func`:
       ```
-      operator +(BigInt a, b) -> BigInt {
+      operator +(Int256 a, b) -> Int256 {
           return ...
       }
       ```
     - Assignment operators
       ```
-      class BigInt {
-          operator =(BigInt other) { ... }
+      class Int256 {
+          operator =(Int256 other) { ... }
       }
       ```
     - Arithmetic operators
       ```
-      operator +(BigInt a, b) -> BigInt { ... }
-      operator -(BigInt a, b) -> BigInt { ... }
-      operator *(BigInt a, b) -> BigInt { ... }
-      operator /(BigInt a, b) -> BigInt { ... }
-      operator %(BigInt a, b) -> BigInt { ... }
+      operator +(Int256 a, b) -> Int256 { ... }
+      operator -(Int256 a, b) -> Int256 { ... }
+      operator *(Int256 a, b) -> Int256 { ... }
+      operator /(Int256 a, b) -> Int256 { ... }
+      operator %(Int256 a, b) -> Int256 { ... }
       ```
     - Compound assignment operators
       ```
-      class BigInt {
-          operator +=(BigInt other) { ... }
-          operator -=(BigInt other) { ... }
-          operator *=(BigInt other) { ... }
-          operator /=(BigInt other) { ... }
-          operator %=(BigInt other) { ... }
+      class Int256 {
+          operator +=(Int256 other) { ... }
+          operator -=(Int256 other) { ... }
+          operator *=(Int256 other) { ... }
+          operator /=(Int256 other) { ... }
+          operator %=(Int256 other) { ... }
           operator <<=(Int shift) { ... }
           operator >>=(Int shift) { ... }
           operator <<<=(Int shift) { ... }
           operator >>>=(Int shift) { ... }
       }
       ```
-      ~~`operator &=(BigInt other) { ... }`~~  
-      ~~`operator |=(BigInt other) { ... }`~~  
-      ~~`operator ^=(BigInt other) { ... }`~~
+      ~~`operator &=(Int256 other) { ... }`~~  
+      ~~`operator |=(Int256 other) { ... }`~~  
+      ~~`operator ^=(Int256 other) { ... }`~~
     - Increment and decrement operators
       ```
-      class BigInt {
+      class Int256 {
           operator ++() { ... }
-          operator ++(Int dummy) -> BigInt { ... } // post-increment
+          operator ++(Int dummy) -> Int256 { ... } // post-increment
           operator --() { ... }
-          operator --(Int dummy) -> BigInt  { ... } // post-decrement
+          operator --(Int dummy) -> Int256  { ... } // post-decrement
       }
       ```
     - Relational and comparison operators
       ```
-      operator ==(BigInt a, b) -> Bool { ... }
-      operator !=(BigInt a, b) -> Bool { ... }
-      operator <(BigInt a, b) -> Bool { ... }
-      operator >(BigInt a, b) -> Bool { ... }
-      operator <=(BigInt a, b) -> Bool { ... }
-      operator >=(BigInt a, b) -> Bool { ... }
-      operator <=>(BigInt a, b) -> Int { ... }
+      operator ==(Int256 a, b) -> Bool { ... }
+      operator !=(Int256 a, b) -> Bool { ... }
+      operator <(Int256 a, b) -> Bool { ... }
+      operator >(Int256 a, b) -> Bool { ... }
+      operator <=(Int256 a, b) -> Bool { ... }
+      operator >=(Int256 a, b) -> Bool { ... }
+      operator <=>(Int256 a, b) -> Int { ... }
       ```
     - Logical operators
       ```
-      operator not(BigInt a) -> BigInt { ... }
-      operator and(BigInt a, b) -> BigInt { ... }
-      operator or(BigInt a, b) -> BigInt { ... }
-      operator xor(BigInt a, b) -> BigInt { ... }
+      operator not(Int256 a) -> Int256 { ... }
+      operator and(Int256 a, b) -> Int256 { ... }
+      operator or(Int256 a, b) -> Int256 { ... }
+      operator xor(Int256 a, b) -> Int256 { ... }
       ```
     - Subscript/bracket/parenthesis/functor operators:
       ```
