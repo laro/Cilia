@@ -314,11 +314,11 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       `operator =(Complex<T> other) { ... }`
     - Arithmetic operators
       ```
-      operator +(Complex<T> a, b) -> Complex<T> { ... }
-      operator -(Complex<T> a, b) -> Complex<T> { ... }
-      operator *(Complex<T> a, b) -> Complex<T> { ... }
-      operator /(Complex<T> a, b) -> Complex<T> { ... }
-      operator %(Complex<T> a, b) -> Complex<T> { ... }
+      static operator +(Complex<T> a, b) -> Complex<T> { ... }
+      static operator -(Complex<T> a, b) -> Complex<T> { ... }
+      static operator *(Complex<T> a, b) -> Complex<T> { ... }
+      static operator /(Complex<T> a, b) -> Complex<T> { ... }
+      static operator %(Complex<T> a, b) -> Complex<T> { ... }
       ```
     - Compound assignment operators
       ```
@@ -344,20 +344,20 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       ```
     - Relational and comparison operators
       ```
-      operator ==(Complex<T> a, b) { ... }
-      operator !=(Complex<T> a, b) { ... }
-      operator <(Complex<T> a, b) { ... }
-      operator >(Complex<T> a, b) { ... }
-      operator <=(Complex<T> a, b) { ... }
-      operator >=(Complex<T> a, b) { ... }
-      operator <=>(Complex<T> a, b) { ... }
+      static operator ==(Complex<T> a, b) { ... }
+      static operator !=(Complex<T> a, b) { ... }
+      static operator <(Complex<T> a, b) { ... }
+      static operator >(Complex<T> a, b) { ... }
+      static operator <=(Complex<T> a, b) { ... }
+      static operator >=(Complex<T> a, b) { ... }
+      static operator <=>(Complex<T> a, b) { ... }
       ```
     - Logical operators
       ```
       operator not() { ... }
-      operator and(Complex<T> a, b) { ... }
-      operator or(Complex<T> a, b) { ... }
-      operator xor(Complex<T> a, b) { ... }
+      static operator and(Complex<T> a, b) { ... }
+      static operator or(Complex<T> a, b) { ... }
+      static operator xor(Complex<T> a, b) { ... }
       ```
     - Subscript/bracket/parenthesis/functor operators:
       ```
