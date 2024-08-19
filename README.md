@@ -311,7 +311,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
         - Logical operators are mostly the same as bitwise, but
             - defined _only for `Bool`_,
             - `operator !(Bool a) -> Bool { return not a }` instead of `~`,
-            - No `&` and `|` defined for `Bool`.
+            - no `&` and `|` defined for `Bool`.
     - Subscript/bracket/parenthesis/functor operators:
       ```
       class MyImage<type T> {
