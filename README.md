@@ -264,9 +264,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           operator >>>=(Int shift) { ... }
           operator &=(Int256 other) { ... }
           operator |=(Int256 other) { ... }
-          operator ^=(Int256 other) { ... }
       }
       ```
+        - Not ~~`operator ^=(Int256 other) { ... }`~~
     - Increment and decrement operators
       ```
       class Int256 {
@@ -315,17 +315,19 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - Power function
     - **`a^x`** for `pow(a, x)` (as in Julia)
 - Boolean operators
-    - **`and`**, **`or`**, **`xor`** in addition to `&`, `|`, `^`
+    - **`and`**, **`or`** in addition to `&`, `|`
         - similar to Python, Carbon
         - Used for both
             - boolean operation
                 - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation
                 - `anInt`**`and`**`anotherInt` -> `Int`
-        - So no `&&` and `||`.
+            - So no `&&` and `||`.
+            - No and/or/xor with mixed types (you need to explicitly cast instead).
         - `and` and `or`**` are a bit clearer than `&` and `|`,  
           but still _also_ use `&` and `|`, as we keep `!=` for "not equal" anyways.  
-    - **`xor`** instead of `^`
+    - **`xor`** instead of `^`  
+      because we want `^` for the power function.
     - **`not`** in addition to `!`
         - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
         - Still also `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
