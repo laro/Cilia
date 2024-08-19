@@ -324,7 +324,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `anInt`**`and`**`anotherInt` -> `Int`
             - So no `&&` and `||`.
             - No and/or/xor with mixed types (you need to explicitly cast instead).
-        - `and` and `or`**` are a bit clearer than `&` and `|`,  
+        - `and` and `or` are a bit clearer than `&` and `|`,  
           but still _also_ use `&` and `|`, as we keep `!=` for "not equal" anyways.  
     - **`xor`** instead of `^`  
       because we want `^` for the power function.
