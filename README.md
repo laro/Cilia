@@ -250,6 +250,13 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator /(Int256 a, b) -> Int256 { ... }
       operator %(Int256 a, b) -> Int256 { ... }
       ```
+    - Shift and rotate operators
+      ```
+      operator <<(Int256 a, Int shiftCount) -> Int256 { ... }
+      operator >>(Int256 a, Int shiftCount) -> Int256 { ... }
+      operator <<<(Int256 a, Int shiftCount) -> Int256 { ... }
+      operator >>>(Int256 a, Int shiftCount) -> Int256 { ... }
+      ```
     - Compound assignment operators
       ```
       class Int256 {
@@ -258,10 +265,10 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           operator *=(Int256 other) { ... }
           operator /=(Int256 other) { ... }
           operator %=(Int256 other) { ... }
-          operator <<=(Int shift) { ... }
-          operator >>=(Int shift) { ... }
-          operator <<<=(Int shift) { ... }
-          operator >>>=(Int shift) { ... }
+          operator <<=(Int shiftCount) { ... }
+          operator >>=(Int shiftCount) { ... }
+          operator <<<=(Int shiftCount) { ... }
+          operator >>>=(Int shiftCount) { ... }
           operator &=(Int256 other) { ... }
           operator |=(Int256 other) { ... }
       }
