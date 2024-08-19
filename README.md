@@ -273,9 +273,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
     - Increment and decrement operators
       ```
       class Int256 {
-          operator ++() { ... }
+          operator ++() -> Int256& { ... }
           operator ++(Int dummy) -> Int256 { ... } // post-increment
-          operator --() { ... }
+          operator --() -> Int256& { ... }
           operator --(Int dummy) -> Int256  { ... } // post-decrement
       }
       ```
