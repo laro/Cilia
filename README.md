@@ -231,7 +231,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 ## Operators
 - Declaration
     - Keyword `operator` instead of `func`.
-    - Assignment operators
+    - Assignment operator
       ```
       class Int256 {
           operator =(Int256 other) { ... }
