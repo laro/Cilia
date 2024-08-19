@@ -322,15 +322,15 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation
                 - `anInt`**`and`**`anotherInt` -> `Int`
-            - So no `&&` and `||`.
-            - No and/or/xor with mixed types (you need to explicitly cast instead).
+            - So no ~~`&&`~~ and ~~`||`~~.
+            - No and/or/xor with mixed types (you need to explicitly cast one side instead).
         - `and` and `or` are a bit clearer than `&` and `|`,  
-          but still _also_ use `&` and `|`, as we keep `!=` for "not equal" anyways.  
+          but still _also_ use `&` and `|`, as we keep `&=` and `|=` anyways.  
     - **`xor`** instead of `^`  
       because we want `^` for the power function.
     - **`not`** in addition to `!`
         - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
-        - Still also `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
+        - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
           (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
 - Equality
     - Default `operator==`
