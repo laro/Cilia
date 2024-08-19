@@ -295,6 +295,14 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator and(Int256 a, b) -> Int256 { ... }
       operator or(Int256 a, b) -> Int256 { ... }
       operator xor(Int256 a, b) -> Int256 { ... }
+      operator nand(Int256 a, b) -> Int256 { ... }
+      operator nor(Int256 a, b) -> Int256 { ... }
+      operator !(Int256 a) -> Int256 { return not a }
+      operator &(Int256 a, b) -> Int256 { return a and b }
+      operator |(Int256 a, b) -> Int256 { return a or b }
+      operator ⊻(Int256 a, b) -> Int256 { return a xor b }
+      operator ⊼(Int256 a, b) -> Int256 { return a nand b }
+      operator ⊽(Int256 a, b) -> Int256 { return a nor b }
       ```
     - Subscript/bracket/parenthesis/functor operators:
       ```
