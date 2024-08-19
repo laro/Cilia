@@ -278,7 +278,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           operator ++() -> Int256& { ... }
           operator ++(Int dummy) -> Int256 { ... } // post-increment
           operator --() -> Int256& { ... }
-          operator --(Int dummy) -> Int256  { ... } // post-decrement
+          operator --(Int dummy) -> Int256 { ... } // post-decrement
       }
       ```
     - Relational and comparison operators
