@@ -329,15 +329,19 @@ func multiplyAdd(Int x, y, Float z) -> Float {
     - **`a^x`** for `pow(a, x)` (as in Julia)
 - Boolean operators
     - **`and`**, **`or`** in addition to `&`, `|`
-        - similar to Python, Carbon
+        - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
+          [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
+          (but both have bitwise operators `&`, `|`, `^`).
         - Used for both
             - boolean operation
                 - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation
                 - `anInt`**`and`**`anotherInt` -> `Int`
             - So no ~~`&&`~~ and ~~`||`~~.
+                - TODO [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
+                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`, so maybe Cilia should too?
             - No and/or/xor with mixed types (you need to explicitly cast one side instead).
-        - `and` and `or` are a bit clearer than `&` and `|`,  
+        - `and` and `or` are a bit clearer than `&&`/`&` and `||`/`|`,  
           but still _also_ use `&` and `|`, as we keep `&=` and `|=` anyways.  
     - **`xor`** instead of `^`  
       because we want `^` for the power function.
