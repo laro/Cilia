@@ -308,9 +308,10 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator ⊽(Int256 a, b) -> Int256 { return a nor b }
       operator ⊻(Int256 a, b) -> Int256 { return a xor b }
       ```
-        - Logical operators are mostly the same, but defined _only for `Bool`_.
-           - `operator !(Bool a) -> Bool { return not a }`
-           - No `&` and `|` for `Bool`
+        - Logical operators are mostly the same as bitwise, but
+            - defined _only for `Bool`_,
+            - `operator !(Bool a) -> Bool { return not a }` instead of `~`,
+            - No `&` and `|` defined for `Bool`.
     - Subscript/bracket/parenthesis/functor operators:
       ```
       class MyImage<type T> {
