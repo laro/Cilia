@@ -240,17 +240,17 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation (when used on integers)
                 - `anInt`**`and`**`anotherInt` -> `Int`
-            - So no ~~`&&`~~ and ~~`||`~~.
-                - [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
-                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`, so maybe Cilia should too?
-            - No and/or/nand/nor/xor with mixed types (you need to explicitly cast one side instead).
-        - Words like `and` and `or` IMHO are a bit clearer than `&&`/`&` and `||`/`|`.
+            - No mixed types allowd (you need to explicitly cast one side instead).
+        - Words like `and` and `or` IMHO are a bit clearer than `&&`/`&` and `||`/`|`, so they are recommended.
         - Still _also_ use `&` and `|` for bitwise operation,
             - as C/C++/Java/C# programmers are used to it,
             - as we keep `&=` and `|=` anyway.
         - Still _also_ use `&&` and `||` for boolean operation,
             - as C/C++/Java/C# programmers are used to it,
-            - as want `&&=` and `||=` anyway.
+                - [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
+                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`, too.
+            - as we want `&&=` and `||=` anyway.
+            - Defined on Bool only (_not_ integers).
     - **`not`** in addition to `!` (for boolean negation)
         - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
         - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
