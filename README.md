@@ -171,7 +171,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
       ```
       UInt32:1  sign
       UInt32:8  exponent
-      UInt32:24 significand // AKA mantissa
+      UInt32:23 significand // AKA mantissa
       ```
 - Not allowed / a syntax error is:
     - ~~`Float* m, &n`~~
