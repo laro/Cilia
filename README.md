@@ -388,6 +388,26 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator >=(Int256 a, b) -> Bool { ... }
       operator <=>(Int256 a, b) -> Int { ... }
       ```
+    - Logical operators
+      ```
+      operator not(Bool a) -> Bool { ... }
+      operator and(Bool a, b) -> Bool { ... }
+      operator or(Bool a, b) -> Bool { ... }
+      operator nand(Bool a, b) -> Bool { ... }
+      operator nor(Bool a, b) -> Bool { ... }
+      operator xor(Bool a, b) -> Bool { ... }
+      operator !(Bool a) -> Bool { return not a }
+      operator &&(Bool a, b) -> Bool { return a and b }
+      operator ||(Bool a, b) -> Bool { return a or b }
+      operator ∧(Bool a, b) -> Bool { return a and b }
+      operator ∨(Bool a, b) -> Bool { return a or b }
+      operator ⊼(Bool a, b) -> Bool { return a nand b }
+      operator ⊽(Bool a, b) -> Bool { return a nor b }
+      operator ⊻(Bool a, b) -> Bool { return a xor b }
+      ```
+        - Defined for _`Bool`_,
+        - operators `!`, not `~`,
+        - `&&` and `||`, not `&` and `|`.
     - Bitwise operators
       ```
       operator not(Int256 a) -> Int256 { ... }
@@ -405,10 +425,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       operator ⊽(Int256 a, b) -> Int256 { return a nor b }
       operator ⊻(Int256 a, b) -> Int256 { return a xor b }
       ```
-        - Logical operators are mostly the same as bitwise, but
-            - defined _only for `Bool`_,
-            - `operator !(Bool a) -> Bool { return not a }` instead of `~`,
-            - `&&` and `||` instead of `&` and `|`.
+        - Defined for _integers_ (not for `Bool`),
+        - operators `~`, not `!`,
+        - `&` and `|`, not `&&` and `||`.
     - Subscript/bracket/parenthesis/functor operators:
       ```
       class MyImage<type T> {
