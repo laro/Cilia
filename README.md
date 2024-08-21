@@ -167,6 +167,12 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
     - `const Float* pointerToConstantFloat`
     - `const Float const* constPointerToConstantFloat`
+    - Bit fields
+      ```
+      Int32:1  sign
+      Int32:8  exponent
+      Int32:24 significand // AKA mantissa
+      ```
 - Not allowed / a syntax error is:
     - ~~`Float* m, &n`~~
         - Type variations within multiple-variable declarations are _not_ allowed.
