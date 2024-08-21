@@ -317,8 +317,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - Bit-Shift & Rotation
     - `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
     - `<<` Shift left (here a logical shift left with UInt is the same as an arithmetic shift left with Int)
-    - `>>>` Rotate right (circular shift right)
-    - `<<<` Rotate left (circular shift left)
+    - `>>>` Rotate right (circular shift right, only defined for unsigned integers)
+    - `<<<` Rotate left (circular shift left, only defined for unsigned integers)
 - Operator declaration
     - Keyword **`operator`** instead of `func`.
     - As with normal functions: Arguments are passed as `in` by default (i.e. `const T&` or `const T`).
