@@ -321,8 +321,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `..:2` – RangeFullByStep(2)
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Bit-Shift & Rotation
-    - `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
-    - `<<` Shift left (here a logical shift left with UInt is the same as an arithmetic shift left with Int)
+    - `>>` Shift right (logical shift with unsigned integers, arithmetic shift with signed integers)
+    - `<<` Shift left (here a logical shift left with unsigned integers is the same as an arithmetic shift left with signed integers)
     - `>>>` Rotate right (circular shift right, only defined for unsigned integers)
     - `<<<` Rotate left (circular shift left, only defined for unsigned integers)
 - Operator declaration
