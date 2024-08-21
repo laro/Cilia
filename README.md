@@ -232,27 +232,34 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - Power function
     - **`a^x`** for `pow(a, x)` (as in Julia)
 - Boolean operators
-    - **`and`**, **`or`** in addition to `&`, `|`
+    - **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`** in addition to `&&`/`&`, `||`/`|`, ...
         - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
           [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
-          (but both have bitwise operators `&`, `|`, `^`).
         - Used for both
-            - boolean operation
+            - boolean operation (when used on Bool)
                 - `aBool`**`and`**`anotherBool` -> `Bool`
-            - bitwise operation
+            - bitwise operation (when used on integers)
                 - `anInt`**`and`**`anotherInt` -> `Int`
             - So no ~~`&&`~~ and ~~`||`~~.
-                - TODO [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
+                - [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
                   and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`, so maybe Cilia should too?
-            - No and/or/xor with mixed types (you need to explicitly cast one side instead).
-        - `and` and `or` are a bit clearer than `&&`/`&` and `||`/`|`,  
-          but still _also_ use `&` and `|`, as we keep `&=` and `|=` anyways.  
-    - **`xor`** instead of `^`  
-      because we want `^` for the power function.
-    - **`not`** in addition to `!`
+            - No and/or/nand/nor/xor with mixed types (you need to explicitly cast one side instead).
+        - Words like `and` and `or` IMHO are a bit clearer than `&&`/`&` and `||`/`|`.
+        - Still _also_ use `&` and `|` for bitwise operation,
+            - as C/C++/Java/C# programmers are used to it,
+            - as we keep `&=` and `|=` anyway.
+        - Still _also_ use `&&` and `||` for boolean operation,
+            - as C/C++/Java/C# programmers are used to it,
+            - as want `&&=` and `||=` anyway.
+    - **`not`** in addition to `!` (for boolean negation)
         - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
         - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
           (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
+        - Still use `~` for bitwise negation,
+            - as C/C++/Java/C# programmers are used to it,
+            - as we keep `~T` for the destructor anyway.
+    - **`xor`** _instead_ of `^`  
+      because we want `^` for the power function.
 - Equality
     - Default `operator==`
         - If not defined, then
