@@ -247,8 +247,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - as we keep `&=` and `|=` anyway.
         - Still _also_ use `&&` and `||` for boolean operation,
             - as C/C++/Java/C# programmers are used to it,
-                - [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
-                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`, too.
+                - even [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
+                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`,
             - as we want `&&=` and `||=` anyway.
             - Defined on Bool only (_not_ integers).
     - **`not`** in addition to `!` (for boolean negation)
