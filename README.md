@@ -275,7 +275,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - use negated generated `operator==`.
 - **Range operator** `..` and `..<`
     - `1..10` and `0..<10` are ranges
-        - as in Kotlin
+        - as in [Kotlin](https://kotlinlang.org/docs/ranges.html)
         - Similar, but diffentent:
             - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
             - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
