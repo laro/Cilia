@@ -329,8 +329,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       }
       ```
         - No return of this-reference,
-        - [as in Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/),
-        - so `if a = b { ... }` is _not_ accidentally allowed.
+            - [as in Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/),
+            - so `if a = b { ... }` is _not_ accidentally allowed.
         - Move assignment
           ```
           class Int256 {
