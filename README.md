@@ -237,7 +237,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           
 ## Operators
 - Power function
-    - **`a^x`** for `pow(a, x)` (as in Julia)
+    - **`a^x`** for `pow(a, x)` (as in Julia),
+    - "raise a to the power of x".
 - Boolean operators
     - **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`** in addition to `&&`/`&`, `||`/`|`, ...
         - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
