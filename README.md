@@ -169,9 +169,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `const Float const* constPointerToConstantFloat`
     - Bit fields
       ```
-      Int32:1  sign
-      Int32:8  exponent
-      Int32:24 significand // AKA mantissa
+      UInt32:1  sign
+      UInt32:8  exponent
+      UInt32:24 significand // AKA mantissa
       ```
 - Not allowed / a syntax error is:
     - ~~`Float* m, &n`~~
