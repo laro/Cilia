@@ -229,17 +229,107 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 
           
 ## Operators
-- Declaration
-    - Keyword `operator` instead of `func`.
+- Power function
+    - **`a^x`** for `pow(a, x)` (as in Julia)
+- Boolean operators
+    - **`and`**, **`or`** in addition to `&`, `|`
+        - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
+          [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
+          (but both have bitwise operators `&`, `|`, `^`).
+        - Used for both
+            - boolean operation
+                - `aBool`**`and`**`anotherBool` -> `Bool`
+            - bitwise operation
+                - `anInt`**`and`**`anotherInt` -> `Int`
+            - So no ~~`&&`~~ and ~~`||`~~.
+                - TODO [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
+                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`, so maybe Cilia should too?
+            - No and/or/xor with mixed types (you need to explicitly cast one side instead).
+        - `and` and `or` are a bit clearer than `&&`/`&` and `||`/`|`,  
+          but still _also_ use `&` and `|`, as we keep `&=` and `|=` anyways.  
+    - **`xor`** instead of `^`  
+      because we want `^` for the power function.
+    - **`not`** in addition to `!`
+        - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
+        - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
+          (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
+- Equality
+    - Default `operator==`
+        - If not defined, then
+            - use negated `operator!=` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use elementwise comparison with `==`
+                - Only possible if all elements themselves offer the `operator==`.
+                - Optimization for simple types: Byte-by-byte comparison.
+    - Default `operator!=`
+        - If not defined, then
+            - use negated `operator==` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use negated generated `operator==`.
+- **Range operator** `..` and `..<`
+    - `1..10` and `0..<10` are ranges
+        - as in Kotlin
+        - Similar, but diffentent:
+            - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
+            - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
+    - Different kinds of ranges:
+        - `1..3` – 1, 2, 3
+            - Range(1, 3)
+        - `0..<3` – 0, 1, 2
+            - RangeExclusiveEnd(0, 3)
+        - Range with step (especially to **iterate with the given step size in the `for` loop**)
+            - `1..6:2` – 1, 3, 5
+                - RangeByStep(1, 3, 2)
+            - `0..<6:2` – 0, 2, 4
+                - RangeExclusiveEndByStep(0, 3, 2)
+        - Downwards iterating range (especially to **iterate downwards in the `for` loop**).  
+          Step size is mandatory (to make it clear that we are counting down, to avoid wrong conclusions).
+            - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
+                - RangeByStep(8, 0, -1)
+                - Not ~~`8..0`~~, as Range(8, 0) is always empty (it is counting up, not down!)
+                - Not `8..<0:-1`, staticAssert in RangeExclusiveEndByStep that `step > 0`:
+                    - "The range operator with exclusive end (`..<`) is not compatible with negative increments, because when counting downwards it would be necessary/logical to write `..>` and that is not available."
+                    - It simply would be too much, IMHO.
+                    - Use `8..1:-1` instead.
+        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
+        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
+            - `..2` – ..., 1, 2
+                - RangeTo(2)
+            - `..<3` – ..., 1, 2
+                - RangeToExclusiveEnd(3)
+            - `0..` – 0, 1, 2, ...
+                - RangeFrom(0)
+            - `..`
+                - RangeFull()
+            - Incomplete range with step
+                - `..2:2` – RangeToByStep(2, 2)
+                - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
+                - `0..:2` – RangeFromByStep(0, 2)
+                - `..:2` – RangeFullByStep(2)
+        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- Bit-Shift & Rotation
+    - `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
+    - `<<` Shift left (here a logical shift left with UInt is the same as an arithmetic shift left with Int)
+    - `>>>` Rotate right (circular shift right)
+    - `<<<` Rotate left (circular shift left)
+- Operator declaration
+    - Keyword **`operator`** instead of `func`.
+    - As with normal functions: Arguments are passed as `in` by default (i.e. `const T&` or `const T`).
     - Assignment operator
       ```
       class Int256 {
           operator =(Int256 other) { ... }
       }
       ```
-       - No return of this-reference,
-       - [as in Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/),
-       - so `if a = b { ... }` is _not_ accidentally allowed.
+        - No return of this-reference,
+        - [as in Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/),
+        - so `if a = b { ... }` is _not_ accidentally allowed.
+        - Move assignment
+          ```
+          class Int256 {
+              operator =(move Int256 other) { ... }
+          }
+          ```
     - Arithmetic operators
       ```
       operator +(Int256 a, b) -> Int256 { ... }
@@ -331,89 +421,6 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           }
       }
       ```
-- Power function
-    - **`a^x`** for `pow(a, x)` (as in Julia)
-- Boolean operators
-    - **`and`**, **`or`** in addition to `&`, `|`
-        - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
-          [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
-          (but both have bitwise operators `&`, `|`, `^`).
-        - Used for both
-            - boolean operation
-                - `aBool`**`and`**`anotherBool` -> `Bool`
-            - bitwise operation
-                - `anInt`**`and`**`anotherInt` -> `Int`
-            - So no ~~`&&`~~ and ~~`||`~~.
-                - TODO [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
-                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`, so maybe Cilia should too?
-            - No and/or/xor with mixed types (you need to explicitly cast one side instead).
-        - `and` and `or` are a bit clearer than `&&`/`&` and `||`/`|`,  
-          but still _also_ use `&` and `|`, as we keep `&=` and `|=` anyways.  
-    - **`xor`** instead of `^`  
-      because we want `^` for the power function.
-    - **`not`** in addition to `!`
-        - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
-        - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
-          (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
-- Equality
-    - Default `operator==`
-        - If not defined, then
-            - use negated `operator!=` (if defined), or
-            - use `operator<=>` (if defined), or
-            - use elementwise comparison with `==`
-                - Only possible if all elements themselves offer the `operator==`.
-                - Optimization for simple types: Byte-by-byte comparison.
-    - Default `operator!=`
-        - If not defined, then
-            - use negated `operator==` (if defined), or
-            - use `operator<=>` (if defined), or
-            - use negated generated `operator==`.
-- **Range operator** `..` and `..<`
-    - `1..10` and `0..<10` are ranges
-        - as in Kotlin
-        - Similar, but diffentent:
-            - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
-            - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
-    - Different kinds of ranges:
-        - `1..3` – 1, 2, 3
-            - Range(1, 3)
-        - `0..<3` – 0, 1, 2
-            - RangeExclusiveEnd(0, 3)
-        - Range with step (especially to **iterate with the given step size in the `for` loop**)
-            - `1..6:2` – 1, 3, 5
-                - RangeByStep(1, 3, 2)
-            - `0..<6:2` – 0, 2, 4
-                - RangeExclusiveEndByStep(0, 3, 2)
-        - Downwards iterating range (especially to **iterate downwards in the `for` loop**).  
-          Step size is mandatory (to make it clear that we are counting down, to avoid wrong conclusions).
-            - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
-                - RangeByStep(8, 0, -1)
-                - Not ~~`8..0`~~, as Range(8, 0) is always empty (it is counting up, not down!)
-                - Not `8..<0:-1`, staticAssert in RangeExclusiveEndByStep that `step > 0`:
-                    - "The range operator with exclusive end (`..<`) is not compatible with negative increments, because when counting downwards it would be necessary/logical to write `..>` and that is not available."
-                    - It simply would be too much, IMHO.
-                    - Use `8..1:-1` instead.
-        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
-        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
-            - `..2` – ..., 1, 2
-                - RangeTo(2)
-            - `..<3` – ..., 1, 2
-                - RangeToExclusiveEnd(3)
-            - `0..` – 0, 1, 2, ...
-                - RangeFrom(0)
-            - `..`
-                - RangeFull()
-            - Incomplete range with step
-                - `..2:2` – RangeToByStep(2, 2)
-                - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
-                - `0..:2` – RangeFromByStep(0, 2)
-                - `..:2` – RangeFullByStep(2)
-        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
-- Bit-Shift & Rotation
-    - `>>` Shift right (logical shift with UInt, arithmetic shift with Int)
-    - `<<` Shift left (here a logical shift left with UInt is the same as an arithmetic shift left with Int)
-    - `>>>` Rotate right (circular shift right)
-    - `<<<` Rotate left (circular shift left)
 
 
 ## Branches & Loops
