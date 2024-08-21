@@ -240,7 +240,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `aBool`**`and`**`anotherBool` -> `Bool`
             - bitwise operation (when used on integers)
                 - `anInt`**`and`**`anotherInt` -> `Int`
-            - No mixed types allowd (you need to explicitly cast one side instead).
+            - No mixed types allowed (you need to explicitly cast one side instead).
         - Words like `and` and `or` IMHO are a bit clearer than `&&`/`&` and `||`/`|`, so they are recommended.
         - Still _also_ use `&` and `|` for bitwise operation,
             - as C/C++/Java/C# programmers are used to it,
