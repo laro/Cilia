@@ -162,7 +162,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Int i = 0`
     - `Int x, y`
     - `Int x = 99, y = 199`
-    - **`Float* m, n`   // m _and_ n are pointers** (contrary to C/C++)
+    - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
     - `Image image(width, height, 0.0)`
     - `const Float* pointerToConstantFloat`
     - `const Float const* constPointerToConstantFloat`
