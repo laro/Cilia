@@ -601,11 +601,12 @@ In case on conflicts, in-class definitions (inside the class) have priority (and
       `using StringView::InArgumentType = const StringView`
 - Static constants, typically for type traits
   ```
-  static const Bool Float32::IsFloatingPoint = True
-  static const Bool Float64::IsFloatingPoint = True
+  const Bool Float32::IsFloatingPoint = True
+  const Bool Float64::IsFloatingPoint = True
   ```
     - TODO: Allow external static _variables_ (i.e. mutable), too?
         - Why not. But for what would it be useful?
+        - `Int Float32::numOfInstances = 0`
 
 
 ## (Smart) Pointers
@@ -761,12 +762,12 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - TODO Really this syntax: `{ ... } { ... }`?
 - Template **type alias** with `using` (not ~~`typedef`~~)
     - `using<type T> T::InArgumentType = const T&`
-- Template static variables/constants as type traits
+- Template static constants as type traits
     - ```
-      static<type T> const Bool          T::IsFloatingPoint = False
-      static         const Bool    Float32::IsFloatingPoint = True
-      static         const Bool    Float64::IsFloatingPoint = True
-      static<type T> const Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
+      template<type T> const Bool          T::IsFloatingPoint = False
+                       const Bool    Float32::IsFloatingPoint = True
+                       const Bool    Float64::IsFloatingPoint = True
+      template<type T> const Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
       ```
 
 
