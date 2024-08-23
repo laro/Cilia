@@ -1406,7 +1406,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           `using var y = data[1]`
         - member functions  
           `using func pushBack = push_back`
-
+    - A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without.  
+      But only with wrapper we have
+        - a Cilia standard library with "idiomatic" Cilia style (i.e. CamelCase),
+        - that is also fully compatible with C++ APIs (i.e. using Int, String and StringView instead of int, string and string_view).
 - Matrix & Vector
     - Geometry
         - Static/fixed size
