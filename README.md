@@ -544,6 +544,7 @@ No braces around the condition clause.
       }
       ```
 - **switch/case** with `fallthrough` instead of ~~`break`~~
+  like Swift
     - ```
       switch i {
       case 0:
@@ -553,10 +554,13 @@ No braces around the condition clause.
       case 1:
           print("1")
       
-      case 2:      
+      case 2:
           fallthrough
       case 3:
           print("2 or 3")
+      
+      case 4, 5:
+          print("4 or 5")
       
       default:
           print("default")
