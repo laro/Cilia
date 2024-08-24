@@ -88,7 +88,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
 
 - All types and **classes in upper CamelCase**.
     - Basic/arithmetic types
-        - `Bool`, `Int`, `Int64`, `UInt`, `BigInt`, `Float`, `Float64`, `BFloat16`, `BigFloat`
+        - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`, `Float64`, `BFloat16`, `BigFloat`
     - Cilia standard library
         - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
