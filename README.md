@@ -649,7 +649,7 @@ In case on conflicts, in-class definitions (inside the class) have priority (and
 - Redefine `T^` and `T+` for special cases / **interoperability with other languages**:
     - `T^` is defined via type traits `SharedPtrType`,  
         - For C++/Cilia classes `T^` is `SharedPtr<T>`:
-            - `using<type T> T::SharedPtrType = SharedPtr<T>`
+            - `template<type T> using T::SharedPtrType = SharedPtr<T>`
         - Objective-C/Swift classes use their reference counting mechanism:
             - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
         - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
@@ -660,7 +660,7 @@ In case on conflicts, in-class definitions (inside the class) have priority (and
             - Probably very similar to C#/.NET.
     - `T+` is defined via type traits `UniquePtrType`.
         - For C++/Cilia classes `T+` is `UniquePtr<T>`:
-            - `using<type T> T::UniquePtrType = UniquePtr<T>`
+            - `template<type T> using T::UniquePtrType = UniquePtr<T>`
 
 
 ## Templates
@@ -722,8 +722,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ```
     - For extension function templates it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are given.  
       Therefore we write
-        - `func<type T, Int N> T[N]::size() -> Int { return N }`
-        - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
+        - `template<type T, Int N> func T[N]::size() -> Int { return N }`
+        - `template<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
             - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~, as  
                 - then T and N would be used even before they were declared, and
                 - with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we want to write  
@@ -765,7 +765,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
     - TODO Really this syntax: `{ ... } { ... }`?
 - Template **type alias** with `using` (not ~~`typedef`~~)
-    - `using<type T> T::InArgumentType = const T&`
+    - `template<type T> using T::InArgumentType = const T&`
 - Template static constants as type traits
     - ```
       template<type T> const Bool          T::IsFloatingPoint = False
