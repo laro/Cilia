@@ -805,7 +805,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function  
-          `func<type T, Int N> T[N]::size() -> Int { return N }`
+          `template<type T, Int N> func T[N]::size() -> Int { return N }`
 - Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
   But array subscript with `Int+` is unsafe.
     - ```
