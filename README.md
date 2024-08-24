@@ -991,7 +991,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - Objects that are POD (Plain Old Data) with a size less than or equal to the size of two pointers (i.e. of up to 16 bytes) are passed by value.
         - Larger objects (or non-POD) are passed by reference.
     - So use const _reference_ as general default.
-        - `using<type T> T::InArgumentType = const T&`  
+        - `template<type T> using T::InArgumentType = const T&`  
     - A "list of exceptions" for the "const _value_ types".
         - ```
           using       Bool::InArgumentType = const Bool
@@ -1007,7 +1007,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           using  ArrayView::InArgumentType = const ArrayView
           ...
           ```
-        - `using<type T> Complex<T>::InArgumentType = T::InArgumentType`
+        - `template<type T> using Complex<T>::InArgumentType = T::InArgumentType`
             - A generic rule: `Complex<T>` is passed the same way as `T`.
             - Could be further refined/corrected with  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
