@@ -1675,7 +1675,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - "*.2024.cilia" – version from the year 2024
         - "*.2024b.cilia" – second version from the year 2024
 
-- No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just object-like `#define` and:
+- No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just object-like:
+    - `#define`
     - `#if`
     - `#else`
     - `#endif`
