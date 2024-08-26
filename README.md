@@ -1461,6 +1461,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 ## String, Char & CodePoint
 - `cilia::String` with _basic/standard_ unicode support.
+    - Based on UTF-8, as that IMHO is (among all the Unicode formats)
+        - the most widespread nowadays,
+        - the most compatible (as it is ASCII based),
+        - the most efficient, at least for "western" use (and you are free to use UTF16- or UTF32String otherwise).
     - Iteration over a `String` or `StringView` by:
         - **grapheme clusters**
             - represented by `StringView`.
