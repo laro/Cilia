@@ -918,6 +918,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
 - Parameter passing keywords:
     - **`in`**
+        - to mark parameters used as input.
         - Is the default if no parameter passing keyword is given.
         - Technically either `const X&` or `const X` (sometimes `const XView`)
             - `const X&` as default:
@@ -938,18 +939,18 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
                   `for str in stringArray { ... }`
                     - `str` is `const StringView`
     - **`inout`**
-        - to mark as mutable/non-const reference.
+        - to mark parameters used as input (so they need to be initialized at the caller) _and_ as output.
         - Technically a non-const/mutable reference (`X&`)
-        - Also at the caller `swap(inout a, inout b)`
+        - Keyword `inout` is also to be given at the caller: `swap(inout a, inout b)`
         - Examples:
             - `for inout str in stringArray { ... }`
                 - `str` is `String&`
             - `for inout i in intArray { ... }`
                 - `i` is `Int&`
     - **`out`**
-        - to mark as (non-const) reference.
+        - to mark output parameters (is initialized at the callee).
         - Technically, like `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
-        - Also at the caller:
+        - Keyword `out` is also to be given at the caller:
           ```
           String errorDetails
           if not open("...", out errorDetails) {
