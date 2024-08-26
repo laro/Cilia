@@ -1311,7 +1311,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
         - Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves.
         - Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves.
-        - Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited by `unsafe` blocks.
+        - Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
 - `cilia::safe::Int`
     - Like `cilia::Int`, but with **overflow check** for all operations,
         - may throw OverflowException (or abort the program).
