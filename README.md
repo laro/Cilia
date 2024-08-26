@@ -1333,7 +1333,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != NullPtr`
         - `obj is cilia::Array` (i.e. a template)
         - `obj is cilia::Integer` (i.e. a concept)
-    - Also support value query?
+    - TODO Also support value query?
 - `as`
     - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
         - `obj as T` instead of `T(obj)`
