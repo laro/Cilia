@@ -1755,7 +1755,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `multiply: (x: int, y: int) -> int = return x * y;`
         - Nice and short, as in math, but
             - actually not quite as in math, as math usually does not denote the type,
-            - in the end it is one _more_ kind of notation for functions.
+            - in the end it is _one more kind_ of notation for functions.
     - [Unified `operator=` for assignment, constructor, and destructor)](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
         - Takes a bit of getting used to.
     - [Implicit Move on Last Use](https://github.com/ntrel/cpp2?tab=readme-ov-file#implicit-move-on-last-use)
