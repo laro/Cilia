@@ -1299,7 +1299,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `unsafe` code is _necessary_ to implement certain abstractions (as container classes):
         - ```
           operator[Int i] -> T& {
-              if i < 0 or i >= size {
+              if CHECK_BOUNDS and (i < 0 or i >= size) {
                   terminate()
               }
               unsafe {
