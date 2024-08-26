@@ -1315,7 +1315,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 - `cilia::safe::Int`
     - Like `cilia::Int`, but with **overflow check** for all operations,
         - may throw OverflowException (or abort the program).
-    - Generally considered to be too costly, even in language that are otherwise considered as "safe".
+    - Generally considered to be too costly, even in languages that are otherwise considered as "safe".
     - `safe::Int8`/`Int16`/`Int32`/`Int64`
     - `safe::Uint`
         - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
