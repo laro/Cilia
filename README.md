@@ -174,6 +174,15 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
       UInt32:8  exponent
       UInt32:23 significand // AKA mantissa
       ```
+        - Little Endian (Motorola)
+            - cilia::le::Int, Int8, Int16, Int32, Int64
+            - MSB first (most significant byte first)
+            - MSb first (most significant bit first)
+        - Big Endian (Intel)
+            - cilia::be::Int, Int8, Int16, Int32, Int64
+            - LSB last (least significant byte first)
+            - LSb last (least significant bit first)
+
 - Not allowed / a syntax error is:
     - ~~`Float* m, &n`~~
         - Type variations within multiple-variable declarations are _not_ allowed.
