@@ -168,20 +168,6 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `const Float const* constPointerToConstantFloat`
         - `const` always binds to the right (contrary to C/C++).
     - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
-    - Bit fields
-      ```
-      UInt32:1  sign
-      UInt32:8  exponent
-      UInt32:23 significand // AKA mantissa
-      ```
-        - Little Endian (Motorola)
-            - `cilia::le::Int`, `Int8`, `Int16`, `Int32`, `Int64`
-            - MSB first (most significant byte first)
-            - MSb first (most significant bit first)
-        - Big Endian (Intel)
-            - `cilia::be::Int`, `Int8`, `Int16`, `Int32`, `Int64`
-            - LSB last (least significant byte first)
-            - LSb last (least significant bit first)
 
 - Not allowed / a syntax error is:
     - ~~`Float* m, &n`~~
@@ -196,6 +182,20 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - **Type inference** with `var` / `const`:
     - `var i = 3` instead of ~~`auto i = 3;`~~
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no such thing as a "constant variable".)
+- Bit fields
+  ```
+  UInt32:1  sign
+  UInt32:8  exponent
+  UInt32:23 significand // AKA mantissa
+  ```
+    - Little Endian (Motorola)
+        - `cilia::le::Int`, `Int8`, `Int16`, `Int32`, `Int64`
+        - MSB first (most significant byte first)
+        - MSb first (most significant bit first)
+    - Big Endian (Intel)
+        - `cilia::be::Int`, `Int8`, `Int16`, `Int32`, `Int64`
+        - LSB first (least significant byte first)
+        - LSb first (least significant bit first)
 
 
 ## Classes
