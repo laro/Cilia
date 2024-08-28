@@ -1,4 +1,4 @@
-## Interesting Ideas from Other Languages
+# Interesting Ideas from Other Languages
 - **Circle**
     - **Fix C++ "wrong defaults"**  
         [Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
