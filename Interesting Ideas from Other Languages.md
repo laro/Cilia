@@ -53,7 +53,7 @@
     - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
     -  [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
         - `in`, `inout`, `out`, `move`, `copy`, `forward`
-        - I like this and therefore "copied" it. Admittedly without fully understanding the difference between move and forward.
+        - I like this and therefore "copied" it. Admittedly without fully understanding the difference between `move` and `forward`.
     - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
       ```
       outer: while true {
@@ -75,13 +75,13 @@
         - Nice and short, as in math, but
             - actually not quite as in math, as math usually does not denote the type,
             - in the end it is _one more kind_ of notation for functions.
-    - [Unified `operator=` for assignment, constructor, and destructor)](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
-        - Takes a bit of getting used to.
     - [Implicit Move on Last Use](https://github.com/ntrel/cpp2?tab=readme-ov-file#implicit-move-on-last-use)
         - So resources are freed even earlier than in C++.
     - [Named Return Values](https://github.com/ntrel/cpp2?tab=readme-ov-file#named-return-values)
     - [Inspect](https://github.com/ntrel/cpp2?tab=readme-ov-file#inspect),
       a kind of pattern matching.
+    - [Unified `operator=` for assignment, constructor, and destructor)](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
+        - Takes a bit of getting used to.
 
 - **Rust**
     - Security, of course: borrow checker etc.
