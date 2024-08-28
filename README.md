@@ -1715,22 +1715,23 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - If the [suggestion](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#simpler_precedence) of Circle (Sean Baxter) works well, then that would be fine.
             - Cpp2 (Herb Sutter) has [this precedence](https://hsutter.github.io/cppfront/cpp2/common/?h=operator#binary-operators).
         6. [Hard-to-parse declarations and the most vexing parse.](http://eel.is/c++draft/dcl.pre#nt:simple-declaration)
-            - Use `func` (but not typically `var`)
+            - Use the keyword `func` (but not typically `var`, unless you want type inferring)
         7. [Template brackets `< >` are a nightmare to parse.](http://eel.is/c++draft/temp.names#nt:template-argument-list)
             - I would not like to change this, only if it _really_ has to be.
             - Cpp2 / Herb Sutter kept `< >` after all.
         8. [Forwarding parameters and `std::forward` are error prone.](http://eel.is/c++draft/temp.deduct#call-3)
            - I am not familiar with the problem(s), but Cpp2 / Herb Sutter offers the `forward` keyword.
         10. [Braced initializers can choose the wrong constructor.](http://eel.is/c++draft/dcl.init.list#2)
-            - Do without braced initializers altogether.
-            - With `func` there is now a clear distinction between function declaration and variable declaration with initialization.
-            - The classic initialization via `(...)`, ultimately a function call of the constructor, fits better.
-            - Curly brackets only for initializer lists, i.e. for tuples, lists etc.
-            - Square brackets for arrays.
+            - Do without braced initialization altogether.
+                - With the keyword `func` there is now a clear distinction between function declaration and variable declaration with initialization.
+                - The classic initialization via `(...)`, ultimately a function call of the constructor, is a better fit anyway.
+            - Braces / curly brackets only for initializer lists,
+                - only when a constructor or assignment operator is defined, with `InitializerList` as input parameter,
+                - i.e. for tuples, lists etc.
         11. [`0` shouldn't be a null pointer constant.](http://eel.is/c++draft/expr#conv.ptr-1)
-            - Not allowed, use `NullPtr`.
+            - Not allowed, use `NullPtr` or explicit casting.
         12. [`this` shouldn't be a pointer.](http://eel.is/c++draft/expr.prim.this#1)
-            - Better it is a reference.
+            - Better `this` is a reference.
     - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
         - Standardization is better than having multiple different language "dialects"  
           **but**
