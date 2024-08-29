@@ -69,18 +69,19 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - C++ headers and modules from Cilia,
         - Cilia headers and modules from C++.
     - Can call C functions, access C structs (as C++ can do).
-    - The compiler recognizes the language (C, C++, or Cilia) by
-        - the file extension
-            - Cilia: `*.cilia` `*.hilia`  &nbsp;  `*.cil` `*.hil`
-            - C++: `*.cpp` `*.hpp` &nbsp; `*.cxx` `*.hxx` &nbsp; `*.h`
-                - `*.h` is of course a problem, as the header could be C or C++ code.  
+    - The compiler recognizes the language (C, C++, or Cilia) by:
+        - File extension
+            - Cilia: `*.cil` `*.hil` or  `*.cilia` `*.hilia`
+            - C++: `*.cpp` `*.hpp` or `*.cxx` `*.hxx` or `*.h`
+                - `*.h` is a problem, as the header could be C or C++ code.  
                   So use of `*.hpp` is recommended for C++ code.  
                   This can probably best be solved using path based rules.
             - C: `*.c` `*.h`
-        - path based rules
-            - to handle C or C++ standard headers in certain directories 
-        - can be set in the IDE or on the command line
-            - for each file individually 
+        - Path based rules,
+            - to handle C or C++ standard headers in certain directories.
+        - File specific configuration,
+            - can be set in the IDE or on the command line,  
+              for each file individually.
 
 
 ## CamelCase Style
