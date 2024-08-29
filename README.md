@@ -998,11 +998,11 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - TODO Technically a right-value reference (`X&&`), too?
 - Type traits **`InArgumentType`** to determine the concrete type to be used for `in`-passing.
     - The rule of thumb is:
-        - Objects that are POD (Plain Old Data) with a size less than or equal to the size of two pointers (i.e. of up to 16 bytes) are passed by value.
+        - Objects that are POD (Plain Old Data) with a size less than or equal to the size of two Int (i.e. up to 16 bytes) are passed by value.
         - Larger objects (or non-POD) are passed by reference.
-    - So use const _reference_ as general default.
+    - So as general default use const _reference_,
         - `template<type T> using T::InArgumentType = const T&`  
-    - A "list of exceptions" for the "const _value_ types".
+    - and use a "list of exceptions" for the "const _value_ types".
         - ```
           using       Bool::InArgumentType = const Bool
           using       Int8::InArgumentType = const Int8
@@ -1018,8 +1018,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ...
           ```
         - `template<type T> using Complex<T>::InArgumentType = T::InArgumentType`
-            - A generic rule: `Complex<T>` is passed the same way as `T`.
-            - Could be further refined/corrected with  
+            - A generic rule: `Complex<T>` is passed the same way as `T`,
+            - could be further refined/corrected with  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 (so pass by value would be the default).
         - This way developers only need to extend this list if they create _small_ classes (and if they want/need maximum performance). And I expect most custom class to be larger than 16 bytes (so nothing to do for those).
