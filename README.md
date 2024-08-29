@@ -995,7 +995,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - Technically a right-value reference (`X&&`)
     - **`forward`**
         - for perfect forwarding.
-        - Technically a right-value reference (`X&&`)?
+        - TODO Technically a right-value reference (`X&&`), too?
 - Type traits **`InArgumentType`** to determine the concrete type to be used for `in`-passing.
     - The rule of thumb is:
         - Objects that are POD (Plain Old Data) with a size less than or equal to the size of two pointers (i.e. of up to 16 bytes) are passed by value.
