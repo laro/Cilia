@@ -557,20 +557,21 @@ No braces around the condition clause.
   like Swift
     - ```
       switch i {
-      case 0:
-          print("0")
-          // implicit break
-      
       case 1:
           print("1")
+          // implicit break
       
-      case 2:
+      case 2, 3:
+          print("Either 2 or 3")
+          // implicit break
+      
+      case 4:
+          // do something
           fallthrough
-      case 3:
-          print("2 or 3")
-      
-      case 4, 5:
+      case 5:
+          // do something more
           print("4 or 5")
+          // implicit break
       
       default:
           print("default")
