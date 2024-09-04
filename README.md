@@ -140,12 +140,11 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 ## Basic / Arithmetic Types
 - `Bool`
     - not ~~`bool`~~ nor ~~`Boolean`~~
-- `Int`, `UInt`
-    - `Int` == `Int64`
-        - `Int` == `Int32` on 32 bit systems only (i.e. old/small platforms).
-        - _No_ ~~`Size`~~ or ~~`SSize`~~, use `Int` instead.
+- `Int` == `Int64`
+    - `Int` == `Int32` on 32 bit systems only (i.e. old/small platforms).
+    - _No_ ~~`Size`~~ or ~~`SSize`~~, use `Int` instead.
     - `Int8`, `Int16`, `Int32`, `Int64`
-    - `UInt8`, `UInt16`, `UInt32`, `UInt64`
+    - `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
 - `Float`
     - `Float` == `Float32`
@@ -175,7 +174,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - ~~`Float*m`~~
         - Whitespace _between_ type specification and variable name is mandatory.
     - ~~`Image image { width, height, 0.0 }`~~
-        - No list initialization for plain constructors, as there is no need anymore.
+        - No list initialization _for plain constructors_, as there is no need anymore.
         - There are generally _no_ unsafe integral promotions and _no_ implicit narrowing conversions.
         - See [Misc](#misc) / Mixed arithmetic and [https://stackoverflow.com/a/18222927](https://stackoverflow.com/a/18222927)
 - **Type inference** with `var` / `const`:
