@@ -88,10 +88,8 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
 Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
 
 - All types and **classes in upper CamelCase**.
-    - Basic/arithmetic types
-        - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`, `Float64`, `BFloat16`, `BigFloat`
-    - Cilia standard library
-        - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
+    - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`
+    - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
 - **Functions in lower camelCase**
     - `str.findFirstOf(...)`
