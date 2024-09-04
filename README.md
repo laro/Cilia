@@ -87,23 +87,23 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
 ## CamelCase Style
 Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
 
-- All types and **classes in upper CamelCase**.
+- All types and **classes** in **upper CamelCase**.
     - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`
     - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
-- **Functions in lower camelCase**
-    - `str.findFirstOf(...)`
-    - `vec.pushBack(...)`
-    - `Thread::hardwareConcurrency()`
-
-- Variables/instances/objects in lower camelCase
+- **Variables**/instances/objects in **lower camelCase**
     - `Int i`
     - `String word`
     - `String[] words`
     - `ContactInfo[String] contactInfoForID`
     - Feel free to bend/break this rule, e.g. name matrices as `Matrix M, R, L`
       
-- Global constants in upper CamelCase
+- **Functions** in **lower camelCase**
+    - `str.findFirstOf(...)`
+    - `vec.pushBack(...)`
+    - `Thread::hardwareConcurrency()`
+
+- **Global constants** in **upper CamelCase**
     - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)
     - Constant-like keywords
         - `NullPtr`
