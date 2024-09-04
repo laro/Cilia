@@ -165,7 +165,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `const Float* pointerToConstantFloat`
     - `const Float const* constPointerToConstantFloat`
         - `const` always binds to the right (contrary to C/C++).
-    - `const Complex<Float>& complexNumber = complexNumberWithOtherName`
+    - `Complex<Float>& complexNumber = complexNumberWithOtherName`
 
 - Not allowed / a syntax error is:
     - ~~`Float* m, &n`~~
