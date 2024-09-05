@@ -71,7 +71,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
     - Can call C functions, access C structs (as C++ can do).
     - The compiler recognizes the language (C, C++, or Cilia) by:
         - Marked blocks
-            - `extern "C++"` { ... }`
+            - `extern "C++" { ... }`
             - `extern "Cilia" { ... }`
             - `extern "C" { ... }`
         - File extension
