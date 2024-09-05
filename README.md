@@ -82,6 +82,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - File specific configuration,
             - can be set in the IDE or on the command line,  
               for each file individually.
+        - `extern "C"` / `"C++"` / `"Cilia" { ... }`
 
 
 ## CamelCase Style
