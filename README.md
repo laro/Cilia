@@ -70,6 +70,10 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - Cilia headers and modules from C++.
     - Can call C functions, access C structs (as C++ can do).
     - The compiler recognizes the language (C, C++, or Cilia) by:
+        - Marked blocks
+            - `extern "C++"` { ... }`
+            - `extern "Cilia" { ... }`
+            - `extern "C" { ... }`
         - File extension
             - Cilia: `*.cil` `*.hil` or  `*.cilia` `*.hilia`
             - C++: `*.cpp` `*.hpp` or `*.cxx` `*.hxx` or `*.h`
@@ -82,7 +86,6 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - File specific configuration,
             - can be set in the IDE or on the command line,  
               for each file individually.
-        - `extern "C"` / `"C++"` / `"Cilia" { ... }`
 
 
 ## CamelCase Style
