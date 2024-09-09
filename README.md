@@ -914,7 +914,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - e.g. `ContactInfo[String] contactInfoForID` as short form  
       of `Map<String, ContactInfo> contactInfoForID`
 - "Make simple things simple",  
-  having a short syntax for associative arrays so it is easy to use.
+  having a short syntax for associative arrays so they are easy to use.
 - Maybe partial template specialization:
     - `Map<Int, ...>` is a `HashMap`
     - `Map<String, ...>` is a `SortedMap`
