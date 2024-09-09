@@ -943,7 +943,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
                 - `for i in [1, 2, 3] { ... }`
                     - `i` is `const Int`
                 - `for str in ["a", "b", "c"] { ... }`
-                    - `str` is `const StringView` (a string-literal like `"a"` forms a `const StringView`, therefore `["a", "b", "c"]` is a `StringView[]`)
+                    - `str` is `const StringView` (a string-literal like `"a"` forms a `const StringView`, therefore `["a", "b", "c"]` is a `const StringView[]`)
             - `const XView` for types that have a corresponding view type:
                 - `concat(String first, String second)`
                     - is effectively translated to `concat(const StringView first, const StringView second)`
