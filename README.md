@@ -947,7 +947,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
             - `const XView` for types that have a corresponding view type:
                 - `concat(String first, String second)`
                     - is effectively translated to `concat(const StringView first, const StringView second)`
-                - `String[] stringArray = ["a", "b", "c"]`  
+                - `String[] stringArray = ...`  
                   `for str in stringArray { ... }`
                     - `str` is `const StringView`
     - **`inout`**
