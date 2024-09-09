@@ -581,7 +581,7 @@ No braces around the condition clause.
 
 
 ## Aliasing
-Alias with `using` for 
+Create an alias with `using`, for:
 - Member **variables**  
   `using var x = data[0]`  
   `using var y = data[1]`  
