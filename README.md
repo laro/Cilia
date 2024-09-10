@@ -27,7 +27,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
 
 
 ## Introduction
-- Ideas / a wish list / a "Gedanken experiment" for an "improved" C++
+- Ideas / a wish list for an "improved" C++, a "Gedanken experiment",
     - with a **simplified** syntax,
     - roughly **in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Java, JavaScript, Kotlin, Swift
     - Isomorphic mapping of all C++ functionality to Cilia shall be possible
