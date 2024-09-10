@@ -29,12 +29,12 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
 ## Introduction
 - Ideas / a wish list for an "improved" C++
     - with a **simplified** syntax,
-    - in the **[style of Qt](https://wiki.qt.io/Qt_Coding_Style)** (roughly like Java, JavaScript, Kotlin, Swift)
+    - roughly **in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Java, JavaScript, Kotlin, Swift
     - Isomorphic mapping of all C++ functionality to Cilia possible
         - only with other/better/shorter "expression".
 - C++ "Successor Language / Syntax"
      - similar to [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle).
-     - Like the transitions from C to C++, Java to Kotlin, Objective-C to Swift, JavaScript to TypeScript
+     - Like C and C++, Java and Kotlin, Objective-C and Swift, JavaScript and TypeScript
 - Uses the same compiler backend as C++ (clang comes to mind)  
   with an own / a new compiler frontend.
     - Or a precompiler, like Cpp2, if that is significantly easier to do.
