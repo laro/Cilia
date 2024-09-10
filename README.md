@@ -73,7 +73,9 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - Marked blocks
             - `lang "C++" { ... }`
             - `lang "Cilia" { ... }`
-            - `lang "C" { ... }`
+            - ~~`lang "C" { ... }`~~
+            - TODO Limited to top level?
+            - Limited to languages where the scope is marked with `{ }`.
         - File extension
             - Cilia: `*.cil` `*.hil` or  `*.cilia` `*.hilia`
             - C++: `*.cpp` `*.hpp` or `*.cxx` `*.hxx` or `*.h`
