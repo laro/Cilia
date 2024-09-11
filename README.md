@@ -1266,11 +1266,15 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
             - for deployment,
             - _with_ range checks,
             - suitable for most situations,
+            - by default using _safe_ containers (with safe iterators),
+                - optionally using unsafe containers (with unsafe iterators),
             - with memory layout compatible to ~~EvenFasterBut~~UnsafeRelease.
         - ~~EvenFasterBut~~**UnsafeRelease**
             - for deployment,
-            - _without_ range checks.
-            - when maximum performance is desired.
+            - _without_ range checks (for even better performance),
+            - by default still using _safe_ containers (with safe iterators),
+                - so memory layout is compatible to Release,
+            - _optionally_ using unsafe containers (with unsafe iterators, for even better performance).
 - **Initialization**
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
     - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
