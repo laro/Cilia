@@ -1,6 +1,6 @@
 # Cilia
 **C++ with CamelCase Style**  
-I'd like to have the standard library roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), Java, or JavaScript/TypeScript.
+I'd like to have the standard library roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style), Java, JavaScript/TypeScript, Kotlin, Swift.
 
 **C++ with Simplified Syntax**  
 Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed.
@@ -29,7 +29,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
 ## Introduction
 - Ideas / a wish list for an "improved" C++, a "Gedanken experiment",
     - with a **simplified syntax**,
-    - roughly **in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Java, JavaScript, Kotlin, Swift
+    - roughly **in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Java, JavaScript/TypeScript, Kotlin, Swift.
     - Isomorphic mapping of all C++ functionality to Cilia shall be possible
         - only with other/better/shorter "expression".
 - C++ "Successor Language / Syntax"
