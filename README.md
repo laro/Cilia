@@ -45,7 +45,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - I'd like to call it "RROD" (Resource Release on Object Destruction)
     - shared pointers (`T^`).
 - Why a new language, not extending C++?
-    - The [CamelCase style](#style) could basically be archieved in C++, too
+    - The [CamelCase style](#camelcase-style) could basically be archieved in C++, too
     - C++ could be extended by some features:
         - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow wrapper for the C++ standard library (i.e. a translation layer).
     - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
