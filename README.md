@@ -311,7 +311,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - `0..<6:2` – 0, 2, 4
                 - RangeExclusiveEndByStep(0, 3, 2)
         - Downwards iterating range (especially to **iterate downwards in the `for` loop**).  
-          Step size is mandatory (to make it clear that we are counting down, to avoid wrong conclusions).
+          Step size is mandatory here (to make it clear that we are counting down, to avoid wrong conclusions).
             - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
                 - RangeByStep(8, 0, -1)
                 - Not ~~`8..0`~~, as Range(8, 0) is always empty (it is counting up, not down!)
