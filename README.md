@@ -1042,7 +1042,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - `Vector` - `VectorView`
     - As example, with `String`/`StringView`:
         - `using String::InArgumentType = const StringView`  
-          i.e. **for a `in String` _in fact_ a `const StringView`** is used as parameter type.
+          i.e. **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
         - So all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
             - a `String` (as that can implicitly be converted to `StringView`) 
             - a `StringView` (that somehow is the more versatile variant of `const String&`),
