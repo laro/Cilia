@@ -1117,7 +1117,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - `Int8 d = -128` // Works because `-128` fits into `Int8`
         - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
         - `UInt8 f = 255` // Works because `255` fits into `UInt8`
-        - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `Int8`
+        - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
         - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
         - `Int16 i = 32767` // Works
         - `Int32 j = 2'147'483'647` // Works
