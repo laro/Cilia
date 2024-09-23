@@ -54,7 +54,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
            - Restricted integral promotions and implicit narrowing conversions, etc.
        - New array declaration (`Int[3] array` instead of `Int array[3]`, `Int[] array` instead of `vector<Int> array`)
        - [New/simplified keywords](#better-readable-keywords)
-       - [No trailing semicolons](#No-trailing-semicolons)
+       - [No trailing semicolons](#no-trailing-semicolons)
 - The names [D](https://dlang.org/), [C2](http://c2lang.org/), [C3](https://c3-lang.org), and [Cpp2](https://github.com/hsutter/cppfront#cppfront) were already taken,  
   as well as [Cone](https://cone.jondgoodwin.com/) and many others `¯\_(ツ)_/¯`.
 
