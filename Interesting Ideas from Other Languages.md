@@ -28,16 +28,16 @@
             - Cpp2 / Herb Sutter kept `< >` after all.
         8. [Forwarding parameters and `std::forward` are error prone.](http://eel.is/c++draft/temp.deduct#call-3)
            - I am not familiar with the problem(s), but Cpp2 / Herb Sutter offers the `forward` keyword.
-        10. [Braced initializers can choose the wrong constructor.](http://eel.is/c++draft/dcl.init.list#2)
+        9. [Braced initializers can choose the wrong constructor.](http://eel.is/c++draft/dcl.init.list#2)
             - Do without braced initialization altogether.
                 - With the keyword `func` there is now a clear distinction between function declaration and variable declaration with initialization.
                 - The classic initialization via `(...)`, ultimately a function call of the constructor, is a better fit anyway.
             - Braces / curly brackets only for initializer lists,
                 - only when a constructor or assignment operator is defined, with `InitializerList` as input parameter,
                 - i.e. for tuples, lists etc.
-        11. [`0` shouldn't be a null pointer constant.](http://eel.is/c++draft/expr#conv.ptr-1)
+        10. [`0` shouldn't be a null pointer constant.](http://eel.is/c++draft/expr#conv.ptr-1)
             - Not allowed, use `NullPtr` or explicit casting.
-        12. [`this` shouldn't be a pointer.](http://eel.is/c++draft/expr.prim.this#1)
+        11. [`this` shouldn't be a pointer.](http://eel.is/c++draft/expr.prim.this#1)
             - Better `this` is a reference.
     - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
         - Standardization is better than having multiple different language "dialects"  
