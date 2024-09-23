@@ -948,8 +948,8 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
                 - `for i in [1, 2, 3] { ... }`
                     - `i` is `const Int`
                 - `for str in ["a", "b", "c"] { ... }`
-                    - `str` is `const StringView` (a string-literal like `"a"` forms a `const StringView`, therefore `["a", "b", "c"]` is a `const StringView[]`)
-            - `const XView` for types that have a corresponding view type:
+                    - `str` is `const StringView` (a string-literal like `"a"` forms a `const StringView`, therefore `["a", "b", "c"]` is a `const StringView[3]`)
+            - `const XView` for types `X` that have a corresponding view type:
                 - `concat(String first, String second)`
                     - is effectively translated to `concat(const StringView first, const StringView second)`
                 - `String[] stringArray = ...`  
