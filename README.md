@@ -1203,7 +1203,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - Workaround: Use `"Text\0"ascii` instead
     - All these available for multiline string literals and interpolated strings, too.
         - Any reason, not to? 
-- `[1, 2, 3]` is an array (here an `Int[]`),
+- `[1, 2, 3]` is an array (here an `Int[3]`),
     - all elements have the same type.
 - `{1, "Text", 3.0}` is an initialization list
     - e.g. for `Tuple`
