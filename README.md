@@ -1679,7 +1679,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Like `cilia::Int`, but with **saturation** for all operations.
         - Limit to maximum, no wrap around.
         - Typically using SIMD (as those „media/DSP instructions“ do support saturation natively).
-    - see https://en.wikipedia.org/wiki/Saturation_arithmetic 
+    - see [https://en.wikipedia.org/wiki/Saturation_arithmetic](https://en.wikipedia.org/wiki/Saturation_arithmetic)
     - `saturating::Int8`/`Int16`/`Int32`/`Int64`
     - `saturating::Uint`
         - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
