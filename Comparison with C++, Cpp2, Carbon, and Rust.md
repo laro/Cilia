@@ -1,5 +1,5 @@
 ## Comparison with C++, Cpp2, Carbon, and Rust
-The follwing comparison aims to show the _exact_ equivalent in C++, Cpp2, Carbon, and Rust:
+The follwing comparison aims to show the _exact_ equivalent of teh [Cilia example](../README.md#by-example) in C++, Cpp2, Carbon, and Rust:
 - **C++**
     - `int`, `int32_t`, `int64_t`, `float`
     - `int x = 42;`
