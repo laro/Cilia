@@ -300,40 +300,41 @@ func multiplyAdd(Int x, y, Float z) -> Float {
         - Similar, but diffentent:
             - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
             - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
+            - Cpp2 would be ~~`1..=10`~~ and ~~`0..<10`~~ (as of recently)
     - Different kinds of ranges:
         - `1..3` – 1, 2, 3
-            - Range(1, 3)
+            - `Range(1, 3)`
         - `0..<3` – 0, 1, 2
-            - RangeExclusiveEnd(0, 3)
+            - `RangeExclusiveEnd(0, 3)`
         - Range with step (especially to **iterate with the given step size in the `for` loop**)
             - `1..6:2` – 1, 3, 5
-                - RangeByStep(1, 3, 2)
+                - `RangeByStep(1, 3, 2)`
             - `0..<6:2` – 0, 2, 4
-                - RangeExclusiveEndByStep(0, 3, 2)
+                - `RangeExclusiveEndByStep(0, 3, 2)`
         - Downwards iterating range (especially to **iterate downwards in the `for` loop**).  
           Step size is mandatory here (to make it clear that we are counting down, to avoid wrong conclusions).
             - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
-                - RangeByStep(8, 0, -1)
-                - Not ~~`8..0`~~, as Range(8, 0) is always empty (it is counting up, not down!)
-                - Not `8..<0:-1`, staticAssert in RangeExclusiveEndByStep that `step > 0`:
+                - `RangeByStep(8, 0, -1)`
+                - Not ~~`8..0`~~, as `Range(8, 0)` is always empty (it is counting up, not down!)
+                - Not `8..<0:-1`, with staticAssert in `RangeExclusiveEndByStep` that `step > 0`:
                     - "The range operator with exclusive end (`..<`) is not compatible with negative increments, because when counting downwards it would be necessary/logical to write `..>` and that is not available."
                     - It simply would be too much, IMHO.
                     - Use `8..1:-1` instead.
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
         - Incomplete ranges (need lower and/or upper bounds to be set before use)  
             - `..2` – ..., 1, 2
-                - RangeTo(2)
+                - `RangeTo(2)`
             - `..<3` – ..., 1, 2
-                - RangeToExclusiveEnd(3)
+                - `RangeToExclusiveEnd(3)`
             - `0..` – 0, 1, 2, ...
-                - RangeFrom(0)
+                - `RangeFrom(0)`
             - `..`
-                - RangeFull()
+                - `RangeFull()`
             - Incomplete range with step
-                - `..2:2` – RangeToByStep(2, 2)
-                - `..<3:2` – RangeToExclusiveEndByStep(3, 2)
-                - `0..:2` – RangeFromByStep(0, 2)
-                - `..:2` – RangeFullByStep(2)
+                - `..2:2` – `RangeToByStep(2, 2)`
+                - `..<3:2` – `RangeToExclusiveEndByStep(3, 2)`
+                - `0..:2` – `RangeFromByStep(0, 2)`
+                - `..:2` – `RangeFullByStep(2)`
         - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - Bit-Shift & Rotation
     - `>>` Shift right (logical shift with unsigned integers, arithmetic shift with signed integers)
