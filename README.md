@@ -1008,7 +1008,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - The rule of thumb is:
         - Objects that are POD (Plain Old Data) with a size less than or equal to the size of two Int (i.e. up to 16 bytes) are passed by value.
         - Larger objects (or non-POD) are passed by reference.
-    - So as general default use const _reference_,
+    - So as general default use _const reference_,
         - `template<type T> using T::InArgumentType = const T&`  
     - and use a "list of exceptions" for the "const _value_ types".
         - ```
