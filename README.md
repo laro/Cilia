@@ -130,8 +130,11 @@ For better readability.
 When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Julia.
 - Typically a statement or expression ends with the end of a line.
 - Multiline expressions:
-    - Explicitly via `\` at end of line, or
-    - up to closing of `(...)` or `[...]` (as in Python).
+    - Explicitly via `\` at end of line,
+    	- it is no whitespace after this continuation-backslash allowed
+     	- (as in Python).
+    - Up to closing of `(...)` or `[...]`
+    	- (also as in Python).
 - Multiple expressions in a single line _are_ separated by semicolon.  
   `x += offset; y += offset`
 - Disadvantages:
