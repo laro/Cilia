@@ -197,12 +197,12 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
   ```
 - [Endianness](https://en.wikipedia.org/wiki/Endianness)
     - Big Endian (Motorola)
-        - `cilia::le::Int`, `Int8`, `Int16`, `Int32`, `Int64`
+        - `cilia::be::Int`, `Int8`, `Int16`, `Int32`, `Int64`
         - MSB first (most significant byte first), starting with the "big end"
         - MSb first (most significant bit first)
         - classical "[network byte order](https://en.wikipedia.org/wiki/Endianness#Networking)"
     - Little Endian (Intel)
-        - `cilia::be::Int`, `Int8`, `Int16`, `Int32`, `Int64`
+        - `cilia::le::Int`, `Int8`, `Int16`, `Int32`, `Int64`
         - LSB first (least significant byte first), starting with the "little end"
         - LSb first (least significant bit first)
 
