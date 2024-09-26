@@ -195,13 +195,15 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
   UInt32:8  exponent
   UInt32:23 significand // AKA mantissa
   ```
-    - Little Endian (Motorola)
+- [Endianness](https://en.wikipedia.org/wiki/Endianness)
+    - Big Endian (Motorola)
         - `cilia::le::Int`, `Int8`, `Int16`, `Int32`, `Int64`
-        - MSB first (most significant byte first)
+        - MSB first (most significant byte first), starting with the "big end"
         - MSb first (most significant bit first)
-    - Big Endian (Intel)
+        - classical "[network byte order](https://en.wikipedia.org/wiki/Endianness#Networking)"
+    - Little Endian (Intel)
         - `cilia::be::Int`, `Int8`, `Int16`, `Int32`, `Int64`
-        - LSB first (least significant byte first)
+        - LSB first (least significant byte first), starting with the "little end"
         - LSb first (least significant bit first)
 
 
