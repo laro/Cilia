@@ -1176,7 +1176,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - No null termination
         - If necessary
             - use `"Text\0“`  or
-            - convert using `StringZ(...)`.
+            - convert using `StringZ("Text")`.
     - Data is typically stored in read-only data segments or ROM.
 - Multiline String Literal
     - ```
