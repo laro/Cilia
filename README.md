@@ -1574,7 +1574,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - same for `for aChar in ASCIIString("abc")`
                     - but Exception thrown, if string contains non-Latin1 characters.
         - Explicitly convertable to `String`==`UTF8String`.
-            - Not as fast a conversion as ASCIIString-to-String, as typically some characters need to be translated into _two_ UTF-8 code units.
+            - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
 - `Char8`, `Char16`, `Char32`
     - are considered as _different_ types for parameter overloading,
     - but otherwise are like `UInt8`, `UInt16`, `UInt32`,
