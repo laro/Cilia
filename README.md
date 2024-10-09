@@ -935,7 +935,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - **Default is passing as `in`**, explicitly to override with one of the other keywords if desired.
     - Wording fits nicely for function arguments: How does the argument get into the function body (or out of it).
 - The loop variable of `for ... in` is passed as either **`in`**, **`inout`**, **`copy`**, or **`move`**  
-  (**`out`** and **`forward`** are not applicable here).
+  (`out` and `forward` are not applicable here).
     - **Default is passing as `in`**, explicitly to override with one of the other keywords if desired.
     - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
 - Parameter passing keywords:
