@@ -1635,14 +1635,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - `aFloat32 * anInt8`  // OK
                 - `aFloat32 * anInt16` // OK
                 - `aFloat32 * anInt32` // Warning
-                	- `aFloat32 * Float32(anInt32)` // OK
+                    - `aFloat32 * Float32(anInt32)` // OK
                 - `aFloat32 * anInt64` // Warning
-                	- `aFloat32 * Float32(anInt64)` // OK
+                    - `aFloat32 * Float32(anInt64)` // OK
                 - `aFloat64 * anInt8`  // OK
                 - `aFloat64 * anInt16` // OK
                 - `aFloat64 * anInt32` // OK
                 - `aFloat64 * anInt64` // Warning
-                	- `aFloat64 * Float64(anInt64)` // OK
+                    - `aFloat64 * Float64(anInt64)` // OK
 
 - Extended & Arbitrary Precision Integer & Float
     - `Int128`, `Int256`
