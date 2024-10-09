@@ -33,8 +33,12 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
     - Isomorphic mapping of all C++ functionality to Cilia shall be possible
         - only with other/better/shorter "expression".
 - C++ "Successor Language / Syntax"
-     - similar to [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle).
-     - Like C and C++, Java and Kotlin, Objective-C and Swift, JavaScript and TypeScript
+     - similar to [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle),
+     - like
+     	- C and C++,
+      	- Java and Kotlin,
+        - Objective-C and Swift,
+        - JavaScript and TypeScript.
 - Uses the same compiler backend as C++ (clang comes to mind)  
   with an own / a new compiler frontend.
     - Or a precompiler, like Cpp2, if that is significantly easier to do.
