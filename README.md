@@ -1646,11 +1646,11 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `Float128`
     	- 1 bit sign, 15 bit exponent, 112 bit significand
     - `Float256`?
-    - FloatDD, FloatTD, FloatQD
+    - `FloatDD`, `FloatTD`, `FloatQD`
         - double-double/triple-double/quad-double arithemtic
         - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
         - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-        - Saved _in_compatible to the IEEE 754 format.
+        - Saved incompatible to the IEEE 754 format.
     - `BigFloat<>` for arbitrary precision float,
         - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
         - The precision is arbitrary but fixed, either
