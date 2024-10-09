@@ -1265,9 +1265,9 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 	- The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
 		- range checks, to detect **buffer overflows** or similar,
 		- safe iterators, to detect invalid iterators.
-		- So every safe iterator would have a pointer to the element _and_ a pointer to the container.
-			- Naive: check at every dereferencing
-			- Optimized: check at first dereferencing, but thereafter only after a call to a non-const member function of the container (or if such a call cannot be excluded)..
+			- So every safe iterator would have a pointer to the element _and_ a pointer to the container.
+				- Naive: check at every dereferencing
+				- Optimized: check at first dereferencing, but thereafter only after a call to a non-const member function of the container (or if such a call cannot be excluded)..
     - This should fix the majority of C/C++ security issues.  
       To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
     - So we would have:
