@@ -1626,7 +1626,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `1 * aFloat` is possible
             - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
         - `anInt * aFloat` is possible
-            - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`, i.e. with
+            - Warning that the integer variable may not be reproduced exactly as `Float32`/`64`,  
+              i.e. with
                 - `aFloat32 * anInt8`  // OK
                 - `aFloat32 * anInt16` // OK
                 - `aFloat32 * anInt32` // Warning
@@ -1635,6 +1636,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - `aFloat64 * anInt16` // OK
                 - `aFloat64 * anInt32` // OK
                 - `aFloat64 * anInt64` // Warning
+                	- `aFloat64 * Float64(anInt64)` // OK
 
 - Extended & Arbitrary Precision Integer & Float
     - `Int128`, `Int256`
@@ -1645,12 +1647,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `BFloat16` (Brain Floating Point)
     - `Float128`
     	- 1 bit sign, 15 bit exponent, 112 bit significand
-    - `Float256`?
-    - `FloatDD`, `FloatTD`, `FloatQD`
+    	- `Float256`?
+    - `DDFloat`, `TDFloat`, `QDFloat`
         - double-double/triple-double/quad-double arithemtic
         - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
         - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-        - Saved incompatible to the IEEE 754 format.
+        - Problem: Is saved incompatible to the IEEE 754 format.
     - `BigFloat<>` for arbitrary precision float,
         - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
         - The precision is arbitrary but fixed, either
