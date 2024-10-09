@@ -1642,16 +1642,20 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `BigInt` – Arbitrary Precision Integer
         - for cryptography, maybe computer algebra, numerics
         - see [Boost.Multiprecision](https://www.boost.org/doc/libs/1_79_0/libs/multiprecision/doc/html/index.html), [GMP](https://gmplib.org)
-    - `Float128`, `Float256`
-        - typically probably realized as double-double respectively double-double-double-double
+    - `BFloat16` (Brain Floating Point)
+    - `Float128`
+    	- 1 bit sign, 15 bit exponent, 112 bit significand
+    - `Float256`?
+    - FloatDD, FloatTD, FloatQD
+        - double-double/triple-double/quad-double arithemtic
+        - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
         - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-        - Problem: Should be saved in IEEE 754 compatible format.
+        - Saved _in_compatible to the IEEE 754 format.
     - `BigFloat<>` for arbitrary precision float,
         - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
         - The precision is arbitrary but fixed, either
           - statically, i.e. at compile time, as part of the BigFloat type, or
           - dynamically, i.e. at runtime, as property of a BigFloat variable.
-    - `BFloat16` (Brain Floating Point)
 
 - Integer operations **with carry** (flag or UInt)  
   (to implement `Int128`, `Int256` etc.)
