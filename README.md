@@ -55,7 +55,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
     - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
        - [Const reference as default type](#functionloop-parameter-passing) for function arguments
        - [Fixing C++ "wrong defaults"](Interesting%20Ideas%20from%20Other%20Languages.md#circle)
-           - Restricted integral promotions and implicit narrowing conversions, etc.
+           - Restricting integral promotions and no implicit narrowing conversions, etc.
        - New array declaration (`Int[3] array` instead of `Int array[3]`, `Int[] array` instead of `vector<Int> array`)
        - [New/simplified keywords](#better-readable-keywords)
        - [No trailing semicolons](#no-trailing-semicolons)
