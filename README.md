@@ -1015,7 +1015,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - TODO Technically a right-value reference (`X&&`), too?
 - Type traits **`InArgumentType`** to determine the concrete type to be used for `in`-passing.
     - The rule of thumb is:
-        - Objects that are POD (Plain Old Data) with a size less than or equal to the size of two Int (i.e. up to 16 bytes) are passed by value.
+        - Objects that are POD (Plain Old Data) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes) are passed by value.
         - Larger objects (or non-POD) are passed by reference.
     - So as general default use _const reference_,
         - `template<type T> using T::InArgumentType = const T&`  
