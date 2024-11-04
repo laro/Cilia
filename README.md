@@ -280,7 +280,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - even [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
                   and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`,
             - as we want `&&=` and `||=` anyway.
-            - Defined on Bool only (_not_ integers).
+            - Defined on `Bool` only (_not_ on integers).
     - **`not`** in addition to `!` (for boolean negation)
         - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
         - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
@@ -317,9 +317,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - `RangeExclusiveEnd(0, 3)`
         - Range with step (especially to **iterate with the given step size in the `for` loop**)
             - `1..6:2` – 1, 3, 5
-                - `RangeByStep(1, 3, 2)`
+                - `RangeByStep(1, 6, 2)`
             - `0..<6:2` – 0, 2, 4
-                - `RangeExclusiveEndByStep(0, 3, 2)`
+                - `RangeExclusiveEndByStep(0, 6, 2)`
         - Downwards iterating range (especially to **iterate downwards in the `for` loop**).  
           Step size is mandatory here (to make it clear that we are counting down, to avoid wrong conclusions).
             - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
