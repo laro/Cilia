@@ -1136,11 +1136,13 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - `UInt m = UInt(l)` // Works
         - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
             - `Int n = Int(m)`   // Works
-    - `123` is interpreted as `Int` (or `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size)
-        - in case of type inferring, parameter overloading and template matching.
+    - Small integer literals like `123` are interpreted as `Int`
+    	- in case of type inferring, parameter overloading and template matching.
+        - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
     - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
         - Store as array of `Int`
     - `123u` is `UInt`
+    	- `-123u` is an error.
     - `-123` is always `Int` (signed)
 - `0xffffffff` is `UInt` in hexadecimal
 - `0b1011` is `UInt` in binary
@@ -1159,10 +1161,11 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 - `1.0` is a floating point literal of arbitrary precision
     - Can be converted to any float type into which it fits exactly
         - otherwise explicit cast necessary: `Float16(3.1415926)`
-    - Difficult: Constexpr constructor that accepts an arbitrary precision float literal  and can store that in ROM
+    - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
         - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
-    - `1.0` is interpreted as `Float` (or `Float64`, `Float128`, `Float256`, `BigFloat`, if required due to the size/precision)
+    - Small floating point literals like `1.0` are interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
+        - Big floating point literals are interpreted as `Float64`, `Float128`, `Float256`, `BigFloat`, if required due to the size/precision.
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
 - `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
