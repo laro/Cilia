@@ -928,7 +928,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 - Who needs more than 2GB of data in a single "array", should please use a 64 bit platform.
 - For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
 - Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
-    - We simply use `Int` instead. Or `UInt` in rare cases.
+    - We simply use `Int` instead.
+    - `UInt` is used in rare cases (i.e. hardware registers, masks, flags), surely _not_ for sizes.
 - See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
     - [42:41 - 45:28](https://youtu.be/Puio5dly9N8?feature=shared&t=2561)
     - [1:02:51 - 1:03:14](https://youtu.be/Puio5dly9N8?feature=shared&t=3771)
@@ -1288,7 +1289,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 		- safe iterators, to detect invalid iterators.
 			- So every safe iterator would have a pointer to the element _and_ a pointer to the container.
 				- Naive: check at every dereferencing
-				- Optimized: check at first dereferencing, but thereafter only after a call to a non-const member function of the container (or if such a call cannot be excluded)..
+				- Optimized: check at first dereferencing, but thereafter only after a call to a non-const member function of the container (or if such a call cannot be excluded).
     - This should fix the majority of C/C++ security issues.  
       To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
     - So we would have:
