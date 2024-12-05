@@ -69,7 +69,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - Java and Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
         - C# and C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
         - Objective-C and Swift
-    - Bi-directional interoperability, so it is possible to include
+    - Bi-directional interoperability, so (with a hypothetical C++/Cilia compiler) it is possible to include
         - C++ headers and modules from Cilia,
         - Cilia headers and modules from C++.
     - Can call C functions, access C structs (as C++ can do).
