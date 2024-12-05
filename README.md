@@ -393,10 +393,12 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           operator %=(Int256 other) { ... }
           operator <<=(Int shiftCount) { ... }
           operator >>=(Int shiftCount) { ... }
-          operator <<<=(Int shiftCount) { ... }
-          operator >>>=(Int shiftCount) { ... }
           operator &=(Int256 other) { ... }
           operator |=(Int256 other) { ... }
+      }
+      class UInt256 {
+          operator <<<=(Int shiftCount) { ... }
+          operator >>>=(Int shiftCount) { ... }
       }
       ```
         - Not ~~`operator ^=(Int256 other) { ... }`~~
