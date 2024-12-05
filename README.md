@@ -380,8 +380,8 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       ```
       operator <<(Int256 a, Int shiftCount) -> Int256 { ... }
       operator >>(Int256 a, Int shiftCount) -> Int256 { ... }
-      operator <<<(Int256 a, Int shiftCount) -> Int256 { ... }
-      operator >>>(Int256 a, Int shiftCount) -> Int256 { ... }
+      operator <<<(UInt256 a, Int shiftCount) -> UInt256 { ... }
+      operator >>>(UInt256 a, Int shiftCount) -> UInt256 { ... }
       ```
     - Compound assignment operators
       ```
