@@ -804,6 +804,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - „Dynamic array“ with **dynamic size**
       ```
       Int[] array = [0, 1, 2]
+      array[0] = 0
+      array[1] = 0
       array[2] = 0
       array[3] = 0  // Runtime error, no compile time bounds check
       ```
@@ -824,6 +826,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - „Static array“ with **fixed size**
       ```
       Int[3] array = [0, 1, 2]
+      array[0] = 0
+      array[1] = 0
       array[2] = 0
       array[3] = 0  // Compilation error, due to compile time bounds check
       ```
@@ -835,6 +839,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - ```
       Int+ array = new Int[3]  // Array-to-pointer decay possible
       unsafe {
+          array[0] = 0
+          array[1] = 0
           array[2] = 0
           array[3] = 0  // Undefined behaviour, no bounds check at all
       }
@@ -844,6 +850,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           Int+ uniquePtrToArray = new Int[3]  // Array-to-pointer decay possible
           unsafe {
               Int* array = uniquePtrToArray.release()
+              array[0] = 0
+              array[1] = 0
               array[2] = 0
               array[3] = 0  // Undefined behaviour, no bounds check at all
               delete[] array
@@ -852,6 +860,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - ```
           unsafe {
               Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
+              array[0] = 0
+              array[1] = 0
               array[2] = 0
               array[3] = 0  // Undefined behaviour, no bounds check at all
               free(array)
@@ -860,6 +870,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
     - Actually this is how to handle pointer to array of `Int` "properly":  
       ```
       Int[3]+ arrayPtr = new Int[3]
+      *arrayPtr[0] = 0
+      *arrayPtr[1] = 0
       *arrayPtr[2] = 0
       *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
       ```
@@ -867,6 +879,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ```
           unsafe {
               Int[3]* arrayPtr = (new Int[3]).release()
+              *arrayPtr[0] = 0
+              *arrayPtr[1] = 0
               *arrayPtr[2] = 0
               *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
               delete[] arrayPtr
