@@ -1129,7 +1129,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 ## Literals
 - `True`, `False` are Bool,
     - as in Python,
-    - as they are constants.  
+    - uppercase as they are constants.  
 - `NullPtr` is the null pointer,
     - it is of the type `NullPtrType`,
     - explicit cast necessary to convert any pointer to `Int`.
