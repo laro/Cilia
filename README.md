@@ -484,7 +484,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 
 
 ## Branches & Loops
-No braces around the condition clause.
+No braces around the condition clause (as in Python, Swift, Go, Ruby).
 - **if**
     - ```
       if a > b {
