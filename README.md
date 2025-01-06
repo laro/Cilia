@@ -209,6 +209,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - `cilia::le::Int`, `Int8`, `Int16`, `Int32`, `Int64`
         - LSB first (least significant byte first), starting with the "little end"
         - LSb first (least significant bit first)
+        - "[USB byte order](http://cholla.mmto.org/computers/usb/endian.html)"
 
 
 ## Classes
