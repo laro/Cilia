@@ -1477,11 +1477,11 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Static/fixed size
         - For small, fixed size vectors & matrices ,
             - as typically used in geometry (i.e. 2D, 3D, 4D).
-        - `cilia::Vector<T = Float, Int size>`
+        - `cilia::Vector<Int size, T = Float>`
             - `cilia::Vector2<T = Float>`
             - `cilia::Vector3<T = Float>`
             - `cilia::Vector4<T = Float>`
-        - `cilia::Matrix<T = Float, Int rows, Int columns>`
+        - `cilia::Matrix<Int rows, Int columns, T = Float>`
             - `cilia::Matrix22<T = Float>`
             - `cilia::Matrix33<T = Float>`
             - `cilia::Matrix44<T = Float>`
