@@ -1221,7 +1221,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - as in C#
         - TODO Any reason to use/prefer any other syntax?
 - Alternative string literals
-    - `"Text"utf8` (but UTF-8 is the default anyway)
+    - `"Text"utf8` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)
     - `"Text"utf16`
     - `"Text"utf32`
     - `"Text"ascii`
