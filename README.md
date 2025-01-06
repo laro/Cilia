@@ -906,11 +906,11 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 - Multidimensional arrays
     - dynamic size
         - `Int[,] dynamic2DArray`  
-            - `T[,] array` is the short form of `cilia::MDArray<T, 2> array`
+            - `T[,] array` is the short form of `cilia::MDArray<2, T> array`
         - `Int[,,] multidimensionalDynamicArray`  
-            - `T[,,] array` is the short form of `cilia::MDArray<T, 3> array`
+            - `T[,,] array` is the short form of `cilia::MDArray<3, T> array`
         - and so on:  
-            - `cilia::MDArray<T, N>`
+            - `cilia::MDArray<N, T>`
     - static size
         - `Int[3, 2, 200]`
             - Multidimensional static array  
@@ -1497,7 +1497,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               1 4 7
               2 5 8
               ```
-        - `cilia::MDArray<T = Float, Int dimensions>`
+        - `cilia::MDArray<Int dimensions, T = Float>`
             - also see `MDSpan`
           
 - Image
