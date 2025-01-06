@@ -1057,7 +1057,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - could be further refined/corrected with  
               `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 bytes (so pass by value would be the default).
-        - This way developers only need to extend this list if they create _small_ classes (and if they want/need maximum performance). And I expect most custom class to be larger than 16 bytes (so nothing to do for those).
+        - This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
 - Special **trick for types with views**
     - Applicable only for types `X` that have an `XView` counterpart where
         - `X` can implicitly be converted to `XView`,
