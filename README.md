@@ -1444,7 +1444,9 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - TODO Multiple inheritance is problematic here:
         - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
         - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
-            - Workaround: Cast back with `Type(obj).functionOfA()`
+            - Workaround:
+            	- In case of multiple inheritance there is no automatic casting.
+            	- ~~Cast back with `Type(obj).functionOfA()`~~
 
 
 ## `cilia` Standard Library
