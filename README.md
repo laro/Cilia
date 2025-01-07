@@ -1334,7 +1334,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
             - _optionally_ using unsafe containers (with unsafe iterators, for even better performance).
 - **Initialization**
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
-    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't always want to initialize everything.
+    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't want to always initialize everything.
         - With virtual memory it could actually be (almost) "free" to initialize _large_ arrays with zero. But only when using heap memory directly. Small memory regions, that were used before, still need to be overwritten with zeros.
     - We could warn (or maybe even consider it an error) if not initialized,  
       and use a keyword `noinit` to avoid that warning/error.  
