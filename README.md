@@ -325,8 +325,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
                 - `RangeByStep(8, 0, -1)`
                 - Not ~~`8..0`~~, as `Range(8, 0)` is always empty (it is counting up, not down!)
-                - Not `8..<0:-1`, with staticAssert in `RangeExclusiveEndByStep` that `step > 0`:
-                    - "The range operator with exclusive end (`..<`) is not compatible with negative increments, because when counting downwards it would be necessary/logical to write `..>` and that is not available."
+                - Not `8..<0:-1`
+                    - With staticAssert in `RangeExclusiveEndByStep` that `step > 0`:
+                      "The range operator with exclusive end (`..<`) is not compatible with negative increments, because when counting downwards it would be necessary/logical to write `..>` and that is not available."
                     - It simply would be too much, IMHO.
                     - Use `8..1:-1` instead.
         - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
