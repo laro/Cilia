@@ -51,7 +51,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
     - C++ could be extended by some features:
         - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow but "perfect" wrapper for the C++ standard library (i.e. a translation layer).
     - Some parts are impossible or at least extremely unlikely, to include in a future C++ standard:
-       - [Const reference as default type](#functionloop-parameter-passing) for function arguments
+       - [Const reference as default type](#functionloop-parameter-passing) for function parameters
        - [Fixing C++ "wrong defaults"](Interesting%20Ideas%20from%20Other%20Languages.md#circle)
            - Restricting integral promotions and no implicit narrowing conversions, etc.
        - New array declaration (`Int[3] array` instead of `Int array[3]`, `Int[] array` instead of `vector<Int> array`)
@@ -353,7 +353,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
     - `<<<` Rotate left (circular shift left, only defined for unsigned integers)
 - Operator declaration
     - Keyword **`operator`** instead of `func`.
-    - As with normal functions: Arguments are passed as `in` by default (i.e. `const T&` or `const T`).
+    - As with normal functions: Parameters are passed as `in` by default (i.e. `const T&` or `const T`).
     - Assignment operator
       ```
       class Int256 {
@@ -607,7 +607,7 @@ Create an alias with `using`, for:
     - `using func f(String) = g(String)` to alias the function `g(String)`.
     - `using func f = g` to alias _all_ overloads of the function `g`.
 - **Types**
-    - `using InArgumentType = const StringView`  
+    - `using InParameterType = const StringView`  
       (no ~~`typedef`~~)
 
 
@@ -629,7 +629,7 @@ In case on conflicts, in-class definitions (inside the class) have priority (and
       `using func Array::pushBack(String) = Array::push_back(String)` to alias the function `push_back(String)`.  
       `using func Array::pushBack = Array::push_back` to alias _all_ overloads of the function `g`.
     - **Types**  
-      `using StringView::InArgumentType = const StringView`
+      `using StringView::InParameterType = const StringView`
 - Static constants, typically for type traits
   ```
   const Bool Float32::IsFloatingPoint = True
@@ -723,7 +723,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
 - **Function** templates
     - _Automatic_ function templates
-        - If (at least) one of the function arguments is a concept, then the function is (in fact) a function template.
+        - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template.
             - Concept `Number`:
               ```
               func sq(Number x) -> Number {
@@ -792,7 +792,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
     - TODO Really this syntax: `{ ... } { ... }`?
 - Template **type alias** with `using` (not ~~`typedef`~~)
-    - `template<type T> using T::InArgumentType = const T&`
+    - `template<type T> using T::InParameterType = const T&`
 - Template static constants as type traits
     - ```
       template<type T> const Bool          T::IsFloatingPoint = False
@@ -954,9 +954,9 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 ## Function/Loop Parameter Passing
 The basic idea is to have the most efficient/appropriate parameter passing mode as the _default_, and to give more the intent than the technical realization.  
 Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (who extended/generalized the `out` parameters of C#).
-- Function call arguments are passed as either **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, or **`forward`**.
+- Function call parameters are passed as either **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, or **`forward`**.
     - **Default is passing as `in`**, explicitly to override with one of the other keywords if desired.
-    - Wording fits nicely for function arguments: How does the argument get into the function body (or out of it).
+    - Wording fits nicely for function parameters: How does the parameter get into the function body (or out of it).
 - The loop variable of `for ... in` is passed as either **`in`**, **`inout`**, **`copy`**, or **`move`**  
   (`out` and `forward` are not applicable here).
     - **Default is passing as `in`**, explicitly to override with one of the other keywords if desired.
@@ -1032,31 +1032,31 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - **`forward`**
         - for perfect forwarding.
         - TODO Technically a right-value reference (`X&&`), too?
-- Type traits **`InArgumentType`** to determine the concrete type to be used for `in`-passing.
+- Type traits **`InParameterType`** to determine the concrete type to be used for `in`-passing.
     - The rule of thumb is:
         - Objects that are POD (Plain Old Data, i.e. with no pointers) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes on 64 bit platforms) are passed by value.
         - Larger objects (or non-POD) are passed by reference.
     - So as general default use _const reference_,
-        - `template<type T> using T::InArgumentType = const T&`  
+        - `template<type T> using T::InParameterType = const T&`  
     - and use a "list of exceptions" for the "const _value_ types".
         - ```
-          using       Bool::InArgumentType = const Bool
-          using       Int8::InArgumentType = const Int8
-          using      Int16::InArgumentType = const Int16
-          using      Int32::InArgumentType = const Int32
-          using      Int64::InArgumentType = const Int64
+          using       Bool::InParameterType = const Bool
+          using       Int8::InParameterType = const Int8
+          using      Int16::InParameterType = const Int16
+          using      Int32::InParameterType = const Int32
+          using      Int64::InParameterType = const Int64
           ...
-          using     UInt64::InArgumentType = const UInt64
-          using    Float32::InArgumentType = const Float32
-          using    Float64::InArgumentType = const Float64
-          using StringView::InArgumentType = const StringView
-          using  ArrayView::InArgumentType = const ArrayView
+          using     UInt64::InParameterType = const UInt64
+          using    Float32::InParameterType = const Float32
+          using    Float64::InParameterType = const Float64
+          using StringView::InParameterType = const StringView
+          using  ArrayView::InParameterType = const ArrayView
           ...
           ```
-        - `template<type T> using Complex<T>::InArgumentType = T::InArgumentType`
+        - `template<type T> using Complex<T>::InParameterType = T::InParameterType`
             - A generic rule: `Complex<T>` is passed the same way as `T`,
             - could be further refined/corrected with  
-              `using Complex<Float128>::InArgumentType = const Complex<Float128>&`  
+              `using Complex<Float128>::InParameterType = const Complex<Float128>&`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 bytes (so pass by value would be the default).
         - This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
 - Special **trick for types with views**
@@ -1069,7 +1069,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - `Array` - `ArrayView`
         - `Vector` - `VectorView`
     - As example, with `String`/`StringView`:
-        - `using String::InArgumentType = const StringView`  
+        - `using String::InParameterType = const StringView`  
           i.e. **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
         - So all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
             - a `String` (as that can implicitly be converted to `StringView`) 
@@ -1080,7 +1080,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - `concat(String first, String second)`
                 - is short for `concat(in String first, in String second)`
                 - and extends to `concat(const StringView first, const StringView second)`
-        - For cases where you need to _change_ the string argument, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
+        - For cases where you need to _change_ the string parameter, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
         - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just to ensure consistency.
         - Example:
             - `String[] stringArray = ["a", "b", "c"]`  
@@ -1097,30 +1097,30 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - `MDArray` - `MDArrayBasicView`
     - Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
         - ```
-          using String::InArgumentType = const StringView
-          using  Array::InArgumentType = const ArrayView
-          using Vector::InArgumentType = const VectorView
+          using String::InParameterType = const StringView
+          using  Array::InParameterType = const ArrayView
+          using Vector::InParameterType = const VectorView
           ```
     - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
         - ```
-          using  Matrix::InArgumentType = const MatrixBasicView&
-          using   Image::InArgumentType = const ImageBasicView&
-          using MDArray::InArgumentType = const MDArrayBasicView&
+          using  Matrix::InParameterType = const MatrixBasicView&
+          using   Image::InParameterType = const ImageBasicView&
+          using MDArray::InParameterType = const MDArrayBasicView&
           ```
-- Type trait **`CopyArgumentType`**
+- Type trait **`CopyParameterType`**
     - of a type `T` typically simply is `T`  
-      `using<type T> T::CopyArgumentType = T`  
+      `using<type T> T::CopyParameterType = T`  
     - but for `View`-types it is the corresponding "full" type:
       ```
-      using       StringView::CopyArgumentType = String
-      using        ArrayView::CopyArgumentType = Array
-      using       VectorView::CopyArgumentType = Vector
-      using       MatrixView::CopyArgumentType = Matrix
-      using  MatrixBasicView::CopyArgumentType = Matrix
-      using        ImageView::CopyArgumentType = Image
-      using   ImageBasicView::CopyArgumentType = Image
-      using      MDArrayView::CopyArgumentType = MDArray
-      using MDArrayBasicView::CopyArgumentType = MDArray
+      using       StringView::CopyParameterType = String
+      using        ArrayView::CopyParameterType = Array
+      using       VectorView::CopyParameterType = Vector
+      using       MatrixView::CopyParameterType = Matrix
+      using  MatrixBasicView::CopyParameterType = Matrix
+      using        ImageView::CopyParameterType = Image
+      using   ImageBasicView::CopyParameterType = Image
+      using      MDArrayView::CopyParameterType = MDArray
+      using MDArrayBasicView::CopyParameterType = MDArray
       ```
     - The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
     - Example:
