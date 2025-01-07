@@ -442,7 +442,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           ```
             - Defined for _`Bool`_,
             - operators `!`, not `~`,
-            - `&&` and `||`, not `&` and `|`.
+                - `&&` and `||`, not `&` and `|`.
         - Bitwise operators
           ```
           operator and(Int256 a, b) -> Int256 { ... }
@@ -462,7 +462,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           ```
             - Defined for _integers_ (not for `Bool`),
             - operators `~`, not `!`,
-            - `&` and `|`, not `&&` and `||`.
+                - `&` and `|`, not `&&` and `||`.
     - Subscript/bracket/parenthesis/functor operators:
       ```
       class MyImage<type T> {
