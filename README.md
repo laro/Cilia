@@ -1547,7 +1547,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - **grapheme clusters**
             - represented by `StringView`.
             - This is the _default form of iteration_ over a `String` or `StringView`
-            - A single grapheme cluster will typically consist of multiple code units   
+            - A single grapheme cluster will often consist of multiple code units   
               and may even consist of multiple code points.
             - `for graphemeCluster in "abc 🥸👮🏻"`
                 - "a", "b", "c", " ", "🥸", "👮🏻"
