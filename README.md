@@ -1204,13 +1204,13 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - use `"Text\0“`  or
             - convert using `StringZ("Text")`.
     - Data is typically stored in read-only data segments or ROM.
-    - A Cilia-to-C++-transpiler would have to translate every string into an char array:
+    - A Cilia-to-C++-transpiler would have to translate every string into a char array:
     	- `"Text"` -> `std::string_view({ 'T', 'e', 'x', 't' })`
      	- As to avoid null termination and to have UTF-8 strings.
 		- As `u8''` does _not_ expand to multiple code points, we need to expand UTF-8 manually here, too.
-      	- As this results in difficult to read transpiled C++ code, there should be a Cilia compiler switch to simply translate into:
-			- `"Text"` -> `u8"Text"sv`
-      		- (This would still have null termination.)
+      	- As this results in transpiled C++ code that is difficult to read, there should be a Cilia compiler switch to simply translate into:
+            - `"Text"` -> `u8"Text"sv`
+            - (But this would still have null termination.)
 - Multiline String Literal
     - ```
       """
