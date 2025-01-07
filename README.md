@@ -1578,12 +1578,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - `for aChar8 in "abc 🥸👮🏻".asArray()`
                 - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
                 - same for
-                    - `for codeUnit in "abc 🥸👮🏻"utf8.asArray()`
+                    - `for codeUnit in u8"abc 🥸👮🏻".asArray()`
                     - `for codeUnit in UTF8String("abc 🥸👮🏻").asArray()`
-            - `for aChar16 in "abc 🥸👮🏻"`**`utf16`**`.asArray()`
+            - `for aChar16 in **`u`**`"abc 🥸👮🏻"`.asArray()`
                 - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
                 - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
-            - `for aChar32 in "abc 🥸👮🏻"`**`utf32`**`.asArray()`
+            - `for aChar32 in `**`U`**`"abc 🥸👮🏻".asArray()`
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
                 - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
     - `string.toUpper()`, `string.toLower()`
@@ -1699,7 +1699,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - double-double/triple-double/quad-double arithemtic
         - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
         - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-        - Problem: Is saved incompatible to the IEEE 754 format.
+        - Problem: Is saved incompatible to the IEEE 754 format for 128/256/512 bit float.
     - `BigFloat<>` for arbitrary precision float,
         - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
         - The precision is arbitrary but fixed, either
