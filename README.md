@@ -1580,10 +1580,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - same for
                     - `for codeUnit in u8"abc 🥸👮🏻".asArray()`
                     - `for codeUnit in UTF8String("abc 🥸👮🏻").asArray()`
-            - `for aChar16 in **`u`**`"abc 🥸👮🏻"`.asArray()`
+            - `for aChar16 in u"abc 🥸👮🏻".asArray()`
                 - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
                 - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
-            - `for aChar32 in `**`U`**`"abc 🥸👮🏻".asArray()`
+            - `for aChar32 in U"abc 🥸👮🏻".asArray()`
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
                 - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
     - `string.toUpper()`, `string.toLower()`
