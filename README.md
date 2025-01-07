@@ -892,8 +892,9 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 - Examples:
     - `Int[] dynamicArrayOfInt`
     - `Int[3] arrayOfThreeInt`
+    - `Int[3]& referenceToArrayOfThreeInt`
     - `Int[3]* pointerToArrayOfThreeInt`
-    - `Int[3][]* pointerToDynamicArrayOfArrayOfThreeInt`
+    - `Int[3][]& referenceToDynamicArrayOfArrayOfThreeInt`
     - `String*[] dynamicArrayOfPointersToString`
 - ArrayViews AKA Slices AKA Subarrays
     - `var subarray = array[1..2]`
