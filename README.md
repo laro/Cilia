@@ -159,7 +159,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
 - `Float`
     - `Float` == `Float32`
-        - Among other things because this is how it works in C/C++.
+        - This is how it is in C/C++.
         - Is faster than Float64 and good enough most of the time.
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
 
