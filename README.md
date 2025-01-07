@@ -1242,7 +1242,8 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - `u"..."` and `u'...'` for UTF-16
             - `U"..."` and `U'...'` for UTF-32
         - and user defined string suffixes
-            - `"..."s` for `std::string`.
+            - `"..."s` for `std::string`
+            - `"..."sv` for `std::string_view`.
         - So as to avoid conflicts we should drop the Cilia string literals.
     - `u8"Text"` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)
     - ~~`"Text"sz` is a zero terminated string (as used in C)~~
