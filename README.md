@@ -1562,13 +1562,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - Called "auto decoding" in D.
             - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB 
+            - **Note:** _Not_ even with UTF-32 do all grapheme clusters fit into a single code point,  
+              so not:
+        	    - emoji with modifier characters like skin tone or variation selector,
+        	    - diacritical characters (äöü..., depending on the normal form chosen),
+        	    - surely some more ...
             - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
-            - Fast with UTF-32, **but** even with UTF-32 not all grapheme clusters fit into a single code point,
-                - so not:
-                    - emoji with modifier characters like skin tone or variation selector,
-                    - diacritical characters (äöü..., depending on the normal form chosen),
-                    - surely some more ...
-                - Often slower than UTF-8, simply due to its size (cache, memory bandwidth).
+            - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
         - **code units**
             - represented by
                 - `Char` for `String`
