@@ -1578,8 +1578,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - `for aChar8 in "abc 🥸👮🏻".asArray()`
                 - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
                 - same for
-                    - `for codeUnit in u8"abc 🥸👮🏻".asArray()`
-                    - `for codeUnit in UTF8String("abc 🥸👮🏻").asArray()`
+                    - `for aChar8 in u8"abc 🥸👮🏻".asArray()`
+                    - `for aChar8 in UTF8String("abc 🥸👮🏻").asArray()`
             - `for aChar16 in u"abc 🥸👮🏻".asArray()`
                 - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
                 - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
