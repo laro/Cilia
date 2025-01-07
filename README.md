@@ -247,8 +247,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       return x * y
   }
   ```
+    - TODO `constfunc`?
 - **Function pointers**
-    - Difficult to maintain consistency between declarations of functions, function pointers, functors and lambdas.
+    - Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Examples:
         - **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
         - **`func(Int)* pointerToFunctionOfInt`**
