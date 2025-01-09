@@ -637,7 +637,7 @@ In case on conflicts, in-class definitions (inside the class) have priority (and
   ```
     - TODO: Allow external static _variables_ (i.e. mutable), too?
         - Why not. But for what would it be useful?
-        - `Int Float32::numOfInstances = 0`
+        - `Int ContactInfo::numOfInstances = 0`
 
 
 ## (Smart) Pointers
