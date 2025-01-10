@@ -714,7 +714,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       class KeyValuePair<type TKey, type TValue> {
           ...
       }
-      class KeyValuePair<int, type TValue> {
+      class KeyValuePair<Int, type TValue> {
           ...
       }
       class KeyValuePair<type TKey, String> {
