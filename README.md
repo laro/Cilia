@@ -1602,7 +1602,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - or a subclass with known encoding has to be used (`ASCIIString`, `Latin1String`). 
     - `ASCIIString`, a string containing only ASCII characters.
         - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`==`Byte`
-            - `for aChar in "abc"ascii`
+            - `for aChar in a"abc"`
                 - 0x61, 0x62, 0x63
                 - 'a', 'b', 'c'
                 - Compilation error, if string literal contains non-ASCII characters.
@@ -1612,11 +1612,11 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Very fast conversion, as all characters have the same binary representation.
     - `Latin1String`, a string containing only Latin-1 (ISO 8859-1) characters.
         - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`==`Byte`
-            - `for aChar in "äbc"latin1`
-                - 0xe4, 0x62, 0x63
-                - 'ä', 'b', 'c'
+            - `for aChar in l"äßç"`
+                - 0xe4, 0xdf, 0xe7
+                - 'ä', 'ß', 'ç'
                 - Compilation error, if string literal contains non-Latin-1 characters.
-                - same for `for aChar in ASCIIString("abc")`
+                - same for `for aChar in Latin1String("abc")`
                     - but Exception thrown, if string contains non-Latin1 characters.
         - Explicitly convertable to `String`==`UTF8String`.
             - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
@@ -1654,8 +1654,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 ## Misc 
 - Two-Pass Compiler
-    - as with C#, Java,
-    - no forward declarations necessary (as it is in C/C++, due to the single-pass compiler).
+    - so no forward declarations necessary,
+    - as with C#, Java (but differently than C/C++, due to its single-pass compiler).
 
 - **Mixed arithmetic**
     - Mixing signed with unsigned integer
