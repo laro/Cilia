@@ -253,7 +253,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
     - Examples:
         - **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
         - **`func(Int)* pointerToFunctionOfInt`**
-        - `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero; is that useful?
+        - `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero
         - `func(Int)& referenceToFunctionOfInt`
 
           
