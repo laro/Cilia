@@ -613,7 +613,7 @@ Create an alias with `using`, for:
 
 ## Type Extension
 To add "member like" types, functions/methods, constants (and maybe static variables) to "third party" classes/types.  
-In case on conflicts, in-class definitions (inside the class) have priority (and a warning is issued).
+In case of conflicts, in-class definitions (inside the class) have priority (and a warning is issued).
 - **Extension methods**
     - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
     - Also possible for basic/arithmetic types, e.g.:  
