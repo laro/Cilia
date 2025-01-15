@@ -108,7 +108,7 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
       
 - **Functions** in **lower camelCase**
     - `str.findFirstOf(...)`
-    - `vec.pushBack(...)`
+    - `arr.pushBack(...)`
     - `Thread::hardwareConcurrency()`
 
 - **Global constants** in **upper CamelCase**
