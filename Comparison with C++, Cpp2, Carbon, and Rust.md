@@ -79,21 +79,6 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `for i in 1..<words.count { ... } `          
         - `for i in [5, 7, 11, 13] { ... }`
         - `for word in words { ... }`
-- **Swift**
-    - `Int`, `Int32`, `Int64`, `Float`
-    - `var x: Int = 42`
-        - `var x = 42`
-        - `let x = 42`
-        - `var words: [String]`
-        - `var paragraphs: LinkedList<String>`
-        - `var contactInfoForID: [String: ContactInfo]`
-    - `func multiply(_ a: Int, _ b: Int) -> Int { return a * b }`
-        - `func print(_ a: ContactInfo) { ... }`
-        - `func concat(_ a: String, _ b: String) -> String { return a + b }`
-    - `for i in 1...10 { ... }`
-        - `for i in 1..<words.count { ... } `          
-        - `for i in [5, 7, 11, 13] { ... }`
-        - `for word in words { ... }`
 
 > [!NOTE]
 > - I may not be very familiar with Cpp2, Carbon, or Rust or not up to date.
