@@ -61,7 +61,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `fn print(a: &ContactInfo) { ...; }`
         - `fn concat(a: &str, b: &str) -> String { return a + b; }`
     - `for i in 1..=10 { ...; }`
-        - `for i in 1..words.len() { ...; } `          
+        - `for i in 0..words.len() { ...; } `          
         - `for i in [5, 7, 11, 13].iter() { ...; }`
         - `for word in words.iter() { ...; }`
 - **Swift**
@@ -76,12 +76,27 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `func print(_ a: ContactInfo) { ... }`
         - `func concat(_ a: String, _ b: String) -> String { return a + b }`
     - `for i in 1...10 { ... }`
-        - `for i in 1..<words.count { ... } `          
+        - `for i in 0..<words.count { ... } `          
         - `for i in [5, 7, 11, 13] { ... }`
         - `for word in words { ... }`
+- **Kotlin**
+    - `Int`, `Long`, `Float`
+    - `var x: Int = 42`
+        - `var x = 42`
+        - `val x = 42`
+        - `var words: MutableList<String>` (`Array`s have a fixed size)
+        - `var paragraphs: MutableList<String>`
+        - `var contactInfoForID: MutableMap<String, ContactInfo>`
+    - `fun multiply(a: Int, b: Int): Int { return a * b }`
+        - `fun print(a: ContactInfo) { ... }`
+        - `fun concat(a: String, b: String): String { return a + b }`
+    - `for (i in 1..10) { ... }`
+        - `for (i in 0 until words.size) { ... } `          
+        - `for (i in listOf(5, 7, 11, 13)) { ... }`
+        - `for (word in words) { ... }`
 
 > [!NOTE]
-> - I may not be very familiar with Cpp2, Carbon, Rust, and Swift or not up to date.
+> - I may not be very familiar with Cpp2, Carbon, Rust, Swift, and Kotlin or not up to date.
 >     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
 > - I may not be sufficiently up to date with C++14/17/20/23/26 either.
 
