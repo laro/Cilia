@@ -81,7 +81,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `for word in words { ... }`
 
 > [!NOTE]
-> - I may not be very familiar with Cpp2, Carbon, or Rust or not up to date.
+> - I may not be very familiar with Cpp2, Carbon, Rust, and Swift or not up to date.
 >     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
 > - I may not be sufficiently up to date with C++14/17/20/23/26 either.
 
