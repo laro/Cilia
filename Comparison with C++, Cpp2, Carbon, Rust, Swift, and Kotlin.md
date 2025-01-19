@@ -84,7 +84,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
     - `var x: Int = 42`
         - `var x = 42`
         - `val x = 42`
-        - `var words: MutableList<String>` (`Array`s have a fixed size)
+        - `var words: MutableList<String>` (An `Array` would have a fixed size)
         - `var paragraphs: MutableList<String>`
         - `var contactInfoForID: MutableMap<String, ContactInfo>`
     - `fun multiply(a: Int, b: Int): Int { return a * b }`
