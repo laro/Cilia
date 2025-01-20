@@ -821,7 +821,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
         - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
         - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
     - "Raw" C/C++ arrays (in some contexts represented by `T[]`) are handled with `T*` instead.
-    - `std::array` is called `cilia::FixedSizeArray` instead.
+    - `std::array` is called `cilia::StaticArray` instead.
     - TODO Only possible, if `T[]` is not necessary to mean "array of certain (but unknown) size".
         - Can it really be fully replaced with `T[N]` and `T*`?
         - Also see [https://cplusplus.com/forum/beginner/267321/#msg1150228](https://cplusplus.com/forum/beginner/267321/#msg1150228)
