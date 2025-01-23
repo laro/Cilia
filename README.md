@@ -15,7 +15,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - `var x = 42`
         - `const x = 42`
         - `String[] words`
-        - `List<String> paragraphs`
+        - `Set<String> names`
         - `ContactInfo[String] contactInfoForID`
     - `func multiply(Int a, b) -> Int { return a * b }`
         - `func print(ContactInfo a) { ... }`
