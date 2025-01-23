@@ -100,6 +100,28 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
 >     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
 > - I may not be sufficiently up to date with C++14/17/20/23/26 either.
 
+
+### Value vs. Reference Types ###
+Arrays, sets, and maps are **value types** in C++, Cpp2, and Carbon. In these languages you can use those types directly after declaration (i.e. to add values in a loop).
+```
+vector<string> words;
+for (int i = 0; i <= 9; ++i) {
+    words.push_back(to_string(i));
+}
+```
+
+They are **refence types** in Rust, Swift, and Kotlin, therefore – after declaration – you additionally need to assign an instance.
+```
+var words: [String] = []
+for i in 0...9 {
+    words.append("\(i)")
+}
+```
+
+There are code examples where this is "hidden", i.e. due to immediate assignment of a literal (like ["one", "two", "three"]) or the return value of a function. And it's no big deal, but in general I find this annoying.
+
+
+### Syntax of Carbon and Cpp2 ###
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 
 [Someone said in an interview](https://www.stroustrup.com/devXinterview.html) (way back in 2000):
