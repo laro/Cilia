@@ -69,9 +69,9 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
     - `var x: Int = 42`
         - `var x = 42`
         - `let x = 42`
-        - `var words: [String]`
+        - `var words: [String] = []`
         - `var names: Set<String> = Set()`
-        - `var contactInfoForID: [String: ContactInfo]`
+        - `var contactInfoForID: [String: ContactInfo] = [:]`
     - `func multiply(_ a: Int, _ b: Int) -> Int { return a * b }`
         - `func print(_ a: ContactInfo) { ... }`
         - `func concat(_ a: String, _ b: String) -> String { return a + b }`
@@ -84,9 +84,9 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
     - `var x: Int = 42`
         - `var x = 42`
         - `val x = 42`
-        - `var words: MutableList<String>` (an `Array` would have a fixed size)
-        - `var names: MutableSet<String>`
-        - `var contactInfoForID: MutableMap<String, ContactInfo>`
+        - `var words: MutableList<String> = mutableListOf()` (an `Array` would have a fixed size)
+        - `var names: MutableSet<String> = mutableSetOf()`
+        - `var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`
     - `fun multiply(a: Int, b: Int): Int { return a * b }`
         - `fun print(a: ContactInfo) { ... }`
         - `fun concat(a: String, b: String): String { return a + b }`
