@@ -6,7 +6,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `auto x = 42;`
         - `const auto x = 42;`
         - `vector<string> words;`
-        - `list<string> paragraphs;`
+        - `set<string> names;`
         - `map<string, ContactInfo> contactInfoForID;`
     - `auto multiply(int a, int b) -> int { return a * b; }`
         - `auto print(const ContactInfo& a) { ...; }`
@@ -21,7 +21,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `x := 42;`
         - `x : const int = 42;`
         - `words: vector<string>;`
-        - `paragraphs: list<string>;`
+        - `names: set<string>;`
         - `contactInfoForID: map<string, ContactInfo>;`
     - `multiply: (a: int, b: int) -> int = a * b;`
         - `print: (a: ContactInfo) { ...; }`
@@ -38,7 +38,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `var x: auto = 42;`
         - `let x: auto = 42;`
         - `var words: Array(String);`
-        - `var paragraphs: List(String);`
+        - `var names: Set(String);`
         - `var contactInfoForID: HashMap(String, ContactInfo);`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: ContactInfo) { ...; }`
@@ -55,7 +55,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `let mut x = 42;` (actually, this is `i32`, but that's fine with me)
         - `let x = 42;`
         - `let mut words: Vec<String> = Vec::new();`
-        - `let mut paragraphs: LinkedList<String> = LinkedList::new();`
+        - `let mut names: HashSet<String> = HashSet::new();`
         - `let mut contactInfoForID: HashMap<String, ContactInfo> = HasMap::new();`
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
         - `fn print(a: &ContactInfo) { ...; }`
@@ -70,7 +70,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `var x = 42`
         - `let x = 42`
         - `var words: [String]`
-        - `var paragraphs: LinkedList<String>`
+        - `var names: Set<String>`
         - `var contactInfoForID: [String: ContactInfo]`
     - `func multiply(_ a: Int, _ b: Int) -> Int { return a * b }`
         - `func print(_ a: ContactInfo) { ... }`
@@ -85,7 +85,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `var x = 42`
         - `val x = 42`
         - `var words: MutableList<String>` (an `Array` would have a fixed size)
-        - `var paragraphs: LinkedList<String>` (AFAIK as third-party library only, but that's okay)
+        - `var names: MutableSet<String>`
         - `var contactInfoForID: MutableMap<String, ContactInfo>`
     - `fun multiply(a: Int, b: Int): Int { return a * b }`
         - `fun print(a: ContactInfo) { ... }`
