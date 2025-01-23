@@ -70,7 +70,7 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
         - `var x = 42`
         - `let x = 42`
         - `var words: [String]`
-        - `var names: Set<String>`
+        - `var names: Set<String> = Set()`
         - `var contactInfoForID: [String: ContactInfo]`
     - `func multiply(_ a: Int, _ b: Int) -> Int { return a * b }`
         - `func print(_ a: ContactInfo) { ... }`
