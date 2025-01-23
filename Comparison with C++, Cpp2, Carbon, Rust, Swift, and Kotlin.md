@@ -101,6 +101,15 @@ The follwing comparison aims to show the _exact_ equivalent of the [Cilia exampl
 > - I may not be sufficiently up to date with C++14/17/20/23/26 either.
 
 
+### Syntax of Carbon and Cpp2 ###
+While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
+
+[Someone said in an interview](https://www.stroustrup.com/devXinterview.html) (way back in 2000):
+> Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
+
+I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
+
+
 ### Value vs. Reference Types ###
 Arrays, sets, and maps are **value types** in C++, Cpp2, and Carbon. In these languages you can use those types directly after declaration (i.e. to add values in a loop).
 ```
@@ -119,14 +128,3 @@ for i in 0...9 {
 ```
 
 There are code examples where this is "hidden", i.e. due to immediate assignment of a literal (like ["one", "two", "three"]) or the return value of a function. And it's no big deal, but in general I find this annoying.
-
-
-### Syntax of Carbon and Cpp2 ###
-While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
-
-[Someone said in an interview](https://www.stroustrup.com/devXinterview.html) (way back in 2000):
-> Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
-
-I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
-
-
