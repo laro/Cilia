@@ -111,15 +111,15 @@ I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It ind
 
 
 ### Value vs. Reference Types ###
-Arrays, sets, and maps are **value types** in C++, Cpp2, and Carbon. In these languages you can use those types directly after declaration (i.e. to add values in a loop).
+Arrays, sets, and maps are **value types** in Cilia, C++, Cpp2, and Carbon. In these languages you can use those types directly after declaration (i.e. to add values in a loop).
 ```
-vector<string> words;
-for (int i = 0; i <= 9; ++i) {
-    words.push_back(to_string(i));
+String[] words
+for i in 0..9 {
+    words.pushBack(toString(i));
 }
 ```
 
-They are **refence types** in Rust, Swift, and Kotlin, therefore – after declaration – you additionally need to assign an instance.
+They are **refence types** in Swift, Rust, and Kotlin, therefore – after declaration – you additionally need to assign an instance.
 ```
 var words: [String] = []
 for i in 0...9 {
