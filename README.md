@@ -165,7 +165,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 
 ## Variable Declaration
-`Int i` as variable declaration, very much as in C/C++, plus some simplifications/restrictions.
+`Int i` as variable declaration, very much as in C/C++, plus some simplifications and restrictions.
 - Examples:
     - `Int i`
     - `Int i = 0`
