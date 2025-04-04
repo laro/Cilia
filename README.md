@@ -814,15 +814,15 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
     - "Make simple things simple",  
       having a short and traditional syntax for dynamic arrays should encourage people to use it.
-    - `T[] arr` is the short form of `cilia::Array<T> arr`
+    - `T[] arr` is the short form of `cilia::Array<T> arr` 
     	- TODO Also `[T] arr`, as in Swift, has some merits.
     - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
         - that's the more traditional wording,
         - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
         - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
-    - "Raw" C/C++ arrays (in some contexts represented by `T[]`) are handled with `T*` instead.
+    - "Raw" C/C++ arrays are handled with `T*` instead.
     - `std::array` is called `cilia::StaticArray` instead.
-    - In C/C++ `T[]` means "array of certain (but unknown) size",
+    - In C/C++ `T[]` means "array of certain (inferred) size",
         - but that can be replaced with `T*` and `T[N]`.
         - Also see [https://cplusplus.com/forum/beginner/267321/#msg1150228](https://cplusplus.com/forum/beginner/267321/#msg1150228)
 - `Int[3] arrayOfThreeIntegers`  
