@@ -749,8 +749,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
           ```
     - For extension function templates it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are given.  
       Therefore we write
-        - `template<type T, Int N> func T[N]::size() -> Int { return N }`
-        - `template<type T, Int N> func T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
+        - `func<type T, Int N> T[N]::size() -> Int { return N }`
+        - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
             - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~, as  
                 - then T and N would be used even before they were declared, and
                 - with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we want to write  
