@@ -676,7 +676,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
 - Redefine `T^` and `T+` for special cases / **interoperability with other languages**:
     - `T^` is defined via type traits `SharedPtrType`,  
         - For C++/Cilia classes `T^` is `SharedPtr<T>`:
-            - `template<type T> using T::SharedPtrType = SharedPtr<T>`
+            - `using<type T> T::SharedPtrType = SharedPtr<T>`
         - Objective-C/Swift classes use their reference counting mechanism:
             - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
         - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
@@ -687,7 +687,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
             - Probably very similar to C#/.NET.
     - `T+` is defined via type traits `UniquePtrType`.
         - For C++/Cilia classes `T+` is `UniquePtr<T>`:
-            - `template<type T> using T::UniquePtrType = UniquePtr<T>`
+            - `using<type T> T::UniquePtrType = UniquePtr<T>`
 
 
 ## Templates
@@ -792,13 +792,13 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
     - TODO Really this syntax: `{ ... } { ... }`?
 - Template **type alias** with `using` (not ~~`typedef`~~)
-    - `template<type T> using T::InParameterType = const T&`
+    - `using<type T> T::InParameterType = const T&`
 - Template static constants as type traits
     - ```
-      template<type T> const Bool          T::IsFloatingPoint = False
-                       const Bool    Float32::IsFloatingPoint = True
-                       const Bool    Float64::IsFloatingPoint = True
-      template<type T> const Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
+      const<type T> Bool          T::IsFloatingPoint = False
+      const         Bool    Float32::IsFloatingPoint = True
+      const         Bool    Float64::IsFloatingPoint = True
+      const<type T> Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
       ```
 
 
@@ -837,7 +837,7 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
       ```
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function  
-          `template<type T, Int N> func T[N]::size() -> Int { return N }`
+          `func<type T, Int N> T[N]::size() -> Int { return N }`
 - Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
   But array subscript with `Int+` is unsafe.
     - ```
@@ -1038,7 +1038,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - Objects that are POD (Plain Old Data, i.e. with no pointers) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes on 64 bit platforms) are passed by value.
         - Larger objects (or non-POD) are passed by reference.
     - So as general default use _const reference_,
-        - `template<type T> using T::InParameterType = const T&`  
+        - `using<type T> T::InParameterType = const T&`  
     - and use a "list of exceptions" for the "const _value_ types".
         - ```
           using       Bool::InParameterType = const Bool
@@ -1054,7 +1054,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
           using  ArrayView::InParameterType = const ArrayView
           ...
           ```
-        - `template<type T> using Complex<T>::InParameterType = T::InParameterType`
+        - `using<type T> Complex<T>::InParameterType = T::InParameterType`
             - A generic rule: `Complex<T>` is passed the same way as `T`,
             - could be further refined/corrected with  
               `using Complex<Float128>::InParameterType = const Complex<Float128>&`  
