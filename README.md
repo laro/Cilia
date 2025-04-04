@@ -79,7 +79,7 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
             - TODO Limited to top level?
             - Limited to languages where the scope is marked with `{ }`.
         - File extension
-            - Cilia: `*.cil`, `*.hil` or  `*.cilia`, `*.hilia`
+            - Cilia: `*.cil`, `*.hil`
             - C++: `*.cpp`, `*.hpp` or `*.cxx`, `*.hxx`
                 - Even `*.h`, but that is a problem, as the header could be C or C++ code.  
                   So use of `*.hpp` is recommended for C++ code.  
@@ -1753,13 +1753,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `template`
 
 - Versioning of the Cilia source code
-    - Via file ".ciliaVersion" in a (project) directory,
+    - Via file ".cilVersion" in a (project) directory,
         - similar to ".clang_format",
-        - also possible file by file: Matrix.ciliaVersion (for Matrix.cilia).
+        - also possible file by file: "Matrix.cilVersion" (for "Matrix.cil").
     - Via file extension: 
-        - "*.cilia" – always the latest language version (if not overridden via ".ciliaVersion")
-        - "*.2024.cilia" – version from the year 2024
-        - "*.2024b.cilia" – second version from the year 2024
+        - "*.cil" – always the latest language version (if not overridden via ".cilVersion")
+        - "*.2024.cil" – version from the year 2024
+        - "*.2024b.cil" – second version from the year 2024
 
 - No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just object-like:
     - `#define`
