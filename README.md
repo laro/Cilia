@@ -944,7 +944,8 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 - AKA Maps (or Dictionaries)
 - `TValue[TKey]` as short form of `Map<TKey, TValue>`
     - e.g. `ContactInfo[String] contactInfoForID` as short form  
-      of `Map<String, ContactInfo> contactInfoForID`
+      of `Map<String, ContactInfo> contactInfoForID`,
+    - as [in D](https://dlang.org/spec/hash-map.html).
 - "Make simple things simple",  
   having a short syntax for associative arrays so they are easy to use.
 - Maybe partial template specialization:
