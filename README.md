@@ -166,11 +166,13 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 ## Variable Declaration
 `Int i` as variable declaration, very much as in C/C++, plus some simplifications and restrictions.
+The type definition is completely on the left-hand side, i.e. before the variable name, also for arrays and bit fields.
 - Examples:
     - `Int i`
     - `Int i = 0`
     - `Int x, y`
     - `Int x = 99, y = 199`
+    - `Int[3] position`  // Array of three integers (instead of `Int position[3]`)
     - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
     - `Image image(width, height, 0.0)`
     - `const Float* pointerToConstantFloat`
@@ -197,6 +199,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
   UInt32:8  exponent
   UInt32:23 significand // AKA mantissa
   ```
+  (instead of `UInt32 sign : 1`)
 
 
 ## Classes
