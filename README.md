@@ -197,17 +197,6 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
   UInt32:8  exponent
   UInt32:23 significand // AKA mantissa
   ```
-- [Endianness](https://en.wikipedia.org/wiki/Endianness)
-    - Big Endian (Motorola)
-        - `cilia::be::Int`, `Int8`, `Int16`, `Int32`, `Int64`
-        - MSB first (most significant byte first), starting with the "big end"
-        - MSb first (most significant bit first)
-        - classical "[network byte order](https://en.wikipedia.org/wiki/Endianness#Networking)"
-    - Little Endian (Intel)
-        - `cilia::le::Int`, `Int8`, `Int16`, `Int32`, `Int64`
-        - LSB first (least significant byte first), starting with the "little end"
-        - LSb first (least significant bit first)
-        - "[USB byte order](http://cholla.mmto.org/computers/usb/endian.html)"
 
 
 ## Classes
@@ -1686,6 +1675,18 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - `aFloat64 * anInt32` // OK
                 - `aFloat64 * anInt64` // Warning
                     - `aFloat64 * Float64(anInt64)` // OK
+
+- [Endianness](https://en.wikipedia.org/wiki/Endianness)
+    - Big Endian (Motorola)
+        - `cilia::be::Int`, `Int8`, `Int16`, `Int32`, `Int64`
+        - MSB first (most significant byte first), starting with the "big end"
+        - MSb first (most significant bit first)
+        - classical "[network byte order](https://en.wikipedia.org/wiki/Endianness#Networking)"
+    - Little Endian (Intel)
+        - `cilia::le::Int`, `Int8`, `Int16`, `Int32`, `Int64`
+        - LSB first (least significant byte first), starting with the "little end"
+        - LSb first (least significant bit first)
+        - "[USB byte order](http://cholla.mmto.org/computers/usb/endian.html)"
 
 - Extended & Arbitrary Precision Integer & Float
     - `Int128`, `Int256`
