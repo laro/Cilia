@@ -971,7 +971,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
                 - `BigInt[] bigIntArray = ...`  
                   `for i in bigIntArray { ... }`
                     - `i` is `const BigInt&`  
-            - `const X` for "small types":
+            - `const X` for "small types" (like `Int`, `Float`, etc.):
                 - `for i in [1, 2, 3] { ... }`
                     - `i` is `const Int`
                 - `for str in ["a", "b", "c"] { ... }`
