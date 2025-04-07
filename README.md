@@ -960,7 +960,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
   (`out` and `forward` are not applicable here).
     - **Default is passing as `in`**, explicitly to override with one of the other keywords if desired.
     - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
-- Parameter passing keywords:
+- Parameter passing options/keywords:
     - **`in`**
         - to mark parameters used as input.
         - Is the default if no parameter passing keyword is given.
