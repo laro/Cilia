@@ -987,7 +987,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - **`inout`**
         - to mark parameters used as input (so they need to be initialized at the caller) _and_ as output.
         - Technically a non-const/mutable reference (`X&`)
-        - Suitable for e.g. `swap(inout Int a, b)`.
+        - Suitable for e.g. `swap(inout Int a, inout Int b)`.
         - Keyword `inout` is also to be given at the caller: `swap(inout a, inout b)`
         - Examples:
             - `for inout str in stringArray { ... }`
