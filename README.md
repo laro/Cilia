@@ -1292,7 +1292,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `await` instead of ~~`co_await`~~
     - `yield` instead of ~~`co_yield`~~
     - `return` instead of ~~`co_return`~~
-    - `and`, `or`, `xor` in addiition to ~~`&&`/`&`~~, ~~`||`/`|`~~, ~~`!=`/`^`~~
+    - `and`, `or`, `xor` in addiition to ~~`&&`~~/~~`&`~~, ~~`||`~~/~~`|`~~, ~~`!=`~~/~~`^`~~
     - `not` in addition to `!`
 - `Int32` instead of `int32_t` or `qint32`,
     - so no prefix "q" nor postfix "_t", and in CamelCase.
