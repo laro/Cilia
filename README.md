@@ -965,8 +965,9 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - **`in`**
         - to mark parameters used as input.
         - Is the default if no parameter passing keyword is given.
-        - Technically either `const X&` or `const X` (sometimes `const XView`)
-            - `const X&` as default:
+        - Suitable for most basic functions, like `print(Int count, String text)`.
+        - Technically either `const X&` (a constant reference) or `const X` (a constant copy), sometimes `const XView` (a view type, e.g. a slice).
+            - `const X&` as default, suitable for most, medium to large types:
                 - `add(BigInt a, BigInt b)`
                     - is effectively translated to `add(const BigInt& a, const BigInt& b)`  
                 - `BigInt[] bigIntArray = ...`  
@@ -986,6 +987,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - **`inout`**
         - to mark parameters used as input (so they need to be initialized at the caller) _and_ as output.
         - Technically a non-const/mutable reference (`X&`)
+        - Suitable for e.g. `swap(inout Int a, b)`.
         - Keyword `inout` is also to be given at the caller: `swap(inout a, inout b)`
         - Examples:
             - `for inout str in stringArray { ... }`
