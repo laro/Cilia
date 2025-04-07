@@ -953,14 +953,15 @@ The basic new idea is, to define templates (classes and functions) mostly the sa
 ## Function/Loop Parameter Passing
 The basic idea is to have the most efficient/appropriate parameter passing mode as the _default_, and to give more the intent than the technical realization.  
 Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (who extended/generalized the `out` parameters of C#).
+- **Default is passing as `in`**-parameter.
+    - So if no parameter passing keyword is given, `in` parameter passing is used.
+    - All other parameter passing methods need to be explicitly given.
 - Function call parameters are passed as either **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, or **`forward`**.
-    - **Default is passing as `in`**, explicitly to override with one of the other keywords if desired.
     - Wording fits nicely for function parameters: How does the parameter get into the function body (or out of it).
 - The loop variable of `for ... in` is passed as either **`in`**, **`inout`**, **`copy`**, or **`move`**  
   (`out` and `forward` are not applicable here).
-    - **Default is passing as `in`**, explicitly to override with one of the other keywords if desired.
     - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
-- Parameter passing options/keywords:
+- Parameter passing methods/keywords:
     - **`in`**
         - to mark parameters used as input.
         - Is the default if no parameter passing keyword is given.
