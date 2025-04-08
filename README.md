@@ -1228,9 +1228,9 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - `"""(.* )whatever(.*)"""`
 - Interpolated Strings
     - `f"M[{i},{j}] = {M[i, j]}"`
-        - like f-strings in Python
-    - ~~or `$"M[{i},{j}] = {M[i, j]}"` like in C#?~~
-    - `{}` (curly braces) are used in std::format already.
+        - like f-strings in Python.
+    - ~~Or `$"M[{i},{j}] = {M[i, j]}"` like in C#?~~
+    - Curly braces (`{}`) are used in std::format already.
     - TODO Any reason to use/prefer any other syntax?
 - Alternative string literals
     - ~~`"Text"utf8` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)~~
