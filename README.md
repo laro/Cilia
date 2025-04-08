@@ -1657,7 +1657,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 ## Misc 
 - Two-Pass Compiler
     - so no forward declarations necessary,
-    - as with C#, Java (but differently than C/C++, due to its single-pass compiler).
+    - as with C# and Java (but unlike C/C++, due to its single-pass compiler).
 
 - **Mixed arithmetic**
     - Mixing signed with unsigned integer
