@@ -1227,9 +1227,11 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - Also as single line string literal with very few restrictions, good for RegEx
         - `"""(.* )whatever(.*)"""`
 - Interpolated Strings
-    - `$"M[{i},{j}] = {M[i, j]}"`
-        - as in C#
-        - TODO Any reason to use/prefer any other syntax?
+    - `f"M[{i},{j}] = {M[i, j]}"`
+        - like f-strings in Python
+    - ~~or `$"M[{i},{j}] = {M[i, j]}"` like in C#?~~
+    - `{}` (curly braces) are used in std::format already.
+    - TODO Any reason to use/prefer any other syntax?
 - Alternative string literals
     - ~~`"Text"utf8` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)~~
     - ~~`"Text"utf16`~~
