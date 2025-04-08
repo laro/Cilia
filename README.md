@@ -244,7 +244,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       return x * y
   }
   ```
-    - TODO `constfunc`?
+    - TODO Would `constfunc` be the better keyword?
 - **Function pointers**
     - Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Examples:
@@ -1759,11 +1759,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
 - Reserved keywords for _future_ use (maybe, maybe not).
-    - `Null`
-    - `parallel`
-    - `struct` for some variant of C++ strcuts/classes
-    - `interface` for pure abstract base classes or similar constructs
-    - `template`
+    - `parallel` for `parallel for ...`
+    - `interface` for pure abstract base classes or similar constructs?
+    - `struct` for some variant of C++ strcuts/classes?
+    - `Null` instead of `NullPtr`? (But actually it always is a pointer in our context.)
+    - `template`, as it still is unclear, if the "new", shorter template expressions are really better.
+    - `let` for `const` variable declarations?
+    - `constfunc` instead of `constexpr` or `consteval`?
 
 - Versioning of the Cilia source code
     - Via file ".cilVersion" in a (project) directory,
