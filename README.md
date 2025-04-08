@@ -1373,7 +1373,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - use of `noinit`.
     - Still allowed/undetected in unsafe code:
         - Integer overflow (checking that all the time seems too costly)
-    - `unsafe` code is _necessary_ to implement certain abstractions (as container classes):
+    - `unsafe` code is _necessary_ to implement certain abstractions (like container classes):
         - ```
           operator[Int i] -> T& {
               if CHECK_BOUNDS and (i < 0 or i >= size) {
