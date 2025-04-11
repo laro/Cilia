@@ -180,6 +180,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Int x = 99, y = 199`
     - `Int[3] position`  // Array of three integers (instead of `Int position[3]`)
     - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
+    - `Float& m, n`   // m _and_ n are references (contrary to C/C++)
     - `Image image(width, height, 0.0)`
     - `const Float* pointerToConstantFloat`
     - `const Float const* constPointerToConstantFloat`
