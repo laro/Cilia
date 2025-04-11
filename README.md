@@ -1196,7 +1196,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
 - `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
-    - Can be converted to any float type
+    - Can be converted to any float type.
     - Is interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
 - `NaN` is a floating point literal of arbitrary precision for NaN ("not a number") values
@@ -1204,16 +1204,15 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - Is interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
 - `"Text"` is a `StringView` with UTF-8 encoding.
-    - No null termination
+    - No null termination.
         - If necessary
             - use `"Text\0“`  or
             - convert using `StringZ("Text")`.
     - Data is typically stored in read-only data segments (".rodata") or ROM.
     - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
         - `"Text"` -> `u8"Text"sv`
-        - `"Text"sv` as to avoid null termination, and
-        - `u8"Text"` as to have UTF-8 encoding.
-    - A StringView start like a String does: pointer to first character and length,
+        - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
+    - A StringView starts like a String does: pointer to first character plus length,
         - so slicing of String to StringView is possible.
         - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
   
