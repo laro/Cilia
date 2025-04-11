@@ -234,9 +234,9 @@ func multiplyAdd(Int x, y, Float z) -> Float {
 - Function parameters are given as `TypeName parameterName`, as with variable declarations.
 - Multiple function parameters of the (exact) same type can be combined to e.g. `TypeName parameter1, parameter2`.
     - `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
-- Always and only in the trailing return type syntax.
-- Void functions are written _without_ trailing `->` (i.e. no ~~`-> Void`~~).
-    - `func print(String line) { ... }`
+- Always and only in the trailing return type syntax (using `-> ReturnType`),
+    - but void functions are written _without_ trailing `->` (i.e. no ~~`-> Void`~~),
+      e.g. `func print(String line) { ... }`
 - **Lambdas**
     - `[](Int i) -> Float { i * 3.14 }`  
       as in C++
