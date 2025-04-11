@@ -1202,22 +1202,20 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - Can be converted to any float type
     - Is interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
-- `"Text"` is a `StringView`
-    - Like String starts: pointer to first character and length,
-        - so slicing of String to StringView is possible.
-        - TODO What about small string optimization (SSO)?
+- `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination
         - If necessary
             - use `"Text\0“`  or
             - convert using `StringZ("Text")`.
     - Data is typically stored in read-only data segments (".rodata") or ROM.
-    - A Cilia-to-C++-transpiler would have to translate every string into a char array:
-        - `"Text"` -> `std::string_view({ 'T', 'e', 'x', 't' })`
-        - As to avoid null termination and to have UTF-8 strings.
-        - As `u8''` does _not_ expand to multiple code points, we need to expand UTF-8 manually here, too.
-        - As this results in transpiled C++ code that is difficult to read, there should be a Cilia compiler switch to simply translate into:
-            - `"Text"` -> `u8"Text"sv`
-            - (But this would still store the string with null termination in ".rodata"/ROM.)
+    - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
+        - `"Text"` -> `u8"Text"sv`
+        - `"Text"sv` as to avoid null termination, and
+        - `u8"Text"` as to have UTF-8 encoding.
+    - A StringView start like a String does: pointer to first character and length,
+        - so slicing of String to StringView is possible.
+        - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
+  
 - Multiline String Literal
     - ```
       """
