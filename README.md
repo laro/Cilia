@@ -1789,3 +1789,38 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `#if`
     - `#else`
     - `#endif`
+
+- TODO OpenMP-like parallel programming?
+    - ```
+      Floar[] arr = ...
+      for i in 0..<arr.size() {
+          arr[i] = 2 * arr[i]
+      }
+      ```
+    - ```
+      Floar[] arr = ...
+      for i in 0..<arr.size() parallel {
+          arr[i] = 2 * arr[i]
+      }
+      ```
+    - ```
+      Floar[] arr = ...
+      for i in 0..<arr.size()
+      parallel batch(1024) {
+          arr[i] = 2 * arr[i]
+      }
+      ```
+    - ```
+      Floar[] arr = ...
+      for i in 0..<arr.size()
+      parallel if arr.size() > 65535 {
+          arr[i] = 2 * arr[i]
+      }
+      ```
+    - ```
+      Floar[] arr = ...
+      Float sum = 0.0
+      for i in 0..<arr.size() parallel reduce(sum: +) {
+          sum += arr[i]
+      }
+      ```
