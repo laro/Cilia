@@ -696,7 +696,8 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
 
 
 ## Templates
-The basic new idea is, to define templates (classes and functions) mostly the same as they are used.
+The basic new idea is, to define templates (classes and functions) mostly the same as they are used.  
+Similar as in Java, C#, Swift and Rust.
 - **Class** templates  
   The template parameters (`<...>`) are given after the class name, so that the definition is similar to the usage (in a variable declaration).
   ```
