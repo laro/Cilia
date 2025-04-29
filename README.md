@@ -778,8 +778,7 @@ Similar as in Java, C#, Swift and Rust.
           sum += x  // requires addition of type T to type TSum
           sum -= x  // requires subtraction of type T from type TSum
           sum / 1   // requires to divide sum by 1 (i.e. an Int)
-      }
-      {
+      } {
           T+ numbers
           Int size = 0
           Int sizeMax = 0
@@ -796,7 +795,6 @@ Similar as in Java, C#, Swift and Rust.
           func reset(Int newSize) { ... }
       }
       ```
-    - TODO Really this syntax: `{ ... } { ... }`?
 - Template **type alias** with `using` (not ~~`typedef`~~)
     - `using<type T> T::InParameterType = const T&`
 - Template static constants as type traits
