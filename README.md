@@ -1208,7 +1208,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
         - If necessary
-            - use `"Text\0“`  or
+            - use `"Text"sz`, `"Text\0“`  or
             - convert using `StringZ("Text")`.
     - Data is typically stored in read-only data segments (".rodata") or ROM.
     - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
