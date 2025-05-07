@@ -723,7 +723,7 @@ Similar as in Java, C#, Swift and Rust.
 - **Class** templates  
   The template parameters (`<...>`) are given after the class name, so that the definition is similar to the usage (in a variable declaration).
   ```
-  class MyVector<Number T> {
+  class MyArray<Number T> {
       T* numbers = NullPtr
       Int size = 0
   }
