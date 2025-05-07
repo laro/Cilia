@@ -1437,7 +1437,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
         - may throw OverflowException (or abort the program).
     - Generally considered to be too costly, even in languages that are otherwise considered as "safe".
     - `safe::Int8`/`Int16`/`Int32`/`Int64`
-    - `safe::Uint`
+    - `safe::UInt`
         - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
 - No further security features planned beyond C++
     - not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
@@ -1798,7 +1798,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Typically using SIMD (as those „media/DSP instructions“ do support saturation natively).
     - see [https://en.wikipedia.org/wiki/Saturation_arithmetic](https://en.wikipedia.org/wiki/Saturation_arithmetic)
     - `saturating::Int8`/`Int16`/`Int32`/`Int64`
-    - `saturating::Uint`
+    - `saturating::UInt`
         - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
 - Reserved keywords for _future_ use (maybe, maybe not).
