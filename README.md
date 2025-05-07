@@ -496,7 +496,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             - Many seem more suitable for a computer algebra system (CAS), not for a general purpose programming language.
         - `|x|` for `abs(x)`?
             - `||x||` for `norm(x)`?
-            	- This would interfere with `||` as logical `or`.
+                - This would interfere with `||` as logical `or`.
             - This form is called as "enclosing operator", "delimited form", "bracketed expression", or informally as a paired prefix/postfix or "sandwich operator".
             - More variants?
                 - `≪...≫`
