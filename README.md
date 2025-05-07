@@ -214,12 +214,12 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 ## Classes
 - Quite as in C++
   ```
-  class MyVectorOfInt {
-  public:
+  class MyArrayOfInt {
       Int* numbers = NullPtr
       Int size = 0
   }
   ```
+- Default access specifier is `public`.
 - Not ~~`struct`~~, as it is just too similar to `class` with no real benefit.
    - Keep as a reserved keyword for future use.
 
