@@ -1443,7 +1443,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
         - that is just out of scope,
     - no _additional_ thread safety measures
-        - A thread safety issue can easily lead to a deadlock or crash, but that is a reliabilty problem, usually IMHO not a security problem.
+        - A thread safety issue can easily lead to a deadlock or crash, but IMHO that is mostly a reliabilty problem and rarely a security problem.
         - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with better solutions than already available/recommended in C++).
 
 
