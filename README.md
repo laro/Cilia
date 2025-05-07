@@ -487,6 +487,15 @@ func multiplyAdd(Int x, y, Float z) -> Float {
           }
       }
       ```
+    - Unicode operaors
+        - Reserved for future use, as it could get complicated and confusing, especially to differentiate
+            - operator precedence and
+            - unary (prefix, postfix) or binary (infix) operators.
+        - `|x|` for `abs(x)`?
+            - `||x||` for `norm(x)`?
+            - More variants?
+        - ⊕, ⊖, ⊗, ⊘, ⊙, ⊛, ⊞, ⊟, ∪, ∩, ∖, ∈, ∉, ∋, ∌, ∧, ∨, ¬, ∷, ∶, ∝, ∼, ≈, ≉, ≠, ≤, ≥, ≪, ≫, ⊂, ⊃, ⊆, ⊇, ∅, ∇, ∂, ∞, ∑, ∏, ∫, ∮, ∵, ∴, ∗, ∘, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
+
 
 
 ## Branches & Loops
