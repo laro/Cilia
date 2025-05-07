@@ -574,8 +574,8 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           }
       }
       ```
-- **switch/case** with `fallthrough` instead of ~~`break`~~
-  like Swift
+- **switch/case** with `fallthrough` instead of ~~`break`~~,  
+  like in Swift
     - ```
       switch i {
       case 1:
@@ -598,7 +598,29 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           print("default")
       }
       ```
-
+        - Old behaviour on demand
+            - ```
+              switch i fallthrough {
+              case 1:
+                  print("1")
+                  break
+              
+              case 2, 3:
+                  print("Either 2 or 3")
+                  break
+              
+              case 4:
+                  // do something
+                  // implicit fallthrough
+              case 5:
+                  // do something more
+                  print("4 or 5")
+                  break
+              
+              default:
+                  print("default")
+              }
+              ```
 
 ## Aliasing
 Create an alias with `using`, for:
