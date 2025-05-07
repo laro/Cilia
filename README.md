@@ -499,11 +499,11 @@ func multiplyAdd(Int x, y, Float z) -> Float {
             	- This would interfere with `||` as logical `or`.
             - This form is called as "enclosing operator", "delimited form", "bracketed expression", or informally as a paired prefix/postfix or "sandwich operator".
             - More variants?
-            	- `≪...≫`
-             	- `‹...›` , `«...»`
-              	- `⦅...⦆` , `〚...〛` , `⦃...⦄`
-              	- `（...）`, `［...］`, `｛...｝`, `｟...｠`
-              	- `「...」`, `『...』`, `〈...〉`, `《...》`, `【...】`, `〖...〗`, `〔...〕`, `〘...〙`, `⦗...⦘`
+                - `≪...≫`
+                - `‹...›` , `«...»`
+                - `⦅...⦆` , `〚...〛` , `⦃...⦄`
+                - `（...）`, `［...］`, `｛...｝`, `｟...｠`
+                - `「...」`, `『...』`, `〈...〉`, `《...》`, `【...】`, `〖...〗`, `〔...〕`, `〘...〙`, `⦗...⦘`
             - Some may be used in reversed order: `≫...≪`
 
 
