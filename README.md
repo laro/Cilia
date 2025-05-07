@@ -1439,12 +1439,12 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `safe::Int8`/`Int16`/`Int32`/`Int64`
     - `safe::UInt`
         - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
-- No further security features planned beyond C++
-    - not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
-        - that is just out of scope,
-    - no _additional_ thread safety measures
-        - A thread safety issue can easily lead to a deadlock or crash, but IMHO that is mostly a reliabilty problem and rarely a security problem.
-        - While thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (just because I am not aware of / familiar with better solutions than already available/recommended in C++).
+- No further security features planned beyond C++:
+    - Not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
+        - that is just out of scope.
+    - No _additional_ thread safety measures.
+        - A thread safety issue can easily lead to a deadlock or crash, and sometimes can even be a security problem.
+        - But while thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (mainly because I am not aware of / familiar with better solutions than already available/recommended in C++).
 
 
 ## `is`, `as`, Casting
