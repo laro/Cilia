@@ -505,6 +505,7 @@ func multiplyAdd(Int x, y, Float z) -> Float {
                 - `（...）`, `［...］`, `｛...｝`, `｟...｠`
                 - `「...」`, `『...』`, `〈...〉`, `《...》`, `【...】`, `〖...〗`, `〔...〕`, `〘...〙`, `⦗...⦘`
             - Some may be used in reversed order: `≫...≪`
+            - Also see [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)
 
 
 
