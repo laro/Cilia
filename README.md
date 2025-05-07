@@ -489,9 +489,10 @@ func multiplyAdd(Int x, y, Float z) -> Float {
       ```
     - Exotic operators (e.g. Unicode)
         - ⊕, ⊖, ⊗, ⊘, ⊙, ⊛, ⊞, ⊟, ∪, ∩, ∖, ∈, ∉, ∋, ∌, ∧, ∨, ¬, ∷, ∶, ∝, ∼, ≈, ≉, ≠, ≤, ≥, ≪, ≫, ⊂, ⊃, ⊆, ⊇, ∅, ∇, ∂, ∞, ∑, ∏, ∫, ∮, ∵, ∴, ∗, ∘, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
-        - Reserved for future use, as it could get complicated and confusing, especially to differentiate
-            - operator precedence and
-            - unary (prefix, postfix) or binary (infix) operators.
+        - Reserved for future use, as it could get complicated and confusing.
+            - Especially to differentiate
+                - operator precedence and
+                - unary (prefix, postfix) or binary (infix) operators.
             - Many seem more suitable for a computer algebra system (CAS), not for a general purpose programming language.
         - `|x|` for `abs(x)`?
             - `||x||` for `norm(x)`?
