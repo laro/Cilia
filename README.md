@@ -1827,36 +1827,40 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `#endif`
 
 - TODO OpenMP-like parallel programming?
-    - ```
+    - Serial code
+      ```
       Floar[] arr = ...
       for i in 0..<arr.size() {
           arr[i] = 2 * arr[i]
       }
       ```
-    - ```
-      Floar[] arr = ...
-      for i in 0..<arr.size() parallel {
-          arr[i] = 2 * arr[i]
-      }
-      ```
-    - ```
-      Floar[] arr = ...
-      for i in 0..<arr.size()
-      parallel batch(1024) {
-          arr[i] = 2 * arr[i]
-      }
-      ```
-    - ```
-      Floar[] arr = ...
-      for i in 0..<arr.size()
-      parallel if arr.size() > 65535 {
-          arr[i] = 2 * arr[i]
-      }
-      ```
-    - ```
-      Floar[] arr = ...
-      Float sum = 0.0
-      for i in 0..<arr.size() parallel reduce(sum: +) {
-          sum += arr[i]
-      }
-      ```
+    - Parallel code
+        - ```
+          Floar[] arr = ...
+          ```
+          ```
+          for i in 0..<arr.size() parallel {
+          ```
+          ```
+          for i in 0..<arr.size()
+          parallel batch(1024) {
+          ```
+          ```
+          for i in 0..<arr.size()
+          parallel if arr.size() > 65535 {
+          ```
+          ```
+          for i in 0..<arr.size()
+          parallel if arr.size() > 65535 {
+          ```
+          ```
+          for i in 0..<arr.size() parallel reduce(sum: +) {
+          ```
+          ```
+          for i in 0..<arr.size()
+          parallel reduce(sum: +) schedule(dynamic, 65536) {
+          ```
+          ```
+              arr[i] = 2 * arr[i]
+          }
+          ```
