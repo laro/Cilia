@@ -1836,31 +1836,30 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
     - Parallel code
         - ```
-          Floar[] arr = ...
-          ```
-          ```
-          for i in 0..<arr.size() parallel {
+          for i in 0..<arr.size() parallel { .. }
           ```
           ```
           for i in 0..<arr.size()
-          parallel batch(1024) {
+          parallel batch(1024) { .. }
           ```
           ```
           for i in 0..<arr.size()
-          parallel if arr.size() > 65535 {
+          parallel if arr.size() > 65535 { .. }
           ```
           ```
           for i in 0..<arr.size()
-          parallel if arr.size() > 65535 {
+          parallel if arr.size() > 65535 { .. }
           ```
           ```
-          for i in 0..<arr.size() parallel reduce(sum: +) {
+          for i in 0..<arr.size() parallel reduce(sum: +) { .. }
           ```
           ```
           for i in 0..<arr.size()
-          parallel reduce(sum: +) schedule(dynamic, 65536) {
+          parallel
+          if arr.size() > 65535
+          reduce(sum: +)
+          schedule(dynamic, 65536) { .. }
           ```
-          ```
-              arr[i] = 2 * arr[i]
-          }
-          ```
+        - TODO Syntactically this is not the best solution.
+            - We avoid brackets in `if` and `while`, but then use it for `reduce` and `schedule`...
+            - Syntax should be better, clearer, or more powerful than plain OpenMP, otherwise better use just that.
