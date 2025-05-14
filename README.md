@@ -1146,8 +1146,8 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - TODO Any reason, not to?
 - `[1, 2, 3]` is an array (here an `Int[3]`),
     - all elements have the same type.
-- `{1, "Text", 3.0}` is an initialization list.
-    - e.g. for `Pair` or `Tuple`
+- `{1, "Text", 3.0}` is an initialization list,
+    - e.g. for `Tuple` or `Pair`.
 - `[ 1: "Value1", 2: "Value2", 3: "Value3", 4: "Value4" ]` is a `String[Int]` (AKA `Map<Int, String>`).
     - ```
       [
