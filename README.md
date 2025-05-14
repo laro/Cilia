@@ -1150,7 +1150,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - e.g. for `Tuple` or `Pair`.
 - `[ 1: "one", 2: "two", 3: "three", 4: "four" ]` is a `String[Int]` (AKA `Map<Int, String>`).
     - ```
-      [
+      String[Int] keywords = [
           1: "one"
           2: "two"
           3: "three"
