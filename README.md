@@ -1148,14 +1148,18 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - all elements have the same type.
 - `{1, "Text", 3.0}` is an initialization list.
     - e.g. for `Tuple`
-- `String[String]` (AKA `Map<String,String>`) is initialized with
+- `String[Int]` (AKA `Map<Int, String>`) is initialized with
   ```
-  {
-      "Key1": "Value1"
-      "Key2": "Value2"
-      "Key3": "Value3"
-      "Key4": "Value4"
-  }
+  [ 1: "Value1", 2: "Value2", 3: "Value3", 4: "Value4" ]
+  ```
+  or
+  ```
+  [
+      1: "Value1"
+      2: "Value2"
+      3: "Value3"
+      4: "Value4"
+  ]
   ```
 - Rules for user defined literals
     - as in C++.
