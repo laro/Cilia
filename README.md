@@ -133,10 +133,10 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - Typically a statement or expression ends with the end of a line.
 - Multiline expressions:
     - Explicitly via `\` at end of line,
-    	- it is no whitespace after this continuation-backslash allowed
-     	- (as in Python).
+        - it is no whitespace after this continuation-backslash allowed
+        - (as in Python).
     - Up to closing of `(...)` or `[...]`
-    	- (also as in Python).
+        - (also as in Python).
 - Multiple expressions in a single line _are_ separated by semicolon.  
   `x += offset; y += offset`
 - Disadvantages:
@@ -1027,7 +1027,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 ## Literals
 - `True`, `False` are Bool,
     - as in Python,
-    - uppercase as they are constants.  
+    - uppercase as they are constants. 
 - `NullPtr` is the null pointer,
     - it is of the type `NullPtrType`,
     - explicit cast necessary to convert any pointer to `Int`.
@@ -1050,12 +1050,12 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
             - `Int n = Int(m)`   // Works
     - Small integer literals like `123` are interpreted as `Int`
-    	- in case of type inferring, parameter overloading and template matching.
+        - in case of type inferring, parameter overloading and template matching.
         - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
     - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
         - Store as array of `Int`
     - `123u` is `UInt`
-    	- `-123u` is an error.
+        - `-123u` is an error.
     - `-123` is always `Int` (signed)
 - `0xffffffff` is `UInt` in hexadecimal
 - `0b1011` is `UInt` in binary
@@ -1070,11 +1070,11 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - ~~`Bool a = 1`~~      // Error,
         - because `Int` is not a `Bool`
         - because an `Int` should not be accidentally interpreted as a `Bool`
-        - cast if necessary: `Bool a = Bool(1)` 
+        - cast if necessary: `Bool a = Bool(1)`
 - `1.0` is a floating point literal of arbitrary precision
     - Can be converted to any float type into which it fits exactly
         - otherwise explicit cast necessary: `Float16(3.1415926)`
-    - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
+    - Difficult: Constexpr constructor that accepts an arbitrary precision float literaland can store that in ROM
         - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
     - Small floating point literals like `1.0` are interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
@@ -1143,7 +1143,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - ~~Problem: How to combine e.g. `"..."ascii` and `"..."sz`?~~
             - Workaround: Use `"Text\0"ascii` instead.
     - All these available for multiline string literals and interpolated strings, too.
-        - TODO Any reason, not to? 
+        - TODO Any reason, not to?
 - `[1, 2, 3]` is an array (here an `Int[3]`),
     - all elements have the same type.
 - `{1, "Text", 3.0}` is an initialization list.
@@ -1178,7 +1178,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - ```
       /* This
       /* (and this) */
-         is a comment */ 
+         is a comment */
       ```
 
 
@@ -1205,12 +1205,12 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 
 ## Safety and Security
 - **Range & Validation Checks**
-	- The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
-		- range checks, to detect **buffer overflows** or similar,
-		- safe iterators, to detect invalid iterators.
-			- So every safe iterator would have a pointer to the element _and_ a pointer to the container.
-				- Naive: check at every dereferencing
-				- Optimized: check at first dereferencing, but thereafter only after a call to a non-const member function of the container (or if such a call cannot be excluded).
+    - The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
+        - range checks, to detect **buffer overflows** or similar,
+        - safe iterators, to detect invalid iterators.
+            - So every safe iterator would have a pointer to the element _and_ a pointer to the container.
+                - Naive: check at every dereferencing
+                - Optimized: check at first dereferencing, but thereafter only after a call to a non-const member function of the container (or if such a call cannot be excluded).
     - This should fix the majority of C/C++ security issues.  
       To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
     - So we would have:
@@ -1486,12 +1486,12 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - for template types, references and pointers.
     - ```
       func getStringLength(Type obj) -> Int {
-           if obj is String {
-               // "obj" is automatically cast to "String" in this branch
-               return obj.length
+          if obj is String {
+              // "obj" is automatically cast to "String" in this branch
+              return obj.length
            }
-           // "obj" is still a "Type" outside of the type-checked branch
-           return 0
+          // "obj" is still a "Type" outside of the type-checked branch
+          return 0
       }
       ```
     - ```
@@ -1500,7 +1500,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
               return 0
           // "obj" is automatically cast to "String" in this branch
           return obj.length
-       }
+      }
       ```
     - ```
       func getStringLength(Type obj) -> Int {
@@ -1616,9 +1616,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB 
             - **Note:** _Not_ even with UTF-32 do all grapheme clusters fit into a single code point,  
               so not:
-        	    - emoji with modifier characters like skin tone or variation selector,
-        	    - diacritical characters (äöü..., depending on the normal form chosen),
-        	    - surely some more ...
+                - emoji with modifier characters like skin tone or variation selector,
+                - diacritical characters (äöü..., depending on the normal form chosen),
+                - surely some more ...
             - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
             - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
         - **code units**
@@ -1757,8 +1757,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - see [Boost.Multiprecision](https://www.boost.org/doc/libs/1_79_0/libs/multiprecision/doc/html/index.html), [GMP](https://gmplib.org)
     - `BFloat16` (Brain Floating Point)
     - `Float128`
-    	- 1 bit sign, 15 bit exponent, 112 bit significand
-    	- `Float256`?
+        - 1 bit sign, 15 bit exponent, 112 bit significand
+        - `Float256`?
     - `DDFloat`, `TDFloat`, `QDFloat`
         - double-double/triple-double/quad-double arithemtic
         - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
