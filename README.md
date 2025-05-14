@@ -1175,7 +1175,8 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
       // }
       ```
 - Block comments can be _nested_
-    - ```
+    - as in Swift and Rust:
+      ```
       /* This
       /* (and this) */
          is a comment */
