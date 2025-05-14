@@ -122,8 +122,8 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
 
 - Namespaces fully lowercase 
     - `cilia`
-    - `cilia::lapack`
-    - `cilia::geometry`
+    - `cilia::gui`, `cilia::cli`
+    - `cilia::lapack`, `cilia::geometry`
     - I don't think this is that important, but it helps to differentiate between classes and namespaces.
 
 
