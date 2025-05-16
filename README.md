@@ -512,7 +512,9 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - User defined string suffixes
         - as in C++
             - `"..."sv` for `std::string_view`.
-        - Maybe `"..."sz` for null terminated strings? (But you may just write `"...\0"`.)
+        - `"..."sz` for null terminated strings.
+            - Type of `"..."sz` is `Char*`.
+            - `"...\0"` is a StringView of a zero terminated string.
         - No ~~`"..."s`~~ for `std::string`, as that is the default in Cilia.
     - All these available for multiline string literals and interpolated strings, too.
         - TODO Any reason, not to?
