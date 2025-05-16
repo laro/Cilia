@@ -489,8 +489,8 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
       """
       ```
     - Removes indentation as in the last line
-    - Removes first newline (if the opening """ is on a separate line)
-    - Removes last newline (if the closing """ is on a separate line)
+    - Removes first newline (if the opening `"""` is on a separate line)
+    - Removes last newline (if the closing `"""` is on a separate line)
     - Similar to Swift, Julia, late Java, ...
     - Also as single line string literal with very few restrictions, good for RegEx
         - `"""(.* )whatever(.*)"""`
