@@ -502,26 +502,15 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - TODO Any reason to use/prefer any other syntax?
         - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
 - Alternative string literals
-    - ~~`"Text"utf8` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)~~
-    - ~~`"Text"utf16`~~
-    - ~~`"Text"utf32`~~
-    - ~~`"Text"ascii`~~
-        - ~~Syntax error, if one of the characters is not ASCII.~~
-    - ~~`"Text"latin1`~~
-        - ~~Syntax error, if one of the characters is not Latin-1.~~
-    - TODO C++ uses
+    - C++ uses
         - prefixes
-            - `u8"..."` and `u8'...'` for UTF-8
+            - `u8"..."` and `u8'...'` for UTF-8 (but in Cilia UTF-8 is the default, so just "Text" is also UTF-8)
             - `u"..."` and `u'...'` for UTF-16
             - `U"..."` and `U'...'` for UTF-32
         - and user defined string suffixes
             - `"..."s` for `std::string`
             - `"..."sv` for `std::string_view`.
-        - So as to avoid conflicts we should drop the Cilia string literals.
-    - `u8"Text"` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)
-    - ~~`"Text"sz` is a zero terminated string (as used in C)~~
-        - ~~Problem: How to combine e.g. `"..."ascii` and `"..."sz`?~~
-            - Workaround: Use `"Text\0"ascii` instead.
+        - So as to avoid conflicts we should adopt these string literals.
     - All these available for multiline string literals and interpolated strings, too.
         - TODO Any reason, not to?
 - `[1, 2, 3]` is an array (here an `Int[3]`),
