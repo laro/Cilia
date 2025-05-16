@@ -497,9 +497,10 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
 - Interpolated Strings
     - `f"M[{i},{j}] = {M[i, j]}"`
         - like f-strings in Python.
-    - ~~Or `$"M[{i},{j}] = {M[i, j]}"` like in C#?~~
     - Curly braces (`{}`) are used in std::format already.
+    - `f"..."` as in `format`.
     - TODO Any reason to use/prefer any other syntax?
+        - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
 - Alternative string literals
     - ~~`"Text"utf8` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)~~
     - ~~`"Text"utf16`~~
