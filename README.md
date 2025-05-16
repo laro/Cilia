@@ -502,7 +502,6 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - TODO Any reason to use/prefer any other syntax?
         - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
 - Alternative string literals
-    - UTF-8 is the default, so just "Text" is UTF-8.
     - Prefixes
         - as in C++
             - `u"..."` and `u'...'` for UTF-16
