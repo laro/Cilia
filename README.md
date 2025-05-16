@@ -114,8 +114,8 @@ Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
 - **Global constants** in **upper CamelCase**
     - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)
     - Constant-like keywords
-        - `NullPtr`
         - `True`, `False`
+        - `NullPtr`
         - `NaN`, `Infinity`
     - But keep _local_ constants in lower camelCase:  
         - `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
@@ -387,6 +387,313 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
               }
               ```
 
+
+## Signed Size
+`Int` (i.e. signed) as type for `*.size()`
+- Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
+    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
+- When working with sizes, calculating the difference is common; Then you are limited to `Int`/`SSize`/`PtrDiff` (i.e. signed integer) anyway.
+- Anyone who needs more than 2GB of data in a single "byte array", should please use a 64 bit platform.
+- For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
+- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
+    - We simply use `Int` instead.
+    - `UInt` is used in rare cases (i.e. hardware registers, masks, flags), surely _not_ for sizes.
+- See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
+    - [42:41 - 45:28](https://youtu.be/Puio5dly9N8?feature=shared&t=2561)
+    - [1:02:51 - 1:03:14](https://youtu.be/Puio5dly9N8?feature=shared&t=3771)
+
+
+## Literals
+- `True`, `False` are Bool,
+    - as in Python,
+    - uppercase as they are constants. 
+- `NullPtr` is the null pointer,
+    - it is of the type `NullPtrType`,
+    - explicit cast necessary to convert any pointer to `Int`.
+- `123` is an integer literal of arbitrary precision
+    - Can be converted to any integer type it fits into (signed and unsigned)
+        - `Int8 a = 1`    // Works because `1` fits into `Int8`
+        - `Int8 b = 127`  // Works because `127` fits into `Int8`
+        - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
+        - `Int8 d = -128` // Works because `-128` fits into `Int8`
+        - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
+        - `UInt8 f = 255` // Works because `255` fits into `UInt8`
+        - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
+        - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
+        - `Int16 i = 32767` // Works
+        - `Int32 j = 2'147'483'647` // Works
+        - `Int64 k = 9'223'372'036'854'775'807` // Works
+        - `Int l = a`     // Works because `Int8` fits into `Int32`
+        - `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
+            - `UInt m = UInt(l)` // Works
+        - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
+            - `Int n = Int(m)`   // Works
+    - Small integer literals like `123` are interpreted as `Int`
+        - in case of type inferring, parameter overloading and template matching.
+        - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
+    - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
+        - Store as array of `Int`
+    - `123u` is `UInt`
+        - `-123u` is an error.
+    - `-123` is always `Int` (signed)
+- `0xffffffff` is `UInt` in hexadecimal
+- `0b1011` is `UInt` in binary
+- `0o123` is `UInt` in octal
+    - as in Python
+    - not `0123`, as that is confusing/unexpected, even if it is C++ standard
+- `Int` vs. `Bool`
+    - ~~`Int a = True`~~      // Error,
+        - because `Bool` is _not_ an `Int`
+        - because a `Bool` should not be accidentally interpreted as an `Int`
+        - cast if necessary: `Int a = Int(True)`
+    - ~~`Bool a = 1`~~      // Error,
+        - because `Int` is not a `Bool`
+        - because an `Int` should not be accidentally interpreted as a `Bool`
+        - cast if necessary: `Bool a = Bool(1)`
+- `1.0` is a floating point literal of arbitrary precision
+    - Can be converted to any float type into which it fits exactly
+        - otherwise explicit cast necessary: `Float16(3.1415926)`
+    - Difficult: Constexpr constructor that accepts an arbitrary precision float literaland can store that in ROM
+        - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
+    - Small floating point literals like `1.0` are interpreted as `Float`
+        - in case of type inferring, parameter overloading and template matching.
+        - Big floating point literals are interpreted as `Float64`, `Float128`, `Float256`, `BigFloat`, if required due to the size/precision.
+    - `1.0f` is always `Float32`
+    - `1.0d` is always `Float64`
+- `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
+    - Can be converted to any float type.
+    - Is interpreted as `Float`
+        - in case of type inferring, parameter overloading and template matching.
+- `NaN` is a floating point literal of arbitrary precision for NaN ("not a number") values
+    - Can be converted to any float type
+    - Is interpreted as `Float`
+        - in case of type inferring, parameter overloading and template matching.
+- `"Text"` is a `StringView` with UTF-8 encoding.
+    - No null termination.
+        - If necessary
+            - use `"Text"sz`, `"Text\0“`  or
+            - convert using `StringZ("Text")`.
+    - Data is typically stored in read-only data segments (".rodata") or ROM.
+    - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
+        - `"Text"` -> `u8"Text"sv`
+        - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
+    - A StringView starts like a String does: pointer to first character plus length,
+        - so slicing of String to StringView is possible.
+        - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
+  
+- Multiline String Literal
+    - ```
+      """
+      First line
+      Second line
+      """
+      ```
+    - Removes indentation as in the last line
+    - Removes first newline (if the opening """ is on a separate line)
+    - Removes last newline (if the closing """ is on a separate line)
+    - Similar to Swift, Julia, late Java, ...
+    - Also as single line string literal with very few restrictions, good for RegEx
+        - `"""(.* )whatever(.*)"""`
+- Interpolated Strings
+    - `f"M[{i},{j}] = {M[i, j]}"`
+        - like f-strings in Python.
+    - ~~Or `$"M[{i},{j}] = {M[i, j]}"` like in C#?~~
+    - Curly braces (`{}`) are used in std::format already.
+    - TODO Any reason to use/prefer any other syntax?
+- Alternative string literals
+    - ~~`"Text"utf8` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)~~
+    - ~~`"Text"utf16`~~
+    - ~~`"Text"utf32`~~
+    - ~~`"Text"ascii`~~
+        - ~~Syntax error, if one of the characters is not ASCII.~~
+    - ~~`"Text"latin1`~~
+        - ~~Syntax error, if one of the characters is not Latin-1.~~
+    - TODO C++ uses
+        - prefixes
+            - `u8"..."` and `u8'...'` for UTF-8
+            - `u"..."` and `u'...'` for UTF-16
+            - `U"..."` and `U'...'` for UTF-32
+        - and user defined string suffixes
+            - `"..."s` for `std::string`
+            - `"..."sv` for `std::string_view`.
+        - So as to avoid conflicts we should drop the Cilia string literals.
+    - `u8"Text"` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)
+    - ~~`"Text"sz` is a zero terminated string (as used in C)~~
+        - ~~Problem: How to combine e.g. `"..."ascii` and `"..."sz`?~~
+            - Workaround: Use `"Text\0"ascii` instead.
+    - All these available for multiline string literals and interpolated strings, too.
+        - TODO Any reason, not to?
+- `[1, 2, 3]` is an array (here an `Int[3]`),
+    - all elements have the same type.
+- `{1, "Text", 3.0}` is an initialization list,
+    - e.g. for `Tuple` or `Pair`.
+- `[ 1: "one", 2: "two", 3: "three", 4: "four" ]` is a `String[Int]` (AKA `Map<Int, String>`).
+    - ```
+      String[Int] keywords = [
+          1: "one"
+          2: "two"
+          3: "three"
+          4: "four"
+      ]
+      ```
+    - ```
+      ContactInfo[String] contactInfoForID = [
+          "John Doe": {"John", "Doe", "03465 452634"}
+          "Jane Doe": {"Jane", "Doe", "03245 687534"}
+      ]
+      ```
+- Rules for user defined literals
+    - as in C++.
+
+
+## Comments
+- Single-line comments
+    - ```
+      // if a < b {
+      //   TODO
+      // }
+      ```
+- Block comments can be _nested_
+    - as in Swift and Rust:
+      ```
+      /* This
+      /* (and this) */
+         is a comment */
+      ```
+
+
+## Better Readable Keywords
+C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
+
+- Cilia has
+    - `var` instead of ~~`auto`~~
+    - `func` instead of ~~`auto`~~
+    - `type` instead of ~~`typename`~~
+    - `await` instead of ~~`co_await`~~
+    - `yield` instead of ~~`co_yield`~~
+    - `return` instead of ~~`co_return`~~
+    - `and`, `or` in addition to `&&`/`&`, `||`/`|`
+    - `xor` in addition to `!=`
+    - `not` in addition to `!`
+- `Int32` instead of `int32_t` or `qint32`,
+    - so no prefix "q" nor postfix "_t", and in CamelCase.
+- When translating C++ code to Cilia then change conflicting names, e.g.
+    - `int var` -> `Int __variable_var`
+    - `class func` -> `class __class_func`
+    - `yield()` -> `func __function_yield()`
+
+
+## Templates
+The basic new idea is, to define templates (classes and functions) mostly the same as they are used.  
+Similar as in Java, C#, Swift and Rust.
+- **Class** templates  
+  The template parameters (`<...>`) are given after the class name, so that the definition is similar to the usage (in a variable declaration).
+  ```
+  class MyArray<Number T> {
+      T* numbers = NullPtr
+      Int size = 0
+  }
+  ```
+    - Template specialization
+      ```
+      class MyUniquePtr<type T> {
+          ... destructor calls delete ...
+      }
+      class MyUniquePtr<type T[Int N]> {
+          ... destructor calls delete[] ...
+      }
+      ```
+    - Partial template specialization
+      ```
+      class KeyValuePair<type TKey, type TValue> {
+          ...
+      }
+      class KeyValuePair<Int, type TValue> {
+          ...
+      }
+      class KeyValuePair<type TKey, String> {
+          ...
+      }
+      ```
+- **Function** templates
+    - _Automatic_ function templates
+        - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template.
+            - Concept `Number`:
+              ```
+              func sq(Number x) -> Number {
+                   return x * x
+              }
+              ```
+                - However, the return type could be a _different_ type than `x` is (but it needs to satisfy the concept `Number`)
+                - With `func add(Number a, b) -> Number` even `a` and `b` could be of a different type (but both need to satisfy the concept `Number`)
+            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
+              ```
+              func sqrt(Real x) -> Real {
+                  // ... a series development ...
+                  // (with number of iterations determined from the size of the mantissa)
+              }
+              ```
+        - Like abbreviated function templates in C++ 20, only without `auto`.
+    - _Explicit_ function templates for cases where a common type is required.  
+        - The template parameters (`<...>`) are given after the function name, so that the function definition is similar to the function call.
+          ```
+          func add<Number T>(T x, y) -> T {
+               return x + y
+          }
+          ```
+    - For extension function templates it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are given.  
+      Therefore we write
+        - `func<type T, Int N> T[N]::size() -> Int { return N }`
+        - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
+            - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~, as  
+                - then T and N would be used even before they were declared, and
+                - with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we want to write  
+                  `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()` (not ~~`...convertTo<Float, 3, Int>()`~~)
+            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
+
+- Further restrict the type with `requires` (as in C++):
+    - ```
+      func sq<Number T>(T x) -> T
+      requires (T x) { x * x }
+      {
+           return x * x
+      }
+      ```
+    - ```
+      class SlidingAverage<type T, type TSum = T>
+      requires (T x, TSum sum) {
+          sum = 0   // requires assignment of 0
+          sum += x  // requires addition of type T to type TSum
+          sum -= x  // requires subtraction of type T from type TSum
+          sum / 1   // requires to divide sum by 1 (i.e. an Int)
+      } {
+          T+ numbers
+          Int size = 0
+          Int sizeMax = 0
+          Int index = 0
+          TSum sum = 0
+      public:
+          SlidingAverage(Int size) {
+             sizeMax = size
+             numbers = new T[sizeMax]
+          }
+          func append(T value) { ... }
+          func average() -> TSum { ... }
+          func reset() { ... }
+          func reset(Int newSize) { ... }
+      }
+      ```
+- Template **type alias** with `using` (not ~~`typedef`~~)
+    - `using<type T> T::InParameterType = const T&`
+- Template static constants as type traits
+    - ```
+      const<type T> Bool          T::IsFloatingPoint = False
+      const         Bool    Float32::IsFloatingPoint = True
+      const         Bool    Float64::IsFloatingPoint = True
+      const<type T> Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
+      ```
+
+
 ## Aliasing
 Create an alias with `using`, for:
 - Member **variables**  
@@ -578,117 +885,6 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
             - `using<type T> T::UniquePtrType = UniquePtr<T>`
 
 
-## Templates
-The basic new idea is, to define templates (classes and functions) mostly the same as they are used.  
-Similar as in Java, C#, Swift and Rust.
-- **Class** templates  
-  The template parameters (`<...>`) are given after the class name, so that the definition is similar to the usage (in a variable declaration).
-  ```
-  class MyArray<Number T> {
-      T* numbers = NullPtr
-      Int size = 0
-  }
-  ```
-    - Template specialization
-      ```
-      class MyUniquePtr<type T> {
-          ... destructor calls delete ...
-      }
-      class MyUniquePtr<type T[Int N]> {
-          ... destructor calls delete[] ...
-      }
-      ```
-    - Partial template specialization
-      ```
-      class KeyValuePair<type TKey, type TValue> {
-          ...
-      }
-      class KeyValuePair<Int, type TValue> {
-          ...
-      }
-      class KeyValuePair<type TKey, String> {
-          ...
-      }
-      ```
-- **Function** templates
-    - _Automatic_ function templates
-        - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template.
-            - Concept `Number`:
-              ```
-              func sq(Number x) -> Number {
-                   return x * x
-              }
-              ```
-                - However, the return type could be a _different_ type than `x` is (but it needs to satisfy the concept `Number`)
-                - With `func add(Number a, b) -> Number` even `a` and `b` could be of a different type (but both need to satisfy the concept `Number`)
-            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
-              ```
-              func sqrt(Real x) -> Real {
-                  // ... a series development ...
-                  // (with number of iterations determined from the size of the mantissa)
-              }
-              ```
-        - Like abbreviated function templates in C++ 20, only without `auto`.
-    - _Explicit_ function templates for cases where a common type is required.  
-        - The template parameters (`<...>`) are given after the function name, so that the function definition is similar to the function call.
-          ```
-          func add<Number T>(T x, y) -> T {
-               return x + y
-          }
-          ```
-    - For extension function templates it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are given.  
-      Therefore we write
-        - `func<type T, Int N> T[N]::size() -> Int { return N }`
-        - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
-            - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~, as  
-                - then T and N would be used even before they were declared, and
-                - with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we want to write  
-                  `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()` (not ~~`...convertTo<Float, 3, Int>()`~~)
-            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
-
-- Further restrict the type with `requires` (as in C++):
-    - ```
-      func sq<Number T>(T x) -> T
-      requires (T x) { x * x }
-      {
-           return x * x
-      }
-      ```
-    - ```
-      class SlidingAverage<type T, type TSum = T>
-      requires (T x, TSum sum) {
-          sum = 0   // requires assignment of 0
-          sum += x  // requires addition of type T to type TSum
-          sum -= x  // requires subtraction of type T from type TSum
-          sum / 1   // requires to divide sum by 1 (i.e. an Int)
-      } {
-          T+ numbers
-          Int size = 0
-          Int sizeMax = 0
-          Int index = 0
-          TSum sum = 0
-      public:
-          SlidingAverage(Int size) {
-             sizeMax = size
-             numbers = new T[sizeMax]
-          }
-          func append(T value) { ... }
-          func average() -> TSum { ... }
-          func reset() { ... }
-          func reset(Int newSize) { ... }
-      }
-      ```
-- Template **type alias** with `using` (not ~~`typedef`~~)
-    - `using<type T> T::InParameterType = const T&`
-- Template static constants as type traits
-    - ```
-      const<type T> Bool          T::IsFloatingPoint = False
-      const         Bool    Float32::IsFloatingPoint = True
-      const         Bool    Float64::IsFloatingPoint = True
-      const<type T> Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
-      ```
-
-
 ## Arrays & ArrayViews
 - `Int[] dynamicArrayOfIntegers`
     - „Dynamic array“ with **dynamic size**
@@ -812,21 +1008,6 @@ Similar as in Java, C#, Swift and Rust.
 - Mixed forms of static and dynamic array
     - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
     - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
-
-
-## Signed Size
-`Int` (i.e. signed) as type for `*.size()`
-- Because mixed integer arithmetic ("signed - unsigned") and "unsigned - unsigned" is difficult to handle.
-    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
-- When working with sizes, calculating the difference is common; Then you are limited to `Int`/`SSize`/`PtrDiff` (i.e. signed integer) anyway.
-- Anyone who needs more than 2GB of data in a single "byte array", should please use a 64 bit platform.
-- For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
-- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
-    - We simply use `Int` instead.
-    - `UInt` is used in rare cases (i.e. hardware registers, masks, flags), surely _not_ for sizes.
-- See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
-    - [42:41 - 45:28](https://youtu.be/Puio5dly9N8?feature=shared&t=2561)
-    - [1:02:51 - 1:03:14](https://youtu.be/Puio5dly9N8?feature=shared&t=3771)
 
 
 ## Associative Arrays
@@ -1022,186 +1203,6 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - `str` is `String` (not ~~`StringView`~~)
             - This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.
             - (This is currently the only useful example I can think of.)
-
-
-## Literals
-- `True`, `False` are Bool,
-    - as in Python,
-    - uppercase as they are constants. 
-- `NullPtr` is the null pointer,
-    - it is of the type `NullPtrType`,
-    - explicit cast necessary to convert any pointer to `Int`.
-- `123` is an integer literal of arbitrary precision
-    - Can be converted to any integer type it fits into (signed and unsigned)
-        - `Int8 a = 1`    // Works because `1` fits into `Int8`
-        - `Int8 b = 127`  // Works because `127` fits into `Int8`
-        - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
-        - `Int8 d = -128` // Works because `-128` fits into `Int8`
-        - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
-        - `UInt8 f = 255` // Works because `255` fits into `UInt8`
-        - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
-        - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
-        - `Int16 i = 32767` // Works
-        - `Int32 j = 2'147'483'647` // Works
-        - `Int64 k = 9'223'372'036'854'775'807` // Works
-        - `Int l = a`     // Works because `Int8` fits into `Int32`
-        - `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
-            - `UInt m = UInt(l)` // Works
-        - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
-            - `Int n = Int(m)`   // Works
-    - Small integer literals like `123` are interpreted as `Int`
-        - in case of type inferring, parameter overloading and template matching.
-        - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
-    - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
-        - Store as array of `Int`
-    - `123u` is `UInt`
-        - `-123u` is an error.
-    - `-123` is always `Int` (signed)
-- `0xffffffff` is `UInt` in hexadecimal
-- `0b1011` is `UInt` in binary
-- `0o123` is `UInt` in octal
-    - as in Python
-    - not `0123`, as that is confusing/unexpected, even if it is C++ standard
-- `Int` vs. `Bool`
-    - ~~`Int a = True`~~      // Error,
-        - because `Bool` is _not_ an `Int`
-        - because a `Bool` should not be accidentally interpreted as an `Int`
-        - cast if necessary: `Int a = Int(True)`
-    - ~~`Bool a = 1`~~      // Error,
-        - because `Int` is not a `Bool`
-        - because an `Int` should not be accidentally interpreted as a `Bool`
-        - cast if necessary: `Bool a = Bool(1)`
-- `1.0` is a floating point literal of arbitrary precision
-    - Can be converted to any float type into which it fits exactly
-        - otherwise explicit cast necessary: `Float16(3.1415926)`
-    - Difficult: Constexpr constructor that accepts an arbitrary precision float literaland can store that in ROM
-        - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
-    - Small floating point literals like `1.0` are interpreted as `Float`
-        - in case of type inferring, parameter overloading and template matching.
-        - Big floating point literals are interpreted as `Float64`, `Float128`, `Float256`, `BigFloat`, if required due to the size/precision.
-    - `1.0f` is always `Float32`
-    - `1.0d` is always `Float64`
-- `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
-    - Can be converted to any float type.
-    - Is interpreted as `Float`
-        - in case of type inferring, parameter overloading and template matching.
-- `NaN` is a floating point literal of arbitrary precision for NaN ("not a number") values
-    - Can be converted to any float type
-    - Is interpreted as `Float`
-        - in case of type inferring, parameter overloading and template matching.
-- `"Text"` is a `StringView` with UTF-8 encoding.
-    - No null termination.
-        - If necessary
-            - use `"Text"sz`, `"Text\0“`  or
-            - convert using `StringZ("Text")`.
-    - Data is typically stored in read-only data segments (".rodata") or ROM.
-    - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
-        - `"Text"` -> `u8"Text"sv`
-        - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
-    - A StringView starts like a String does: pointer to first character plus length,
-        - so slicing of String to StringView is possible.
-        - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
-  
-- Multiline String Literal
-    - ```
-      """
-      First line
-      Second line
-      """
-      ```
-    - Removes indentation as in the last line
-    - Removes first newline (if the opening """ is on a separate line)
-    - Removes last newline (if the closing """ is on a separate line)
-    - Similar to Swift, Julia, late Java, ...
-    - Also as single line string literal with very few restrictions, good for RegEx
-        - `"""(.* )whatever(.*)"""`
-- Interpolated Strings
-    - `f"M[{i},{j}] = {M[i, j]}"`
-        - like f-strings in Python.
-    - ~~Or `$"M[{i},{j}] = {M[i, j]}"` like in C#?~~
-    - Curly braces (`{}`) are used in std::format already.
-    - TODO Any reason to use/prefer any other syntax?
-- Alternative string literals
-    - ~~`"Text"utf8` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)~~
-    - ~~`"Text"utf16`~~
-    - ~~`"Text"utf32`~~
-    - ~~`"Text"ascii`~~
-        - ~~Syntax error, if one of the characters is not ASCII.~~
-    - ~~`"Text"latin1`~~
-        - ~~Syntax error, if one of the characters is not Latin-1.~~
-    - TODO C++ uses
-        - prefixes
-            - `u8"..."` and `u8'...'` for UTF-8
-            - `u"..."` and `u'...'` for UTF-16
-            - `U"..."` and `U'...'` for UTF-32
-        - and user defined string suffixes
-            - `"..."s` for `std::string`
-            - `"..."sv` for `std::string_view`.
-        - So as to avoid conflicts we should drop the Cilia string literals.
-    - `u8"Text"` (but UTF-8 is the default anyway, so just "Text" is also UTF-8)
-    - ~~`"Text"sz` is a zero terminated string (as used in C)~~
-        - ~~Problem: How to combine e.g. `"..."ascii` and `"..."sz`?~~
-            - Workaround: Use `"Text\0"ascii` instead.
-    - All these available for multiline string literals and interpolated strings, too.
-        - TODO Any reason, not to?
-- `[1, 2, 3]` is an array (here an `Int[3]`),
-    - all elements have the same type.
-- `{1, "Text", 3.0}` is an initialization list,
-    - e.g. for `Tuple` or `Pair`.
-- `[ 1: "one", 2: "two", 3: "three", 4: "four" ]` is a `String[Int]` (AKA `Map<Int, String>`).
-    - ```
-      String[Int] keywords = [
-          1: "one"
-          2: "two"
-          3: "three"
-          4: "four"
-      ]
-      ```
-    - ```
-      ContactInfo[String] contactInfoForID = [
-          "John Doe": {"John", "Doe", "03465 452634"}
-          "Jane Doe": {"Jane", "Doe", "03245 687534"}
-      ]
-      ```
-- Rules for user defined literals
-    - as in C++.
-
-
-## Comments
-- Single-line comments
-    - ```
-      // if a < b {
-      //   TODO
-      // }
-      ```
-- Block comments can be _nested_
-    - as in Swift and Rust:
-      ```
-      /* This
-      /* (and this) */
-         is a comment */
-      ```
-
-
-## Better Readable Keywords
-C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
-
-- Cilia has
-    - `var` instead of ~~`auto`~~
-    - `func` instead of ~~`auto`~~
-    - `type` instead of ~~`typename`~~
-    - `await` instead of ~~`co_await`~~
-    - `yield` instead of ~~`co_yield`~~
-    - `return` instead of ~~`co_return`~~
-    - `and`, `or` in addition to `&&`/`&`, `||`/`|`
-    - `xor` in addition to `!=`
-    - `not` in addition to `!`
-- `Int32` instead of `int32_t` or `qint32`,
-    - so no prefix "q" nor postfix "_t", and in CamelCase.
-- When translating C++ code to Cilia then change conflicting names, e.g.
-    - `int var` -> `Int __variable_var`
-    - `class func` -> `class __class_func`
-    - `yield()` -> `func __function_yield()`
 
 
 ## Safety and Security
