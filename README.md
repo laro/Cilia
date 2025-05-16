@@ -1035,7 +1035,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
            - Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
             - And there is an inconsistency in its usage:
                 - A normal pointer `T* pointer` is dereferenced with `*pointer`.
-                - A smart pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
+                - A shared pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
                 - So maybe use `T*^` and `T*+` instead?
         - **`makeShared<T>(...)`**,
             - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
