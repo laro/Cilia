@@ -37,9 +37,10 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
     - a bit like
         - Java and Kotlin,
         - Objective-C and Swift.
-- Uses the same compiler backend as C++ (clang comes to mind)  
-  with an own / a new compiler frontend.
-    - Or a precompiler, like Cpp2, if that is significantly easier to do.
+- A transpiler or Cilia precompiler seems to be the simplest approach  
+ (like Herb Sutter is doing it with Cpp2).
+    - Or use the AST/backend of a C++ compiler (clang comes to mind)  
+      with an own / a new parser/frontend.
 - So _no_ garbage collection,  
   instead in Cilia you use, as in C++:
     - automatic/stack variables,
