@@ -1022,6 +1022,8 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
     - “Make simple things simple” (or at least short to write),  
       encourage use of smart pointers.
     - **`Type+ pointer`**
+        - a "plus pointer",
+        - a pointer with ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
         - `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
         - `T[0]+` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here)
             - TODO `UniquePtr<T[]>` seems possible in C++ (it is an "incomplete type"). But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
@@ -1030,6 +1032,8 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
             - `ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`  
               not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (there is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
     - **`Type^ pointer`**
+        - a "shared pointer",
+        - a pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).
         - `T^` is short for **`SharedPtr<T>`**
         - Inspired by C++/CLI (so its a proven possiblilty), _but_  
            - Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
