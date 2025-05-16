@@ -1055,12 +1055,12 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
         - For C++/Cilia classes `T^` is `SharedPtr<T>`:
             - `using<type T> T::SharedPtrType = SharedPtr<T>`
         - Objective-C/Swift classes use their reference counting mechanism:
-            - `using ObjectiveCObject::SmartPtrType = ObjectiveCRefCountPtr`
+            - `using ObjectiveCObject::SharedPtrType = ObjectiveCRefCountPtr`
         - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
-            - `using DotNetObject::SmartPtrType = DotNetGCPtr`
+            - `using DotNetObject::SharedPtrType = DotNetGCPtr`
             - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
         - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
-            - `using JavaObject::SmartPtrType = JavaGCPtr`
+            - `using JavaObject::SharedPtrType = JavaGCPtr`
             - Probably very similar to C#/.NET.
     - `T+` is defined via type traits `UniquePtrType`.
         - For C++/Cilia classes `T+` is `UniquePtr<T>`:
