@@ -502,15 +502,18 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - TODO Any reason to use/prefer any other syntax?
         - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
 - Alternative string literals
-    - C++ uses
-        - prefixes
-            - `u8"..."` and `u8'...'` for UTF-8 (but in Cilia UTF-8 is the default, so just "Text" is also UTF-8)
+    - UTF-8 is the default, so just "Text" is UTF-8.
+    - Prefixes
+        - as in C++
             - `u"..."` and `u'...'` for UTF-16
             - `U"..."` and `U'...'` for UTF-32
-        - and user defined string suffixes
-            - `"..."s` for `std::string`
+        - No ~~`u8"..."`~~ and no ~~`u8'...'`~~ for UTF-8, as in Cilia UTF-8 is the default.
+        - Maybe `a"..."` for ASCII and `l"..."` for Latin-1.
+    - User defined string suffixes
+        - as in C++
             - `"..."sv` for `std::string_view`.
-        - So as to avoid conflicts we should adopt these string literals.
+        - Maybe `"..."sz` for null terminated strings? (But you may just write `"...\0"`.)
+        - No ~~`"..."s`~~ for `std::string`, as that is the default in Cilia.
     - All these available for multiline string literals and interpolated strings, too.
         - TODO Any reason, not to?
 - `[1, 2, 3]` is an array (here an `Int[3]`),
