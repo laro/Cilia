@@ -153,7 +153,8 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - `Bool`
     - not ~~`bool`~~ nor ~~`Boolean`~~
 - `Int` == `Int64`
-    - `Int` == `Int32` on 32 bit systems only (i.e. old/small platforms), `Int` == `Int16` on 8 and 16 bit systems (i.e. old/small microcontrollers).
+    - `Int` == `Int32` on 32 bit systems only (i.e. old/small platforms),  
+      `Int` == `Int16` on 8 and 16 bit systems (i.e. old/small microcontrollers with 16 Bit addresses, like AVR / Atmel ATmega328 / Arduino Uno, or old home computers 6502, Z80).
     - As in Swift and Go.
     - _No_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~, simply use `Int` instead.
     - _No_ ~~`Long`~~ nor ~~`Lonmg Long`~~, simply use `Int` instead.
