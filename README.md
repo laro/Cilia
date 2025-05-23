@@ -161,6 +161,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Int8`, `Int16`, `Int32`, `Int64`
     - `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
+    - TODO Probably it should be std::byte instead (i.e. _not_ the same type as UInt8 for parameter overloading)
 - `Float`
     - `Float` == `Float32`
         - This is how it is in C/C++.
