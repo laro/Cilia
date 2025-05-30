@@ -213,7 +213,16 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
       UInt32:23 significand // AKA mantissa
   }
   ```
-  (instead of `UInt32 sign : 1`)
+    - `UInt32:1 sign` instead of `UInt32 sign : 1`.
+    - MSB (Most Significant Bit) first, but alighned to the right,
+        - i.e. some `UInt32 __filler_for_right_alignment : ...` might be added by CiliaC.
+        - Add your own filler to shift fields, e.g.
+          ```
+          class Sign {
+              UInt32:1  sign
+              UInt32:31 filler
+          }
+          ```
 
 
 ## Classes
