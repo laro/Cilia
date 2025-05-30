@@ -207,9 +207,11 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (`const var` would be a contradiction in terms, as there is no such thing as a "constant variable".)
 - Bit fields
   ```
-  UInt32:1  sign
-  UInt32:8  exponent
-  UInt32:23 significand // AKA mantissa
+  class MyFloat32 {
+      UInt32:1  sign
+      UInt32:8  exponent
+      UInt32:23 significand // AKA mantissa
+  }
   ```
   (instead of `UInt32 sign : 1`)
 
