@@ -419,8 +419,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
 
 ## Literals
 - `True`, `False` are Bool,
-    - as in Python,
-    - uppercase as they are constants. 
+    - uppercase as they are constants (as in Python).
 - `NullPtr` is the null pointer,
     - it is of the type `NullPtrType`,
     - explicit cast necessary to convert any pointer to `Int`.
