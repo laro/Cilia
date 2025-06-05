@@ -204,7 +204,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - See [Misc](#misc) / Mixed arithmetic and [https://stackoverflow.com/a/18222927](https://stackoverflow.com/a/18222927)
 - **Type inference** with `var` / `const`:
     - `var i = 3` instead of ~~`auto i = 3;`~~
-    - `const i = 3` instead of ~~`const auto i = 3;`~~ (avoiding `const var`, as a "constant variable" is a bit of a contradiction in terms.)
+    - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 - Bit fields
   ```
   class MyFloat32 {
