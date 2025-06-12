@@ -385,7 +385,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           print("default")
       }
       ```
-        - Old behaviour on demand
+        - Old behavior on demand
             - ```
               switch i fallthrough {
               case 1:
