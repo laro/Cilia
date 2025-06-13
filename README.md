@@ -158,8 +158,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - As in Swift and Go.
     - `Int8`, `Int16`, `Int32`, `Int64`
     - `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`
-    - _No_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~, simply use `Int` instead.
-    - _No_ ~~`Long`~~ nor ~~`Long Long`~~, simply use `Int` instead.
+    - Simply use `Int`,
+        - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
+        - _not_ ~~`Long`~~ nor ~~`Long Long`~~.
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
     - TODO Probably it should be std::byte instead (i.e. _not_ the same type as UInt8 for parameter overloading)
 - `Float`
