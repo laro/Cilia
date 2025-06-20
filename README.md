@@ -1845,6 +1845,32 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `#if`
     - `#else`
     - `#endif`
+      
+- Optional Chaining
+    - ```String? name = ...```
+      translates to
+      ```Optional<String> name = ...```
+    - ```
+      Bool isJpeg = name?.endsWith(".jpeg")
+      ```
+      translates to
+      ```
+      Bool isJpeg = name.hasValue() ? name.value.endsWith(".jpeg") : false;
+      ```
+    - ```
+      String? fileExtension = name?.getExtension()
+      ```
+      translates to
+      ```
+      Optional<String> fileExtension = name.hasValue() ? Optional<String>(name.value.getExtension()) : NullOption;
+      ```
+    - ```
+      String fileExtension = name?.getExtension() ?? "<Unknown>"
+      ```
+      translates to
+      ```
+      String fileExtension = (name.hasValue() ? name.value.getExtension() : NullOption).valueOr("<Unknown>");
+      ```
 
 - TODO OpenMP-like parallel programming?
     - Serial code
