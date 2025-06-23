@@ -1880,7 +1880,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
       translates to
       ```
-      Bool isJpeg = (name.hasValue() ? name.value.endsWith(".jpeg") : NullOption).valueOr(false);
+      Bool isJpeg = (name.hasValue() ?  Optional<Bool>(name.value.endsWith(".jpeg")) : NullOption).valueOr(false);
       ```
 
 - TODO OpenMP-like parallel programming?
