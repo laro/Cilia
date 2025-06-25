@@ -1914,6 +1914,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                   }
                   ```
             - With extension functions for basic types (like `T*`) just `x.hasValue()` and `*x` would work for pointers, too.
+                - TODO Just use `Bool(x)` and `*x` anyway?
 
 - TODO OpenMP-like parallel programming?
     - Serial code
