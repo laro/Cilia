@@ -1859,28 +1859,28 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           ```
           translates to
           ```
-          Optional<String> fileExtension = name.hasValue() ? Optional<String>(name.value.getExtension()) : NullOption;
+          Optional<String> fileExtension = name.hasValue() ? Optional<String>(name.value.getExtension()) : NullOpt;
           ```
         - ```
           String fileExtension = name?.getExtension() ?? "<Unknown>"
           ```
           translates to
           ```
-          String fileExtension = (name.hasValue() ? name.value.getExtension() : NullOption).valueOr("<Unknown>");
+          String fileExtension = (name.hasValue() ? name.value.getExtension() : NullOpt).valueOr("<Unknown>");
           ```
         - ```
           Bool? isJpeg = name?.endsWith(".jpeg")
           ```
           translates to
           ```
-          Optional<Bool> isJpeg = name.hasValue() ? name.value.endsWith(".jpeg") : NullOption;
+          Optional<Bool> isJpeg = name.hasValue() ? name.value.endsWith(".jpeg") : NullOpt;
           ```
         - ```
           Bool isJpeg = name?.endsWith(".jpeg") ?? false
           ```
           translates to
           ```
-          Bool isJpeg = (name.hasValue() ? Optional<Bool>(name.value.endsWith(".jpeg")) : NullOption).valueOr(false);
+          Bool isJpeg = (name.hasValue() ? Optional<Bool>(name.value.endsWith(".jpeg")) : NullOpt).valueOr(false);
           ```
     - With `ContactInfo* contactInfo = ...`
       ```
@@ -1888,30 +1888,32 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
       translates to
       ```
-      Optional<String> name = __hasValue(contactInfo) ? Optional<String>(__valueOf(contactInfo).name) : NullOption;
+      Optional<String> name = __hasValue(contactInfo) ? Optional<String>(__valueOf(contactInfo).name) : NullOpt;
       ```
-        - `Optional<T>`
-            - ```
-              func __hasValue<type T>(Optional<T> optional) -> Bool {
-                  return optional.hasValue()
-              }
-              ```
-            - ```
-              func __valueOf<type T>(inout Optional<T> optional) -> T& {
-                  return optional.value
-              }
-              ```
-        - `T*`, `T^`, `T+`, `T-`
-            - ```
-              func __hasValue<type T>(T* pointer) -> Bool {
-                  return pointer != NullPtr
-              }
-              ```
-            - ```
-              func __valueOf<type T>(T* pointer) -> T& {
-                  return *pointer
-              }
-              ```
+        - Helper functions `__hasValue()` and `__valueOf()`, to support `Optional<T>` and `T*`, `T^`, `T+`, `T-` equally.
+            - `Optional<T>`
+                - ```
+                  func __hasValue<type T>(Optional<T> optional) -> Bool {
+                      return optional.hasValue()
+                  }
+                  ```
+                - ```
+                  func __valueOf<type T>(inout Optional<T> optional) -> T& {
+                      return optional.value
+                  }
+                  ```
+            - `T*`, `T^`, `T+`, `T-`
+                - ```
+                  func __hasValue<type T>(T* pointer) -> Bool {
+                      return pointer != NullPtr
+                  }
+                  ```
+                - ```
+                  func __valueOf<type T>(T* pointer) -> T& {
+                      return *pointer
+                  }
+                  ```
+            - With extension functions for basic types (like `T*`) just `x.hasValue()` and `*x` would work for pointers, too.
 
 - TODO OpenMP-like parallel programming?
     - Serial code
