@@ -1854,34 +1854,64 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
       Optional<String> name = ...
       ```
-    - ```
-      String? fileExtension = name?.getExtension()
+        - ```
+          String? fileExtension = name?.getExtension()
+          ```
+          translates to
+          ```
+          Optional<String> fileExtension = name.hasValue() ? Optional<String>(name.value.getExtension()) : NullOption;
+          ```
+        - ```
+          String fileExtension = name?.getExtension() ?? "<Unknown>"
+          ```
+          translates to
+          ```
+          String fileExtension = (name.hasValue() ? name.value.getExtension() : NullOption).valueOr("<Unknown>");
+          ```
+        - ```
+          Bool? isJpeg = name?.endsWith(".jpeg")
+          ```
+          translates to
+          ```
+          Optional<Bool> isJpeg = name.hasValue() ? name.value.endsWith(".jpeg") : NullOption;
+          ```
+        - ```
+          Bool isJpeg = name?.endsWith(".jpeg") ?? false
+          ```
+          translates to
+          ```
+          Bool isJpeg = (name.hasValue() ? Optional<Bool>(name.value.endsWith(".jpeg")) : NullOption).valueOr(false);
+          ```
+    - With `ContactInfo* contactInfo = ...`
+      ```
+      String? name = contactInfo?.name
       ```
       translates to
       ```
-      Optional<String> fileExtension = name.hasValue() ? Optional<String>(name.value.getExtension()) : NullOption;
+      Optional<String> name = __hasValue(contactInfo) ? Optional<String>(__valueOf(contactInfo).name) : NullOption;
       ```
-    - ```
-      String fileExtension = name?.getExtension() ?? "<Unknown>"
-      ```
-      translates to
-      ```
-      String fileExtension = (name.hasValue() ? name.value.getExtension() : NullOption).valueOr("<Unknown>");
-      ```
-    - ```
-      Bool? isJpeg = name?.endsWith(".jpeg")
-      ```
-      translates to
-      ```
-      Optional<Bool> isJpeg = name.hasValue() ? name.value.endsWith(".jpeg") : NullOption;
-      ```
-    - ```
-      Bool isJpeg = name?.endsWith(".jpeg") ?? false
-      ```
-      translates to
-      ```
-      Bool isJpeg = (name.hasValue() ? Optional<Bool>(name.value.endsWith(".jpeg")) : NullOption).valueOr(false);
-      ```
+        - Optional<T>
+            - ```
+              func __hasValue<T>(Optional<T> optional) -> Bool {
+                  return optional.hasValue()
+              }
+              ```
+            - ```
+              func __valueOf<T>(inout Optional<T> optional) -> T& {
+                  return optional.value
+              }
+              ```
+        - T*, T^, T+, T-
+            - ```
+              func __hasValue<T>(T* pointer) -> Bool {
+                  return pointer != NullPtr
+              }
+              ```
+            - ```
+              func __valueOf<T>(T* pointer) -> T& {
+                  return *pointer
+              }
+              ```
 
 - TODO OpenMP-like parallel programming?
     - Serial code
