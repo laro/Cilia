@@ -1892,23 +1892,23 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
         - `Optional<T>`
             - ```
-              func __hasValue<T>(Optional<T> optional) -> Bool {
+              func __hasValue<type T>(Optional<T> optional) -> Bool {
                   return optional.hasValue()
               }
               ```
             - ```
-              func __valueOf<T>(inout Optional<T> optional) -> T& {
+              func __valueOf<type T>(inout Optional<T> optional) -> T& {
                   return optional.value
               }
               ```
         - `T*`, `T^`, `T+`, `T-`
             - ```
-              func __hasValue<T>(T* pointer) -> Bool {
+              func __hasValue<type T>(T* pointer) -> Bool {
                   return pointer != NullPtr
               }
               ```
             - ```
-              func __valueOf<T>(T* pointer) -> T& {
+              func __valueOf<type T>(T* pointer) -> T& {
                   return *pointer
               }
               ```
