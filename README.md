@@ -1859,28 +1859,28 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           ```
           translates to
           ```
-          Optional<Int> fileExtension = (name ? Optional<Int>((*name).length()) : NullOpt;
+          Optional<Int> fileExtension = (name ? Optional((*name).length()) : NullOpt;
           ```
         - ```
           Int len = name?.length() ?? 0
           ```
           translates to
           ```
-          Int len = (name ? Optional<Int>((*name).length()) : NullOpt).valueOr(0);
+          Int len = (name ? Optional((*name).length()) : NullOpt).valueOr(0);
           ```
         - ```
           Bool? isJpeg = name?.endsWith(".jpeg")
           ```
           translates to
           ```
-          Optional<Bool> isJpeg = name ? Optional<Bool>((*name).endsWith(".jpeg")) : NullOpt;
+          Optional<Bool> isJpeg = name ? Optional((*name).endsWith(".jpeg")) : NullOpt;
           ```
         - ```
           Bool isJpeg = name?.endsWith(".jpeg") ?? false
           ```
           translates to
           ```
-          Bool isJpeg = (name ? Optional<Bool>((*name).endsWith(".jpeg")) : NullOpt).valueOr(false);
+          Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false);
           ```
     - Should work for `Optional<T>` and  `T*`, `T^`, `T+`, `T-`
         - With `ContactInfo* contactInfo = ...`
@@ -1889,14 +1889,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               ```
               translates to
               ```
-              Optional<String> name = (contactInfo ? Optional<String>((*contactInfo).name) : NullOpt);
+              Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt);
               ```
            - ```
               String name = contactInfo?.name ?? ""
               ```
               translates to
               ```
-              Optional<String> name = (contactInfo ? Optional<String>((*contactInfo).name) : NullOpt).valueOr("");
+              Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");
               ```
 - TODO OpenMP-like parallel programming?
     - Serial code
