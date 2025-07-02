@@ -1855,67 +1855,49 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       Optional<String> name = ...
       ```
         - ```
-          String? fileExtension = name?.getExtension()
+          Int? len = name?.length()
           ```
           translates to
           ```
-          Optional<String> fileExtension = name.hasValue() ? Optional<String>(name.value.getExtension()) : NullOpt;
+          Optional<Int> fileExtension = (name ? Optional<Int>((*name).length()) : NullOpt;
           ```
         - ```
-          String fileExtension = name?.getExtension() ?? "<Unknown>"
+          Int len = name?.length() ?? 0
           ```
           translates to
           ```
-          String fileExtension = (name.hasValue() ? name.value.getExtension() : NullOpt).valueOr("<Unknown>");
+          Int len = (name ? Optional<Int>((*name).length()) : NullOpt).valueOr(0);
           ```
         - ```
           Bool? isJpeg = name?.endsWith(".jpeg")
           ```
           translates to
           ```
-          Optional<Bool> isJpeg = name.hasValue() ? name.value.endsWith(".jpeg") : NullOpt;
+          Optional<Bool> isJpeg = name ? Optional<Bool>((*name).endsWith(".jpeg")) : NullOpt;
           ```
         - ```
           Bool isJpeg = name?.endsWith(".jpeg") ?? false
           ```
           translates to
           ```
-          Bool isJpeg = (name.hasValue() ? Optional<Bool>(name.value.endsWith(".jpeg")) : NullOpt).valueOr(false);
+          Bool isJpeg = (name ? Optional<Bool>((*name).endsWith(".jpeg")) : NullOpt).valueOr(false);
           ```
-    - With `ContactInfo* contactInfo = ...`
-      ```
-      String? name = contactInfo?.name
-      ```
-      translates to
-      ```
-      Optional<String> name = __hasValue(contactInfo) ? Optional<String>(__valueOf(contactInfo).name) : NullOpt;
-      ```
-        - Helper functions `__hasValue()` and `__valueOf()`, to support `Optional<T>` and `T*`, `T^`, `T+`, `T-` equally.
-            - `Optional<T>`
-                - ```
-                  func __hasValue<type T>(Optional<T> optional) -> Bool {
-                      return optional.hasValue()
-                  }
-                  ```
-                - ```
-                  func __valueOf<type T>(inout Optional<T> optional) -> T& {
-                      return optional.value
-                  }
-                  ```
-            - `T*`, `T^`, `T+`, `T-`
-                - ```
-                  func __hasValue<type T>(T* pointer) -> Bool {
-                      return pointer != NullPtr
-                  }
-                  ```
-                - ```
-                  func __valueOf<type T>(T* pointer) -> T& {
-                      return *pointer
-                  }
-                  ```
-            - With extension functions for basic types (like `T*`) just `x.hasValue()` and `*x` would work for pointers, too.
-                - TODO Just use `Bool(x)` and `*x` anyway?
-
+    - Should work for `Optional<T>` and  `T*`, `T^`, `T+`, `T-`
+        - With `ContactInfo* contactInfo = ...`
+            - ```
+              String? name = contactInfo?.name
+              ```
+              translates to
+              ```
+              Optional<String> name = (contactInfo ? Optional<String>((*contactInfo).name) : NullOpt);
+              ```
+           - ```
+              String name = contactInfo?.name ?? ""
+              ```
+              translates to
+              ```
+              Optional<String> name = (contactInfo ? Optional<String>((*contactInfo).name) : NullOpt).valueOr("");
+              ```
 - TODO OpenMP-like parallel programming?
     - Serial code
       ```
