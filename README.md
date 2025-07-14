@@ -756,20 +756,19 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
               cout << errorDetails
           }
           ```
-        - Maybe even with ad-hoc declaration of the out variable:
-          ```
-          if not open("...", out String errorDetails) {
-              cout << errorDetails
-          }
-          ```
-        - Maybe even with broader scope:
-          ```
-          if open("...", out String errorDetails) {
-              // ...
-          } else {
-              cout << errorDetails
-          }
-          ```
+        - Maybe even with ad-hoc declaration of the out variable (as in C# 7.0):
+            - ```
+              if not open("...", out String errorDetails) {
+                  cout << errorDetails
+              }
+              ```
+            - ```
+              if open("...", out String errorDetails) {
+                  // ...
+              } else {
+                  cout << errorDetails
+              }
+              ```
     - **`copy`**
         - to create a (mutable) copy (i.e. pass "by value"). 
         - Technically a non-const/mutable value (`X`), sometimes the "full class" `X` of a view class `XView`.
