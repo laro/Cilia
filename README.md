@@ -225,7 +225,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
           }
           ```
           has the same memory layout as `UInt16 value` (for values of 0..255).
-        - Right-aligned means that the last element covers bit 0:
+        - Right-aligned means that the last element always covers bit 0:
           ```
           class LowFourBits {
               UInt8:1 bit3
