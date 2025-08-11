@@ -207,16 +207,20 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `var i = 3` instead of ~~`auto i = 3;`~~
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 - Bit fields
-  ```
-  class MyFloat32 {
-      UInt32:1  sign
-      UInt32:8  exponent
-      UInt32:23 significand // AKA mantissa
-  }
-  ```
     - `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
-    - MSB (Most Significant Bit) first, but aligned to the right,
-        - i.e. some `UInt32:... __filler_for_right_alignment` might be added by CiliaC.
+    - MSB (Most Significant Bit) first, but aligned to the right.
+        - So use
+          ```
+          class Float32Equivalent {
+              UInt32:1  sign
+              UInt32:8  exponent
+              UInt32:23 significand // AKA mantissa
+          }
+          ```
+          to read/interpret `Float32`.
+        - Therefore CiliaC may have to
+            - reverse the order of bit field elements (when using "LSB-first" C++ compilers like GCC x86),
+            - and/or add some `UInt32:... __filler_for_right_alignment` (like big-endian PowerPC, MIPS, SPARC).
         - Add your own filler to shift fields on demand, e.g.
           ```
           class Sign {
