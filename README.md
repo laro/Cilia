@@ -188,9 +188,10 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
     - `Float& m, n`   // m _and_ n are references (contrary to C/C++)
     - `Image image(width, height, 0.0)`
-    - `const Float* pointerToConstantFloat`
-    - `const Float const* constPointerToConstantFloat`
-        - `const` always binds to the right (contrary to C/C++).
+    - `const` always binds to the right (contrary to C/C++).
+        - `const Float* pointerToConstantFloat`
+        - `const Float const* constPointerToConstantFloat`
+        - `Float const* constPointerToFloat`
     - `Complex<Float>& complexNumber = complexNumberWithOtherName`
 
 - Not allowed / a syntax error is:
