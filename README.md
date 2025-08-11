@@ -184,7 +184,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Int i = 0`
     - `Int x, y`
     - `Int x = 99, y = 199`
-    - `Int[10] highScoreTable`  // Array of two integers (instead of `Int highScoreTable[10]`)
+    - `Int[10] highScoreTable`  // Array of ten integers (instead of `Int highScoreTable[10]`)
     - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
     - `Float& m, n`   // m _and_ n are references (contrary to C/C++)
     - `Image image(width, height, 0.0)`
