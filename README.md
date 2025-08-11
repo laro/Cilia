@@ -218,10 +218,18 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
           }
           ```
           to read/interpret `Float32`.
+        - ```
+          class FirstFourBits {
+              UInt8:1  bit3
+              UInt8:1  bit2
+              UInt8:1  bit1
+              UInt8:1  bit0
+          }
+          ```
         - Therefore CiliaC may have to
-            - reverse the order of bit field elements (when using "LSB-first" C++ compilers like GCC x86),
-            - and/or add some `UInt32:... __filler_for_right_alignment` (like big-endian PowerPC, MIPS, SPARC).
-        - Add your own filler to shift fields on demand, e.g.
+            - reverse the order of bit field elements (when using typical "LSB-first" C++ compilers like GCC x86),
+            - and/or add some padding `UInt32:... __filler_for_right_alignment` (when using big-endian PowerPC, MIPS, SPARC).
+        - Add your own filler (padding bits) to shift field elements/members on demand, e.g.
           ```
           class Sign {
               UInt32:1  sign
