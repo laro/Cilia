@@ -236,7 +236,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
           ```
         - Therefore CiliaC may have to
             - reverse the order of bit field elements (when using typical "LSB-first" C++ compilers like GCC x86),
-            - and/or add some padding `UInt32:... __filler_for_right_alignment` (when using typical "MSB-first" C++ compilers like big-endian PowerPC, MIPS, SPARC).
+            - and/or add some padding `UInt32:... __filler_for_right_alignment` (when using typical "MSB-first" C++ compilers on big-endian PowerPC, MIPS, SPARC).
         - Add your own filler (padding bits) to shift field elements/members on demand, e.g.
           ```
           class Sign {
