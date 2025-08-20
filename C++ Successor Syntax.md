@@ -2,8 +2,8 @@
 Similar to [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle),
 
 and a bit like
-    - Java and Kotlin,
-    - Objective-C and Swift.
+- Java and Kotlin,
+- Objective-C and Swift.
 
 
 ## Why a new language, why not extending C++?
