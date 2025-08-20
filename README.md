@@ -1,4 +1,13 @@
 # Cilia
+This is a collection of ideas for a language that is **based on C++**, with the **same core functionality**, but
+- with a **simplified syntax**, and
+- roughly **in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Java, JavaScript/TypeScript, Kotlin, Swift.
+
+Isomorphic mapping of all C++ functionality to Cilia shall be possible, only with other/better/shorter "expression".
+
+Currently it is more of a wish list or a "thought experiment".
+
+
 **C++ with CamelCase Style**  
 I'd like to have the standard library roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using Java, JavaScript/TypeScript, Kotlin, Swift.
 
@@ -27,11 +36,6 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
 
 
 ## Introduction
-- Ideas / a wish list for an "improved" C++, a "thought experiment",
-    - with a **simplified syntax**,
-    - roughly **in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Java, JavaScript/TypeScript, Kotlin, Swift.
-    - Isomorphic mapping of all C++ functionality to Cilia shall be possible
-        - only with other/better/shorter "expression".
 - C++ "Successor Language / Syntax"
     - similar to [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle),
     - a bit like
