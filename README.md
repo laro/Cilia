@@ -1,34 +1,19 @@
 # Cilia
-This is a collection of ideas for a language that is
-- **based on C++**,
-- with **identical core functionality**,
+This is a collection of ideas for a language that is based on C++, with identical core features, like performance & low-level control, OOP, templates, RAII and smart pointers (instead of garbage collection),  
+but with
+- **CamelCase Style**  
+I'd like to have the standard library roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using Java, JavaScript/TypeScript, Kotlin, Swift.
+- **Simplified Syntax**  
+Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed.
+Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
 
-but
-- with a **simplified syntax**,
-- shorter/**better "expression"**, and
-- roughly **in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Java, JavaScript/TypeScript, Kotlin, Swift.
-
-As with C++ there is _no_ garbage collection in Cilia,
-instead you use:
-- automatic/stack variables,
-- **RAII** (Resource Acquisition is Initialization) / "RROD" (Resource Release on Object Destruction), and
-- smart pointers.
-
+Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken from other programming languages, of course).  
 Currently it is more of a wish list, a "thought experiment".
 But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
 In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
 
 
-**C++ with CamelCase Style**  
-I'd like to have the standard library roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using Java, JavaScript/TypeScript, Kotlin, Swift.
-
-**C++ with Simplified Syntax**  
-Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed.
-Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
-
-
 ## By Example
-Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken from other programming languages, of course):
 - **Cilia**
     - `Int`, `Int32`, `Int64`, `Float`
     - `Int x = 42`
