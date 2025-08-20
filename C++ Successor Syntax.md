@@ -25,13 +25,7 @@ and a bit like
 ## Why "Cilia"?
 Starting with "C" is a tradition.
 
-All the most obvious names like
-- [D](https://dlang.org/),
-- [C2](http://c2lang.org/),
-- [C3](https://c3-lang.org),
-- [Cpp2](https://github.com/hsutter/cppfront#cppfront),
-- [Cone](https://cone.jondgoodwin.com/)
-and many others were already taken `¯\_(ツ)_/¯`.
+All the most obvious names (like [D](https://dlang.org/), [C2](http://c2lang.org/), [C3](https://c3-lang.org), [Cpp2](https://github.com/hsutter/cppfront#cppfront), [Cone](https://cone.jondgoodwin.com/)) and many others were already taken `¯\_(ツ)_/¯`.
 
 I haven't found a good backronym for “C-3PO”. It would have made it very difficult to search for the language, and would have gotton me into serious legal trouble anyway.
 
