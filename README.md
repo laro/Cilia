@@ -1,11 +1,21 @@
 # Cilia
-This is a collection of ideas for a language that is **based on C++**, with the **same core functionality**, but
-- with a **simplified syntax**, and
+This is a collection of ideas for a language that is
+- **based on C++**,
+- with **identical core functionality**,
+but
+- with a **simplified syntax**,
+- shorter/**better "expression"**, and
 - roughly **in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style)**, Java, JavaScript/TypeScript, Kotlin, Swift.
 
-Isomorphic mapping of all C++ functionality to Cilia shall be possible, only with other/better/shorter "expression".
+As with C++ there is _no_ garbage collection in Cilia,
+instead you use:
+- automatic/stack variables,
+- **RAII** (Resource Acquisition is Initialization) / "RROD" (Resource Release on Object Destruction), and
+- smart pointers.
 
-Currently it is more of a wish list or a "thought experiment".
+Currently it is more of a wish list, a "thought experiment".
+But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
+In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
 
 
 **C++ with CamelCase Style**  
@@ -33,24 +43,6 @@ Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken f
         - `for i in 0..<words.size() { ... }`
         - `for i in [5, 7, 11, 13] { ... }`
         - `for word in words { ... }`
-
-
-## Introduction
-- C++ "Successor Language / Syntax"
-    - similar to [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront), [Carbon](https://github.com/carbon-language/carbon-lang), or [Circle](https://github.com/seanbaxter/circle),
-    - a bit like
-        - Java and Kotlin,
-        - Objective-C and Swift.
-- A transpiler or Cilia precompiler seems to be the simplest approach  
- (like Herb Sutter is doing it with Cpp2).
-    - Or use the AST/backend of a C++ compiler (clang comes to mind)  
-      with an own / a new parser/frontend.
-- So _no_ garbage collection,  
-  instead in Cilia you use, as in C++:
-    - automatic/stack variables,
-    - **RAII** (Resource Acquisition is Initialization)
-        - I'd like to call it "RROD" (Resource Release on Object Destruction)
-    - shared pointers (`T^`).
 
 
 ## C++ Compatibility / Interoperability
