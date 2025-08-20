@@ -32,37 +32,6 @@ In the long run one could imagine a Cilia parser/frontend, producing an AST for 
 - C++, Cpp2, Carbon, Rust, Swift, and Kotlin are described [separatly](Comparison with C++, Cpp2, Carbon, Rust, Swift, and Kotlin.md):.
 
 
-## C++ Compatibility / Interoperability
-- **Compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",
-    - as with
-        - Java and Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
-        - C# and C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
-        - Objective-C and Swift
-    - Bi-directional interoperability, so (with a hypothetical C++/Cilia compiler) it is possible to include
-        - C++ headers and modules from Cilia,
-        - Cilia headers and modules from C++.
-    - Can call C functions, access C structs (as C++ can do).
-    - The compiler recognizes the language (C, C++, or Cilia) by:
-        - Marked blocks
-            - `lang "C++" { ... }`
-            - `lang "Cilia" { ... }`
-            - ~~`lang "C" { ... }`~~
-            - TODO Limited to top level?
-            - Limited to languages where the scope is marked with `{ }`.
-        - File extension
-            - Cilia: `*.cil`, `*.hil`
-            - C++: `*.cpp`, `*.hpp` or `*.cxx`, `*.hxx`
-                - Even `*.h`, but that is a problem, as the header could be C or C++ code.  
-                  So use of `*.hpp` is recommended for C++ code.  
-                  This can probably best be solved using path based rules.
-            - C: `*.c` `*.h`
-        - Path based rules,
-            - to handle C or C++ standard headers in certain directories.
-        - File specific configuration,
-            - can be set in the IDE or on the command line,  
-              for each file individually.
-
-
 ## CamelCase Style
 Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
 
@@ -146,7 +115,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - Some simplifications and restrictions:
     - The type definition is completely on the left-hand side,
         - i.e. before the variable name, also for arrays and bit fields.
-    - `const` always binds to the right.
+    - `const` always binds to the right (contrary to C/C++).
     - All variables in a multiple-variable declarations are of the exact same type.
 
 - Examples:
@@ -154,14 +123,13 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Int i = 0`
     - `Int x, y`
     - `Int x = 99, y = 199`
-    - `Int[10] highScoreTable`  // Array of ten integers (instead of `Int highScoreTable[10]`)
+    - `Int[10] highScoreTable`  // Array of ten integers (instead of ~~`Int highScoreTable[10]`~~)
     - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
     - `Float& m, n`   // m _and_ n are references (contrary to C/C++)
     - `Image image(width, height, 0.0)`
-    - `const` always binds to the right (contrary to C/C++).
-        - `const Float* pointerToConstantFloat`
-        - `const Float const* constPointerToConstantFloat`
-        - `Float const* constPointerToFloat`
+    - `const Float* pointerToConstantFloat`
+    - `const Float const* constPointerToConstantFloat`
+    - `Float const* constPointerToFloat`
     - `Complex<Float>& complexNumber = complexNumberWithOtherName`
 
 - Not allowed / a syntax error is:
@@ -1709,6 +1677,36 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
      
 
 ## Misc 
+## C++ Compatibility / Interoperability
+- **Compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",
+    - as with
+        - Java and Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
+        - C# and C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
+        - Objective-C and Swift
+    - Bi-directional interoperability, so (with a hypothetical C++/Cilia compiler) it is possible to include
+        - C++ headers and modules from Cilia,
+        - Cilia headers and modules from C++.
+    - Can call C functions, access C structs (as C++ can do).
+    - The compiler recognizes the language (C, C++, or Cilia) by:
+        - Marked blocks
+            - `lang "C++" { ... }`
+            - `lang "Cilia" { ... }`
+            - ~~`lang "C" { ... }`~~
+            - TODO Limited to top level?
+            - Limited to languages where the scope is marked with `{ }`.
+        - File extension
+            - Cilia: `*.cil`, `*.hil`
+            - C++: `*.cpp`, `*.hpp` or `*.cxx`, `*.hxx`
+                - Even `*.h`, but that is a problem, as the header could be C or C++ code.  
+                  So use of `*.hpp` is recommended for C++ code.  
+                  This can probably best be solved using path based rules.
+            - C: `*.c` `*.h`
+        - Path based rules,
+            - to handle C or C++ standard headers in certain directories.
+        - File specific configuration,
+            - can be set in the IDE or on the command line,  
+              for each file individually.
+              
 - Two-Pass Compiler
     - so no forward declarations necessary,
     - as with C# and Java (but unlike C/C++, due to its single-pass compiler).
