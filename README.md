@@ -2,6 +2,7 @@
 This is a collection of ideas for a language that is
 - **based on C++**,
 - with **identical core functionality**,
+
 but
 - with a **simplified syntax**,
 - shorter/**better "expression"**, and
