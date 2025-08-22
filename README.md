@@ -428,13 +428,15 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - otherwise explicit cast necessary: `Float16(3.1415926)`
     - Small floating point literals like `1.0` are interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
+    - Bigger floating point literals are interpreted according to the size/precision requirements.
         - Counting the decimal places (excluding trailing zeros),  
-          then the rules of thumb are:
+          then the rules (of thumb) are:
             - ~~up to 3 decimal places -> Float16~~
             - up to 7 decimal places -> Float32
             - up to 15 decimal places -> Float64
             - up to 34 decimal places -> Float128
-        - Big floating point literals are interpreted as `Float64`, `Float128`, `Float256`, `BigFloat`, if required due to the size/precision.
+            - up to 71 decimal places -> Float256
+            - more decimal places     -> BigFloat
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
     - Difficult: Constexpr constructor that accepts an arbitrary precision float literaland can store that in ROM
