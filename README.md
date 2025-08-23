@@ -33,7 +33,7 @@ In the long run one could imagine a Cilia parser/frontend, producing an AST for 
 
 
 ## CamelCase Style
-Roughly in the style of Qt, Java, JavaScript, TypeScript, Kotlin, Swift.
+Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 
 - All types and **classes** in **upper CamelCase** ("PascalCase").
     - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`
@@ -110,13 +110,13 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 
 ## Variable Declaration
-`Int i` as variable declaration, very much as in C/C++.
+`Int i` as variable declaration, very much as in C/C++ (and Java).
 - `TypeName variableName`
 - Some simplifications and restrictions:
-    - The type definition is completely on the left-hand side,
-        - i.e. before the variable name, also for arrays and bit fields.
+    - The type definition is completely on the left-hand side,  
+      i.e. before the variable name, also for arrays and bit fields.
     - `const` always binds to the right (contrary to C/C++).
-    - All variables in a multiple-variable declarations are of the exact same type.
+    - All variables in a multiple-variable declarations have to be of the exact same type.
 
 - Examples:
     - `Int i`
