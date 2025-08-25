@@ -23,7 +23,7 @@ and a bit like
 
 
 ## Why "Cilia"?
-Starting with "C" is a tradition.  
+Starting with "C" is a kind of tradition.  
 All the most obvious names (like [D](https://dlang.org/), [C2](http://c2lang.org/), [C3](https://c3-lang.org), [Cpp2](https://github.com/hsutter/cppfront#cppfront), [Cone](https://cone.jondgoodwin.com/)) and many others were already taken `¯\_(ツ)_/¯`.  
 [Julia](https://julialang.org) is a nice language,
 so now Cilia got a "[cute](https://forum.qt.io/topic/132893/qt-pronunciation)" name.
