@@ -437,7 +437,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
             - up to 34 decimal places -> Float128
             - up to 71 decimal places -> Float256
             - more decimal places     -> BigFloat
-        - Problem: 0.1 is 0b0.00011001100110011…, but according to the rules above it would be interpretet as Float16 oder Float32, limiting its potential precision when calculating with Float64.
+        - Problem: 0.1 is 0b0.00011001100110011…, but according to the rules above it would be interpretet as ~~Float16 or~~ Float32, limiting its potential precision when calculating with Float64.
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
     - Difficult: Constexpr constructor that accepts an arbitrary precision float literaland can store that in ROM
