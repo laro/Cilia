@@ -159,7 +159,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - This way you can use
           ```
           class Float32Equivalent {
-              UInt32:1  sign
+              UInt32:1  signIsNegative
               UInt32:8  exponent
               UInt32:23 significand // AKA mantissa
           }
