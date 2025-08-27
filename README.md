@@ -155,7 +155,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 - Bit fields
     - `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
-    - MSB (Most Significant Bit) first, but aligned to the right.
+    - MSB (Most Significant Bit) first.
         - This way you can use
           ```
           class Float32Equivalent {
@@ -165,30 +165,29 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
           }
           ```
           to read/interpret `Float32`,
-        - and
+        - and with
           ```
           class LowByteInUInt16 {
-              UInt16:8 low
+              UInt32:1 signIsNegative
           }
           ```
-          has the same memory layout as `UInt16 value` (for values of 0..255).
-        - Right-aligned means that the last element always covers bit 0:
+          signIsNegative is true for negative integers.
+        - Bits are left-aligned, so the first element always covers the most-significant bit:
           ```
           class LowFourBits {
-              UInt8:1 bit3
-              UInt8:1 bit2
-              UInt8:1 bit1
-              UInt8:1 bit0
+              UInt8:1 bit7
+              UInt8:1 bit6
+              UInt8:1 bit5
+              // ...
           }
           ```
-        - Therefore CiliaC may have to
-            - reverse the order of bit field elements (when using typical "LSB-first" C++ compilers like GCC x86),
-            - and/or add some padding `UInt32:... __filler_for_right_alignment` (when using typical "MSB-first" C++ compilers on big-endian PowerPC, MIPS, SPARC).
+        - This is what typical "MSB-first" C++ compilers do (on big-endian PowerPC, MIPS, SPARC).
+            - CiliaC may have to reverse the order of bit field elements and add some padding `UInt32:... __filler_for_right_alignment` (when using typical "LSB-first" C++ compilers like GCC x86).
         - Add your own filler (padding bits) to shift field elements/members on demand, e.g.
           ```
           class Sign {
-              UInt32:1  sign
-              UInt32:31 filler
+              UInt32:1  filler
+              UInt32:31 bit0
           }
           ```
 
