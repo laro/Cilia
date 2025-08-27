@@ -191,7 +191,46 @@ For several topics there are alternative ideas, that were discarded but are stil
     - When having `func` for function declaration, but not `var` for variable declaration, is still not clear enough.
     - Swift, Kotlin and Circle always start variable declarations with `var`.
     - Not starting with `var` could be especially problematic in connection with omitting the trailing semicolons.
-  
+
+
+## Bitfields
+One could define the orde of bit in a bitfield.
+- MSB (Most Significant Bit) first.
+    - This way you can use
+      ```
+      class Float32Equivalent {
+          UInt32:1  signIsNegative
+          UInt32:8  exponent
+          UInt32:23 significand // AKA mantissa
+      }
+      ```
+      to read/interpret `Float32`,
+    - and with
+      ```
+      class SignBitOfInt64 {
+          UInt64:1 signIsNegative
+      }
+      ```
+      signIsNegative is true for negative Int64.
+    - Bits are left-aligned, so the first element always covers the most-significant bit:
+      ```
+      class MostSignificantThreeBits {
+          UInt8:1 bit7
+          UInt8:1 bit6
+          UInt8:1 bit5
+          // ...
+      }
+      ```
+    - This is what typical "MSB-first" C++ compilers do (on big-endian PowerPC, MIPS, SPARC).
+        - CiliaC may have to reverse the order of bit field elements and add some padding `UInt32:... __filler_for_right_alignment` (when using typical "LSB-first" C++ compilers like GCC x86).
+    - Add your own filler (padding bits) to shift field elements/members on demand, e.g.
+      ```
+      class Sign {
+          UInt32:1  filler
+          UInt32:31 bit0
+      }
+      ```
+
 
 ## Arrays & ArrayViews
 - `Int[] dynamicArrayOfIntegers`
