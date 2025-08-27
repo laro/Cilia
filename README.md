@@ -395,24 +395,21 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - because `Int` is not a `Bool`
         - because an `Int` should not be accidentally interpreted as a `Bool`
         - cast if necessary: `Bool a = Bool(1)`
-- `1.0` is a floating point literal of arbitrary precision
-    - Can be converted to any float type into which it fits exactly
+- `1.0` is a floating point literal
+    - Floating point literals are interpreted according to the size/precision requirements.
+        - Counting the decimal places (including trailing zeros!),  
+          then the rules are:
+            - up to 15 decimal places -> `Float64`
+            - up to 34 decimal places -> `Float128`
+            - up to 71 decimal places -> `Float256`
+            - more decimal places     -> `BigFloat`
+    - Can implicitly be converted to any smaller float type into which it still fits exactly,
         - otherwise explicit cast necessary: `Float16(3.1415926)`
-    - Small floating point literals like `1.0` are interpreted as `Float`
-        - in case of type inferring, parameter overloading and template matching.
-    - Bigger floating point literals are interpreted according to the size/precision requirements.
-        - Counting the decimal places (excluding trailing zeros),  
-          then the rules (of thumb) are:
-            - ~~up to 3 decimal places -> Float16~~
-            - up to 7 decimal places -> Float32
-            - up to 15 decimal places -> Float64
-            - up to 34 decimal places -> Float128
-            - up to 71 decimal places -> Float256
-            - more decimal places     -> BigFloat
-        - Problem: 0.1 is 0b0.00011001100110011…, but according to the rules above it would be interpretet as ~~Float16 or~~ Float32, limiting its potential precision when calculating with Float64/Float128/Float256/BigFloat.
+        - Note: `0.1` as Float64 has the significand `1001100110011001100110011001100110011001100110011010`, so it can not implicitly be converted to `Float32` or `Float16`.
+        - To write `Float64`/`Float128`/`Float256`/`BigFloat` literals, write `0.1000000000000000…`.
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
-    - Difficult: Constexpr constructor that accepts an arbitrary precision float literaland can store that in ROM
+    - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
         - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
 - `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
     - Can be converted to any float type.
