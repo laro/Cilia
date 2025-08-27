@@ -1,13 +1,20 @@
 # Cilia
-This is a collection of ideas for a language that is based on C++, with identical core features, like performance & low-level control, OOP, templates, RAII and smart pointers (instead of garbage collection),  
-but with
+This is a collection of ideas for a language that is based on C++, with identical core features, like
+- performance,
+- low-level control,
+- OOP,
+- templates,
+- exceptions,
+- RAII and smart pointers (instead of garbage collection),  
+but then with
 - **CamelCase Style**  
 I'd like to have the standard library roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using Java, JavaScript/TypeScript, Kotlin, Swift.
 - **Simplified Syntax**  
 Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed.
 Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
 
-Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken from other programming languages, of course).  
+Cilia is, in my opinion, a collection of quite obvious ideas (and mostly taken from other programming languages, of course).
+
 Currently it is more of a wish list, a "thought experiment".
 But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
 In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
