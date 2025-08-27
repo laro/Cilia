@@ -174,7 +174,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
           signIsNegative is true for negative integers.
         - Bits are left-aligned, so the first element always covers the most-significant bit:
           ```
-          class LowFourBits {
+          class MostSignificantThreeBits {
               UInt8:1 bit7
               UInt8:1 bit6
               UInt8:1 bit5
