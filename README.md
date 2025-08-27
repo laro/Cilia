@@ -5,7 +5,7 @@ This is a collection of ideas for a language that is based on C++, with identica
 - OOP,
 - templates,
 - exceptions,
-- RAII and smart pointers (instead of garbage collection),  
+- RAII and smart pointers (instead of garbage collection),
 but then with
 - **CamelCase Style**  
 I'd like to have the standard library roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using Java, JavaScript/TypeScript, Kotlin, Swift.
