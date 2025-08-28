@@ -414,8 +414,8 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - otherwise explicit cast necessary: `Float16(3.1415926)`
         - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
     - To ensure the literal is of a determined type you write postfixes:  
-      `1.0f16`, `1.0f32`, `1.0f64`, `1.0f128`, `1.0f256` (as in Rust)
-        - That probably is clearer than `1.0h`, `1.0s` (TODO and/or `1.0f`?), `1.0d`, `1.0q`, `1.0o`.
+      `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
+        - That probably is clearer than `0.1h`, `0.1s` (TODO and/or `0.1f`?), `0.1d`, `0.1q`, `0.1o`.
     - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
 - `Infinity`/`-Infinity` is a `Float` literal for infinity values
     - Can be converted to any float type.
