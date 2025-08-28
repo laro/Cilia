@@ -111,10 +111,11 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
     - TODO Probably it should be std::byte instead (i.e. _not_ the same type as UInt8 for parameter overloading)
 - `Float`
-    - `Float` == `Float32`
-        - This is how it is in C/C++.
-        - Is faster than Float64 and good enough most of the time.
+    - `Float` == `Float64` (like Python, but unlike C/C++)
+        - Still very fast with modern processors.
+        - `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but without `Float64`),
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
+        - When concerned with memory bandwith and SIMD performance, choose one of the smaller floating-point types.
 
 
 ## Variable Declaration
@@ -399,7 +400,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - Floating point literals are interpreted according to the size/precision requirements.
         - Counting the decimal places (including trailing zeros!),  
           then the rules are:
-            - up to 15 decimal places -> `Float64`
+            - up to 15 decimal places -> `Float64` (AKA `Float`)
             - up to 34 decimal places -> `Float128`
             - up to 71 decimal places -> `Float256`
             - more decimal places     -> `BigFloat`
@@ -413,11 +414,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
 - `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
     - Can be converted to any float type.
-    - Is interpreted as `Float64`
+    - Is interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
 - `NaN` is a floating point literal of arbitrary precision for NaN ("not a number") values
     - Can be converted to any float type
-    - Is interpreted as `Float64`
+    - Is interpreted as `Float`
         - in case of type inferring, parameter overloading and template matching.
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
@@ -571,7 +572,7 @@ Similar as in Java, C#, Swift and Rust.
               ```
                 - However, the return type could be a _different_ type than `x` is (but it needs to satisfy the concept `Number`)
                 - With `func add(Number a, b) -> Number` even `a` and `b` could be of a different type (but both need to satisfy the concept `Number`)
-            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128` or `BigFloat`):
+            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128`/`256` or `BigFloat`):
               ```
               func sqrt(Real x) -> Real {
                   // ... a series development ...
