@@ -416,7 +416,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - Postfixes to write float literals with a certain precision:  
       `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
         - That probably is clearer than `0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o` for half, single, double, quadruple, octuple precision.
-        - TODO Use of `0.1f` for `Float` AKA `Float64`? (In C++ `0.1f` means `single float` AKA `Float32`.)
+        - TODO Use of `0.1f` for `Float` AKA `Float64`? (But in C++ `0.1f` means `single float` AKA `Float32`, so that would be confusing.)
     - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
 - `Infinity`/`-Infinity` is a `Float` literal for infinity values
     - Can be converted to any float type.
@@ -564,6 +564,7 @@ Similar as in Java, C#, Swift and Rust.
           ...
       }
       ```
+    - TODO Having to write `typename` before dependent names in templates is quite annoying, but seems hard/impossible to change/fix.
 - **Function** templates
     - _Automatic_ function templates
         - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template. This is like abbreviated function templates in C++ 20, only ommitting the `auto` keyowrd.
