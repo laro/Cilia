@@ -409,7 +409,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - Can implicitly be converted to any smaller float type into which it still fits exactly,
         - otherwise explicit cast necessary: `Float16(3.1415926)`
         - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so it can not implicitly be converted to `Float32` or `Float16`.
-        - To write `Float128`/`Float256`/`BigFloat` literals add trailing zeros (`0.1000000000000000…`).
+        - To write `Float128`/`Float256`/`BigFloat` literals you may add trailing zeros (`0.1000000000000000…`).
     - `1.0f` is always `Float32`
     - `1.0d` is always `Float64`
     - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
