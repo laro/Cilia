@@ -413,11 +413,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
 - `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
     - Can be converted to any float type.
-    - Is interpreted as `Float`
+    - Is interpreted as `Float64`
         - in case of type inferring, parameter overloading and template matching.
 - `NaN` is a floating point literal of arbitrary precision for NaN ("not a number") values
     - Can be converted to any float type
-    - Is interpreted as `Float`
+    - Is interpreted as `Float64`
         - in case of type inferring, parameter overloading and template matching.
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
