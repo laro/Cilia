@@ -406,22 +406,25 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
             - up to 34 decimal places -> `Float128`
             - up to 71 decimal places -> `Float256`
             - more decimal places     -> `BigFloat`
+                - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
+                    - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as
+                      arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
+
     - Can implicitly be converted to any smaller float type into which it still fits exactly,
         - otherwise explicit cast necessary: `Float16(3.1415926)`
-        - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so it can not implicitly be converted to `Float32` or `Float16`.
-        - To write `Float128`/`Float256`/`BigFloat` literals you may add trailing zeros (`0.1000000000000000…`).
-    - `1.0f` is always `Float32`
-    - `1.0d` is always `Float64`
-    - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
-        - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
-- `Infinity`/`-Infinity` is a floating point literal of arbitrary precision for infinity values
+        - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
+    - To ensure the literal is of a determined type you write postfixes:
+        - `1.0h` is always `Float16`
+        - `1.0s` (TODO or `1.0f`) is always `Float32`
+        - `1.0d` is always `Float64`
+        - `1.0q` is always `Float128`
+        - `1.0o` is always `Float256`
+    - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
+- `Infinity`/`-Infinity` is a `Float` literal for infinity values
     - Can be converted to any float type.
-    - Is interpreted as `Float`
-        - in case of type inferring, parameter overloading and template matching.
-- `NaN` is a floating point literal of arbitrary precision for NaN ("not a number") values
+- `NaN` is a `Float` literal for NaN ("not a number") values
     - Can be converted to any float type
-    - Is interpreted as `Float`
-        - in case of type inferring, parameter overloading and template matching.
+          
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
         - If necessary
