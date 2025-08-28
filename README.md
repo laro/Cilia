@@ -113,9 +113,11 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - `Float`
     - `Float` == `Float64` (like Python, but unlike C/C++)
         - Still very fast with modern processors.
+        - So a plain float literal like `1.0` is just a `Float` (AKA `Float64`).
+            - Unlike C++, where `1.0` is a `double` and `1.0f` is a `float`.
         - `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but without `Float64`),
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
-        - When concerned with memory bandwith and SIMD performance, choose one of the smaller floating-point types.
+        - When concerned with memory bandwith, cache size, and SIMD performance, choose one of the smaller floating-point types.
 
 
 ## Variable Declaration
