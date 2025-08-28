@@ -43,29 +43,29 @@ In the long run one could imagine a Cilia parser/frontend, producing an AST for 
 ## CamelCase Style
 Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 
-- All types and **classes** in **upper CamelCase** ("PascalCase").
+- All types and **classes** in **PascalCase** (UpperCamelCase).
     - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`
     - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
-- **Variables**/instances/objects in **lower camelCase**
+- **Variables**/instances/objects in **lowerCamelCase**
     - `Int i`
     - `String word`
     - `String[] words`
     - `ContactInfo[String] contactInfoForID`
     - Feel free to bend/break this rule, e.g. name matrices as `Matrix M, R, L`
       
-- **Functions** in **lower camelCase**
+- **Functions** in **lowerCamelCase**
     - `str.findFirstOf(...)`
     - `arr.pushBack(...)`
     - `Thread::hardwareConcurrency()`
 
-- **Global constants** in **upper CamelCase**
+- **Global constants** in **PascalCase** (UpperCamelCase).
     - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)
     - Constant-like keywords
         - `True`, `False`
         - `NullPtr`
         - `NaN`, `Infinity`
-    - But keep _local_ constants in lower camelCase:  
+    - But keep _local_ constants in lowerCamelCase:  
         - `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
 
 - Namespaces fully lowercase 
