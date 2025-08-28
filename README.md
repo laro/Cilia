@@ -415,7 +415,8 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
     - To ensure the literal is of a determined type you write postfixes:  
       `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
-        - That probably is clearer than `0.1h`, `0.1s` (TODO and/or `0.1f`?), `0.1d`, `0.1q`, `0.1o` for half, single, double, quadruple, octuple.
+        - That probably is clearer than `0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o` for half, single, double, quadruple, octuple precision.
+        - TODO Use of `0.1f` for `Float` AKA `Float64`? (In C++ `0.1f` means `single float` AKA `Float32`.)
     - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
 - `Infinity`/`-Infinity` is a `Float` literal for infinity values
     - Can be converted to any float type.
