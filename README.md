@@ -415,10 +415,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
     - To ensure the literal is of a determined type you write postfixes:
         - `1.0h` is always `Float16`
-        - `1.0s` (TODO or `1.0f`) is always `Float32`
+        - `1.0s` (TODO and/or `1.0f`?) is always `Float32`
         - `1.0d` is always `Float64`
         - `1.0q` is always `Float128`
         - `1.0o` is always `Float256`
+        - TODO Better `1.0f16`, `1.0f32`, `1.0f64`, `1.0f128`, `1.0f256`?
     - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
 - `Infinity`/`-Infinity` is a `Float` literal for infinity values
     - Can be converted to any float type.
