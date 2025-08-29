@@ -111,10 +111,11 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
     - TODO Probably it should be std::byte instead (i.e. _not_ the same type as UInt8 for parameter overloading)
 - `Float`
-    - `Float` == `Float64`, i.e. double precision is standard (like Python, but unlike C/C++)
+    - `Float` == `Float64`, i.e. double precision is "standard"
+        - Like Python. Unlike C/C++, where `float` is single precision.
         - Still very fast with modern processors.
           When concerned with memory bandwith, cache size, and SIMD performance, choose one of the smaller floating-point types.
-        - `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but without `Float64`),
+        - `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`),
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
 
 
