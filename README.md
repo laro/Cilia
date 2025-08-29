@@ -168,8 +168,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
   }
   ```
 - Default access specifier is `public`.
-- Not ~~`struct`~~, as it is just too similar to `class` with no real benefit.
+- Not using ~~`struct`~~, as it is just too similar to `class` with no real benefit.
    - Keep as a reserved keyword for future use.
+   - Cilias roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
 
 
 ## Functions
