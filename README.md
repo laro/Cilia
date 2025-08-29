@@ -1751,7 +1751,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - double-double/triple-double/quad-double arithemtic
         - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
         - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-        - Problem: Is saved incompatible to the IEEE 754 format for 128/256/512 bit float.
+        - Problem: Is saved incompatible to the IEEE 754 format for 128 or 256 bit float.
     - `BigFloat<>` for arbitrary precision float,
         - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
         - The precision is arbitrary but fixed, either
