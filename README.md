@@ -1747,17 +1747,19 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `BFloat16` (Brain Floating Point)
     - `Float128` with 1 bit sign, 15 bit exponent, 112 bit significand
     - `Float256` with 1 bit sign, 19 bit exponent, 237 bit significand
-    - `DDFloat`, `TDFloat`, `QDFloat`
-        - double-double/triple-double/quad-double arithemtic
-        - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
-        - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-        - Problem: Is saved incompatible to the IEEE 754 format for 128 or 256 bit float.
-    - `BigFloat` for arbitrary precision float,
-        - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
-        - The precision (i.e. the number of bits of significand and exponent) is a property of a BigFloat variable,
-            - is set at construction (e.g. `BigFloat bigFloat(1024, 64)`)
-            - and can dynamically be changed with assignment.
-        - TODO `HighPrecisionFloat<Int SignificandBits, Int ExponentBits>` as template for custom float types with statically fixed precision, like `Float1024`, `Float2048`, etc.?
+    - Exotic/extended floating point types
+        - General problem: All these types are saved incompatible to the IEEE 754 format for 128/256/... bit float.
+        - `BigFloat` for arbitrary precision float,
+            - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
+            - The precision (i.e. the number of bits of significand and exponent) is a property of a BigFloat variable,
+                - is set at construction (e.g. `BigFloat bigFloat(1024, 64)`)
+                - and can dynamically be changed with assignment.
+        - `HighPrecisionFloat<Int SignificandBits, Int ExponentBits>` as template for custom float types with statically fixed precision, like `Float1024`, `Float2048`, ...
+            - NumberOfBits must be multiples of `sizeof(Int)` (i.e. multiples of 64).
+        - `DDFloat`, `TDFloat`, `QDFloat`
+            - double-double/triple-double/quad-double arithemtic
+            - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
+            - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
 
 - Integer operations **with carry** (flag or UInt)  
   (to implement `Int128`, `Int256` etc.)
