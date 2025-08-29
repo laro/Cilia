@@ -358,6 +358,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
 - `NullPtr` is the null pointer,
     - it is of the type `NullPtrType`,
     - explicit cast necessary to convert any pointer to `Int`.
+
 - `123` is an integer literal of arbitrary precision
     - Can be converted to any integer type it fits into (signed and unsigned)
         - `Int8 a = 1`    // Works because `1` fits into `Int8`
@@ -387,8 +388,8 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
 - `0xffffffff` is `UInt` in hexadecimal
 - `0b1011` is `UInt` in binary
 - `0o123` is `UInt` in octal
-    - as in Python
-    - not `0123`, as that is confusing/unexpected, even if it is C++ standard
+    - `0o` as in Python,
+    - not `0123`, as that is confusing/unexpected, even though it is C++ standard.
 - `Int` vs. `Bool`
     - ~~`Int a = True`~~      // Error,
         - because `Bool` is _not_ an `Int`
@@ -398,6 +399,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - because `Int` is not a `Bool`
         - because an `Int` should not be accidentally interpreted as a `Bool`
         - cast if necessary: `Bool a = Bool(1)`
+
 - `1.0` is a floating point literal
     - Floating point literals are interpreted according to the size/precision requirements.
         - Counting the decimal places (including trailing zeros!),  
@@ -418,10 +420,10 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - That probably is clearer than `0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o` for half, single, double, quadruple, octuple precision.
         - TODO Use of `0.1f` for `Float` AKA `Float64`? (But in C++ `0.1f` means `single float` AKA `Float32`, so that would be confusing.)
     - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
-- `Infinity`/`-Infinity` is a `Float` literal for infinity values
-    - Can be converted to any float type.
-- `NaN` is a `Float` literal for NaN ("not a number") values
-    - Can be converted to any float type
+- `Infinity`/`-Infinity` is a `Float` literal for infinity values,
+    - that can be converted to any float type.
+- `NaN` is a `Float` literal for NaN ("not a number") values,
+    - that can be converted to any float type
           
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
