@@ -1754,9 +1754,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Problem: Is saved incompatible to the IEEE 754 format for 128 or 256 bit float.
     - `BigFloat<>` for arbitrary precision float,
         - see [GMP](https://gmplib.org), [MPFR](https://www.mpfr.org)
-        - The precision is arbitrary but fixed, either
-          - statically, i.e. at compile time, as part of the BigFloat type, or
-          - dynamically, i.e. at runtime, as property of a BigFloat variable.
+        - The precision (i.e. the number of bits of significand and exponent) is a property of a BigFloat variable,
+            - is set at construction (e.g. `BigFloat bigFloat(1024, 64)`)
+            - and can dynamically be changed with assignment.
+        - TODO `HighPrecisionFloat<Int SignificandBits, Int ExponentBits>` as template for custom float types with statically fixed precision, like `Float128`, `Float256`, etc.?
 
 - Integer operations **with carry** (flag or UInt)  
   (to implement `Int128`, `Int256` etc.)
