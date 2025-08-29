@@ -111,11 +111,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
     - TODO Probably it should be std::byte instead (i.e. _not_ the same type as UInt8 for parameter overloading)
 - `Float`
-    - `Float` == `Float64` (like Python, but unlike C/C++)
+    - `Float` == `Float64`, i.e. double precision is standard (like Python, but unlike C/C++)
         - Still very fast with modern processors.
           When concerned with memory bandwith, cache size, and SIMD performance, choose one of the smaller floating-point types.
-        - So a plain float literal like `1.0` is just a `Float` (AKA `Float64`).
-            - Unlike C++, where `1.0` is a `double` and `1.0f` is a `float`.
         - `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but without `Float64`),
     - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
 
@@ -409,7 +407,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
                 - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
                     - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as
                       arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
-
+        - So a plain float literal like `1.0` is a `Float` (AKA `Float64`), so the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
     - Can implicitly be converted to any smaller float type into which it still fits exactly,
         - otherwise explicit cast necessary: `Float16(3.1415926)`
         - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
