@@ -43,7 +43,7 @@ In the long run one could imagine a Cilia parser/frontend, producing an AST for 
 ## CamelCase Style
 Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 
-- All types and **classes** in **UpperCamelCase** (PascalCase).
+- All types and **classes** in **UpperCamelCase** (AKA PascalCase).
     - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`
     - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
 
@@ -59,7 +59,7 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
     - `arr.pushBack(...)`
     - `Thread::hardwareConcurrency()`
 
-- **Global constants** in **UpperCamelCase** (PascalCase).
+- **Global constants** in **UpperCamelCase**.
     - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)
     - Constant-like keywords
         - `True`, `False`
