@@ -1745,9 +1745,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - for cryptography, maybe computer algebra, numerics
         - see [Boost.Multiprecision](https://www.boost.org/doc/libs/1_79_0/libs/multiprecision/doc/html/index.html), [GMP](https://gmplib.org)
     - `BFloat16` (Brain Floating Point)
-    - `Float128`
-        - 1 bit sign, 15 bit exponent, 112 bit significand
-        - `Float256`?
+    - `Float128` with 1 bit sign, 15 bit exponent, 112 bit significand
+    - `Float256` with 1 bit sign, 19 bit exponent, 237 bit significand
     - `DDFloat`, `TDFloat`, `QDFloat`
         - double-double/triple-double/quad-double arithemtic
         - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
