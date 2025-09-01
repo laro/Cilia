@@ -1181,7 +1181,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
 
 
 ## Safety and Security
--** No implicit downcasts**,  
+- **No implicit downcasts**,  
   i.e. standard conversions only apply when no information is lost.
     - ~~Not Ok~~ or Ok is
         - `Int8` ->
