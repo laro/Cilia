@@ -365,6 +365,14 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
 
 - Integers
     - `123` is an integer literal of arbitrary precision
+        - Typical integer literals like `123456` are interpreted as `Int`
+            - in case of type inferring, parameter overloading and template matching.
+            - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
+        - Unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), as there is no loss of information.
+            - Up to `127` -> `Int8`
+            - Up to `32'767` -> `Int16`
+            - Up to `2'147'483'647` -> `Int32`
+            - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
         - Can be converted to any integer type it fits into (signed and unsigned)
             - `Int8 a = 1`    // Works because `1` fits into `Int8`
             - `Int8 b = 127`  // Works because `127` fits into `Int8`
@@ -382,14 +390,6 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
                 - `UInt m = UInt(l)` // Works
             - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
                 - `Int n = Int(m)`   // Works
-        - Small integer literals like `123` are interpreted as `Int`
-            - in case of type inferring, parameter overloading and template matching.
-            - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
-        - Unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), as there is no loss of information.
-            - Up to `127` -> `Int8`
-            - Up to `32'767` -> `Int16`
-            - Up to `2'147'483'647` -> `Int32`
-            - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
         - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
             - Store as array of `Int`
         - `123u` is `UInt`
