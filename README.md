@@ -383,6 +383,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - Small integer literals like `123` are interpreted as `Int`
         - in case of type inferring, parameter overloading and template matching.
         - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
+    - Unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), as there is no loss of information.
+        - Up to `127` -> `Int8`
+        - Up to `32'767` -> `Int16`
+        - Up to `2'147'483'647` -> `Int32`
+        - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
     - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
         - Store as array of `Int`
     - `123u` is `UInt`
@@ -390,8 +395,12 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - `-123` is always `Int` (signed)
 - Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
     - Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
-        - Unsigned integer literals up to 0x7fffffff can implicitly be converted to Int (i.e. signed), so _usually_ it is possibly to give a hex literal as Int argument.
-        - Otherwise you have to cast it like `Int32 mostNegativeInt32 = Int32(0x80000000)`.
+        - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possibly to give a hex literal as Int argument
+            - Up to `0x7f` -> `Int8`
+            - Up to `0x7fff` -> `Int16`
+            - Up to `0x7fffffff` -> `Int32`
+            - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
+        - Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
     -  `0xffffffff` is `UInt` in hexadecimal
     - `0b1011` is `UInt` in binary
     - `0o123` is `UInt` in octal
