@@ -388,13 +388,15 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - `123u` is `UInt`
         - `-123u` is an error.
     - `-123` is always `Int` (signed)
-- Hexadecimal, octal, and binary literals
-    - `0xffffffff` is `UInt` in hexadecimal
+- Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
+    - Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
+        - Unsigned integer literals up to 0x7fffffff can implicitly be converted to Int (i.e. signed), so _usually_ it is possibly to give a hex literal as Int argument.
+        - Otherwise you have to cast it like `Int32 mostNegativeInt32 = Int32(0x80000000)`.
+    -  `0xffffffff` is `UInt` in hexadecimal
     - `0b1011` is `UInt` in binary
     - `0o123` is `UInt` in octal
-        - `0o` as in Python,
-        - not `0123`, as that is confusing/unexpected, even though it is C++ standard.
-    - Unsigned integer literals up to 0xefffffff can implicitly be converted to Int.
+        - Using `0o` as in Python,
+        - not `0123`, as that IMHO is confusing/unexpected, even though it is C++ standard.
 - `Int` vs. `Bool`
     - ~~`Int a = True`~~      // Error,
         - because `Bool` is _not_ an `Int`
