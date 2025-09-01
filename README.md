@@ -1181,6 +1181,65 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
 
 
 ## Safety and Security
+- No implicit downcasts, i.e. standard conversions only apply when no information is lost.
+    - ~~Not Ok~~ or Ok is
+        - `Int8` ->
+            - `Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - `Float16`, `Float32`, `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `UInt8` ->
+            - `UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`,~~ `Int16`, `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - `Float16`, `Float32`, `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `Int16` ->
+            - ~~`Int8`,~~ `Int16`, `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`,~~ `Float32`, `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `UInt16` ->
+            - ~~`UInt8`,~~ `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`,~~ `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`Float16`,~~ `Float32`, `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `Int32` ->
+            - ~~`Int8`, `Int16`,~~ `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`,~~ `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `UInt32` ->
+            - ~~`UInt8`, `UInt16`,~~ `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`,~~ `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`Float16`, `Float32`,~~ `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `Int64` ->
+            - ~~`Int8`, `Int16`, `Int32`,~~ `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`, `Float64`,~~ `Float128`, `Float256`, `BigFloat`
+        - `UInt64` ->
+            - ~~`UInt8`, `UInt16`, `UInt32`,~~ `UInt64`, `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`,~~ `Int128`, `Int256`, `BigInt`
+            - ~~`Float16`, `Float32`, `Float64`,~~ `Float128`, `Float256`, `BigFloat`
+        - `Int128` ->
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`,~~ `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`,~~ `Float256`, `BigFloat`
+        - `UInt128` ->
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`,~~ `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`,~~ `Int256`, `BigInt`
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`,~~ `Float256`, `BigFloat`
+        - `Int256` ->
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`,~~ `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
+        - `UInt256` ->
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`,~~ `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
+        - `BigInt` ->
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
+        - `BigUInt` ->
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`,~~ `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
+              
 - **Range & Validation Checks**
     - The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
         - range checks, to detect **buffer overflows** or similar,
@@ -1213,12 +1272,12 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
     - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't want to always initialize everything.
         - With virtual memory it could actually be (almost) "free" to initialize _large_ arrays with zero. But only when using heap memory directly. Small memory regions, that were used before, still need to be overwritten with zeros.
-    - We could warn (or maybe even consider it an error) if not initialized,  
+    - We could consider it an error (or at least warn) if not initialized,  
       and use a keyword `noinit` to avoid that warning/error.  
       ```
-      Int i         // Warning
-      Int j noinit  // No warning
-      Int j = 1     // No warning
+      Int i         // Error
+      Int j noinit  // Ok
+      Int j = 1     // Ok
       ```
     - Classes / custom types
         - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
