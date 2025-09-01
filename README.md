@@ -363,134 +363,138 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - it is of the type `NullPtrType`,
     - explicit cast necessary to convert any pointer to `Int`.
 
-- `123` is an integer literal of arbitrary precision
-    - Can be converted to any integer type it fits into (signed and unsigned)
-        - `Int8 a = 1`    // Works because `1` fits into `Int8`
-        - `Int8 b = 127`  // Works because `127` fits into `Int8`
-        - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
-        - `Int8 d = -128` // Works because `-128` fits into `Int8`
-        - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
-        - `UInt8 f = 255` // Works because `255` fits into `UInt8`
-        - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
-        - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
-        - `Int16 i = 32767` // Works
-        - `Int32 j = 2'147'483'647` // Works
-        - `Int64 k = 9'223'372'036'854'775'807` // Works
-        - `Int l = a`     // Works because `Int8` fits into `Int32`
-        - `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
-            - `UInt m = UInt(l)` // Works
-        - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
-            - `Int n = Int(m)`   // Works
-    - Small integer literals like `123` are interpreted as `Int`
-        - in case of type inferring, parameter overloading and template matching.
-        - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
-    - Unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), as there is no loss of information.
-        - Up to `127` -> `Int8`
-        - Up to `32'767` -> `Int16`
-        - Up to `2'147'483'647` -> `Int32`
-        - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
-    - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
-        - Store as array of `Int`
-    - `123u` is `UInt`
-        - `-123u` is an error.
-    - `-123` is always `Int` (signed)
-- Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
-    - Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
-        - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possibly to give a hex literal as Int argument
-            - Up to `0x7f` -> `Int8`
-            - Up to `0x7fff` -> `Int16`
-            - Up to `0x7fffffff` -> `Int32`
-            - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
-        - Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
-    -  `0xffffffff` is `UInt` in hexadecimal
-    - `0b1011` is `UInt` in binary
-    - `0o123` is `UInt` in octal
-        - Using `0o` as in Python,
-        - not `0123`, as that IMHO is confusing/unexpected, even though it is C++ standard.
-- `Int` vs. `Bool`
-    - ~~`Int a = True`~~      // Error,
-        - because `Bool` is _not_ an `Int`
-        - because a `Bool` should not be accidentally interpreted as an `Int`
-        - cast if necessary: `Int a = Int(True)`
-    - ~~`Bool a = 1`~~      // Error,
-        - because `Int` is not a `Bool`
-        - because an `Int` should not be accidentally interpreted as a `Bool`
-        - cast if necessary: `Bool a = Bool(1)`
+- Integers
+    - `123` is an integer literal of arbitrary precision
+        - Can be converted to any integer type it fits into (signed and unsigned)
+            - `Int8 a = 1`    // Works because `1` fits into `Int8`
+            - `Int8 b = 127`  // Works because `127` fits into `Int8`
+            - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
+            - `Int8 d = -128` // Works because `-128` fits into `Int8`
+            - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
+            - `UInt8 f = 255` // Works because `255` fits into `UInt8`
+            - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
+            - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
+            - `Int16 i = 32767` // Works
+            - `Int32 j = 2'147'483'647` // Works
+            - `Int64 k = 9'223'372'036'854'775'807` // Works
+            - `Int l = a`     // Works because `Int8` fits into `Int32`
+            - `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
+                - `UInt m = UInt(l)` // Works
+            - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
+                - `Int n = Int(m)`   // Works
+        - Small integer literals like `123` are interpreted as `Int`
+            - in case of type inferring, parameter overloading and template matching.
+            - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
+        - Unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), as there is no loss of information.
+            - Up to `127` -> `Int8`
+            - Up to `32'767` -> `Int16`
+            - Up to `2'147'483'647` -> `Int32`
+            - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
+        - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
+            - Store as array of `Int`
+        - `123u` is `UInt`
+            - `-123u` is an error.
+        - `-123` is always `Int` (signed)
+    - Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
+        - Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
+            - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possibly to give a hex literal as Int argument
+                - Up to `0x7f` -> `Int8`
+                - Up to `0x7fff` -> `Int16`
+                - Up to `0x7fffffff` -> `Int32`
+                - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
+            - Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
+        -  `0xffffffff` is `UInt` in hexadecimal
+        - `0b1011` is `UInt` in binary
+        - `0o123` is `UInt` in octal
+            - Using `0o` as in Python,
+            - not `0123`, as that IMHO is confusing/unexpected, even though it is C++ standard.
+    - `Int` vs. `Bool`
+        - ~~`Int a = True`~~      // Error,
+            - because `Bool` is _not_ an `Int`
+            - because a `Bool` should not be accidentally interpreted as an `Int`
+            - cast if necessary: `Int a = Int(True)`
+        - ~~`Bool a = 1`~~      // Error,
+            - because `Int` is not a `Bool`
+            - because an `Int` should not be accidentally interpreted as a `Bool`
+            - cast if necessary: `Bool a = Bool(1)`
 
-- `1.0` is a floating point literal
-    - Floating point literals are interpreted according to the size/precision requirements.
-        - Counting the decimal places (including trailing zeros!),  
-          then the rules are:
-            - up to 15 decimal places -> `Float64` (AKA `Float`)
-            - up to 34 decimal places -> `Float128`
-            - up to 71 decimal places -> `Float256`
-            - more decimal places     -> `BigFloat`
-                - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
-                    - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as
-                      arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
-        - So a plain float literal like `1.0` is a `Float` (AKA `Float64`), so the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
-    - Can implicitly be converted to any smaller float type into which it still fits exactly,
-        - otherwise explicit cast necessary: `Float16(3.1415926)`
-        - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
-    - Postfixes to write float literals with a certain precision:  
-      `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
-        - That probably is clearer than `0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o` for half, single, double, quadruple, octuple precision.
-        - TODO Use of `0.1f` for `Float` AKA `Float64`? (But in C++ `0.1f` means `single float` AKA `Float32`, so that would be confusing.)
-    - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
-- `Infinity`/`-Infinity` is a `Float` literal for infinity values,
-    - that can be converted to any float type.
-- `NaN` is a `Float` literal for NaN ("not a number") values,
-    - that can be converted to any float type
+- Floating point
+    - `1.0` is a floating point literal
+        - Floating point literals are interpreted according to the size/precision requirements.
+            - Counting the decimal places (including trailing zeros!),  
+              then the rules are:
+                - up to 15 decimal places -> `Float64` (AKA `Float`)
+                - up to 34 decimal places -> `Float128`
+                - up to 71 decimal places -> `Float256`
+                - more decimal places     -> `BigFloat`
+                    - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
+                        - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as
+                          arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
+            - So a plain float literal like `1.0` is a `Float` (AKA `Float64`), so the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
+        - Can implicitly be converted to any smaller float type into which it still fits exactly,
+            - otherwise explicit cast necessary: `Float16(3.1415926)`
+            - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
+        - Postfixes to write float literals with a certain precision:  
+          `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
+            - That probably is clearer than `0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o` for half, single, double, quadruple, octuple precision.
+            - TODO Use of `0.1f` for `Float` AKA `Float64`? (But in C++ `0.1f` means `single float` AKA `Float32`, so that would be confusing.)
+        - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
+    - `Infinity`/`-Infinity` is a `Float` literal for infinity values,
+        - that can be converted to any float type.
+    - `NaN` is a `Float` literal for NaN ("not a number") values,
+        - that can be converted to any float type
           
-- `"Text"` is a `StringView` with UTF-8 encoding.
-    - No null termination.
-        - If necessary
-            - use `"Text"sz`, `"Text\0“`  or
-            - convert using `StringZ("Text")`.
-    - Data is typically stored in read-only data segments (".rodata") or ROM.
-    - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
-        - `"Text"` -> `u8"Text"sv`
-        - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
-    - A StringView starts like a String does: pointer to first character plus length,
-        - so slicing of String to StringView is possible.
-        - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
-  
-- Multiline String Literal
-    - ```
-      """
-      First line
-      Second line
-      """
-      ```
-    - Removes indentation as in the last line
-    - Removes first newline (if the opening `"""` is on a separate line)
-    - Removes last newline (if the closing `"""` is on a separate line)
-    - Similar to Swift, Julia, late Java, ...
-    - Also as single line string literal with very few restrictions, good for RegEx
-        - `"""(.* )whatever(.*)"""`
-- Interpolated Strings
-    - `f"M[{i},{j}] = {M[i, j]}"`
-        - like f-strings in Python.
-    - Curly braces (`{}`) are used in std::format already.
-    - `f"..."` as in `format`.
-    - TODO Any reason to use/prefer any other syntax?
-        - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
-- Alternative string literals
-    - Prefixes
-        - as in C++:
-            - `u"..."` and `u'...'` for UTF-16
-            - `U"..."` and `U'...'` for UTF-32
-        - No ~~`u8"..."`~~ and no ~~`u8'...'`~~ for UTF-8, as that is the default in Cilia.
-        - Maybe `a"..."` for ASCII and `l"..."` for Latin-1.
-    - User defined string suffixes
-        - as in C++:
-            - `"..."s` for `std::string`.
-        - No ~~`"..."sv`~~ for `std::string_view`, as that is the default in Cilia.
-        - `"..."sz` for null terminated strings.
-            - Type of `"..."sz` is `Char*`.
-            - `"...\0"` is a StringView of a zero terminated string.
-    - All these available for multiline string literals and interpolated strings, too.
-        - TODO Any reason, not to?
+- Strings
+    - `"Text"` is a `StringView` with UTF-8 encoding.
+        - No null termination.
+            - If necessary
+                - use `"Text"sz`, `"Text\0“`  or
+                - convert using `StringZ("Text")`.
+        - Data is typically stored in read-only data segments (".rodata") or ROM.
+        - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
+            - `"Text"` -> `u8"Text"sv`
+            - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
+        - A StringView starts like a String does: pointer to first character plus length,
+            - so slicing of String to StringView is possible.
+            - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
+      
+    - Multiline String Literal
+        - ```
+          """
+          First line
+          Second line
+          """
+          ```
+        - Removes indentation as in the last line
+        - Removes first newline (if the opening `"""` is on a separate line)
+        - Removes last newline (if the closing `"""` is on a separate line)
+        - Similar to Swift, Julia, late Java, ...
+        - Also as single line string literal with very few restrictions, good for RegEx
+            - `"""(.* )whatever(.*)"""`
+    - Interpolated Strings
+        - `f"M[{i},{j}] = {M[i, j]}"`
+            - like f-strings in Python.
+        - Curly braces (`{}`) are used in std::format already.
+        - `f"..."` as in `format`.
+        - TODO Any reason to use/prefer any other syntax?
+            - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
+    - Alternative string literals
+        - Prefixes
+            - as in C++:
+                - `u"..."` and `u'...'` for UTF-16
+                - `U"..."` and `U'...'` for UTF-32
+            - No ~~`u8"..."`~~ and no ~~`u8'...'`~~ for UTF-8, as that is the default in Cilia.
+            - Maybe `a"..."` for ASCII and `l"..."` for Latin-1.
+        - User defined string suffixes
+            - as in C++:
+                - `"..."s` for `std::string`.
+            - No ~~`"..."sv`~~ for `std::string_view`, as that is the default in Cilia.
+            - `"..."sz` for null terminated strings.
+                - Type of `"..."sz` is `Char*`.
+                - `"...\0"` is a StringView of a zero terminated string.
+        - All these available for multiline string literals and interpolated strings, too.
+            - TODO Any reason, not to?
+
 - `[1, 2, 3]` is an array (here an `Int[3]`),
     - all elements have the same type.
 - `{1, "Text", 3.0}` is an initialization list,
