@@ -1837,7 +1837,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - double-double/triple-double/quad-double arithemtic
             - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
             - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
-        - General problem: All these types, wehen saved in binary form, are incompatible to the IEEE 754 format for 128/256/... bit float. So better to save them as string.
+        - General problem: All these types, when saved in binary form, are incompatible to the IEEE 754 format for 128/256/... bit float. So better to save them as string.
 
 - Integer operations **with carry** (flag or UInt)  
   (to implement `Int128`, `Int256` etc.)
