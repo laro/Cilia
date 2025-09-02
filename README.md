@@ -176,7 +176,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 ## Functions
 ```
-func multiplyAdd(Int x, y, Float z) -> Float {
+func multiplyAdd(Float x, y, Int z) -> Float {
     return x * y  +  z
 }
 ```
