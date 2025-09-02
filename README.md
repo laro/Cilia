@@ -1241,7 +1241,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
             - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
             - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
               
-- Using [signed `Int` as size](#signed-size)
+- Using [**signed `Int` as size**](#signed-size)
 
 - **Range & Validation Checks**
     - The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
