@@ -48,7 +48,7 @@
 - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
     - Extending C++ for Rust-level safety.
 
-- **Cpp2** (Herb Sutter)
+## **Cpp2** (Herb Sutter)
 - [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
 - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
 -  [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
