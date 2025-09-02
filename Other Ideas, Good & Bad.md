@@ -171,9 +171,9 @@ For several topics there are alternative ideas, that were discarded but are stil
 - But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation? (Probably best to use `implements` then, but still not nice.)
 
 ## Basic / Arithmetic Types
-- `Float` could be 64-bit float: `Float` == `Float64`
-    - Among other things because already in C/C++ `1.0` == `Float64` (while `1.0f` == `Float32`)
-    - `Float32` only on certain platforms
+- `Float` could be 32-bit float: `Float` == `Float32`,
+    - like in C++.
+    - Then `Float` == `Float32` on all platforms.
 
 
 ## Variable Declaration
@@ -188,7 +188,7 @@ For several topics there are alternative ideas, that were discarded but are stil
     - Examples:
         - `var Int i`
         - `var i : Int`
-    - When having `func` for function declaration, but not `var` for variable declaration, is still not clear enough.
+    - In case `func` for function declaration, but not `var` for variable declaration, is still not clear enough.
     - Swift, Kotlin and Circle always start variable declarations with `var`.
     - Not starting with `var` could be especially problematic in connection with omitting the trailing semicolons.
 
@@ -260,7 +260,7 @@ One could define the orde of bit in a bitfield.
     - `Size` - `Size` -> `SSize`
         - Problem: `-` results in `SSize`, but `+` results in `Size`?!
     - The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.
-
+    - Note: In the end this just didn't work out.
 
 ## Functions
 - Function declarations could start with the keyword
@@ -287,7 +287,7 @@ One could define the orde of bit in a bitfield.
 ## Operators
 - Possible, alternative syntax for `pow(a, x)`:  
   `a**x` (as Python did)
-- Range operator
+- Some more kinds of range literals could be useful:
     - `8>..0:-1` – 7, 6, 5, 4, 3, 2, 1, 0
         - RangeExclusiveStartByStep(8, 0, -1)
     - `8>..0:-3` – 7, 4, 1
@@ -296,13 +296,26 @@ One could define the orde of bit in a bitfield.
         - RangeExclusiveEndByStep(8, 0, -1)
     - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
         - RangeDownwardsExclusiveEndByStep(8, 0, -1)
+    - Incomplete ranges
+        - `0<..` – RangeFromExclusiveStart(0)
     - Incomplete range with step
         - `8>..:-1` – RangeFromExclusiveStartByStep(8, -1)
         - `8>..:-2` – RangeFromExclusiveStartByStep(8, -2)
+    - `0<..2` – RangeExclusiveStart(0, 2)
+    - Range with negative step used for downwards iterating ranges: 
+        - `2..0:-1` – RangeWithStep(2, 0, -1)
+        - `3>..0:-1` – RangeExclusiveStartWithStep(3, 0, -1)
+        - Incomplete ranges with negative step: 
+            - `..1:-1` – RangeToWithStep(1, -1)
+            - `2..:-1` – RangeFromWithStep(2, -1)
+            - `3>..:-1` – RangeFromExclusiveStartWithStep(3, -1)
+            - `..:-1` – RangeFullWithStep(-1)
+    - Note: Too complicated for too little benefit.
 - Maybe remove `++i`, `--i`, `i++`, `i--`?
     - as Python
     - only offer/allow `i += 1`, `i -= 1`  
       or even only `i = i + 1`, `i = i - 1`
+    - Note: No, we are a C++ descendant after all.
 
 
 ## Templates
@@ -342,18 +355,6 @@ One could define the orde of bit in a bitfield.
 - `true`, `false` are Bool
 - `Null` could be the null pointer, and `NullType` its type.
     - Shorter and more similar to C `NULL`.
-- Some more kinds of range literals could be useful:
-    - `0<..2` – RangeExclusiveStart(0, 2)
-    - Incomplete ranges
-        - `0<..` – RangeFromExclusiveStart(0)
-    - Range with negative step used for downwards iterating ranges: 
-        - `2..0:-1` – RangeWithStep(2, 0, -1)
-        - `3>..0:-1` – RangeExclusiveStartWithStep(3, 0, -1)
-        - Incomplete ranges with negative step: 
-            - `..1:-1` – RangeToWithStep(1, -1)
-            - `2..:-1` – RangeFromWithStep(2, -1)
-            - `3>..:-1` – RangeFromExclusiveStartWithStep(3, -1)
-            - `..:-1` – RangeFullWithStep(-1)
 
 
 ## String, Char & CodePoint
