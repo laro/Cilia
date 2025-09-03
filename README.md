@@ -1782,14 +1782,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 
 - **Mixed arithmetic**
     - Mixing signed with unsigned integer
-        - `Signed + - * / Unsigned` is an error
+        - `Signed + - * / Unsigned` is an error,
             - you have to cast explicitly,
             - i.e. no implicit cast (neither ~~`UInt` -> `Int`~~ nor ~~`Int` -> `UInt`~~).
             - `Int` (i.e. signed) is almost always used anyways.
-        - Error with `if aUInt < anInt`
-            - you have to cast
-        - Error with `if aUInt < 0`
+        - Error with `if aUInt < anInt`,
+            - you have to cast: `if Int(aUInt) < anInt`.
+        - Error with `if aUInt < 0`,
             - if the literal on the right is `<= 0`
+            - TODO Checking for `if aUInt <= -1` would be simple, as `-1` con _not_ implicitly be converted to an UInt. But `0` can, so how to check for that?
     - Mixing integer with float
         - `1 * aFloat` is possible
             - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
@@ -1798,14 +1799,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               i.e. with
                 - `aFloat32 * anInt8`  // OK
                 - `aFloat32 * anInt16` // OK
-                - `aFloat32 * anInt32` // Warning
+                - `aFloat32 * anInt32` // Error
                     - `aFloat32 * Float32(anInt32)` // OK
-                - `aFloat32 * anInt64` // Warning
+                - `aFloat32 * anInt64` // Error
                     - `aFloat32 * Float32(anInt64)` // OK
                 - `aFloat64 * anInt8`  // OK
                 - `aFloat64 * anInt16` // OK
                 - `aFloat64 * anInt32` // OK
-                - `aFloat64 * anInt64` // Warning
+                - `aFloat64 * anInt64` // Error
                     - `aFloat64 * Float64(anInt64)` // OK
 
 - [Endianness](https://en.wikipedia.org/wiki/Endianness)
