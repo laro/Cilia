@@ -1898,8 +1898,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - also possible file by file: "Matrix.cilVersion" (for "Matrix.cil").
     - Via file extension: 
         - "*.cil" – always the latest language version (if not overridden via ".cilVersion")
-        - "*.2024.cil" – version from the year 2024
-        - "*.2024b.cil" – second version from the year 2024
+        - "*.25.cil" – version from the year 2025
+        - "*.25b.cil" – second version from the year 2025
 
 - No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just object-like:
     - `#define`
