@@ -1746,36 +1746,36 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
      
 
 ## Misc 
-## C++ Compatibility / Interoperability
-- **Compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",
-    - as with
-        - Java and Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
-        - C# and C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
-        - Objective-C and Swift
-    - Bi-directional interoperability, so (with a hypothetical C++/Cilia compiler) it is possible to include
-        - C++ headers and modules from Cilia,
-        - Cilia headers and modules from C++.
-    - Can call C functions, access C structs (as C++ can do).
-    - The compiler recognizes the language (C, C++, or Cilia) by:
-        - Marked blocks
-            - `lang "C++" { ... }`
-            - `lang "Cilia" { ... }`
-            - ~~`lang "C" { ... }`~~
-            - TODO Limited to top level?
-            - Limited to languages where the scope is marked with `{ }`.
-        - File extension
-            - Cilia: `*.cil`, `*.hil`
-            - C++: `*.cpp`, `*.hpp` or `*.cxx`, `*.hxx`
-                - Even `*.h`, but that is a problem, as the header could be C or C++ code.  
-                  So use of `*.hpp` is recommended for C++ code.  
-                  This can probably best be solved using path based rules.
-            - C: `*.c` `*.h`
-        - Path based rules,
-            - to handle C or C++ standard headers in certain directories.
-        - File specific configuration,
-            - can be set in the IDE or on the command line,  
-              for each file individually.
-              
+- C++ Compatibility / Interoperability
+    - **Compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",
+        - as with
+            - Java and Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
+            - C# and C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
+            - Objective-C and Swift
+        - Bi-directional interoperability, so (with a hypothetical C++/Cilia compiler) it is possible to include
+            - C++ headers and modules from Cilia,
+            - Cilia headers and modules from C++.
+        - Can call C functions, access C structs (as C++ can do).
+        - The compiler recognizes the language (C, C++, or Cilia) by:
+            - Marked blocks
+                - `lang "C++" { ... }`
+                - `lang "Cilia" { ... }`
+                - ~~`lang "C" { ... }`~~
+                - TODO Limited to top level?
+                - Limited to languages where the scope is marked with `{ }`.
+            - File extension
+                - Cilia: `*.cil`, `*.hil`
+                - C++: `*.cpp`, `*.hpp` or `*.cxx`, `*.hxx`
+                    - Even `*.h`, but that is a problem, as the header could be C or C++ code.  
+                      So use of `*.hpp` is recommended for C++ code.  
+                      This can probably best be solved using path based rules.
+                - C: `*.c` `*.h`
+            - Path based rules,
+                - to handle C or C++ standard headers in certain directories.
+            - File specific configuration,
+                - can be set in the IDE or on the command line,  
+                  for each file individually.
+                  
 - Two-Pass Compiler
     - so no forward declarations necessary,
     - as with C# and Java (but unlike C/C++, due to its single-pass compiler).
