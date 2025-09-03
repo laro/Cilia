@@ -1827,7 +1827,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `BigInt` – Arbitrary Precision Integer
         - for cryptography, maybe computer algebra, numerics
         - see [Boost.Multiprecision](https://www.boost.org/doc/libs/1_79_0/libs/multiprecision/doc/html/index.html), [GMP](https://gmplib.org)
-    - `BFloat16` (Brain Floating Point)
+    - `BFloat16` (Brain Floating Point) with 1 bit sign, 8 bit exponent, 7 bit significand,
+        - i.e. the 16 low bits of the Float32 significand are cut off.
     - `Float128` with 1 bit sign, 15 bit exponent, 112 bit significand
     - `Float256` with 1 bit sign, 19 bit exponent, 237 bit significand
     - Non-standardized floating point types
