@@ -150,9 +150,10 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - Whitespace _between_ type specification and variable name is mandatory.
         - TODO Probably too difficult to realize, as the lexer already removes all whitespace.
     - ~~`Image image { width, height, 0.0 }`~~
-        - No uniform or brace initialization _for plain constructors_, as there is no need anymore.
+        - No uniform / brace initialization _for plain constructors_, as there is no need anymore.
             - There are generally _no_ unsafe integral promotions and _no_ implicit narrowing conversions.
             - The most vexing parse is mitigated by `func`.
+            - Brace initialization only for constructors with `InitializerList<T>` as parameter (i.e. for "list-initialization" and "copy-list-initialization").
         - See [Misc](#misc) / Mixed arithmetic and [https://stackoverflow.com/a/18222927](https://stackoverflow.com/a/18222927)
 - **Type inference** with `var` / `const`:
     - `var i = 3` instead of ~~`auto i = 3;`~~
