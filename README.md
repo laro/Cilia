@@ -355,7 +355,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - [42:41 - 45:28](https://youtu.be/Puio5dly9N8?feature=shared&t=2561)
         - Bjarne Stroustrup and Herb Sutter recommend using signed integer.
     - [1:02:51 - 1:03:14](https://youtu.be/Puio5dly9N8?feature=shared&t=3771)
-        - Herb Sutter and Chandler Carruth about unsigned `size_t` in the C++ STL containers: "They are wrong", "We are sorry"
+        - Herb Sutter and Chandler Carruth about _unsigned_ `size_t` in the C++ STL containers: "They are wrong", "We are sorry"
 
 
 ## Literals
