@@ -1175,6 +1175,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
     - e.g. `ContactInfo[String] contactInfoForID` as short form  
       of `Map<String, ContactInfo> contactInfoForID`,
     - as [in D](https://dlang.org/spec/hash-map.html).
+    - There is no differencebetween these two, but "OtherMap<String, ContactInfo> contactInfoForID" allows you to select other map variants (SortedMap, HashMap etc.) if necessary.
 - "Make simple things simple",  
   having a short syntax for associative arrays so they are easy to use.
 - Maybe partial template specialization:
