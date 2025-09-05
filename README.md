@@ -1865,7 +1865,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Mutiply-Add with carry (high data, i.e. one UInt)
             - `UInt d = multiplyAdd(UInt a, UInt b, UInt c, out UInt dHigh)`
                 - `d = bits63..0(a * b + c)`  
-                  `dHigh = bit127..64(a * b)`
+                  `dHigh = bit127..64(a * b + c)`
             - `a.multiplyAdd(UInt b, UInt c, out UInt aHigh)`
                 - `a = bits63..0(a * b + c)`  
                   `aHigh = bit127..64(a * b + c)`
