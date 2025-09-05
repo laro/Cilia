@@ -1,4 +1,4 @@
-F# Cilia
+# Cilia
 This is a collection of ideas for a language that is based on C++, with identical core features, like
 - performance,
 - low-level control,
