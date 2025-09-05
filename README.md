@@ -1,4 +1,4 @@
-# Cilia
+F# Cilia
 This is a collection of ideas for a language that is based on C++, with identical core features, like
 - performance,
 - low-level control,
@@ -160,6 +160,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 - Bit fields
     - `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
+    - TODO Standardization of the bit field layout would be nice (LSB-first like on LittleEndian/Intel, or MSB-first like on BigEndian/Motorola),
+        - but IMHO there is no clear/logical/right definition (especially with LittleEndian).
+        - Dense packing of Int1, Int2, Int3, ..., Int64 could be more straightforward anyway.
 
 
 ## Classes
