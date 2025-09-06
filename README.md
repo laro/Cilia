@@ -353,8 +353,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
 - Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
     - We simply use `Int` instead.
     - `UInt` is used in rare cases (i.e. hardware registers, masks, flags), surely _not_ for sizes.
-- See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything,  
-  with Bjarne Stroustrup, Andrei Alexandrescu, Herb Sutter, Scott Meyers, Chandler Carruth, Sean Parent, Michael Wong, and Stephan T. Lavavej.
+- See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
     - [42:41 - 45:28](https://youtu.be/Puio5dly9N8?feature=shared&t=2561)
         - Bjarne Stroustrup and Herb Sutter recommend using _signed_ integer.
     - [1:02:51 - 1:03:14](https://youtu.be/Puio5dly9N8?feature=shared&t=3771)
