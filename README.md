@@ -441,7 +441,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - Postfixes to write float literals with a certain precision:  
           `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
             - That probably is clearer than `0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o` for half, single, double, quadruple, octuple precision.
-            - TODO Use of `0.1f` for `Float` AKA `Float64`? (But in C++ `0.1f` means `single float` AKA `Float32`, so that would be confusing.)
+            - Use of ~~`0.1f`~~ for `Float` AKA `Float64` would be confusing, as in C++ `0.1f` means `single float` AKA `Float32`.
         - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
     - `Infinity`/`-Infinity` is a `Float` literal for infinity values,
         - that can be converted to any float type.
