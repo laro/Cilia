@@ -377,9 +377,6 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
             - Up to `32'767` -> `Int16`
             - Up to `2'147'483'647` -> `Int32`
             - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
-        - Postfixes to write integer literals of a certain size:
-            - `123i8`, `123i16`, `123i32`, `123i64`,
-            - `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
         - Can be converted to any integer type it fits into (signed and unsigned)
             - `Int8 a = 1`    // Works because `1` fits into `Int8`
             - `Int8 b = 127`  // Works because `127` fits into `Int8`
@@ -399,8 +396,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
                 - `Int n = Int(m)`   // Works
         - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
             - Store as array of `Int`
-        - `123u` is `UInt`
-            - `-123u` is an error.
+        - Suffixes/postfixes to write integer literals of a certain size:
+            - `123u` is `UInt`
+                - `-123u` is an error.
+            - `123i8`, `123i16`, `123i32`, `123i64`,
+            - `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
         - `-123` is always `Int` (signed)
     - Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
         - Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
