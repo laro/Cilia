@@ -597,7 +597,7 @@ Similar as in Java, C#, Swift and Rust.
     - TODO Having to write `typename` before dependent names in templates is quite annoying, but seems hard/impossible to change/fix.
 - **Function** templates
     - _Automatic_ function templates
-        - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template. This is like abbreviated function templates in C++ 20, only ommitting the `auto` keyowrd.
+        - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template. This is like abbreviated function templates in C++ 20, only ommitting the `auto` keyword.
             - Concept `Number`:
               ```
               func sq(Number x) -> Number {
