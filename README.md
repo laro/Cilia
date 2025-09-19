@@ -176,7 +176,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - Default access specifier is `public`.
 - Not using ~~`struct`~~, as it is just too similar to `class` with no real benefit.
    - Keep as a reserved keyword for future use.
-   - Cilias roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
+   - Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
 
 
 ## Functions
@@ -193,8 +193,8 @@ func multiplyAdd(Float x, y, Int z) -> Float {
 - Multiple function parameters of the (exact) same type can be combined to e.g. `TypeName parameter1, parameter2`, as with variable declarations.
     - `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
 - Always and only in the trailing return type syntax (using `-> ReturnType`),
-    - but void functions (AKA "procedures") are written _without_ trailing `->` (i.e. no ~~`-> Void`~~),  
-      e.g. `func print(String line) { ... }`
+    - but void functions (AKA "procedures") are written _without_ trailing `->`  
+      (like `func print(String line) { ... }`, i.e. no ~~`-> Void`~~). 
 - **Lambdas**
     - `[](Int i) -> Float { i * 3.14 }`  
       as in C++
