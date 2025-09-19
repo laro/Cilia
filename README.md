@@ -601,7 +601,7 @@ Similar as in Java, C#, Swift and Rust.
             - Concept `Number`:
               ```
               func sq(Number x) -> Number {
-                   return x * x
+                  return x * x
               }
               ```
                 - However, the return type could be a _different_ type than `x` is (but it needs to satisfy the concept `Number`)
@@ -617,7 +617,7 @@ Similar as in Java, C#, Swift and Rust.
         - The template parameters (`<...>`) are given after the function name, so that the function definition is similar to the function call.
           ```
           func add<Number T>(T x, y) -> T {
-               return x + y
+              return x + y
           }
           ```
     - For extension function templates it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are given.  
