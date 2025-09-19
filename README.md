@@ -635,7 +635,7 @@ Similar as in Java, C#, Swift and Rust.
       func sq<Number T>(T x) -> T
       requires (T x) { x * x }
       {
-           return x * x
+          return x * x
       }
       ```
     - ```
