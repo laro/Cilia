@@ -182,7 +182,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 ## Functions
 ```
 func multiplyAdd(Float x, y, Int z) -> Float {
-    return x * y  +  z
+    return x * y  +  Float(z)
 }
 ```
 - Function declarations start with the keyword `func`,
