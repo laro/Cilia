@@ -1796,7 +1796,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - you have to cast: `if Int(aUInt) < anInt`.
         - Error with `if aUInt < 0`,
             - if the literal on the right is `<= 0`
-            - TODO Checking for `if aUInt <= -1` would be simple, as `-1` con _not_ implicitly be converted to an UInt. But `0` can, so how to check for that?
+            - TODO Checking for `if aUInt <= -1` would be simple, as `-1` can _not_ implicitly be converted to an UInt. But `0` can, so how to check for that?
     - Mixing integer with float
         - `1 * aFloat` is possible
             - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
