@@ -346,7 +346,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
 ## Signed Size
 `Int` (i.e. signed) as type for `*.size()`
 - Because mixing signed and unsigned integer (e.g. "signed - unsigned") and even calculating "unsigned - unsigned" is difficult to handle.
-    - In C/C++ `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
+    - Problem in C/C++: `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
 - When working with sizes, calculating the difference is common; Then you are limited to `Int`/~~`SSize`~~/~~`PtrDiff`~~ (i.e. signed integer) anyway.
 - Anyone who needs more than 2GB of data in a single "byte array", should please use a 64 bit platform.
 - For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step. 
