@@ -541,7 +541,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
       ```
       /* This
       /* (and this) */
-         and still this
+         (and still this)
          is a comment */
       ```
 
