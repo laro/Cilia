@@ -286,7 +286,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           }
       }
       ```
-    - In general you can replace every C/C++ for-loop with a while loop.
+    - In general you can replace every C/C++ for-loop with a while-loop.
         - ```
           for (<Initialization>; <Condition>; <Increment>) {
               <Body>
