@@ -303,7 +303,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           }
           ```
         - IMHO the code is even more clear when written as while-loop.
-        - Note: When no `<Condition>` is given, then it needs to be replaced with `True`,
+        - Note: When the `<Condition>` is empty, then it needs to be replaced with `True`,
             - e.g. `for (;;) { ... }` is translated to `while True { ... }`.
 - **switch/case** with implicit ~~`break`~~
     - i.e `break` is the default, and it is not necessary to explicitly write it,
