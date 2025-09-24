@@ -304,7 +304,9 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           ```
       - IMHO it is even more clear as while loop.
       - Note: If `<Condition>` is empty (""), then it needs to be replaced with `True`.
-- **switch/case** with implicit ~~`break`~~ (like in Swift), i.e break is the default, and is not necessary to explicitly write the keyword ~~`break`~~.
+- **switch/case** with implicit ~~`break`~~
+    - i.e `break` is the default, and it is not necessary to explicitly write it,
+    - like in Swift.
     - Use `fallthrough` if necessary.
     - ```
       switch i {
