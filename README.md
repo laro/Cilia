@@ -363,12 +363,12 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
   Int size = arr.size()
   for i in 0..<size { ... }
   ```
-  as C++
+  as C++ code:
   ```
   long size = arr.size()
   for (long i = 0; i < size; ++i) { ... }
   ```
-    - With `unsigned long` this is an infinite loop when `size` is `0`:
+    - With `unsigned long` this would be an infinite loop when `size` is `0`:
       ```
       unsigned long size = arr.size()
       for (unsigned long i = 0; i < size; ++i) { ... }
