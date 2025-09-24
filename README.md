@@ -303,7 +303,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           }
           ```
       - IMHO it is even more clear as while loop.
-      - Note: If `<Condition>` is empty (""), the it needs to be replaced with `True`.
+      - Note: If `<Condition>` is empty (""), then it needs to be replaced with `True`.
 - **switch/case** with `fallthrough` instead of ~~`break`~~,  
   like in Swift
     - ```
