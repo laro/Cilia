@@ -537,10 +537,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
       // }
       ```
 - Block comments can be _nested_
-    - as in Swift and Rust:
+    - as in Swift and Rust (unlike C++):
       ```
       /* This
       /* (and this) */
+         and still this
          is a comment */
       ```
 
