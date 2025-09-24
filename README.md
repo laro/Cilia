@@ -286,22 +286,24 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           }
       }
       ```
-    - In general you can replace the (overly) powerful C/C++ for-loop like
-      ```
-      for (<Initialization>; <Condition>; <Increment>) {
-          <Body>
-      }  
-      ```
-      with a while-loop:
-      ```
-      {
-          <Initialization>
-          while <Condition> {
+    - In general you can replace every C/C++ for-loop with a while loop.
+        - ```
+          for (<Initialization>; <Condition>; <Increment>) {
               <Body>
-              <Increment>
+          }  
+          ```
+          can be written as
+          ```
+          {
+              <Initialization>
+              while <Condition> {
+                  <Body>
+                  <Increment>
+              }
           }
-      }
-      ```
+          ```
+      - IMHO it is even more clear as while loop.
+      - Note: If `<Condition>` is empty (""), the it needs to be replaced with `True`.
 - **switch/case** with `fallthrough` instead of ~~`break`~~,  
   like in Swift
     - ```
