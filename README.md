@@ -1971,3 +1971,43 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               ```
               Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");
               ```
+
+- Anonymous Reflected Members
+    - You write
+      ```
+      class OkDialog : Window {
+          Label("Message to user")
+          Button("Ok")
+      }
+      ```
+      instead of
+      ```
+      class OkDialog : Window {
+          Label label("Message to user")
+          Button okButton("Ok")
+      }
+      ```
+    - Accessable only through static reflection (C++26).
+    - Internally the compiler generates proxy names, e.g.
+        - `Label __anonymous123` and `Button __anonymous124`, or
+        - `Label __label1` and `Button __button1`
+            - (with better readability, but beware of naming conflicts with base classes!)
+
+- Late / Deferred Compiled Member Functions
+    - for Compile Time Polymorphism,
+    - instead of CRTP (Curiously Recurring Template Pattern).
+    - You write
+      ```
+      class Window {
+          Window() {
+              registerWidgetMembers()
+          }
+          late virtual func registerWidgetMembers() {
+              // Via static reflection: Register all members, that are derived from type Widget.
+          }
+      }
+      class OkDialog : Window {
+          Label label("Message to user")
+          Button okButton("Ok")
+      }
+      ```
