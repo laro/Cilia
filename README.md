@@ -13,6 +13,7 @@ Cilia has the same core features as C++:
 - Exceptions
 - RAII and Smart Pointers (instead of garbage collection)
 - Compile-Time Computation
+- Static Reflection
 - Coroutines
 - Concepts
 
