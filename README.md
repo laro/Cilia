@@ -12,6 +12,9 @@ Cilia has the same core features as C++:
 - Templates
 - Exceptions
 - RAII and smart pointers (instead of garbage collection)
+- Compile-Time Computation
+- Coroutines
+- Concepts
 
 It is, in my opinion, a collection of quite obvious ideas (and mostly taken from other programming languages, of course).
 
