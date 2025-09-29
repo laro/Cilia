@@ -17,7 +17,7 @@ Cilia has the same core features as C++:
 - Coroutines
 - Concepts
 
-It is, in my opinion, a collection of quite obvious ideas (and mostly taken from other programming languages, of course).
+Furthermore, in my opinion, it is a collection of quite obvious ideas (and mostly taken from other programming languages, of course).
 
 Currently it is more of a wish list, a "thought experiment".
 But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
