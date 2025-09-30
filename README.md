@@ -149,7 +149,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - TODO Probably too difficult to realize, as the lexer already removes all whitespace.
     - ~~`Image image { width, height, 0.0 }`~~
         - No uniform / brace initialization _for plain constructors_, as there is no need anymore.
-            - There are generally _no_ unsafe integral promotions and _no_ implicit narrowing conversions allowed.
+            - There are generally _no_ implicit narrowing conversions (~~`Int64` -> `Int32`~~) and _no_ unsafe integral promotions (~~`Int` -> `UInt`~~, ~~`UInt` -> `Int`~~) allowed. Nowhere: not in constructor or functions calls, nor in variable assignments.
             - The most vexing parse is mitigated with the keyword `func`.
             - Brace initialization only for constructors with `InitializerList<T>` as parameter (i.e. for "list-initialization" and "copy-list-initialization").
         - See [Misc](#misc) / Mixed arithmetic and [https://stackoverflow.com/a/18222927](https://stackoverflow.com/a/18222927)
