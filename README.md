@@ -2022,3 +2022,6 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           Button okButton("Ok")
       }
       ```
+
+
+© 2024-2025 Lars Rosenboom, licensed under [CC-BY-NC-ND-4.0](LICENSE.txt)
