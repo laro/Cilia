@@ -2033,10 +2033,27 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               registerWidgetMembers()
           }
           late virtual func registerWidgetMembers() {
-              // Via static reflection: Register all members, that are derived from type Widget.
+              // Via static reflection:
+              // Register all members of the derived class, that are derived from type Widget.
           }
       }
       class OkDialog : Window {
+          Label label("Message to user")
+          Button okButton("Ok")
+      }
+      ```
+      instead of
+      ```
+      class Window<type T> {
+          Window() {
+              registerWidgetMembers<T>()
+          }
+          func registerWidgetMembers<type T>() {
+              // Via static reflection:
+              // Register all members of T, that are derived from type Widget.
+          }
+      }
+      class OkDialog : Window<OkDialog> {
           Label label("Message to user")
           Button okButton("Ok")
       }
