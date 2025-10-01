@@ -2026,39 +2026,31 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - Anonymous Class Declarations
     - You write
       ```
-      class OkDialog : Window {
-          VStack {
-              Label("Message to user")
-              Button("Ok")
-          }
+      VStack {
+          Label("Message to user")
+          Button("Ok")
       }
       ```
       instead of
       ```
-      class OkDialog : Window {
-          class __anonymousClassVStack1 : VStack {
-              Label("Message to user")
-              Button("Ok")
-          } __anonymousVStack1
-      }
+      class __anonymousClassVStack1 : VStack {
+          Label("Message to user")
+          Button("Ok")
+      } __anonymousVStack1
       ```
     - You write
       ```
-      class OkDialog : Window {
-          VStack vertical {
-              Label label("Message to user")
-              Button okButton("Ok")
-          }
+      VStack vertical {
+          Label label("Message to user")
+          Button okButton("Ok")
       }
       ```
       instead of
       ```
-      class OkDialog : Window {
-          class __anonymousVStack1 : VStack {
-              Label label("Message to user")
-              Button okButton("Ok")
-          } vertical
-      }
+      class __anonymousVStack1 : VStack {
+          Label label("Message to user")
+          Button okButton("Ok")
+      } vertical
       ```
 
 - Late / Deferred Compiled Member Functions
