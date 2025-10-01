@@ -2046,8 +2046,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
       class OkDialog : Window {
           VStack vertical {
-              Label("Message to user")
-              Button("Ok")
+              Label label("Message to user")
+              Button okButton("Ok")
           }
       }
       ```
@@ -2055,8 +2055,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
       class OkDialog : Window {
           class __anonymousVStack1 : VStack {
-              Label("Message to user")
-              Button("Ok")
+              Label label("Message to user")
+              Button okButton("Ok")
           } vertical
       }
       ```
