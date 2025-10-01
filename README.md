@@ -1994,15 +1994,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       instead of
       ```
       class OkDialog : Window {
-          Label label("Message to user")
-          Button okButton("Ok")
+          Label __anonymousLabel1("Message to user")
+          Button __anonymousButton1("Ok")
       }
       ```
     - Accessable only through static reflection (C++26).
-    - Internally the compiler generates proxy names, e.g.
-        - `Label __anonymous123` and `Button __anonymous124`, or
-        - `Label __anonymousLabel1` and `Button __anonymousButton1`
-            - (with better readability, but beware of naming conflicts with base classes!)
+    - Internally the compiler generates proxy names, e.g. `Label __anonymousLabel1` and `Button __anonymousButton1`.
     - Maybe even
       ```
       class OkDialog : Window {
@@ -2013,12 +2010,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       instead of
       ```
       class OkDialog : Window {
-          Label label("Message to user")
-          Button okButton("Ok")
+          Label __anonymousLabel1("Message to user")
+          Button __anonymousButton1("Ok")
           
           OkDialog() {
-              label.horizontalAlignment(Alignment::Center)
-              okButton.onClick(&OkDialog::onOk)
+              __anonymousLabel1.horizontalAlignment(Alignment::Center)
+              __anonymousButton1.onClick(&OkDialog::onOk)
           }
       }
       ```
