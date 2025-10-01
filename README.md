@@ -2023,6 +2023,44 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       }
       ```
 
+- Anonymous Class Declarations
+    - You write
+      ```
+      class OkDialog : Window {
+          VStack {
+              Label("Message to user")
+              Button("Ok")
+          }
+      }
+      ```
+      instead of
+      ```
+      class OkDialog : Window {
+          class __anonymousClassVStack1 : VStack {
+              Label("Message to user")
+              Button("Ok")
+          } __anonymousVStack1
+      }
+      ```
+    - You write
+      ```
+      class OkDialog : Window {
+          VStack vertical {
+              Label("Message to user")
+              Button("Ok")
+          }
+      }
+      ```
+      instead of
+      ```
+      class OkDialog : Window {
+          class __anonymousVStack1 : VStack {
+              Label("Message to user")
+              Button("Ok")
+          } vertical
+      }
+      ```
+
 - Late / Deferred Compiled Member Functions
     - for Compile Time Polymorphism,
     - instead of CRTP (Curiously Recurring Template Pattern).
