@@ -2001,8 +2001,27 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Accessable only through static reflection (C++26).
     - Internally the compiler generates proxy names, e.g.
         - `Label __anonymous123` and `Button __anonymous124`, or
-        - `Label __label1` and `Button __button1`
+        - `Label __anonymousLabel1` and `Button __anonymousButton1`
             - (with better readability, but beware of naming conflicts with base classes!)
+    - Maybe even
+      ```
+      class OkDialog : Window {
+          Label("Message to user").horizontalAlignment(Alignment::Center)
+          Button("Ok").onClick(&OkDialog::onOk)
+      }
+      ```
+      instead of
+      ```
+      class OkDialog : Window {
+          Label label("Message to user")
+          Button okButton("Ok")
+          
+          OkDialog() {
+              label.horizontalAlignment(Alignment::Center)
+              okButton.onClick(&OkDialog::onOk)
+          }
+      }
+      ```
 
 - Late / Deferred Compiled Member Functions
     - for Compile Time Polymorphism,
