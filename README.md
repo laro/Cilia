@@ -2030,7 +2030,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
       instead of
       ```
-      class __anonymousClassVStack1 : VStack {
+      class __AnonymousVStack1 : VStack {
           Label("Message to user")
           Button("Ok")
       } __anonymousVStack1
@@ -2044,7 +2044,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
       instead of
       ```
-      class __anonymousVStack1 : VStack {
+      class __AnonymousVStack1 : VStack {
           Label label("Message to user")
           Button okButton("Ok")
       } vertical
