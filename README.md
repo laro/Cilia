@@ -2037,10 +2037,10 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
     - You write
       ```
-      VStack vertical {
+      VStack {
           Label label("Message to user")
           Button okButton("Ok")
-      }
+      } vertical
       ```
       instead of
       ```
@@ -2055,6 +2055,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - instead of CRTP (Curiously Recurring Template Pattern).
     - You write
       ```
+      class OkDialog : Window {
+          Label label("Message to user")
+          Button okButton("Ok")
+      }
+      ```
+      based on
+      ```
       class Window {
           Window() {
               registerWidgetMembers()
@@ -2064,12 +2071,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               // Register all members of the derived class, that are derived from type Widget.
           }
       }
-      class OkDialog : Window {
+      ```
+      instead of
+      ```
+      class OkDialog : Window<OkDialog> {
           Label label("Message to user")
           Button okButton("Ok")
       }
       ```
-      instead of
+      based on
       ```
       class Window<type T> {
           Window() {
@@ -2079,9 +2089,5 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               // Via static reflection:
               // Register all members of T, that are derived from type Widget.
           }
-      }
-      class OkDialog : Window<OkDialog> {
-          Label label("Message to user")
-          Button okButton("Ok")
       }
       ```
