@@ -2056,8 +2056,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - You write
       ```
       class OkDialog : Window {
-          Label label("Message to user")
-          Button okButton("Ok")
+          Label("Message to user")
+          Button("Ok")
       }
       ```
       based on
@@ -2075,8 +2075,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       instead of
       ```
       class OkDialog : Window<OkDialog> {
-          Label label("Message to user")
-          Button okButton("Ok")
+          Label("Message to user")
+          Button("Ok")
       }
       ```
       based on
