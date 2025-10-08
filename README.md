@@ -58,7 +58,7 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
     - `Thread::hardwareConcurrency()`
 
 - **Global constants** in **UpperCamelCase**.
-    - `Pi`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)
+    - `Pi`, `SpeedOfLight`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)
     - Constant-like keywords
         - `True`, `False`
         - `NullPtr`
