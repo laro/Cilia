@@ -691,7 +691,7 @@ Similar as in Java, C#, Swift and Rust.
 
 
 ## Function Parameter Binding
-Each parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it’s input-only, mutable, output, copied, moved, or forwarded.  
+Each function parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it’s input-only, mutable, output, copied, moved, or forwarded.  
 The basic idea is to have the most efficient/appropriate parameter passing as the _default_, and to give more the intent than the technical realization.  
 Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (who extended/generalized the `out` parameters of C#).
 - **Default is passing as `in`**-parameter.
