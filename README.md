@@ -1,7 +1,7 @@
 # Cilia
 This is a collection of ideas for a language that is based on C++, but with
 - **CamelCase Style**  
-I'd like to have the standard library roughly in the [style of Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using Java, JavaScript/TypeScript, Kotlin, Swift.
+I'd like to have the standard library roughly in the style of JavaScript/TypeScript, Java, Kotlin, Swift, or [Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using those languages.
 - **Simplified Syntax**  
 Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed. Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
 
