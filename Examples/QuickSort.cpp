@@ -4,7 +4,7 @@ void quicksort(span<T> array) {
         return;
     }
 
-    int pivot = array[array.size() / 2];
+    T pivot = array[array.size() / 2];
     int left  = 0;
     int right = subarray.size() - 1;
 
