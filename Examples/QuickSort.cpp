@@ -1,4 +1,4 @@
-template <Sortable T>
+template <typename T>
 void quickSort(span<T> array) {
     if (array.size() <= 1) {
         return;
