@@ -1,4 +1,4 @@
-void quickSort<Sortable T>(Span<T> array) {
+func quickSort<Sortable T>(Span<T> array) {
     if array.size() <= 1 {
         return
     }
