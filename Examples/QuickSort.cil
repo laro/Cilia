@@ -4,7 +4,7 @@ func quickSort<Sortable T>(Span<T> array) {
     }
 
     T pivot = array[array.size() / 2]
-    Int left  = 0
+    Int left = 0
     Int right = subarray.size() - 1
 
     while left < right {
