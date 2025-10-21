@@ -8,7 +8,7 @@ void quickSort<Sortable T>(Span<T> array) {
     var right = subarray.size() - 1
 
     while left < right {
-        while (array[left] < pivot {
+        while array[left] < pivot {
             ++left
         }
         while array[right] > pivot {
