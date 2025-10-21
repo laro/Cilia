@@ -4,9 +4,9 @@ void quickSort(span<T> array) {
         return;
     }
 
-    auto pivot = array[array.size() / 2];
-    auto left  = 0;
-    auto right = subarray.size() - 1;
+    int pivot = array[array.size() / 2];
+    int left  = 0;
+    int right = subarray.size() - 1;
 
     while (left < right) {
         while (array[left] < pivot) {
