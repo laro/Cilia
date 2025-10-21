@@ -1,5 +1,5 @@
 template <typename T>
-void quickSort(span<T> array) {
+void quicksort(span<T> array) {
     if (array.size() <= 1) {
         return;
     }
