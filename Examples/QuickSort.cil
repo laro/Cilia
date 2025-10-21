@@ -29,6 +29,6 @@ func quickSort<Sortable T>(Span<T> array) {
         quickSort(array.first(right + 1))
     }
     if left < array.size() - 1 {
-        quickSort(array.subspan(left))
+        quickSort(array.subSpan(left))
     }
 }
