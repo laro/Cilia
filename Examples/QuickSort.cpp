@@ -5,7 +5,7 @@ void quicksort(span<T> array) {
     }
 
     T pivot = array[array.size() / 2];
-    int left  = 0;
+    int left = 0;
     int right = array.size() - 1;
 
     while (left < right) {
