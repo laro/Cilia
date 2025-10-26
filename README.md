@@ -8,8 +8,8 @@ Many of C++'s shortcomings stem from the fact that it inherited from C or that b
 Cilia is mainly a new syntax for C++, so it has the same core features:
 - performance & low-level control,
 - [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming),
-- exceptions, const correctness,
 - [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) & smart pointers (instead of garbage collection),
+- exceptions, const correctness,
 - templates, concepts,
 - compile-time computation, static reflection, coroutines.
 
