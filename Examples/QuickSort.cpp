@@ -16,7 +16,7 @@ void quicksort(span<T> array) {
             --right;
         }
 
-        if left < right {
+        if (left < right) {
             swap(array[left], array[right]);
             ++left;
             if (right > 0) { // Schutz vor Unterlauf
