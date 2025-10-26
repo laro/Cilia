@@ -9,8 +9,8 @@ Cilia is mainly a new syntax for C++, so it has the same core features:
 - compiled to machine code,
 - statically typed,
 - high performance & low-level control,
-- object-oriented (classes, inheritance, polymorphism),
-- generic programming (templates, concepts),
+- object-oriented (with classes, inheritance, polymorphism),
+- generic programming (with templates, concepts),
 - memory & resource management with [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) & smart pointers (instead of garbage collection),
 - exceptions, const correctness,
 - compile-time computation, coroutines, static reflection.
