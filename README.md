@@ -6,11 +6,14 @@ I'd like to have the standard library roughly in the style of Java or [Qt](https
 Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed. Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
 
 Cilia is mainly a new syntax for C++, so it has the same core features:
-- performance & low-level control,
-- [OOP](https://en.wikipedia.org/wiki/Object-oriented_programming),
-- [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) & smart pointers (instead of garbage collection),
-- exceptions, const correctness, templates,
-- compile-time computation, concepts, coroutines, static reflection.
+- compiled to machine code,
+- statically typed,
+- high performance & low-level control,
+- object-oriented (classes, inheritance, polymorphism),
+- generic programming (templates, concepts),
+- memory & resource management with [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) & smart pointers (instead of garbage collection),
+- exceptions, const correctness,
+- compile-time computation, coroutines, static reflection.
 
 Furthermore it is a collection of – in my opinion – quite obvious ideas (mostly taken from other programming languages, of course).
 
