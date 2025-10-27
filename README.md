@@ -766,11 +766,11 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - Technically a non-const/mutable value (`X`), sometimes the "full class" `X` of a view class `XView`.
         - Examples:
             - `for copy i in [1, 2, 3] { ... }`
-                - `i` is `Int`
+                - `i` is an `Int`
             - `for copy str in stringArray { ... }`
-                - `str` is `String`
+                - `str` is a `String`
             - `for copy str in ["an", "array", "of", "words"] { ... }`
-                - `str` is `String` (not ~~`StringView`~~, due to the `X`/`XView`-copy-trick)
+                - `str` is a `String` (not a ~~`StringView`~~, due to the `X`/`XView`-copy-trick)
     - **`move`**
         - for move sematics.
         - Technically a right-value reference (`X&&`)
@@ -872,7 +872,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
             - While the literal `["an", "array", "of", "words"]` is an `StringView[]`,  
-              `str` is a `String` (not ~~`StringView`~~).
+              `str` is a `String` (not a ~~`StringView`~~).
             - This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.
             - (This is currently the only useful example I can think of.)
 
