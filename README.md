@@ -826,7 +826,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
                 - is short for `concat(in String first, in String second)`
                 - and extends to `concat(const StringView first, const StringView second)`
         - For cases where you need to _change_ the string parameter, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
-        - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just to ensure consistency.
+        - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just for consistency.
         - Example:
             - `String[] stringArray = ["a", "b", "c"]`  
               `for str in stringArray { ... }`
