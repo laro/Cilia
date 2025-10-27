@@ -1466,8 +1466,8 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
       operator ⊻(Bool a, b) -> Bool { return a xor b }
       ```
         - Defined for _`Bool`_,
-        - operators `!`, not `~`,
-            - `&&` and `||`, not `&` and `|`.
+        - operators `!`, not ~~`~`~~,
+            - `&&` and `||`, not ~~`&` and `|`~~.
     - Bitwise operators
       ```
       operator and(Int256 a, b) -> Int256 { ... }
