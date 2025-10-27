@@ -852,6 +852,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
           using   Image::InParameterType = const ImageBasicView&
           using MDArray::InParameterType = const MDArrayBasicView&
           ```
+        - (Which you don't have to write down explicitly, because it's simply the standard for user defined types.)
 - Type trait **`CopyParameterType`**
     - of a type `T` typically simply is `T`  
       `using<type T> T::CopyParameterType = T`  
@@ -870,7 +871,8 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
-            - `str` is `String` (not ~~`StringView`~~)
+            - While the literal `["an", "array", "of", "words"]` is an `StringView[]`,
+              `str` is a `String` (not ~~`StringView`~~).
             - This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.
             - (This is currently the only useful example I can think of.)
 
