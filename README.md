@@ -852,7 +852,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
           using   Image::InParameterType = const ImageBasicView&
           using MDArray::InParameterType = const MDArrayBasicView&
           ```
-        - (Which you don't have to write down explicitly, because it's simply the standard for user defined types.)
+        - (Which you don't have to write down explicitly, because `const&` simply is the standard for user defined types.)
 - Type trait **`CopyParameterType`**
     - of a type `T` typically simply is `T`  
       `using<type T> T::CopyParameterType = T`  
