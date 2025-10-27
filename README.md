@@ -871,7 +871,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
     - Example:
         - `for copy str in ["an", "array", "of", "words"] { ... }`
-            - While the literal `["an", "array", "of", "words"]` is an `StringView[]`,
+            - While the literal `["an", "array", "of", "words"]` is an `StringView[]`,  
               `str` is a `String` (not ~~`StringView`~~).
             - This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.
             - (This is currently the only useful example I can think of.)
