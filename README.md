@@ -1465,7 +1465,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
       operator ⊽(Bool a, b) -> Bool { return a nor b }
       operator ⊻(Bool a, b) -> Bool { return a xor b }
       ```
-        - Defined for _`Bool`_,
+        - Defined for _`Bool`_ (not for integers),
         - operators `!`, not ~~`~`~~,
             - `&&` and `||`, not ~~`&` and `|`~~.
     - Bitwise operators
@@ -1486,8 +1486,8 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
       operator ⊻(Int256 a, b) -> Int256 { return a xor b }
       ```
         - Defined for _integers_ (not for `Bool`),
-        - operators `~`, not `!`,
-            - `&` and `|`, not `&&` and `||`.
+        - operators `~`, not ~~`!`~~,
+            - `&` and `|`, not ~~`&&` and `||`~~.
 - Subscript/bracket/parenthesis/functor operators:
   ```
   class MyImage<type T> {
