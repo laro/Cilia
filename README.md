@@ -15,7 +15,7 @@ Cilia is mainly a new syntax for C++, so it has the same core features:
 - exceptions, const correctness,
 - compile-time computation, coroutines, static reflection.
 
-Furthermore it is a collection of – in my opinion – quite obvious ideas (mostly taken from other programming languages, of course).
+Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
 
 Currently it is more of a wish list, a "thought experiment".
 But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
