@@ -5,7 +5,7 @@ func sieveOfEratosthenes(Int n) -> Int[] {
     isPrime[0] = false
     isPrime[1] = false
 
-    Int limit = Int(std::sqrt(n))
+    Int limit = Int(sqrt(n))
     for i in 2..limit {
         if !isPrime[i] {
             continue
