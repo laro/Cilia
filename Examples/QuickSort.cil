@@ -19,13 +19,13 @@ func quickSort<Sortable T>(Span<T> array) {
         if left < right {
             swap(inout array[left], inout array[right])
             ++left
-            if right > 0 { // Schutz vor Unterlauf
+            if right > 0 { // Protection against underflow
                 --right
             }
         }
     }
 
-    // Rekursion auf die zwei Teilbereiche
+    // Recursion on the two sub-arrayss
     if right > 0 {
         quickSort(array.first(right + 1))
     }
