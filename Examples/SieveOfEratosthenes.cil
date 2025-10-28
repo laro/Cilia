@@ -1,7 +1,9 @@
 func sieveOfEratosthenes(Int n) -> Int[] {
-    if (n < 2) return {}
+    if n < 2 {
+        return {}
+    }
 
-    Int8[] isPrime(n + 1, true)
+    Bool[] isPrime(n + 1, true)
     isPrime[0] = false
     isPrime[1] = false
 
