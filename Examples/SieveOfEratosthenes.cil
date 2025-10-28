@@ -12,7 +12,7 @@ func sieveOfEratosthenes(Int n) -> Int[] {
         if !isPrime[i] {
             continue
         }
-        for j in i * i .. n : i {
+        for j in i*i..n : i {
             isPrime[j] = false
         }
     }
