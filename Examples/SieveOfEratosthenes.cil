@@ -1,0 +1,26 @@
+func sieveOfEratosthenes(Int n) -> Int[] {
+    if (n < 2) return {}
+
+    Int8[] isPrime(n + 1, true)
+    isPrime[0] = false
+    isPrime[1] = false
+
+    Int limit = Int(std::sqrt(n))
+    for i in 2..limit {
+        if !isPrime[i] {
+            continue
+        }
+        for j in i * i .. n : i {
+            isPrime[j] = false
+        }
+    }
+
+    Int[] primes
+    primes.reserve(n / 10)
+    for i in 2..n {
+        if isPrime[i] {
+            primes.pushBack(i)
+        }
+
+    return primes
+}
