@@ -19,17 +19,17 @@ void quicksort(span<T> array) {
         if (left < right) {
             swap(array[left], array[right]);
             ++left;
-            if (right > 0) { // Schutz vor Unterlauf
+            if (right > 0) { // Protection against underflow
                 --right;
             }
         }
     }
 
-    // Rekursion auf die zwei Teilbereiche
+    // Recursion on the two sub-arrayss
     if (right > 0) {
-        quickSort(array.first(right + 1));
+        quicksort(array.first(right + 1));
     }
     if (left < int(array.size()) - 1) {
-        quickSort(array.subspan(left));
+        quicksort(array.subspan(left));
     }
 }
