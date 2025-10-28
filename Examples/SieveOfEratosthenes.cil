@@ -23,6 +23,7 @@ func sieveOfEratosthenes(Int n) -> Int[] {
         if isPrime[i] {
             primes.pushBack(i)
         }
+    }
 
     return primes
 }
