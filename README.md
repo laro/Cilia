@@ -109,8 +109,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - Simply use `Int`,
         - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
         - _not_ ~~`Long`~~ nor ~~`Long Long`~~.
-- `Byte` == `UInt8` (Alias, i.e. the same type for parameter overloading)
-    - TODO Probably it should be std::byte instead (i.e. _not_ the same type as UInt8 for parameter overloading)
+- `Byte` == `std::byte` (i.e. _not_ the same type as UInt8 for parameter overloading)
 - `Float`
     - `Float` == `Float64`, i.e. double precision is "standard"
         - Like Python. Unlike C/C++, where `float` is single precision.
