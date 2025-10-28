@@ -1,4 +1,4 @@
-vector<int> sieve_of_eratosthenes(int n) {
+auto sieve_of_eratosthenes(int n) -> vector<int> {
     if (n < 2) {
         return {};
     }
@@ -12,7 +12,7 @@ vector<int> sieve_of_eratosthenes(int n) {
         if (!is_prime[i]) {
             continue;
         }
-        for (int j = i * i; j <= n; j += i) {
+        for (int j = i*i; j <= n; j += i) {
             is_prime[j] = false;
         }
     }
