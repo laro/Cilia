@@ -108,7 +108,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`
     - Simply use `Int`,
         - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
-        - _not_ ~~`Long`~~ nor ~~`Long Long`~~.
+        - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 - `Byte` == `std::byte` (i.e. _not_ the same type as UInt8 for parameter overloading)
 - `Float`
     - `Float` == `Float64`, i.e. double precision is "standard"
