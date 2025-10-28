@@ -1,4 +1,4 @@
-Matrix multiply(const Matrix& A, const Matrix& B) {
+auto multiply(const Matrix& A, const Matrix& B) -> Matrix {
     int m = A.rows();
     int n = A.columns();
     int p = B.columns();
