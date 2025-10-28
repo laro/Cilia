@@ -1700,7 +1700,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - **code units**
             - represented by
                 - `Char` for `String`
-                    - it is `Char`==`Char8`==`Byte`==`UInt8` and `String`==`UTF8String`
+                    - it is `Char`==`Char8`==`UInt8` and `String`==`UTF8String`
                 - `Char16` for `UTF16String`
                 - `Char32` for `UTF32String`
             - `for aChar8 in "abc 🥸👮🏻".asArray()`
@@ -1729,7 +1729,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - The user has to take care of this,
         - or a subclass with known encoding has to be used (`ASCIIString`, `Latin1String`). 
     - `ASCIIString`, a string containing only ASCII characters.
-        - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`==`Byte`
+        - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`
             - `for aChar in a"abc"`
                 - 0x61, 0x62, 0x63
                 - 'a', 'b', 'c'
@@ -1739,7 +1739,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - Implicitly convertable to `String`==`UTF8String`.
             - Very fast conversion, as all characters have the same binary representation.
     - `Latin1String`, a string containing only Latin-1 (ISO 8859-1) characters.
-        - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`==`Byte`
+        - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`
             - `for aChar in l"äßç"`
                 - 0xe4, 0xdf, 0xe7
                 - 'ä', 'ß', 'ç'
