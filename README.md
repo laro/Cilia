@@ -289,7 +289,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
           translates to `for i in RangeByStep(10, 1, -1) { ... }`.
         - I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
-    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var` but only with the options `in` (the default), `inout`, `copy`, `move`),  
+    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`),  
       so `for i in 0..<10 { <Body> }` is equivalent to:
       ```
       {
@@ -732,7 +732,10 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - to mark parameters used as input (so they need to be initialized at the caller) _and_ as output.
         - Technically a non-const/mutable reference (`X&`)
         - Suitable for e.g. `swap(inout Int a, inout Int b)`.
-        - Keyword `inout` is also to be given at the caller: `swap(inout a, inout b)`
+        - ~~Keyword `inout` is also to be given at the caller: `swap(inout a, inout b)`~~
+            - No, because
+                - it is verbose,
+                - it is not a reliable warning/guarantee, that the argumemt may be changed, as any reference-like type (e.g. `Span<T>`) allows change even without `inout`.
         - Examples:
             - `for inout str in stringArray { ... }`
                 - `str` is `String&`
