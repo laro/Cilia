@@ -288,7 +288,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
           translates to `for i in RangeByStep(10, 1, -1) { ... }`.
         - I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
-    - The loop variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`),  
+    - The riable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`),  
       so `for i in 0..<10 { <Body> }` is equivalent to:
       ```
       {
@@ -704,6 +704,8 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 - The loop variable of `for ... in` is passed as either **`in`**, **`inout`**, **`copy`**, or **`move`**  
   (`out` and `forward` are not applicable here).
     - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
+- The argument of `catch ... { ... }` is passed as **`in`**  
+  (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here).
 - Parameter passing methods/keywords:
     - **`in`**
         - to mark parameters used as input.
