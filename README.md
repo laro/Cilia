@@ -692,8 +692,8 @@ Similar as in Java, C#, Swift and Rust.
       ```
 
 
-## Function Parameter Binding
-Each function parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it’s input-only, mutable, output, copied, moved, or forwarded.  
+## Function Parameter Passing Modes
+Each function parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it’s input-only, mutable, output, copied, or moved.  
 The basic idea is to have the most efficient/appropriate parameter passing as the _default_, and to give more the intent than the technical realization.  
 Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (an extension/generalisation of the `out` parameters of C#).
 - **Default is passing as `in`**-parameter.
@@ -706,7 +706,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
 - The argument of `catch ... { ... }` is passed as **`in`**  
   (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here).
-- Parameter passing methods/keywords:
+- Parameter passing mode keywords:
     - **`in`**
         - to mark parameters used as input.
         - Is the default if no parameter passing keyword is given.
@@ -779,7 +779,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - for move sematics.
         - Technically a right-value reference (`X&&`)
     - **`forward`**
-        - for perfect forwarding.
+        - for perfect forwarding in template functions.
         - TODO Technically a right-value reference (`X&&`), too?
 - Type traits **`InParameterType`** to determine the concrete type to be used for `in`-passing.
     - The rule of thumb is:
