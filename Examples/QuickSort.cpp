@@ -25,7 +25,7 @@ void quicksort(span<T> array) {
         }
     }
 
-    // Recursion on the two sub-arrayss
+    // Recursion on the two sub-arrays
     if (right > 0) {
         quicksort(array.first(right + 1));
     }
