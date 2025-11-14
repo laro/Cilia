@@ -25,7 +25,7 @@ func quickSort<Sortable T>(Span<T> array) {
         }
     }
 
-    // Recursion on the two sub-arrayss
+    // Recursion on the two sub-arrays
     if right > 0 {
         quickSort(array.first(right + 1))
     }
