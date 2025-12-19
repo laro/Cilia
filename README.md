@@ -1997,7 +1997,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");
               ```
 
-- Anonymous Reflected Members
+- Anonymous Members
     - You write
       ```
       class OkDialog : Window {
@@ -2012,7 +2012,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           Button __anonymousButton1("Ok")
       }
       ```
-    - Accessable only through static reflection (C++26).
+    - Accessable only through static _reflection_ (C++26).
     - Internally the compiler generates proxy names, e.g. `Label __anonymousLabel1` and `Button __anonymousButton1`.
     - Maybe even
       ```
@@ -2086,22 +2086,22 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           }
       }
       ```
-      instead of
-      ```
-      class OkDialog : Window<OkDialog> {
-          Label("Message to user")
-          Button("Ok")
-      }
-      ```
-      based on
-      ```
-      class Window<type T> {
-          Window() {
-              registerWidgetMembers<T>()
+        - instead of
+          ```
+          class OkDialog : Window<OkDialog> {
+              Label("Message to user")
+              Button("Ok")
           }
-          func registerWidgetMembers<type T>() {
-              // Via static reflection:
-              // Register all members of T, that are derived from type Widget.
+          ```
+          based on
+          ```
+          class Window<type T> {
+              Window() {
+                  registerWidgetMembers<T>()
+              }
+              func registerWidgetMembers<type T>() {
+                  // Via static reflection:
+                  // Register all members of T, that are derived from type Widget.
+              }
           }
-      }
-      ```
+          ```
