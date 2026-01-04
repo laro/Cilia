@@ -345,7 +345,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
       }
       ```
         - ~~Old behavior on demand~~
-            - ~~```
+            - ```
               switch i fallthrough {
               case 1:
               case 2:
@@ -358,7 +358,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
               default:
                   print("default")
               }
-              ```~~
+              ```
 ## Signed Size
 `Int` (i.e. signed) as type for `*.size()`
 - Because mixing signed and unsigned integer (e.g. "signed - unsigned") and even calculating "unsigned - unsigned" is difficult to handle.
