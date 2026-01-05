@@ -129,7 +129,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `const` always binds to the right (contrary to C/C++),
         - i.e. the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`) or ponter declarator (`*`) that appears immediately to its right.
         - `const` as a type qualifier for a reference (`&`) or array declarator (`[]`) is not allowed.
-        - `const` as a type qualifier for a type specifier with array declarator (e.g. `Float[]`) is interpreted as `const Array<Float>`.
+        - `const` as a type qualifier for a type specifier with array declarator is interpreted as `const Array`:
+            - A `const` dynamic array declarator `const Float[]` is interpreted as `const Array<Float>`,
+            - a `const` static array declarator `const Float[3]` is interpreted as static array of three `const Float`.
 
 - Examples:
     - `Int i`
