@@ -723,7 +723,7 @@ Similar as in Java, C#, Swift and Rust.
 ## Function Parameter Passing Modes
 Each function parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it’s input-only, mutable, output, copied, or moved.  
 The basic idea is to have the most efficient/appropriate parameter passing as the _default_, and to give more the intent than the technical realization.  
-Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (an extension/generalisation of the `out` parameters of C#).
+Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (surely inspired by the `out` parameters of C#, and by Ada).
 - **Default is passing as `in`**-parameter.
     - So if no parameter passing keyword is given, `in` parameter passing is used.
     - All other parameter passing methods need to be explicitly given.
