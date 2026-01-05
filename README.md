@@ -195,7 +195,13 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
   }
   ```
 - Default access specifier is `public`.
-- Not using ~~`struct`~~, as it is just too similar to `class` with no real benefit.
+- Default inheritance access specifier is also `public`
+  ```
+  class MySubClass : MyBaseClass {
+      ...
+  }
+  ```
+- Not using ~~`struct`~~, as it is just too similar to `class` (especiallly in Cilia) with no real benefit.
    - Keep as a reserved keyword for future use.
    - Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
 
@@ -228,7 +234,6 @@ func multiplyAdd(Float x, y, Int z) -> Float {
       return x * y
   }
   ```
-    - TODO Would `constfunc` be the better keyword?
 - **Function pointers**
     - Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
     - Examples:
