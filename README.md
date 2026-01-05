@@ -132,23 +132,23 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Int i`
     - `Int i = 0`
     - `Int x, y`
-    - `Int x = 99, y = 199`  
-    
-    - `Int[10] highScoreTable`  // Array of ten integers (instead of ~~`Int highScoreTable[10]`~~)  
-    
-    - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
-    - `Float& m, n`   // m _and_ n are references (contrary to C/C++)  
-    
-    - `Image image(width, height, 0.0)`
-    - `Image image()`
-        - is the same as `Image image`, i.e. it is a variable declaration,
-        - a function declaration would be written as `func image() -> Image`.  
-    
-    - `const Float* pointerToConstantFloat`
-    - `const Float const* constantPointerToConstantFloat`
-    - `Float const* constantPointerToMutableFloat`  
-    
-    - `Complex<Float>& complexNumber = complexNumberWithOtherName`
+    - `Int x = 99, y = 199`
+    - Arrays
+        - `Int[10] highScoreTable`  // Array of ten integers (instead of ~~`Int highScoreTable[10]`~~)
+    - Multiple-variable declarations
+        - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
+        - `Float& m, n`   // m _and_ n are references (contrary to C/C++)
+    - Constructors
+        - `Image image(width, height, 0.0)`
+        - `Image image()`
+            - is the same as `Image image`, i.e. it is a variable declaration,
+            - a function declaration would be written as `func image() -> Image`.
+    - Constants
+        - `const Float* pointerToConstantFloat`
+        - `const Float const* constantPointerToConstantFloat`
+        - `Float const* constantPointerToMutableFloat`
+    - References
+        - `Complex<Float>& complexNumber = complexNumberWithOtherName`
 
 - Not allowed / a syntax error is:
     - ~~`Float* m, &n`~~
