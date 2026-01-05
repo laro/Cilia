@@ -138,8 +138,8 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - `Float& m, n`   // m _and_ n are references (contrary to C/C++)
     - `Image image(width, height, 0.0)`
     - `const Float* pointerToConstantFloat`
-    - `const Float const* constPointerToConstantFloat`
-    - `Float const* constPointerToFloat`
+    - `const Float const* constantPointerToConstantFloat`
+    - `Float const* constantPointerToMutableFloat`
     - `Complex<Float>& complexNumber = complexNumberWithOtherName`
 
 - Not allowed / a syntax error is:
