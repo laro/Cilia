@@ -125,7 +125,8 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - Some simplifications and restrictions:
     - The type definition is completely on the left-hand side,  
       i.e. before the variable name, also for arrays and bit fields.
-    - `const` always binds to the right (contrary to C/C++).
+    - `const` always binds to the right (contrary to C/C++),
+        - i.e. the keyword `const` is always interpreted as a type qualifier that applies directly to whatever type expression appears immediately to its right.
     - All variables in a multiple-variable declarations have to be of the exact same type.
 
 - Examples:
