@@ -141,8 +141,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - Arrays
         - `Int[10] highScoreTable`  // Array of ten integers (instead of ~~`Int highScoreTable[10]`~~)
     - Multiple-variable declarations
-        - `Float* m, n`   // m _and_ n are pointers (contrary to C/C++)
-        - `Float& m, n`   // m _and_ n are references (contrary to C/C++)
+        - `Float* m, n`      // m _and_ n are pointers (contrary to C/C++)
+        - `Float& m, n`      // m _and_ n are references (contrary to C/C++)
+        - `Float[2] p1, p2`  // p1 _and_ p2 are arrays of two Float values each
     - Constructors
         - `Image image(width, height, 0.0)`
         - `Image image()`
