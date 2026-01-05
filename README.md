@@ -127,7 +127,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
       i.e. before the variable name, also for arrays and bit fields.
     - All variables in a multiple-variable declarations have to be of the exact same type.
     - `const` always binds to the right (contrary to C/C++),
-        - i.e. the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`) or ponter declarator (`*`) that appears immediately to its right.
+        - i.e. the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`) or pointer declarator (`*`) that appears immediately to its right.
         - `const` as a type qualifier for a reference (`&`) or array declarator (`[]`) is not allowed.
         - `const` as a type qualifier for a type specifier with array declarator is interpreted as `const Array`:
             - A `const` dynamic array declarator `const Float[]` is interpreted as `const Array<Float>`,
