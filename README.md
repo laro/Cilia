@@ -195,7 +195,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
   }
   ```
 - Default access specifier is `public`.
-- Default inheritance access specifier is also `public`
+- Default inheritance access specifier is also `public`:
   ```
   class MySubClass : MyBaseClass {
       ...
@@ -225,6 +225,17 @@ func multiplyAdd(Float x, y, Int z) -> Float {
 - **Lambdas**
     - `[](Int i) -> Float { i * 3.14 }`  
       as in C++
+- Const member functions:
+  ```
+  class MyArrayOfInt {
+      const func size() -> Int {
+          return size_;
+      }
+  protected:
+      Int* numbers_ = NullPtr
+      Int size_ = 0
+  }
+  ```
 - **`constexpr`** and `consteval`
   ```
   constexpr multiply(Int x, y) -> Int {
