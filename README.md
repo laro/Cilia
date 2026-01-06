@@ -1,4 +1,3 @@
-# Cilia
 This is a collection of ideas for a language that is based on C++, but with
 - **CamelCase Style**  
 I'd like to have the standard library roughly in the style of Java or [Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using those languages (to a lesser degree also C#, JavaScript/TypeScript, Kotlin, Swift).
@@ -494,7 +493,8 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
 - Floating point
     - `1.0` is a floating point literal
         - Floating point literals are interpreted according to the size/precision requirements.
-            - Counting the decimal places (including trailing zeros!),  
+            - Counting the decimal places  
+              (including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!),  
               then the rules are:
                 - up to 15 decimal places -> `Float64` (AKA `Float`)
                 - up to 34 decimal places -> `Float128`
