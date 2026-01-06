@@ -407,7 +407,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - Herb Sutter and Chandler Carruth about _unsigned_ `size_t` in the C++ STL containers: "They are wrong", "We are sorry"
 
 
-## Literals
+## 
 - `True`, `False` are Bool,
     - uppercase as they are constants (as in Python).
 - `NullPtr` is the null pointer,
@@ -433,7 +433,14 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
             - Down to `-9'223'372'036'854'775'808` -> `Int64`/`Int`
             - Down to `-170'141'183'460'469'231'731'687'303'715'884'105'728` -> `Int128`
             - Down to `-57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'968` -> `Int256`
-        - Can be converted to any integer type it fits into (signed and unsigned)
+        - Positive integer literals up to a certain size can implicitly be used as `UInt8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
+        - Up to `255` -> `UInt8`
+            - Up to `65'535` -> `UInt16`
+            - Up to `4'294'967'295` -> `UInt32`
+            - Up to `18'446'744'073'709'551'615` -> `UInt64`/`UInt`
+            - Up to `340'282'366'920'938'463'463'374'607'431'768'211'455` -> `UInt128`
+            - Up to `115'792'089'237'316'195'423'570'985'008'687'907'853'269'984'665'640'564'039'457'584'007'913'129'639'935` -> `UInt256`
+        - Examples:
             - `Int8 a = 1`    // Works because `1` fits into `Int8`
             - `Int8 b = 127`  // Works because `127` fits into `Int8`
             - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
@@ -450,11 +457,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
                 - `UInt m = UInt(l)` // Works
             - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
                 - `Int n = Int(m)`   // Works
-        - Integer literals can automatically be converted to other sizes than Int64,
+        - Integer literals can automatically be converted to other sizes than `Int64`,
             - according to the C++ rules (admittedly without knowing the details),
             - but only if the converted-to-type can contain the value of the literal.
         - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
-            - Store as array of `Int`
+            - Store as array of `Int`/`UInt`
         - Suffixes/postfixes to write integer literals of a certain size:
             - `123u` is `UInt`
                 - `-123u` is an error.
