@@ -434,7 +434,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
             - Down to `-170'141'183'460'469'231'731'687'303'715'884'105'728` -> `Int128`
             - Down to `-57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'968` -> `Int256`
         - Positive integer literals up to a certain size can implicitly be used as `UInt8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
-        - Up to `255` -> `UInt8`
+            - Up to `255` -> `UInt8`
             - Up to `65'535` -> `UInt16`
             - Up to `4'294'967'295` -> `UInt32`
             - Up to `18'446'744'073'709'551'615` -> `UInt64`/`UInt`
