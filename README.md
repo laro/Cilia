@@ -513,7 +513,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
             - Use of ~~`0.1f`~~ for `Float` AKA `Float64` would be confusing, as in C++ `0.1f` means `single float` AKA `Float32`.
         - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
     - `Infinity`/`-Infinity` is a `Float` literal for infinity values,
-        -  to any float type.
+        - that can be converted to any float type.
     - `NaN` is a `Float` literal for NaN ("not a number") values,
         - that can be converted to any float type.
           
