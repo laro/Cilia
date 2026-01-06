@@ -389,6 +389,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
                   print("default")
               }
               ```
+              
 ## Signed Size
 `Int` (i.e. signed) as type for `*.size()`
 - Because mixing signed and unsigned integer (e.g. "signed - unsigned") and even calculating "unsigned - unsigned" is difficult to handle.
