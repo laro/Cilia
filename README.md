@@ -419,13 +419,20 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - Typical integer literals like `123456` are interpreted as `Int`
             - in case of type inferring, parameter overloading and template matching.
         - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
-        - Unsigned integer literals up to a certain size can implicitly be converted to `Int8`/`16`/`32`/`64` (i.e. signed), as there is no loss of information.
+        - Positive integer literals up to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256` (i.e. signed), as there is no loss of information.
             - Up to `127` -> `Int8`
             - Up to `32'767` -> `Int16`
             - Up to `2'147'483'647` -> `Int32`
             - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
             - Up to `170'141'183'460'469'231'731'687'303'715'884'105'727` -> `Int128`
             - Up to `57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'967` -> `Int256`
+        - Negative integer literals down to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
+            - Down to `-128` -> `Int8`
+            - Down to `-32'768` -> `Int16`
+            - Down to `-2'147'483'648` -> `Int32`
+            - Down to `-9'223'372'036'854'775'808` -> `Int64`/`Int`
+            - Down to `-170'141'183'460'469'231'731'687'303'715'884'105'728` -> `Int128`
+            - Down to `-57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'968` -> `Int256`
         - Can be converted to any integer type it fits into (signed and unsigned)
             - `Int8 a = 1`    // Works because `1` fits into `Int8`
             - `Int8 b = 127`  // Works because `127` fits into `Int8`
