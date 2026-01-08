@@ -680,19 +680,21 @@ Similar as in Java, C#, Swift and Rust.
                   // (with number of iterations determined from the size of the mantissa)
               }
               ```
-    - _Explicit_ function templates for cases where a common type is required.  
-        - The template parameters (`<...>`) are given after the function name,  
-          as they are "type parameters" of the function
+    - _Explicit_ function templates
+        - When a common type is required:
           ```
           func add<Number T>(T x, y) -> T {
               return x + y
           }
           ```
-          and this way the function definition is more similar to the function call.
+        - When no deducing of the template type is possible (e.g. when there are no arguments):
           ```
           func getRandom<type T>() -> T { ... }
           Int random = getRandom<Int>();
           ```
+            - The template parameters (`<...>`) are given after the function name,  
+              as they are "type parameters" of the function.
+            - This way the function definition is more similar to the function call.
     - For extension function templates it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are given.  
       Therefore we write
         - `func<type T, Int N> T[N]::size() -> Int { return N }`
