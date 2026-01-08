@@ -622,7 +622,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `xor` in addition to `!=`/`^`
     - `not` in addition to `!`
 - `Int32` instead of `int32_t` or `qint32`,
-    - so no prefix "q" nor postfix "_t", and in CamelCase.
+    - so no postfix "_t" nor prefix "q", and in CamelCase.
 - When translating C++ code to Cilia then change conflicting names, e.g.
     - `int var` -> `Int __variable_var`
     - `class func` -> `class __class_func`
@@ -630,7 +630,7 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
 
 
 ## Templates
-The basic new idea is, to define templates (classes and functions) mostly the same as they are used.  
+The basic "new idea" is, to define templates (classes and functions) mostly the same as they are used.  
 Similar as in Java, C#, Swift and Rust.
 - **Class** templates  
   The template parameters (`<...>`) are given after the class name, so that the definition is similar to the usage (in a variable declaration).
