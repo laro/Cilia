@@ -671,7 +671,7 @@ Similar as in Java, C#, Swift and Rust.
                   return x * x
               }
               ```
-                - However, the return type could be a _different_ type than `x` is (but it needs to satisfy the concept `Number`)
+                - However, the return type could be a _different_ type than `x` is (it just needs to satisfy the concept `Number`)
                 - With `func add(Number a, b) -> Number` even `a` and `b` could be of a different type (but both need to satisfy the concept `Number`)
             - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128`/`256` or `BigFloat`):
               ```
