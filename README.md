@@ -1702,12 +1702,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `ask("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
 - Streams
     - TextStream
-        - `cout.write("...")` with newline.
-        - `cout.writeLine("...")` without newline.
-        - `cin.read()` reads everything that is currently available (possibly `""`).
-        - `cin.readAll()` reads everything until the end of the stream.
-        - `cin.readLine()` reads until newline.
-        - `cin.readChar()` reads a single character.
+        - `cout.write("...")` without newline.
+        - `cout.writeLine("...")` with newline.
+        - `cin.read() -> String` reads everything that is currently available (possibly `""`).
+        - `cin.readAll() -> String` reads everything until the end of the stream.
+        - `cin.readLine() -> String` reads until newline.
+        - `cin.readChar() -> String` reads a single character.
     - ByteStream
         - `cout.write(Byte[])`
         - `cin.read() -> Byte[]` reads everything that is currently available (possibly returns an empty array).
