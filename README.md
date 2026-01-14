@@ -1707,7 +1707,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `cin.read() -> String` reads everything that is currently available (possibly `""`).
         - `cin.readAll() -> String` reads everything until the end of the stream.
         - `cin.readLine() -> String` reads until newline.
-        - `cin.readChar() -> String` reads a single character.
+        - `cin.readChar() -> String` reads a single character (returns a String, as UTF-8 characters/graphemes may consist of multiple bytes).
+        - TODO? `cin.readCodePoint() -> Int32` reads a single Unicode code point (as Int32; but beware: some graphemes, like emoji, may consist of multiple code points).
     - ByteStream
         - `cout.write(Byte[])`
         - `cin.read() -> Byte[]` reads everything that is currently available (possibly returns an empty array).
@@ -1716,8 +1717,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - `cin.read(minimum..maximum) -> Byte[]`
         - `cin.readUpTo(Int n) -> Byte[]` reads everything that is currently available, up to the given number of bytes (possibly returns an empty array).
         - `cin.readAll() -> Byte[]` reads everything until the end of the stream.
-        - `cin.discard(Int n)` discards n bytes from the input stream.
-        - `cin.discardAll()` discards everything that is currently in the input stream.
+        - `cin.ignore(Int n)` ignores/discards n bytes from the input stream.
+        - `cin.ignoreAll()` ignores/discards everything that is currently in the input stream.
 - Matrix & Vector
     - Geometry
         - Static/fixed size
