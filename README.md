@@ -1754,7 +1754,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                   When the pipe/socket is closed (and no data is buffered anymore), then it returns an empty array.
                 - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
                   Blocks when this cache is empty.
-                  When the end of file is reached (and no data is chached anymore), then it returns an empty array.
+                  When the end of file is reached (and no data is cached anymore), then it returns an empty array.
         - `in.read(Int n) -> Byte[]` reads exactly n bytes.
             - Blocks until the number of bytes are read.
             - Throws an exception if end of file is reached (or pipe/socket closed) before n bytes are read.
