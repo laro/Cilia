@@ -1765,6 +1765,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `in.readAll() -> Byte[]` reads everything until the end of the stream.
         - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
         - `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
+        - `in.isEOF()` returns true if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
+            - and the end of the file is reached or the pipe/socket is closed.
 - Matrix & Vector
     - Geometry
         - Static/fixed size
