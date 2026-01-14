@@ -1710,7 +1710,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                 - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically up to 64 KB). Blocks when this buffer is empty. When no data is buffered anymore and the pipe/socket is closed, then it returns "" and then a following isEOF() returns true.
                 - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB). Blocks when this cache is empty. When no data is buffered anymore and the end of file is reached, then it returns "" and a following isEOF() returns true.
         - `cin.readImmediately() -> String` reads everything that is currently available, possibly `""`, it never blocks.
-            - For polling / busy loops, _rarely_ appropriate.
+            - For polling / busy loops only, _rarely_ appropriate.
             - You need to check isEOF() separately.
         - `cin.readAll() -> String` reads everything until the end of the file.
             - With pipes/sockets, it blocks until the pipe/socket is closed.
