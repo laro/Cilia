@@ -1696,6 +1696,28 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       But only _with_ wrapper we have
         - a Cilia standard library in the "idiomatic" Cilia style (i.e. CamelCase),
         - whose types/classes are also used with existing C++ APIs (i.e. using Int, Int32, String and StringView instead of int, int32_t, string and string_view).
+- Global IO functions
+    - `print("...")` with Newline, calls `cout.writeLine()`.
+    - `scan() -> String` reads up to Newline, calls `cin.readLine()`.
+    - `askFor("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
+- Streams
+    - TextStream
+        - `cout.write("...")` with newline.
+        - `cout.writeLine("...")` without newline.
+        - `cin.read()` reads everything that is currently available (possibly `""`).
+        - `cin.readAll()` reads everything until the end of the stream.
+        - `cin.readLine()` reads until newline.
+        - `cin.readChar()` reads a single character.
+    - ByteStream
+        - `cout.write(Byte[])`
+        - `cin.read() -> Byte[]` reads everything that is currently available (possibly returns an empty array).
+        - `cin.read(Int n) -> Byte[]` reads n bytes, may block, may throw an exception if end of file reached before n bytes are read.
+        - `cin.read(Int minimum, maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes, blocks until the `minimum` number of bytes are read (may return an empty array when `minimum` is `0`).
+            - `cin.read(minimum..maximum) -> Byte[]`
+        - `cin.readUpTo(Int n) -> Byte[]` reads everything that is currently available, up to the given number of bytes (possibly returns an empty array).
+        - `cin.readAll() -> Byte[]` reads everything until the end of the stream.
+        - `cin.discard(Int n)` discards n bytes from the input stream.
+        - `cin.discardAll()` discards everything that is currently in the input stream.
 - Matrix & Vector
     - Geometry
         - Static/fixed size
