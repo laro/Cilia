@@ -1699,7 +1699,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
 - Global IO functions
     - `print("...")` with Newline, calls `cout.writeLine()`.
     - `scan() -> String` reads up to Newline, calls `cin.readLine()`.
-    - `askFor("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
+    - `ask("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
 - Streams
     - TextStream
         - `cout.write("...")` with newline.
