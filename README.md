@@ -1705,39 +1705,57 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `cout.write("...")` without newline.
         - `cout.writeLine("...")` with newline.
         - `cin.read() -> String` reads
-            - everything from the `istream` user-level cache (if not null),
+            - everything from the `istream` user-level cache (if not empty),
             - or (otherwise) everything from the kernel buffer/cache:
-                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically up to 64 KB). Blocks when this buffer is empty. When no data is buffered anymore and the pipe/socket is closed, then it returns "" and then a following isEOF() returns true.
-                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB). Blocks when this cache is empty. When no data is buffered anymore and the end of file is reached, then it returns "" and a following isEOF() returns true.
-        - `cin.readImmediately() -> String` reads everything that is currently available, possibly `""`, it never blocks.
-            - For polling / busy loops only, _rarely_ appropriate.
-            - You need to check isEOF() separately.
+                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically up to 64 KB). Blocks when this buffer is empty.
+                  Only when the pipe/socket is closed (and no data is buffered anymore), then it returns "".
+                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB). Blocks when this cache is empty.
+                  Only when the end of file is reached (and no data is buffered anymore), then it returns "".
         - `cin.readAll() -> String` reads everything until the end of the file.
             - With pipes/sockets, it blocks until the pipe/socket is closed.
         - `cin.readLine() -> String` reads until newline.
             - The newline character is removed from the line.
             - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
-            - When the end of file is reached, then it returns "" and a following isEOF() returns true.
+            - When the end of file is reached, then it returns "".
         - `cin.readChar() -> String` reads a single character (actually a "grapheme cluster").
             - Returns a String, as UTF-8 characters/graphemes may consist of multiple bytes.
             - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
-            - When the end of file is reached, then it returns "" (and a following isEOF() returns true).
+            - When the end of file is reached, then it returns "".
         - TODO? `cin.readCodePoint() -> Int32` reads a single Unicode code point (as Int32).
             - But beware: some graphemes, like emoji, consist of multiple code points.
-            - When the end of file is reached, then it returns -1 (and a following isEOF() returns true).
+            - When the end of file is reached, then it returns -1.
+        - `cin.readImmediately() -> String` reads everything that is immediately available,
+            - possibly/often returns `""`,
+            - it never blocks.
+            - Reads everything from the `istream` user-level cache (if not empty),
+            - or (otherwise) everything from the kernel buffer/cache:
+                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically up to 64 KB).
+                  Returns "" when no data is buffered anymore (then maybe the pipe/socket is closed).
+                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
+                  Returns "" when no data is buffered anymore (then maybe the end of file is reached).
+            - For polling / busy loops only, _rarely_ appropriate.
+            - You need to check isEOF() separately!
+                - As you cannot distinguish "no data available" from EOF or pipe/socket closed.
+        - `cin.isEOF()` returns true if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel chache/buffer),
+            - and the end of the file is reached or the pipe/socket is closed.
+            - Only with `cin.readImmediately()` it _really_ is necessary to call this function.
     - ByteStream
         - `out.write(Byte[])`
         - `in.read() -> Byte[]` reads
             - everything from the `istream` user-level cache (if not null),
-            - or everything from the kernel buffer/cache:
-                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically 64 KB). Blocks when this buffer is empty. When no data is buffered anymore and the pipe/socket is closed, then it returns an empty array and a following isEOF() returns true.
-                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB). Blocks when this cache is empty. When no data is chached anymore and the end of file is reached, then it returns an empty array and a following isEOF() returns true.
+            - or (otherwise) everything from the kernel buffer/cache:
+                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically 64 KB).
+                  Blocks when this buffer is empty.
+                  When the pipe/socket is closed (and no data is buffered anymore), then it returns an empty array.
+                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
+                  Blocks when this cache is empty.
+                  When the end of file is reached (and no data is chached anymore), then it returns an empty array.
         - `in.read(Int n) -> Byte[]` reads exactly n bytes.
-            - Blocks until the number of bytes are read
-            - Throws an exception if end of file is reached before n bytes are read.
+            - Blocks until the number of bytes are read.
+            - Throws an exception if end of file is reached (or pipe/socket closed) before n bytes are read.
         - `in.read(Int minimum, maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes.
             - Blocks until the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
-            - Throws an exception if end of file reached before `minimum` bytes are read.
+            - Throws an exception if end of file reached (or pipe/socket closed) before `minimum` bytes are read.
             - `in.read(minimum..maximum) -> Byte[]`
         - `in.readAll() -> Byte[]` reads everything until the end of the stream.
         - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
