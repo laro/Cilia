@@ -1741,6 +1741,11 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Only really necessary to call this function when using `cin.readImmediately()` or `cin.readLine()`.
     - ByteStream
         - `out.write(Byte[])`
+        - `out.flush()` writes the data buffer (the `istream` user-level cache) to the operating system.
+            - This protects against data loss in the event of a program crash.
+        - `out.flushAndSync()` calls `flush()`, then
+            - calls `fsync()` to write the kernel buffers to the file system and then to the harddisk/SSD (the write cache should be written/cleared, too).
+            - This protects against data loss in the event of a program or _system_ crash.
         - `in.read() -> Byte[]` reads
             - everything from the `istream` user-level cache (if not null),
             - or (otherwise) everything from the kernel buffer/cache:
