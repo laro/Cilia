@@ -1736,7 +1736,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - For polling / busy loops only, _rarely_ appropriate.
             - You need to check isEOF() separately!
                 - As you cannot distinguish "no data available" from EOF or pipe/socket closed.
-        - `cin.isEOF()` returns true if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel chache/buffer),
+        - `cin.isEOF()` returns true if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
             - and the end of the file is reached or the pipe/socket is closed.
             - Only really necessary to call this function when using `cin.readImmediately()` or `cin.readLine()`.
     - ByteStream
