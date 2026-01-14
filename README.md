@@ -259,7 +259,7 @@ func multiplyAdd(Float x, y, Int z) -> Float {
         - `func(Int)& referenceToFunctionOfInt`
 
 
-## Branches & Loops
+## Branches, Loops & Exceptions
 No braces around the condition clause (as in Python, Swift, Go, Ruby).
 - **if**
     - ```
@@ -388,6 +388,24 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
                   print("default")
               }
               ```
+- **Exceptions**
+    - ```
+      try {
+          // ...
+      } catch Exception ex {
+          print(ex)
+      }
+      ```
+    - ```
+      try {
+          // ...
+      } catch Exception {
+          // ...
+      } catch {
+          print("An unknown exception has occured")
+      }
+      ```
+
               
 ## Signed Size
 `Int` (i.e. signed) as type for `*.size()`
