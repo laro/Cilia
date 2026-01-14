@@ -1698,7 +1698,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - whose types/classes are also used with existing C++ APIs (i.e. using Int, Int32, String and StringView instead of int, int32_t, string and string_view).
 - Global IO functions
     - `print("...")` with Newline, calls `cout.writeLine()`.
-    - `scan() -> String` reads up to Newline, calls `in.readLine()`.
+    - `scan() -> String` reads up to Newline, calls `cin.readLine()`.
     - `ask("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
 - Streams
     - TextStream
