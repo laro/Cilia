@@ -1704,11 +1704,25 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - TextStream
         - `cout.write("...")` without newline.
         - `cout.writeLine("...")` with newline.
-        - `cin.read() -> String` reads everything that is currently available (possibly `""`).
-        - `cin.readAll() -> String` reads everything until the end of the stream.
+        - `cin.read() -> String` reads
+            - everything from the `istream` user-level cache (if not null),
+            - or everything from the kernel buffer/cache:
+                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically 64 KB). Blocks when this buffer is empty. When the pipe/socket is closed it returns "" and then a isEOF() returns true.
+                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB). Blocks when this cache is empty. When the end of file is reached, then it returns "" and a isEOF() returns true.
+        - `cin.readImmediately() -> String` reads everything that is currently available, possibly `""`, it never blocks.
+            - For polling / busy loops, _rarely_ appropriate.
+            - You need to check isOEF() separately.
+        - `cin.readAll() -> String` reads everything until the end of the file.
+            - With pipes/sockets, it blocks until the pipe/socket is closed.
         - `cin.readLine() -> String` reads until newline.
+            - The newline character is removed from the line.
+            - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
+            - When the end of file is reached, then it returns "" and a isEOF() returns true.
         - `cin.readChar() -> String` reads a single character (returns a String, as UTF-8 characters/graphemes may consist of multiple bytes).
+            - With pipes/sockets it blocks until a character is available (or pipe/socket is closed).
+            - When the end of file is reached, then it returns "" (and a isEOF() returns true).
         - TODO? `cin.readCodePoint() -> Int32` reads a single Unicode code point (as Int32; but beware: some graphemes, like emoji, may consist of multiple code points).
+            - When the end of file is reached, then it returns -1 (and a isEOF() returns true).
     - ByteStream
         - `out.write(Byte[])`
         - `in.read() -> Byte[]` reads everything that is currently available (possibly returns an empty array).
