@@ -1720,13 +1720,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
             - When the end of file is reached, then it returns `""`.
             - But as empty lines are also read as `""`, you need to check `isEOF()` here.
-        - `cin.readChar() -> String` reads a single character (actually a "grapheme cluster").
-            - Returns a String, as UTF-8 characters/graphemes may consist of multiple code points.
+        - `cin.readGrapheme() -> String` reads a single grapheme (mostly a character).
+            - Returns a String, as UTF-8 "characters"/graphemes may consist of multiple code points (called a "grapheme cluster").
             - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
             - When the end of file is reached, then it returns `""`.
-        - TODO? `cin.readCodePoint() -> Int32` reads a single Unicode code point (as Int32).
-            - But beware: some graphemes, like emoji, consist of multiple code points.
-            - When the end of file is reached, then it returns `-1`.
+            - Unicode variant of ~~`cin.readChar() -> String`~~.
+            - TODO? `cin.readCodePoint() -> Int32` reads a single Unicode code point (as Int32).
+                - But beware: some graphemes, like emoji, consist of multiple code points.
+                - When the end of file is reached, then it returns `-1`.
         - `cin.readImmediately() -> String` reads everything that is immediately available,
             - possibly/often returns `""`, it never blocks.
             - Reads everything from the `istream` user-level cache (if not empty),
