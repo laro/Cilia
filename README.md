@@ -1716,7 +1716,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `cin.readLine() -> String` reads until newline (or end of file).
             - The newline character is removed from the line.
                 - `\n`, `\r`, `\r\n` are recognized as (a single) newline.
-                - (Maybe even `\r\n`, in honor of AmigaOS, and `NEL`/`U+0085` from EBCDIC/IBM.)
+                - (Maybe even `\n\r`, in honor of AmigaOS, and `NEL`/`U+0085` from EBCDIC/IBM.)
             - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
             - When the end of file is reached, then it returns `""`.
             - But as empty lines are also read as `""`, you need to check `isEOF()` here.
