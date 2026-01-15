@@ -1780,7 +1780,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - and the end of the file is reached or the pipe/socket is closed.
     - `File`, derived from `ByteStream`
         - `file.size() -> Int`
-        - `file.getPosition() -> Int`
+        - `file.position() -> Int`
             - `file.setPosition(Int n)` (AKA `file.seekFromStart()`)
             - A common position for read and write.
         - `file.seek(Int offsetToCurrentPos)`
@@ -1795,29 +1795,29 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `connection.connect(...)`
         - `connection.disconnect()`
         - `connection.isConnected() -> Bool`
-        - `connection.getRemoteAddress() -> String`
-        - `connection.getLocalAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
-        - `connection.setReadTimeout(TimeSpan)`
-            - `connection.getReadTimeout() -> TimeSpan`
+        - `connection.remoteAddress() -> String`
+        - `connection.localAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
+        - `connection.readTimeout() -> TimeSpan`
+            - `connection.setReadTimeout(TimeSpan)`
     - `TcpConnection`, derived from `NetworkConnection`
         - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
-        - `connection.setConnectionTimeout(TimeSpan)`
-            - `connection.getConnectionTimeout() -> TimeSpan`
-        - `connection.getRemotePort() -> UInt16`
-        - `connection.getLocalPort() -> UInt16`
-        - `connection.setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
-            - `connection.getNoDelay() -> Bool`
-        - `connection.setKeepAlive(Bool)` prevents connection termination due to inactivity.
-            - `connection.getKeepAlive() -> Bool`
-        - `connection.getIpVersion() -> Int` returns `4` or `6`.
-        - `connection.setReceiveBufferSize(Int bytes)`
-            - `connection.getReceiveBufferSize() -> Int`
-        - `connection.setSendBufferSize(Int bytes)`
-            - `connection.getSendBufferSize() -> Int`
+        - `connection.connectionTimeout() -> TimeSpan`
+            - `connection.setConnectionTimeout(TimeSpan)`
+        - `connection.remotePort() -> UInt16`
+        - `connection.localPort() -> UInt16`
+        - `connection.noDelay() -> Bool`
+            - `connection.setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
+        - `connection.keepAlive() -> Bool`
+            - `connection.setKeepAlive(Bool)` prevents connection termination due to inactivity.
+        - `connection.protocolVersion() -> Int` returns `4` or `6`.
+        - `connection.receiveBufferSize() -> Int`
+            - `connection.setReceiveBufferSize(Int bytes)`
+        - `connection.sendBufferSize() -> Int`
+            - `connection.setSendBufferSize(Int bytes)`
     - `BluetoothConnection`, derived from `NetworkConnection`
     - `LocalConnection`, drived from `ByteStream`
-        - `stream.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
-        - `stream.getPeerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
+        - `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
+        - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
             - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
     - `UnixDomainSocket`, derived from `LocalConnection`
     - `Pipe`, derived from `LocalConnection`
