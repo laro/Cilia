@@ -1770,8 +1770,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `in.available() -> Int`
             - returns the size of the `istream` cache, if not 0,
             - otherwise reports the size of the kernel cache/nuffer.
+            - As that is the number of bytes you would get with the next `in.read()`.
         - `in.peek(Int n) -> Byte[]`
-            - TODO Limited to 16 bytes oder to the buffer size?
+            - TODO Limited to 16 bytes or to the buffer size?
             - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
         - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
         - `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
@@ -1780,15 +1781,41 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `File`, derived from `ByteStream`
         - `size() -> Int`
         - `getPosition() -> Int`
-        - `setPosition(Int n)`
+        - `setPosition(Int n)` (AKA `seekFromStart()`)
         - `seek(Int offsetToCurrentPos)`
-        - `truncate(Int n)`
+            - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
+        - `seekFromEnd(Int distanceToEnd)`
+            - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
+        - `truncate()` truncates the file at the current position.
+        - `truncate(Int n)` truncates the file at the given position.
         - `path() -> String`
-    - `Socket`, derived from `ByteStream`
-        - for TCP/IP connections.
-        - `setConnectionTimeout(TimeSpan)`
-        - `getConnectionTimeout() -> TimeSpan`
+    - `NetworkStream`, derived from `ByteStream`
+        - for "network" connections (TCP/IP, Bluetooth, infrared, ...).
+        - `connect(...)`
+        - `disconnect()`
+        - `isConnected() -> Bool`
         - `getRemoteAddress() -> String`
+        - `getLocalAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
+        - `setReadTimeout(TimeSpan)`
+            - `getReadTimeout() -> TimeSpan`
+    - `TcpStream`, derived from `NetworkStream`
+        - for TCP/IP connections.
+        - `shutdownWrite()` sends FIN (half-close), allows further reading.
+        - `setConnectionTimeout(TimeSpan)`
+            - `getConnectionTimeout() -> TimeSpan`
+        - `getRemotePort() -> UInt16`
+        - `getLocalPort() -> UInt16`
+        - `setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
+            - `getNoDelay() -> Bool`
+        - `setKeepAlive(Bool)` prevents connection termination due to inactivity.
+            - `getKeepAlive() -> Bool`
+        - `getIpVersion() -> Int` returns `4` or `6`.
+        - `setReceiveBufferSize(Int bytes)`
+            - `getReceiveBufferSize() -> Int`
+        - `setSendBufferSize(Int bytes)`
+            - `getSendBufferSize() -> Int`
+    - `BluetoothStream`, derived from `NetworkStream`
+    - `Socket` for connectionless protocols like UDP.
 - Matrix & Vector
     - Geometry
         - Static/fixed size
