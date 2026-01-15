@@ -1830,6 +1830,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `setDataBits(Int)`
     - `USBConnection` for USB bulk transfers.
     - `SPIConnection` / `I2CConnection` for communication with sensors on microcontrollers.
+    - `ZigbeeConnection`
+    - `MemoryStream`
     - `Socket` for connectionless protocols like UDP.
 
 - Matrix & Vector
