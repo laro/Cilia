@@ -1767,9 +1767,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Throws an exception if end of file reached (or pipe/socket closed) before `minimum` bytes are read.
             - `in.read(minimum..maximum) -> Byte[]`
         - `in.readAll() -> Byte[]` reads everything until the end of the stream.
-        - `in.available() -> Int`
-            - returns the size of the `istream` cache, if not 0,
-            - otherwise reports the size of the kernel cache/nuffer.
+        - `in.available() -> Int` says how many bytes are _immediately_ available for reading.
+            - Returns the size of the `istream` cache, if not 0,
+            - otherwise reports the size of the kernel cache/buffer.
             - As that is the number of bytes you would get with the next `in.read()`.
         - `in.peek(Int n) -> Byte[]`
             - TODO Limited to 16 bytes or to the buffer size?
@@ -1790,8 +1790,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `file.truncate()` truncates the file at the current position.
             - `file.truncate(Int n)` truncates the file at the given position.
         - `file.path() -> String`
-    - `NetworkStream`, derived from `ByteStream`
-        - for "network" connections (TCP/IP, Bluetooth, infrared, ...).
+    - `NetworkConnection`, derived from `ByteStream`,
+        - a base class for TCP/IP, Bluetooth, infrared, ...
         - `connection.connect(...)`
         - `connection.disconnect()`
         - `connection.isConnected() -> Bool`
@@ -1799,8 +1799,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `connection.getLocalAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
         - `connection.setReadTimeout(TimeSpan)`
             - `connection.getReadTimeout() -> TimeSpan`
-    - `TcpStream`, derived from `NetworkStream`
-        - for TCP/IP connections.
+    - `TcpConnection`, derived from `NetworkConnection`
         - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
         - `connection.setConnectionTimeout(TimeSpan)`
             - `connection.getConnectionTimeout() -> TimeSpan`
@@ -1815,13 +1814,13 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - `connection.getReceiveBufferSize() -> Int`
         - `connection.setSendBufferSize(Int bytes)`
             - `connection.getSendBufferSize() -> Int`
-    - `BluetoothStream`, derived from `NetworkStream`
-    - `LocalStream`, drived from `ByteStream`
+    - `BluetoothConnection`, derived from `NetworkConnection`
+    - `LocalConnection`, drived from `ByteStream`
         - `stream.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
         - `stream.getPeerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
             - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
-    - `UnixDomainSocket`, derived from `LocalStream`
-    - `Pipe`, derived from `LocalStream`
+    - `UnixDomainSocket`, derived from `LocalConnection`
+    - `Pipe`, derived from `LocalConnection`
     - `Socket` for connectionless protocols like UDP.
 - Matrix & Vector
     - Geometry
