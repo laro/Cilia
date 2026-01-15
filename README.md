@@ -1701,7 +1701,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `scan() -> String` reads up to Newline, calls `cin.readLine()`.
     - `ask("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
 - Streams
-    - TextStream
+    - `TextStream`
         - `cout.write("...")` without newline.
         - `cout.writeLine("...")` with newline.
         - `cin.read() -> String` reads
@@ -1742,7 +1742,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `cin.isEOF()` returns `true` if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
             - and the end of the file is reached or the pipe/socket is closed.
             - Only really necessary to call this function when using `cin.readImmediately()` or `cin.readLine()`.
-    - ByteStream
+    - `ByteStream`
+        - `out.close()`
         - `out.write(Byte[])`
         - `out.flush()` writes the data buffer (the `istream` user-level cache) to the operating system.
             - This protects against data loss in the event of a program crash.
@@ -1766,10 +1767,28 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - Throws an exception if end of file reached (or pipe/socket closed) before `minimum` bytes are read.
             - `in.read(minimum..maximum) -> Byte[]`
         - `in.readAll() -> Byte[]` reads everything until the end of the stream.
+        - `in.available() -> Int`
+            - returns the size of the `istream` cache, if not 0,
+            - otherwise reports the size of the kernel cache/nuffer.
+        - `in.peek(Int n) -> Byte[]`
+            - TODO Limited to 16 bytes oder to the buffer size?
+            - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
         - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
         - `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
         - `in.isEOF()` returns true if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
             - and the end of the file is reached or the pipe/socket is closed.
+    - `File`, derived from `ByteStream`
+        - `size() -> Int`
+        - `getPosition() -> Int`
+        - `setPosition(Int n)`
+        - `seek(Int offsetToCurrentPos)`
+        - `truncate(Int n)`
+        - `path() -> String`
+    - `Socket`, derived from `ByteStream`
+        - for TCP/IP connections.
+        - `setConnectionTimeout(TimeSpan)`
+        - `getConnectionTimeout() -> TimeSpan`
+        - `getRemoteAddress() -> String`
 - Matrix & Vector
     - Geometry
         - Static/fixed size
