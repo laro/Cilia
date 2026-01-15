@@ -1815,6 +1815,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `setSendBufferSize(Int bytes)`
             - `getSendBufferSize() -> Int`
     - `BluetoothStream`, derived from `NetworkStream`
+    - `LocalStream`, drived from `ByteStream`
+        -` path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
+        - `getPeerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
+            - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
+    - `UnixDomainSocket`, derived from `LocalStream`
+    - `Pipe`, derived from `LocalStream`
     - `Socket` for connectionless protocols like UDP.
 - Matrix & Vector
     - Geometry
