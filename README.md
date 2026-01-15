@@ -1821,7 +1821,17 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
     - `UnixDomainSocket`, derived from `LocalConnection`
     - `Pipe`, derived from `LocalConnection`
+    - `TLSConnection` / `SSLConnection` for exncypted TCP connections.
+    - `SSHConnection` for streams running through an SSH tunnel.
+    - `WebSocketConnection`
+    - `SerialConnection` (RS-232/UART) 
+        - `setBaudRate(Int)`
+        - `setParity(Bool)`
+        - `setDataBits(Int)`
+    - `USBConnection` for USB bulk transfers.
+    - `SPIConnection` / `I2CConnection` for communication with sensors on microcontrollers.
     - `Socket` for connectionless protocols like UDP.
+
 - Matrix & Vector
     - Geometry
         - Static/fixed size
