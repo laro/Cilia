@@ -1735,7 +1735,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                   Returns "" when no data is buffered anymore (then maybe the pipe/socket is closed).
                 - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
                   Returns "" when no data is buffered anymore (then maybe the end of file is reached).
-            - For polling / busy loops only, _rarely_ appropriate.
+            - Meant for polling / busy loops only, so _rarely_ appropriate.
             - You need to check isEOF() separately!
                 - As you cannot distinguish "no data available" from EOF or pipe/socket closed.
         - `cin.isEOF()` returns `true` if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
