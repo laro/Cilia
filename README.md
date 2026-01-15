@@ -1718,7 +1718,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
             - When the end of file is reached, then it returns "".
         - `cin.readChar() -> String` reads a single character (actually a "grapheme cluster").
-            - Returns a String, as UTF-8 characters/graphemes may consist of multiple bytes.
+            - Returns a String, as UTF-8 characters/graphemes may consist of multiple code points.
             - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
             - When the end of file is reached, then it returns "".
         - TODO? `cin.readCodePoint() -> Int32` reads a single Unicode code point (as Int32).
