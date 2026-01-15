@@ -1779,45 +1779,45 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `in.isEOF()` returns true if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
             - and the end of the file is reached or the pipe/socket is closed.
     - `File`, derived from `ByteStream`
-        - `size() -> Int`
-        - `getPosition() -> Int`
-        - `setPosition(Int n)` (AKA `seekFromStart()`)
-        - `seek(Int offsetToCurrentPos)`
+        - `file.size() -> Int`
+        - `file.getPosition() -> Int`
+        - `file.setPosition(Int n)` (AKA `file.seekFromStart()`)
+        - `file.seek(Int offsetToCurrentPos)`
             - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
-        - `seekFromEnd(Int distanceToEnd)`
+        - `file.seekFromEnd(Int distanceToEnd)`
             - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
-        - `truncate()` truncates the file at the current position.
-        - `truncate(Int n)` truncates the file at the given position.
-        - `path() -> String`
+        - `file.truncate()` truncates the file at the current position.
+            - `file.truncate(Int n)` truncates the file at the given position.
+        - `file.path() -> String`
     - `NetworkStream`, derived from `ByteStream`
         - for "network" connections (TCP/IP, Bluetooth, infrared, ...).
-        - `connect(...)`
-        - `disconnect()`
-        - `isConnected() -> Bool`
-        - `getRemoteAddress() -> String`
-        - `getLocalAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
-        - `setReadTimeout(TimeSpan)`
-            - `getReadTimeout() -> TimeSpan`
+        - `connection.connect(...)`
+        - `connection.disconnect()`
+        - `connection.isConnected() -> Bool`
+        - `connection.getRemoteAddress() -> String`
+        - `connection.getLocalAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
+        - `connection.setReadTimeout(TimeSpan)`
+            - `connection.getReadTimeout() -> TimeSpan`
     - `TcpStream`, derived from `NetworkStream`
         - for TCP/IP connections.
-        - `shutdownWrite()` sends FIN (half-close), allows further reading.
-        - `setConnectionTimeout(TimeSpan)`
-            - `getConnectionTimeout() -> TimeSpan`
-        - `getRemotePort() -> UInt16`
-        - `getLocalPort() -> UInt16`
-        - `setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
-            - `getNoDelay() -> Bool`
-        - `setKeepAlive(Bool)` prevents connection termination due to inactivity.
-            - `getKeepAlive() -> Bool`
-        - `getIpVersion() -> Int` returns `4` or `6`.
-        - `setReceiveBufferSize(Int bytes)`
-            - `getReceiveBufferSize() -> Int`
-        - `setSendBufferSize(Int bytes)`
-            - `getSendBufferSize() -> Int`
+        - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
+        - `connection.setConnectionTimeout(TimeSpan)`
+            - `connection.getConnectionTimeout() -> TimeSpan`
+        - `connection.getRemotePort() -> UInt16`
+        - `connection.getLocalPort() -> UInt16`
+        - `connection.setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
+            - `connection.getNoDelay() -> Bool`
+        - `connection.setKeepAlive(Bool)` prevents connection termination due to inactivity.
+            - `connection.getKeepAlive() -> Bool`
+        - `connection.getIpVersion() -> Int` returns `4` or `6`.
+        - `connection.setReceiveBufferSize(Int bytes)`
+            - `connection.getReceiveBufferSize() -> Int`
+        - `connection.setSendBufferSize(Int bytes)`
+            - `connection.getSendBufferSize() -> Int`
     - `BluetoothStream`, derived from `NetworkStream`
     - `LocalStream`, drived from `ByteStream`
-        -` path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
-        - `getPeerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
+        - `stream.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
+        - `stream.getPeerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
             - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
     - `UnixDomainSocket`, derived from `LocalStream`
     - `Pipe`, derived from `LocalStream`
