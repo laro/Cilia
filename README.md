@@ -1781,7 +1781,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `File`, derived from `ByteStream`
         - `file.size() -> Int`
         - `file.getPosition() -> Int`
-        - `file.setPosition(Int n)` (AKA `file.seekFromStart()`)
+            - `file.setPosition(Int n)` (AKA `file.seekFromStart()`)
+            - A common position for read and write.
         - `file.seek(Int offsetToCurrentPos)`
             - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
         - `file.seekFromEnd(Int distanceToEnd)`
