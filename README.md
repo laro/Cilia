@@ -2246,6 +2246,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```
     - Accessable only through static _reflection_ (C++26).
     - Internally the compiler generates proxy names, e.g. `Label __anonymousLabel1` and `Button __anonymousButton1`.
+    - These widgets are members of the container, so they don't need to be deleted explicitly.
+        - They are added with `container.addChild(child, ownership=false)` to signal non-ownership.
+        - Other children are added with `container.addChild(child)` or  `container.addChild(child, true)` to signal ownership, i.e. the cild is deleted when the container is deleted.
     - Maybe even
       ```
       class OkDialog : Window {
