@@ -1797,12 +1797,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `connection.isConnected() -> Bool`
         - `connection.remoteAddress() -> String`
         - `connection.localAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
-        - `connection.readTimeout() -> TimeSpan`
-            - `connection.setReadTimeout(TimeSpan)`
+        - `connection.readTimeout() -> Duration`
+            - `connection.setReadTimeout(Duration)`
     - `TcpConnection`, derived from `NetworkConnection`
         - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
-        - `connection.connectionTimeout() -> TimeSpan`
-            - `connection.setConnectionTimeout(TimeSpan)`
+        - `connection.connectionTimeout() -> Duration`
+            - `connection.setConnectionTimeout(Duration)`
         - `connection.remotePort() -> UInt16`
         - `connection.localPort() -> UInt16`
         - `connection.noDelay() -> Bool`
