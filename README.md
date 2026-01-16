@@ -1832,22 +1832,26 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Hierarchy
         - `ByteStream`
             - `File`
-            - `NetworkConnection`
-                - `TcpConnection`
-                - `TLSConnection` / `SSLConnection`
-                - `WebSocketConnection`
-                - `SSHConnection`
-                - `BluetoothConnection`
-                - `ZigbeeConnection`
-            - `LocalConnection`
+            - `MemoryStream` as RAM buffer.
+            - `NetworkStream`
+                - `TCPConnection`
+                    - `TLSConnection` / `SSLConnection`
+                - `SSHStream`
+            - `LocalStream` for interprocess communication.
                 - `UnixDomainSocket`
                 - `Pipe`
-            - `IOHardware`
-                - `SerialConnection` (RS-232/UART)
+            - `DeviceStream`
+                - `SerialConnection` for RS-232/UART.
                 - `USBConnection` for USB bulk transfers.
-                - `SPIConnection` / `I2CConnection` for communication with sensors on microcontrollers.
-            - `MemoryStream`
-        - `Socket` for connectionless protocols like UDP.
+        - `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
+            - `UDPSocket` for UDP over IP.
+            - Communication with sensors on microcontrollers
+                - `I2CDevice` (register read/write cycles)
+                - `SPIDevice` (chip-select-controlled frames)
+                - `CANBusNode`
+            - `BluetoothConnection` Bluetooth RFCOMM / L2CAP
+            - `ZigbeeEndpoint`
+            - `WebSocketConnection` (message frames over TCP)
 
 - Matrix & Vector
     - Geometry
