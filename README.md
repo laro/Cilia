@@ -1838,13 +1838,14 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
                     - `TLSConnection` / `SSLConnection`
                 - `SSHStream`
             - `LocalStream` for interprocess communication.
-                - `UnixDomainSocket`
                 - `Pipe`
+                - `UnixDomainStream` in stream configuration.
             - `DeviceStream`
                 - `SerialConnection` for RS-232/UART.
                 - `USBConnection` for USB bulk transfers.
         - `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
             - `UDPSocket` for UDP over IP.
+            - `UnixDomainSocket` in datagram configuration.
             - Communication with sensors on microcontrollers
                 - `I2CDevice` (register read/write cycles)
                 - `SPIDevice` (chip-select-controlled frames)
