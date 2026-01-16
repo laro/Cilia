@@ -1821,25 +1821,33 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - `connection.setReceiveBufferSize(Int bytes)`
         - `connection.sendBufferSize() -> Int`
             - `connection.setSendBufferSize(Int bytes)`
-    - `BluetoothConnection`, derived from `NetworkConnection`
     - `LocalConnection`, drived from `ByteStream`
         - `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
         - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
             - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
-    - `UnixDomainSocket`, derived from `LocalConnection`
-    - `Pipe`, derived from `LocalConnection`
-    - `TLSConnection` / `SSLConnection` for exncypted TCP connections.
-    - `SSHConnection` for streams running through an SSH tunnel.
-    - `WebSocketConnection`
     - `SerialConnection` (RS-232/UART) 
         - `setBaudRate(Int)`
         - `setParity(Bool)`
         - `setDataBits(Int)`
-    - `USBConnection` for USB bulk transfers.
-    - `SPIConnection` / `I2CConnection` for communication with sensors on microcontrollers.
-    - `ZigbeeConnection`
-    - `MemoryStream`
-    - `Socket` for connectionless protocols like UDP.
+    - Hierarchy
+        - `ByteStream`
+            - `File`
+            - `NetworkConnection`
+                - `TcpConnection`
+                - `TLSConnection` / `SSLConnection`
+                - `WebSocketConnection`
+                - `SSHConnection`
+                - `BluetoothConnection`
+                - `ZigbeeConnection`
+            - `LocalConnection`
+                - `UnixDomainSocket`
+                - `Pipe`
+            - `IOHardware`
+                - `SerialConnection` (RS-232/UART)
+                - `USBConnection` for USB bulk transfers.
+                - `SPIConnection` / `I2CConnection` for communication with sensors on microcontrollers.
+            - `MemoryStream`
+        - `Socket` for connectionless protocols like UDP.
 
 - Matrix & Vector
     - Geometry
