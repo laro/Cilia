@@ -2248,7 +2248,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - Internally the compiler generates proxy names, e.g. `Label __anonymousLabel1` and `Button __anonymousButton1`.
     - These widgets are member variables of the container, so they don't need to be deleted explicitly.
         - They are added with `container.addChild(Widget* child)`, signaling non-ownership.
-        - Other children are added with `container.addChild(Widget+ child)`, using UniquePtr<Widget> to signal ownership, i.e. the cild is deleted when the container is deleted.
+        - Other children are added with `container.addChild(Widget+ child)`, using UniquePtr<Widget> to signal ownership, i.e. the child is deleted when the container is deleted.
         - The container has two arrays:
             - `Array<Widget*> children` to manage all children (e.g. their order),
             - `Array<Widget+> ownedChildren` to manage those children that need to be deleted (in the destructor of the container).
