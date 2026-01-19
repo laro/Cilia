@@ -129,6 +129,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - i.e. the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`), pointer declarator (`*`), or array declarator (`[]`) that appears immediately to its right.
         - `const` as a type qualifier for a reference (`&`) is not allowed,  
           i.e. no ~~`Float const&`~~.
+          `const Float&` is allowed, of course.
         - `const` as a type qualifier for an array declarator (`[]`):  
           `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
         - `const Float[]` would be interpreted as `Array<const Float>`, but that is _not_ allowed (as in C++), as an array with a non-assignable element type has no useful mutation model.
