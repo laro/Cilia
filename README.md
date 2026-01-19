@@ -132,7 +132,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
           `const Float&` is allowed, of course.
         - `const` as a type qualifier for an array declarator (`[]`):  
           `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
-        - `const Float[]` would be interpreted as `Array<const Float>`, but that is _not_ allowed (as in C++), as an array with a non-assignable element type has no useful mutation model.
+        - `const Float[]` would be interpreted as `Array<const Float>`, but this is _not_ allowed, because an array whose element type is non-assignable has no useful mutation model — just as in C++.
         - A `const` static array declarator `const Float[3]` is interpreted as static array of three `const Float`.
 
 - Examples:
