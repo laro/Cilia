@@ -126,11 +126,13 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
       i.e. before the variable name, also for arrays and bit fields.
     - All variables in a multiple-variable declarations have to be of the exact same type.
     - `const` always binds to the right (contrary to C/C++),
-        - i.e. the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`) or pointer declarator (`*`) that appears immediately to its right.
-        - `const` as a type qualifier for a reference (`&`) or array declarator (`[]`) is not allowed.
-        - `const` as a type qualifier for a type specifier with array declarator is interpreted as `const Array`:
-            - A `const` dynamic array declarator `const Float[]` is interpreted as `const Array<Float>`,
-            - a `const` static array declarator `const Float[3]` is interpreted as static array of three `const Float`.
+        - i.e. the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`), pointer declarator (`*`), or array declarator (`[]`) that appears immediately to its right.
+        - `const` as a type qualifier for a reference (`&`) is not allowed,  
+          i.e. no ~~`Float const&`~~.
+        - `const` as a type qualifier for an array declarator (`[]`):  
+          `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
+        - `const Float[]` would be interpreted as `Array<const Float>`, but that is _not_ allowed (as in C++), as an array with a non-assignable element type has no useful mutation model.
+        - A `const` static array declarator `const Float[3]` is interpreted as static array of three `const Float`.
 
 - Examples:
     - `Int i`
