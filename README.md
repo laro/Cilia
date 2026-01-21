@@ -125,14 +125,18 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - The type definition is completely on the left-hand side,  
       i.e. before the variable name, also for arrays and bit fields.
     - All variables in a multiple-variable declarations have to be of the exact same type.
-    - `const` always binds to the right (contrary to C/C++),
-        - i.e. the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`), pointer declarator (`*`), or array declarator (`[]`) that appears immediately to its right.
-        - `const` as a type qualifier for a reference (`&`) is not allowed, i.e. no ~~`Float const&`~~.  
-          `const Float&` is allowed, of course.
-        - `const` as a type qualifier for an array declarator (`[]`):  
-          `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
-        - `const Float[]` would be interpreted as `Array<const Float>`, but this is _not_ allowed, because an array whose element type is non-assignable has no useful mutation model — just as in C++.
-        - A `const` static array declarator `const Float[3]` is interpreted as static array of three `const Float`.
+    - `const` always binds to the right (contrary to C/C++),  
+      `const` binds more strongly than `*` and `&`, but less strongly than `[]`.
+        - So the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`), pointer declarator (`*`) that appears immediately to its right.
+        - `const` as a type qualifier for a reference (`&`) is not allowed, i.e. no ~~`Float const&`~~.
+            - `const Float&` is allowed, of course.
+        - `const` as a type qualifier for an array declarator (`[]`):
+            - `const Float[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
+                - `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`, too.  
+                  Members of a const array are always effectively const anyway. 
+            - It is _not_ possible to say `Array<const Float> arrayOfConstFloat` (it doesn't compile in C++ anyway, because an array whose element type is non-assignable has no useful mutation model).
+            - A `const` static array declarator `const Float[3]` is interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
+            - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
 
 - Examples:
     - `Int i`
