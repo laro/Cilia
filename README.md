@@ -127,14 +127,15 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
     - All variables in a multiple-variable declarations have to be of the exact same type.
     - `const` always binds to the right (contrary to C/C++),  
       `const` binds more strongly than `*` and `&`, but less strongly than `[]`.
-        - So the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`), pointer declarator (`*`) that appears immediately to its right.
+        - So the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`), pointer declarator (`*`) or type specifier with array declarator (`Float[]`, `Float[3]`, or `Float[String]`) that appears immediately to its right.
         - `const` as a type qualifier for a reference (`&`) is not allowed, i.e. no ~~`Float const&`~~.
             - `const Float&` is allowed, of course.
         - `const` as a type qualifier for an array declarator (`[]`):
             - `const Float[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
                 - `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`, too.  
                   Members of a const array are always effectively const anyway. 
-            - It is _not_ possible to say `Array<const Float> arrayOfConstFloat` (it doesn't compile in C++ anyway, because an array whose element type is non-assignable has no useful mutation model).
+            - It is _not_ possible to say `Array<const Float> arrayOfConstFloat` with the array declarator syntax (`[]`).  
+              It doesn't compile in C++ anyway, because an array whose element type is non-assignable has no useful mutation model.
             - A `const` static array declarator `const Float[3]` is interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
             - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
 
