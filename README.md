@@ -134,8 +134,9 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
             - `const Float[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
                 - `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`, too.  
                   Members of a const array are always effectively const anyway. 
-            - It is _not_ possible to say `Array<const Float> arrayOfConstFloat` with the array declarator syntax (`[]`).  
-              It doesn't compile in C++ anyway, because an array whose element type is non-assignable has no useful mutation model.
+                - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float> arrayOfConstFloat`.  
+                  That does not compile in C++ anyway, because an array whose element type is non-assignable has no useful mutation model.  
+                  MSVC: 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.'
             - A `const` static array declarator `const Float[3]` is interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
             - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
 
