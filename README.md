@@ -1131,7 +1131,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
                 - So maybe use something else instead?
                     - `T*̂`, `T*̄`, `T*̇`
                     - `T*^`, `T*+`, `T*.`
-                    - `T^*`, `T+*`
+                    - `T^*`, `T+*`, `T.*`
         - **`makeShared<T>(...)`**,
             - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
             - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
