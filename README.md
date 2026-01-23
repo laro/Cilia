@@ -1129,8 +1129,8 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
                 - A normal pointer `T* pointer` is dereferenced with `*pointer`.
                 - A shared pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
                 - So maybe use something else instead?
-                    - `T*^`, `T*+`, `T*.`
                     - `T*̂`, `T*̄`, `T*̇`
+                    - `T*^`, `T*+`, `T*.`
                     - `T^*`, `T+*`
         - **`makeShared<T>(...)`**,
             - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
