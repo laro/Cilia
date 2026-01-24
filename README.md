@@ -1121,7 +1121,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
         - a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
         - `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
         - `T[0]+` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here)
-            - TODO `UniquePtr<T[]>` seems possible in C++ (it is an "incomplete type"). But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
+            - In C++ `unique_ptr<T[]>` the `T[]` is an "incomplete type". But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
         - **`makeUnique<T>(...) -> T+`**,
             - `ContactInfo+ contactInfoUniquePtr = makeUnique<ContactInfo>()`.
             - `ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`  
