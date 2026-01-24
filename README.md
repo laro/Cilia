@@ -1109,29 +1109,30 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
 - **Short Smart Pointer Syntax**
     - “Make simple things simple” (or at least short to write),  
       encourage use of smart pointers.
+    - Using `T*`, `T^`, `T+`, `T°` (maybe `T.`, `T-`, ...)
+        - Maybe use something else instead?
+            - `T*̂`, `T*̄`, `T*̇` (easy to confuse)
+            - `T*^`, `T*+`, `T*.` (a bit long)
+            - `T^*`, `T+*`, `T.*` (no)
+    - **`Type* pointer`**
+        - the classical C/C++ pointer.
     - **`Type+ pointer`**
         - a "plus pointer",
         - a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
         - `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
         - `T[0]+` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here)
             - TODO `UniquePtr<T[]>` seems possible in C++ (it is an "incomplete type"). But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
-        - **`makeUnique<T>(...)`**,
+        - **`makeUnique<T>(...) -> T+`**,
             - `ContactInfo+ contactInfoUniquePtr = makeUnique<ContactInfo>()`.
             - `ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`  
-              not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (there is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
+              not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (there is no array-to-    single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
+        - Better just **`make<T>(...) -> T+`**, as "unique" is "hard to write".
     - **`Type^ pointer`**
         - a "shared pointer",
         - a pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).
         - `T^` is short for **`SharedPtr<T>`**
         - Inspired by C++/CLI (so its a proven possiblilty), _but_  
            - Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
-            - And there is an inconsistency in its usage:
-                - A normal pointer `T* pointer` is dereferenced with `*pointer`.
-                - A shared pointer `T^ pointer` is dereferenced also with `*pointer` (not `^pointer`).
-                - So maybe use something else instead?
-                    - `T*̂`, `T*̄`, `T*̇`
-                    - `T*^`, `T*+`, `T*.`
-                    - `T^*`, `T+*`, `T.*`
         - **`makeShared<T>(...)`**,
             - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
             - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
@@ -1140,6 +1141,10 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
             - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
             - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
                 - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
+    - **`Type° pointer`**
+        - a "weak pointer",
+        - a pointer to a shared pointer.
+        - `T°` is short for **`WeakPtr<T>`**
 - A classical C/C++ "raw" pointer is still possible, but unsafe.
     - `ContactInfo* contactInfoPtr = new ContactInfo`  
       `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
