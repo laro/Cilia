@@ -1153,10 +1153,6 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
         - ```
           weakPtrWindow?.close();
           ```
-          or
-          ```
-          weakPtrWindow?->close();
-          ```
 - A classical C/C++ "raw" pointer is still possible, but unsafe.
     - `ContactInfo* contactInfoPtr = new ContactInfo`  
       `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
