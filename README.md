@@ -1109,7 +1109,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
 - **Short Smart Pointer Syntax**
     - “Make simple things simple” (or at least short to write),  
       encourage use of smart pointers.
-    - Using `T*`, `T^`, `T+`, `T°` (maybe `T.`, `T-`, ...)
+    - Using `T*`, `T^`, `T+`, `T-` (maybe `T°`, `T.`, `T-`, ...)
         - Maybe use something else instead?
             - `T*̂`, `T*̄`, `T*̇` (easy to confuse)
             - `T*^`, `T*+`, `T*.` (a bit long)
@@ -1144,15 +1144,16 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
     - **`Type° pointer`**
         - a "weak pointer",
         - a pointer to a shared pointer.
-        - `T°` is short for **`WeakPtr<T>`**
-        - ```
-          if (Window^ window = weakPtrWindow.lock()) {
-              window->close();
+        - `T-` is short for **`WeakPtr<T>`**
+        - So with ```T- weakPointerToWindow = sharedPointerToWindow```
+          instead of
+          ```
+          if (Window^ window = weakPointerToWindow.lock()) {
+              window->close()
           }
           ```
-        - ```
-          weakPtrWindow?.close();
-          ```
+          you can write  
+          ```weakPointerToWindow?.close()```
 - A classical C/C++ "raw" pointer is still possible, but unsafe.
     - `ContactInfo* contactInfoPtr = new ContactInfo`  
       `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
@@ -2235,6 +2236,12 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
            - ```String name = contactInfo?.name ?? ""```  
               translates to  
               ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");```
+    - Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`,  
+      but as pointers can be null in itself:
+        - `Optional<T*>` internally is just a `T*`,
+        - `Optional<T^>` internally is just a `T^`,
+        - `Optional<T+>` internally is just a `T+`,
+        - `Optional<T->` internally is just a `T-`.
 
 - Anonymous Members
     - You write
