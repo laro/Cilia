@@ -413,8 +413,8 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
     - ```
       try {
           // ...
-      } catch Exception {
-          // ...
+      } catch Exception ex {
+          print(ex)
       } catch {
           print("An unknown exception has occured")
       }
