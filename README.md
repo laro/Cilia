@@ -707,7 +707,7 @@ Similar as in Java, C#, Swift and Rust.
           ...
       }
       ```
-    - TODO Having to write `type` (`typename` in C++) before dependent names in templates is quite annoying, but seems hard/impossible to change/fix.
+    - Having to write `typename` (in C++) before dependent names in templates is quite annoying. It should possible to omit with two-pass compilation.
 - **Function** templates
     - _Automatic_ function templates
         - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template. This is like abbreviated function templates in C++ 20, only ommitting the `auto` keyword.
