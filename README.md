@@ -2214,6 +2214,19 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - ```Bool isJpeg = name?.endsWith(".jpeg") ?? false```  
           translates to  
           ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false);```
+        - ```Int? len = pointerToWindow?.title()?.length()```  
+          translates to  
+          ```
+          Optional<Int> len = (
+              (pointerToWindow ?
+                  Optional((*pointerToWindow).title())
+                  :
+                  NullOpt) ?
+                      Optional((*(pointerToWindow)).title().length())
+                      :
+                      NullOpt
+          );
+          ```
     - Should work for `Optional<T>` and  `T*`, `T^`, `T+`, `T-`
         - With `ContactInfo* contactInfo = ...`
             - ```String? name = contactInfo?.name```  
