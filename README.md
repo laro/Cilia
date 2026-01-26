@@ -120,8 +120,10 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 ## Variable Declaration
 `Int i` as variable declaration, very much as in C/C++ (and Java, C#).
-- `TypeName variableName`
-- Some simplifications and restrictions:
+```
+TypeName variableName
+```
+With some simplifications and restrictions:
     - The type definition is completely on the left-hand side,  
       i.e. before the variable name, also for arrays and bit fields.
     - All variables in a multiple-variable declarations have to be of the exact same type.
