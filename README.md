@@ -213,12 +213,6 @@ TypeName variableName
       func clear()
   }
   ```
-- const member functions
-  ```
-  class MyArrayOfInt {
-      const func average() -> Int
-  }
-  ```
 - `public` as default
     - Default access specifier is `public`.
     - Default inheritance access specifier is also `public`:
@@ -251,14 +245,13 @@ func multiplyAdd(Float x, y, Int z) -> Float {
 - **Lambdas**
     - `[](Int i) -> Float { i * 3.14 }`  
       as in C++
-- Const member functions:
+- **Const** member functions:
   ```
   class MyArrayOfInt {
       const func size() -> Int {
           return size_;
       }
   protected:
-      Int* numbers_ = NullPtr
       Int size_ = 0
   }
   ```
