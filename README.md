@@ -570,9 +570,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           Second line
           """
           ```
-        - Removes indentation as in the last line
-        - Removes first newline (if the opening `"""` is on a separate line)
-        - Removes last newline (if the closing `"""` is on a separate line)
+        - If the opening `"""` is on a separate line
+            - removes first newline.
+        - If the closing `"""` is on a separate line
+            - removes last newline,
+            - removes indentation as in the last line,
         - Similar to Swift, Julia, late Java, ...
         - Also as single line string literal with very few restrictions, good for RegEx
             - `"""(.* )whatever(.*)"""`
