@@ -571,7 +571,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           Second line
           """
           ```
-        - Similar to Swift, Julia, late Java, ...
+        - Similar to Swift, Julia, Java 15, C# 11, ...
         - Also as single line string literal with very few restrictions, good for RegEx
             - `"""(.* )whatever(.*)"""`
         - Opening Delimiter Rules
