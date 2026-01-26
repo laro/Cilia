@@ -2210,17 +2210,17 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       ```Optional<String> name = ...```
         - ```Int? len = name?.length()```  
           translates to  
-          ```Optional<Int> len = (name ? Optional((*name).length()) : NullOpt;```
+          ```Optional<Int> len = (name ? Optional((*name).length()) : NullOpt```
         - ```Int len = name?.length() ?? 0```  
           translates to  
-          ```Int len = (name ? Optional((*name).length()) : NullOpt).valueOr(0);```
+          ```Int len = (name ? Optional((*name).length()) : NullOpt).valueOr(0)```
             - ~~```Int len = name?.length()```~~ is not allowed, i.e. no implicit `.value()`, that could throw an exception.
         - ```Bool? isJpeg = name?.endsWith(".jpeg")```  
           translates to  
-          ```Optional<Bool> isJpeg = name ? Optional((*name).endsWith(".jpeg")) : NullOpt;```
+          ```Optional<Bool> isJpeg = name ? Optional((*name).endsWith(".jpeg")) : NullOpt```
         - ```Bool isJpeg = name?.endsWith(".jpeg") ?? false```  
           translates to  
-          ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false);```
+          ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false)```
         - ```Int? len = pointerToWindow?.title()?.length()```  
           translates to  
           ```
