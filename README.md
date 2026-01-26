@@ -2236,12 +2236,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
            - ```String name = contactInfo?.name ?? ""```  
               translates to  
               ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");```
-    - Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`,  
-      but as pointers can be null in itself:
-        - `Optional<T*>` internally is just a `T*`,
-        - `Optional<T^>` internally is just a `T^`,
-        - `Optional<T+>` internally is just a `T+`,
-        - `Optional<T->` internally is just a `T-`.
+    - Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`.
+        - `Optional<>` for pointers:
+            - As a pointer can be null in itself:
+                - `Optional<T*>` internally is just a `T*`,
+                - `Optional<T^>` internally is just a `T^`,
+                - `Optional<T+>` internally is just a `T+`,
+                - `Optional<T->` internally is just a `T-`.
+            - So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.
+            - This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>`.
 
 - Anonymous Members
     - You write
