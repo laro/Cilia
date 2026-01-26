@@ -2198,56 +2198,30 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `#endif`
       
 - Optional Chaining
-    - ```
-      String? name = ...
-      ```
-      translates to
+    - ```String? name = ...```  
+      translates to  
       ```Optional<String> name = ...```
-        - ```
-          Int? len = name?.length()
-          ```
-          translates to
-          ```
-          Optional<Int> len = (name ? Optional((*name).length()) : NullOpt;
-          ```
-        - ```
-          Int len = name?.length() ?? 0
-          ```
-          translates to
-          ```
-          Int len = (name ? Optional((*name).length()) : NullOpt).valueOr(0);
-          ```
+        - ```Int? len = name?.length()```  
+          translates to  
+          ```Optional<Int> len = (name ? Optional((*name).length()) : NullOpt;```
+        - ```Int len = name?.length() ?? 0```  
+          translates to  
+          ```Int len = (name ? Optional((*name).length()) : NullOpt).valueOr(0);```
             - ~~```Int len = name?.length()```~~ is not allowed, i.e. no implicit `.value()`, that could throw an exception.
-        - ```
-          Bool? isJpeg = name?.endsWith(".jpeg")
-          ```
-          translates to
-          ```
-          Optional<Bool> isJpeg = name ? Optional((*name).endsWith(".jpeg")) : NullOpt;
-          ```
-        - ```
-          Bool isJpeg = name?.endsWith(".jpeg") ?? false
-          ```
-          translates to
-          ```
-          Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false);
-          ```
+        - ```Bool? isJpeg = name?.endsWith(".jpeg")```  
+          translates to  
+          ```Optional<Bool> isJpeg = name ? Optional((*name).endsWith(".jpeg")) : NullOpt;```
+        - ```Bool isJpeg = name?.endsWith(".jpeg") ?? false```  
+          translates to  
+          ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false);```
     - Should work for `Optional<T>` and  `T*`, `T^`, `T+`, `T-`
         - With `ContactInfo* contactInfo = ...`
-            - ```
-              String? name = contactInfo?.name
-              ```
-              translates to
-              ```
-              Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt);
-              ```
-           - ```
-              String name = contactInfo?.name ?? ""
-              ```
-              translates to
-              ```
-              Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");
-              ```
+            - ```String? name = contactInfo?.name```  
+              translates to  
+              ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt);```
+           - ```String name = contactInfo?.name ?? ""```  
+              translates to  
+              ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");```
 
 - Anonymous Members
     - You write
