@@ -586,7 +586,10 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - Whitespace & Line Handling
             - Trailing Whitespace: Whitespace at the end of lines is preserved.
             - Blank Lines: Lines containing only whitespace that is shorter than the indentation guide are treated as empty lines (\n).
-  
+        - To include """ within the string content, the literal can be opened and closed with more than three double-quotes (e.g., """").
+            - The closing delimiter must match the number of quotes used for the opening delimiter.
+            - This eliminates the need for escape backslashes within the literal, ensuring truly "raw" content.
+
     - Interpolated Strings
         - `f"M[{i},{j}] = {M[i, j]}"`
             - like f-strings in Python.
