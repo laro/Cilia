@@ -2210,7 +2210,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           ```
           translates to
           ```
-          Optional<Int> fileExtension = (name ? Optional((*name).length()) : NullOpt;
+          Optional<Int> len = (name ? Optional((*name).length()) : NullOpt;
           ```
         - ```
           Int len = name?.length() ?? 0
