@@ -2218,15 +2218,15 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - ```Int? len = pointerToWindow?.title()?.length()```  
           translates to  
           ```
-          Optional<Int> len = (
-              (pointerToWindow ?
-                  Optional((*pointerToWindow).title())
-                  :
-                  NullOpt) ?
-                      Optional((*(pointerToWindow)).title().length())
-                      :
-                      NullOpt
-          );
+          Optional<String> __tmpTitle = pointerToWindow ?
+              Optional((*pointerToWindow).title())
+              :
+              NullOpt
+          
+          Optional<Int> len = __tmpTitle ?
+              Optional((*__tmpTitle).length())
+              :
+              NullOpt
           ```
     - Should work for `Optional<T>` and  `T*`, `T^`, `T+`, `T-`
         - With `ContactInfo* contactInfo = ...`
