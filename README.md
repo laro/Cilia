@@ -564,20 +564,35 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
             - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
       
     - Multiline String Literal
+        - Use triple double-quotes `"""` to start and end the literal.
         - ```
           """
           First line
           Second line
           """
           ```
-        - If the opening `"""` is on a separate line
-            - removes first newline.
-        - If the closing `"""` is on a separate line
-            - removes last newline,
-            - removes indentation as in the last line,
+        - If the opening `"""` is on a separate line, then
+            - the first newline is removed.
+        - If the closing `"""` is on a separate line, then
+            - the newline and indentation in front of the bottom `"""` is removed,
+            - the indentation as in front of the bottom `"""` is removed in all lines.
         - Similar to Swift, Julia, late Java, ...
         - Also as single line string literal with very few restrictions, good for RegEx
             - `"""(.* )whatever(.*)"""`
+        
+        - Opening Delimiter Rules
+            - If the opening `"""` is followed by a newline, that newline is not part of the string content.
+            - This allows the content to start cleanly on the next line.
+        - Closing Delimiter & Indentation (Strip-Logic)
+            - The position of the closing `"""` defines the indentation guide.
+            - If the closing `"""` is on its own line:  
+                - The newline preceding it is removed from the content.
+                - The exact sequence of whitespace (spaces/tabs) before the closing `"""` is treated as a "prefix" and is stripped from every line of the string.
+            - Indentation Safety: It is a compile-time error if any non-empty line begins with less indentation than the closing delimiter.
+        - Whitespace & Line Handling
+            - Trailing Whitespace: Whitespace at the end of lines is preserved.
+            - Blank Lines: Lines containing only whitespace that is shorter than the indentation guide are treated as empty lines (\n).
+  
     - Interpolated Strings
         - `f"M[{i},{j}] = {M[i, j]}"`
             - like f-strings in Python.
