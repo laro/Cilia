@@ -571,17 +571,11 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
           Second line
           """
           ```
-        - If the opening `"""` is on a separate line, then
-            - the first newline is removed.
-        - If the closing `"""` is on a separate line, then
-            - the newline and indentation in front of the bottom `"""` is removed,
-            - the indentation as in front of the bottom `"""` is removed in all lines.
         - Similar to Swift, Julia, late Java, ...
         - Also as single line string literal with very few restrictions, good for RegEx
             - `"""(.* )whatever(.*)"""`
-        
         - Opening Delimiter Rules
-            - If the opening `"""` is followed by a newline, that newline is not part of the string content.
+            - If the opening `"""` is followed by a newline, that newline is _not_ part of the string content.
             - This allows the content to start cleanly on the next line.
         - Closing Delimiter & Indentation (Strip-Logic)
             - The position of the closing `"""` defines the indentation guide.
