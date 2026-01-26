@@ -2202,9 +2202,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       String? name = ...
       ```
       translates to
-      ```
-      Optional<String> name = ...
-      ```
+      ```Optional<String> name = ...```
         - ```
           Int? len = name?.length()
           ```
@@ -2219,6 +2217,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
           ```
           Int len = (name ? Optional((*name).length()) : NullOpt).valueOr(0);
           ```
+            - ~~```Int len = name?.length()```~~ is not allowed, i.e. no implicit `.value()`, that could throw an exception.
         - ```
           Bool? isJpeg = name?.endsWith(".jpeg")
           ```
