@@ -153,19 +153,19 @@ TypeName variableName
     - So the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`), pointer declarator (`*`), or type specifier with array declarator (`Float[]`, `Float[3]`, or `Float[String]`) that appears immediately to its right.
     - `const` as a type qualifier for a reference (`&`) is not allowed, i.e. no ~~`Float const&`~~.
         - `const Float&` is allowed, of course.
+    - Examples:
+        - `const Float* pointerToConstantFloat`
+        - `const Float const* constantPointerToConstantFloat`
+        - `Float const* constantPointerToMutableFloat`
     - `const` as a type qualifier for an array declarator (`[]`):
         - `const Float[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
             - `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`, too.  
               Members of a const array are always effectively const anyway. 
             - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float> arrayOfConstFloat`.  
-              That does not compile in C++ anyway, because an array whose element type is non-assignable has no useful mutation model.  
-              MSVC: 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.'
+              That does not compile in C++ anyway, because an array whose element type is non-assignable has no useful mutation model.
+              (MSVC says 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.')
         - A `const` static array declarator `const Float[3]` is interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
         - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
-    - Examples:
-        - `const Float* pointerToConstantFloat`
-        - `const Float const* constantPointerToConstantFloat`
-        - `Float const* constantPointerToMutableFloat`
 - **Type inference** with `var` / `const`:
     - `var i = 3` instead of ~~`auto i = 3;`~~
     - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
