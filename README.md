@@ -1268,19 +1268,19 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
     - Actually this is how to handle pointer to array of `Int` "properly":  
       ```
       Int[3]+ arrayPtr = new Int[3]
-      *arrayPtr[0] = 0
-      *arrayPtr[1] = 0
-      *arrayPtr[2] = 0
-      *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+      (*arrayPtr)[0] = 0
+      (*arrayPtr)[1] = 0
+      (*arrayPtr)[2] = 0
+      (*arrayPtr)[3] = 0  // Compilation error, due to compile time bounds check
       ```
         - But raw pointer access is still `unsafe`:  
           ```
           unsafe {
               Int[3]* arrayPtr = (new Int[3]).release()
-              *arrayPtr[0] = 0
-              *arrayPtr[1] = 0
-              *arrayPtr[2] = 0
-              *arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+              (*arrayPtr)[0] = 0
+              (*arrayPtr)[1] = 0
+              (*arrayPtr)[2] = 0
+              (*arrayPtr)[3] = 0  // Compilation error, due to compile time bounds check
               delete[] arrayPtr
           }
           ```
