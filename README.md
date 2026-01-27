@@ -1137,7 +1137,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
     - **`Type* pointer`**
         - the classical, raw C/C++ pointer.
     - **`Type+ pointer`**
-        - a "unique pointer" ("plus pointer", "pointer plus ownership"),
+        - a "unique pointer" ("pointer plus ownership"),
         - a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
         - `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
         - `T[0]+` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here)
