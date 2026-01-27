@@ -1129,7 +1129,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
 - **Short Smart Pointer Syntax**
     - “Make simple things simple” (or at least short to write),  
       encourage use of smart pointers.
-    - Using `T*`, `T^`, `T+`, `T-` (maybe `T°`, `T.`, `T-`, ...)
+    - Using `T*`, `T^`, `T+`, `T-` (maybe `T°`, `T.`, ...)
         - Maybe use something else instead?
             - `T*̂`, `T*̄`, `T*̇` (easy to confuse)
             - `T*^`, `T*+`, `T*.` (a bit long)
