@@ -1177,7 +1177,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
     - `ContactInfo* contactInfoPtr = new ContactInfo`  
       `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
     - `ContactInfo* contactInfoPtr = new ContactInfo[10]`  
-      `delete[] contactInfoPtr` (you need to distinguish single-element- and array-pointers yourself)
+      `delete[0] contactInfoPtr` (you need to distinguish single-element- and array-pointers yourself)
 - Redefine `T^` and `T+` for special cases / **interoperability with other languages**:
     - `T^` is defined via type traits `SharedPtrType`,  
         - For C++/Cilia classes `T^` is `SharedPtr<T>`:
