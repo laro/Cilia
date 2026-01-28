@@ -784,13 +784,25 @@ Similar as in Java, C#, Swift and Rust.
       }
       ```
 - Template **type alias** with `using` (not ~~`typedef`~~)
-    - `using<type T> T::InParameterType = const T&`
+    - ```
+      extension<type T> T {
+          InParameterType = const T&
+      }
+      ```
 - Template static constants as type traits
     - ```
-      const<type T> Bool          T::IsFloatingPoint = False
-      const         Bool    Float32::IsFloatingPoint = True
-      const         Bool    Float64::IsFloatingPoint = True
-      const<type T> Bool Complex<T>::IsFloatingPoint = T::IsFloatingPoint
+      extension<type T> T {
+          Bool IsFloatingPoint = False
+      }
+      extension Float32 {
+          Bool IsFloatingPoint = True
+      }
+      extension Float64 {
+          Bool IsFloatingPoint = True
+      }
+      extension<type T> Complex<T> {
+          Bool IsFloatingPoint = T::IsFloatingPoint
+      }
       ```
 
 
@@ -887,27 +899,33 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - The rule of thumb is:
         - Objects that are POD (Plain Old Data, i.e. with no pointers) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes on 64 bit platforms) are passed by value.
         - Larger objects (or non-POD) are passed by reference.
-    - So as general default use _const reference_,
-        - `using<type T> T::InParameterType = const T&`  
+    - So, as general default, use _const reference_,
+        - ```
+          extension<type T> T {
+              InParameterType = const T&
+          }
+          ```
     - and use a "list of exceptions" for the "const _value_ types".
         - ```
-          using       Bool::InParameterType = const Bool
-          using       Int8::InParameterType = const Int8
-          using      Int16::InParameterType = const Int16
-          using      Int32::InParameterType = const Int32
-          using      Int64::InParameterType = const Int64
-          ...
-          using     UInt64::InParameterType = const UInt64
-          using    Float32::InParameterType = const Float32
-          using    Float64::InParameterType = const Float64
-          using StringView::InParameterType = const StringView
-          using  ArrayView::InParameterType = const ArrayView
+          extension       Bool { InParameterType = const Bool }
+          extension       Int8 { InParameterType = const Int8 }
+          extension      Int16 { InParameterType = const Int16 }
+          extension      Int32 { InParameterType = const Int32 }
+          extension      Int64 { InParameterType = const Int64 }
+          extension      UInt8 { InParameterType = const UInt8 }
+          extension     UInt16 { InParameterType = const UInt16 }
+          extension     UInt32 { InParameterType = const UInt32 }
+          extension     UInt64 { InParameterType = const UInt64 }
+          extension    Float32 { InParameterType = const Float32 }
+          extension    Float64 { InParameterType = const Float64 }
+          extension StringView { InParameterType = const StringView }
+          extension  ArrayView { InParameterType = const ArrayView }
           ...
           ```
-        - `using<type T> Complex<T>::InParameterType = T::InParameterType`
+        - `extension<type T> Complex<T> { InParameterType = T::InParameterType }`
             - A generic rule: `Complex<T>` is passed the same way as `T`,
             - could be further refined/corrected with  
-              `using Complex<Float128>::InParameterType = const Complex<Float128>&`  
+              `extension Complex<Float128> { InParameterType = const Complex<Float128>& }`  
               as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 bytes (so pass by value would be the default).
         - This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
 - Special **trick for types with views**
