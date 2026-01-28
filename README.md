@@ -899,19 +899,19 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
           ```
     - and use a "list of exceptions" for the "const _value_ types".
         - ```
-          extension       Bool { InParameterType = const Bool }
-          extension       Int8 { InParameterType = const Int8 }
-          extension      Int16 { InParameterType = const Int16 }
-          extension      Int32 { InParameterType = const Int32 }
-          extension      Int64 { InParameterType = const Int64 }
-          extension      UInt8 { InParameterType = const UInt8 }
-          extension     UInt16 { InParameterType = const UInt16 }
-          extension     UInt32 { InParameterType = const UInt32 }
-          extension     UInt64 { InParameterType = const UInt64 }
-          extension    Float32 { InParameterType = const Float32 }
-          extension    Float64 { InParameterType = const Float64 }
-          extension StringView { InParameterType = const StringView }
-          extension  ArrayView { InParameterType = const ArrayView }
+          extension     Bool { InParameterType = const Bool }
+          extension     Int8 { InParameterType = const Int8 }
+          extension    Int16 { InParameterType = const Int16 }
+          extension    Int32 { InParameterType = const Int32 }
+          extension    Int64 { InParameterType = const Int64 }
+          extension    UInt8 { InParameterType = const UInt8 }
+          extension   UInt16 { InParameterType = const UInt16 }
+          extension   UInt32 { InParameterType = const UInt32 }
+          extension   UInt64 { InParameterType = const UInt64 }
+          extension  Float32 { InParameterType = const Float32 }
+          extension  Float64 { InParameterType = const Float64 }
+          extension  std::string_view { InParameterType = const std::string_view }
+          extension std::span<type T> { InParameterType = const std::span<T> }
           ...
           ```
         - `extension<type T> Complex<T> { InParameterType = T::InParameterType }`
