@@ -1136,7 +1136,7 @@ Extensions are defined using the `extension` keyword followed by the type name a
       ```
     - **Functions**  
       ```cpp
-      extension Array {
+      extension std::vector<type T> {
           // Alias for a specific signature
           using func pushBack(String) = push_back(String)
           
@@ -1147,17 +1147,17 @@ Extensions are defined using the `extension` keyword followed by the type name a
     - **Types**  
         - Define member types or traits externally.
         - ```cpp
-          extension StringView {
-              using InParameterType = const StringView
+          extension std::string_view {
+              using InParameterType = const std::string_view // Pass by value
           }
           ```
 - Static constants, typically for type traits
   ```cpp
   extension Float32 {
-      const Bool IsFloatingPoint = True
+      static const Bool IsFloatingPoint = True
   }
   extension Float64 {
-      const Bool IsFloatingPoint = True
+      static const Bool IsFloatingPoint = True
   }
   ```
 - Static variablers
