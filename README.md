@@ -791,18 +791,10 @@ Similar as in Java, C#, Swift and Rust.
       ```
 - Template static constants as type traits
     - ```
-      extension<type T> T {
-          Bool IsFloatingPoint = False
-      }
-      extension Float32 {
-          Bool IsFloatingPoint = True
-      }
-      extension Float64 {
-          Bool IsFloatingPoint = True
-      }
-      extension<type T> Complex<T> {
-          Bool IsFloatingPoint = T::IsFloatingPoint
-      }
+      extension<type T>          T { Bool IsFloatingPoint = False }
+      extension            Float32 { Bool IsFloatingPoint = True }
+      extension            Float64 { Bool IsFloatingPoint = True }
+      extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
       ```
 
 
