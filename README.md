@@ -786,7 +786,7 @@ Similar as in Java, C#, Swift and Rust.
 - Template **type alias** with `using` (not ~~`typedef`~~)
     - ```
       extension<type T> T {
-          InParameterType = const T&
+          using InParameterType = const T&
       }
       ```
 - Template static constants as type traits
