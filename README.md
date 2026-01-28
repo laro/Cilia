@@ -1223,15 +1223,16 @@ Extensions are defined using the `extension` keyword followed by the type name a
     - **`Type- pointer`**
         - a "weak pointer", a pointer to a shared pointer.
         - `T-` is short for **`WeakPtr<T>`**
-        - So with ```T- weakPointerToWindow = sharedPointerToWindow```
+        - So with  
+          ```T- weakPointerToWindow = sharedPointerToWindow```
+          you can write  
+          ```weakPointerToWindow?.close()```
           instead of
           ```
           if (Window^ window = weakPointerToWindow.lock()) {
               window->close()
           }
           ```
-          you can write  
-          ```weakPointerToWindow?.close()```
 - A classical C/C++ "raw" pointer is still possible, but unsafe.
     - `ContactInfo* contactInfoPtr = new ContactInfo`  
       `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
