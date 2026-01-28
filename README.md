@@ -1099,30 +1099,79 @@ Create an alias with `using`, for:
 ## Type Extension
 To add "member like" types, functions/methods, constants (and maybe static variables) to "third party" classes/types.  
 In case of conflicts, in-class definitions (inside the class) have priority (and a warning is issued).
+Extensions are defined using the `extension` keyword followed by the type name and a block `{}`.
 - **Extension methods**
-    - Can be called like normal member functions, but they but do not have access to private or protected members themselves.
+    - Can be called like normal member functions (with standard dot-notation), but they but do not have access to private or protected members themselves.
+    - Inside an extension, `this` refers to the instance itself.
     - Also possible for basic/arithmetic types, e.g.:  
-      `Int i`  
-      `i.toString()`  
-      based on  
-      `func Int::toString() -> String { ... }`  // as in Kotlin
+      ```cpp
+      extension Int {
+          func toString() -> String { 
+              // Logic to convert Int to String
+          }
+      }
+     
+      // Usage:
+      Int i = 10
+      i.toString()
+      ```
 - **Externally defined alias** (with `using`) for members:
+    - Useful for adapting APIs or providing more descriptive names.
     - **Variables**  
-      `using var Vector2::x = Vector2::data[0]`  
-      `using var Vector2::y = Vector2::data[1]`  
+      ```cpp
+      extension Vector2 {
+          using var x = data[0]
+          using var y = data[1]
+      }
+      ```
     - **Functions**  
-      `using func Array::pushBack(String) = Array::push_back(String)` to alias the function `push_back(String)`.  
-      `using func Array::pushBack = Array::push_back` to alias _all_ overloads of the function `g`.
+      ```cpp
+      extension Array {
+          // Alias for a specific signature
+          using func pushBack(String) = push_back(String)
+          
+          // Alias for all overloads of 'push_back'
+          using func append = push_back
+        }
+        ```
     - **Types**  
-      `using StringView::InParameterType = const StringView`
+        - Define member types or traits externally.
+        - ```cpp
+          extension StringView {
+              using InParameterType = const StringView
+          }
+          ```
 - Static constants, typically for type traits
+  ```cpp
+  extension Float32 {
+      const Bool IsFloatingPoint = True
+  }
+  extension Float64 {
+      const Bool IsFloatingPoint = True
+  }
   ```
-  const Bool Float32::IsFloatingPoint = True
-  const Bool Float64::IsFloatingPoint = True
-  ```
-    - TODO: Allow external static _variables_ (i.e. mutable), too?
-        - Why not. But for what would it be useful?
-        - `Int ContactInfo::numOfInstances = 0`
+- Static variablers
+    - Why not?
+    - ```cpp
+      extension ContactInfo {
+          // External mutable static variable
+          static Int numOfCallsToExtensionFunctionX = 0
+      }
+      ```
+- Generic Extensions (e.g., for Arrays)
+    - Extensions can be parameterized to support generic types and native arrays.
+    - ```cpp
+      extension <type T, Int N> T[N] {
+          using ValueType = T
+          
+          func length() -> Int {
+              return N
+          }
+          
+          func begin() -> T* { return &this[0] }
+          func end()   -> T* { return &this[N] }
+      }
+      ---
 
 
 ## (Smart) Pointers
