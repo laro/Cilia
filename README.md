@@ -1171,7 +1171,7 @@ Extensions are defined using the `extension` keyword followed by the type name a
           func begin() -> T* { return &this[0] }
           func end()   -> T* { return &this[N] }
       }
-      ---
+      ```
 
 
 ## (Smart) Pointers
