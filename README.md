@@ -1224,9 +1224,9 @@ Extensions are defined using the `extension` keyword followed by the type name a
         - a "weak pointer", a pointer to a shared pointer.
         - `T-` is short for **`WeakPtr<T>`**
         - So with  
-          ```T- weakPointerToWindow = sharedPointerToWindow```
+          `T- weakPointerToWindow = sharedPointerToWindow`   
           you can write  
-          ```weakPointerToWindow?.close()```
+          `weakPointerToWindow?.close()`  
           instead of
           ```
           if (Window^ window = weakPointerToWindow.lock()) {
