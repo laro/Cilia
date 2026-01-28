@@ -938,7 +938,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - `Array` - `ArrayView`
         - `Vector` - `VectorView`
     - As example, with `String`/`StringView`:
-        - `using String::InParameterType = const StringView`  
+        - `extension String { InParameterType = const StringView }`  
           i.e. **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
         - So all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
             - a `String` (as that can implicitly be converted to `StringView`) 
@@ -966,31 +966,31 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
             - `MDArray` - `MDArrayBasicView`
     - Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
         - ```
-          using String::InParameterType = const StringView
-          using  Array::InParameterType = const ArrayView
-          using Vector::InParameterType = const VectorView
+          extension String { InParameterType = const StringView }
+          extension  Array { InParameterType = const ArrayView }
+          extension Vector { InParameterType = const VectorView }
           ```
     - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
         - ```
-          using  Matrix::InParameterType = const MatrixBasicView&
-          using   Image::InParameterType = const ImageBasicView&
-          using MDArray::InParameterType = const MDArrayBasicView&
+          extension  Matrix { InParameterType = const MatrixBasicView& }
+          extension   Image { InParameterType = const ImageBasicView& }
+          extension MDArray { InParameterType = const MDArrayBasicView& }
           ```
         - (Which you don't have to write down explicitly, because `const&` simply is the standard for user defined types.)
 - Type trait **`CopyParameterType`**
     - of a type `T` typically simply is `T`  
-      `using<type T> T::CopyParameterType = T`  
+      `extension<type T> T { CopyParameterType = T }`  
     - but for `View`-types it is the corresponding "full" type:
       ```
-      using       StringView::CopyParameterType = String
-      using        ArrayView::CopyParameterType = Array
-      using       VectorView::CopyParameterType = Vector
-      using       MatrixView::CopyParameterType = Matrix
-      using  MatrixBasicView::CopyParameterType = Matrix
-      using        ImageView::CopyParameterType = Image
-      using   ImageBasicView::CopyParameterType = Image
-      using      MDArrayView::CopyParameterType = MDArray
-      using MDArrayBasicView::CopyParameterType = MDArray
+      extension       StringView { CopyParameterType = String }
+      extension        ArrayView { CopyParameterType = Array }
+      extension       VectorView { CopyParameterType = Vector }
+      extension       MatrixView { CopyParameterType = Matrix }
+      extension  MatrixBasicView { CopyParameterType = Matrix }
+      extension        ImageView { CopyParameterType = Image }
+      extension   ImageBasicView { CopyParameterType = Image }
+      extension      MDArrayView { CopyParameterType = MDArray }
+      extension MDArrayBasicView { CopyParameterType = MDArray }
       ```
     - The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
     - Example:
@@ -1003,17 +1003,17 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 
 ## Aliasing
 Create an alias with `using`, for:
-- Member **variables**  
+- Member **variable** alias  
   `using var x = data[0]`  
   `using Int y = data[1]`  
   `using T   z = data[2]`
     - Not quite possible in C++.
         - With `T& z = data[2]` unfortunately memory is created for the reference (the pointer).
         - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
-- Member **functions**
+- Member **function** alias
     - `using func f(String) = g(String)` to alias the function `g(String)`.
     - `using func f = g` to alias _all_ overloads of the function `g`.
-- **Types**
+- **Type** alias in a class
     - `using InParameterType = const StringView`  
       (no ~~`typedef`~~)
 
