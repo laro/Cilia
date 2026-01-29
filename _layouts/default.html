@@ -9,10 +9,24 @@
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     {% include head-custom.html %}
   </head>
+  
   <body>
     <nav>
       <a href="/">Start</a>
       <a href="/about/">Über</a>
+      <ul>
+        {% assign pages = site.pages
+          | where_exp: "p", "p.extname == '.md'"
+          | sort: "order" %}
+   
+        {% for p in pages %}
+          {% if p.title %}
+            <li>
+              <a href="{{ p.url }}">{{ p.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
     </nav>
 
     <div class="container-lg px-3 my-5 markdown-body">
