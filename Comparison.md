@@ -1,3 +1,9 @@
+---
+title: Comparison
+permalink: /comparison/
+order: 2
+---
+
 ## Comparison with C++, Cpp2, Carbon, Rust, Swift, and Kotlin
 The follwing comparison aims to show the _exact_ equivalent of the [Cilia example](README.md#by-example):
 - **C++**

@@ -1,3 +1,9 @@
+---
+title: C++ Successor Syntax
+permalink: /cpp-successor-syntax/
+order: 3
+---
+
 ## C++ "Successor" Language / Syntax
 Cilia is similar to
 - [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront),

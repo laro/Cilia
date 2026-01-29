@@ -11,18 +11,16 @@
   </head>
 
   <body>
-    <nav>
+    <!--nav>
       <ul>
         {% for item in site.data.menu %}
           <li>
-            <a href="{{ item.url }}">{{ item.title }}</a>
+            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
           </li>
         {% endfor %}
       </ul>
-    </nav>
-    <!--nav>
-      <a href="/">Start</a>
-      <a href="/about/">Über</a>
+    </nav-->
+    <nav>
       <ul>
         {% assign pages = site.pages
           | where_exp: "p", "p.extname == '.md'"
@@ -36,7 +34,7 @@
           {% endif %}
         {% endfor %}
       </ul>
-    </nav-->
+    </nav>
 
     <div class="container-lg px-3 my-5 markdown-body">
       <main>

@@ -1,3 +1,9 @@
+---
+title: Other Ideas, Good & Bad
+permalink: /other-ideas/
+order: 4
+---
+
 # Other Ideas, Good & Bad
 ## **Circle**
 - **Fix C++ "wrong defaults"**  
@@ -100,7 +106,7 @@
     - Operator overloading
         - See:
             - [https://www.geeksforgeeks.org/operator-overloading-in-julia/](https://www.geeksforgeeks.org/operator-overloading-in-julia/)
-                - „Precedence and associativity:  When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
+                - „Precedence and associativity: When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
                     - That seems quite complicated to parse?!
                     - I cannot find any other reference to this feature, I assume it is a misunderstanding.
             - [https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm](https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm)
@@ -269,7 +275,7 @@ One could define the orde of bit in a bitfield.
     - `function` (Julia)
 - **Extension methods**
     - Possible, alternative syntax:  
-      `func toString (Int this) -> String` 
+      `func toString (Int this) -> String`
 - **Function pointers**
     - Possible, alternative syntax variants:
     - Variant B:
