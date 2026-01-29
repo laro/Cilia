@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en-US" }}">
+<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +10,25 @@
     {% include head-custom.html %}
   </head>
   <body>
+    <nav>
+      <a href="/">Start</a>
+      <a href="/about/">Über</a>
+    </nav>
+
     <div class="container-lg px-3 my-5 markdown-body">
-      {% if site.title and site.title != page.title %}
-      <h1><a href="{{ "/" | absolute_url }}">{{ site.title }}</a></h1>
-      {% endif %}
+      <main>
+        {% if site.title and site.title != page.title %}
+        <h1><a href="{{ "/" | absolute_url }}">{{ site.title }}</a></h1>
+        {% endif %}
+  
+        {{ content }}
+      </main>
 
-      {{ content }}
-
-      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
-        © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
-      </div>
+      <footer>
+        <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+          © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
+        </div>
+        </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
     <script>anchors.add();</script>
