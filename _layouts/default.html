@@ -9,9 +9,18 @@
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     {% include head-custom.html %}
   </head>
-  
+
   <body>
     <nav>
+      <ul>
+        {% for item in site.data.menu %}
+          <li>
+            <a href="{{ item.url }}">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <!--nav>
       <a href="/">Start</a>
       <a href="/about/">Über</a>
       <ul>
@@ -27,7 +36,7 @@
           {% endif %}
         {% endfor %}
       </ul>
-    </nav>
+    </nav-->
 
     <div class="container-lg px-3 my-5 markdown-body">
       <main>
@@ -42,7 +51,7 @@
         <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
           © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
         </div>
-        </footer>
+      </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
     <script>anchors.add();</script>
