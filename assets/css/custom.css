@@ -16,6 +16,10 @@ nav li {
 
 nav a {
   display: inline-block;
+  /* Make nav items roughly the size of an H2 heading. */
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
   text-decoration: none;
 }
 
