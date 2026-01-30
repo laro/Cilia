@@ -1,3 +1,7 @@
+.markdown-body h2 {
+  border-bottom: none;
+}
+
 /* Navigation: horizontal list */
 nav {
   /* Space above the navigation */
