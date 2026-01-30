@@ -1,4 +1,9 @@
 /* Navigation: horizontal list */
+nav {
+  /* Space above the navigation */
+  margin-top: 12px;
+}
+
 nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -35,7 +40,7 @@ nav a:focus-visible {
 /* Current page: light text on dark background */
 nav a[aria-current="page"] {
   /* Invert using theme colors: background = normal link color, text = page background. */
-  background-color: var(--color-accent-fg, var(--color-link-fg, #0969da));
   color: var(--color-canvas-default, #ffffff);
+  background-color: var(--color-accent-fg, var(--color-link-fg, #0969da));
   border-color: var(--color-accent-fg, var(--color-link-fg, #0969da));
 }
