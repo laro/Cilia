@@ -116,8 +116,8 @@ While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new s
 I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
 
 
-### Value vs. Reference Types ###
-Arrays, sets, and maps are **value types** in Cilia, C++, Cpp2, and Carbon. In these languages you can use those types directly after declaration (i.e. to add values in a loop).
+### Default vs. Explicit Initialization ###
+Arrays, sets, and maps are ***default-constructed**, so they can be used immediately after declaration (for example, to add values in a loop):
 ```
 String[] words
 for i in 0..9 {
@@ -125,7 +125,7 @@ for i in 0..9 {
 }
 ```
 
-They are **refence types** in Swift, Rust, and Kotlin, therefore – after declaration – you additionally need to assign an instance.
+In contrast, languages like Swift, Rust, and Kotlin require explicit initialization of collections before they can be used. After declaration, an instance must therefore be assigned explicitly:
 ```
 var words: [String] = []
 for i in 0...9 {
@@ -133,4 +133,4 @@ for i in 0...9 {
 }
 ```
 
-There are code examples where this is "hidden", i.e. due to immediate assignment of a literal (like ["one", "two", "three"]) or the return value of a function. And it's no big deal, but in general I find this annoying.
+In many examples this requirement is “hidden” by immediate assignment of a literal (such as ["one", "two", "three"]) or a function return value. It’s not a big deal, but in practice I still find the need for explicit initialization of empty collections somewhat annoying.
