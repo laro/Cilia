@@ -2,6 +2,12 @@
   border-bottom: none;
 }
 
+/* Reduce top spacing of the first heading in page content. */
+.markdown-body main > :is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 /* Navigation: horizontal list */
 nav {
   /* Space above the navigation */
