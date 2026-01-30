@@ -21,7 +21,10 @@
         {% for p in pages %}
           {% if p.title %}
             <li>
-              <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+              <a
+                href="{{ p.url | relative_url }}"
+                {% if p.url == page.url %}aria-current="page"{% endif %}
+              >{{ p.title }}</a>
             </li>
           {% endif %}
         {% endfor %}
