@@ -21,9 +21,13 @@ nav a {
   font-weight: 600;
   line-height: 1.25;
   text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.15rem 0.5rem;
 }
 
 nav a:hover,
 nav a:focus-visible {
-  text-decoration: underline;
+  text-decoration: none;
+  border-color: currentColor;
 }
