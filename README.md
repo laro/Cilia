@@ -1,3 +1,9 @@
+---
+title: Cilia
+permalink: /
+order: 0
+---
+
 This is a collection of ideas for a language that is based on C++, but with
 - **CamelCase Style**  
 I'd like to have the standard library roughly in the style of Java or [Qt](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using those languages (to a lesser degree also C#, JavaScript/TypeScript, Kotlin, Swift).
