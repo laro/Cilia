@@ -23,7 +23,7 @@
     <nav>
       <ul>
         {% assign pages = site.pages
-          | where_exp: "p", "p.extname == '.md'"
+          | where_exp: "p", "p.path contains '.md'"
           | sort: "order" %}
    
         {% for p in pages %}
