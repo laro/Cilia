@@ -4,8 +4,8 @@ permalink: /other-ideas/
 order: 4
 ---
 
-# Other Ideas, Good & Bad
-## **Circle**
+## Other Ideas, Good & Bad
+### **Circle**
 - **Fix C++ "wrong defaults"**  
     [Sean Baxter](https://x.com/seanbax), creator of [Circle](https://github.com/seanbaxter/circle), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
     > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
@@ -54,7 +54,7 @@ order: 4
 - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
     - Extending C++ for Rust-level safety.
 
-## **Cpp2** (Herb Sutter)
+### **Cpp2** (Herb Sutter)
 - [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
 - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
 -  [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
@@ -89,11 +89,11 @@ order: 4
 - [Unified `operator=` for assignment, constructor, and destructor)](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
     - Takes a bit of getting used to.
 
-## **Rust**
+### **Rust**
 - Security, of course: borrow checker etc.
 - Ranges
 
-## [**Julia**](https://julialang.org/)
+### [**Julia**](https://julialang.org/)
 - "Cilia" sounds like something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org), so maybe I could/should add some more of Julias interesting features to the Cilia wish list.
 - Julia has very strong math support. Some of its features should be easy to copy.
     - `b = 2a` as short form of `b = 2*a`
@@ -117,7 +117,7 @@ order: 4
         - TODO: Are these "unusual" brackets meant to be used as operators?
 
 
-# Unfinished Ideas
+## Unfinished Ideas
 
 - OpenMP-like parallel programming?
     - Serial code
@@ -158,17 +158,17 @@ order: 4
             - Syntax should be better, clearer, or more powerful than plain OpenMP, otherwise better use just that.
 
 
-# Old, Discarded Ideas for Cilia
+## Old, Discarded Ideas for Cilia
 For several topics there are alternative ideas, that were discarded but are still worth mentioning.
 
 
-## No Trailing Semicolons
+### No Trailing Semicolons
 - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
 - Implicitly/clever multiline expressions as in Swift, Kotlin and JavaScript?  
   (Actually I don't know / remember the rules anymore.)
 
 
-## Better Readable Keywords
+### Better Readable Keywords
 - Instead of `class ... : ...` Cilia could have
     - `class ... extends ...` 
        - good for extending base classes
@@ -176,13 +176,13 @@ For several topics there are alternative ideas, that were discarded but are stil
        - good fit for implementing pure abstract base classes (like interfaces)
 - But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation? (Probably best to use `implements` then, but still not nice.)
 
-## Basic / Arithmetic Types
+### Basic / Arithmetic Types
 - `Float` could be 32-bit float: `Float` == `Float32`,
     - like in C++.
     - Then `Float` == `Float32` on all platforms.
 
 
-## Variable Declaration
+### Variable Declaration
 - Very short variable declaration:
     - Maybe possible to simply write `i = 3`?
     - Maybe `i := 3`?
@@ -199,7 +199,7 @@ For several topics there are alternative ideas, that were discarded but are stil
     - Not starting with `var` could be especially problematic in connection with omitting the trailing semicolons.
 
 
-## Bitfields
+### Bitfields
 One could define the orde of bit in a bitfield.
 - MSB (Most Significant Bit) first.
     - This way you can use
@@ -238,7 +238,7 @@ One could define the orde of bit in a bitfield.
       ```
 
 
-## Arrays & ArrayViews
+### Arrays & ArrayViews
 - `Int[] dynamicArrayOfIntegers`
     - May be confusing because it is so similar to fixed-size arrays,  
       but IMHO the inconsistency is **already in C/C++**:  
@@ -253,7 +253,7 @@ One could define the orde of bit in a bitfield.
     - `Int[3,4,]`
 
 
-## Signed Size
+### Signed Size
 - `UInt` as type for `*.size()` (i.e. still unsigned)  
   but with new rules for mixed integer arithmetic:
     - Unsigned +-*/ Signed -> Signed.
@@ -268,7 +268,7 @@ One could define the orde of bit in a bitfield.
     - The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.
     - Note: In the end this just didn't work out.
 
-## Functions
+### Functions
 - Function declarations could start with the keyword
     - `fn` (Rust, Carbon, New Circle),
     - `fun` (Kotlin), or
@@ -290,7 +290,7 @@ One could define the orde of bit in a bitfield.
         - `(func*(Int, Int)->Int)[] arrayOfPointersToFunctionOfIntAndIntToInt`
 
           
-## Operators
+### Operators
 - Possible, alternative syntax for `pow(a, x)`:  
   `a**x` (as Python did)
 - Some more kinds of range literals could be useful:
@@ -324,7 +324,7 @@ One could define the orde of bit in a bitfield.
     - Note: No, we are a C++ descendant after all.
 
 
-## Templates
+### Templates
 - **Class** templates  
     - Partial template specialization coulb be written
       ```
@@ -342,7 +342,7 @@ One could define the orde of bit in a bitfield.
     - `template<type T> using T::InArgumentType = const T&`
 
 
-## Function/Loop Parameter Passing
+### Function/Loop Parameter Passing
 - If you want even the basic type to be different, we could write:
     - `for Double d in [1, 2, 3] { ... }`
         - `d` is `const Double`
@@ -357,13 +357,13 @@ One could define the orde of bit in a bitfield.
         - `str` is `String`
 
 
-## Literals
+### Literals
 - `true`, `false` are Bool
 - `Null` could be the null pointer, and `NullType` its type.
     - Shorter and more similar to C `NULL`.
 
 
-## String, Char & CodePoint
+### String, Char & CodePoint
 - **Code points** could be represented by `UInt32` or by an distinct type `CodePoint` (== `UInt32`).
     - Would it be useful?
 - `WideChar` could be useful for portable code (Linux `UInt32` <-> Windows `UInt16`)
@@ -380,7 +380,7 @@ One could define the orde of bit in a bitfield.
         - `for sentence in text.bySentence()`
      
 
-## `cilia` Standard Library
+### `cilia` Standard Library
 - "**Alias**" for 
     - member variables could be written as  
        `alias x = data[0]`,
@@ -389,7 +389,7 @@ One could define the orde of bit in a bitfield.
         - but that would not work for virtual functions.
 
 
-## (Smart) Pointers
+### (Smart) Pointers
 - `Type- pointer`**
     - `T-` is short for `UniquePtr<T[0]>` (i.e. a unique pointer to a C/C++ array of fixed but unknown size)
 - `new T` returns a `T+`/`UniquePtr<T>`,
@@ -424,7 +424,7 @@ One could define the orde of bit in a bitfield.
         - `Type*¹> pointer` (for `UniquePtr<T>`)
 
 
-## `is`, `as`, Casting
+### `is`, `as`, Casting
 - Automatic casts
     - As multiple inheritance is problematic here:
         - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
@@ -433,7 +433,7 @@ One could define the orde of bit in a bitfield.
             - as in C#
 
 
-## Misc
+### Misc
 - Versioning of the Cilia source code could alternatively be done
     - via file ".cilia_version" in a (project) directory,
     - via file extension: 
