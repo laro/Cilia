@@ -8,7 +8,7 @@ order: 0
 
 ### Cilia
 
-```text
+```swift
 {% include_relative FizzBuzz.cil %}
 ```
 
