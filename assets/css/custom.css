@@ -14,7 +14,7 @@ nav {
   margin-top: 12px;
 }
 
-nav > ul {
+nav > ul.nav-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -38,6 +38,7 @@ nav ul.nav-sub {
   list-style: none;
   padding: 0;
   margin: 0.35rem 0 0 0;
+  width: 100%;
 }
 
 nav ul.nav-sub a {

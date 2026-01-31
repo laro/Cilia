@@ -13,7 +13,7 @@
 
   <body>
     <nav aria-label="Primary">
-      <ul>
+      <ul class="nav-main">
         {% assign all_pages = site.pages
           | where_exp: "p", "p.path contains '.md'"
           | sort: "order" %}
@@ -21,6 +21,12 @@
         {% assign top_pages = all_pages
           | where_exp: "p", "p.parent == nil"
           | sort: "order" %}
+
+        {% if page.parent %}
+          {% assign active_top_title = page.parent %}
+        {% else %}
+          {% assign active_top_title = page.title %}
+        {% endif %}
 
         {% for p in top_pages %}
           {% if p.title %}
@@ -33,28 +39,26 @@
                   aria-current="location"
                 {% endif %}
               >{{ p.title }}</a>
-
-              {% assign children = all_pages | where: "parent", p.title | sort: "order" %}
-              {% if children.size > 0 %}
-                {% if p.url == page.url or page.parent == p.title %}
-                  <ul class="nav-sub" aria-label="{{ p.title }} sub-pages">
-                    {% for c in children %}
-                      {% if c.title %}
-                        <li>
-                          <a
-                            href="{{ c.url | relative_url }}"
-                            {% if c.url == page.url %}aria-current="page"{% endif %}
-                          >{{ c.title }}</a>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-              {% endif %}
             </li>
           {% endif %}
         {% endfor %}
       </ul>
+
+      {% assign active_children = all_pages | where: "parent", active_top_title | sort: "order" %}
+      {% if active_children.size > 0 %}
+        <ul class="nav-sub" aria-label="{{ active_top_title }} sub-pages">
+          {% for c in active_children %}
+            {% if c.title %}
+              <li>
+                <a
+                  href="{{ c.url | relative_url }}"
+                  {% if c.url == page.url %}aria-current="page"{% endif %}
+                >{{ c.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
     </nav>
 
     <div class="container-lg px-3 my-5 markdown-body">
