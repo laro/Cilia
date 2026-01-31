@@ -7,13 +7,7 @@ order: 1
 ## Comparison with C++, Cpp2, Carbon, Rust, Swift, and Kotlin
 The following comparison aims to show the _exact_ equivalent of the [Cilia example](/comparison/cilia/#by-example):
 
-- [Cilia](/comparison/cilia/)
-- [C++](/comparison/cpp/)
-- [Cpp2](/comparison/cpp2/)
-- [Carbon](/comparison/carbon/)
-- [Rust](/comparison/rust/)
-- [Swift](/comparison/swift/)
-- [Kotlin](/comparison/kotlin/)
+[Cilia](/comparison/cilia/), [C++](/comparison/cpp/), [Cpp2](/comparison/cpp2/), [Carbon](/comparison/carbon/), [Rust](/comparison/rust/), [Swift](/comparison/swift/), [Kotlin](/comparison/kotlin/)
 
 > [!NOTE]
 > - I may not be very familiar with Cpp2, Carbon, Rust, Swift, and Kotlin or not up to date.
