@@ -1,7 +1,7 @@
 ---
 title: Examples
 permalink: /examples/
-order: 1
+order: 2
 ---
 
 ## Examples

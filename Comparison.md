@@ -1,7 +1,7 @@
 ---
 title: Comparison
 permalink: /comparison/
-order: 2
+order: 1
 ---
 
 ## Comparison with C++, Cpp2, Carbon, Rust, Swift, and Kotlin
