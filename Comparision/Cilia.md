@@ -5,8 +5,7 @@ order: -1
 parent: Comparison
 ---
 
-These are some basic Cilia lines of code:
-
+## Cilia by Example {#by-example}
 - `Int`, `Int32`, `Int64`, `Float`
 - `Int x = 42`
     - `var x = 42`
@@ -21,3 +20,5 @@ These are some basic Cilia lines of code:
     - `for i in 0..<words.size() { ... }`
     - `for i in [5, 7, 11, 13] { ... }`
     - `for word in words { ... }`
+
+Corresponding examples for C++, Cpp2, Carbon, Rust, Swift, and Kotlin are given [separately](/comparison/).
