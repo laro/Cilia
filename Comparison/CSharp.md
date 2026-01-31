@@ -13,7 +13,7 @@ This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-exampl
     - `var words = new List<string>();`
     - `var names = new HashSet<string>();`
     - `var contactInfoForID = new Dictionary<string, ContactInfo>();`
-- `static long multiply(long a, long b) { return a * b; }`
+- `static int multiply(int a, int b) { return a * b; }`
     - `static void print(ContactInfo a) { ... }`
     - `static string concat(string a, string b) { return ...; }`
 - `for (int i = 1; i <= 10; ++i) { ... }`
