@@ -5,7 +5,7 @@ order: 2
 parent: Comparison
 ---
 
-This is the exact equivalent of the [Cilia example](/#by-example) in Carbon:
+This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Carbon:
 
 - [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5), `i32`, `i64`, `f32`
 - `var x: i64 = 42;`

@@ -5,7 +5,7 @@ order: 5
 parent: Comparison
 ---
 
-This is the exact equivalent of the [Cilia example](/#by-example) in Kotlin:
+This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Kotlin:
 
 - `Int`, `Long`, `Float`
 - `var x: Int = 42`

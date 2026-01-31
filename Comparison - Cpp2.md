@@ -5,7 +5,7 @@ order: 1
 parent: Comparison
 ---
 
-This is the exact equivalent of the [Cilia example](/#by-example) in Cpp2:
+This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Cpp2:
 
 - `int`, `i32`, `i64`, `f32`
 - `x: int = 42;`

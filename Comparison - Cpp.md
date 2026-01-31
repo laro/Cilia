@@ -5,7 +5,7 @@ order: 0
 parent: Comparison
 ---
 
-This is the exact equivalent of the [Cilia example](/#by-example) in C++:
+This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in C++:
 
 - `int`, `int32_t`, `int64_t`, `float`
 - `int x = 42;`

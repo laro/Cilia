@@ -5,8 +5,9 @@ order: 2
 ---
 
 ## Comparison with C++, Cpp2, Carbon, Rust, Swift, and Kotlin
-The following comparison aims to show the _exact_ equivalent of the [Cilia example](/#by-example):
+The following comparison aims to show the _exact_ equivalent of the [Cilia example](/comparison/cilia/#by-example):
 
+- [Cilia](/comparison/cilia/)
 - [C++](/comparison/cpp/)
 - [Cpp2](/comparison/cpp2/)
 - [Carbon](/comparison/carbon/)
