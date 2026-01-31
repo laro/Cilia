@@ -14,7 +14,7 @@ nav {
   margin-top: 12px;
 }
 
-nav ul {
+nav > ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -27,6 +27,25 @@ nav ul {
 nav li {
   margin: 0;
   padding: 0;
+}
+
+/* Navigation: optional second level */
+nav ul.nav-sub {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0.35rem 0 0 0;
+}
+
+nav ul.nav-sub li + li {
+  margin-top: 0.15rem;
+}
+
+nav ul.nav-sub a {
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 0.05rem 0.35rem;
 }
 
 nav a {
