@@ -120,6 +120,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - `Float`
     - `Float` == `Float64`, i.e. double precision is "standard"
         - Like Python. Unlike C/C++, where `float` is single precision.
+        - "[Every language is a child of its time](https://www.stroustrup.com/devXinterview.html)"
         - With modern processors double precision is very fast.
           When concerned with memory bandwith, cache size, and SIMD performance, choose one of the smaller floating-point types.
         - `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`),
