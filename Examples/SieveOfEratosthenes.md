@@ -14,6 +14,6 @@ order: 3
 
 ### C++
 
-```cpp
+```text
 {% include_relative SieveOfEratosthenes.cpp %}
 ```

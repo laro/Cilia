@@ -14,6 +14,6 @@ order: 1
 
 ### C++
 
-```cpp
+```text
 {% include_relative QuickSort.cpp %}
 ```

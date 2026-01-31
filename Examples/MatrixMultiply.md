@@ -14,6 +14,6 @@ order: 2
 
 ### C++
 
-```cpp
+```text
 {% include_relative MatrixMultiply.cpp %}
 ```
