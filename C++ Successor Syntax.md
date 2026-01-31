@@ -1,5 +1,5 @@
 ---
-title: C++ Successor Syntax
+title: C++ Successor
 permalink: /cpp-successor-syntax/
 order: 3
 ---
