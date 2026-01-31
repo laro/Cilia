@@ -19,7 +19,7 @@ The following comparison aims to show the _exact_ equivalent of the [Cilia examp
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 
 [Someone said in an interview](https://www.stroustrup.com/devXinterview.html) (way back in 2000):
-> Today, I'd look for a much simpler syntax—and probably clash with people's confusion between the familiar and the simple.
+> Today, I'd look for a _much_ simpler syntax—and probably clash with people's confusion between the familiar and the simple.
 
 I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
 
