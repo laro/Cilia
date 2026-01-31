@@ -3,7 +3,10 @@ main > ul,
 main > ol,
 main > blockquote,
 main > dl {
-  max-width: 65ch;
+  max-width: 80ch;
+}
+main > pre {
+  max-width: 120ch;
 }
 
 .markdown-body :is(h1, h2, h3, h4, h5, h6) {
