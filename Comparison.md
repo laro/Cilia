@@ -31,7 +31,7 @@ I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It ind
 
 
 ### Default vs. Explicit Initialization ###
-Arrays, sets, and maps are ***default-constructed**, so they can be used immediately after declaration (for example, to add values in a loop):
+Arrays, sets, and maps are **default-constructed**, so they can be used immediately after declaration (for example, to add values in a loop):
 ```
 String[] words
 for i in 0..9 {
