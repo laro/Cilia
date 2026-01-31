@@ -19,32 +19,34 @@
           | sort: "order" %}
 
         {% assign top_pages = all_pages
-          | where_exp: "p", "p.title and p.parent == nil"
+          | where_exp: "p", "p.parent == nil"
           | sort: "order" %}
 
         {% for p in top_pages %}
-          <li>
-            <a
-              href="{{ p.url | relative_url }}"
-              {% if p.url == page.url %}aria-current="page"{% endif %}
-            >{{ p.title }}</a>
+          {% if p.title %}
+            <li>
+              <a
+                href="{{ p.url | relative_url }}"
+                {% if p.url == page.url %}aria-current="page"{% endif %}
+              >{{ p.title }}</a>
 
-            {% assign children = all_pages | where: "parent", p.title | sort: "order" %}
-            {% if children.size > 0 %}
-              <ul class="nav-sub" aria-label="{{ p.title }} sub-pages">
-                {% for c in children %}
-                  {% if c.title %}
-                    <li>
-                      <a
-                        href="{{ c.url | relative_url }}"
-                        {% if c.url == page.url %}aria-current="page"{% endif %}
-                      >{{ c.title }}</a>
-                    </li>
-                  {% endif %}
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
+              {% assign children = all_pages | where: "parent", p.title | sort: "order" %}
+              {% if children.size > 0 %}
+                <ul class="nav-sub" aria-label="{{ p.title }} sub-pages">
+                  {% for c in children %}
+                    {% if c.title %}
+                      <li>
+                        <a
+                          href="{{ c.url | relative_url }}"
+                          {% if c.url == page.url %}aria-current="page"{% endif %}
+                        >{{ c.title }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endif %}
         {% endfor %}
       </ul>
     </nav>
