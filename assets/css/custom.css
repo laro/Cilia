@@ -1,6 +1,5 @@
 main > p,
-main > ul,
-main > ol,
+main > li,
 main > blockquote,
 main > dl {
   max-width: 80ch;
