@@ -4,15 +4,15 @@ permalink: /comparison/
 order: 1
 ---
 
-## Comparison with C++, Cpp2, Carbon, Rust, Swift, and Kotlin
+## Comparison with C++, Cpp2, Carbon, Rust, Swift, Kotlin, Java, and C#
 The following comparison aims to show the _exact_ equivalent of the [Cilia example](/comparison/cilia/#by-example):
 
-[Cilia](/comparison/cilia/), [C++](/comparison/cpp/), [Cpp2](/comparison/cpp2/), [Carbon](/comparison/carbon/), [Rust](/comparison/rust/), [Swift](/comparison/swift/), [Kotlin](/comparison/kotlin/)
+[Cilia](/comparison/cilia/), [C++](/comparison/cpp/), [Cpp2](/comparison/cpp2/), [Carbon](/comparison/carbon/), [Rust](/comparison/rust/), [Swift](/comparison/swift/), [Kotlin](/comparison/kotlin/), [Java](/comparison/java/), [C#](/comparison/csharp/)
 
 > **Note**
-> - I may not be very familiar with Cpp2, Carbon, Rust, Swift, and Kotlin or not up to date.
+> - I may not be very familiar with all these languages, or not up to date.
 >     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
-> - I may not be sufficiently up to date with C++14/17/20/23/26 either.
+> - I may not even be sufficiently up to date with C++14/17/20/23/26 either.
 
 ### Syntax of Carbon and Cpp2
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
@@ -32,7 +32,7 @@ for i in 0..9 {
 }
 ```
 
-In contrast, languages like Swift, Rust, and Kotlin require explicit initialization of collections before they can be used. After declaration, an instance must therefore be assigned explicitly:
+In contrast, languages like Swift, Rust, Kotlin, Java, and C# require explicit initialization of collections before they can be used. After declaration, an instance must therefore be assigned explicitly:
 ```
 var words: [String] = []
 for i in 0...9 {
