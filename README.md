@@ -131,7 +131,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 ```
 TypeName variableName
 ```
- - Some simplifications and restrictions:
+- Some simplifications and restrictions:
     - The type definition is completely on the left-hand side,  
       i.e. before the variable name, also for arrays and bit fields.
     - All variables in a multiple-variable declarations have to be of the exact same type.
