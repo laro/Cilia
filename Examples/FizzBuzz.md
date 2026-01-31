@@ -17,4 +17,3 @@ order: 0
 ```cpp
 {% include_relative FizzBuzz.cpp %}
 ```
-

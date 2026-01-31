@@ -17,4 +17,3 @@ order: 2
 ```cpp
 {% include_relative MatrixMultiply.cpp %}
 ```
-

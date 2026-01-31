@@ -17,4 +17,3 @@ order: 3
 ```cpp
 {% include_relative SieveOfEratosthenes.cpp %}
 ```
-

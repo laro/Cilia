@@ -17,4 +17,3 @@ order: 1
 ```cpp
 {% include_relative QuickSort.cpp %}
 ```
-
