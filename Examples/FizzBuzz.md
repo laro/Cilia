@@ -1,8 +1,7 @@
 ---
-title: FizzBuzz
+title: Examples.FizzBuzz
 permalink: /examples/fizzbuzz/
 order: 0
-parent: Examples
 ---
 
 ## FizzBuzz

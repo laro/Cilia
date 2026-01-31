@@ -1,8 +1,7 @@
 ---
-title: Cilia
+title: Comparison.Cilia
 permalink: /comparison/cilia/
 order: -1
-parent: Comparison
 ---
 
 These are some basic Cilia lines of code:

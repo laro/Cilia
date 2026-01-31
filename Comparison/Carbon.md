@@ -1,8 +1,7 @@
 ---
-title: Carbon
+title: Comparison.Carbon
 permalink: /comparison/carbon/
 order: 2
-parent: Comparison
 ---
 
 This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Carbon:

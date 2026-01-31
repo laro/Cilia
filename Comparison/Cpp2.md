@@ -1,8 +1,7 @@
 ---
-title: Cpp2
+title: Comparison.Cpp2
 permalink: /comparison/cpp2/
 order: 1
-parent: Comparison
 ---
 
 This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Cpp2:

@@ -1,8 +1,7 @@
 ---
-title: Rust
+title: Comparison.Rust
 permalink: /comparison/rust/
 order: 3
-parent: Comparison
 ---
 
 This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Rust:

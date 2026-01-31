@@ -1,8 +1,7 @@
 ---
-title: C++
+title: Comparison.C++
 permalink: /comparison/cpp/
 order: 0
-parent: Comparison
 ---
 
 This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in C++:

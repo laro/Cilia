@@ -1,8 +1,7 @@
 ---
-title: Kotlin
+title: Comparison.Kotlin
 permalink: /comparison/kotlin/
 order: 5
-parent: Comparison
 ---
 
 This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Kotlin:

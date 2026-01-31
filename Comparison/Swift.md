@@ -1,8 +1,7 @@
 ---
-title: Swift
+title: Comparison.Swift
 permalink: /comparison/swift/
 order: 4
-parent: Comparison
 ---
 
 This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Swift:

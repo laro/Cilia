@@ -19,11 +19,11 @@
           | sort: "order" %}
 
         {% assign top_pages = all_pages
-          | where_exp: "p", "p.parent == nil"
+          | where_exp: "p", "p.title and (p.title contains '.') == false"
           | sort: "order" %}
 
-        {% if page.parent %}
-          {% assign active_top_title = page.parent %}
+        {% if page.title and page.title contains '.' %}
+          {% assign active_top_title = page.title | split: '.' | first %}
         {% else %}
           {% assign active_top_title = page.title %}
         {% endif %}
@@ -35,7 +35,7 @@
                 href="{{ p.url | relative_url }}"
                 {% if p.url == page.url %}
                   aria-current="page"
-                {% elsif page.parent == p.title %}
+                {% elsif p.title == active_top_title %}
                   aria-current="location"
                 {% endif %}
               >{{ p.title }}</a>
@@ -44,7 +44,9 @@
         {% endfor %}
       </ul>
 
-      {% assign active_children = all_pages | where: "parent", active_top_title | sort: "order" %}
+      {% assign active_children = all_pages
+        | where_exp: "p", "p.title and (p.title contains '.') and (p.title | split: '.' | first) == active_top_title"
+        | sort: "order" %}
       {% if active_children.size > 0 %}
         <ul class="nav-sub" aria-label="{{ active_top_title }} sub-pages">
           {% for c in active_children %}
@@ -53,7 +55,7 @@
                 <a
                   href="{{ c.url | relative_url }}"
                   {% if c.url == page.url %}aria-current="page"{% endif %}
-                >{{ c.title }}</a>
+                >{{ c.title | split: '.' | last }}</a>
               </li>
             {% endif %}
           {% endfor %}
