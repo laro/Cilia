@@ -1,4 +1,4 @@
-.markdown-body h2 {
+.markdown-body :is(h1, h2, h3, h4, h5, h6) {
   border-bottom: none;
 }
 
@@ -31,6 +31,8 @@ nav li {
 
 nav a {
   display: inline-block;
+  /* Make nav links use the surrounding text color. */
+  color: inherit;
   /* Make nav items roughly the size of an H3 heading. */
   font-size: 1.25rem;
   font-weight: 600;
@@ -39,6 +41,10 @@ nav a {
   border: 1px solid transparent;
   border-radius: 12px;
   padding: 0.1rem 0.45rem;
+}
+
+nav a:visited {
+  color: inherit;
 }
 
 nav a:hover,
