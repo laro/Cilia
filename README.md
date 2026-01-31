@@ -45,7 +45,7 @@ In the long run one could imagine a Cilia parser/frontend, producing an AST for 
         - `for i in 0..<words.size() { ... }`
         - `for i in [5, 7, 11, 13] { ... }`
         - `for word in words { ... }`
-- Corresponding examples for C++, Cpp2, Carbon, Rust, Swift, and Kotlin are given [separately](Comparison.md).
+- Corresponding examples for C++, Cpp2, Carbon, Rust, Swift, and Kotlin are given [separately](/comparison/).
 
 
 ## CamelCase Style
