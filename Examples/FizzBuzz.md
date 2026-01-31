@@ -8,12 +8,12 @@ order: 0
 
 ### Cilia
 
-```swift
+```text
 {% include_relative FizzBuzz.cil %}
 ```
 
 ### C++
 
-```cpp
+```text
 {% include_relative FizzBuzz.cpp %}
 ```
