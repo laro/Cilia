@@ -18,8 +18,8 @@
           | where_exp: "p", "p.path contains '.md'"
           | sort: "order" %}
 
-        {% assign top_pages = all_pages
-          | where_exp: "p", "p.title and (p.title contains '.') == false"
+        {% assign titled_pages = all_pages
+          | where_exp: "p", "p.title"
           | sort: "order" %}
 
         {% if page.title and page.title contains '.' %}
@@ -28,8 +28,8 @@
           {% assign active_top_title = page.title %}
         {% endif %}
 
-        {% for p in top_pages %}
-          {% if p.title %}
+        {% for p in titled_pages %}
+          {% unless p.title contains '.' %}
             <li>
               <a
                 href="{{ p.url | relative_url }}"
@@ -40,17 +40,24 @@
                 {% endif %}
               >{{ p.title }}</a>
             </li>
-          {% endif %}
+          {% endunless %}
         {% endfor %}
       </ul>
 
-      {% assign active_children = all_pages
-        | where_exp: "p", "p.title and (p.title contains '.') and (p.title | split: '.' | first) == active_top_title"
-        | sort: "order" %}
-      {% if active_children.size > 0 %}
+      {% assign child_pages = titled_pages | where_exp: "p", "p.title contains '.'" %}
+      {% assign has_active_children = false %}
+      {% for c in child_pages %}
+        {% assign c_top_title = c.title | split: '.' | first %}
+        {% if c_top_title == active_top_title %}
+          {% assign has_active_children = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% if has_active_children %}
         <ul class="nav-sub" aria-label="{{ active_top_title }} sub-pages">
-          {% for c in active_children %}
-            {% if c.title %}
+          {% for c in child_pages %}
+            {% assign c_top_title = c.title | split: '.' | first %}
+            {% if c_top_title == active_top_title %}
               <li>
                 <a
                   href="{{ c.url | relative_url }}"
