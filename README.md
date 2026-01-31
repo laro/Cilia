@@ -29,7 +29,7 @@ But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
 In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
 
 
-## Cilia By Example
+## Cilia by Example
 - `Int`, `Int32`, `Int64`, `Float`
 - `Int x = 42`
     - `var x = 42`
