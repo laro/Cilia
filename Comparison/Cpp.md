@@ -4,7 +4,7 @@ permalink: /comparison/cpp/
 order: 0
 ---
 
-This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in C++:
+This is (should be) the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in C++:
 
 - `int`, `int32_t`, `int64_t`, `float`
 - `int x = 42;`

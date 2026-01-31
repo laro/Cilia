@@ -4,7 +4,7 @@ permalink: /comparison/swift/
 order: 4
 ---
 
-This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Swift:
+This is (should be) the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Swift:
 
 - `Int`, `Int32`, `Int64`, `Float`
 - `var x: Int = 42`

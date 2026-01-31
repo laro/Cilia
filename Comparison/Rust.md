@@ -4,7 +4,7 @@ permalink: /comparison/rust/
 order: 3
 ---
 
-This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Rust:
+This is (should be) the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Rust:
 
 - `isize`, `i32`, `i64`, `f32`
 - `let mut x: i64 = 42;`

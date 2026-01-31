@@ -4,7 +4,7 @@ permalink: /comparison/java/
 order: 6
 ---
 
-This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Java:
+This is (should be) the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Java:
 
 - `int`, `long`, `float`
 - `int x = 42;`
