@@ -21,7 +21,7 @@ The following comparison aims to show the _exact_ equivalent of the [Cilia examp
 > - I may not be sufficiently up to date with C++14/17/20/23/26 either.
 
 
-### Syntax of Carbon and Cpp2 ###
+### Syntax of Carbon and Cpp2
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 
 [Someone said in an interview](https://www.stroustrup.com/devXinterview.html) (way back in 2000):
@@ -30,7 +30,7 @@ While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new s
 I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
 
 
-### Default vs. Explicit Initialization ###
+### Default vs. Explicit Initialization
 Arrays, sets, and maps are **default-constructed**, so they can be used immediately after declaration (for example, to add values in a loop):
 ```
 String[] words
