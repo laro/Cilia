@@ -19,7 +19,7 @@
           | sort: "order" %}
 
         {% assign top_pages = all_pages
-          | where_exp: "p", "p.title and (p.parent == nil or p.parent == '')"
+          | where_exp: "p", "p.title and p.parent == nil"
           | sort: "order" %}
 
         {% for p in top_pages %}
