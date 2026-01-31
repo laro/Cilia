@@ -1,10 +1,11 @@
-main > p,
-main > li,
-main > blockquote,
-main > dl {
+main p,
+main ul,
+main ol,
+main blockquote,
+main dl {
   max-width: 80ch;
 }
-main > pre {
+main pre {
   max-width: 120ch;
 }
 
