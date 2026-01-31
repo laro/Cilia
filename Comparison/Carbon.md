@@ -17,6 +17,6 @@ This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-exampl
     - `fn print(a: ContactInfo) { ...; }`
     - `fn concat(a: StringView, b: StringView) -> String { return ...; }`
 - `var i: i64 = 1;  while (i <= 10) { ...; ++i; }`
-    - `var i: i64 = 0;  while (i < words.ssize()) { ...; ++i; } `          
+    - `var i: i64 = 0;  while (i < words.ssize()) { ...; ++i; }`
     - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
     - `for (word: auto in words) { ...; }`

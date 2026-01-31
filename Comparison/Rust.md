@@ -17,6 +17,6 @@ This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-exampl
     - `fn print(a: &ContactInfo) { ...; }`
     - `fn concat(a: &str, b: &str) -> String { return ...; }`
 - `for i in 1..=10 { ...; }`
-    - `for i in 0..words.len() { ...; } `          
+    - `for i in 0..words.len() { ...; }`
     - `for i in [5, 7, 11, 13].iter() { ...; }`
     - `for word in words.iter() { ...; }`
