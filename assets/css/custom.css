@@ -1,4 +1,8 @@
-p, ul, ol, blockquote, dl {
+main > p,
+main > ul,
+main > ol,
+main > blockquote,
+main > dl {
   max-width: 65ch;
 }
 
