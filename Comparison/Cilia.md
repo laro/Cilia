@@ -16,7 +16,7 @@ These are some basic Cilia lines of code:
     - `ContactInfo[String] contactInfoForID`
 - `func multiply(Int a, b) -> Int { return a * b }`
     - `func print(ContactInfo a) { ... }`
-    - `func concat(String a, b) -> String { return a + b }`
+    - `func concat(String a, b) -> String { return ... }`
 - `for i in 1..10 { ... }`
     - `for i in 0..<words.size() { ... }`
     - `for i in [5, 7, 11, 13] { ... }`
