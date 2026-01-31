@@ -15,7 +15,7 @@ This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-exampl
     - `var contactInfoForID: [String: ContactInfo] = [:]`
 - `func multiply(_ a: Int, _ b: Int) -> Int { return a * b }`
     - `func print(_ a: ContactInfo) { ... }`
-    - `func concat(_ a: String, _ b: String) -> String { return a + b }`
+    - `func concat(_ a: String, _ b: String) -> String { return ... }`
 - `for i in 1...10 { ... }`
     - `for i in 0..<words.count { ... } `          
     - `for i in [5, 7, 11, 13] { ... }`

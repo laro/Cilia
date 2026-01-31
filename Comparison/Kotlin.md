@@ -15,7 +15,7 @@ This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-exampl
     - `var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`
 - `fun multiply(a: Int, b: Int): Int { return a * b }`
     - `fun print(a: ContactInfo) { ... }`
-    - `fun concat(a: String, b: String): String { return a + b }`
+    - `fun concat(a: String, b: String): String { return ... }`
 - `for (i in 1..10) { ... }`
     - `for (i in 0 until words.size) { ... } `          
     - `for (i in listOf(5, 7, 11, 13)) { ... }`

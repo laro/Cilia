@@ -15,7 +15,7 @@ This is the exact equivalent of the [Cilia example](/comparison/cilia/#by-exampl
     - `contactInfoForID: map<string, ContactInfo>;`
 - `multiply: (a: int, b: int) -> int = a * b;`
     - `print: (a: ContactInfo) { ...; }`
-    - `concat: (a: string_view, b: string_view) -> String = a + b;`
+    - `concat: (a: string_view, b: string_view) -> String = ...;`
 - `i := 1;  while i <= 10 next i++ { ...; } `          
     - `i := 0;  while i < words.ssize() next i++ { ...; } `          
     - `for (5, 7, 11, 13) do (i) { ...; }`
