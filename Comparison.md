@@ -13,7 +13,6 @@ The following comparison aims to show the _exact_ equivalent of the [Cilia examp
 > - I may not be very familiar with Cpp2, Carbon, Rust, Swift, and Kotlin or not up to date.
 >     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
 > - I may not be sufficiently up to date with C++14/17/20/23/26 either.
-{: .note }
 
 ### Syntax of Carbon and Cpp2
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
