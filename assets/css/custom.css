@@ -72,7 +72,8 @@ nav a:focus-visible {
 }
 
 /* Current page: light text on dark background */
-nav a[aria-current="page"] {
+nav a[aria-current="page"],
+nav a[aria-current="location"] {
   /* Invert using theme colors: background/border = normal text color, text = page background. */
   color: var(--color-canvas-default, #ffffff);
   background-color: var(--color-fg-default, #1f2328);

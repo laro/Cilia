@@ -27,23 +27,29 @@
             <li>
               <a
                 href="{{ p.url | relative_url }}"
-                {% if p.url == page.url %}aria-current="page"{% endif %}
+                {% if p.url == page.url %}
+                  aria-current="page"
+                {% elsif page.parent == p.title %}
+                  aria-current="location"
+                {% endif %}
               >{{ p.title }}</a>
 
               {% assign children = all_pages | where: "parent", p.title | sort: "order" %}
               {% if children.size > 0 %}
-                <ul class="nav-sub" aria-label="{{ p.title }} sub-pages">
-                  {% for c in children %}
-                    {% if c.title %}
-                      <li>
-                        <a
-                          href="{{ c.url | relative_url }}"
-                          {% if c.url == page.url %}aria-current="page"{% endif %}
-                        >{{ c.title }}</a>
-                      </li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
+                {% if p.url == page.url or page.parent == p.title %}
+                  <ul class="nav-sub" aria-label="{{ p.title }} sub-pages">
+                    {% for c in children %}
+                      {% if c.title %}
+                        <li>
+                          <a
+                            href="{{ c.url | relative_url }}"
+                            {% if c.url == page.url %}aria-current="page"{% endif %}
+                          >{{ c.title }}</a>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                {% endif %}
               {% endif %}
             </li>
           {% endif %}
