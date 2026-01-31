@@ -61,7 +61,7 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
     - `String[] words`
     - `ContactInfo[String] contactInfoForID`
     - Feel free to bend/break this rule, e.g. name matrices as `Matrix M, R, L`
-      
+
 - **Functions** in **lowerCamelCase**
     - `str.findFirstOf(...)`
     - `arr.pushBack(...)`
@@ -230,8 +230,8 @@ TypeName variableName
       }
       ```
 - Not using ~~`struct`~~, as it is just too similar to `class` (especiallly in Cilia) with no real benefit.
-   - Keep as a reserved keyword for future use.
-   - Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
+    - Keep as a reserved keyword for future use.
+    - Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
 
 
 ## Functions
@@ -328,7 +328,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
       }
       ```
       instead of ~~`for (... : ...)`~~ AKA range-for in C++, ~~`for each`~~ in C++/CLI, or ~~`foreach`~~ in C#.
-    - Use the **range operator** to write          
+    - Use the **range operator** to write
         - `for i in 1..10 { ... }`  
           instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
           translates to `for i in Range(1, 10) { ... }`.
@@ -428,7 +428,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
       }
       ```
 
-              
+
 ## Signed Size
 `Int` (i.e. signed) as type for `*.size()`
 - Because mixing signed and unsigned integer (e.g. "signed - unsigned") and even calculating "unsigned - unsigned" is difficult to handle.
@@ -515,7 +515,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
                 - Up to `0x7fffffff` -> `Int32`
                 - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
             - Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
-        -  `0xffffffff` is `UInt` in hexadecimal
+        - `0xffffffff` is `UInt` in hexadecimal
         - `0b1011` is `UInt` in binary
         - `0o123` is `UInt` in octal
             - Using `0o` as in Python,
@@ -556,7 +556,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - that can be converted to any float type.
     - `NaN` is a `Float` literal for NaN ("not a number") values,
         - that can be converted to any float type.
-          
+
 - Strings
     - `"Text"` is a `StringView` with UTF-8 encoding.
         - No null termination.
@@ -570,7 +570,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - ~~A StringView starts like a String does: pointer to first character plus length,~~
             - ~~so slicing of String to StringView is possible.~~
             - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
-      
+
     - Multiline String Literal
         - Use triple double-quotes `"""` to start and end the literal.
         - ```
@@ -1219,7 +1219,7 @@ Extensions are defined using the `extension` keyword followed by the type name a
         - a pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).
         - `T^` is short for **`SharedPtr<T>`**
         - Inspired by C++/CLI (so its a proven possiblilty), _but_  
-           - Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
+            - Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
         - **`makeShared<T>(...)`**,
             - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
             - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
@@ -1232,7 +1232,7 @@ Extensions are defined using the `extension` keyword followed by the type name a
         - a "weak pointer", a pointer to a shared pointer.
         - `T-` is short for **`WeakPtr<T>`**
         - So with  
-          `T- weakPointerToWindow = sharedPointerToWindow`   
+          `T- weakPointerToWindow = sharedPointerToWindow`  
           you can write  
           `weakPointerToWindow?.close()`  
           instead of
@@ -1252,7 +1252,7 @@ Extensions are defined using the `extension` keyword followed by the type name a
             - `using<type T> T::SharedPtrType = SharedPtr<T>`
         - Objective-C/Swift classes use their reference counting mechanism:
             - `using ObjectiveCObject::SharedPtrType = ObjectiveCRefCountPtr`
-        - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).   
+        - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).
             - `using DotNetObject::SharedPtrType = DotNetGCPtr`
             - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
         - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
@@ -1462,7 +1462,7 @@ Extensions are defined using the `extension` keyword followed by the type name a
             - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`,~~ `BigUInt`
             - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
             - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
-              
+
 - Using [**signed `Int` as size**](#signed-size)
 
 - **Range & Validation Checks**
@@ -1990,7 +1990,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
               ```
         - `cilia::MDArray<Int dimensions, T = Float>`
             - also see `MDSpan`
-          
+
 - Image
     - `cilia::Image<T = Float>`
     - Almost like `cilia::Matrix`, but stored row-major, like:
@@ -1999,7 +1999,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
       3 4 5
       6 7 8
       ```
-      
+
 - Views, Slices
     - `ArrayView`
     - `VectorView`
@@ -2121,9 +2121,9 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - `stringArray.sort(locale)`
                 - `sort(Container<String>, locale) -> Container<String>`
             - `compare(stringA, stringB, locale) -> Int`
-     
 
-## Misc 
+
+## Misc
 - C++ Compatibility / Interoperability
     - **Compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",
         - as with
@@ -2153,7 +2153,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - File specific configuration,
                 - can be set in the IDE or on the command line,  
                   for each file individually.
-                  
+
 - Two-Pass Compiler
     - so no forward declarations necessary,
     - as with C# and Java (but unlike C/C++, due to its single-pass compiler).
@@ -2251,7 +2251,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - `a.shiftLeftAdd(Int steps, inout UInt addAndHigh)`
         - `b = shiftOneLeft(UInt a, inout Bool carryFlag)`
         - `a.shiftOneLeft(inout carryFlag)`
-      
+
 - `cilia::saturating::Int`
     - Like `cilia::Int`, but with **saturation** for all operations.
         - Limit to maximum, no wrap around.
@@ -2284,7 +2284,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `#if`
     - `#else`
     - `#endif`
-      
+
 - Optional Chaining
     - ```String? name = ...```  
       translates to  
@@ -2320,7 +2320,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
             - ```String? name = contactInfo?.name```  
               translates to  
               ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt);```
-           - ```String name = contactInfo?.name ?? ""```  
+            - ```String name = contactInfo?.name ?? ""```  
               translates to  
               ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");```
     - Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`.
