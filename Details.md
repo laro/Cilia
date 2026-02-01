@@ -7,9 +7,7 @@ order: 999
 
 This page is an index of the detailed language topics.
 
-- [Variable Declaration](/cilia/variable-declaration/)
-- [Classes](/cilia/classes/)
-- [Functions](/cilia/functions/)
+- [Declarations (Variable Declaration, Classes, Functions)](/cilia/declarations/)
 - [Branches, Loops & Exceptions](/cilia/branches-loops-exceptions/)
 - [Signed Size](/cilia/signed-size/)
 - [Literals](/cilia/literals/)
