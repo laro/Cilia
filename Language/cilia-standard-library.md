@@ -230,3 +230,260 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `MatrixView`
     - `ImageView`
     - `MDArrayView`
+
+---
+
+## Arrays & ArrayViews
+- `Int[] dynamicArrayOfIntegers`
+    - „Dynamic array“ with **dynamic size**
+      ```
+      Int[] array = [0, 1, 2]
+      array[0] = 0
+      array[1] = 0
+      array[2] = 0
+      array[3] = 0  // Runtime error, no compile time bounds check
+      ```
+    - "Make simple things simple",  
+      having a short and traditional syntax for dynamic arrays should encourage people to use it.
+    - `T[] arr` is the short form of `cilia::Array<T> arr`
+        - Also `[T] arr`, as in Swift or Rust, has some merits.  
+          And `[3 T] arr` for fixed sized arrays would be fine for me (I don't like `[T;3] arr`), but I'll stick with the more traditional `T[] arr` (like C# and Java).
+    - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
+        - that's the more traditional wording,
+        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
+        - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
+    - "Raw" C/C++ arrays are handled with `T*` instead.
+    - `std::array` is called `cilia::StaticArray` instead.
+    - In C/C++ `T[]` means "array of certain (inferred) size",
+        - but that can be replaced with `T*` and `T[N]`.
+        - Also see [https://cplusplus.com/forum/beginner/267321/#msg1150228](https://cplusplus.com/forum/beginner/267321/#msg1150228)
+- `Int[3] arrayOfThreeIntegers`  
+  (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
+    - „Static array“ with **fixed size**
+      ```
+      Int[3] array = [0, 1, 2]
+      array[0] = 0
+      array[1] = 0
+      array[2] = 0
+      array[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+    - `arrayOfThreeIntegers.size()` -> `3`
+        - realized as extension function  
+          `func<type T, Int N> T[N]::size() -> Int { return N }`
+- Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
+  But array subscript with `Int+` is unsafe.
+    - ```
+      Int+ array = new Int[3]  // Array-to-pointer decay possible
+      unsafe {
+          array[0] = 0
+          array[1] = 0
+          array[2] = 0
+          array[3] = 0  // Undefined behaviour, no bounds check at all
+      }
+      ```
+    - Using `Int*` for arrays is possible but generally unsafe.
+        - ```
+          Int+ uniquePtrToArray = new Int[3]  // Array-to-pointer decay possible
+          unsafe {
+              Int* array = uniquePtrToArray.release()
+              array[0] = 0
+              array[1] = 0
+              array[2] = 0
+              array[3] = 0  // Undefined behaviour, no bounds check at all
+              delete[] array
+          }
+          ```
+        - ```
+          unsafe {
+              Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
+              array[0] = 0
+              array[1] = 0
+              array[2] = 0
+              array[3] = 0  // Undefined behaviour, no bounds check at all
+              free(array)
+          }
+          ```
+    - Actually this is how to handle pointer to array of `Int` "properly":  
+      ```
+      Int[3]+ arrayPtr = new Int[3]
+      (*arrayPtr)[0] = 0
+      (*arrayPtr)[1] = 0
+      (*arrayPtr)[2] = 0
+      (*arrayPtr)[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+        - But raw pointer access is still `unsafe`:  
+          ```
+          unsafe {
+              Int[3]* arrayPtr = (new Int[3]).release()
+              (*arrayPtr)[0] = 0
+              (*arrayPtr)[1] = 0
+              (*arrayPtr)[2] = 0
+              (*arrayPtr)[3] = 0  // Compilation error, due to compile time bounds check
+              delete[] arrayPtr
+          }
+          ```
+- Examples:
+    - `Int[] dynamicArrayOfInt`
+    - `Int[3] arrayOfThreeInt`
+    - `Int[3]& referenceToArrayOfThreeInt`
+    - `Int[3]* pointerToArrayOfThreeInt`
+    - `Int[3][]& referenceToDynamicArrayOfArrayOfThreeInt`
+    - `String*[] dynamicArrayOfPointersToString`
+- ArrayViews AKA Slices AKA Subarrays
+    - `var subarray = array[1..2]`
+    - `var subarray = array[1..<3]`
+    - Incomplete ranges (need lower and/or upper bounds before use) are
+      typcally implemented as inline functions that determine the concrete bounds and then call `array[start..end]` (or one of the exclusive counterparts).
+        - `var subarray = array[..2]`
+        - `var subarray = array[..]`
+    - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- Multidimensional arrays
+    - dynamic size
+        - `Int[,] dynamic2DArray`  
+            - `T[,] array` is the short form of `cilia::MDArray<2, T> array`
+        - `Int[,,] multidimensionalDynamicArray`  
+            - `T[,,] array` is the short form of `cilia::MDArray<3, T> array`
+        - and so on:  
+            - `cilia::MDArray<N, T>`
+    - static size
+        - `Int[3, 2, 200]`
+            - Multidimensional static array  
+              ```
+              Int[3, 2, 200] intArray3D
+              intArray3D[2, 1, 199] = 1
+              ```
+            - `cilia::StaticMDArray<Int, 3, 2, 200> intArray3D`
+- Mixed forms of static and dynamic array
+    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
+    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
+
+---
+
+## Associative Arrays
+- AKA Maps (or Dictionaries)
+- `TValue[TKey]` as short form of `Map<TKey, TValue>`
+    - e.g. `ContactInfo[String] contactInfoForID` as short form  
+      of `Map<String, ContactInfo> contactInfoForID`,
+    - as [in D](https://dlang.org/spec/hash-map.html).
+    - There is no difference between these two, but "OtherMap<String, ContactInfo> contactInfoForID" allows you to select other map variants (SortedMap, HashMap etc.) if necessary.
+- "Make simple things simple",  
+  having a short syntax for associative arrays so they are easy to use.
+- Maybe partial template specialization:
+    - `Map<Int, ...>` is a `HashMap`
+    - `Map<String, ...>` is a `SortedMap`
+
+---
+
+## String, Char & CodePoint
+- `cilia::String` with _basic/standard_ unicode support.
+    - Based on UTF-8, as that IMHO is (among all the Unicode formats)
+        - the most widespread nowadays,
+        - the most compatible (as it is ASCII based),
+        - the most efficient, at least for "western" use (and you are free to use UTF16- or UTF32String otherwise).
+    - Iteration over a `String` or `StringView` by:
+        - **grapheme clusters**
+            - represented by `StringView`.
+            - This is the _default form of iteration_ over a `String` or `StringView`
+            - A single grapheme cluster will often consist of multiple code units
+              and may even consist of multiple code points.
+            - `for graphemeCluster in "abc 🥸👮🏻"`
+                - "a", "b", "c", " ", "🥸", "👮🏻"
+                - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
+            - A bit slow, as it has to find grapheme cluster boundaries.
+            - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
+            - Additional/alternative names?
+                - `for graphemeCluster in text.asGraphemeClusters()`?
+        - **code points**
+            - represented by `UInt32`,
+                - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
+                - Called "auto decoding" in D.
+            - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
+                - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
+            - **Note:** _Not_ even with UTF-32 do all grapheme clusters fit into a single code point,  
+              so not:
+                - emoji with modifier characters like skin tone or variation selector,
+                - diacritical characters (äöü..., depending on the normal form chosen),
+                - surely some more ...
+            - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
+            - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
+        - **code units**
+            - represented by
+                - `Char` for `String`
+                    - it is `Char`==`Char8`==`UInt8` and `String`==`UTF8String`
+                - `Char16` for `UTF16String`
+                - `Char32` for `UTF32String`
+            - `for aChar8 in "abc 🥸👮🏻".asArray()`
+                - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
+                - same for
+                    - `for aChar8 in u8"abc 🥸👮🏻".asArray()`
+                    - `for aChar8 in UTF8String("abc 🥸👮🏻").asArray()`
+            - `for aChar16 in u"abc 🥸👮🏻".asArray()`
+                - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
+                - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
+            - `for aChar32 in U"abc 🥸👮🏻".asArray()`
+                - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
+                - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
+    - `string.toUpper()`, `string.toLower()`
+        - `toUpper(String) -> String`, `toLower(String) -> String`
+    - `stringArray.sort()`
+        - `sort(Container<String>) -> Container<String>`
+    - `compare(stringA, stringB) -> Int`
+- `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
+    - like
+        - ASCII
+        - Latin-1
+        - ANSI (mostly identical to Latin-1)
+        - almost every one of the "code pages"
+    - Encoding is not defined.
+        - The user has to take care of this,
+        - or a subclass with known encoding has to be used (`ASCIIString`, `Latin1String`).
+    - `ASCIIString`, a string containing only ASCII characters.
+        - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`
+            - `for aChar in a"abc"`
+                - 0x61, 0x62, 0x63
+                - 'a', 'b', 'c'
+                - Compilation error, if string literal contains non-ASCII characters.
+                - same for `for aChar in ASCIIString("abc")`
+                    - but Exception thrown, if string contains non-ASCII characters.
+        - Implicitly convertable to `String`==`UTF8String`.
+            - Very fast conversion, as all characters have the same binary representation.
+    - `Latin1String`, a string containing only Latin-1 (ISO 8859-1) characters.
+        - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`
+            - `for aChar in l"äßç"`
+                - 0xe4, 0xdf, 0xe7
+                - 'ä', 'ß', 'ç'
+                - Compilation error, if string literal contains non-Latin-1 characters.
+                - same for `for aChar in Latin1String("abc")`
+                    - but Exception thrown, if string contains non-Latin1 characters.
+        - Explicitly convertable to `String`==`UTF8String`.
+            - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
+- `Char8`, `Char16`, `Char32`
+    - are considered as _different_ types for parameter overloading,
+    - but otherwise are like `UInt8`, `UInt16`, `UInt32`,
+
+- [**ICU**](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode") for advanced Unicode support.
+    - "The ICU libraries provide support for:
+        - The latest version of the Unicode standard
+        - Character set conversions with support for over 220 codepages
+        - Locale data for more than 300 locales
+        - Language sensitive text collation (sorting) and searching based on the Unicode Collation Algorithm (=ISO 14651)
+        - Regular expression matching and Unicode sets
+        - Transformations for normalization, upper/lowercase, script transliterations (50+ pairs)
+        - Resource bundles for storing and accessing localized information
+        - Date/Number/Message formatting and parsing of culture specific input/output formats
+        - Calendar specific date and time manipulation
+        - Text boundary analysis for finding characters, word and sentence boundaries"
+    - `import icu` adds extension methods for `cilia::String`
+        - Allows iteration over:
+            - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
+                - `for word in text.asWords()`
+            - lines
+                - `for line in text.asLines()`
+            - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
+                - `for sentence in text.asSentences()`
+        - Depending on locale
+            - `string.toUpper(locale)`, `string.toLower(locale)`
+                - `toUpper(String, locale) -> String`, `toLower(String, locale) -> String`
+            - `stringArray.sort(locale)`
+                - `sort(Container<String>, locale) -> Container<String>`
+            - `compare(stringA, stringB, locale) -> Int`
