@@ -347,9 +347,9 @@ One could define the order of bit in a bitfield.
     - `for Double d in [1, 2, 3] { ... }`
         - `d` is `const Double`
     - `for String str in ["a", "b", "c"] { ... }`
+        - `str` is `const String` (not `const StringView&`)
         - ~~`str` is `const String&` (not `const StringView&`)~~
             - TODO This dosnn't actually make sense here, you can not get a (const) reference to a string, when the underlying array is in fact a `StringView[]`.
-        - `str` is `const String` (not `const StringView&`)
     - `for inout String str in ["a", "b", "c"] { ... }`
         - `str` is `String&`
         - TODO This dosnn't actually make sense here, you can not get a (mutable/non-const) reference to a string, when the underlying array is in fact a `StringView[]`.
