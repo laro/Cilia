@@ -39,7 +39,7 @@ nav {
 /* Reserve space for the absolutely positioned sub navigation. */
 nav[data-has-subnav="true"] {
   /* Only reserve about one line for the 2nd level menu. */
-  padding-bottom: 2.1rem;
+  padding-bottom: 1.5rem;
 }
 
 @media (max-width: 480px) {
