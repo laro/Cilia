@@ -4,6 +4,18 @@ main blockquote,
 main dl {
   max-width: 80ch;
 }
+
+/* List separators: use an empty list item ("-") in Markdown. */
+.markdown-body main ul > li:empty {
+  list-style: none;
+  height: 0;
+  margin: 0.5lh 0;
+  padding: 0;
+}
+
+.markdown-body main ul > li:empty::marker {
+  content: "";
+}
 /*main pre {
   max-width: 100ch;
 }*/
