@@ -11,7 +11,7 @@ order: 4
     > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
     > They may be counter-intuitive, go against expected practice in other languages, leave data in undefined states, or generally be prone to misuse.
     
-    I am not familiar with all these issues, but in a new language we certainly coud fix a lot of it.
+    I am not familiar with all of these issues, but in a new language we certainly coud fix a lot of it.
     
     1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
         - See [Safety and Security](#safety-and-security)/Initialization
