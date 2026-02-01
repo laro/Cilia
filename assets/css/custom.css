@@ -61,7 +61,7 @@ nav > ul.nav-main > li {
 /* Navigation: optional second level */
 nav ul.nav-sub {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 0.25rem 0.75rem;
   list-style: none;
@@ -73,6 +73,9 @@ nav ul.nav-sub {
   transform: translateX(-50%);
   z-index: 10;
   max-width: min(92vw, 60rem);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 nav ul.nav-sub a {
