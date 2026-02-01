@@ -326,7 +326,7 @@ One could define the order of bit in a bitfield.
 
 ### Templates
 - **Class** templates  
-    - Partial template specialization coulb be written
+    - Partial template specialization could be written
       ```
       class<type T, Int N> MyUniquePtr<T[N]> {
           ... destructor calls delete[] ...
