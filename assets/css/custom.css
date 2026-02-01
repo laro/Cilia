@@ -24,6 +24,17 @@ nav {
   margin-top: 12px;
 }
 
+/* Reserve space for the absolutely positioned sub navigation. */
+nav[data-has-subnav="true"] {
+  padding-bottom: 5.25rem;
+}
+
+@media (max-width: 480px) {
+  nav[data-has-subnav="true"] {
+    padding-bottom: 7rem;
+  }
+}
+
 nav > ul.nav-main {
   display: flex;
   flex-wrap: wrap;
@@ -39,6 +50,14 @@ nav li {
   padding: 0;
 }
 
+/* Stack top-level item + its (optional) submenu vertically and center-align them. */
+nav > ul.nav-main > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
 /* Navigation: optional second level */
 nav ul.nav-sub {
   display: flex;
@@ -47,7 +66,13 @@ nav ul.nav-sub {
   gap: 0.25rem 0.75rem;
   list-style: none;
   padding: 0;
-  margin: 0.35rem 0 0 0;
+  margin: 0;
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  max-width: min(92vw, 60rem);
 }
 
 nav ul.nav-sub a {

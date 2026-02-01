@@ -12,22 +12,34 @@
   </head>
 
   <body>
-    <nav aria-label="Primary">
+    {% assign all_pages = site.pages
+      | where_exp: "p", "p.path contains '.md'"
+      | sort: "order" %}
+
+    {% assign titled_pages = all_pages
+      | where_exp: "p", "p.title"
+      | sort: "order" %}
+
+    {% if page.title and page.title contains '.' %}
+      {% assign active_top_title = page.title | split: '.' | first %}
+    {% else %}
+      {% assign active_top_title = page.title %}
+    {% endif %}
+
+    {% assign child_pages = titled_pages | where_exp: "p", "p.title contains '.'" %}
+    {% assign has_active_children = false %}
+    {% for c in child_pages %}
+      {% assign c_top_title = c.title | split: '.' | first %}
+      {% if c_top_title == active_top_title %}
+        {% assign has_active_children = true %}
+      {% endif %}
+    {% endfor %}
+
+    <nav
+      aria-label="Primary"
+      {% if has_active_children %}data-has-subnav="true"{% endif %}
+    >
       <ul class="nav-main">
-        {% assign all_pages = site.pages
-          | where_exp: "p", "p.path contains '.md'"
-          | sort: "order" %}
-
-        {% assign titled_pages = all_pages
-          | where_exp: "p", "p.title"
-          | sort: "order" %}
-
-        {% if page.title and page.title contains '.' %}
-          {% assign active_top_title = page.title | split: '.' | first %}
-        {% else %}
-          {% assign active_top_title = page.title %}
-        {% endif %}
-
         {% for p in titled_pages %}
           {% unless p.title contains '.' %}
             <li>
@@ -39,35 +51,26 @@
                   aria-current="location"
                 {% endif %}
               >{{ p.title }}</a>
+
+              {% if has_active_children and p.title == active_top_title %}
+                <ul class="nav-sub" aria-label="{{ active_top_title }} sub-pages">
+                  {% for c in child_pages %}
+                    {% assign c_top_title = c.title | split: '.' | first %}
+                    {% if c_top_title == active_top_title %}
+                      <li>
+                        <a
+                          href="{{ c.url | relative_url }}"
+                          {% if c.url == page.url %}aria-current="page"{% endif %}
+                        >{{ c.title | split: '.' | last }}</a>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
             </li>
           {% endunless %}
         {% endfor %}
       </ul>
-
-      {% assign child_pages = titled_pages | where_exp: "p", "p.title contains '.'" %}
-      {% assign has_active_children = false %}
-      {% for c in child_pages %}
-        {% assign c_top_title = c.title | split: '.' | first %}
-        {% if c_top_title == active_top_title %}
-          {% assign has_active_children = true %}
-        {% endif %}
-      {% endfor %}
-
-      {% if has_active_children %}
-        <ul class="nav-sub" aria-label="{{ active_top_title }} sub-pages">
-          {% for c in child_pages %}
-            {% assign c_top_title = c.title | split: '.' | first %}
-            {% if c_top_title == active_top_title %}
-              <li>
-                <a
-                  href="{{ c.url | relative_url }}"
-                  {% if c.url == page.url %}aria-current="page"{% endif %}
-                >{{ c.title | split: '.' | last }}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      {% endif %}
     </nav>
 
     <div class="container-lg px-3 my-5 markdown-body">
