@@ -16,4 +16,4 @@ This page is an index of the detailed language topics.
 - [(Smart) Pointers](/cilia/smart-pointers/)
 - [Safety and Security](/cilia/safety-and-security/)
 - [`is`, `as`, Casting](/cilia/is-as-casting/)
-- [`cilia` Standard Library](/cilia/cilia-standard-library/)
+- [Standard Library](/cilia/cilia-standard-library/)

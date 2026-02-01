@@ -1,10 +1,10 @@
 ---
-title: Cilia.`cilia` Standard Library
+title: Cilia.Standard Library
 permalink: /cilia/cilia-standard-library/
 order: 18
 ---
 
-## `cilia` Standard Library
+## Cilia Standard Library
 Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
 - With a Cilia version of each standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
     - `cilia::String` instead of `std::string`

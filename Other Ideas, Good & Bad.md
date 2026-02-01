@@ -380,7 +380,7 @@ One could define the order of bit in a bitfield.
         - `for sentence in text.bySentence()`
      
 
-### `cilia` Standard Library
+### Cilia Standard Library
 - "**Alias**" for 
     - member variables could be written as  
        `alias x = data[0]`,
