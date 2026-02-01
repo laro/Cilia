@@ -270,7 +270,7 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - `arrayOfThreeIntegers.size()` -> `3`
         - realized as extension function  
           `func<type T, Int N> T[N]::size() -> Int { return N }`
-- Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
+ - Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
   But array subscript with `Int+` is unsafe.
     - ```
       Int+ array = new Int[3]  // Array-to-pointer decay possible
@@ -396,8 +396,8 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
         - **code points**
             - represented by `UInt32`,
                 - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
-                - Called "auto decoding" in D.
-            - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
+                    - Called "auto decoding" in D.
+                - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
             - **Note:** _Not_ even with UTF-32 do all grapheme clusters fit into a single code point,  
               so not:

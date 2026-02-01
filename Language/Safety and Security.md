@@ -146,10 +146,10 @@ order: 15
           }
           ```
     - A function with unsafe code does not necessarily has to be marked as `unsafe` itself.
-        - `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
-        - Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves.
-        - Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves.
-        - Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
+    - `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
+    - Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves.
+    - Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves.
+    - Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
 - `cilia::safe::Int`
     - Like `cilia::Int`, but with **overflow check** for all operations,
         - may throw OverflowException (or abort the program).
@@ -161,5 +161,5 @@ order: 15
     - Not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
         - that is just out of scope.
     - No _additional_ thread safety measures.
-        - A thread safety issue can easily lead to a deadlock or crash, and sometimes can even be a security problem.
-        - But while thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (mainly because I am not aware of / familiar with better solutions than already available/recommended in C++).
+    - A thread safety issue can easily lead to a deadlock or crash, and sometimes can even be a security problem.
+    - But while thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (mainly because I am not aware of / familiar with better solutions than already available/recommended in C++).
