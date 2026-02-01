@@ -72,10 +72,9 @@ nav ul.nav-sub {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  max-width: min(92vw, 60rem);
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+  width: max-content;
+  max-width: none;
+  white-space: nowrap;
 }
 
 nav ul.nav-sub a {
@@ -83,6 +82,7 @@ nav ul.nav-sub a {
   font-weight: 500;
   border-radius: 10px;
   padding: 0.05rem 0.35rem;
+  white-space: nowrap;
 }
 
 nav a {
