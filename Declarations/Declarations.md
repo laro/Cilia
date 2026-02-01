@@ -1,6 +1,6 @@
 ---
-title: Basics.Declarations
-permalink: /basics/declarations/
+title: Declarations.Declarations
+permalink: /declarations/declarations/
 order: 0
 ---
 
