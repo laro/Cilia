@@ -159,3 +159,449 @@ func multiplyAdd(Float x, y, Int z) -> Float {
         - **`func(Int)* pointerToFunctionOfInt`**
         - `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero
         - `func(Int)& referenceToFunctionOfInt`
+
+---
+
+## Function Parameter Passing Modes
+Each function parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it’s input-only, mutable, output, copied, or moved.  
+The basic idea is to have the most efficient/appropriate parameter passing as the _default_, and to give more the intent than the technical realization.  
+Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (surely inspired by the `out` parameters of C#, and by Ada).
+- **Default is passing as `in`**-parameter.
+    - So if no parameter passing keyword is given, `in` parameter passing is used.
+    - All other parameter passing methods need to be explicitly given.
+- Function call parameters are passed as either **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, or **`forward`**.
+    - Wording fits nicely for function parameters: How does the parameter get into the function body (or out of it).
+- The loop variable of `for ... in` is passed as either **`in`**, **`inout`**, **`copy`**, or **`move`**  
+  (`out` and `forward` are not applicable here).
+    - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
+- The argument of `catch ... { ... }` is passed as **`in`**  
+  (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here).
+- Parameter passing mode keywords:
+    - **`in`**
+        - to mark parameters used as input.
+        - Is the default if no parameter passing keyword is given.
+        - Suitable for most basic functions, like `print(Int count, String text)`.
+        - Technically either `const X&` (a constant reference) or `const X` (a constant copy), sometimes `const XView` (a view type, e.g. a slice).
+            - `const X&` as default, suitable for most, medium to large types:
+                - `add(BigInt a, BigInt b)`
+                    - is effectively translated to `add(const BigInt& a, const BigInt& b)`  
+                - `BigInt[] bigIntArray = ...`  
+                  `for i in bigIntArray { ... }`
+                    - `i` is `const BigInt&`  
+            - `const X` for "small types" (like `Int`, `Float`, etc.):
+                - `for i in [1, 2, 3] { ... }`
+                    - `i` is `const Int`
+                - `for str in ["a", "b", "c"] { ... }`
+                    - `str` is `const StringView` (a string-literal like `"a"` forms a `const StringView`, therefore `["a", "b", "c"]` is a `const StringView[3]`)
+            - `const XView` for types `X` that have a corresponding view type:
+                - `concat(String first, String second)`
+                    - is effectively translated to `concat(const StringView first, const StringView second)`
+                - `String[] stringArray = ...`  
+                  `for str in stringArray { ... }`
+                    - `str` is `const StringView`
+    - **`inout`**
+        - to mark parameters used as input (so they need to be initialized at the caller) _and_ as output.
+        - Technically a non-const/mutable reference (`X&`)
+        - Suitable for e.g. `swap(inout Int a, inout Int b)`.
+        - ~~Keyword `inout` is also to be given at the caller: `swap(inout a, inout b)`~~
+            - No, because
+                - it is verbose,
+                - it is not a reliable warning/guarantee, that the argumemt may be changed, as any reference-like type (e.g. `Span<T>`) allows change even without `inout`.
+        - Examples:
+            - `for inout str in stringArray { ... }`
+                - `str` is `String&`
+            - `for inout i in intArray { ... }`
+                - `i` is `Int&`
+    - **`out`**
+        - to mark output parameters (is initialized at the callee).
+        - Technically, like `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
+        - Keyword `out` is also to be given at the caller:
+          ```
+          String errorDetails
+          if not open("...", out errorDetails) {
+              cout << errorDetails
+          }
+          ```
+        - Maybe even with ad-hoc declaration of the out variable (as in C# 7.0):
+            - ```
+              if not open("...", out String errorDetails) {
+                  cout << errorDetails
+              }
+              ```
+            - ```
+              if open("...", out String errorDetails) {
+                  // ...
+              } else {
+                  cout << errorDetails
+              }
+              ```
+    - **`copy`**
+        - to create a (mutable) copy (i.e. pass "by value").
+        - Technically a non-const/mutable value (`X`), sometimes the "full class" `X` of a view class `XView`.
+        - Examples:
+            - `for copy i in [1, 2, 3] { ... }`
+                - `i` is an `Int`
+            - `for copy str in stringArray { ... }`
+                - `str` is a `String`
+            - `for copy str in ["an", "array", "of", "words"] { ... }`
+                - `str` is a `String` (not a ~~`StringView`~~, due to the `X`/`XView`-copy-trick)
+    - **`move`**
+        - for move sematics.
+        - Technically a right-value reference (`X&&`)
+    - **`forward`**
+        - for perfect forwarding in template functions.
+        - TODO Technically a right-value reference (`X&&`), too?
+- Type traits **`InParameterType`** to determine the concrete type to be used for `in`-passing.
+    - The rule of thumb is:
+        - Objects that are POD (Plain Old Data, i.e. with no pointers) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes on 64 bit platforms) are passed by value.
+        - Larger objects (or non-POD) are passed by reference.
+    - So, as general default, use _const reference_,
+        - ```
+          extension<type T> T {
+              InParameterType = const T&
+          }
+          ```
+    - and use a "list of exceptions" for the "const _value_ types".
+        - ```
+          extension     Bool { InParameterType = const Bool }
+          extension     Int8 { InParameterType = const Int8 }
+          extension    Int16 { InParameterType = const Int16 }
+          extension    Int32 { InParameterType = const Int32 }
+          extension    Int64 { InParameterType = const Int64 }
+          extension    UInt8 { InParameterType = const UInt8 }
+          extension   UInt16 { InParameterType = const UInt16 }
+          extension   UInt32 { InParameterType = const UInt32 }
+          extension   UInt64 { InParameterType = const UInt64 }
+          extension  Float32 { InParameterType = const Float32 }
+          extension  Float64 { InParameterType = const Float64 }
+          extension  std::string_view { InParameterType = const std::string_view }
+          extension std::span<type T> { InParameterType = const std::span<T> }
+          ...
+          ```
+        - `extension<type T> Complex<T> { InParameterType = T::InParameterType }`
+            - A generic rule: `Complex<T>` is passed the same way as `T`,
+            - could be further refined/corrected with  
+              `extension Complex<Float128> { InParameterType = const Complex<Float128>& }`  
+              as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 bytes (so pass by value would be the default).
+        - This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
+- Special **trick for types with views**
+    - Applicable only for types `X` that have an `XView` counterpart where
+        - `X` can implicitly be converted to `XView`,
+        - `XView` can (explicitly) be converted to `X`, and
+        - `XView` has the same "interface" as `const X` (i.e. contiguous memory access).
+    - like:  
+        - `String` - `StringView`
+        - `Array` - `ArrayView`
+        - `Vector` - `VectorView`
+    - As example, with `String`/`StringView`:
+        - `extension String { InParameterType = const StringView }`  
+          i.e. **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
+        - So all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
+            - a `String` (as that can implicitly be converted to `StringView`)
+            - a `StringView` (that somehow is the more versatile variant of `const String&`),
+            - and therefore also _every third-party string_ class (as long as it is implicitly convertable to `StringView`).
+        - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
+        - Example:
+            - `concat(String first, String second)`
+                - is short for `concat(in String first, in String second)`
+                - and extends to `concat(const StringView first, const StringView second)`
+        - For cases where you need to _change_ the string parameter, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
+        - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just for consistency.
+        - Example:
+            - `String[] stringArray = ["a", "b", "c"]`  
+              `for str in stringArray { ... }`
+                - `str` is `const StringView`
+    - This is not possible with every view type, as some views do not guarantee contiguous memory access (typically when they do support stride):
+        - ~~`Matrix` - `MatrixView`~~
+        - ~~`Image` - `ImageView`~~
+        - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
+        - Maybe having some `XBasicView` instead, explicitly _without_ stride support,  
+          that can cut off at start and end, but no slicing:
+            - `Matrix` - `MatrixBasicView`
+            - `Image` - `ImageBasicView`
+            - `MDArray` - `MDArrayBasicView`
+    - Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
+        - ```
+          extension String { InParameterType = const StringView }
+          extension  Array { InParameterType = const ArrayView }
+          extension Vector { InParameterType = const VectorView }
+          ```
+    - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
+        - ```
+          extension  Matrix { InParameterType = const MatrixBasicView& }
+          extension   Image { InParameterType = const ImageBasicView& }
+          extension MDArray { InParameterType = const MDArrayBasicView& }
+          ```
+        - (Which you don't have to write down explicitly, because `const&` simply is the standard for user defined types.)
+- Type trait **`CopyParameterType`**
+    - of a type `T` typically simply is `T`  
+      `extension<type T> T { CopyParameterType = T }`  
+    - but for `View`-types it is the corresponding "full" type:
+      ```
+      extension       StringView { CopyParameterType = String }
+      extension        ArrayView { CopyParameterType = Array }
+      extension       VectorView { CopyParameterType = Vector }
+      extension       MatrixView { CopyParameterType = Matrix }
+      extension  MatrixBasicView { CopyParameterType = Matrix }
+      extension        ImageView { CopyParameterType = Image }
+      extension   ImageBasicView { CopyParameterType = Image }
+      extension      MDArrayView { CopyParameterType = MDArray }
+      extension MDArrayBasicView { CopyParameterType = MDArray }
+      ```
+    - The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
+    - Example:
+        - `for copy str in ["an", "array", "of", "words"] { ... }`
+            - While the literal `["an", "array", "of", "words"]` is an `StringView[]`,  
+              `str` is a `String` (not a ~~`StringView`~~).
+            - This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.
+            - (This is currently the only useful example I can think of.)
+
+---
+
+## Operators
+- Power function
+    - **`a^x`** for `pow(a, x)` (as in Julia),
+    - "raise a to the power of x".
+- Boolean operators
+    - **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`** in addition to `&&`/`&`, `||`/`|`, ...
+        - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
+          [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
+        - Used for both
+            - boolean operation (when used on Bool)
+                - `aBool`**`and`**`anotherBool` -> `Bool`
+            - bitwise operation (when used on integers)
+                - `anInt`**`and`**`anotherInt` -> `Int`
+            - No mixed types allowed (you need to explicitly cast one side instead).
+        - Words like `and` and `or` IMHO are a bit clearer than `&&`/`&` and `||`/`|`, so they are recommended.
+        - Still _also_ use `&` and `|` for bitwise operation,
+            - as C/C++/Java/C# programmers are used to it,
+            - as we keep `&=` and `|=` anyway.
+        - Still _also_ use `&&` and `||` for boolean operation,
+            - as C/C++/Java/C# programmers are used to it,
+                - even [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
+                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`,
+            - as we want `&&=` and `||=` anyway.
+            - Defined on `Bool` only (_not_ on integers).
+    - **`not`** in addition to `!` (for boolean negation)
+        - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
+        - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
+          (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
+        - Still use `~` for bitwise negation,
+            - as C/C++/Java/C# programmers are used to it,
+            - as we keep `~T` for the destructor anyway.
+    - **`xor`** _instead_ of `^`  
+      because we want `^` for the power function.
+- Equality
+    - Default `operator==`
+        - If not defined, then
+            - use negated `operator!=` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use elementwise comparison with `==`
+                - Only possible if all elements themselves offer the `operator==`.
+                - Optimization for simple types: Byte-by-byte comparison.
+    - Default `operator!=`
+        - If not defined, then
+            - use negated `operator==` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use negated generated `operator==`.
+- **Range operator** `..` and `..<`
+    - `1..10` and `0..<10` are ranges
+        - as in [Kotlin](https://kotlinlang.org/docs/ranges.html)
+        - Similar, but diffentent:
+            - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
+            - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
+            - Cpp2 would be ~~`1..=10`~~ and ~~`0..<10`~~ (as of recently)
+    - Different kinds of ranges:
+        - `1..3` – 1, 2, 3
+            - `Range(1, 3)`
+        - `0..<3` – 0, 1, 2
+            - `RangeExclusiveEnd(0, 3)`
+        - Range with step (especially to **iterate with the given step size in the `for` loop**)
+            - `1..6:2` – 1, 3, 5
+                - `RangeByStep(1, 6, 2)`
+            - `0..<6:2` – 0, 2, 4
+                - `RangeExclusiveEndByStep(0, 6, 2)`
+        - Downwards iterating range (especially to **iterate downwards in the `for` loop**).  
+          Step size is mandatory here (to make it clear that we are counting down, to avoid wrong conclusions).
+            - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
+                - `RangeByStep(8, 0, -1)`
+                - Not ~~`8..0`~~, as `Range(8, 0)` is always empty (it is counting up, not down!)
+                - Not `8..<0:-1`
+                    - With staticAssert in `RangeExclusiveEndByStep` that `step > 0`:  
+                      "The range operator with exclusive end (`..<`) is not compatible with negative increments, because when counting downwards it would be necessary/logical to write `..>` and that is not available."
+                    - It simply would be too much, IMHO.
+                    - Use `8..1:-1` instead.
+        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
+        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
+            - `..2` – ..., 1, 2
+                - `RangeTo(2)`
+            - `..<3` – ..., 1, 2
+                - `RangeToExclusiveEnd(3)`
+            - `0..` – 0, 1, 2, ...
+                - `RangeFrom(0)`
+            - `..`
+                - `RangeFull()`
+            - Incomplete range with step
+                - `..2:2` – `RangeToByStep(2, 2)`
+                - `..<3:2` – `RangeToExclusiveEndByStep(3, 2)`
+                - `0..:2` – `RangeFromByStep(0, 2)`
+                - `..:2` – `RangeFullByStep(2)`
+        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- Bit-Shift & Rotation
+    - `>>` Shift right (logical shift with unsigned integers, arithmetic shift with signed integers)
+    - `<<` Shift left (here a logical shift left with unsigned integers is the same as an arithmetic shift left with signed integers)
+    - `>>>` Rotate right (circular shift right, only defined for unsigned integers)
+    - `<<<` Rotate left (circular shift left, only defined for unsigned integers)
+
+---
+
+## Operator Declaration
+- Keyword **`operator`** instead of `func`.
+- As with normal functions: Parameters are passed as `in` by default (i.e. `const T&` or `const T`).
+- Assignment operator
+  ```
+  class Int256 {
+      operator =(Int256 other) { ... }
+  }
+  ```
+    - No return of this-reference,
+        - [as in Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/),
+        - so `if a = b { ... }` is _not_ accidentally allowed.
+    - Move assignment
+      ```
+      class Int256 {
+          operator =(move Int256 other) { ... }
+      }
+      ```
+- Arithmetic operators
+  ```
+  operator +(Int256 a, b) -> Int256 { ... }
+  operator -(Int256 a, b) -> Int256 { ... }
+  operator *(Int256 a, b) -> Int256 { ... }
+  operator /(Int256 a, b) -> Int256 { ... }
+  operator %(Int256 a, b) -> Int256 { ... }
+  ```
+- Shift and rotate operators
+  ```
+  operator <<(Int256 a, Int shiftCount) -> Int256 { ... }
+  operator >>(Int256 a, Int shiftCount) -> Int256 { ... }
+  operator <<<(UInt256 a, Int shiftCount) -> UInt256 { ... }
+  operator >>>(UInt256 a, Int shiftCount) -> UInt256 { ... }
+  ```
+- Compound assignment operators
+  ```
+  class Int256 {
+      operator +=(Int256 other) { ... }
+      operator -=(Int256 other) { ... }
+      operator *=(Int256 other) { ... }
+      operator /=(Int256 other) { ... }
+      operator %=(Int256 other) { ... }
+      operator <<=(Int shiftCount) { ... }
+      operator >>=(Int shiftCount) { ... }
+      operator &=(Int256 other) { ... }
+      operator |=(Int256 other) { ... }
+  }
+  class UInt256 {
+      operator <<<=(Int shiftCount) { ... }
+      operator >>>=(Int shiftCount) { ... }
+  }
+  ```
+    - Not ~~`operator ^=(Int256 other) { ... }`~~
+- Increment and decrement operators
+  ```
+  class Int256 {
+      operator ++() -> Int256& { ... }
+      operator ++(Int dummy) -> Int256 { ... } // post-increment
+      operator --() -> Int256& { ... }
+      operator --(Int dummy) -> Int256 { ... } // post-decrement
+  }
+  ```
+- Relational and comparison operators
+  ```
+  operator ==(Int256 a, b) -> Bool { ... }
+  operator !=(Int256 a, b) -> Bool { ... }
+  operator <(Int256 a, b) -> Bool { ... }
+  operator >(Int256 a, b) -> Bool { ... }
+  operator <=(Int256 a, b) -> Bool { ... }
+  operator >=(Int256 a, b) -> Bool { ... }
+  operator <=>(Int256 a, b) -> Int { ... }
+  ```
+- Logical operators
+    - Boolean operators
+      ```
+      operator and(Bool a, b) -> Bool { ... }
+      operator or(Bool a, b) -> Bool { ... }
+      operator nand(Bool a, b) -> Bool { ... }
+      operator nor(Bool a, b) -> Bool { ... }
+      operator xor(Bool a, b) -> Bool { ... }
+      operator not(Bool a) -> Bool { ... }
+      operator &&(Bool a, b) -> Bool { return a and b }
+      operator ||(Bool a, b) -> Bool { return a or b }
+      operator !(Bool a) -> Bool { return not a }
+      operator ∧(Bool a, b) -> Bool { return a and b }
+      operator ∨(Bool a, b) -> Bool { return a or b }
+      operator ⊼(Bool a, b) -> Bool { return a nand b }
+      operator ⊽(Bool a, b) -> Bool { return a nor b }
+      operator ⊻(Bool a, b) -> Bool { return a xor b }
+      ```
+        - Defined for _`Bool`_ (not for integers),
+        - operators `!`, not ~~`~`~~,
+            - `&&` and `||`, not ~~`&` and `|`~~.
+    - Bitwise operators
+      ```
+      operator and(Int256 a, b) -> Int256 { ... }
+      operator or(Int256 a, b) -> Int256 { ... }
+      operator nand(Int256 a, b) -> Int256 { ... }
+      operator nor(Int256 a, b) -> Int256 { ... }
+      operator xor(Int256 a, b) -> Int256 { ... }
+      operator not(Int256 a) -> Int256 { ... }
+      operator &(Int256 a, b) -> Int256 { return a and b }
+      operator |(Int256 a, b) -> Int256 { return a or b }
+      operator ~(Int256 a) -> Int256 { return not a }
+      operator ∧(Int256 a, b) -> Int256 { return a and b }
+      operator ∨(Int256 a, b) -> Int256 { return a or b }
+      operator ⊼(Int256 a, b) -> Int256 { return a nand b }
+      operator ⊽(Int256 a, b) -> Int256 { return a nor b }
+      operator ⊻(Int256 a, b) -> Int256 { return a xor b }
+      ```
+        - Defined for _integers_ (not for `Bool`),
+        - operators `~`, not ~~`!`~~,
+            - `&` and `|`, not ~~`&&` and `||`~~.
+- Subscript/bracket/parenthesis/functor operators:
+  ```
+  class MyImage<type T> {
+      // Array subscript
+      operator [Int i] -> T& {
+          return data[i]
+      }
+
+      // 2D array (i.e. image like) subscript
+      operator [Int x, y] -> T& {
+          return data[x + y*stride]
+      }
+      
+      // Functor call
+      operator (Int a, Float b, String c) {
+          ...
+      }
+  }
+  ```
+- Exotic operators (e.g. Unicode)
+    - ⊕, ⊖, ⊗, ⊘, ⊙, ⊛, ⊞, ⊟, ∪, ∩, ∖, ∈, ∉, ∋, ∌, ∧, ∨, ¬, ∷, ∶, ∝, ∼, ≈, ≉, ≠, ≤, ≥, ≪, ≫, ⊂, ⊃, ⊆, ⊇, ∅, ∇, ∂, ∞, ∑, ∏, ∫, ∮, ∵, ∴, ∗, ∘, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
+    - Reserved for future use, as it could get complicated and confusing.
+        - Especially to differentiate
+            - operator precedence and
+            - unary (prefix, postfix) or binary (infix) operators.
+        - Many seem more suitable for a computer algebra system (CAS), not for a general purpose programming language.
+    - `|x|` for `abs(x)`?
+        - `||x||` for `norm(x)`?
+            - This would interfere with `||` as logical `or`.
+        - This form is called as "enclosing operator", "delimited form", "bracketed expression", or informally as a paired prefix/postfix or "sandwich operator".
+        - More variants?
+            - `≪...≫`
+            - `‹...›` , `«...»`
+            - `⦅...⦆` , `〚...〛` , `⦃...⦄`
+            - `（...）`, `［...］`, `｛...｝`, `｟...｠`
+            - `「...」`, `『...』`, `〈...〉`, `《...》`, `【...】`, `〖...〗`, `〔...〕`, `〘...〙`, `⦗...⦘`
+        - Some may be used in reversed order: `≫...≪`
+        - Also see [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)
