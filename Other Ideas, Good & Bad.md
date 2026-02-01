@@ -321,7 +321,7 @@ One could define the order of bit in a bitfield.
     - as Python
     - only offer/allow `i += 1`, `i -= 1`  
       or even only `i = i + 1`, `i = i - 1`
-    - Note: No, we are a C++ descendant after all.
+    - Note: No, we Cilia is a C++ descendant after all.
 
 
 ### Templates
