@@ -4,7 +4,7 @@ permalink: /comparison/kotlin/
 order: 5
 ---
 
-This is (should be) the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in Kotlin:
+This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Kotlin:
 
 - `Int`, `Long`, `Float`
 - 

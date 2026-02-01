@@ -4,7 +4,7 @@ permalink: /comparison/csharp/
 order: 7
 ---
 
-This is (should be) the exact equivalent of the [Cilia example](/comparison/cilia/#by-example) in C#:
+This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in C#:
 
 - `int`, `long`, `float`
 - 

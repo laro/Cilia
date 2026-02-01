@@ -5,7 +5,7 @@ order: 1
 ---
 
 ## Comparison with C++, Cpp2, Carbon, Rust, Swift, Kotlin, Java, and C#
-The following comparison aims to show the _exact_ equivalent of the [Cilia example](/comparison/cilia/#by-example):
+The following comparison aims to show the _exact_ equivalent of the [Cilia code](/comparison/cilia/#by-example):
 
 [Cilia](/comparison/cilia/), [C++](/comparison/cpp/), [Cpp2](/comparison/cpp2/), [Carbon](/comparison/carbon/), [Rust](/comparison/rust/), [Swift](/comparison/swift/), [Kotlin](/comparison/kotlin/), [Java](/comparison/java/), [C#](/comparison/csharp/)
 
