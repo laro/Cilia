@@ -1,5 +1,5 @@
 ---
-title: Basics.Sogned Size
+title: Basics.Signed Size
 permalink: /basics/signed-size/
 order: 5
 ---
