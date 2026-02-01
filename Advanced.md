@@ -1,7 +1,7 @@
 ---
 title: Advanced
 permalink: /advanced/
-order: 1
+order: 2
 ---
 
 # Advanced
