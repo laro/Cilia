@@ -12,10 +12,10 @@ main dl {
   margin: 0.5lh 0;
   padding: 0;
 }
-
 .markdown-body main ul > li:empty::marker {
   content: "";
 }
+
 /*main pre {
   max-width: 100ch;
 }*/
