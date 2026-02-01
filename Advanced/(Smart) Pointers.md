@@ -1,7 +1,7 @@
 ---
 title: Advanced.(Smart) Pointers
 permalink: /advanced/smart-pointers/
-order: 12
+order: 1
 ---
 
 ## (Smart) Pointers

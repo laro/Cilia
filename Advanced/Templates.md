@@ -1,7 +1,7 @@
 ---
 title: Advanced.Templates
 permalink: /advanced/templates/
-order: 7
+order: 0
 ---
 
 ## Templates
