@@ -6,7 +6,7 @@ order: 4
 
 ## Other Ideas, Good & Bad
 ### **Circle**
-- **Fix C++ "wrong defaults"**  
+- **Fix C++'s "wrong defaults"**  
     [Sean Baxter](https://x.com/seanbax) ([Circle](https://github.com/seanbaxter/circle)), [writes about C++'s wrong defaults](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
     > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
     > They may be counter-intuitive, go against expected practice in other languages, leave data in undefined states, or generally be prone to misuse.
