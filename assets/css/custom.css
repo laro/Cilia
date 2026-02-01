@@ -1,3 +1,87 @@
+/* -----------------------------------------------------------------------------
+   Color scheme (no toggle)
+
+   This site follows the browser/OS preference via `prefers-color-scheme`.
+   -----------------------------------------------------------------------------
+*/
+
+:root {
+  /* Tell the UA that both schemes are supported (form controls, scrollbars, etc.). */
+  color-scheme: light dark;
+
+  /* Site tokens (light) */
+  --cilia-bg: #ffffff;
+  --cilia-fg: #1f2328;
+  --cilia-muted: #57606a;
+  --cilia-border: #d0d7de;
+  --cilia-link: #0969da;
+  --cilia-code-bg: #f6f8fa;
+
+  /*
+    Primer-ish variables used by GitHub Pages themes.
+    Defining these here keeps our custom styles stable even if the theme changes.
+  */
+  --color-canvas-default: var(--cilia-bg);
+  --color-fg-default: var(--cilia-fg);
+  --color-fg-muted: var(--cilia-muted);
+  --color-border-default: var(--cilia-border);
+  --color-accent-fg: var(--cilia-link);
+  --color-neutral-muted: var(--cilia-code-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Site tokens (dark) */
+    --cilia-bg: #0d1117;
+    --cilia-fg: #c9d1d9;
+    --cilia-muted: #8b949e;
+    --cilia-border: #30363d;
+    --cilia-link: #58a6ff;
+    --cilia-code-bg: #161b22;
+  }
+}
+
+html,
+body {
+  background: var(--color-canvas-default);
+  color: var(--color-fg-default);
+}
+
+.markdown-body {
+  color: var(--color-fg-default);
+}
+
+.markdown-body a {
+  color: var(--color-accent-fg);
+}
+
+.markdown-body a:visited {
+  color: var(--color-accent-fg);
+}
+
+.markdown-body code,
+.markdown-body pre {
+  background-color: var(--color-neutral-muted);
+}
+
+.markdown-body hr {
+  background-color: var(--color-border-default);
+}
+
+.markdown-body blockquote {
+  color: var(--color-fg-muted);
+  border-left-color: var(--color-border-default);
+}
+
+/* The theme uses these utility classes on the footer. */
+.border-top {
+  border-top-color: var(--color-border-default) !important;
+}
+
+.text-gray {
+  color: var(--color-fg-muted) !important;
+}
+
 main p,
 main li,
 main blockquote,
