@@ -390,7 +390,7 @@ One could define the order of bit in a bitfield.
 
 
 ### (Smart) Pointers
-- `Type- pointer`**
+- **`Type- pointer`**
     - `T-` is short for `UniquePtr<T[0]>` (i.e. a unique pointer to a C/C++ array of fixed but unknown size)
 - `new T` returns a `T+`/`UniquePtr<T>`,
     - so `T+`/`UniquePtr<T>` is the "default type" for pointers,  
