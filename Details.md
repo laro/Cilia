@@ -7,14 +7,12 @@ order: 999
 
 This page is an index of the detailed language topics.
 
-- [Declarations (Variable Declaration, Classes, Functions)](/cilia/declarations/)
+- [Declarations (Variables, Functions, Operators, Aliasing, Type Extensions, ...)](/cilia/declarations/)
 - [Branches, Loops & Exceptions](/cilia/branches-loops-exceptions/)
 - [Signed Size](/cilia/signed-size/)
 - [Literals](/cilia/literals/)
 - [Comments](/cilia/comments/)
 - [Templates](/cilia/templates/)
-- [Aliasing](/cilia/aliasing/)
-- [Type Extension](/cilia/type-extension/)
 - [(Smart) Pointers](/cilia/smart-pointers/)
 - [Arrays & ArrayViews](/cilia/arrays-arrayviews/)
 - [Associative Arrays](/cilia/associative-arrays/)
