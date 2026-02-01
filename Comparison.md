@@ -4,10 +4,8 @@ permalink: /comparison/
 order: 1
 ---
 
-## Comparison with C++, Cpp2, Carbon, Rust, Swift, Kotlin, Java, and C#
-The following comparison aims to show the _exact_ equivalent of the [Cilia code](/comparison/cilia/#by-example):
-
-[Cilia](/comparison/cilia/), [C++](/comparison/cpp/), [Cpp2](/comparison/cpp2/), [Carbon](/comparison/carbon/), [Rust](/comparison/rust/), [Swift](/comparison/swift/), [Kotlin](/comparison/kotlin/), [Java](/comparison/java/), [C#](/comparison/csharp/)
+## Comparison of Cilia](/comparison/cilia/) with [C++](/comparison/cpp/), [Cpp2](/comparison/cpp2/), [Carbon](/comparison/carbon/), [Rust](/comparison/rust/), [Swift](/comparison/swift/), [Kotlin](/comparison/kotlin/), [Java](/comparison/java/), and [C#](/comparison/csharp/)
+The following comparison aims to show the _exact_ equivalent of the [Cilia code](/comparison/cilia/#by-example).
 
 > **Note**
 > - I may not be very familiar with all these languages, or not up to date.
