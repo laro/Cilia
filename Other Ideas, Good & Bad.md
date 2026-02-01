@@ -1,7 +1,7 @@
 ---
-title: Other Ideas
+title: ….Other Ideas
 permalink: /other-ideas/
-order: 4
+order: 1
 ---
 
 ## Other Ideas, Good & Bad

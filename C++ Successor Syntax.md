@@ -1,7 +1,7 @@
 ---
-title: C++ Successor
+title: ….C++ Successor
 permalink: /cpp-successor-syntax/
-order: 3
+order: 0
 ---
 
 ## C++ "Successor" Language / Syntax
