@@ -4,7 +4,7 @@ permalink: /comparison/
 order: 1
 ---
 
-## Comparison of Cilia](/comparison/cilia/) with [C++](/comparison/cpp/), [Cpp2](/comparison/cpp2/), [Carbon](/comparison/carbon/), [Rust](/comparison/rust/), [Swift](/comparison/swift/), [Kotlin](/comparison/kotlin/), [Java](/comparison/java/), and [C#](/comparison/csharp/)
+## Comparison of Cilia](/comparison/cilia/) with other languages
 The following comparison aims to show the _exact_ equivalent of the [Cilia code](/comparison/cilia/#by-example).
 
 > **Note**
