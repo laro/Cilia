@@ -1,7 +1,7 @@
 ---
-title: Cilia.Comments
-permalink: /cilia/comments/
-order: 6
+title: Basics.Comments
+permalink: /basics/comments/
+order: 2
 ---
 
 ## Comments

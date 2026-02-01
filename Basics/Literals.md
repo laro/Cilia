@@ -1,7 +1,7 @@
 ---
-title: Cilia.Literals
-permalink: /cilia/literals/
-order: 5
+title: Basics.Literals
+permalink: /basics/literals/
+order: 3
 ---
 
 ## Literals

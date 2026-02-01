@@ -1,6 +1,6 @@
 ---
-title: Cilia.`is`, `as`, Casting
-permalink: /cilia/is-as-casting/
+title: Advanced.`is`, `as`, Casting
+permalink: /advanced/is-as-casting/
 order: 17
 ---
 

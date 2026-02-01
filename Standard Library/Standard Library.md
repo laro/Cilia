@@ -1,6 +1,6 @@
 ---
-title: Cilia.Standard Library
-permalink: /cilia/cilia-standard-library/
+title: Standard Library.Standard Library
+permalink: /standard-library/standard-library/
 order: 18
 ---
 

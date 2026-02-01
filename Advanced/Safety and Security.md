@@ -1,6 +1,6 @@
 ---
-title: Cilia.Safety and Security
-permalink: /cilia/safety-and-security/
+title: Advanced.Safety and Security
+permalink: /advanced/safety-and-security/
 order: 15
 ---
 

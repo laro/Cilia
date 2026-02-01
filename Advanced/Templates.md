@@ -1,6 +1,6 @@
 ---
-title: Cilia.Templates
-permalink: /cilia/templates/
+title: Advanced.Templates
+permalink: /advanced/templates/
 order: 7
 ---
 

@@ -1,7 +1,7 @@
 ---
-title: Cilia.Control Flow
-permalink: /cilia/control-flow/
-order: 3
+title: Basics.Control Flow
+permalink: /basics/control-flow/
+order: 1
 ---
 
 ## Control Flow

@@ -1,6 +1,6 @@
 ---
-title: Cilia.(Smart) Pointers
-permalink: /cilia/smart-pointers/
+title: Advanced.(Smart) Pointers
+permalink: /advanced/smart-pointers/
 order: 12
 ---
 
