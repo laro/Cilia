@@ -1,0 +1,1980 @@
+---
+title: Cilia.Details
+permalink: /cilia/details/
+order: 1
+---
+
+## Variable Declaration
+`Int i` as variable declaration, very much as in C/C++ (and Java, C#).
+```
+TypeName variableName
+```
+- Some simplifications and restrictions:
+    - The type definition is completely on the left-hand side,  
+      i.e. before the variable name, also for arrays and bit fields.
+    - All variables in a multiple-variable declarations have to be of the exact same type.
+
+- Examples:
+    - `Int i`
+    - `Int i = 0`
+    - `Int x, y`
+    - `Int x = 99, y = 199`
+    - Arrays
+        - `Int[10] highScoreTable`  // Array of ten integers (instead of ~~`Int highScoreTable[10]`~~)
+    - Multiple-variable declarations
+        - `Float* m, n`        // m _and_ n are pointers (contrary to C/C++)
+        - `Int& m = x, n = y`  // m _and_ n are references (contrary to C/C++)
+        - `Float[2] p1, p2`    // p1 _and_ p2 are arrays of two Float values each
+    - Constructors
+        - `Image image(width, height, 0.0)`
+        - `Image image()`
+            - is the same as `Image image`, i.e. it is a variable declaration,
+            - a function declaration would be written as `func image() -> Image`.
+    - References
+        - `Complex<Float>& complexNumber = complexNumberWithOtherName`
+
+- **`const`** always binds to the right (contrary to C/C++).  
+    - Intuitively, one can read `const int` as “a constant integer”.
+    - `const` binds more strongly than `*` and `&`, but less strongly than `[]`.
+    - So the keyword `const` is always interpreted as a type qualifier that applies directly to the type specifier (e.g. `Float`), pointer declarator (`*`), or type specifier with array declarator (`Float[]`, `Float[3]`, or `Float[String]`) that appears immediately to its right.
+    - `const` as a type qualifier for a reference (`&`) is not allowed, i.e. no ~~`Float const&`~~.
+        - `const Float&` is allowed, of course.
+    - Examples:
+        - `const Float* pointerToConstantFloat`
+        - `const Float const* constantPointerToConstantFloat`
+        - `Float const* constantPointerToMutableFloat`
+    - `const` as a type qualifier for an array declarator (`[]`):
+        - `const Float[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
+            - `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`, too.  
+              Members of a const array are always effectively const anyway.
+            - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float> arrayOfConstFloat`.  
+              That does not compile in C++ anyway, because an array whose element type is non-assignable has no useful mutation model.
+              (MSVC says 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.')
+        - A `const` static array declarator `const Float[3]` is interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
+        - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
+- **Type inference** with `var` / `const`:
+    - `var i = 3` instead of ~~`auto i = 3;`~~
+    - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
+
+- Not allowed / a syntax error is:
+    - ~~`Float* m, &n`~~
+        - Type variations within multiple-variable declarations are _not_ allowed.
+        - It has to be the exact same type.
+    - ~~`Float*m`~~
+        - Whitespace _between_ type specification and variable name is mandatory.
+        - TODO Probably too difficult to realize, as the lexer already removes all whitespace.
+    - ~~`Image image { width, height, 0.0 }`~~
+        - No uniform / brace initialization _for plain constructors_, as there is no need anymore.
+            - There are generally _no_ implicit narrowing conversions, e.g.
+                - not ~~`Int64` -> `Int32`~~,
+                - not  ~~`Float64` -> `Float32`~~,
+            - and _no_ other _unsafe_ integral promotions allowed:
+                - ~~`Int` -> `UInt`~~,
+                - ~~`UInt` -> `Int`~~
+            - Nowhere, _not_ in
+                - assignments,
+                - function or constructor calls,
+                - list initialization (with `{ }`),
+                - arithmetic expressions (integral promotions),
+                - mixed types in expressions,
+                - enums, nor
+                - return values.
+            - The most vexing parse is mitigated with the keyword `func`.
+            - Brace initialization only for constructors with `InitializerList<T>` as parameter (i.e. for "list-initialization" and "copy-list-initialization").
+        - See [Misc](/cilia/misc/#misc) / Mixed arithmetic and [https://stackoverflow.com/a/18222927](https://stackoverflow.com/a/18222927)
+
+- Bit fields
+    - `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
+    - TODO Standardization of the bit field layout would be nice (LSB-first like on LittleEndian/Intel, or MSB-first like on BigEndian/Motorola),
+        - but IMHO there is no clear/logical/right definition (especially with LittleEndian).
+        - Dense packing of Int1, Int2, Int3, ..., Int64 could be more straightforward anyway.
+
+
+## Classes
+- Quite as in C++
+  ```
+  class MyArrayOfInt {
+      Int* numbers = NullPtr
+      Int size = 0
+      func clear()
+  }
+  ```
+- `public` as default
+    - Default access specifier is `public`.
+    - Default inheritance access specifier is also `public`:
+      ```
+      class MySubClass : MyBaseClass {
+          ...
+      }
+      ```
+- Not using ~~`struct`~~, as it is just too similar to `class` (especiallly in Cilia) with no real benefit.
+    - Keep as a reserved keyword for future use.
+    - Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
+
+
+## Functions
+```
+func multiplyAdd(Float x, y, Int z) -> Float {
+    return x * y  +  Float(z)
+}
+```
+- Function declarations start with the keyword `func`,
+    - as in Swift.
+    - Easier parsing due to clear distinction between function declaration vs. variable declaration,  
+      avoiding the [most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse).
+- Function parameters are given as `TypeName parameterName`, as with variable declarations.
+- Multiple function parameters of the (exact) same type can be combined to e.g. `TypeName parameter1, parameter2`, as with variable declarations.
+    - `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
+- Always and only in the trailing return type syntax (using `-> ReturnType`),
+    - but void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~
+      (like `func print(String line) { ... }`).
+- **Lambdas**
+    - `[](Int i) -> Float { i * 3.14 }`  
+      as in C++
+- **Const** member functions:
+  ```
+  class MyArrayOfInt {
+      const func size() -> Int {
+          return size_;
+      }
+  protected:
+      Int size_ = 0
+  }
+  ```
+- **`constexpr`** and `consteval`
+  ```
+  constexpr multiply(Int x, y) -> Int {
+      return x * y
+  }
+  consteval multiply(Int x, y) -> Int {
+      return x * y
+  }
+  ```
+- **Function pointers**
+    - Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
+    - Examples:
+        - **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
+        - **`func(Int)* pointerToFunctionOfInt`**
+        - `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero
+        - `func(Int)& referenceToFunctionOfInt`
+
+
+## Branches, Loops & Exceptions
+No braces around the condition clause (as in Python, Swift, Go, Ruby).
+- **if**
+    - ```
+      if a > b {
+          // ...
+      }
+      ```
+    - ```
+      if a > b {
+          // ...
+      } else {
+          // ...
+      }
+      ```
+    - ```
+      if a > b {
+          // ...
+      } else if a > c {
+          // ...
+      } else {
+          // ...
+      }
+      ```
+    - `if 1 <= x <= 10 { ... }`
+        - chained comparison as in Cpp2 (Herb Sutter), Python, Julia
+- **while**
+  ```
+  while a > b {
+      // ...
+  }
+  ```
+- **do-while**
+  ```
+  do {
+      // ...
+  } while a > b
+  ```
+- **for-in**
+    - as in Swift, Rust
+    - Write
+      ```
+      for str in ["a", "b", "c"] {
+          // ...
+      }
+      ```
+      instead of ~~`for (... : ...)`~~ AKA range-for in C++, ~~`for each`~~ in C++/CLI, or ~~`foreach`~~ in C#.
+    - Use the **range operator** to write
+        - `for i in 1..10 { ... }`  
+          instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
+          translates to `for i in Range(1, 10) { ... }`.
+        - `for i in 0..<10 { ... }`  
+          instead of ~~`for (Int i = 0; i < 10; ++i) { ... }`~~,  
+          translates to `for i in RangeExclusiveEnd(0, 10) { ... }`.
+        - `for i in 10..1:-1 { ... }`  
+          instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
+          translates to `for i in RangeByStep(10, 1, -1) { ... }`.
+        - I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
+    - The variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`),  
+      so `for i in 0..<10 { <Body> }` is equivalent to:
+      ```
+      {
+          var i = 0
+          while i < 10 {
+              <Body>
+              ++i
+          }
+      }
+      ```
+    - In general you can replace every C/C++ for-loop with a while-loop.
+        - ```
+          for (<Initialization>; <Condition>; <Increment>) {
+              <Body>
+          }  
+          ```
+          can be written as
+          ```
+          {
+              <Initialization>
+              while <Condition> {
+                  <Body>
+                  <Increment>
+              }
+          }
+          ```
+        - IMHO the code is even more clear when written as while-loop.
+        - Note: When the `<Condition>` is empty, then it needs to be replaced with `True`,
+            - e.g. `for (;;) { ... }` is translated to `while True { ... }`.
+- **switch/case** with implicit ~~`break`~~
+    - i.e `break` is the default, and it is not necessary to explicitly write it,
+    - like in Swift.
+    - Use `fallthrough` if necessary.
+    - ```
+      switch i {
+      case 1:
+          print("1")
+          // implicit break
+      
+      case 2, 3:
+          print("Either 2 or 3")
+          // implicit break
+      
+      case 4:
+          // do something
+          fallthrough
+      case 5:
+          // do something more
+          print("4 or 5")
+          // implicit break
+      
+      default:
+          print("default")
+      }
+      ```
+        - ~~Old behavior on demand~~
+            - ```
+              switch i fallthrough {
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+              case 5:
+                  print("1, 2, 3, 4, or 5")
+                  break
+              
+              default:
+                  print("default")
+              }
+              ```
+- **Exceptions**
+    - ```
+      try {
+          // ...
+      } catch Exception ex {
+          print(ex)
+      }
+      ```
+    - ```
+      try {
+          // ...
+      } catch Exception ex {
+          print(ex)
+      } catch {
+          print("An unknown exception has occured")
+      }
+      ```
+
+
+## Signed Size
+`Int` (i.e. signed) as type for `*.size()`
+- Because mixing signed and unsigned integer (e.g. "signed - unsigned") and even calculating "unsigned - unsigned" is difficult to handle.
+    - Problem in C/C++: `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
+- When working with sizes, calculating the difference is common; Then you are limited to `Int`/~~`SSize`~~/~~`PtrDiff`~~ (i.e. signed integer) anyway.
+- Anyone who needs more than 2GB of data in a single "byte array", should please use a 64 bit platform.
+- For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step.
+- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
+    - We simply use `Int` instead.
+    - `UInt` is used in rare cases (i.e. hardware registers, masks, flags), surely _not_ for sizes.
+- See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
+    - [42:41 - 45:28](https://youtu.be/Puio5dly9N8?feature=shared&t=2561)
+        - Bjarne Stroustrup and Herb Sutter recommend using _signed_ integer.
+    - [1:02:51 - 1:03:14](https://youtu.be/Puio5dly9N8?feature=shared&t=3771)
+        - Herb Sutter and Chandler Carruth about _unsigned_ `size_t` in the C++ STL containers: "They are wrong", "We are sorry"
+
+
+## Literals
+- `True`, `False` are Bool,
+    - uppercase as they are constants (as in Python).
+- `NullPtr` is the null pointer,
+    - it is of the type `NullPtrType`,
+    - explicit cast necessary to convert any pointer to `Int`.
+
+- Integers
+    - `123` is an integer literal of arbitrary precision
+        - Typical integer literals like `123456` are interpreted as `Int`
+            - in case of type inferring, parameter overloading and template matching.
+        - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
+        - Positive integer literals up to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256` (i.e. signed), as there is no loss of information.
+            - Up to `127` -> `Int8`
+            - Up to `32'767` -> `Int16`
+            - Up to `2'147'483'647` -> `Int32`
+            - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
+            - Up to `170'141'183'460'469'231'731'687'303'715'884'105'727` -> `Int128`
+            - Up to `57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'967` -> `Int256`
+        - Negative integer literals down to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
+            - Down to `-128` -> `Int8`
+            - Down to `-32'768` -> `Int16`
+            - Down to `-2'147'483'648` -> `Int32`
+            - Down to `-9'223'372'036'854'775'808` -> `Int64`/`Int`
+            - Down to `-170'141'183'460'469'231'731'687'303'715'884'105'728` -> `Int128`
+            - Down to `-57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'968` -> `Int256`
+        - Positive integer literals up to a certain size can implicitly be used as `UInt8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
+            - Up to `255` -> `UInt8`
+            - Up to `65'535` -> `UInt16`
+            - Up to `4'294'967'295` -> `UInt32`
+            - Up to `18'446'744'073'709'551'615` -> `UInt64`/`UInt`
+            - Up to `340'282'366'920'938'463'463'374'607'431'768'211'455` -> `UInt128`
+            - Up to `115'792'089'237'316'195'423'570'985'008'687'907'853'269'984'665'640'564'039'457'584'007'913'129'639'935` -> `UInt256`
+        - Examples:
+            - `Int8 a = 1`    // Works because `1` fits into `Int8`
+            - `Int8 b = 127`  // Works because `127` fits into `Int8`
+            - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
+            - `Int8 d = -128` // Works because `-128` fits into `Int8`
+            - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
+            - `UInt8 f = 255` // Works because `255` fits into `UInt8`
+            - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
+            - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
+            - `Int16 i = 32767` // Works
+            - `Int32 j = 2'147'483'647` // Works
+            - `Int64 k = 9'223'372'036'854'775'807` // Works
+            - `Int l = a`     // Works because `Int8` fits into `Int32`
+            - `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
+                - `UInt m = UInt(l)` // Works
+            - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
+                - `Int n = Int(m)`   // Works
+        - Integer literals can automatically be converted to other sizes than `Int64`,
+            - according to the C++ rules (admittedly without knowing the details),
+            - but only if the converted-to-type can contain the value of the literal.
+        - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
+            - Store as array of `Int`/`UInt`
+        - Suffixes/postfixes to write integer literals of a certain size:
+            - `123u` is `UInt`
+                - `-123u` is an error.
+            - `123i8`, `123i16`, `123i32`, `123i64`,
+            - `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
+        - `-123` is always `Int` (signed)
+    - Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
+        - Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
+            - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possibly to give a hex literal as Int argument
+                - Up to `0x7f` -> `Int8`
+                - Up to `0x7fff` -> `Int16`
+                - Up to `0x7fffffff` -> `Int32`
+                - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
+            - Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
+        - `0xffffffff` is `UInt` in hexadecimal
+        - `0b1011` is `UInt` in binary
+        - `0o123` is `UInt` in octal
+            - Using `0o` as in Python,
+            - not `0123`, as that IMHO is confusing/unexpected, even though it is C++ standard.
+    - `Int` vs. `Bool`
+        - ~~`Int a = True`~~      // Error,
+            - because `Bool` is _not_ an `Int`
+            - because a `Bool` should not be accidentally interpreted as an `Int`
+            - cast if necessary: `Int a = Int(True)`
+        - ~~`Bool a = 1`~~      // Error,
+            - because `Int` is not a `Bool`
+            - because an `Int` should not be accidentally interpreted as a `Bool`
+            - cast if necessary: `Bool a = Bool(1)`
+
+- Floating point
+    - `1.0` is a floating point literal
+        - Floating point literals are interpreted according to the size/precision requirements.
+            - Counting the decimal places  
+              (including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!),  
+              then the rules are:
+                - up to 15 decimal places -> `Float64` (AKA `Float`)
+                - up to 34 decimal places -> `Float128`
+                - up to 71 decimal places -> `Float256`
+                - more decimal places     -> `BigFloat`
+                    - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
+                        - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as
+                          arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
+            - So a plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
+        - Can implicitly be converted to any smaller float type into which it still fits exactly,
+            - otherwise explicit cast necessary: `Float16(3.1415926)`
+            - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
+        - Postfixes to write float literals with a certain precision:  
+          `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
+            - That probably is clearer than ~~`0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o`~~ for half, single, double, quadruple, octuple precision.
+            - Use of ~~`0.1f`~~ for `Float` AKA `Float64` would be confusing, as in C++ `0.1f` means `single float` AKA `Float32`.
+        - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
+    - `Infinity`/`-Infinity` is a `Float` literal for infinity values,
+        - that can be converted to any float type.
+    - `NaN` is a `Float` literal for NaN ("not a number") values,
+        - that can be converted to any float type.
+
+- Strings
+    - `"Text"` is a `StringView` with UTF-8 encoding.
+        - No null termination.
+            - If necessary
+                - use `"Text"sz`, `"Text\0“`  or
+                - convert using `StringZ("Text")`.
+        - Data is typically stored in read-only data segments (".rodata") or ROM.
+        - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
+            - `"Text"` -> `u8"Text"sv`
+            - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
+        - ~~A StringView starts like a String does: pointer to first character plus length,~~
+            - ~~so slicing of String to StringView is possible.~~
+            - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
+
+    - Multiline String Literal
+        - Use triple double-quotes `"""` to start and end the literal.
+        - ```
+          """
+          First line
+          Second line
+          """
+          ```
+        - Similar to Swift, Julia, Java 15, C# 11, ...
+        - Also as single line string literal with very few restrictions, good for RegEx
+            - `"""(.* )whatever(.*)"""`
+        - Opening Delimiter Rules
+            - If the opening `"""` is followed by a newline, that newline is _not_ part of the string content.
+            - This allows the content to start cleanly on the next line.
+        - Closing Delimiter & Indentation (Strip-Logic)
+            - The position of the closing `"""` defines the indentation guide.
+            - If the closing `"""` is on its own line:  
+                - The newline preceding it is removed from the content.
+                - The exact sequence of whitespace (spaces/tabs) before the closing `"""` is treated as a "prefix" and is stripped from every line of the string.
+            - Indentation Safety: It is a compile-time error if any non-empty line begins with less indentation than the closing delimiter.
+        - Whitespace & Line Handling
+            - Trailing Whitespace: Whitespace at the end of lines is preserved.
+            - Blank Lines: Lines containing only whitespace that is shorter than the indentation guide are treated as empty lines (\n).
+        - To include `"""` within the string content, the literal can be opened and closed with more than three double-quotes (e.g., `""""`).
+            - The closing delimiter must match the number of quotes used for the opening delimiter.
+            - This eliminates the need for escape backslashes within the literal, ensuring truly "raw" content.
+
+    - Interpolated Strings
+        - `f"M[{i},{j}] = {M[i, j]}"`
+            - like f-strings in Python.
+        - Curly braces (`{}`) are used in std::format already.
+        - `f"..."` as in `format`.
+        - TODO Any reason to use/prefer any other syntax?
+            - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
+    - Alternative string literals
+        - Prefixes
+            - as in C++:
+                - `u"..."` and `u'...'` for UTF-16
+                - `U"..."` and `U'...'` for UTF-32
+            - No ~~`u8"..."`~~ and no ~~`u8'...'`~~ for UTF-8, as that is the default in Cilia.
+            - Maybe `a"..."` for ASCII and `l"..."` for Latin-1.
+        - User defined string suffixes
+            - as in C++:
+                - `"..."s` for `std::string`.
+            - No ~~`"..."sv`~~ for `std::string_view`, as that is the default in Cilia.
+            - `"..."sz` for null terminated strings.
+                - Type of `"..."sz` is `Char*`.
+                - `"...\0"` is a StringView of a zero terminated string.
+        - All these available for multiline string literals and interpolated strings, too.
+            - TODO Any reason, not to?
+
+- `[1, 2, 3]` is an array (here an `Int[3]`),
+    - all elements have the same type.
+- `{1, "Text", 3.0}` is an initialization list,
+    - e.g. for `Tuple` or `Pair`.
+- `[ 1: "one", 2: "two", 3: "three", 4: "four" ]` is a `String[Int]` (AKA `Map<Int, String>`).
+    - ```
+      String[Int] keywords = [
+          1: "one"
+          2: "two"
+          3: "three"
+          4: "four"
+      ]
+      ```
+    - ```
+      ContactInfo[String] contactInfoForID = [
+          "John Doe": {"John", "Doe", "03465 452634"}
+          "Jane Doe": {"Jane", "Doe", "03245 687534"}
+      ]
+      ```
+- Rules for user defined literals
+    - as in C++.
+
+
+## Comments
+- Single-line comments
+    - ```
+      // if a < b {
+      //   TODO
+      // }
+      ```
+- Block comments can be _nested_
+    - as in Swift and Rust (unlike C++):
+      ```
+      /* This
+      /* (and this) */
+         (and still this)
+         is a comment */
+      ```
+
+
+## Templates
+The basic "new idea" is, to define templates (classes and functions) mostly the same as they are used.  
+Similar as in Java, C#, Swift and Rust.
+- **Class** templates  
+  The template parameters (`<...>`) are given after the class name, so that the definition is similar to the usage (in a variable declaration).
+  ```
+  class MyArray<Number T> {
+      T* numbers = NullPtr
+      Int size = 0
+  }
+  ```
+    - Template specialization
+      ```
+      class MyUniquePtr<type T> {
+          ... destructor calls delete ...
+      }
+      class MyUniquePtr<type T[Int N]> {
+          ... destructor calls delete[] ...
+      }
+      ```
+    - Partial template specialization
+      ```
+      class KeyValuePair<type TKey, type TValue> {
+          ...
+      }
+      class KeyValuePair<Int, type TValue> {
+          ...
+      }
+      class KeyValuePair<type TKey, String> {
+          ...
+      }
+      ```
+    - Having to write `typename` (in C++) before dependent names in templates is quite annoying. It should possible to omit with two-pass compilation.
+- **Function** templates
+    - _Automatic_ function templates
+        - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template. This is like abbreviated function templates in C++ 20, only ommitting the `auto` keyword.
+            - Concept `Number`:
+              ```
+              func sq(Number x) -> Number {
+                  return x * x
+              }
+              ```
+                - However, the return type could be a _different_ type than `x` is (it just needs to satisfy the concept `Number`)
+                - With `func add(Number a, b) -> Number` even `a` and `b` could be of a different type (but both need to satisfy the concept `Number`)
+            - Concept `Real` (real numbers as `Float16`/`32`/`64`/`128`/`256` or `BigFloat`):
+              ```
+              func sqrt(Real x) -> Real {
+                  // ... a series development ...
+                  // (with number of iterations determined from the size of the mantissa)
+              }
+              ```
+    - _Explicit_ function templates
+        - When a common type is required:
+          ```
+          func add<Number T>(T x, y) -> T {
+              return x + y
+          }
+          ```
+        - When no deducing of the template type is possible (e.g. when there are no arguments).
+            - The template parameters (`<...>`) are given after the function name,  
+              as they are "type parameters" of the function.
+            - This way the function definition is more similar to the function call.
+              ```
+              func getRandom<type T>() -> T { ... }
+              Int random = getRandom<Int>();
+              ```
+    - For extension function templates it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are given.  
+      Therefore we write
+        - `func<type T, Int N> T[N]::size() -> Int { return N }`
+        - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
+            - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~, as  
+                - then T and N would be used even before they were declared, and
+                - with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we want to write  
+                  `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()` (not ~~`...convertTo<Float, 3, Int>()`~~)
+            - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
+
+- Further restrict the type with `requires` (as in C++):
+    - ```
+      func sq<Number T>(T x) -> T
+      requires (T x) { x * x }
+      {
+          return x * x
+      }
+      ```
+    - ```
+      class SlidingAverage<type T, type TSum = T>
+      requires (T x, TSum sum) {
+          sum = 0   // requires assignment of 0
+          sum += x  // requires addition of type T to type TSum
+          sum -= x  // requires subtraction of type T from type TSum
+          sum / 1   // requires to divide sum by 1 (i.e. an Int)
+      } {
+          T+ numbers
+          Int size = 0
+          Int sizeMax = 0
+          Int index = 0
+          TSum sum = 0
+      public:
+          SlidingAverage(Int size) {
+             sizeMax = size
+             numbers = new T[sizeMax]
+          }
+          func append(T value) { ... }
+          func average() -> TSum { ... }
+          func reset() { ... }
+          func reset(Int newSize) { ... }
+      }
+      ```
+- Template **type alias** with `using` (not ~~`typedef`~~)
+    - ```
+      extension<type T> T {
+          using InParameterType = const T&
+      }
+      ```
+- Template static constants as type traits
+    - ```
+      extension<type T>          T { Bool IsFloatingPoint = False }
+      extension            Float32 { Bool IsFloatingPoint = True }
+      extension            Float64 { Bool IsFloatingPoint = True }
+      extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
+      ```
+
+
+## Function Parameter Passing Modes
+Each function parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it’s input-only, mutable, output, copied, or moved.  
+The basic idea is to have the most efficient/appropriate parameter passing as the _default_, and to give more the intent than the technical realization.  
+Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (surely inspired by the `out` parameters of C#, and by Ada).
+- **Default is passing as `in`**-parameter.
+    - So if no parameter passing keyword is given, `in` parameter passing is used.
+    - All other parameter passing methods need to be explicitly given.
+- Function call parameters are passed as either **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, or **`forward`**.
+    - Wording fits nicely for function parameters: How does the parameter get into the function body (or out of it).
+- The loop variable of `for ... in` is passed as either **`in`**, **`inout`**, **`copy`**, or **`move`**  
+  (`out` and `forward` are not applicable here).
+    - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
+- The argument of `catch ... { ... }` is passed as **`in`**  
+  (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here).
+- Parameter passing mode keywords:
+    - **`in`**
+        - to mark parameters used as input.
+        - Is the default if no parameter passing keyword is given.
+        - Suitable for most basic functions, like `print(Int count, String text)`.
+        - Technically either `const X&` (a constant reference) or `const X` (a constant copy), sometimes `const XView` (a view type, e.g. a slice).
+            - `const X&` as default, suitable for most, medium to large types:
+                - `add(BigInt a, BigInt b)`
+                    - is effectively translated to `add(const BigInt& a, const BigInt& b)`  
+                - `BigInt[] bigIntArray = ...`  
+                  `for i in bigIntArray { ... }`
+                    - `i` is `const BigInt&`  
+            - `const X` for "small types" (like `Int`, `Float`, etc.):
+                - `for i in [1, 2, 3] { ... }`
+                    - `i` is `const Int`
+                - `for str in ["a", "b", "c"] { ... }`
+                    - `str` is `const StringView` (a string-literal like `"a"` forms a `const StringView`, therefore `["a", "b", "c"]` is a `const StringView[3]`)
+            - `const XView` for types `X` that have a corresponding view type:
+                - `concat(String first, String second)`
+                    - is effectively translated to `concat(const StringView first, const StringView second)`
+                - `String[] stringArray = ...`  
+                  `for str in stringArray { ... }`
+                    - `str` is `const StringView`
+    - **`inout`**
+        - to mark parameters used as input (so they need to be initialized at the caller) _and_ as output.
+        - Technically a non-const/mutable reference (`X&`)
+        - Suitable for e.g. `swap(inout Int a, inout Int b)`.
+        - ~~Keyword `inout` is also to be given at the caller: `swap(inout a, inout b)`~~
+            - No, because
+                - it is verbose,
+                - it is not a reliable warning/guarantee, that the argumemt may be changed, as any reference-like type (e.g. `Span<T>`) allows change even without `inout`.
+        - Examples:
+            - `for inout str in stringArray { ... }`
+                - `str` is `String&`
+            - `for inout i in intArray { ... }`
+                - `i` is `Int&`
+    - **`out`**
+        - to mark output parameters (is initialized at the callee).
+        - Technically, like `inout`, a non-const/mutable reference (`X&`), but without prior initialization.
+        - Keyword `out` is also to be given at the caller:
+          ```
+          String errorDetails
+          if not open("...", out errorDetails) {
+              cout << errorDetails
+          }
+          ```
+        - Maybe even with ad-hoc declaration of the out variable (as in C# 7.0):
+            - ```
+              if not open("...", out String errorDetails) {
+                  cout << errorDetails
+              }
+              ```
+            - ```
+              if open("...", out String errorDetails) {
+                  // ...
+              } else {
+                  cout << errorDetails
+              }
+              ```
+    - **`copy`**
+        - to create a (mutable) copy (i.e. pass "by value").
+        - Technically a non-const/mutable value (`X`), sometimes the "full class" `X` of a view class `XView`.
+        - Examples:
+            - `for copy i in [1, 2, 3] { ... }`
+                - `i` is an `Int`
+            - `for copy str in stringArray { ... }`
+                - `str` is a `String`
+            - `for copy str in ["an", "array", "of", "words"] { ... }`
+                - `str` is a `String` (not a ~~`StringView`~~, due to the `X`/`XView`-copy-trick)
+    - **`move`**
+        - for move sematics.
+        - Technically a right-value reference (`X&&`)
+    - **`forward`**
+        - for perfect forwarding in template functions.
+        - TODO Technically a right-value reference (`X&&`), too?
+- Type traits **`InParameterType`** to determine the concrete type to be used for `in`-passing.
+    - The rule of thumb is:
+        - Objects that are POD (Plain Old Data, i.e. with no pointers) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes on 64 bit platforms) are passed by value.
+        - Larger objects (or non-POD) are passed by reference.
+    - So, as general default, use _const reference_,
+        - ```
+          extension<type T> T {
+              InParameterType = const T&
+          }
+          ```
+    - and use a "list of exceptions" for the "const _value_ types".
+        - ```
+          extension     Bool { InParameterType = const Bool }
+          extension     Int8 { InParameterType = const Int8 }
+          extension    Int16 { InParameterType = const Int16 }
+          extension    Int32 { InParameterType = const Int32 }
+          extension    Int64 { InParameterType = const Int64 }
+          extension    UInt8 { InParameterType = const UInt8 }
+          extension   UInt16 { InParameterType = const UInt16 }
+          extension   UInt32 { InParameterType = const UInt32 }
+          extension   UInt64 { InParameterType = const UInt64 }
+          extension  Float32 { InParameterType = const Float32 }
+          extension  Float64 { InParameterType = const Float64 }
+          extension  std::string_view { InParameterType = const std::string_view }
+          extension std::span<type T> { InParameterType = const std::span<T> }
+          ...
+          ```
+        - `extension<type T> Complex<T> { InParameterType = T::InParameterType }`
+            - A generic rule: `Complex<T>` is passed the same way as `T`,
+            - could be further refined/corrected with  
+              `extension Complex<Float128> { InParameterType = const Complex<Float128>& }`  
+              as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 bytes (so pass by value would be the default).
+        - This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
+- Special **trick for types with views**
+    - Applicable only for types `X` that have an `XView` counterpart where
+        - `X` can implicitly be converted to `XView`,
+        - `XView` can (explicitly) be converted to `X`, and
+        - `XView` has the same "interface" as `const X` (i.e. contiguous memory access).
+    - like:  
+        - `String` - `StringView`
+        - `Array` - `ArrayView`
+        - `Vector` - `VectorView`
+    - As example, with `String`/`StringView`:
+        - `extension String { InParameterType = const StringView }`  
+          i.e. **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
+        - So all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
+            - a `String` (as that can implicitly be converted to `StringView`)
+            - a `StringView` (that somehow is the more versatile variant of `const String&`),
+            - and therefore also _every third-party string_ class (as long as it is implicitly convertable to `StringView`).
+        - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
+        - Example:
+            - `concat(String first, String second)`
+                - is short for `concat(in String first, in String second)`
+                - and extends to `concat(const StringView first, const StringView second)`
+        - For cases where you need to _change_ the string parameter, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
+        - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just for consistency.
+        - Example:
+            - `String[] stringArray = ["a", "b", "c"]`  
+              `for str in stringArray { ... }`
+                - `str` is `const StringView`
+    - This is not possible with every view type, as some views do not guarantee contiguous memory access (typically when they do support stride):
+        - ~~`Matrix` - `MatrixView`~~
+        - ~~`Image` - `ImageView`~~
+        - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
+        - Maybe having some `XBasicView` instead, explicitly _without_ stride support,  
+          that can cut off at start and end, but no slicing:
+            - `Matrix` - `MatrixBasicView`
+            - `Image` - `ImageBasicView`
+            - `MDArray` - `MDArrayBasicView`
+    - Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
+        - ```
+          extension String { InParameterType = const StringView }
+          extension  Array { InParameterType = const ArrayView }
+          extension Vector { InParameterType = const VectorView }
+          ```
+    - Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
+        - ```
+          extension  Matrix { InParameterType = const MatrixBasicView& }
+          extension   Image { InParameterType = const ImageBasicView& }
+          extension MDArray { InParameterType = const MDArrayBasicView& }
+          ```
+        - (Which you don't have to write down explicitly, because `const&` simply is the standard for user defined types.)
+- Type trait **`CopyParameterType`**
+    - of a type `T` typically simply is `T`  
+      `extension<type T> T { CopyParameterType = T }`  
+    - but for `View`-types it is the corresponding "full" type:
+      ```
+      extension       StringView { CopyParameterType = String }
+      extension        ArrayView { CopyParameterType = Array }
+      extension       VectorView { CopyParameterType = Vector }
+      extension       MatrixView { CopyParameterType = Matrix }
+      extension  MatrixBasicView { CopyParameterType = Matrix }
+      extension        ImageView { CopyParameterType = Image }
+      extension   ImageBasicView { CopyParameterType = Image }
+      extension      MDArrayView { CopyParameterType = MDArray }
+      extension MDArrayBasicView { CopyParameterType = MDArray }
+      ```
+    - The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
+    - Example:
+        - `for copy str in ["an", "array", "of", "words"] { ... }`
+            - While the literal `["an", "array", "of", "words"]` is an `StringView[]`,  
+              `str` is a `String` (not a ~~`StringView`~~).
+            - This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.
+            - (This is currently the only useful example I can think of.)
+
+
+## Aliasing
+Create an alias with `using`, for:
+- Member **variable** alias  
+  `using var x = data[0]`  
+  `using Int y = data[1]`  
+  `using T   z = data[2]`
+    - Not quite possible in C++.
+        - With `T& z = data[2]` unfortunately memory is created for the reference (the pointer).
+        - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
+- Member **function** alias
+    - `using func f(String) = g(String)` to alias the function `g(String)`.
+    - `using func f = g` to alias _all_ overloads of the function `g`.
+- **Type** alias in a class
+    - `using InParameterType = const StringView`  
+      (no ~~`typedef`~~)
+
+
+## Operators
+- Power function
+    - **`a^x`** for `pow(a, x)` (as in Julia),
+    - "raise a to the power of x".
+- Boolean operators
+    - **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`** in addition to `&&`/`&`, `||`/`|`, ...
+        - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
+          [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
+        - Used for both
+            - boolean operation (when used on Bool)
+                - `aBool`**`and`**`anotherBool` -> `Bool`
+            - bitwise operation (when used on integers)
+                - `anInt`**`and`**`anotherInt` -> `Int`
+            - No mixed types allowed (you need to explicitly cast one side instead).
+        - Words like `and` and `or` IMHO are a bit clearer than `&&`/`&` and `||`/`|`, so they are recommended.
+        - Still _also_ use `&` and `|` for bitwise operation,
+            - as C/C++/Java/C# programmers are used to it,
+            - as we keep `&=` and `|=` anyway.
+        - Still _also_ use `&&` and `||` for boolean operation,
+            - as C/C++/Java/C# programmers are used to it,
+                - even [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
+                  and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`,
+            - as we want `&&=` and `||=` anyway.
+            - Defined on `Bool` only (_not_ on integers).
+    - **`not`** in addition to `!` (for boolean negation)
+        - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
+        - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
+          (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
+        - Still use `~` for bitwise negation,
+            - as C/C++/Java/C# programmers are used to it,
+            - as we keep `~T` for the destructor anyway.
+    - **`xor`** _instead_ of `^`  
+      because we want `^` for the power function.
+- Equality
+    - Default `operator==`
+        - If not defined, then
+            - use negated `operator!=` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use elementwise comparison with `==`
+                - Only possible if all elements themselves offer the `operator==`.
+                - Optimization for simple types: Byte-by-byte comparison.
+    - Default `operator!=`
+        - If not defined, then
+            - use negated `operator==` (if defined), or
+            - use `operator<=>` (if defined), or
+            - use negated generated `operator==`.
+- **Range operator** `..` and `..<`
+    - `1..10` and `0..<10` are ranges
+        - as in [Kotlin](https://kotlinlang.org/docs/ranges.html)
+        - Similar, but diffentent:
+            - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
+            - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
+            - Cpp2 would be ~~`1..=10`~~ and ~~`0..<10`~~ (as of recently)
+    - Different kinds of ranges:
+        - `1..3` – 1, 2, 3
+            - `Range(1, 3)`
+        - `0..<3` – 0, 1, 2
+            - `RangeExclusiveEnd(0, 3)`
+        - Range with step (especially to **iterate with the given step size in the `for` loop**)
+            - `1..6:2` – 1, 3, 5
+                - `RangeByStep(1, 6, 2)`
+            - `0..<6:2` – 0, 2, 4
+                - `RangeExclusiveEndByStep(0, 6, 2)`
+        - Downwards iterating range (especially to **iterate downwards in the `for` loop**).  
+          Step size is mandatory here (to make it clear that we are counting down, to avoid wrong conclusions).
+            - `8..0:-1` – 8, 7, 6, 5, 4, 3, 2, 1, 0
+                - `RangeByStep(8, 0, -1)`
+                - Not ~~`8..0`~~, as `Range(8, 0)` is always empty (it is counting up, not down!)
+                - Not `8..<0:-1`
+                    - With staticAssert in `RangeExclusiveEndByStep` that `step > 0`:  
+                      "The range operator with exclusive end (`..<`) is not compatible with negative increments, because when counting downwards it would be necessary/logical to write `..>` and that is not available."
+                    - It simply would be too much, IMHO.
+                    - Use `8..1:-1` instead.
+        - If both start and end of the range are compile time constants, then it may be warned when the range contains no elements at all (e.g. when `start >= end` with `step > 0`).
+        - Incomplete ranges (need lower and/or upper bounds to be set before use)  
+            - `..2` – ..., 1, 2
+                - `RangeTo(2)`
+            - `..<3` – ..., 1, 2
+                - `RangeToExclusiveEnd(3)`
+            - `0..` – 0, 1, 2, ...
+                - `RangeFrom(0)`
+            - `..`
+                - `RangeFull()`
+            - Incomplete range with step
+                - `..2:2` – `RangeToByStep(2, 2)`
+                - `..<3:2` – `RangeToExclusiveEndByStep(3, 2)`
+                - `0..:2` – `RangeFromByStep(0, 2)`
+                - `..:2` – `RangeFullByStep(2)`
+        - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- Bit-Shift & Rotation
+    - `>>` Shift right (logical shift with unsigned integers, arithmetic shift with signed integers)
+    - `<<` Shift left (here a logical shift left with unsigned integers is the same as an arithmetic shift left with signed integers)
+    - `>>>` Rotate right (circular shift right, only defined for unsigned integers)
+    - `<<<` Rotate left (circular shift left, only defined for unsigned integers)
+
+
+## Type Extension
+To add "member like" types, functions/methods, constants (and maybe static variables) to "third party" classes/types.  
+In case of conflicts, in-class definitions (inside the class) have priority (and a warning is issued).
+Extensions are defined using the `extension` keyword followed by the type name and a block `{}`.
+- **Extension methods**
+    - Can be called like normal member functions (with standard dot-notation), but they but do not have access to private or protected members themselves.
+    - Inside an extension, `this` refers to the instance itself.
+    - Also possible for basic/arithmetic types, e.g.:  
+      ```cpp
+      extension Int {
+          func toString() -> String { 
+              // Logic to convert Int to String
+          }
+      }
+     
+      // Usage:
+      Int i = 10
+      i.toString()
+      ```
+- **Externally defined alias** (with `using`) for members:
+    - Useful for adapting APIs or providing more descriptive names.
+    - **Variables**  
+      ```cpp
+      extension Vector2 {
+          using var x = data[0]
+          using var y = data[1]
+      }
+      ```
+    - **Functions**  
+      ```cpp
+      extension std::vector<type T> {
+          // Alias for a specific signature
+          using func pushBack(String) = push_back(String)
+          
+          // Alias for all overloads of 'push_back'
+          using func append = push_back
+        }
+        ```
+    - **Types**  
+        - Define member types or traits externally.
+        - ```cpp
+          extension std::string_view {
+              using InParameterType = const std::string_view // Pass by value
+          }
+          ```
+- Static constants, typically for type traits
+  ```cpp
+  extension Float32 {
+      static const Bool IsFloatingPoint = True
+  }
+  extension Float64 {
+      static const Bool IsFloatingPoint = True
+  }
+  ```
+- Static variablers
+    - Why not?
+    - ```cpp
+      extension ContactInfo {
+          // External mutable static variable
+          static Int numOfCallsToExtensionFunctionX = 0
+      }
+      ```
+- Generic Extensions (e.g., for Arrays)
+    - Extensions can be parameterized to support generic types and native arrays.
+    - ```cpp
+      extension <type T, Int N> T[N] {
+          using ValueType = T
+          
+          func length() -> Int {
+              return N
+          }
+          
+          func begin() -> T* { return &this[0] }
+          func end()   -> T* { return &this[N] }
+      }
+      ```
+
+
+## (Smart) Pointers
+- **Short Smart Pointer Syntax**
+    - “Make simple things simple” (or at least short to write),  
+      encourage use of smart pointers.
+    - Using `T*`, `T^`, `T+`, `T-` (maybe `T°`, `T.`, ...)
+        - Maybe use something else instead?
+            - `T*̂`, `T*̄`, `T*̇` (easy to confuse)
+            - `T*^`, `T*+`, `T*.` (a bit long)
+            - `T^*`, `T+*`, `T.*` (no)
+    - **`Type* pointer`**
+        - the classical, raw C/C++ pointer.
+    - **`Type+ pointer`**
+        - a "unique pointer" ("pointer plus ownership"),
+        - a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
+        - `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
+        - `T[0]+` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here)
+            - In C++ `unique_ptr<T[]>` the `T[]` is an "incomplete type". But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
+        - **`makeUnique<T>(...) -> T+`**,
+            - `ContactInfo+ contactInfoUniquePtr = makeUnique<ContactInfo>()`.
+            - `ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`  
+              not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (there is no array-to-    single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
+        - Better just **`make<T>(...) -> T+`**, as "unique" is "hard to write".
+    - **`Type^ pointer`**
+        - a "shared pointer",
+        - a pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).
+        - `T^` is short for **`SharedPtr<T>`**
+        - Inspired by C++/CLI (so its a proven possiblilty), _but_  
+            - Sean Baxter is also using `T^` for Rust-style references in Circle (so there may be a conflict in the future).
+        - **`makeShared<T>(...)`**,
+            - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
+            - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
+              also possibler (but not recommended) is ~~`ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
+        - `T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T[0]+`/`UniquePtr<T[0]>` (as in C/C++):
+            - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
+            - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
+                - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
+    - **`Type- pointer`**
+        - a "weak pointer", a pointer to a shared pointer.
+        - `T-` is short for **`WeakPtr<T>`**
+        - So with  
+          `T- weakPointerToWindow = sharedPointerToWindow`  
+          you can write  
+          `weakPointerToWindow?.close()`  
+          instead of
+          ```
+          if (Window^ window = weakPointerToWindow.lock()) {
+              window->close()
+          }
+          ```
+- A classical C/C++ "raw" pointer is still possible, but unsafe.
+    - `ContactInfo* contactInfoPtr = new ContactInfo`  
+      `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
+    - `ContactInfo* contactInfoPtr = new ContactInfo[10]`  
+      `delete[0] contactInfoPtr` (you need to distinguish single-element- and array-pointers yourself)
+- Redefine `T^` and `T+` for special cases / **interoperability with other languages**:
+    - `T^` is defined via type traits `SharedPtrType`,  
+        - For C++/Cilia classes `T^` is `SharedPtr<T>`:
+            - `using<type T> T::SharedPtrType = SharedPtr<T>`
+        - Objective-C/Swift classes use their reference counting mechanism:
+            - `using ObjectiveCObject::SharedPtrType = ObjectiveCRefCountPtr`
+        - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).
+            - `using DotNetObject::SharedPtrType = DotNetGCPtr`
+            - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
+        - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
+            - `using JavaObject::SharedPtrType = JavaGCPtr`
+            - Probably very similar to C#/.NET.
+    - `T+` is defined via type traits `UniquePtrType`.
+        - For C++/Cilia classes `T+` is `UniquePtr<T>`:
+            - `using<type T> T::UniquePtrType = UniquePtr<T>`
+
+
+## Arrays & ArrayViews
+- `Int[] dynamicArrayOfIntegers`
+    - „Dynamic array“ with **dynamic size**
+      ```
+      Int[] array = [0, 1, 2]
+      array[0] = 0
+      array[1] = 0
+      array[2] = 0
+      array[3] = 0  // Runtime error, no compile time bounds check
+      ```
+    - "Make simple things simple",  
+      having a short and traditional syntax for dynamic arrays should encourage people to use it.
+    - `T[] arr` is the short form of `cilia::Array<T> arr`
+        - Also `[T] arr`, as in Swift or Rust, has some merits.  
+          And `[3 T] arr` for fixed sized arrays would be fine for me (I don't like `[T;3] arr`), but I'll stick with the more traditional `T[] arr` (like C# and Java).
+    - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
+        - that's the more traditional wording,
+        - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
+        - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
+    - "Raw" C/C++ arrays are handled with `T*` instead.
+    - `std::array` is called `cilia::StaticArray` instead.
+    - In C/C++ `T[]` means "array of certain (inferred) size",
+        - but that can be replaced with `T*` and `T[N]`.
+        - Also see [https://cplusplus.com/forum/beginner/267321/#msg1150228](https://cplusplus.com/forum/beginner/267321/#msg1150228)
+- `Int[3] arrayOfThreeIntegers`  
+  (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
+    - „Static array“ with **fixed size**
+      ```
+      Int[3] array = [0, 1, 2]
+      array[0] = 0
+      array[1] = 0
+      array[2] = 0
+      array[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+    - `arrayOfThreeIntegers.size()` -> `3`
+        - realized as extension function  
+          `func<type T, Int N> T[N]::size() -> Int { return N }`
+- Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
+  But array subscript with `Int+` is unsafe.
+    - ```
+      Int+ array = new Int[3]  // Array-to-pointer decay possible
+      unsafe {
+          array[0] = 0
+          array[1] = 0
+          array[2] = 0
+          array[3] = 0  // Undefined behaviour, no bounds check at all
+      }
+      ```
+    - Using `Int*` for arrays is possible but generally unsafe.
+        - ```
+          Int+ uniquePtrToArray = new Int[3]  // Array-to-pointer decay possible
+          unsafe {
+              Int* array = uniquePtrToArray.release()
+              array[0] = 0
+              array[1] = 0
+              array[2] = 0
+              array[3] = 0  // Undefined behaviour, no bounds check at all
+              delete[] array
+          }
+          ```
+        - ```
+          unsafe {
+              Int* array = reinterpretCastTo<Int*>(malloc(3 * sizeof(Int)))
+              array[0] = 0
+              array[1] = 0
+              array[2] = 0
+              array[3] = 0  // Undefined behaviour, no bounds check at all
+              free(array)
+          }
+          ```
+    - Actually this is how to handle pointer to array of `Int` "properly":  
+      ```
+      Int[3]+ arrayPtr = new Int[3]
+      (*arrayPtr)[0] = 0
+      (*arrayPtr)[1] = 0
+      (*arrayPtr)[2] = 0
+      (*arrayPtr)[3] = 0  // Compilation error, due to compile time bounds check
+      ```
+        - But raw pointer access is still `unsafe`:  
+          ```
+          unsafe {
+              Int[3]* arrayPtr = (new Int[3]).release()
+              (*arrayPtr)[0] = 0
+              (*arrayPtr)[1] = 0
+              (*arrayPtr)[2] = 0
+              (*arrayPtr)[3] = 0  // Compilation error, due to compile time bounds check
+              delete[] arrayPtr
+          }
+          ```
+- Examples:
+    - `Int[] dynamicArrayOfInt`
+    - `Int[3] arrayOfThreeInt`
+    - `Int[3]& referenceToArrayOfThreeInt`
+    - `Int[3]* pointerToArrayOfThreeInt`
+    - `Int[3][]& referenceToDynamicArrayOfArrayOfThreeInt`
+    - `String*[] dynamicArrayOfPointersToString`
+- ArrayViews AKA Slices AKA Subarrays
+    - `var subarray = array[1..2]`
+    - `var subarray = array[1..<3]`
+    - Incomplete ranges (need lower and/or upper bounds before use) are
+      typcally implemented as inline functions that determine the concrete bounds and then call `array[start..end]` (or one of the exclusive counterparts).
+        - `var subarray = array[..2]`
+        - `var subarray = array[..]`
+    - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
+- Multidimensional arrays
+    - dynamic size
+        - `Int[,] dynamic2DArray`  
+            - `T[,] array` is the short form of `cilia::MDArray<2, T> array`
+        - `Int[,,] multidimensionalDynamicArray`  
+            - `T[,,] array` is the short form of `cilia::MDArray<3, T> array`
+        - and so on:  
+            - `cilia::MDArray<N, T>`
+    - static size
+        - `Int[3, 2, 200]`
+            - Multidimensional static array  
+              ```
+              Int[3, 2, 200] intArray3D
+              intArray3D[2, 1, 199] = 1
+              ```
+            - `cilia::StaticMDArray<Int, 3, 2, 200> intArray3D`
+- Mixed forms of static and dynamic array
+    - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
+    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
+
+
+## Associative Arrays
+- AKA Maps (or Dictionaries)
+- `TValue[TKey]` as short form of `Map<TKey, TValue>`
+    - e.g. `ContactInfo[String] contactInfoForID` as short form  
+      of `Map<String, ContactInfo> contactInfoForID`,
+    - as [in D](https://dlang.org/spec/hash-map.html).
+    - There is no difference between these two, but "OtherMap<String, ContactInfo> contactInfoForID" allows you to select other map variants (SortedMap, HashMap etc.) if necessary.
+- "Make simple things simple",  
+  having a short syntax for associative arrays so they are easy to use.
+- Maybe partial template specialization:
+    - `Map<Int, ...>` is a `HashMap`
+    - `Map<String, ...>` is a `SortedMap`
+
+
+## Safety and Security
+- **No implicit downcasts**,  
+  i.e. standard conversions only apply when no information is lost.
+    - ~~Not Ok~~ or Ok is
+        - `Int8` ->
+            - `Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - `Float16`, `Float32`, `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `UInt8` ->
+            - `UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`,~~ `Int16`, `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - `Float16`, `Float32`, `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `Int16` ->
+            - ~~`Int8`,~~ `Int16`, `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`,~~ `Float32`, `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `UInt16` ->
+            - ~~`UInt8`,~~ `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`,~~ `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`Float16`,~~ `Float32`, `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `Int32` ->
+            - ~~`Int8`, `Int16`,~~ `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`,~~ `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `UInt32` ->
+            - ~~`UInt8`, `UInt16`,~~ `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`,~~ `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`Float16`, `Float32`,~~ `Float64`, `Float128`, `Float256`, `BigFloat`
+        - `Int64` ->
+            - ~~`Int8`, `Int16`, `Int32`,~~ `Int64`, `Int128`, `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`, `Float64`,~~ `Float128`, `Float256`, `BigFloat`
+        - `UInt64` ->
+            - ~~`UInt8`, `UInt16`, `UInt32`,~~ `UInt64`, `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`,~~ `Int128`, `Int256`, `BigInt`
+            - ~~`Float16`, `Float32`, `Float64`,~~ `Float128`, `Float256`, `BigFloat`
+        - `Int128` ->
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`,~~ `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`,~~ `Float256`, `BigFloat`
+        - `UInt128` ->
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`,~~ `UInt128`, `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`,~~ `Int256`, `BigInt`
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`,~~ `Float256`, `BigFloat`
+        - `Int256` ->
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`,~~ `Int256`, `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
+        - `UInt256` ->
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`,~~ `UInt256`, `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
+        - `BigInt` ->
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
+        - `BigUInt` ->
+            - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`,~~ `BigUInt`
+            - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
+            - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
+
+- Using [**signed `Int` as size**](#signed-size)
+
+- **Range & Validation Checks**
+    - The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
+        - range checks, to detect **buffer overflows** or similar,
+        - safe iterators, to detect invalid iterators.
+            - So every safe iterator would have a pointer to the element _and_ a pointer to the container.
+                - Naive: check at every dereferencing
+                - Optimized: check at first dereferencing, but thereafter only after a call to a non-const member function of the container (or if such a call cannot be excluded).
+    - This should fix the majority of C/C++ security issues.  
+      To achieve maximum performance in all cases, there could be a third build configuration for even faster, but potentially unsafe builds.  
+    - So we would have:
+        - **Debug**
+            - for debugging,
+            - with range checks,
+            - with line by line debug info, and
+            - often with a modified memory layout (to find more types of errors).
+        - **Release**
+            - for deployment,
+            - _with_ range checks,
+            - suitable for most situations,
+            - by default using _safe_ containers (with safe iterators),
+                - optionally using unsafe containers (with unsafe iterators),
+            - with memory layout compatible to ~~EvenFasterBut~~UnsafeRelease.
+        - ~~EvenFasterBut~~**UnsafeRelease**
+            - for deployment,
+            - _without_ range checks (for even better performance),
+            - by default still using _safe_ containers (with safe iterators),
+                - so memory layout is compatible to Release,
+            - _optionally_ using unsafe containers (with unsafe iterators, for even better performance).
+- **Initialization**
+    - No initialization means random values. In this case they are in fact often zero, but _not always_.
+    - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't want to always initialize everything.
+        - With virtual memory it could actually be (almost) "free" to initialize _large_ arrays with zero. But only when using heap memory directly. Small memory regions, that were used before, still need to be overwritten with zeros.
+    - We could consider it an error (or at least warn) if not initialized,  
+      and use a keyword `noinit` to avoid that warning/error.  
+      ```
+      Int i         // Error
+      Int j noinit  // Ok
+      Int j = 1     // Ok
+      ```
+    - Classes / custom types
+        - Mark constructors with `noinit` when they do not initialize their values, so `noinit` should be used when calling them consciously.
+        - ```
+          class Array<type T> {
+              Array(Int size) noinit { ... }
+              Array(Int size, T value) { ... }
+          }
+          Array<Float> anArray(10)         // Warning
+          Array<Float> anArray(10) noinit  // No warning
+          Array<Float> anArray(10, 1.0)    // No warning
+          ```
+    - Also for free memory/heap
+        - ```
+          var arrayPtr = new Array<Float>(10)         // Warning
+          var arrayPtr = new Array<Float>(10) noinit  // No warning
+          var arrayPtr = new Array<Float>(10, 1.0)    // No warning
+          ```
+- **`safe`** as default, **`unsafe`** code blocks as escape.
+    - Mainly to guide developers:
+        - to signal what to do and what not to do,
+        - `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
+    - Not allowed in safe code:
+        - Subscript access to pointers,
+        - `reinterpretCastTo<T>(...)`,
+        - calling functions marked as `unsafe`,
+        - use of `noinit`.
+    - Still allowed/undetected in unsafe code:
+        - Integer overflow (checking that all the time seems too costly)
+    - `unsafe` code is _necessary_ to implement certain abstractions (like container classes):
+        - ```
+          operator[Int i] -> T& {
+              if CHECK_BOUNDS and (i < 0 or i >= size) {
+                  terminate()
+              }
+              unsafe {
+                  return data[i]
+              }
+          }
+          ```
+    - A function with unsafe code does not necessarily has to be marked as `unsafe` itself.
+        - `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
+        - Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves.
+        - Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves.
+        - Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
+- `cilia::safe::Int`
+    - Like `cilia::Int`, but with **overflow check** for all operations,
+        - may throw OverflowException (or abort the program).
+    - Generally considered to be too costly, even in languages that are otherwise considered as "safe".
+    - `safe::Int8`/`Int16`/`Int32`/`Int64`
+    - `safe::UInt`
+        - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
+- No further security features planned beyond C++:
+    - Not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
+        - that is just out of scope.
+    - No _additional_ thread safety measures.
+        - A thread safety issue can easily lead to a deadlock or crash, and sometimes can even be a security problem.
+        - But while thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (mainly because I am not aware of / familiar with better solutions than already available/recommended in C++).
+
+
+## Operator Declaration
+- Keyword **`operator`** instead of `func`.
+- As with normal functions: Parameters are passed as `in` by default (i.e. `const T&` or `const T`).
+- Assignment operator
+  ```
+  class Int256 {
+      operator =(Int256 other) { ... }
+  }
+  ```
+    - No return of this-reference,
+        - [as in Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/),
+        - so `if a = b { ... }` is _not_ accidentally allowed.
+    - Move assignment
+      ```
+      class Int256 {
+          operator =(move Int256 other) { ... }
+      }
+      ```
+- Arithmetic operators
+  ```
+  operator +(Int256 a, b) -> Int256 { ... }
+  operator -(Int256 a, b) -> Int256 { ... }
+  operator *(Int256 a, b) -> Int256 { ... }
+  operator /(Int256 a, b) -> Int256 { ... }
+  operator %(Int256 a, b) -> Int256 { ... }
+  ```
+- Shift and rotate operators
+  ```
+  operator <<(Int256 a, Int shiftCount) -> Int256 { ... }
+  operator >>(Int256 a, Int shiftCount) -> Int256 { ... }
+  operator <<<(UInt256 a, Int shiftCount) -> UInt256 { ... }
+  operator >>>(UInt256 a, Int shiftCount) -> UInt256 { ... }
+  ```
+- Compound assignment operators
+  ```
+  class Int256 {
+      operator +=(Int256 other) { ... }
+      operator -=(Int256 other) { ... }
+      operator *=(Int256 other) { ... }
+      operator /=(Int256 other) { ... }
+      operator %=(Int256 other) { ... }
+      operator <<=(Int shiftCount) { ... }
+      operator >>=(Int shiftCount) { ... }
+      operator &=(Int256 other) { ... }
+      operator |=(Int256 other) { ... }
+  }
+  class UInt256 {
+      operator <<<=(Int shiftCount) { ... }
+      operator >>>=(Int shiftCount) { ... }
+  }
+  ```
+    - Not ~~`operator ^=(Int256 other) { ... }`~~
+- Increment and decrement operators
+  ```
+  class Int256 {
+      operator ++() -> Int256& { ... }
+      operator ++(Int dummy) -> Int256 { ... } // post-increment
+      operator --() -> Int256& { ... }
+      operator --(Int dummy) -> Int256 { ... } // post-decrement
+  }
+  ```
+- Relational and comparison operators
+  ```
+  operator ==(Int256 a, b) -> Bool { ... }
+  operator !=(Int256 a, b) -> Bool { ... }
+  operator <(Int256 a, b) -> Bool { ... }
+  operator >(Int256 a, b) -> Bool { ... }
+  operator <=(Int256 a, b) -> Bool { ... }
+  operator >=(Int256 a, b) -> Bool { ... }
+  operator <=>(Int256 a, b) -> Int { ... }
+  ```
+- Logical operators
+    - Boolean operators
+      ```
+      operator and(Bool a, b) -> Bool { ... }
+      operator or(Bool a, b) -> Bool { ... }
+      operator nand(Bool a, b) -> Bool { ... }
+      operator nor(Bool a, b) -> Bool { ... }
+      operator xor(Bool a, b) -> Bool { ... }
+      operator not(Bool a) -> Bool { ... }
+      operator &&(Bool a, b) -> Bool { return a and b }
+      operator ||(Bool a, b) -> Bool { return a or b }
+      operator !(Bool a) -> Bool { return not a }
+      operator ∧(Bool a, b) -> Bool { return a and b }
+      operator ∨(Bool a, b) -> Bool { return a or b }
+      operator ⊼(Bool a, b) -> Bool { return a nand b }
+      operator ⊽(Bool a, b) -> Bool { return a nor b }
+      operator ⊻(Bool a, b) -> Bool { return a xor b }
+      ```
+        - Defined for _`Bool`_ (not for integers),
+        - operators `!`, not ~~`~`~~,
+            - `&&` and `||`, not ~~`&` and `|`~~.
+    - Bitwise operators
+      ```
+      operator and(Int256 a, b) -> Int256 { ... }
+      operator or(Int256 a, b) -> Int256 { ... }
+      operator nand(Int256 a, b) -> Int256 { ... }
+      operator nor(Int256 a, b) -> Int256 { ... }
+      operator xor(Int256 a, b) -> Int256 { ... }
+      operator not(Int256 a) -> Int256 { ... }
+      operator &(Int256 a, b) -> Int256 { return a and b }
+      operator |(Int256 a, b) -> Int256 { return a or b }
+      operator ~(Int256 a) -> Int256 { return not a }
+      operator ∧(Int256 a, b) -> Int256 { return a and b }
+      operator ∨(Int256 a, b) -> Int256 { return a or b }
+      operator ⊼(Int256 a, b) -> Int256 { return a nand b }
+      operator ⊽(Int256 a, b) -> Int256 { return a nor b }
+      operator ⊻(Int256 a, b) -> Int256 { return a xor b }
+      ```
+        - Defined for _integers_ (not for `Bool`),
+        - operators `~`, not ~~`!`~~,
+            - `&` and `|`, not ~~`&&` and `||`~~.
+- Subscript/bracket/parenthesis/functor operators:
+  ```
+  class MyImage<type T> {
+      // Array subscript
+      operator [Int i] -> T& {
+          return data[i]
+      }
+
+      // 2D array (i.e. image like) subscript
+      operator [Int x, y] -> T& {
+          return data[x + y*stride]
+      }
+      
+      // Functor call
+      operator (Int a, Float b, String c) {
+          ...
+      }
+  }
+  ```
+- Exotic operators (e.g. Unicode)
+    - ⊕, ⊖, ⊗, ⊘, ⊙, ⊛, ⊞, ⊟, ∪, ∩, ∖, ∈, ∉, ∋, ∌, ∧, ∨, ¬, ∷, ∶, ∝, ∼, ≈, ≉, ≠, ≤, ≥, ≪, ≫, ⊂, ⊃, ⊆, ⊇, ∅, ∇, ∂, ∞, ∑, ∏, ∫, ∮, ∵, ∴, ∗, ∘, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
+    - Reserved for future use, as it could get complicated and confusing.
+        - Especially to differentiate
+            - operator precedence and
+            - unary (prefix, postfix) or binary (infix) operators.
+        - Many seem more suitable for a computer algebra system (CAS), not for a general purpose programming language.
+    - `|x|` for `abs(x)`?
+        - `||x||` for `norm(x)`?
+            - This would interfere with `||` as logical `or`.
+        - This form is called as "enclosing operator", "delimited form", "bracketed expression", or informally as a paired prefix/postfix or "sandwich operator".
+        - More variants?
+            - `≪...≫`
+            - `‹...›` , `«...»`
+            - `⦅...⦆` , `〚...〛` , `⦃...⦄`
+            - `（...）`, `［...］`, `｛...｝`, `｟...｠`
+            - `「...」`, `『...』`, `〈...〉`, `《...》`, `【...】`, `〖...〗`, `〔...〕`, `〘...〙`, `⦗...⦘`
+        - Some may be used in reversed order: `≫...≪`
+        - Also see [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)
+
+
+## `is`, `as`, Casting
+- `is` (type query)
+    - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
+        - `obj is Int` (i.e. a type)
+        - `objPtr is T*` instead of `dynamic_cast<T*>(objPtr) != NullPtr`
+        - `obj is cilia::Array` (i.e. a template)
+        - `obj is cilia::Integer` (i.e. a concept)
+    - TODO Also support value query?
+- `as`
+    - See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
+        - `obj as T` instead of `T(obj)`
+        - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
+        - With `Variant v` where T is one alternative:  
+          `v as T` instead of`std::get<T>(v)`
+        - With `Any a`:  
+          `a as T` instead of `std::any_cast<T>(a)`
+        - With `Optional<T> o`:  
+          `o as T` instead of `o.value()`
+- Constructor casting
+    - `Float(3)`
+    - Casting via constructor is `explicit` by default, `implicit` as option.
+    - No classic C-style casting: ~~`(Float) 3`~~
+    - but also
+        - `castToMutable<T>(...)` or `mutableCastTo<T>(...)`
+            - instead of ~~`constCastTo<>(...)`~~
+        - `reinterpretCastTo<T>(...)`
+        - `staticCastTo<T>(...)`?
+- Automatic casts
+    - as in Kotlin,
+    - for template types, references and pointers.
+    - ```
+      func getStringLength(Type obj) -> Int {
+          if obj is String {
+              // "obj" is automatically cast to "String" in this branch
+              return obj.length
+           }
+          // "obj" is still a "Type" outside of the type-checked branch
+          return 0
+      }
+      ```
+    - ```
+      func getStringLength(Type obj) -> Int {
+          if not obj is String
+              return 0
+          // "obj" is automatically cast to "String" in this branch
+          return obj.length
+      }
+      ```
+    - ```
+      func getStringLength(Type obj) -> Int {
+          // "obj" is automatically cast to "String" on the right-hand side of "and"
+          if obj is String  and  obj.length > 0 {
+              return obj.length
+          }
+          return 0
+      }
+      ```
+    - TODO Multiple inheritance is problematic here:
+        - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
+        - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
+            - Workaround:
+                - In case of multiple inheritance there is no automatic casting.
+                - ~~Cast back with `Type(obj).functionOfA()`~~
+
+
+## `cilia` Standard Library
+Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
+- With a Cilia version of each standard class/concept (i.e. CamelCase class names and camelCase function and variable names)
+    - `cilia::String` instead of `std::string`
+    - `Map` instead of `map`
+        - `Dictionary` as alias with deprecation warning, as a hint for C# programmers.
+    - `ForwardList` instead of `forward_list`
+    - `UnorderedMap` instead of `unordered_map`
+    - `ValueType` instead of `value_type`
+    - Some exceptions/variations:
+        - `Array` instead of `vector`
+        - `StringStream` instead of `stringstream`
+            - `TextStream`, `ByteStream`, ...
+- Mostly a shallow wrapper,
+    - e.g. `class cilia::String : public std::string { ... }`
+    - with "**aliases**" for
+        - member variables  
+          `using var x = data[0]`  
+          `using var y = data[1]`
+        - member functions  
+          `using func pushBack = push_back`
+    - A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without.  
+      But only _with_ wrapper we have
+        - a Cilia standard library in the "idiomatic" Cilia style (i.e. CamelCase),
+        - whose types/classes are also used with existing C++ APIs (i.e. using Int, Int32, String and StringView instead of int, int32_t, string and string_view).
+- Global IO functions
+    - `print("...")` with Newline, calls `cout.writeLine()`.
+    - `scan() -> String` reads up to Newline, calls `cin.readLine()`.
+    - `ask("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
+- Streams
+    - `TextStream`
+        - `cout.write("...")` without newline.
+        - `cout.writeLine("...")` with newline.
+        - `cin.read() -> String` reads
+            - everything from the `istream` user-level cache (if not empty),
+            - or (otherwise) everything from the kernel buffer/cache:
+                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically up to 64 KB). Blocks when this buffer is empty.
+                  Only when the pipe/socket is closed (and no data is buffered anymore), then it returns `""`.
+                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB). Blocks when this cache is empty.
+                  Only when the end of file is reached (and no data is buffered anymore), then it returns `""`.
+        - `cin.readAll() -> String` reads everything until the end of the file.
+            - With pipes/sockets, it blocks until the pipe/socket is closed.
+        - `cin.readLine() -> String` reads until newline (or end of file).
+            - The newline character is removed from the line.
+                - `\n`, `\r`, `\r\n` are recognized as (a single) newline.
+                - (Maybe even `\n\r` from AmigaOS, and `NEL`/`U+0085` from EBCDIC/IBM.)
+            - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
+            - When the end of file is reached, then it returns `""`.
+            - But as empty lines are also read as `""`, you need to check `isEOF()` here.
+        - `cin.readGrapheme() -> String` reads a single grapheme (mostly a character).
+            - Returns a String, as UTF-8 "characters"/graphemes may consist of multiple code points (called a "grapheme cluster").
+            - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
+            - When the end of file is reached, then it returns `""`.
+            - Unicode variant of ~~`cin.readChar() -> String`~~.
+            - TODO? `cin.readCodePoint() -> Int32` reads a single Unicode code point (as Int32).
+                - But beware: some graphemes, like emoji, consist of multiple code points.
+                - When the end of file is reached, then it returns `-1`.
+        - `cin.tryToRead() -> String` reads everything that is immediately available,
+            - possibly/often returns `""`, it never blocks.
+            - Reads everything from the `istream` user-level cache (if not empty),
+            - or (otherwise) everything from the kernel buffer/cache:
+                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically up to 64 KB).
+                  Returns `""` when no data is buffered anymore (then maybe the pipe/socket is closed).
+                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
+                  Returns `""` when no data is buffered anymore (then maybe the end of file is reached).
+            - Meant for polling / busy loops only, so _rarely_ appropriate.
+            - You need to check isEOF() separately!
+                - As you cannot distinguish "no data available" from EOF or pipe/socket closed.
+        - `cin.isEOF()` returns `true` if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
+            - and the end of the file is reached or the pipe/socket is closed.
+            - Only really necessary to call this function when using `cin.readImmediately()` or `cin.readLine()`.
+    - `ByteStream`
+        - `out.close()`
+        - `out.write(Byte[])`
+        - `out.flush()` writes the data buffer (the `istream` user-level cache) to the operating system.
+            - This protects against data loss in the event of a program crash.
+        - `out.flushAndSync()` calls `flush()`, then
+            - calls `fsync()` to write the kernel buffers to the file system and then to the harddisk/SSD (the write cache should be written/cleared, too).
+            - This protects against data loss in the event of a program or _system_ crash.
+        - `in.read() -> Byte[]` reads
+            - everything from the `istream` user-level cache, if not `0`,  
+              otherwise everything from the kernel buffer/cache:
+                - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically 64 KB).
+                  Blocks when this buffer is empty.
+                  When the pipe/socket is closed (and no data is buffered anymore), then it returns an empty array.
+                - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
+                  Blocks when this cache is empty.
+                  When the end of file is reached (and no data is cached anymore), then it returns an empty array.
+        - `in.read(Int n) -> Byte[]` reads exactly n bytes.
+            - Blocks until (at least) the given number of bytes are read.
+            - Throws an exception if end of file is reached (or pipe/socket closed) before n bytes are read.
+        - `in.read(Int minimum, maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes.
+            - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
+            - `in.read(minimum..maximum) -> Byte[]`
+        - `in.readAll() -> Byte[]` reads everything until the end of the stream.
+        - `in.readInto(Span<Byte> buffer, Int minimum = 1)` reads into the given buffer.
+            - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
+            - Throws an exception if end of file reached (or pipe/socket closed) before `minimum` bytes are read.
+            - The effective `maximum` if defined by `buffer.size()`.
+                - You may limit the maximum number of bytes to read by using `buffer.subspan(0, 4096)`,
+                  or configure the starting point (in the buffer) by using `buffer.subspan(100)`.
+            - Usually more efficient, as the buffer is reused and less allocations are necessary.
+        - `in.available() -> Int` says how many bytes are _immediately_ available for reading.
+            - Returns the size of the `istream` cache, if not 0,  
+              otherwise reports the size of the kernel cache/buffer.
+            - As that is the number of bytes you would get with the next `in.read()`.
+        - `in.peek(Int n) -> Byte[]`
+            - Blocks until (at least) the `minimum` number of bytes are read.
+            - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
+            - TODO Limited to 16 bytes or to the buffer size?
+        - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
+        - `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
+        - `in.isEOF()` returns true if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
+            - and the end of the file is reached or the pipe/socket is closed.
+    - `File`, derived from `ByteStream`
+        - `file.size() -> Int`
+        - `file.position() -> Int`
+            - `file.setPosition(Int n)` (AKA `file.seekFromStart()`)
+            - A common position for read and write.
+        - `file.seek(Int offsetToCurrentPos)`
+            - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
+        - `file.seekFromEnd(Int distanceToEnd)`
+            - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
+        - `file.truncate()` truncates the file at the current position.
+            - `file.truncate(Int n)` truncates the file at the given position.
+        - `file.path() -> String`
+    - `NetworkConnection`, derived from `ByteStream`,
+        - a base class for TCP/IP, Bluetooth, infrared, ...
+        - `connection.connect(...)`
+        - `connection.disconnect()`
+        - `connection.isConnected() -> Bool`
+        - `connection.remoteAddress() -> String`
+        - `connection.localAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
+        - `connection.readTimeout() -> Duration`
+            - `connection.setReadTimeout(Duration)`
+    - `TcpConnection`, derived from `NetworkConnection`
+        - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
+        - `connection.connectionTimeout() -> Duration`
+            - `connection.setConnectionTimeout(Duration)`
+        - `connection.remotePort() -> UInt16`
+        - `connection.localPort() -> UInt16`
+        - `connection.noDelay() -> Bool`
+            - `connection.setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
+        - `connection.keepAlive() -> Bool`
+            - `connection.setKeepAlive(Bool)` prevents connection termination due to inactivity.
+        - `connection.protocolVersion() -> Int` returns `4` or `6`.
+        - `connection.receiveBufferSize() -> Int`
+            - `connection.setReceiveBufferSize(Int bytes)`
+        - `connection.sendBufferSize() -> Int`
+            - `connection.setSendBufferSize(Int bytes)`
+    - `LocalConnection`, drived from `ByteStream`
+        - `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
+        - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
+            - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
+    - `SerialConnection` (RS-232/UART)
+        - `setBaudRate(Int)`
+        - `setParity(Bool)`
+        - `setDataBits(Int)`
+    - Hierarchy
+        - `ByteStream`
+            - `File`
+            - `MemoryStream` as RAM buffer.
+            - `NetworkStream`
+                - `TCPConnection`
+                    - `TLSConnection` / `SSLConnection`
+                - `SSHStream`
+            - `LocalStream` for interprocess communication.
+                - `Pipe`
+                - `UnixDomainStream` in stream configuration.
+            - `DeviceStream`
+                - `SerialConnection` for RS-232/UART.
+                - `USBConnection` for USB bulk transfers.
+        - `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
+            - `UDPSocket` for UDP over IP.
+            - `UnixDomainSocket` in datagram configuration.
+            - Communication with sensors on microcontrollers
+                - `I2CDevice` (register read/write cycles)
+                - `SPIDevice` (chip-select-controlled frames)
+                - `CANBusNode`
+            - `BluetoothConnection` Bluetooth RFCOMM / L2CAP
+            - `ZigbeeEndpoint`
+            - `WebSocketConnection` (message frames over TCP)
+
+- Matrix & Vector
+    - Geometry
+        - Static/fixed size
+        - For small, fixed size vectors & matrices ,
+            - as typically used in geometry (i.e. 2D, 3D, 4D).
+        - `cilia::Vector<Int size, T = Float>`
+            - `cilia::Vector2<T = Float>`
+            - `cilia::Vector3<T = Float>`
+            - `cilia::Vector4<T = Float>`
+        - `cilia::Matrix<Int rows, Int columns, T = Float>`
+            - `cilia::Matrix22<T = Float>`
+            - `cilia::Matrix33<T = Float>`
+            - `cilia::Matrix44<T = Float>`
+    - Linear Algebra
+        - Dynamic/variable size
+        - For large, dynamically sized vectors & matrices,
+            - as typically used in linear algebra: BLAS (Basic Linear Algebra Subprograms)
+        - `cilia::Vector<T = Float>`
+        - `cilia::Matrix<T = Float>`
+            - Stored column-major, like:
+              ```
+              0 3 6
+              1 4 7
+              2 5 8
+              ```
+        - `cilia::MDArray<Int dimensions, T = Float>`
+            - also see `MDSpan`
+
+- Image
+    - `cilia::Image<T = Float>`
+    - Almost like `cilia::Matrix`, but stored row-major, like:
+      ```
+      0 1 2
+      3 4 5
+      6 7 8
+      ```
+
+- Views, Slices
+    - `ArrayView`
+    - `VectorView`
+    - `MatrixView`
+    - `ImageView`
+    - `MDArrayView`
+
+
+## String, Char & CodePoint
+- `cilia::String` with _basic/standard_ unicode support.
+    - Based on UTF-8, as that IMHO is (among all the Unicode formats)
+        - the most widespread nowadays,
+        - the most compatible (as it is ASCII based),
+        - the most efficient, at least for "western" use (and you are free to use UTF16- or UTF32String otherwise).
+    - Iteration over a `String` or `StringView` by:
+        - **grapheme clusters**
+            - represented by `StringView`.
+            - This is the _default form of iteration_ over a `String` or `StringView`
+            - A single grapheme cluster will often consist of multiple code units
+              and may even consist of multiple code points.
+            - `for graphemeCluster in "abc 🥸👮🏻"`
+                - "a", "b", "c", " ", "🥸", "👮🏻"
+                - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
+            - A bit slow, as it has to find grapheme cluster boundaries.
+            - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
+            - Additional/alternative names?
+                - `for graphemeCluster in text.asGraphemeClusters()`?
+        - **code points**
+            - represented by `UInt32`,
+                - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
+                - Called "auto decoding" in D.
+            - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
+                - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
+            - **Note:** _Not_ even with UTF-32 do all grapheme clusters fit into a single code point,  
+              so not:
+                - emoji with modifier characters like skin tone or variation selector,
+                - diacritical characters (äöü..., depending on the normal form chosen),
+                - surely some more ...
+            - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
+            - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
+        - **code units**
+            - represented by
+                - `Char` for `String`
+                    - it is `Char`==`Char8`==`UInt8` and `String`==`UTF8String`
+                - `Char16` for `UTF16String`
+                - `Char32` for `UTF32String`
+            - `for aChar8 in "abc 🥸👮🏻".asArray()`
+                - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
+                - same for
+                    - `for aChar8 in u8"abc 🥸👮🏻".asArray()`
+                    - `for aChar8 in UTF8String("abc 🥸👮🏻").asArray()`
+            - `for aChar16 in u"abc 🥸👮🏻".asArray()`
+                - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
+                - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
+            - `for aChar32 in U"abc 🥸👮🏻".asArray()`
+                - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
+                - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
+    - `string.toUpper()`, `string.toLower()`
+        - `toUpper(String) -> String`, `toLower(String) -> String`
+    - `stringArray.sort()`
+        - `sort(Container<String>) -> Container<String>`
+    - `compare(stringA, stringB) -> Int`
+- `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
+    - like
+        - ASCII
+        - Latin-1
+        - ANSI (mostly identical to Latin-1)
+        - almost every one of the "code pages"
+    - Encoding is not defined.
+        - The user has to take care of this,
+        - or a subclass with known encoding has to be used (`ASCIIString`, `Latin1String`).
+    - `ASCIIString`, a string containing only ASCII characters.
+        - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`
+            - `for aChar in a"abc"`
+                - 0x61, 0x62, 0x63
+                - 'a', 'b', 'c'
+                - Compilation error, if string literal contains non-ASCII characters.
+                - same for `for aChar in ASCIIString("abc")`
+                    - but Exception thrown, if string contains non-ASCII characters.
+        - Implicitly convertable to `String`==`UTF8String`.
+            - Very fast conversion, as all characters have the same binary representation.
+    - `Latin1String`, a string containing only Latin-1 (ISO 8859-1) characters.
+        - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`
+            - `for aChar in l"äßç"`
+                - 0xe4, 0xdf, 0xe7
+                - 'ä', 'ß', 'ç'
+                - Compilation error, if string literal contains non-Latin-1 characters.
+                - same for `for aChar in Latin1String("abc")`
+                    - but Exception thrown, if string contains non-Latin1 characters.
+        - Explicitly convertable to `String`==`UTF8String`.
+            - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
+- `Char8`, `Char16`, `Char32`
+    - are considered as _different_ types for parameter overloading,
+    - but otherwise are like `UInt8`, `UInt16`, `UInt32`,
+
+- [**ICU**](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode") for advanced Unicode support.
+    - "The ICU libraries provide support for:
+        - The latest version of the Unicode standard
+        - Character set conversions with support for over 220 codepages
+        - Locale data for more than 300 locales
+        - Language sensitive text collation (sorting) and searching based on the Unicode Collation Algorithm (=ISO 14651)
+        - Regular expression matching and Unicode sets
+        - Transformations for normalization, upper/lowercase, script transliterations (50+ pairs)
+        - Resource bundles for storing and accessing localized information
+        - Date/Number/Message formatting and parsing of culture specific input/output formats
+        - Calendar specific date and time manipulation
+        - Text boundary analysis for finding characters, word and sentence boundaries"
+    - `import icu` adds extension methods for `cilia::String`
+        - Allows iteration over:
+            - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
+                - `for word in text.asWords()`
+            - lines
+                - `for line in text.asLines()`
+            - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
+                - `for sentence in text.asSentences()`
+        - Depending on locale
+            - `string.toUpper(locale)`, `string.toLower(locale)`
+                - `toUpper(String, locale) -> String`, `toLower(String, locale) -> String`
+            - `stringArray.sort(locale)`
+                - `sort(Container<String>, locale) -> Container<String>`
+            - `compare(stringA, stringB, locale) -> Int`
