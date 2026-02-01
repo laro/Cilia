@@ -1,11 +1,14 @@
 ---
-title: Cilia.Branches, Loops & Exceptions
-permalink: /cilia/branches-loops-exceptions/
+title: Cilia.Control Flow
+permalink: /cilia/control-flow/
 order: 3
 ---
 
-## Branches, Loops & Exceptions
+## Control Flow
+Branches, loops, and exceptions.
+
 No braces around the condition clause (as in Python, Swift, Go, Ruby).
+
 - **if**
     - ```
       if a > b {
@@ -30,18 +33,21 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
       ```
     - `if 1 <= x <= 10 { ... }`
         - chained comparison as in Cpp2 (Herb Sutter), Python, Julia
+
 - **while**
   ```
   while a > b {
       // ...
   }
   ```
+
 - **do-while**
   ```
   do {
       // ...
   } while a > b
   ```
+
 - **for-in**
     - as in Swift, Rust
     - Write
@@ -92,6 +98,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
         - IMHO the code is even more clear when written as while-loop.
         - Note: When the `<Condition>` is empty, then it needs to be replaced with `True`,
             - e.g. `for (;;) { ... }` is translated to `while True { ... }`.
+
 - **switch/case** with implicit ~~`break`~~
     - i.e `break` is the default, and it is not necessary to explicitly write it,
     - like in Swift.
@@ -133,6 +140,7 @@ No braces around the condition clause (as in Python, Swift, Go, Ruby).
                   print("default")
               }
               ```
+
 - **Exceptions**
     - ```
       try {
