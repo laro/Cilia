@@ -25,4 +25,4 @@ This is (should be) the exact equivalent of the [Cilia example](/comparison/cili
 - `for word in words.iter() { ...; }`
 
 In Rust `42` is an `i32`, not an `i64`.  
-That's Ok, this is a syntax comparison, not a performance benchmarks.
+That's Ok, this is a syntax comparison, not a performance benchmark.

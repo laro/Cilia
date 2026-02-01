@@ -25,4 +25,4 @@ This is (should be) the exact equivalent of the [Cilia example](/comparison/cili
 - `foreach (var word in words) { ... }`
 
 In C# `int` and `42` are 32 bit wide, not 64 bit.  
-That's Ok, this is a syntax comparison, not a performance benchmarks.
+That's Ok, this is a syntax comparison, not a performance benchmark.
