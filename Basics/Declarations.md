@@ -1,6 +1,6 @@
 ---
-title: Cilia.Declarations
-permalink: /cilia/declarations/
+title: Basics.Declarations
+permalink: /basics/declarations/
 order: 0
 ---
 
