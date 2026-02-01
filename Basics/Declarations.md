@@ -1,7 +1,7 @@
 ---
 title: Basics.Declarations
 permalink: /basics/declarations/
-order: 0
+order: 1
 ---
 
 ## Variable Declaration

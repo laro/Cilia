@@ -1,7 +1,7 @@
 ---
 title: Basics.Control Flow
 permalink: /basics/control-flow/
-order: 1
+order: 2
 ---
 
 ## Control Flow

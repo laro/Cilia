@@ -1,7 +1,7 @@
 ---
 title: Basics.Comments
 permalink: /basics/comments/
-order: 2
+order: 3
 ---
 
 ## Comments
