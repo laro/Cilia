@@ -50,3 +50,61 @@ In the long run one could imagine a Cilia parser/frontend, producing an AST for 
 - `for word in words { ... }`
 
 Corresponding examples for C++, Cpp2, Carbon, Rust, Swift, and Kotlin are given [separately](/comparison/).
+
+
+## CamelCase Style
+Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
+
+- All types and **classes** in **UpperCamelCase** (AKA PascalCase).
+    - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`
+    - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
+
+- **Variables**/instances/objects in **lowerCamelCase**
+    - `Int i`
+    - `String word`
+    - `String[] words`
+    - `ContactInfo[String] contactInfoForID`
+    - Feel free to bend/break this rule, e.g. name matrices as `Matrix M, R, L`
+
+- **Functions** in **lowerCamelCase**
+    - `str.findFirstOf(...)`
+    - `arr.pushBack(...)`
+    - `Thread::hardwareConcurrency()`
+
+- **Global constants** in **UpperCamelCase**.
+    - `Pi`, `SpeedOfLight`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)
+    - Constant-like keywords
+        - `True`, `False`
+        - `NullPtr`
+        - `NaN`, `Infinity`
+    - But keep _local_ constants in lowerCamelCase:  
+        - `const Int lastIndex = 100` instead of ~~`const Int LastIndex = 100`~~
+
+- Namespaces fully lowercase
+    - `cilia`
+    - `cilia::gui`, `cilia::cli`
+    - `cilia::lapack`, `cilia::geometry`
+    - I don't think this is that important, but it helps to differentiate between classes and namespaces.
+
+
+## No Trailing Semicolons
+For better readability.  
+When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Julia.
+- Typically a statement or expression ends with the end of a line.
+- Multiline expressions:
+    - Explicitly via `\` at end of line,
+        - it is no whitespace after this continuation-backslash allowed
+        - (as in Python).
+    - Up to closing of `(...)` or `[...]`
+        - (also as in Python).
+- Multiple expressions in a single line _are_ separated by semicolon.  
+  `x += offset; y += offset`
+- Disadvantages:
+    - Errors are less easily recognized (Walter Bright / D: „Redundancy helps“)
+    - Probably a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
+- Only in REPL:
+    - Trailing semicolon used to suppress evaluation output,  
+      as in Matlab, Python, Julia.
+    - See [cling](https://root.cern/cling/)
+
+
