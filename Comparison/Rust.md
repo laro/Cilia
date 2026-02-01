@@ -9,7 +9,7 @@ This is (should be) the exact equivalent of the [Cilia example](/comparison/cili
 - `isize`, `i32`, `i64`, `f32`
 - 
 - `let mut x: i64 = 42;`
-- `let mut x = 42;` (actually, this is `i32`, but that's fine with me)
+- `let mut x = 42;`
 - `let x = 42;`
 - `let mut words: Vec<String> = Vec::new();`
 - `let mut names: HashSet<String> = HashSet::new();`
@@ -23,3 +23,6 @@ This is (should be) the exact equivalent of the [Cilia example](/comparison/cili
 - `for i in 0..words.len() { ...; }`
 - `for i in [5, 7, 11, 13].iter() { ...; }`
 - `for word in words.iter() { ...; }`
+
+In Rust `42` is an `i32`, not an `i64`.  
+That's Ok, this is a syntax comparison, not a performance benchmarks.

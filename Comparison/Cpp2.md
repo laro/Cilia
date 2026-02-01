@@ -23,3 +23,6 @@ This is (should be) the exact equivalent of the [Cilia example](/comparison/cili
 - `i := 0;  while i < words.ssize() next i++ { ...; }`
 - `for (5, 7, 11, 13) do (i) { ...; }`
 - `for words do (word) { ...; }`
+
+In Cpp2 `int` and `42` are 32 bit wide, not 64 bit.  
+That's Ok, this is a syntax comparison, not a performance benchmarks.

@@ -23,3 +23,6 @@ This is (should be) the exact equivalent of the [Cilia example](/comparison/cili
 - `for (var i = 0; i < words.Count; ++i) { ... }`
 - `foreach (var i in new[] { 5, 7, 11, 13 }) { ... }`
 - `foreach (var word in words) { ... }`
+
+In C# `int` and `42` are 32 bit wide, not 64 bit.  
+That's Ok, this is a syntax comparison, not a performance benchmarks.

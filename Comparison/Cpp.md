@@ -23,3 +23,6 @@ This is (should be) the exact equivalent of the [Cilia example](/comparison/cili
 - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
 - `for (int i : {5, 7, 11, 13}) { ...; }`
 - `for (const auto& word : words) { ... }`
+
+In C++ `int` and `42` are 32 bit wide, not 64 bit.  
+That's Ok, this is a syntax comparison, not a performance benchmarks.
