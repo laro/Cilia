@@ -1,7 +1,7 @@
 ---
-title: Cilia.Misc
-permalink: /cilia/misc/
-order: 1000
+title: Advanced.Misc
+permalink: /advanced/misc/
+order: 4
 ---
 
 ## Misc
