@@ -8,15 +8,18 @@ This is (should be) the exact equivalent of the [Cilia example](/comparison/cili
 
 - `int`, `long`, `float`
 - `int x = 42;`
-    - `var x = 42;`
-    - `const int x = 42;`
-    - `var words = new List<string>();`
-    - `var names = new HashSet<string>();`
-    - `var contactInfoForID = new Dictionary<string, ContactInfo>();`
+- 
+- `var x = 42;`
+- `const int x = 42;`
+- `var words = new List<string>();`
+- `var names = new HashSet<string>();`
+- `var contactInfoForID = new Dictionary<string, ContactInfo>();`
 - `static int multiply(int a, int b) { return a * b; }`
-    - `static void print(ContactInfo a) { ... }`
-    - `static string concat(string a, string b) { return ...; }`
+- 
+- `static void print(ContactInfo a) { ... }`
+- `static string concat(string a, string b) { return ...; }`
 - `for (int i = 1; i <= 10; ++i) { ... }`
-    - `for (var i = 0; i < words.Count; ++i) { ... }`
-    - `foreach (var i in new[] { 5, 7, 11, 13 }) { ... }`
-    - `foreach (var word in words) { ... }`
+- 
+- `for (var i = 0; i < words.Count; ++i) { ... }`
+- `foreach (var i in new[] { 5, 7, 11, 13 }) { ... }`
+- `foreach (var word in words) { ... }`
