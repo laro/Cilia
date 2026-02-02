@@ -104,7 +104,7 @@ body {
     /*background-color: var(--color-neutral-muted) !important;*/
   }
 
-  .markdown-body div.highlight pre.highlight {
+  .markdown-body main .highlighter-rouge div.highlight pre.highlight {
     background-color: black !important;
     /*background-color: var(--color-neutral-muted) !important;*/
   }
