@@ -4,7 +4,7 @@ permalink: /comparison/
 order: 3
 ---
 
-## Comparison of Cilia with other languages
+## Comparison of Cilia with Other Languages
 The following comparison aims to show the _exact_ equivalent of the [Cilia code](/comparison/cilia/#by-example).
 
 > **Note**
