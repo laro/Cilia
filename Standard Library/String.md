@@ -14,7 +14,7 @@ String, Char & Unicode CodePoint
         - the most compatible (as it is ASCII based),
         - the most efficient, at least for "western" use (and you are free to use UTF16- or UTF32String otherwise).
     - Iteration over a `String` or `StringView` by:
-        - **grapheme clusters**
+        - **Graphemes**/Grapheme Clusters
             - represented by `StringView`.
             - This is the _default form of iteration_ over a `String` or `StringView`
             - A single grapheme cluster will often consist of multiple code units
@@ -26,7 +26,7 @@ String, Char & Unicode CodePoint
             - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
             - Additional/alternative names?
                 - `for graphemeCluster in text.asGraphemeClusters()`?
-        - **code points**
+        - **Code Points**
             - represented by `UInt32`,
                 - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
                     - Called "auto decoding" in D.
@@ -39,7 +39,7 @@ String, Char & Unicode CodePoint
                 - surely some more ...
             - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
             - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
-        - **code units**
+        - **Code Units**
             - represented by
                 - `Char` for `String`
                     - it is `Char`==`Char8`==`UInt8` and `String`==`UTF8String`
@@ -62,7 +62,7 @@ String, Char & Unicode CodePoint
         - `sort(Container<String>) -> Container<String>`
     - `compare(stringA, stringB) -> Int`
 
-- `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
+- **`ByteString`** to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
     - like
         - ASCII
         - Latin-1
@@ -71,7 +71,7 @@ String, Char & Unicode CodePoint
     - Encoding is not defined.
         - The user has to take care of this,
         - or a subclass with known encoding has to be used (`ASCIIString`, `Latin1String`).
-    - `ASCIIString`, a string containing only ASCII characters.
+    - **`ASCIIString`**, a string containing only ASCII characters.
         - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`
             - `for aChar in a"abc"`
                 - 0x61, 0x62, 0x63
@@ -81,7 +81,7 @@ String, Char & Unicode CodePoint
                     - but Exception thrown, if string contains non-ASCII characters.
         - Implicitly convertable to `String`==`UTF8String`.
             - Very fast conversion, as all characters have the same binary representation.
-    - `Latin1String`, a string containing only Latin-1 (ISO 8859-1) characters.
+    - **`Latin1String`**, a string containing only Latin-1 (ISO 8859-1) characters.
         - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`
             - `for aChar in l"äßç"`
                 - 0xe4, 0xdf, 0xe7
