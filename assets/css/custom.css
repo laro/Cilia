@@ -108,6 +108,10 @@ body {
     background-color: black !important;
     /*background-color: var(--color-neutral-muted) !important;*/
   }
+  .markdown-body main .language-plaintext div.highlight pre.highlight {
+    background-color: black !important;
+    /*background-color: var(--color-neutral-muted) !important;*/
+  }
 
   .highlight {
     background-color: black !important;
