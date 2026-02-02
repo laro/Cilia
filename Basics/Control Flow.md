@@ -102,8 +102,7 @@ without braces around the condition clause (as in Python, Swift, Go, Ruby).
         - chained comparison as in Cpp2 (Herb Sutter), Python, Julia
 
 - **switch/case** with implicit ~~`break`~~
-    - i.e `break` is the default, and it is not necessary to explicitly write it,
-    - like in Swift.
+    - i.e `break` is the default, and it is not necessary to explicitly write it (like in Swift).
     - Use `fallthrough` if necessary.
     - ```
       switch i {
