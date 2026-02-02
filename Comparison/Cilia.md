@@ -4,7 +4,7 @@ permalink: /comparison/cilia/
 order: -1
 ---
 
-These are some basic Cilia lines of code:
+These are some basic lines of code in Cilia:
 
 - `Int`, `Int32`, `Int64`, `Float`
 - 
