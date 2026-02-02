@@ -4,9 +4,7 @@ permalink: /standard-library/string/
 order: 0
 ---
 
-## Strings
-
-String, Char & Unicode CodePoint
+## String, Char & Unicode CodePoint
 
 - `cilia::String` with _basic/standard_ unicode support.
     - Based on UTF-8, as that IMHO is (among all the Unicode formats)
