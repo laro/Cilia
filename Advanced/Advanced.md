@@ -1,5 +1,5 @@
 ---
 title: Advanced
 permalink: /advanced/templates/
-order: 2
+order: 3
 ---
