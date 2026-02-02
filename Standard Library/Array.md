@@ -4,7 +4,7 @@ permalink: /standard-library/arrays/
 order: 0
 ---
 
-## Arrays & ArrayViews
+## Array & ArrayView
 
 - `Int[] dynamicArrayOfIntegers`
     - „Dynamic array“ with **dynamic size**
@@ -105,7 +105,7 @@ order: 0
     - `Int[3][]& referenceToDynamicArrayOfArrayOfThreeInt`
     - `String*[] dynamicArrayOfPointersToString`
 
-- ArrayViews AKA Slices AKA Subarrays
+- ArrayView AKA Slice AKA Subarray
     - `var subarray = array[1..2]`
     - `var subarray = array[1..<3]`
     - Incomplete ranges (need lower and/or upper bounds before use) are
@@ -114,7 +114,7 @@ order: 0
         - `var subarray = array[..]`
     - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
-- Multidimensional arrays
+- Multidimensional array
     - dynamic size
         - `Int[,] dynamic2DArray`  
             - `T[,] array` is the short form of `cilia::MDArray<2, T> array`
@@ -136,9 +136,9 @@ order: 0
     - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
 
 
-## Associative Arrays
+## Associative Array
 
-- AKA Maps (or Dictionaries)
+- AKA Map (or Dictionary)
 - `TValue[TKey]` as short form of `Map<TKey, TValue>`
     - e.g. `ContactInfo[String] contactInfoForID` as short form  
       of `Map<String, ContactInfo> contactInfoForID`,
