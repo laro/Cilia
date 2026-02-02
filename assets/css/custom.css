@@ -63,7 +63,8 @@ body {
 
 .markdown-body code,
 .markdown-body pre {
-  background-color: var(--color-neutral-muted);
+  background-color: black !important;
+  /*background-color: var(--color-neutral-muted) !important;*/
 }
 
 /* Syntax-highlight wrappers used by GitHub Pages / Jekyll / Rouge. */
