@@ -6,7 +6,7 @@ order: 1
 
 ## Array & ArrayView
 
-- `Int[] dynamicArrayOfIntegers`
+- **`Int[] dynamicArrayOfIntegers`**
     - „Dynamic array“ with **dynamic size**
       ```
       Int[] array = [0, 1, 2]
@@ -30,7 +30,7 @@ order: 1
         - but that can be replaced with `T*` and `T[N]`.
         - Also see [https://cplusplus.com/forum/beginner/267321/#msg1150228](https://cplusplus.com/forum/beginner/267321/#msg1150228)
 
-- `Int[3] arrayOfThreeIntegers`  
+- **`Int[3] arrayOfThreeIntegers`**  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
     - „Static array“ with **fixed size**
       ```
@@ -105,7 +105,7 @@ order: 1
     - `Int[3][]& referenceToDynamicArrayOfArrayOfThreeInt`
     - `String*[] dynamicArrayOfPointersToString`
 
-- ArrayView AKA Slice AKA Subarray
+- `ArrayView` AKA Slice AKA Subarray
     - `var subarray = array[1..2]`
     - `var subarray = array[1..<3]`
     - Incomplete ranges (need lower and/or upper bounds before use) are
@@ -116,7 +116,7 @@ order: 1
 
 - Multidimensional array
     - dynamic size
-        - `Int[,] dynamic2DArray`  
+        - **`Int[,] dynamic2DArray`**  
             - `T[,] array` is the short form of `cilia::MDArray<2, T> array`
         - `Int[,,] multidimensionalDynamicArray`  
             - `T[,,] array` is the short form of `cilia::MDArray<3, T> array`
@@ -139,7 +139,7 @@ order: 1
 ## Associative Array
 
 - AKA Map (or Dictionary)
-- `TValue[TKey]` as short form of `Map<TKey, TValue>`
+- **`TValue[TKey]`** as short form of `Map<TKey, TValue>`
     - e.g. `ContactInfo[String] contactInfoForID` as short form  
       of `Map<String, ContactInfo> contactInfoForID`,
     - as [in D](https://dlang.org/spec/hash-map.html).
