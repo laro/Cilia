@@ -1,6 +1,6 @@
 ---
 title: ….Other Ideas
-permalink: /other-ideas/
+permalink: /more/other-ideas/
 order: 1
 ---
 
