@@ -1,6 +1,6 @@
 ---
 title: Basics
-permalink: /basics/
+permalink: /basics/types/
 order: 1
 ---
 
