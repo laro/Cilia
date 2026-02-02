@@ -1,6 +1,6 @@
 ---
 title: Advanced
-permalink: /advanced/
+permalink: /advanced/templates/
 order: 2
 ---
 
