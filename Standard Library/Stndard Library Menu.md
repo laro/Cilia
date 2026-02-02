@@ -1,5 +1,5 @@
 ---
 title: Standard Library
 permalink: /standard-library/
-order: 6
+order: 5
 ---
