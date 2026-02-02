@@ -32,7 +32,8 @@ order: 0
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
             - **Note:** _Not_ even with UTF-32 do all grapheme clusters fit into a single code point,  
               so not:
-                - emoji with modifier characters like skin tone or variation selector,
+                - Emoji ZWJ Sequences (Zero Width Joiner),
+                    - emoji with modifier characters like skin tone or variation selector,
                 - diacritical characters (äöü..., depending on the normal form chosen),
                 - surely some more ...
             - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
