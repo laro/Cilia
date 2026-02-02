@@ -68,22 +68,22 @@ body {
 
 /* Syntax-highlight wrappers used by GitHub Pages / Jekyll / Rouge. */
 .markdown-body :is(.highlight, div.highlight, figure.highlight, pre.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
-  background-color: var(--color-neutral-muted);
+  background-color: var(--color-neutral-muted) !important;
 }
 
 .markdown-body :is(.highlight pre, div.highlight pre, figure.highlight pre, pre.highlight) {
-  background-color: var(--color-neutral-muted);
-  border: 1px solid var(--color-border-default);
+  background-color: var(--color-neutral-muted) !important;
+  border: 1px solid var(--color-border-default) !important;
 }
 
 .markdown-body pre code {
   /* Ensure the inner <code> doesn't "reset" to a light background. */
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .markdown-body :not(pre) > code {
   /* Inline code: keep a subtle pill in both themes. */
-  border: 1px solid var(--color-border-default);
+  border: 1px solid var(--color-border-default) !important;
 }
 
 .markdown-body hr {
