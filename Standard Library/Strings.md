@@ -1,10 +1,12 @@
 ---
-title: Standard Library.Standard Library
-permalink: /standard-library/standard-library/
+title: Standard Library.Strings
+permalink: /standard-library/strings/
 order: 18
 ---
 
-## String, Char & CodePoint
+## Strings
+
+String, Char & Unicode CodePoint
 
 - `cilia::String` with _basic/standard_ unicode support.
     - Based on UTF-8, as that IMHO is (among all the Unicode formats)
@@ -59,6 +61,7 @@ order: 18
     - `stringArray.sort()`
         - `sort(Container<String>) -> Container<String>`
     - `compare(stringA, stringB) -> Int`
+
 - `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),
     - like
         - ASCII
@@ -88,6 +91,7 @@ order: 18
                     - but Exception thrown, if string contains non-Latin1 characters.
         - Explicitly convertable to `String`==`UTF8String`.
             - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
+            
 - `Char8`, `Char16`, `Char32`
     - are considered as _different_ types for parameter overloading,
     - but otherwise are like `UInt8`, `UInt16`, `UInt32`,
