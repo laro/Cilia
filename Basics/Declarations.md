@@ -5,7 +5,9 @@ order: 1
 ---
 
 ## Variable Declaration
-`Int i` as variable declaration, very much as in C/C++ (and Java, C#).
+
+`Int i` as variable declaration,  
+very much as in C/C++ (and Java, C#).
 ```
 TypeName variableName
 ```
