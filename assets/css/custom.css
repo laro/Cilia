@@ -86,6 +86,21 @@ body {
   border: 1px solid var(--color-border-default) !important;
 }
 
+/* In dark mode, explicitly override the theme's hard-coded light code backgrounds. */
+@media (prefers-color-scheme: dark) {
+  .markdown-body .highlight pre,
+  .markdown-body pre {
+    background-color: var(--color-neutral-muted) !important;
+    color: var(--color-fg-default);
+  }
+
+  .markdown-body .highlight,
+  .markdown-body .highlighter-rouge,
+  .markdown-body .highlighter-rouge .highlight {
+    background-color: var(--color-neutral-muted) !important;
+  }
+}
+
 .markdown-body hr {
   background-color: var(--color-border-default);
 }
