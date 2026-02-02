@@ -1,7 +1,7 @@
 ---
 title: Examples.QuickSort
 permalink: /examples/quicksort/
-order: 1
+order: 2
 ---
 
 ## QuickSort
