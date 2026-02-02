@@ -15,7 +15,7 @@ order: 4
 
 ### Streams
 
-- `TextStream`
+- **`TextStream`**
     - `cout.write("...")` without newline.
     - `cout.writeLine("...")` with newline.
     - `cin.read() -> String` reads
@@ -57,7 +57,7 @@ order: 4
         - and the end of the file is reached or the pipe/socket is closed.
         - Only really necessary to call this function when using `cin.readImmediately()` or `cin.readLine()`.
 
-- `ByteStream`
+- **`ByteStream`**
     - `out.close()`
     - `out.write(Byte[])`
     - `out.flush()` writes the data buffer (the `istream` user-level cache) to the operating system.
@@ -104,7 +104,7 @@ order: 4
 
 ### File IO
 
-- `File`, derived from `ByteStream`
+- **`File`**, derived from `ByteStream`
     - `file.size() -> Int`
     - `file.position() -> Int`
         - `file.setPosition(Int n)` (AKA `file.seekFromStart()`)

@@ -1,6 +1,6 @@
 ---
-title: Standard Library.Strings
-permalink: /standard-library/strings/
+title: Standard Library.String
+permalink: /standard-library/string/
 order: 0
 ---
 
