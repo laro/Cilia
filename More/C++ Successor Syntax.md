@@ -1,6 +1,6 @@
 ---
 title: ….C++ Successor
-permalink: /cpp-successor-syntax/
+permalink: /more/cpp-successor-syntax/
 order: 0
 ---
 
