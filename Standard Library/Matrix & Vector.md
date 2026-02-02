@@ -22,7 +22,7 @@ order: 3
 - **Linear Algebra**
     - Dynamic/variable size
     - For large, dynamically sized vectors & matrices,  
-      as typically used in linear algebra. (BLAS – Basic Linear Algebra Subprograms)
+      as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms).
     - `cilia::Vector<T = Float>`
     - `cilia::Matrix<T = Float>`
         - Stored column-major, like:
