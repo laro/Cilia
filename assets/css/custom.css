@@ -90,7 +90,7 @@ body {
 @media (prefers-color-scheme: dark) {
   .markdown-body .highlight pre,
   .markdown-body pre {
-    background-color: black) !important;
+    background-color: black !important;
     color: white !important;
 /*
     background-color: var(--color-neutral-muted) !important;
@@ -100,11 +100,13 @@ body {
   .markdown-body .highlight,
   .markdown-body .highlighter-rouge,
   .markdown-body .highlighter-rouge .highlight {
-    background-color: var(--color-neutral-muted) !important;
+    background-color: black !important;
+    /*background-color: var(--color-neutral-muted) !important;*/
   }
 
   .highlight {
-    background-color: var(--color-neutral-muted) !important;
+    background-color: black !important;
+    /*background-color: var(--color-neutral-muted) !important;*/
   }
 }
 
