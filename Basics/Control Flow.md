@@ -5,34 +5,10 @@ order: 2
 ---
 
 ## Control Flow
-Branches, loops, and exceptions,  
+Loops, branches, and exceptions,  
 without braces around the condition clause (as in Python, Swift, Go, Ruby).
 
-- **if**
-    - ```
-      if a > b {
-          // ...
-      }
-      ```
-    - ```
-      if a > b {
-          // ...
-      } else {
-          // ...
-      }
-      ```
-    - ```
-      if a > b {
-          // ...
-      } else if a > c {
-          // ...
-      } else {
-          // ...
-      }
-      ```
-    - `if 1 <= x <= 10 { ... }`
-        - chained comparison as in Cpp2 (Herb Sutter), Python, Julia
-
+### Loops
 - **while**
   ```
   while a > b {
@@ -78,7 +54,8 @@ without braces around the condition clause (as in Python, Swift, Go, Ruby).
           }
       }
       ```
-    - In general you can replace every C/C++ for-loop with a while-loop.
+    - You can not exopress _every_ C/C++-for-loop with a Cilia-for-loop,  
+      but in general you can replace every C/C++ for-loop with a while-loop.
         - ```
           for (<Initialization>; <Condition>; <Increment>) {
               <Body>
@@ -97,6 +74,32 @@ without braces around the condition clause (as in Python, Swift, Go, Ruby).
         - IMHO the code is even more clear when written as while-loop.
         - Note: When the `<Condition>` is empty, then it needs to be replaced with `True`,
             - e.g. `for (;;) { ... }` is translated to `while True { ... }`.
+
+### Branches
+- **if**
+    - ```
+      if a > b {
+          // ...
+      }
+      ```
+    - ```
+      if a > b {
+          // ...
+      } else {
+          // ...
+      }
+      ```
+    - ```
+      if a > b {
+          // ...
+      } else if a > c {
+          // ...
+      } else {
+          // ...
+      }
+      ```
+    - `if 1 <= x <= 10 { ... }`
+        - chained comparison as in Cpp2 (Herb Sutter), Python, Julia
 
 - **switch/case** with implicit ~~`break`~~
     - i.e `break` is the default, and it is not necessary to explicitly write it,
@@ -140,20 +143,20 @@ without braces around the condition clause (as in Python, Swift, Go, Ruby).
               }
               ```
 
-- **Exceptions**
-    - ```
-      try {
-          // ...
-      } catch Exception ex {
-          print(ex)
-      }
-      ```
-    - ```
-      try {
-          // ...
-      } catch Exception ex {
-          print(ex)
-      } catch {
-          print("An unknown exception has occured")
-      }
-      ```
+### Exceptions
+- ```
+  try {
+      // ...
+  } catch Exception ex {
+      print(ex)
+  }
+  ```
+- ```
+  try {
+      // ...
+  } catch Exception ex {
+      print(ex)
+  } catch {
+      print("An unknown exception has occured")
+  }
+  ```
