@@ -1,7 +1,7 @@
 ---
 title: Examples.Sieve of Eratosthenes
 permalink: /examples/sieve-of-eratosthenes/
-order: 3
+order: 1
 ---
 
 ## Sieve of Eratosthenes
