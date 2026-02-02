@@ -1,11 +1,5 @@
 ---
 title: …
-permalink: /more/
+permalink: /more/cpp-successor-syntax/
 order: 6
 ---
-
-## More
-
-- [C++ Successor](/cpp-successor-syntax/)
-- [Other Ideas](/other-ideas/)
-
