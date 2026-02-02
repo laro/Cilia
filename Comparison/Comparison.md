@@ -27,7 +27,7 @@ Arrays, sets, and maps are **default-constructed**, so they can be used immediat
 ```
 String[] words
 for i in 0..9 {
-    words.pushBack(toString(i));
+    words.pushBack(i.toString());
 }
 ```
 
