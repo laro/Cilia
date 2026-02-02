@@ -86,36 +86,33 @@ body {
   border: 1px solid var(--color-border-default) !important;
 }
 
-/* In dark mode, explicitly override the theme's hard-coded light code backgrounds. */
+/* Dark mode: override theme's hard-coded light code backgrounds and token colors. */
 @media (prefers-color-scheme: dark) {
+  /* Block code backgrounds */
+  .markdown-body pre,
   .markdown-body .highlight pre,
-  .markdown-body pre {
-    background-color: black !important;
-    color: white !important;
-/*
-    background-color: var(--color-neutral-muted) !important;
-    color: var(--color-fg-default);*/
+  .markdown-body .highlighter-rouge .highlight pre,
+  .markdown-body pre.highlight {
+    background-color: var(--cilia-code-bg) !important;
+    color: var(--cilia-fg) !important;
+    border: 1px solid var(--cilia-border) !important;
   }
 
+  /* Wrapper backgrounds (Rouge/Jekyll) */
   .markdown-body .highlight,
   .markdown-body .highlighter-rouge,
   .markdown-body .highlighter-rouge .highlight {
-    background-color: black !important;
-    /*background-color: var(--color-neutral-muted) !important;*/
+    background-color: var(--cilia-code-bg) !important;
   }
 
-  .markdown-body main .highlighter-rouge div.highlight pre.highlight {
-    background-color: black !important;
-    /*background-color: var(--color-neutral-muted) !important;*/
-  }
-  .markdown-body main .language-plaintext div.highlight pre.highlight {
-    background-color: black !important;
-    /*background-color: var(--color-neutral-muted) !important;*/
-  }
-
-  .highlight {
-    background-color: black !important;
-    /*background-color: var(--color-neutral-muted) !important;*/
+  /*
+    The default GitHub Pages Rouge theme is light and sets many token colors to near-black.
+    On a dark code background that becomes unreadable, so force tokens to inherit a light color.
+  */
+  .markdown-body .highlight,
+  .markdown-body .highlight * {
+    color: var(--cilia-fg) !important;
+    background-color: transparent !important;
   }
 }
 
