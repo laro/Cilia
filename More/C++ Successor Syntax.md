@@ -6,7 +6,7 @@ order: 0
 
 ## C++ "Successor" Language / Syntax
 Cilia is similar to
-- [CppFront/Cpp2](https://github.com/hsutter/cppfront#cppfront),
+- [Cpp2/CppFront](https://github.com/hsutter/cppfront#cppfront),
 - [Carbon](https://github.com/carbon-language/carbon-lang), or
 - [Circle](https://github.com/seanbaxter/circle),
 
