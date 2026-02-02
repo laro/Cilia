@@ -7,7 +7,7 @@ order: 1
 ## (Smart) Pointers
 - **Short Smart Pointer Syntax**
     - “Make simple things simple” (or at least short to write),  
-      encourage use of smart pointers.
+      encourage use of smart pointers (when you need to).
     - Using `T*`, `T^`, `T+`, `T-` (maybe `T°`, `T.`, ...)
         - Maybe use something else instead?
             - `T*̂`, `T*̄`, `T*̇` (easy to confuse)
