@@ -22,6 +22,8 @@
     Defining these here keeps our custom styles stable even if the theme changes.
   */
   --color-canvas-default: var(--cilia-bg);
+  /* Many GitHub Pages/Jekyll styles use "canvas-subtle" for code blocks. */
+  --color-canvas-subtle: var(--cilia-code-bg);
   --color-fg-default: var(--cilia-fg);
   --color-fg-muted: var(--cilia-muted);
   --color-border-default: var(--cilia-border);
@@ -62,6 +64,26 @@ body {
 .markdown-body code,
 .markdown-body pre {
   background-color: var(--color-neutral-muted);
+}
+
+/* Syntax-highlight wrappers used by GitHub Pages / Jekyll / Rouge. */
+.markdown-body :is(.highlight, div.highlight, figure.highlight, pre.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
+  background-color: var(--color-neutral-muted);
+}
+
+.markdown-body :is(.highlight pre, div.highlight pre, figure.highlight pre, pre.highlight) {
+  background-color: var(--color-neutral-muted);
+  border: 1px solid var(--color-border-default);
+}
+
+.markdown-body pre code {
+  /* Ensure the inner <code> doesn't "reset" to a light background. */
+  background-color: transparent;
+}
+
+.markdown-body :not(pre) > code {
+  /* Inline code: keep a subtle pill in both themes. */
+  border: 1px solid var(--color-border-default);
 }
 
 .markdown-body hr {
