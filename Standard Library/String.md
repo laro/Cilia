@@ -96,17 +96,17 @@ order: 0
     - but otherwise are like `UInt8`, `UInt16`, `UInt32`,
 
 - [**ICU**](https://unicode-org.github.io/icu/userguide/icu4c/) ("International Components for Unicode") for advanced Unicode support.
-    > The ICU libraries provide support for:
-    > - The latest version of the Unicode standard
-    > - Character set conversions with support for over 220 codepages
-    > - Locale data for more than 300 locales
-    > - Language sensitive text collation (sorting) and searching based on thicode Collation Algorithm (=ISO 14651)
-    > - Regular expression matching and Unicode sets
-    > - Transformations for normalization, upper/lowercase, script triterations (50+ pairs)
-    > - Resource bundles for storing and accessing localized information
-    > - Date/Number/Message formatting and parsing of culture specific input/ou formats
-    > - Calendar specific date and time manipulation
-    > - Text boundary analysis for finding characters, word and sentence boundaries
+    - > The ICU libraries provide support for:
+      > - The latest version of the Unicode standard
+      > - Character set conversions with support for over 220 codepages
+      > - Locale data for more than 300 locales
+      > - Language sensitive text collation (sorting) and searching based on thicode Collation Algorithm (=ISO 14651)
+      > - Regular expression matching and Unicode sets
+      > - Transformations for normalization, upper/lowercase, script triterations (50+ pairs)
+      > - Resource bundles for storing and accessing localized information
+      > - Date/Number/Message formatting and parsing of culture specific input/ou formats
+      > - Calendar specific date and time manipulation
+      > - Text boundary analysis for finding characters, word and sentence boundaries
     - `import icu` adds extension methods for `cilia::String`
         - Allows iteration over:
             - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
