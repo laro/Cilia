@@ -1,7 +1,7 @@
 ---
 title: Examples.Matrix Multiply
 permalink: /examples/matrix-multiply/
-order: 2
+order: 0
 ---
 
 ## Matrix Multiply
