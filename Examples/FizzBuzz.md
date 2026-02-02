@@ -1,7 +1,7 @@
 ---
 title: Examples.FizzBuzz
 permalink: /examples/fizzbuzz/
-order: 0
+order: 3
 ---
 
 ## FizzBuzz
