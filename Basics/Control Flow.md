@@ -1,10 +1,11 @@
 ---
 title: Basics.Control Flow
 permalink: /basics/control-flow/
-order: 2
+order: 4
 ---
 
 ## Control Flow
+
 Loops, branches, and exceptions,  
 without braces around the condition clause (as in Python, Swift, Go, Ruby).
 

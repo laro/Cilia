@@ -1,10 +1,11 @@
 ---
 title: Basics.Literals
 permalink: /basics/literals/
-order: 4
+order: 6
 ---
 
 ## Literals
+
 - `True`, `False` are Bool,
     - uppercase as they are constants (as in Python).
 - `NullPtr` is the null pointer,

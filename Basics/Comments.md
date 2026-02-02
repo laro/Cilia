@@ -1,10 +1,11 @@
 ---
 title: Basics.Comments
 permalink: /basics/comments/
-order: 3
+order: 5
 ---
 
 ## Comments
+
 - Single-line comments
     - ```
       // if a < b {
