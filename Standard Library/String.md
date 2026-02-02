@@ -105,7 +105,7 @@ order: 0
     > - Resource bundles for storing and accessing localized information
     > - Date/Number/Message formatting and parsing of culture specific input/ou formats
     > - Calendar specific date and time manipulation
-    > - Text boundary analysis for finding characters, word and sentence boundaries"
+    > - Text boundary analysis for finding characters, word and sentence boundaries
     - `import icu` adds extension methods for `cilia::String`
         - Allows iteration over:
             - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
