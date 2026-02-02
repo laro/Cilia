@@ -1,7 +1,7 @@
 ---
 title: …
 permalink: /more/
-order: 5
+order: 6
 ---
 
 ## More
