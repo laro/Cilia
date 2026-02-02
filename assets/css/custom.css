@@ -99,6 +99,10 @@ body {
   .markdown-body .highlighter-rouge .highlight {
     background-color: var(--color-neutral-muted) !important;
   }
+
+  .highlight {
+    background-color: var(--color-neutral-muted) !important;
+  }
 }
 
 .markdown-body hr {
