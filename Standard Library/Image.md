@@ -7,7 +7,8 @@ order: 2
 ## Image
 
 - `cilia::Image<T = Float>`
-- Almost like `cilia::Matrix`, but stored row-major, like:
+- Almost like `cilia::Matrix`,  
+  but stored row-major, like:
   ```
   0 1 2
   3 4 5
