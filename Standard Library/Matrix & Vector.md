@@ -6,7 +6,7 @@ order: 3
 
 ## Matrix & Vector
 
-- Geometry
+- **Geometry**
     - Static/fixed size
     - For small, fixed size vectors & matrices,  
       as typically used in geometry (i.e. 2D, 3D, 4D).
@@ -19,10 +19,10 @@ order: 3
         - `cilia::Matrix33<T = Float>`
         - `cilia::Matrix44<T = Float>`
 
-- Linear Algebra
+- **Linear Algebra**
     - Dynamic/variable size
-    - For large, dynamically sized vectors & matrices,
-        - as typically used in linear algebra: BLAS (Basic Linear Algebra Subprograms)
+    - For large, dynamically sized vectors & matrices,  
+      as typically used in linear algebra. (BLAS – Basic Linear Algebra Subprograms)
     - `cilia::Vector<T = Float>`
     - `cilia::Matrix<T = Float>`
         - Stored column-major, like:
