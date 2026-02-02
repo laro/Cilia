@@ -8,8 +8,8 @@ order: 3
 
 - Geometry
     - Static/fixed size
-    - For small, fixed size vectors & matrices ,
-        - as typically used in geometry (i.e. 2D, 3D, 4D).
+    - For small, fixed size vectors & matrices,  
+      as typically used in geometry (i.e. 2D, 3D, 4D).
     - `cilia::Vector<Int size, T = Float>`
         - `cilia::Vector2<T = Float>`
         - `cilia::Vector3<T = Float>`
