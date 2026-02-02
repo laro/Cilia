@@ -1,7 +1,7 @@
 ---
 title: Advanced.Aliasing
 permalink: /advanced/aliasing/
-order: 100
+order: 3
 ---
 
 ## Aliasing

@@ -1,7 +1,7 @@
 ---
-title: Advanced.Type Extensions
+title: Advanced.Type Extension
 permalink: /advanced/type-extension/
-order: 2
+order: 4
 ---
 
 ## Type Extension
