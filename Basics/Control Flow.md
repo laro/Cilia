@@ -5,9 +5,8 @@ order: 2
 ---
 
 ## Control Flow
-Branches, loops, and exceptions.
-
-No braces around the condition clause (as in Python, Swift, Go, Ruby).
+Branches, loops, and exceptions,  
+without braces around the condition clause (as in Python, Swift, Go, Ruby).
 
 - **if**
     - ```
