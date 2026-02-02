@@ -1,7 +1,7 @@
 ---
 title: Standard Library.Stream, File & Network IO
-permalink: /standard-library/stream-file-and -network-io/
-order: 18
+permalink: /standard-library/stream-file-and-network-io/
+order: 4
 ---
 
 ## Stream, File & Network IO

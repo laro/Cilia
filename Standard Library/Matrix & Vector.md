@@ -1,7 +1,7 @@
 ---
 title: Standard Library.Matrix & Vector
-permalink: /standard-library/matrix-vector/
-order: 1
+permalink: /standard-library/matrix-and-vector/
+order: 3
 ---
 
 ## Matrix & Vector
@@ -18,7 +18,7 @@ order: 1
         - `cilia::Matrix22<T = Float>`
         - `cilia::Matrix33<T = Float>`
         - `cilia::Matrix44<T = Float>`
-        
+
 - Linear Algebra
     - Dynamic/variable size
     - For large, dynamically sized vectors & matrices,

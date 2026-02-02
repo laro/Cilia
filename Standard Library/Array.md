@@ -1,7 +1,7 @@
 ---
-title: Standard Library.Arrays
-permalink: /standard-library/arrays/
-order: 0
+title: Standard Library.Array
+permalink: /standard-library/array/
+order: 1
 ---
 
 ## Array & ArrayView

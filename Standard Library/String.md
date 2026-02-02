@@ -1,7 +1,7 @@
 ---
 title: Standard Library.Strings
 permalink: /standard-library/strings/
-order: 18
+order: 0
 ---
 
 ## Strings

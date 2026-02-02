@@ -1,7 +1,7 @@
 ---
 title: Standard Library.Image
 permalink: /standard-library/image/
-order: 18
+order: 2
 ---
 
 ## Image
