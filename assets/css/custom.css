@@ -90,8 +90,11 @@ body {
 @media (prefers-color-scheme: dark) {
   .markdown-body .highlight pre,
   .markdown-body pre {
+    background-color: black) !important;
+    color: white !important;
+/*
     background-color: var(--color-neutral-muted) !important;
-    color: var(--color-fg-default);
+    color: var(--color-fg-default);*/
   }
 
   .markdown-body .highlight,
