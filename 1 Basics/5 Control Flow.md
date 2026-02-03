@@ -4,7 +4,7 @@ permalink: /basics/control-flow/
 
 ## Control Flow
 
-Loops, branches, and exceptions,  
+Branches, loops, and exceptions,  
 without braces around the condition clause (as in Python, Swift, Go, Ruby).
 
 ### Conditional Branches
