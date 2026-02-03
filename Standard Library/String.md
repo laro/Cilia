@@ -20,7 +20,7 @@ order: 0
             - `for grapheme in "abc 🥸👮🏻"`
                 - "a", "b", "c", " ", "🥸", "👮🏻"
                 - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
-            - A bit slow, as it has to find grapheme cluster boundaries.
+            - A bit slow, as it has to find grapheme (and cluster) boundaries.
             - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
             - Additional/alternative names?
                 - `for graphemeCluster in text.asGraphemeClusters()`?
