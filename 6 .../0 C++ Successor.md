@@ -3,6 +3,7 @@ permalink: /more/cpp-successor-syntax/
 ---
 
 ## C++ "Successor" Language / Syntax
+
 Cilia is similar to
 - [Cpp2/CppFront](https://github.com/hsutter/cppfront#cppfront),
 - [Carbon](https://github.com/carbon-language/carbon-lang), or
@@ -13,7 +14,7 @@ and a bit like the evolution
 - from Objective-C to Swift.
 
 
-## Why a new language, why not extending C++?
+### Why a new language, why not extending C++?
 
 - The [CamelCase style](#camelcase-style) could basically be archieved in C++, too
 - C++ could be extended by some features:
@@ -27,7 +28,7 @@ and a bit like the evolution
     - [No trailing semicolons](#no-trailing-semicolons)
 
 
-## Why "Cilia"?
+### Why "Cilia"?
 
 Starting with "C" is a kind of tradition.  
 All the most obvious names (like [D](https://dlang.org/), [C2](http://c2lang.org/), [C3](https://c3-lang.org), [Cpp2](https://github.com/hsutter/cppfront#cppfront), [Cone](https://cone.jondgoodwin.com/)) and many others were already taken `¯\_(ツ)_/¯`.  
