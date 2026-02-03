@@ -1,8 +1,8 @@
 ---
-permalink: /advanced/safety-and-security/
+permalink: /advanced/safety/
 ---
 
-## Safety and Security
+## Safety
 
 - **No implicit downcasts**,  
   i.e. standard conversions only apply when no information is lost.
@@ -94,6 +94,7 @@ permalink: /advanced/safety-and-security/
             - by default still using _safe_ containers (with safe iterators),
                 - so memory layout is compatible to Release,
             - _optionally_ using unsafe containers (with unsafe iterators, for even better performance).
+
 - **Initialization**
     - No initialization means random values. In this case they are in fact often zero, but _not always_.
     - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't want to always initialize everything.
@@ -122,6 +123,7 @@ permalink: /advanced/safety-and-security/
           var arrayPtr = new Array<Float>(10) noinit  // No warning
           var arrayPtr = new Array<Float>(10, 1.0)    // No warning
           ```
+
 - **`safe`** as default, **`unsafe`** code blocks as escape.
     - Mainly to guide developers:
         - to signal what to do and what not to do,
@@ -149,6 +151,7 @@ permalink: /advanced/safety-and-security/
     - Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves.
     - Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves.
     - Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
+
 - `cilia::safe::Int`
     - Like `cilia::Int`, but with **overflow check** for all operations,
         - may throw OverflowException (or abort the program).
@@ -156,7 +159,8 @@ permalink: /advanced/safety-and-security/
     - `safe::Int8`/`Int16`/`Int32`/`Int64`
     - `safe::UInt`
         - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
-- No further security features planned beyond C++:
+
+- No further safety features planned beyond C++:
     - Not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
         - that is just out of scope.
     - No _additional_ thread safety measures.
