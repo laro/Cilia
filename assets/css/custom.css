@@ -163,14 +163,14 @@ nav {
 
 /* Reserve space for the absolutely positioned sub navigation. */
 nav[data-has-subnav="true"] {
-  /* Only reserve about one line for the 2nd level menu. */
-  padding-bottom: 1.5rem;
+  /* Reserve enough space for a potentially wrapped 2nd level menu. */
+  padding-bottom: clamp(2.5rem, 6vw, 4.5rem);
 }
 
 @media (max-width: 480px) {
   nav[data-has-subnav="true"] {
-    /* Slightly more on small screens, but still roughly one line. */
-    padding-bottom: 2.8rem;
+    /* Small screens: allow more lines. */
+    padding-bottom: clamp(3.25rem, 12vw, 7rem);
   }
 }
 
@@ -182,6 +182,7 @@ nav > ul.nav-main {
   list-style: none;
   padding: 0;
   margin: 0;
+  position: relative;
 }
 
 nav li {
@@ -194,13 +195,14 @@ nav > ul.nav-main > li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  /* Ensure subnav can anchor to the whole nav bar (not to a single item). */
+  position: static;
 }
 
 /* Navigation: optional second level */
 nav ul.nav-sub {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.25rem 0.75rem;
   list-style: none;
@@ -208,12 +210,15 @@ nav ul.nav-sub {
   margin: 0;
   position: absolute;
   top: calc(100% + 0.35rem);
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  transform: none;
   z-index: 10;
-  width: max-content;
-  max-width: none;
-  white-space: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 0.75rem;
+  max-width: 100%;
+  white-space: normal;
 }
 
 nav ul.nav-sub a {

@@ -56,8 +56,27 @@
       {% assign home_display_title = "Home" %}
     {% endif %}
 
+    {% assign has_active_subnav = false %}
+    {% if active_section_dir != "" %}
+      {% assign active_prefix = active_section_dir | append: '/' %}
+      {% assign active_section_pages = all_md_pages
+        | where_exp: "p", "p.path contains active_prefix"
+        | sort_natural: "path" %}
+      {% assign active_submenu_item_count = 0 %}
+      {% for p in active_section_pages %}
+        {% assign p_filename = p.path | split: '/' | last %}
+        {% if p_filename != "Index.md" %}
+          {% assign active_submenu_item_count = active_submenu_item_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      {% if active_submenu_item_count > 0 %}
+        {% assign has_active_subnav = true %}
+      {% endif %}
+    {% endif %}
+
     <nav
       aria-label="Primary"
+      {% if has_active_subnav %}data-has-subnav="true"{% endif %}
     >
       <ul class="nav-main">
         {% if home_page %}
