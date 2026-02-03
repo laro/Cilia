@@ -1,5 +1,4 @@
-template <typename T>
-void quicksort(span<T> array) {
+template <typename T> void quicksort(span<T> array) {
     if (array.size() <= 1) {
         return;
     }
