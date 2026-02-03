@@ -41,7 +41,8 @@ class MyArray<Number T> {
   }
   ```
 
-- Having to write `typename` (in C++) before dependent names in templates is quite annoying. It should be possible to omit this with two-pass compilation.
+- Having to write `typename` (in C++) before dependent names in templates is quite annoying.  
+  In Cilia it would be `type` instead, but it should be possible to omit it with two-pass compilation.
 
 
 ### **Function** Templates
