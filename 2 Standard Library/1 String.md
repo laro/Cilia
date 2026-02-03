@@ -2,7 +2,7 @@
 permalink: /standard-library/string/
 ---
 
-## String, Char & Unicode CodePoint
+## String, Char & Unicode
 
 - `cilia::String` with _basic/standard_ unicode support.
     - Based on UTF-8, as that IMHO is (among all the Unicode formats)
