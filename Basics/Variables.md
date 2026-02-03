@@ -57,13 +57,13 @@ Some simplifications and restrictions:
     - A `const` static array declarator `const Float[3]` is interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
     - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
 
-### **Type inference**
+### **Type Inference**
 with `var` / `const`:
 - `var i = 3` instead of ~~`auto i = 3;`~~
 - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 
-### Not allowed / a syntax error
-is
+### Not Allowed
+It is a syntax error to write:
 - ~~`Float* m, &n`~~
     - Type variations within multiple-variable declarations are _not_ allowed.
     - It has to be the exact same type.
@@ -90,7 +90,7 @@ is
         - Brace initialization only for constructors with `InitializerList<T>` as parameter (i.e. for "list-initialization" and "copy-list-initialization").
     - See [Misc](/cilia/misc/#misc) / Mixed arithmetic and [https://stackoverflow.com/a/18222927](https://stackoverflow.com/a/18222927)
 
-### Bit fields
+### Bit Fields
 - `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
 - TODO Standardization of the bit field layout would be nice (LSB-first like on LittleEndian/Intel, or MSB-first like on BigEndian/Motorola),
     - but IMHO there is no clear/logical/right definition (especially with LittleEndian).
