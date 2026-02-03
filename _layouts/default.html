@@ -38,45 +38,32 @@
     {% endfor %}
 
     {% assign keynav_first_section_index_url = "" %}
-    {% assign keynav_section_dirs_tokens = "" %}
+    {% assign keynav_first_section_dir = "" %}
+    {% assign keynav_first_section_first_page = nil %}
     {% for p in all_md_pages_for_keynav %}
       {% if p.path contains '/' %}
-        {% assign section_dir = p.path | split: '/' | first %}
-        {% assign token = '|' | append: section_dir | append: '|' %}
-        {% unless keynav_section_dirs_tokens contains token %}
-          {% assign keynav_section_dirs_tokens = keynav_section_dirs_tokens | append: token %}
-        {% endunless %}
-      {% endif %}
-    {% endfor %}
-    {% assign keynav_section_dirs = keynav_section_dirs_tokens | split: '|' | sort_natural %}
-
-    {% assign keynav_first_section_dir = "" %}
-    {% for d in keynav_section_dirs %}
-      {% if d != "" %}
-        {% assign keynav_first_section_dir = d %}
+        {% assign keynav_first_section_dir = p.path | split: '/' | first %}
+        {% assign keynav_first_section_first_page = p %}
         {% break %}
       {% endif %}
     {% endfor %}
 
     {% if keynav_first_section_dir != "" %}
       {% assign keynav_first_section_prefix = keynav_first_section_dir | append: '/' %}
-      {% assign keynav_first_section_pages = all_md_pages_for_keynav
-        | where_exp: "p", "p.path contains keynav_first_section_prefix"
-        | sort_natural: "path" %}
 
-      {% for p in keynav_first_section_pages %}
-        {% assign p_filename = p.path | split: '/' | last %}
-        {% if p_filename == "Index.md" %}
-          {% assign keynav_first_section_index_url = p.url %}
-          {% break %}
+      {% for p in all_md_pages_for_keynav %}
+        {% if p.path contains keynav_first_section_prefix %}
+          {% assign p_filename = p.path | split: '/' | last %}
+          {% if p_filename == "Index.md" %}
+            {% assign keynav_first_section_index_url = p.url %}
+            {% break %}
+          {% endif %}
         {% endif %}
       {% endfor %}
-      {% if keynav_first_section_index_url == "" %}
-        {% assign keynav_first_section_first_page = keynav_first_section_pages | first %}
-        {% if keynav_first_section_first_page %}
-          {% assign keynav_first_section_index_url = keynav_first_section_first_page.url %}
-        {% endif %}
-      {% endif %}
+    {% endif %}
+
+    {% if keynav_first_section_index_url == "" and keynav_first_section_first_page %}
+      {% assign keynav_first_section_index_url = keynav_first_section_first_page.url %}
     {% endif %}
 
     {% if page.url == keynav_home_url and keynav_first_section_index_url != "" %}
