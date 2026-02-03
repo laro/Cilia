@@ -235,3 +235,15 @@ nav a[aria-current="location"] {
   background-color: var(--color-fg-default, #1f2328);
   border-color: var(--color-fg-default, #1f2328);
 }
+
+/* Mobile: reduce whitespace above the menu. */
+@media (max-width: 600px) {
+  body {
+    /* Some GitHub Pages themes add generous body padding on small screens. */
+    padding-top: 0 !important;
+  }
+
+  nav {
+    margin-top: 4px;
+  }
+}
