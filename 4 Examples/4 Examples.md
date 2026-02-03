@@ -1,3 +1,0 @@
----
-permalink: /examples/matrix-multiply/
----
