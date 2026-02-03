@@ -21,7 +21,7 @@ and a bit like the evolution
     - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow but "perfect" wrapper for the C++ standard library (i.e. a translation layer).
 - Some parts are impossible – or at least extremely unlikely – to include in a future C++ standard:
     - [Const reference as default type](#functionloop-parameter-passing) for function parameters
-    - [Fixing C++ "wrong defaults"](1%20Other%20Ideas,%20Good%20%26%20Bad.md#circle)
+    - [Fixing C++ "wrong defaults"](2%20Other%20Ideas,%20Good%20%26%20Bad.md#circle)
         - Restricting integral promotions and no implicit narrowing conversions, etc.
     - New array declaration (`Int[3] array` instead of `Int array[3]`, `Int[] array` instead of `vector<Int> array`)
     - [New/simplified keywords](#better-readable-keywords)
