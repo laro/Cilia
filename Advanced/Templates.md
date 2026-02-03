@@ -41,8 +41,7 @@ class MyArray<Number T> {
   }
   ```
 
-- Having to write `typename` (in C++) before dependent names in templates is quite annoying. It should possible to omit with two-pass compilation.
-    - TODO A two-pass compiler should nbe able to avoid this.
+- Having to write `typename` (in C++) before dependent names in templates is quite annoying. It should be possible to omit this with two-pass compilation.
 
 
 ### **Function** Templates
