@@ -6,23 +6,24 @@ order: 7
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in C#:
 
-- `int`, `long`, `float`
-- 
-- `int x = 42;`
-- `var x = 42;`
-- `const int x = 42;`
-- `var words = new List<string>();`
-- `var names = new HashSet<string>();`
-- `var contactInfoForID = new Dictionary<string, ContactInfo>();`
-- 
-- `static int multiply(int a, int b) { return a * b; }`
-- `static void print(ContactInfo a) { ... }`
-- `static string concat(string a, string b) { return ...; }`
-- 
-- `for (int i = 1; i <= 10; ++i) { ... }`
-- `for (var i = 0; i < words.Count; ++i) { ... }`
-- `foreach (var i in new[] { 5, 7, 11, 13 }) { ... }`
-- `foreach (var word in words) { ... }`
+- Types
+    - `int`, `long`, `float`
+- Variables
+    - `int x = 42;`
+    - `var x = 42;`
+    - `const int x = 42;`
+    - `var words = new List<string>();`
+    - `var names = new HashSet<string>();`
+    - `var contactInfoForID = new Dictionary<string, ContactInfo>();`
+- Functions
+    - `static int multiply(int a, int b) { return a * b; }`
+    - `static void print(ContactInfo a) { ... }`
+    - `static string concat(string a, string b) { return ...; }`
+- Loops
+    - `for (int i = 1; i <= 10; ++i) { ... }`
+    - `for (var i = 0; i < words.Count; ++i) { ... }`
+    - `foreach (var i in new[] { 5, 7, 11, 13 }) { ... }`
+    - `foreach (var word in words) { ... }`
 
 In C# `int` and `42` are 32 bit wide, not 64 bit.  
 That's Ok, this is a syntax comparison, not a performance benchmark.
