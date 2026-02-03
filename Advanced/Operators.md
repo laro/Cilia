@@ -227,7 +227,7 @@ operator <=>(Int256 a, b) -> Int { ... }
     - operators `~`, not ~~`!`~~,
         - `&` and `|`, not ~~`&&` and `||`~~.
 
-### Subscript/bracket/parenthesis/functor operators
+### Subscript/Bracket Operator
 ```
 class MyArray<type T> {
     // Array subscript
@@ -244,6 +244,8 @@ class MyImage<type T> {
     }
 }
 ```
+
+### Parenthesis/Functor Operator
 ```
 class MyFunctor {
     // Functor call
