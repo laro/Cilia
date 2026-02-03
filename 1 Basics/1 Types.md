@@ -1,6 +1,6 @@
-#---
-#permalink: /basics/types/
-#---
+---
+permalink: /basics/types/
+---
 
 ## Basic / Arithmetic Types
 - `Bool`
