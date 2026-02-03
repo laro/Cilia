@@ -28,6 +28,55 @@
       {% assign keynav_prev_page = p %}
     {% endfor %}
 
+    {% if page.url == "/" %}
+      {% assign keynav_section_dirs_tokens = "" %}
+      {% for p in all_md_pages_for_keynav %}
+        {% if p.path contains '/' %}
+          {% assign section_dir = p.path | split: '/' | first %}
+          {% assign token = '|' | append: section_dir | append: '|' %}
+          {% unless keynav_section_dirs_tokens contains token %}
+            {% assign keynav_section_dirs_tokens = keynav_section_dirs_tokens | append: token %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+      {% assign keynav_section_dirs = keynav_section_dirs_tokens | split: '|' | sort_natural %}
+
+      {% assign keynav_first_section_dir = "" %}
+      {% for d in keynav_section_dirs %}
+        {% if d != "" %}
+          {% assign keynav_first_section_dir = d %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% if keynav_first_section_dir != "" %}
+        {% assign keynav_first_section_prefix = keynav_first_section_dir | append: '/' %}
+        {% assign keynav_first_section_pages = all_md_pages_for_keynav
+          | where_exp: "p", "p.path contains keynav_first_section_prefix"
+          | sort_natural: "path" %}
+
+        {% assign keynav_first_section_index_url = "" %}
+        {% for p in keynav_first_section_pages %}
+          {% assign p_filename = p.path | split: '/' | last %}
+          {% if p_filename == "Index.md" %}
+            {% assign keynav_first_section_index_url = p.url %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% if keynav_first_section_index_url == "" %}
+          {% assign keynav_first_section_first_page = keynav_first_section_pages | first %}
+          {% if keynav_first_section_first_page %}
+            {% assign keynav_first_section_index_url = keynav_first_section_first_page.url %}
+          {% endif %}
+        {% endif %}
+
+        {% if keynav_first_section_index_url != "" %}
+          {% assign keynav_prev_url = nil %}
+          {% assign keynav_next_url = keynav_first_section_index_url %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+
     {% assign page_filename = page.path | split: '/' | last %}
     {% assign page_base_name = page_filename | split: '.' | first %}
     {% assign page_parts = page_base_name | split: ' ' %}
