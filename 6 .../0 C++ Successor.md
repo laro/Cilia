@@ -8,12 +8,13 @@ Cilia is similar to
 - [Carbon](https://github.com/carbon-language/carbon-lang), or
 - [Circle](https://github.com/seanbaxter/circle),
 
-and a bit like
-- Java and Kotlin,
-- Objective-C and Swift.
+and a bit like the evolution
+- from Java to Kotlin,
+- from Objective-C to Swift.
 
 
 ## Why a new language, why not extending C++?
+
 - The [CamelCase style](#camelcase-style) could basically be archieved in C++, too
 - C++ could be extended by some features:
     - Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow but "perfect" wrapper for the C++ standard library (i.e. a translation layer).
@@ -27,6 +28,7 @@ and a bit like
 
 
 ## Why "Cilia"?
+
 Starting with "C" is a kind of tradition.  
 All the most obvious names (like [D](https://dlang.org/), [C2](http://c2lang.org/), [C3](https://c3-lang.org), [Cpp2](https://github.com/hsutter/cppfront#cppfront), [Cone](https://cone.jondgoodwin.com/)) and many others were already taken `¯\_(ツ)_/¯`.  
 [Julia](https://julialang.org) is a nice language,
