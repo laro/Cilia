@@ -1,4 +1,4 @@
-func multiply(Matrix A, Matrix B) -> Matrix {
+func multiply(Matrix A, B) -> Matrix {
     Int m = A.rows()
     Int n = A.columns()
     Int p = B.columns()
