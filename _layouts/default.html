@@ -10,11 +10,20 @@
       | where_exp: "p", "p.path contains '.md'"
       | sort_natural: "path" %}
 
+    {% assign keynav_home_url = "/" %}
+    {% assign keynav_home_page = all_md_pages_for_keynav | where: "url", "/" | first %}
+    {% if keynav_home_page %}
+      {% assign keynav_home_url = keynav_home_page.url %}
+    {% endif %}
+
+    {% assign keynav_linear_pages = all_md_pages_for_keynav
+      | where_exp: "p", "p.url != keynav_home_url" %}
+
     {% assign keynav_prev_url = nil %}
     {% assign keynav_next_url = nil %}
     {% assign keynav_prev_page = nil %}
     {% assign keynav_found_current = false %}
-    {% for p in all_md_pages_for_keynav %}
+    {% for p in keynav_linear_pages %}
       {% if keynav_found_current %}
         {% assign keynav_next_url = p.url %}
         {% break %}
@@ -27,12 +36,6 @@
       {% endif %}
       {% assign keynav_prev_page = p %}
     {% endfor %}
-
-    {% assign keynav_home_url = "/" %}
-    {% assign keynav_home_page = all_md_pages_for_keynav | where: "url", "/" | first %}
-    {% if keynav_home_page %}
-      {% assign keynav_home_url = keynav_home_page.url %}
-    {% endif %}
 
     {% assign keynav_first_section_index_url = "" %}
     {% assign keynav_section_dirs_tokens = "" %}
