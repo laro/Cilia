@@ -1,6 +1,5 @@
 ---
 permalink: /standard-library/
-order: 2
 ---
 
 ## Standard Library

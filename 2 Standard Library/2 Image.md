@@ -1,6 +1,5 @@
 ---
 permalink: /standard-library/image/
-order: 2
 ---
 
 ## Image

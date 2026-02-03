@@ -1,6 +1,5 @@
 ---
 permalink: /examples/matrix-multiply/
-order: 0
 ---
 
 ## Matrix Multiply

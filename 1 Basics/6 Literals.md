@@ -1,6 +1,5 @@
 ---
 permalink: /basics/literals/
-order: 6
 ---
 
 ## Literals

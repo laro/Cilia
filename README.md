@@ -1,6 +1,5 @@
 ---
 permalink: /
-order: 0
 ---
 
 # Cilia

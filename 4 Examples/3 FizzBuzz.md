@@ -1,6 +1,5 @@
 ---
 permalink: /examples/fizzbuzz/
-order: 3
 ---
 
 ## FizzBuzz

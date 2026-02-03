@@ -1,6 +1,5 @@
 ---
 permalink: /examples/quicksort/
-order: 2
 ---
 
 ## QuickSort

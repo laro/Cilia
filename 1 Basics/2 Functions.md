@@ -1,6 +1,5 @@
 ---
 permalink: /basics/functions/
-order: 2
 ---
 
 ## Functions

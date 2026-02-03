@@ -1,6 +1,5 @@
 ---
 permalink: /basics/comments/
-order: 5
 ---
 
 ## Comments

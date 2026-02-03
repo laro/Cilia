@@ -1,6 +1,5 @@
 ---
 permalink: /advanced/is-as-casting/
-order: 6
 ---
 
 ## `is`, `as`, Casting

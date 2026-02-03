@@ -1,6 +1,5 @@
 ---
 permalink: /basics/types/
-order: 0
 ---
 
 ## Basic / Arithmetic Types

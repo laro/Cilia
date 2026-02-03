@@ -1,6 +1,5 @@
 ---
 permalink: /basics/signed-size/
-order: 7
 ---
 
 ## Signed Size

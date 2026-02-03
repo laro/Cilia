@@ -1,6 +1,5 @@
 ---
 permalink: /advanced/templates/
-order: 0
 ---
 
 ## Templates

@@ -1,6 +1,5 @@
 ---
 permalink: /more/cpp-successor-syntax/
-order: 0
 ---
 
 ## C++ "Successor" Language / Syntax

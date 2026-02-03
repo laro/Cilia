@@ -1,6 +1,5 @@
 ---
 permalink: /comparison/java/
-order: 6
 ---
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Java:

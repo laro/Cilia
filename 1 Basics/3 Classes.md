@@ -1,6 +1,5 @@
 ---
 permalink: /basics/classes/
-order: 3
 ---
 
 ## Classes

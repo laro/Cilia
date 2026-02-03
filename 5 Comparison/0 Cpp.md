@@ -1,6 +1,5 @@
 ---
 permalink: /comparison/cpp/
-order: 0
 ---
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in C++:

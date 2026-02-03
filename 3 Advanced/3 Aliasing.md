@@ -1,6 +1,5 @@
 ---
 permalink: /advanced/aliasing/
-order: 3
 ---
 
 ## Aliasing

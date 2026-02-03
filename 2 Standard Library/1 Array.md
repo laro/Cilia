@@ -1,6 +1,5 @@
 ---
 permalink: /standard-library/array/
-order: 1
 ---
 
 ## Array & ArrayView

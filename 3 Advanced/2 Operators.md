@@ -1,6 +1,5 @@
 ---
 permalink: /advanced/operators/
-order: 2
 ---
 
 ## Operators

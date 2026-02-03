@@ -1,6 +1,5 @@
 ---
 permalink: /standard-library/string/
-order: 0
 ---
 
 ## String, Char & Unicode CodePoint

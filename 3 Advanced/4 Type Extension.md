@@ -1,6 +1,5 @@
 ---
 permalink: /advanced/type-extension/
-order: 4
 ---
 
 ## Type Extension

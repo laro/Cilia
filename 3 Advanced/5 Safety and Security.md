@@ -1,6 +1,5 @@
 ---
 permalink: /advanced/safety-and-security/
-order: 5
 ---
 
 ## Safety and Security

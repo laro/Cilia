@@ -1,6 +1,5 @@
 ---
 permalink: /comparison/cilia/
-order: -1
 ---
 
 These are some basic lines of code in Cilia:

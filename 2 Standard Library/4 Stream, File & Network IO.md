@@ -1,6 +1,5 @@
 ---
 permalink: /standard-library/stream-file-and-network-io/
-order: 4
 ---
 
 ## Stream, File & Network IO

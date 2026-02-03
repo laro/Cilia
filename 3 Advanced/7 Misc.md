@@ -1,6 +1,5 @@
 ---
 permalink: /advanced/misc/
-order: 7
 ---
 
 ## Misc

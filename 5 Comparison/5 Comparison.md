@@ -1,6 +1,5 @@
 ---
 permalink: /comparison/
-order: 5
 ---
 
 ## Comparison of Cilia with Other Languages

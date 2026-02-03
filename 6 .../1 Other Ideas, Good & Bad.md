@@ -1,6 +1,5 @@
 ---
 permalink: /more/other-ideas/
-order: 1
 ---
 
 ## Other Ideas, Good & Bad

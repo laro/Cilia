@@ -1,6 +1,5 @@
 ---
 permalink: /standard-library/matrix-and-vector/
-order: 3
 ---
 
 ## Matrix & Vector

@@ -1,6 +1,5 @@
 ---
 permalink: /examples/sieve-of-eratosthenes/
-order: 1
 ---
 
 ## Sieve of Eratosthenes

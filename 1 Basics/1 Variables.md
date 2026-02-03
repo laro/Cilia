@@ -1,6 +1,5 @@
 ---
 permalink: /basics/variables/
-order: 1
 ---
 
 ## Variable Declaration

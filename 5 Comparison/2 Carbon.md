@@ -1,6 +1,5 @@
 ---
 permalink: /comparison/carbon/
-order: 2
 ---
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Carbon:
