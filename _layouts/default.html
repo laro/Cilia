@@ -57,15 +57,33 @@
     {% endif %}
 
     {% assign has_active_subnav = false %}
+    {% assign active_section_index_url = "" %}
     {% if active_section_dir != "" %}
       {% assign active_prefix = active_section_dir | append: '/' %}
       {% assign active_section_pages = all_md_pages
         | where_exp: "p", "p.path contains active_prefix"
         | sort_natural: "path" %}
+
+      {% assign active_section_index_page = "" %}
+      {% for p in active_section_pages %}
+        {% assign p_filename = p.path | split: '/' | last %}
+        {% if p_filename == "Index.md" %}
+          {% assign active_section_index_page = p %}
+          {% assign active_section_index_url = p.url %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if active_section_index_page == "" %}
+        {% assign active_section_index_page = active_section_pages | first %}
+        {% if active_section_index_page %}
+          {% assign active_section_index_url = active_section_index_page.url %}
+        {% endif %}
+      {% endif %}
+
       {% assign active_submenu_item_count = 0 %}
       {% for p in active_section_pages %}
         {% assign p_filename = p.path | split: '/' | last %}
-        {% if p_filename != "Index.md" %}
+        {% if p_filename != "Index.md" and p.url != active_section_index_url %}
           {% assign active_submenu_item_count = active_submenu_item_count | plus: 1 %}
         {% endif %}
       {% endfor %}
@@ -74,10 +92,7 @@
       {% endif %}
     {% endif %}
 
-    <nav
-      aria-label="Primary"
-      {% if has_active_subnav %}data-has-subnav="true"{% endif %}
-    >
+    <nav aria-label="Primary">
       <ul class="nav-main">
         {% if home_page %}
           <li>
@@ -157,70 +172,42 @@
                   {% endif %}
                 {% endif %}
               >{{ section_display_title }}</a>
-
-              {% if section_dir == active_section_dir %}
-                {% assign submenu_item_count = 0 %}
-                {% for c in section_pages %}
-                  {% assign c_filename = c.path | split: '/' | last %}
-                  {% if c_filename != "Index.md" %}
-                    {% assign submenu_item_count = submenu_item_count | plus: 1 %}
-                  {% endif %}
-                {% endfor %}
-
-                {% if section_has_index_md %}
-                  {% if submenu_item_count > 0 %}
-                    <ul class="nav-sub" aria-label="{{ section_display_title }} sub-pages">
-                      {% for c in section_pages %}
-                        {% assign c_filename = c.path | split: '/' | last %}
-                        {% if c_filename != "Index.md" %}
-                          {% assign c_base_name = c_filename | split: '.' | first %}
-                          {% assign c_parts = c_base_name | split: ' ' %}
-                          {% assign c_first = c_parts | first %}
-                          {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
-                          {% assign c_display_title = c_base_name %}
-                          {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
-                            {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
-                          {% endif %}
-                          <li>
-                            <a
-                              href="{{ c.url | relative_url }}"
-                              {% if c.url == page.url %}aria-current="page"{% endif %}
-                            >{{ c_display_title }}</a>
-                          </li>
-                        {% endif %}
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
-                {% else %}
-                  {% if submenu_item_count > 1 %}
-                    <ul class="nav-sub" aria-label="{{ section_display_title }} sub-pages">
-                      {% for c in section_pages %}
-                        {% assign c_filename = c.path | split: '/' | last %}
-                        {% if c_filename != "Index.md" %}
-                          {% assign c_base_name = c_filename | split: '.' | first %}
-                          {% assign c_parts = c_base_name | split: ' ' %}
-                          {% assign c_first = c_parts | first %}
-                          {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
-                          {% assign c_display_title = c_base_name %}
-                          {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
-                            {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
-                          {% endif %}
-                          <li>
-                            <a
-                              href="{{ c.url | relative_url }}"
-                              {% if c.url == page.url %}aria-current="page"{% endif %}
-                            >{{ c_display_title }}</a>
-                          </li>
-                        {% endif %}
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
-                {% endif %}
-              {% endif %}
             </li>
           {% endif %}
         {% endfor %}
       </ul>
+
+      {% if has_active_subnav %}
+        {% assign active_section_display_title = active_section_dir %}
+        {% assign active_section_parts = active_section_dir | split: ' ' %}
+        {% assign active_section_first = active_section_parts | first %}
+        {% assign active_section_first_as_num_str = active_section_first | plus: 0 | append: '' %}
+        {% if active_section_parts.size > 1 and active_section_first == active_section_first_as_num_str %}
+          {% assign active_section_display_title = active_section_dir | remove_first: active_section_first | remove_first: ' ' %}
+        {% endif %}
+
+        <ul class="nav-sub" aria-label="{{ active_section_display_title }} sub-pages">
+          {% for c in active_section_pages %}
+            {% assign c_filename = c.path | split: '/' | last %}
+            {% if c_filename != "Index.md" and c.url != active_section_index_url %}
+              {% assign c_base_name = c_filename | split: '.' | first %}
+              {% assign c_parts = c_base_name | split: ' ' %}
+              {% assign c_first = c_parts | first %}
+              {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
+              {% assign c_display_title = c_base_name %}
+              {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
+                {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
+              {% endif %}
+              <li>
+                <a
+                  href="{{ c.url | relative_url }}"
+                  {% if c.url == page.url %}aria-current="page"{% endif %}
+                >{{ c_display_title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
     </nav>
 
     <div class="container-lg px-3 my-5 markdown-body">
