@@ -15,8 +15,8 @@ order: 0
         - **Graphemes**/Grapheme Clusters
             - represented by `StringView`.
             - This is the _default form of iteration_ over a `String` or `StringView`
-            - A single grapheme cluster will often consist of multiple code units
-              and may even consist of multiple code points.
+            - A single grapheme will often consist of multiple code _units_  
+              and may even consist of multiple code _points_ (then it is called a grapheme _cluster_).
             - `for grapheme in "abc 🥸👮🏻"`
                 - "a", "b", "c", " ", "🥸", "👮🏻"
                 - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
