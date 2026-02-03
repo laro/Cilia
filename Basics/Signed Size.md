@@ -13,7 +13,7 @@ order: 7
 - When working with sizes, calculating the difference is common; Then you are limited to `Int`/~~`SSize`~~/~~`PtrDiff`~~ (i.e. signed integer) anyway.
 - Anyone who needs more than 2GB of data in a single "byte array", should please use a 64 bit platform.
 - For bounds checking, the two comparisons `x >= 0` and  `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step.
-- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two types less.
+- Then types ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are not necessary anymore, so two/three types less.
     - We simply use `Int` instead.
     - `UInt` is used in rare cases (i.e. hardware registers, masks, flags), surely _not_ for sizes.
 - See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
