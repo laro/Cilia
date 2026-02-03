@@ -2,7 +2,7 @@
 permalink: /basics/functions/
 ---
 
-## Functions
+## Function Declaration
 
 ```
 func multiplyAdd(Float x, y, Int z) -> Float {
