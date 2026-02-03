@@ -2,7 +2,7 @@
 permalink: /basics/classes/
 ---
 
-## Classes
+## Class Declaration
 
 - Quite as in C++
   ```
