@@ -1,5 +1,5 @@
 ---
-permalink: /more/cpp-successor-syntax/
+permalink: /more/cpp-successor/
 ---
 
 ## C++ "Successor" Language / Syntax
