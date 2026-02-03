@@ -47,7 +47,11 @@
     {% assign home_page = all_md_pages | where: "url", "/" | first %}
     {% if home_page %}
       {% assign home_filename = home_page.path | split: '/' | last %}
-      {% assign home_display_title = home_filename | split: '.' | first %}
+      {% if home_filename == "README.md" %}
+        {% assign home_display_title = "Cilia" %}
+      {% else %}
+        {% assign home_display_title = home_filename | split: '.' | first %}
+      {% endif %}
     {% else %}
       {% assign home_display_title = "Home" %}
     {% endif %}
