@@ -100,7 +100,7 @@ order: 0
       > - The latest version of the Unicode standard
       > - Character set conversions with support for over 220 codepages
       > - Locale data for more than 300 locales
-      > - Language sensitive text collation (sorting) and searching based on thicode Collation Algorithm (=ISO 14651)
+      > - Language sensitive text collation (sorting) and searching based on the Unicode Collation Algorithm (=ISO 14651)
       > - Regular expression matching and Unicode sets
       > - Transformations for normalization, upper/lowercase, script triterations (50+ pairs)
       > - Resource bundles for storing and accessing localized information
