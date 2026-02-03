@@ -244,6 +244,6 @@ nav a[aria-current="location"] {
   }
 
   nav {
-    margin-top: 4px;
+    margin-top: 0px;
   }
 }
