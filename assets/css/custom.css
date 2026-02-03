@@ -189,7 +189,7 @@ nav ul.nav-sub {
   list-style: none;
   padding: 0;
   margin: 0;
-  padding: 0 0.75rem;
+  padding: 0.25rem 0.75rem;
 }
 
 nav ul.nav-sub a {
