@@ -1,5 +1,4 @@
 ---
-title: ….Other Ideas
 permalink: /more/other-ideas/
 order: 1
 ---

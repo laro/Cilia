@@ -1,5 +1,4 @@
 ---
-title: Advanced.(Smart) Pointers
 permalink: /advanced/smart-pointers/
 order: 1
 ---

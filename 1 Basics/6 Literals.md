@@ -1,5 +1,4 @@
 ---
-title: Basics.Literals
 permalink: /basics/literals/
 order: 6
 ---

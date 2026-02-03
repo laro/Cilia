@@ -1,5 +1,4 @@
 ---
-title: Basics.Types
 permalink: /basics/types/
 order: 0
 ---

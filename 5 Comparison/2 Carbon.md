@@ -1,5 +1,4 @@
 ---
-title: Comparison.Carbon
 permalink: /comparison/carbon/
 order: 2
 ---

@@ -1,5 +1,4 @@
 ---
-title: Basics.Control Flow
 permalink: /basics/control-flow/
 order: 4
 ---

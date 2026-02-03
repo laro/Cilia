@@ -1,5 +1,4 @@
 ---
-title: Basics.Variables
 permalink: /basics/variables/
 order: 1
 ---

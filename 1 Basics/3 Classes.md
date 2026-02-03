@@ -1,5 +1,4 @@
 ---
-title: Basics.Classes
 permalink: /basics/classes/
 order: 3
 ---

@@ -1,5 +1,4 @@
 ---
-title: Cilia
 permalink: /
 order: 0
 ---

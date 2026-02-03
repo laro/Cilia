@@ -1,5 +1,4 @@
 ---
-title: Standard Library.Array
 permalink: /standard-library/array/
 order: 1
 ---

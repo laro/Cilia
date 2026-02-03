@@ -1,5 +1,4 @@
 ---
-title: Advanced.Misc
 permalink: /advanced/misc/
 order: 7
 ---

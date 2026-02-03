@@ -1,5 +1,4 @@
 ---
-title: Comparison.Cpp2
 permalink: /comparison/cpp2/
 order: 1
 ---

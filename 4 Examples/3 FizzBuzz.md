@@ -1,5 +1,4 @@
 ---
-title: Examples.FizzBuzz
 permalink: /examples/fizzbuzz/
 order: 3
 ---

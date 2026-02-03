@@ -1,5 +1,4 @@
 ---
-title: Advanced.`is`, `as`, Casting
 permalink: /advanced/is-as-casting/
 order: 6
 ---

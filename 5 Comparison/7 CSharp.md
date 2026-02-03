@@ -1,5 +1,4 @@
 ---
-title: "Comparison.C#"
 permalink: /comparison/csharp/
 order: 7
 ---

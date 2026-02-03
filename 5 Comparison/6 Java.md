@@ -1,5 +1,4 @@
 ---
-title: Comparison.Java
 permalink: /comparison/java/
 order: 6
 ---

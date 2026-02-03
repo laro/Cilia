@@ -1,5 +1,4 @@
 ---
-title: Basics.Functions
 permalink: /basics/functions/
 order: 2
 ---

@@ -1,5 +1,4 @@
 ---
-title: Examples.QuickSort
 permalink: /examples/quicksort/
 order: 2
 ---

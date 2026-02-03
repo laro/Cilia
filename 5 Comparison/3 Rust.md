@@ -1,5 +1,4 @@
 ---
-title: Comparison.Rust
 permalink: /comparison/rust/
 order: 3
 ---

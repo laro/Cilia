@@ -1,5 +1,4 @@
 ---
-title: Comparison.C++
 permalink: /comparison/cpp/
 order: 0
 ---

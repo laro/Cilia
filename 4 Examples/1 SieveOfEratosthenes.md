@@ -1,5 +1,4 @@
 ---
-title: Examples.Sieve of Eratosthenes
 permalink: /examples/sieve-of-eratosthenes/
 order: 1
 ---

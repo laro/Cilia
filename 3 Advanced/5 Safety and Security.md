@@ -1,5 +1,4 @@
 ---
-title: Advanced.Safety and Security
 permalink: /advanced/safety-and-security/
 order: 5
 ---

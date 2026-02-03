@@ -1,5 +1,4 @@
 ---
-title: Advanced.Operators
 permalink: /advanced/operators/
 order: 2
 ---

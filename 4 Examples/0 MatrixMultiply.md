@@ -1,5 +1,4 @@
 ---
-title: Examples.Matrix Multiply
 permalink: /examples/matrix-multiply/
 order: 0
 ---

@@ -1,5 +1,4 @@
 ---
-title: Advanced.Aliasing
 permalink: /advanced/aliasing/
 order: 3
 ---

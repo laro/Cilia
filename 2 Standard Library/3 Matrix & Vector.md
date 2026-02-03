@@ -1,5 +1,4 @@
 ---
-title: Standard Library.Matrix & Vector
 permalink: /standard-library/matrix-and-vector/
 order: 3
 ---

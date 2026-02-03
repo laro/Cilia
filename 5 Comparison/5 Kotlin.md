@@ -1,5 +1,4 @@
 ---
-title: Comparison.Kotlin
 permalink: /comparison/kotlin/
 order: 5
 ---

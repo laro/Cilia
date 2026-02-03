@@ -1,5 +1,4 @@
 ---
-title: Comparison
 permalink: /comparison/
 order: 5
 ---

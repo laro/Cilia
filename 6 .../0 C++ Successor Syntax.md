@@ -1,5 +1,4 @@
 ---
-title: ….C++ Successor
 permalink: /more/cpp-successor-syntax/
 order: 0
 ---

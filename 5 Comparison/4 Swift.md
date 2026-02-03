@@ -1,5 +1,4 @@
 ---
-title: Comparison.Swift
 permalink: /comparison/swift/
 order: 4
 ---

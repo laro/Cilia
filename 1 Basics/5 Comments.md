@@ -1,5 +1,4 @@
 ---
-title: Basics.Comments
 permalink: /basics/comments/
 order: 5
 ---

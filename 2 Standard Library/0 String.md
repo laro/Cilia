@@ -1,5 +1,4 @@
 ---
-title: Standard Library.String
 permalink: /standard-library/string/
 order: 0
 ---

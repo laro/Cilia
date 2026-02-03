@@ -1,5 +1,4 @@
 ---
-title: Advanced.Type Extension
 permalink: /advanced/type-extension/
 order: 4
 ---

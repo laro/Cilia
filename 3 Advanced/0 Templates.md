@@ -1,5 +1,4 @@
 ---
-title: Advanced.Templates
 permalink: /advanced/templates/
 order: 0
 ---

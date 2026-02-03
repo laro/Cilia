@@ -1,5 +1,4 @@
 ---
-title: Comparison.Cilia
 permalink: /comparison/cilia/
 order: -1
 ---
