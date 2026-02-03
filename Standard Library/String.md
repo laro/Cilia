@@ -30,7 +30,7 @@ order: 0
                     - Called "auto decoding" in D.
                 - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
                 - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
-            - **Note:** _Not_ even with UTF-32 do all grapheme clusters fit into a single code point,  
+            - **Note:** _Not even with UTF-32_ do all grapheme clusters fit into a single code point,  
               so not:
                 - Emoji ZWJ Sequences (Zero Width Joiner),
                     - emoji with modifier characters like skin tone or variation selector,
