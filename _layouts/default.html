@@ -24,7 +24,7 @@
   <body>
     {% assign all_md_pages = site.pages
       | where_exp: "p", "p.path contains '.md'"
-      | sort: "order" %}
+      | sort_natural: "path" %}
 
     {% if page.path contains '/' %}
       {% assign active_section_dir = page.path | split: '/' | first %}
@@ -69,6 +69,28 @@
           </li>
         {% endif %}
 
+        {% for p in all_md_pages %}
+          {% unless p.path contains '/' %}
+            {% if home_page == nil or p.url != home_page.url %}
+              {% assign p_filename = p.path | split: '/' | last %}
+              {% assign p_base_name = p_filename | split: '.' | first %}
+              {% assign p_parts = p_base_name | split: ' ' %}
+              {% assign p_first = p_parts | first %}
+              {% assign p_first_as_num_str = p_first | plus: 0 | append: '' %}
+              {% assign p_display_title = p_base_name %}
+              {% if p_parts.size > 1 and p_first == p_first_as_num_str %}
+                {% assign p_display_title = p_base_name | remove_first: p_first | remove_first: ' ' %}
+              {% endif %}
+              <li>
+                <a
+                  href="{{ p.url | relative_url }}"
+                  {% if p.url == page.url %}aria-current="page"{% endif %}
+                >{{ p_display_title }}</a>
+              </li>
+            {% endif %}
+          {% endunless %}
+        {% endfor %}
+
         {% for section_dir in section_dirs %}
           {% if section_dir != "" %}
             {% assign section_parts = section_dir | split: ' ' %}
@@ -82,27 +104,18 @@
             {% assign section_prefix = section_dir | append: '/' %}
             {% assign section_pages = all_md_pages
               | where_exp: "p", "p.path contains section_prefix"
-              | sort: "order" %}
+              | sort_natural: "path" %}
 
             {% assign section_index_page = "" %}
-            {% assign section_index_title = "" %}
             {% assign section_index_url = "" %}
+            {% assign section_has_index_md = false %}
 
             {% for p in section_pages %}
               {% assign p_filename = p.path | split: '/' | last %}
-              {% assign p_base_name = p_filename | split: '.' | first %}
-              {% assign p_parts = p_base_name | split: ' ' %}
-              {% assign p_first = p_parts | first %}
-              {% assign p_first_as_num_str = p_first | plus: 0 | append: '' %}
-              {% assign p_display_title = p_base_name %}
-              {% if p_parts.size > 1 and p_first == p_first_as_num_str %}
-                {% assign p_display_title = p_base_name | remove_first: p_first | remove_first: ' ' %}
-              {% endif %}
-
-              {% if p_display_title == section_display_title %}
+              {% if p_filename == "Index.md" %}
                 {% assign section_index_page = p %}
-                {% assign section_index_title = p_display_title %}
                 {% assign section_index_url = p.url %}
+                {% assign section_has_index_md = true %}
                 {% break %}
               {% endif %}
             {% endfor %}
@@ -110,15 +123,6 @@
             {% if section_index_page == "" %}
               {% assign section_index_page = section_pages | first %}
               {% if section_index_page %}
-                {% assign p_filename = section_index_page.path | split: '/' | last %}
-                {% assign p_base_name = p_filename | split: '.' | first %}
-                {% assign p_parts = p_base_name | split: ' ' %}
-                {% assign p_first = p_parts | first %}
-                {% assign p_first_as_num_str = p_first | plus: 0 | append: '' %}
-                {% assign section_index_title = p_base_name %}
-                {% if p_parts.size > 1 and p_first == p_first_as_num_str %}
-                  {% assign section_index_title = p_base_name | remove_first: p_first | remove_first: ' ' %}
-                {% endif %}
                 {% assign section_index_url = section_index_page.url %}
               {% endif %}
             {% endif %}
@@ -133,38 +137,65 @@
                     aria-current="location"
                   {% endif %}
                 {% endif %}
-              >{{ section_index_title | default: section_display_title }}</a>
+              >{{ section_display_title }}</a>
 
               {% if section_dir == active_section_dir %}
-                {% assign active_children = "" %}
+                {% assign submenu_item_count = 0 %}
                 {% for c in section_pages %}
-                  {% if c.url != section_index_url %}
-                    {% assign active_children = "x" %}
+                  {% assign c_filename = c.path | split: '/' | last %}
+                  {% if c_filename != "Index.md" %}
+                    {% assign submenu_item_count = submenu_item_count | plus: 1 %}
                   {% endif %}
                 {% endfor %}
 
-                {% if active_children != "" %}
-                  <ul class="nav-sub" aria-label="{{ section_display_title }} sub-pages">
-                    {% for c in section_pages %}
-                      {% if c.url != section_index_url %}
+                {% if section_has_index_md %}
+                  {% if submenu_item_count > 0 %}
+                    <ul class="nav-sub" aria-label="{{ section_display_title }} sub-pages">
+                      {% for c in section_pages %}
                         {% assign c_filename = c.path | split: '/' | last %}
-                        {% assign c_base_name = c_filename | split: '.' | first %}
-                        {% assign c_parts = c_base_name | split: ' ' %}
-                        {% assign c_first = c_parts | first %}
-                        {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
-                        {% assign c_display_title = c_base_name %}
-                        {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
-                          {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
+                        {% if c_filename != "Index.md" %}
+                          {% assign c_base_name = c_filename | split: '.' | first %}
+                          {% assign c_parts = c_base_name | split: ' ' %}
+                          {% assign c_first = c_parts | first %}
+                          {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
+                          {% assign c_display_title = c_base_name %}
+                          {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
+                            {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
+                          {% endif %}
+                          <li>
+                            <a
+                              href="{{ c.url | relative_url }}"
+                              {% if c.url == page.url %}aria-current="page"{% endif %}
+                            >{{ c_display_title }}</a>
+                          </li>
                         {% endif %}
-                        <li>
-                          <a
-                            href="{{ c.url | relative_url }}"
-                            {% if c.url == page.url %}aria-current="page"{% endif %}
-                          >{{ c_display_title }}</a>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% else %}
+                  {% if submenu_item_count > 1 %}
+                    <ul class="nav-sub" aria-label="{{ section_display_title }} sub-pages">
+                      {% for c in section_pages %}
+                        {% assign c_filename = c.path | split: '/' | last %}
+                        {% if c_filename != "Index.md" %}
+                          {% assign c_base_name = c_filename | split: '.' | first %}
+                          {% assign c_parts = c_base_name | split: ' ' %}
+                          {% assign c_first = c_parts | first %}
+                          {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
+                          {% assign c_display_title = c_base_name %}
+                          {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
+                            {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
+                          {% endif %}
+                          <li>
+                            <a
+                              href="{{ c.url | relative_url }}"
+                              {% if c.url == page.url %}aria-current="page"{% endif %}
+                            >{{ c_display_title }}</a>
+                          </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
                 {% endif %}
               {% endif %}
             </li>
