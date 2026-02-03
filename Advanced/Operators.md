@@ -229,17 +229,23 @@ operator <=>(Int256 a, b) -> Int { ... }
 
 ### Subscript/bracket/parenthesis/functor operators
 ```
-class MyImage<type T> {
+class MyArray<type T> {
     // Array subscript
     operator [Int i] -> T& {
         return data[i]
     }
-
+}
+```
+```
+class MyImage<type T> {
     // 2D array (i.e. image like) subscript
     operator [Int x, y] -> T& {
         return data[x + y*stride]
     }
-    
+}
+```
+```
+class MyFunctor {
     // Functor call
     operator (Int a, Float b, String c) {
         ...
