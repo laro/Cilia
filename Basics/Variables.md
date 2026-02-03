@@ -39,12 +39,12 @@ Some simplifications and restrictions:
 ### Const
 **`const`** always binds to the right (contrary to C/C++).  
 - One can read `const int` as “a constant integer”.
-- `const` binds more strongly than `*` and `&`, but less strongly than `[]`.  
-  So the keyword `const` is always interpreted as a type qualifier that applies directly to the  
-  type specifier (e.g. `Float`),  
-  pointer declarator (`*`),  
-  or type specifier with array declarator (`Float[]`, `Float[3]`, or `Float[String]`)  
-  that appears immediately to its right.
+- `const` binds more strongly than `*` and `&`, but less strongly than `[]`.
+    - So the keyword `const` is always interpreted as a type qualifier to what appears immediately to its right,  
+      what may be:
+        - a type specifier (e.g. `Float`),
+        - a pointer declarator (`*`), or
+        - a type specifier with array declarator (`Float[]`, `Float[3]`, or `Float[String]`).
 - `const` as a type qualifier for a reference (`&`) is not allowed, i.e. no ~~`Float const&`~~.
     - `const Float&` is allowed, of course.
 - Examples:
