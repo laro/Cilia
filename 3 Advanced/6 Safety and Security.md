@@ -3,6 +3,7 @@ permalink: /advanced/safety-and-security/
 ---
 
 ## Safety and Security
+
 - **No implicit downcasts**,  
   i.e. standard conversions only apply when no information is lost.
     - ~~Not Ok~~ or Ok is

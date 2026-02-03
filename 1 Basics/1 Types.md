@@ -3,6 +3,7 @@ permalink: /basics/types/
 ---
 
 ## Basic / Arithmetic Types
+
 - `Bool`
     - not ~~`bool`~~ nor ~~`Boolean`~~
 - `Int` == `Int64`

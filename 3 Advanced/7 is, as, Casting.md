@@ -3,6 +3,7 @@ permalink: /advanced/is-as-casting/
 ---
 
 ## `is`, `as`, Casting
+
 - `is` (type query)
     - See Cpp2 [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries):
         - `obj is Int` (i.e. a type)

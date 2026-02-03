@@ -3,6 +3,7 @@ permalink: /basics/classes/
 ---
 
 ## Classes
+
 - Quite as in C++
   ```
   class MyArrayOfInt {

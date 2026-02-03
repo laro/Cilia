@@ -3,6 +3,7 @@ permalink: /advanced/smart-pointers/
 ---
 
 ## (Smart) Pointers
+
 - **Short Smart Pointer Syntax**
     - “Make simple things simple” (or at least short to write),  
       encourage use of smart pointers (when you need to).
