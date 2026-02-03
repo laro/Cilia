@@ -5,7 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% seo %}
+{% seo title=false %}
+    {% assign page_filename = page.path | split: '/' | last %}
+    {% assign page_base_name = page_filename | split: '.' | first %}
+    {% assign page_parts = page_base_name | split: ' ' %}
+    {% assign page_first = page_parts | first %}
+    {% assign page_first_as_num_str = page_first | plus: 0 | append: '' %}
+    {% assign page_display_title = page_base_name %}
+    {% if page_parts.size > 1 and page_first == page_first_as_num_str %}
+      {% assign page_display_title = page_base_name | remove_first: page_first | remove_first: ' ' %}
+    {% endif %}
+    {% unless page.path contains '/' %}
+      {% if page.title %}
+        {% assign page_display_title = page.title %}
+      {% endif %}
+    {% endunless %}
+    <title>{{ page_display_title }}{% if site.title and site.title != page_display_title %} | {{ site.title }}{% endif %}</title>
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=" | append: site.github.build_revision | relative_url }}">
     {% include head-custom.html %}
@@ -42,6 +57,20 @@
       <ul class="nav-main">
         {% for p in titled_pages %}
           {% unless p.title contains '.' %}
+            {% assign p_filename = p.path | split: '/' | last %}
+            {% assign p_base_name = p_filename | split: '.' | first %}
+            {% assign p_parts = p_base_name | split: ' ' %}
+            {% assign p_first = p_parts | first %}
+            {% assign p_first_as_num_str = p_first | plus: 0 | append: '' %}
+            {% assign p_display_title = p_base_name %}
+            {% if p_parts.size > 1 and p_first == p_first_as_num_str %}
+              {% assign p_display_title = p_base_name | remove_first: p_first | remove_first: ' ' %}
+            {% endif %}
+            {% unless p.path contains '/' %}
+              {% if p.title %}
+                {% assign p_display_title = p.title %}
+              {% endif %}
+            {% endunless %}
             <li>
               <a
                 href="{{ p.url | relative_url }}"
@@ -50,18 +79,32 @@
                 {% elsif p.title == active_top_title %}
                   aria-current="location"
                 {% endif %}
-              >{{ p.title }}</a>
+              >{{ p_display_title }}</a>
 
               {% if has_active_children and p.title == active_top_title %}
                 <ul class="nav-sub" aria-label="{{ active_top_title }} sub-pages">
                   {% for c in child_pages %}
                     {% assign c_top_title = c.title | split: '.' | first %}
                     {% if c_top_title == active_top_title %}
+                      {% assign c_filename = c.path | split: '/' | last %}
+                      {% assign c_base_name = c_filename | split: '.' | first %}
+                      {% assign c_parts = c_base_name | split: ' ' %}
+                      {% assign c_first = c_parts | first %}
+                      {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
+                      {% assign c_display_title = c_base_name %}
+                      {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
+                        {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
+                      {% endif %}
+                      {% unless c.path contains '/' %}
+                        {% if c.title %}
+                          {% assign c_display_title = c.title %}
+                        {% endif %}
+                      {% endunless %}
                       <li>
                         <a
                           href="{{ c.url | relative_url }}"
                           {% if c.url == page.url %}aria-current="page"{% endif %}
-                        >{{ c.title | split: '.' | last }}</a>
+                        >{{ c_display_title }}</a>
                       </li>
                     {% endif %}
                   {% endfor %}
