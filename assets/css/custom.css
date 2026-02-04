@@ -141,6 +141,11 @@ main dl {
   max-width: 80ch;
 }
 
+/* Reduce spacing between paragraphs and immediately following lists. */
+.markdown-body p + :is(ul, ol) {
+  margin-top: 0.5em;
+}
+
 /*main pre {
   max-width: 100ch;
 }*/
