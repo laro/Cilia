@@ -129,41 +129,42 @@ So we would have:
       ```
 
 ### Safe / Unsafe
-**`safe`** as default, **`unsafe`** code blocks as escape.
-- Mainly to guide developers:
-    - to signal what to do and what not to do,
-    - `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
-- Not allowed in safe code:
-    - Subscript access to pointers,
-    - `reinterpretCastTo<T>(...)`,
-    - calling functions marked as `unsafe`,
-    - use of `noinit`.
-- Still allowed/undetected in unsafe code:
-    - Integer overflow (checking that all the time seems too costly)
-- `unsafe` code is _necessary_ to implement certain abstractions (like container classes):
-    - ```
-      operator[Int i] -> T& {
-          if CHECK_BOUNDS and (i < 0 or i >= size) {
-              terminate()
-          }
-          unsafe {
-              return data[i]
-          }
-      }
-      ```
-- A function with unsafe code does not necessarily has to be marked as `unsafe` itself.
-- `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
-- Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves.
-- Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves.
-- Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
+**`safe`** as default, **`unsafe`** code blocks as escape.  
+Mainly to guide developers:
+- to signal what to do and what not to do,
+- `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
 
-- `cilia::safe::Int`
-    - Like `cilia::Int`, but with **overflow check** for all operations,
-        - may throw OverflowException (or abort the program).
-    - Generally considered to be too costly, even in languages that are otherwise considered as "safe".
-    - `safe::Int8`/`Int16`/`Int32`/`Int64`
-    - `safe::UInt`
-        - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
+Not allowed in safe code:
+- Subscript access to pointers,
+- `reinterpretCastTo<T>(...)`,
+- calling functions marked as `unsafe`,
+- use of `noinit`.
+
+Still allowed/undetected in unsafe code:
+- Integer overflow (checking that all the time seems too costly)
+
+`unsafe` code is _necessary_ to implement certain abstractions (like container classes):
+```
+operator[Int i] -> T& {
+  if CHECK_BOUNDS and (i < 0 or i >= size) {
+      terminate()
+  }
+  unsafe {
+      return data[i]
+  }
+}
+```
+A function with unsafe code does not necessarily has to be marked as `unsafe` itself. `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
+
+Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves. Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves. Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
+
+### Int with Overflow Check
+`cilia::safe::Int` is like `cilia::Int`, but with **overflow check** for all operations, may throw OverflowException (or abort the program).
+- `safe::Int8`/`Int16`/`Int32`/`Int64`
+- `safe::UInt`
+    - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
+    - 
+Generally considered to be too costly, even in languages that are otherwise considered as "safe".
 
 ### Not like Rust
 No further safety features planned beyond C++:
