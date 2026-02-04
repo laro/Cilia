@@ -78,7 +78,7 @@ without braces around the condition clause (as in Python, Swift, Go, Ruby).
           }
       }
       ```
-    - Not _every_ C/C++ for-loop can be expressed as a Cilia for-loop,  
+    - _Not every_ C/C++ for-loop can be expressed as a Cilia for-loop,  
       but in general, any C/C++ for-loop can be converted into a while-loop.
         - ```
           for (<Initialization>; <Condition>; <Increment>) {
