@@ -31,7 +31,7 @@ Fixed precision:
 
 With modern processors double precision is very fast.
 When concerned with memory bandwith, cache size, and SIMD performance, choose one of the smaller floating-point types.
-But then `BFloat16`, `Float8`, or even `Float4` maybe better than `Float32`.
+But then `BFloat16`, `Float8`, or even `Float4` might be better than `Float32`.
 
 "[Every language is a child of its time](https://www.stroustrup.com/devXinterview.html)":
 `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`),
