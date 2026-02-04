@@ -29,4 +29,4 @@ Standard library in namespace `cilia` (instead of `std` to avoid naming conflict
     - A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without.  
       But only _with_ wrapper we have
         - a Cilia standard library in the "idiomatic" Cilia style (i.e. CamelCase),
-        - whose types/classes are also used with existing C++ APIs (i.e. using Int, Int32, String and StringView instead of int, int32_t, string and string_view).
+        - whose types/classes are also used with existing C++ APIs (i.e. using Int, Int32, String and StringView instead of long / long long, int32_t, string and string_view).
