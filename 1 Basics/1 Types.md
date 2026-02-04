@@ -12,7 +12,7 @@ Simply use `Int` == `Int64`, as in Swift and Go,
 - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
 - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 
-Fixed width with:
+Fixed width:
 - `Int8`, `Int16`, `Int32`, `Int64`
 - `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`
 
@@ -26,7 +26,7 @@ Fixed width with:
 `Float` == `Float64`, i.e. double precision is "standard".  
 Like Python. Unlike C/C++, where `float` is single precision.
 
-Fixed width with:
+Fixed precision:
 - `Float16`, `Float32`, `Float64` (half, single, double precision floating point)
 
 With modern processors double precision is very fast.
