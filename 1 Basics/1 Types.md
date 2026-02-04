@@ -5,7 +5,7 @@ permalink: /basics/types/
 ## Basic / Arithmetic Types
 
 ### Bool
-- not ~~`bool`~~ nor ~~`Boolean`~~
+- `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~
 
 ### Int
 - `Int` == `Int64`, as in Swift and Go.
