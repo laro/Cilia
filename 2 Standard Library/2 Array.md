@@ -21,7 +21,7 @@ permalink: /standard-library/array/
     - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
         - that's the more traditional wording,
         - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
-        - `Vector` could too easily collide with the mathematical vector (as used in linear algebra or geometry).
+        - `Vector` could too easily collide with the mathematical vector (as used in linear algebra and geometry).
     - "Raw" C/C++ arrays are handled with `T*` instead.
     - `std::array` is called `cilia::StaticArray` instead.
     - In C/C++ `T[]` means "array of certain (inferred) size",
