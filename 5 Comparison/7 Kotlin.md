@@ -24,4 +24,3 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `for (word in words) { ... }`
 
 In Kotlin `Int` and `42` are 32 bit wide, not 64 bits.  
-That's Ok, this is a syntax comparison, not a performance benchmark.
