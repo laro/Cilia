@@ -8,8 +8,7 @@ permalink: /basics/types/
 `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
 
 ### Int
-`Int` == `Int64`, as in Swift and Go.  
-Simply use `Int`,
+Simply use `Int` == `Int64`, as in Swift and Go,
 - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
 - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 
