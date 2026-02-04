@@ -100,7 +100,7 @@ without braces around the condition clause (as in Python, Swift, Go, Ruby).
             - e.g. `for (;;) { ... }` is translated to `while True { ... }`.
 
 ### Switch / Case
-with implicit ~~`break`~~, i.e `break` is the default, and it is not necessary to explicitly write it (like in Swift). Use `fallthrough` if necessary.
+With implicit ~~`break`~~, i.e `break` is the default, and it is not necessary to explicitly write it (like in Swift). Use `fallthrough` if necessary.
 - ```
   switch i {
   case 1:
