@@ -163,7 +163,7 @@ Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to 
 - `safe::Int8`/`Int16`/`Int32`/`Int64`
 - `safe::UInt`
     - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
-    - 
+
 Generally considered to be too costly, even in languages that are otherwise considered as "safe".
 
 ### Not like Rust
