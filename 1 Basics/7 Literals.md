@@ -5,7 +5,7 @@ permalink: /basics/literals/
 ## Literals
 
 ### Bool
-- `True`, `False` are Bool,
+- `True`, `False` are `Bool`,
     - uppercase as they are constants (as in Python).
 
 ### Integer
