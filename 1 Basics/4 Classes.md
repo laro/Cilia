@@ -13,6 +13,7 @@ class MyArrayOfInt {
 }
 ```
 
+### `public` is Default
 Default access specifier is `public`.  
 Default inheritance access specifier is also `public`:
 ```
