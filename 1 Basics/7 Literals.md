@@ -112,7 +112,7 @@ permalink: /basics/literals/
 - `NaN` is a `Float` literal for NaN ("not a number") values,
     - that can be converted to any float type.
 
-### Strings
+### String
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
         - If necessary
@@ -177,7 +177,7 @@ permalink: /basics/literals/
     - All these available for multiline string literals and interpolated strings, too.
         - TODO Any reason, not to?
 
-### Arrays
+### Array
 - `[1, 2, 3]` is an array (here an `Int[3]`),
     - all elements have the same type.
 - `{1, "Text", 3.0}` is an initialization list,
