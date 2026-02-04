@@ -12,7 +12,9 @@ permalink: /basics/types/
 - `Float` == `Float64`  
     - `Float16`, `Float32`, `Float64`
 
-**Notes:**
+
+### Notes
+
 It is `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
 
 Simply use `Int` == `Int64`, as in Swift and Go,
