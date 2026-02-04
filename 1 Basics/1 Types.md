@@ -22,7 +22,7 @@ Simply use `Int` == `Int64`, as in Swift and Go,
 - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 
 `Int` == `Int32` on 32 bit systems only (i.e. old/small platforms),  
-`Int` == `Int16` on 8 and 16 bit systems (i.e. very old/small microcontrollers with 16 bit addresses, like AVR / Atmel ATmega328 / Arduino Uno, or old home computers with 6502, Z80).
+`Int` == `Int16` on 8 and 16 bit systems (i.e. very old/small microcontrollers with 16 bit addresses, like AVR, Atmel ATmega328, Arduino Uno, or old home computers with 6502, Z80).
 
 `Byte` == `std::byte`, i.e. _not_ the same type as UInt8 for parameter overloading.
 
