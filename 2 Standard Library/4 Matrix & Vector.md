@@ -30,3 +30,9 @@ as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprogr
 - `cilia::MDArray<Int dimensions, T = Float>`
     - also see `MDSpan`
 
+### Datatype & Precision
+Default datatype is `Float` (with a precision of 64 bits).
+
+Feel free to use your own derivations:
+- `using Vec3 = cilia::Vector3<Float32>`
+- `using RGB = cilia::Vector3<UInt8>`
