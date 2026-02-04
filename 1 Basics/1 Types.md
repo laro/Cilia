@@ -16,7 +16,6 @@ permalink: /basics/types/
 ### Notes
 
 It is `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
-
 Simply use `Int` == `Int64`, as in Swift and Go,
 - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
 - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
