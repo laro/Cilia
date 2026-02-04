@@ -4,10 +4,10 @@ permalink: /basics/types/
 
 ## Basic / Arithmetic Types
 
-### `Bool`
+### Bool
 - not ~~`bool`~~ nor ~~`Boolean`~~
 
-### `Int`
+### Int
 - `Int` == `Int64`, as in Swift and Go.
     - `Int` == `Int32` on 32 bit systems only (i.e. old/small platforms),
     - `Int` == `Int16` on 8 and 16 bit systems (i.e. very old/small microcontrollers with 16 bit addresses, like AVR / Atmel ATmega328 / Arduino Uno, or old home computers with 6502, Z80).
@@ -17,10 +17,10 @@ permalink: /basics/types/
     - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
     - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 
-### `Byte`
+### Byte
 - `Byte` == `std::byte` (i.e. _not_ the same type as UInt8 for parameter overloading)
 
-### `Float`
+### Float
 - `Float` == `Float64`, i.e. double precision is "standard"
     - Like Python. Unlike C/C++, where `float` is single precision.
     - With modern processors double precision is very fast.
