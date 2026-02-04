@@ -4,13 +4,11 @@ permalink: /basics/literals/
 
 ## Literals
 
+### Bool
 - `True`, `False` are Bool,
     - uppercase as they are constants (as in Python).
-- `NullPtr` is the null pointer,
-    - it is of the type `NullPtrType`,
-    - explicit cast necessary to convert any pointer to `Int`.
 
-### Integers
+### Integer
 - `123` is an integer literal of arbitrary precision
     - Typical integer literals like `123456` are interpreted as `Int`
         - in case of type inferring, parameter overloading and template matching.
@@ -200,5 +198,9 @@ permalink: /basics/literals/
   ]
   ```
 
-### User Defined Literals
-Rules for user defined literals as in C++.
+### Misc
+- `NullPtr` is the null pointer,
+    - it is of the type `NullPtrType`,
+    - explicit cast necessary to convert any pointer to `Int`.
+- User Defined Literals
+    - The same rules as in C++.
