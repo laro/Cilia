@@ -87,7 +87,7 @@ permalink: /basics/literals/
         - because an `Int` should not be accidentally interpreted as a `Bool`
         - cast if necessary: `Bool a = Bool(1)`
 
-### Floating point
+### Floating Point
 - `1.0` is a floating point literal
     - Floating point literals are interpreted according to the size/precision requirements.
         - Counting the decimal places  
