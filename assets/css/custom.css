@@ -149,6 +149,15 @@ main dl {
   border-bottom: none;
 }
 
+/* Slightly reduce spacing *below* headings for a denser layout. */
+.markdown-body :is(h1, h2) {
+  margin-bottom: 0.6rem;
+}
+
+.markdown-body :is(h3, h4, h5, h6) {
+  margin-bottom: 0.4rem;
+}
+
 /* Reduce top spacing of the first heading in page content. */
 .markdown-body main > :is(h1, h2, h3, h4, h5, h6):first-child {
   margin-top: 0;
