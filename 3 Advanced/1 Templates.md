@@ -43,7 +43,7 @@ class MyArray<Number T> {
   In Cilia it would be `type` instead, but maybe it is possible to omit it with
     - two-pass compilation,
     - context-based rules (in `T::Value* x` -> `Value` is a type, in `var y = T::Value* x` -> `Value` is a value),
-    - different syntax for types (`T::Value` -> `Value` is a type, `T.Value` -> `Value` is a value).
+    - different syntax for types (`T::Value` is a type, `T.Value` is a value).
 
 
 ### **Function** Templates
