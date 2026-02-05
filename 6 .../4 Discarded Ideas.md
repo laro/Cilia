@@ -252,7 +252,7 @@ One could define the order of bit in a bitfield.
             - `int[]` and `int*` mean different things:
                 - `int array[3]` and `int array[] = { 1, 2, 3 }` are used for in-place arrays,
                 - `int* array = new int[3]` is used for an int-array of _unknown size_.
-- Mixed forms of static and dynamic array maybe useful:
+- Mixed forms of static and dynamic array may be useful:
     - `Int[3,,]`
     - `Int[3,4,]`
 
