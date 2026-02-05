@@ -19,12 +19,10 @@ In C/C++ the ownership depends, case by case.
 A "raw" pointer is still possible in Cilia, but it is considered unsafe.
 ```
 ContactInfo* contactInfoPtr = new ContactInfo
-// With classical/raw pointers you need to free the objects yourself.
-delete contactInfoPtr
+delete contactInfoPtr  // With classical/raw pointers you need to free the objects yourself.
 
 ContactInfo* contactInfoPtr = new ContactInfo[10]
-// You need to distinguish single-element- and array-pointers yourself.
-delete[0] contactInfoPtr
+delete[0] contactInfoPtr  // You need to distinguish single-element- and array-pointers yourself.
 ```
 
 ### Type+ pointer
