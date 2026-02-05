@@ -7,7 +7,7 @@ permalink: /more/discarded-ideas/
 For several topics there are alternative ideas, that were discarded but are still worth mentioning.
 
 
-### No Trailing Semicolons
+### Keep Trailing Semicolons
 - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
 - Implicitly/clever multiline expressions as in Swift, Kotlin and JavaScript?  
   (Actually I don't know / remember the rules anymore.)
@@ -20,6 +20,7 @@ For several topics there are alternative ideas, that were discarded but are stil
     - `class ... implements ...`
         - good fit for implementing pure abstract base classes (like interfaces)
 - But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation? (Probably best to use `implements` then, but still not nice.)
+
 
 ### Basic / Arithmetic Types
 - `Float` could be 32-bit float: `Float` == `Float32`,
@@ -83,36 +84,6 @@ One could define the order of bit in a bitfield.
       ```
 
 
-### Arrays & ArrayViews
-- `Int[] dynamicArrayOfIntegers`
-    - May be confusing because it is so similar to fixed-size arrays,  
-      but IMHO the inconsistency is **already in C/C++**:  
-        - in function declarations
-            - `int[]` and `int*` are actually the same,
-        - but for local variables
-            - `int[]` and `int*` mean different things:
-                - `int array[3]` and `int array[] = { 1, 2, 3 }` are used for in-place arrays,
-                - `int* array = new int[3]` is used for an int-array of _unknown size_.
-- Mixed forms of static and dynamic array maybe useful:
-    - `Int[3,,]`
-    - `Int[3,4,]`
-
-
-### Signed Size
-- `UInt` as type for `*.size()` (i.e. still unsigned)  
-  but with new rules for mixed integer arithmetic:
-    - Unsigned +-*/ Signed -> Signed.
-        - Signed is therefore considered the "larger" type compared to unsigned
-        - `1` is `Int` (signed)
-            - `1u` is `UInt` (unsigned)
-        - Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)
-        - But then also `aUInt + 1 == anInt`
-- Or
-    - `Size` - `Size` -> `SSize`
-        - Problem: `-` results in `SSize`, but `+` results in `Size`?!
-    - The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.
-    - Note: In the end this just didn't work out.
-
 ### Functions
 - Function declarations could start with the keyword
     - `fn` (Rust, Carbon, New Circle),
@@ -135,6 +106,21 @@ One could define the order of bit in a bitfield.
         - `(func*(Int, Int)->Int)[] arrayOfPointersToFunctionOfIntAndIntToInt`
 
 
+### Function/Loop Parameter Passing
+- If you want even the basic type to be different, we could write:
+    - `for Double d in [1, 2, 3] { ... }`
+        - `d` is `const Double`
+    - `for String str in ["a", "b", "c"] { ... }`
+        - `str` is `const String` (not `const StringView&`)
+        - ~~`str` is `const String&` (not `const StringView&`)~~
+            - TODO This dosnn't actually make sense here, you can not get a (const) reference to a string, when the underlying array is in fact a `StringView[]`.
+    - `for inout String str in ["a", "b", "c"] { ... }`
+        - `str` is `String&`
+        - TODO This dosnn't actually make sense here, you can not get a (mutable/non-const) reference to a string, when the underlying array is in fact a `StringView[]`.
+    - `for copy String str in ["a", "b", "c"] { ... }`
+        - `str` is `String`
+
+
 ### Switch/Case
 - Old behavior with implicit `fallthrough` on demand.
   ```
@@ -152,7 +138,29 @@ One could define the order of bit in a bitfield.
   }
   ```
 
+
+### Literals
+- `true`, `false` are Bool
+- `Null` could be the null pointer, and `NullType` its type.
+    - Shorter and more similar to C `NULL`.
+
           
+### Signed Size
+- `UInt` as type for `*.size()` (i.e. still unsigned)  
+  but with new rules for mixed integer arithmetic:
+    - Unsigned +-*/ Signed -> Signed.
+        - Signed is therefore considered the "larger" type compared to unsigned
+        - `1` is `Int` (signed)
+            - `1u` is `UInt` (unsigned)
+        - Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)
+        - But then also `aUInt + 1 == anInt`
+- Or
+    - `Size` - `Size` -> `SSize`
+        - Problem: `-` results in `SSize`, but `+` results in `Size`?!
+    - The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.
+    - Note: In the end this just didn't work out.
+
+
 ### Operators
 - Possible, alternative syntax for `pow(a, x)`:  
   `a**x` (as Python did)
@@ -205,25 +213,13 @@ One could define the order of bit in a bitfield.
     - `template<type T> using T::InArgumentType = const T&`
 
 
-### Function/Loop Parameter Passing
-- If you want even the basic type to be different, we could write:
-    - `for Double d in [1, 2, 3] { ... }`
-        - `d` is `const Double`
-    - `for String str in ["a", "b", "c"] { ... }`
-        - `str` is `const String` (not `const StringView&`)
-        - ~~`str` is `const String&` (not `const StringView&`)~~
-            - TODO This dosnn't actually make sense here, you can not get a (const) reference to a string, when the underlying array is in fact a `StringView[]`.
-    - `for inout String str in ["a", "b", "c"] { ... }`
-        - `str` is `String&`
-        - TODO This dosnn't actually make sense here, you can not get a (mutable/non-const) reference to a string, when the underlying array is in fact a `StringView[]`.
-    - `for copy String str in ["a", "b", "c"] { ... }`
-        - `str` is `String`
-
-
-### Literals
-- `true`, `false` are Bool
-- `Null` could be the null pointer, and `NullType` its type.
-    - Shorter and more similar to C `NULL`.
+### Cilia Standard Library
+- "**Alias**" for 
+    - member variables could be written as  
+       `alias x = data[0]`,
+    - member functions could use perfect forwarding,
+        - see https://stackoverflow.com/a/9864472
+        - but that would not work for virtual functions.
 
 
 ### String, Char & Unicode
@@ -243,13 +239,19 @@ One could define the order of bit in a bitfield.
         - `for sentence in text.bySentence()`
      
 
-### Cilia Standard Library
-- "**Alias**" for 
-    - member variables could be written as  
-       `alias x = data[0]`,
-    - member functions could use perfect forwarding,
-        - see https://stackoverflow.com/a/9864472
-        - but that would not work for virtual functions.
+### Arrays & ArrayViews
+- `Int[] dynamicArrayOfIntegers`
+    - May be confusing because it is so similar to fixed-size arrays,  
+      but IMHO the inconsistency is **already in C/C++**:  
+        - in function declarations
+            - `int[]` and `int*` are actually the same,
+        - but for local variables
+            - `int[]` and `int*` mean different things:
+                - `int array[3]` and `int array[] = { 1, 2, 3 }` are used for in-place arrays,
+                - `int* array = new int[3]` is used for an int-array of _unknown size_.
+- Mixed forms of static and dynamic array maybe useful:
+    - `Int[3,,]`
+    - `Int[3,4,]`
 
 
 ### (Smart) Pointers
