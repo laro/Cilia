@@ -250,67 +250,6 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
-/* -----------------------------------------------------------------------------
-   Accessibility: skip link + page-to-page navigation
-   ----------------------------------------------------------------------------- */
-
-.skip-link {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  z-index: 9999;
-  padding: 0.4rem 0.6rem;
-  border-radius: 10px;
-  border: 1px solid var(--color-border-default);
-  background: var(--color-canvas-default);
-  color: var(--color-fg-default);
-  text-decoration: none;
-  transform: translateY(-200%);
-}
-
-.skip-link:focus,
-.skip-link:focus-visible {
-  transform: translateY(0);
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
-.page-nav {
-  margin-top: 1.25rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--color-border-default);
-}
-
-.page-nav ul {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.page-nav__prev,
-.page-nav__next {
-  margin: 0;
-}
-
-.page-nav__next {
-  margin-left: auto;
-}
-
-.page-nav a {
-  text-decoration: none;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 0.15rem 0.45rem;
-}
-
-.page-nav a:hover,
-.page-nav a:focus-visible {
-  border-color: currentColor;
-}
-
 /* Mobile: reduce whitespace above the menu. */
 @media (max-width: 600px) {
   body {

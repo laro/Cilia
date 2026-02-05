@@ -91,7 +91,6 @@
   </head>
 
   <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
     {% assign all_md_pages = site.pages
       | where_exp: "p", "p.path contains '.md'"
       | sort_natural: "path" %}
@@ -281,25 +280,8 @@
     </nav>
 
     <div class="container-lg px-3 my-5 markdown-body">
-      <main id="main-content" tabindex="-1">
+      <main>
         {{ content }}
-
-        {% if keynav_prev_url or keynav_next_url %}
-          <nav class="page-nav" aria-label="Previous and next page">
-            <ul>
-              <li class="page-nav__prev">
-                {% if keynav_prev_url %}
-                  <a href="{{ keynav_prev_url | relative_url }}" rel="prev">Previous</a>
-                {% endif %}
-              </li>
-              <li class="page-nav__next">
-                {% if keynav_next_url %}
-                  <a href="{{ keynav_next_url | relative_url }}" rel="next">Next</a>
-                {% endif %}
-              </li>
-            </ul>
-          </nav>
-        {% endif %}
       </main>
 
       <footer>
@@ -331,9 +313,9 @@
           if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
           if (isTypingContext(document.activeElement)) return;
 
-          if (e.key === "[") {
+          if (e.key === "ArrowLeft") {
             if (navigateRel("prev")) e.preventDefault();
-          } else if (e.key === "]") {
+          } else if (e.key === "ArrowRight") {
             if (navigateRel("next")) e.preventDefault();
           }
         });
