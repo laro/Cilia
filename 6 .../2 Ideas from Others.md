@@ -16,7 +16,7 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
     I am not familiar with all of these issues, but in a new language we certainly coud fix a lot of it.
     
     1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
-        - See [Safety and Security](#safety-and-security)/Initialization
+        - See [Safety / Initialization](/advanced/safety/#initialization)
     2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
         - Only allow safe ones,  
           otherwise an explicit cast is necessary.
