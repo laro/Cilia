@@ -301,13 +301,13 @@ One could define the order of bit in a bitfield.
             - as in C#
 
 
-### Misc
-- Versioning of the Cilia source code could alternatively be done
-    - via file ".cilia_version" in a (project) directory,
-    - via file extension: 
-        - "*.cilia2024" – Version from the year 2024
-        - "*.cilia2024b" – Second version from the year 2024
-        - "*.cilia_2024" – Version from the year 2024
-        - "*.cilia_2024b" – Second version from the year 2024
-        - "*.ciliaA"
-        - "*.ciliaB"
+### Versioning
+Versioning of the Cilia source code could alternatively be done
+- via file ".cilia_version" in a (project) directory,
+- via file extension: 
+    - "*.cilia2024" – Version from the year 2024
+    - "*.cilia2024b" – Second version from the year 2024
+    - "*.cilia_2024" – Version from the year 2024
+    - "*.cilia_2024b" – Second version from the year 2024
+    - "*.ciliaA"
+    - "*.ciliaB"
