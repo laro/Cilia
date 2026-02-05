@@ -128,6 +128,7 @@ permalink: /standard-library/array/
               intArray3D[2, 1, 199] = 1
               ```
             - `cilia::StaticMDArray<Int, 3, 2, 200> intArray3D`
+    - `MDArrayView`
 
 - Mixed forms of static and dynamic array
     - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`

@@ -29,6 +29,7 @@ as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprogr
         ```
 - `cilia::MDArray<Int dimensions, T = Float>`
     - also see `MDSpan`
+- `VectorView`, `MatrixView`
 
 ### Datatype & Precision
 Default datatype is `Float` (with a precision of 64 bits).
