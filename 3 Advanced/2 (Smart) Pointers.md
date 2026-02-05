@@ -55,7 +55,7 @@ unsafe {
     ContactInfo* contactInfoPtr = new ContactInfo
     delete contactInfoPtr  // With classical/raw pointers you need to free the objects yourself.
 
-    ContactInfo* contactInfoPtr = new ContactInfo[10]
+    ContactInfo[0]* contactInfoPtr = new ContactInfo[10]
     delete[0] contactInfoPtr  // You need to distinguish single-element- and array-pointers yourself.
 }
 ```
