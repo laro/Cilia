@@ -5,7 +5,7 @@ permalink: /comparison/carbon/
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Carbon:
 
 - Types
-    - [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5), `i32`, `i64`, `f32`
+    - `Int`, `i32`, `i64`, `f32`
 - Variables
     - `var x: i64 = 42;`
     - `var x: auto = 42;`
@@ -22,3 +22,5 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `var i: i64 = 0;  while (i < words.ssize()) { ...; ++i; }`
     - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
     - `for (word: auto in words) { ...; }`
+
+I am not sure, if there really is (or was) a type [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5). Uppercase `Int`, but lowercase `i32`, `i64`?
