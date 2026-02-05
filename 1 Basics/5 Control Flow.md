@@ -8,29 +8,30 @@ Branches, loops, and exceptions,
 without braces around the condition clause (as in Python, Swift, Go, Ruby).
 
 ### Conditional Branches
-- ```
-  if a > b {
-      // ...
-  }
-  ```
-- ```
-  if a > b {
-      // ...
-  } else {
-      // ...
-  }
-  ```
-- ```
-  if a > b {
-      // ...
-  } else if a > c {
-      // ...
-  } else {
-      // ...
-  }
-  ```
-- `if 1 <= x <= 10 { ... }`
-    - chained comparison as in Cpp2 (Herb Sutter), Python, Julia
+```
+if a > b {
+    // ...
+}
+```
+```
+if a > b {
+    // ...
+} else {
+    // ...
+}
+```
+```
+if a > b {
+    // ...
+} else if a > c {
+    // ...
+} else {
+    // ...
+}
+```
+
+Chained comparison as in Cpp2 (Herb Sutter), Python, Julia
+```if 1 <= x <= 10 { ... }```
 
 ### Loops
 - **while**
