@@ -72,6 +72,10 @@ unsafe {
     delete ptr
 }
 ```
+```
+Type+ uniquePtr = new Type
+Type^ sharedPtr = move(uniquePtr)  // The contactInfoUniquePtr is a NullPtr afterwards.
+```
 
 You still can use `makeUnique<Type>()` and `makeShared<Type>()`:
 ```
@@ -80,10 +84,10 @@ Type^ sharedPtr = makeShared<Type>()
 ```
 
 `makeShared<Type>()` is more efficient for shared pointers `T^`.  
-`new` is a quite 'traditional' syntax, also used in C# and Java.
+`new` is kept, as it is a short and quite 'traditional' syntax, also used in C# and Java.
 
 
-### Type+ vs. Type[10]+
+### `Type+` vs. `Type[10]+`
 
 `Type+` is short for `UniquePtr<Type>`, i.e. a unique pointer to a single object.  
 `Type[0]+` is short for `UniquePtr<Type[0]>`, i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here. In C++ `unique_ptr<Type[]>` the `Type[]` is an "incomplete type". But in Cilia `Type[]` is an `Array<Type>`, so we use `Type[0]` instead.
@@ -97,12 +101,6 @@ Not ~~`ContactInfo+ contactInfoUniqueArrayPtr = new ContactInfo[10]`~~:
 There is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type.
 
 Also possible (but _not_ recommended) is `ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()` (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
-
-```
-ContactInfo^ contactInfoSharedPtr = new ContactInfo
-ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)
-// The contactInfoUniquePtr is a NullPtr afterwards.
-```
 
 
 ### Interoperability with Other Languages
