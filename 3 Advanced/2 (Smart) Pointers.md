@@ -5,52 +5,67 @@ permalink: /advanced/smart-pointers/
 ## Short Smart Pointer Syntax
 
 “Make simple things simple” (or at least short to write),  
-encourage use of smart pointers (when you need to).
+encourage use of smart pointers – when you need them, the use of plain local, stack-allocated variables is still preferred, of course.
 
-- **`Type* pointer`** is a "raw" pointer,
-    - the classical C/C++ pointer.
-- **`Type+ pointer`** is a "unique pointer",
-    - short for **`UniquePtr<T>`.
-- **`Type^ pointer`** is a "shared pointer",
-    - short for `SharedPtr<T>`.
-- **`Type- pointer`** is a "weak pointer",
-    - short for `WeakPtr<T>`.
+- `Type* pointer` is a "raw" pointer.
+- `Type+ pointer` is short for `UniquePtr<Type>`.
+- `Type^ pointer` is short for `SharedPtr<Type>`.
+- `Type- pointer` is short for `WeakPtr<Type>`.
+
 
 ### `Type* pointer`
-A "raw" pointer typically has no ownership.
+A "raw" pointer is a classical C/C++ pointer, in Cilia typically without ownership.  
+In C/C++ the ownership depends, case by case.
 
-A classical C/C++ "raw" pointer is still possible, but unsafe.
-- `ContactInfo* contactInfoPtr = new ContactInfo`  
-    `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
-- `ContactInfo* contactInfoPtr = new ContactInfo[10]`  
-    `delete[0] contactInfoPtr` (you need to distinguish single-element- and array-pointers yourself)
+A "raw" pointer is still possible in Cilia, but it is considered unsafe.
+```
+ContactInfo* contactInfoPtr = new ContactInfo
+// With classical/raw pointers you need to free the objects yourself.
+delete contactInfoPtr
+
+ContactInfo* contactInfoPtr = new ContactInfo[10]
+// You need to distinguish single-element- and array-pointers yourself.
+delete[0] contactInfoPtr
+```
 
 ### `Type+ pointer`
-A "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
-- `T+` is short for **`UniquePtr<T>`** (i.e. a unique pointer to a single object)
-- `T[0]+` is short for **`UniquePtr<T[0]>`** (i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here)
-- In C++ `unique_ptr<T[]>` the `T[]` is an "incomplete type". But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
+This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
 
-- **`makeUnique<T>(...) -> T+`**,
-    - `ContactInfo+ contactInfoUniquePtr = makeUnique<ContactInfo>()`.
-    - `ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`  
-        not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (there is no array-to-    single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type).
-- Better just **`make<T>(...) -> T+`**, as "unique" is "hard to write".
+- `T+` is short for `UniquePtr<T>`,
+    - i.e. a unique pointer to a single object.
+- `T[0]+` is short for `UniquePtr<T[0]>`,
+    - i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here.
+    - In C++ `unique_ptr<T[]>` the `T[]` is an "incomplete type". But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
+
+```
+ContactInfo+    contactInfoUniquePtr      = makeUnique<ContactInfo>()
+ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()
+```
+Not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~:  
+There is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type.
+
+TODO: Better just `make<T>(...) -> T+`, as "unique" is "hard to write".
+
 
 ### `Type^ pointer`
 A pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).  
-Inspired by C++/CLI (so its a proven possiblilty).
-- **`makeShared<T>(...)`**,
-    - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
-    - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
-        also possibler(but not recommended) is ~~`ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
-- `T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T[0]+`/`UniquePtr<T[0]>` (as in C/C++):
-    - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
-    - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
-        - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
+Inspired by C++/CLI (so it is a proven possiblilty).
+
+```
+ContactInfo^ contactInfoSharedPtr      = makeShared<ContactInfo>()`
+ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()
+```
+Also possible (but _not_ recommended) is `ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()` (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
+
+`T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T[0]+`/`UniquePtr<T[0]>` (as in C/C++):
+```
+ContactInfo^ contactInfoSharedPtr = new ContactInfo
+ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)
+// The contactInfoUniquePtr is a NullPtr afterwards.
+```
 
 ### `Type- pointer`
-A pointer to a shared pointer.  
+A weak pointer is a pointer to a shared pointer.  
 So with  
 `T- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
