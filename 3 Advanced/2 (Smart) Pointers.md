@@ -12,7 +12,7 @@ permalink: /advanced/smart-pointers/
 - `Type- pointer` is short for `WeakPtr<Type>`.
 
 
-### `Type* pointer`
+### Type* pointer
 A "raw" pointer is a classical C/C++ pointer, in Cilia typically without ownership.  
 In C/C++ the ownership depends, case by case.
 
@@ -27,7 +27,7 @@ ContactInfo* contactInfoPtr = new ContactInfo[10]
 delete[0] contactInfoPtr
 ```
 
-### `Type+ pointer`
+### Type+ pointer
 This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
 
 - `Type+` is short for `UniquePtr<Type>`,
@@ -45,7 +45,7 @@ There is no array-to-single-element-pointer decay possible with `UniquePtr`, as 
 
 TODO: Better just `make<T>(...) -> T+`, since typing ‘unique’ is cumbersome.
 
-### `Type^ pointer`
+### Type^ pointer
 A pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).  
 Inspired by C++/CLI (so it is a proven possiblilty).
 
@@ -62,7 +62,7 @@ ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)
 // The contactInfoUniquePtr is a NullPtr afterwards.
 ```
 
-### `Type- pointer`
+### Type- pointer
 A weak pointer is a pointer to a shared pointer.  
 So with  
 `T- weakPointerToWindow = sharedPointerToWindow`  
