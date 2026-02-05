@@ -4,7 +4,7 @@ permalink: /more/other-ideas/
 
 ## Other Ideas, Good & Bad
 
-Mostly from other languages.
+Almost every idea comes from somewhere, but some are clearly inspired by a particular language or developer.
 
 
 ### [**Circle**](https://github.com/seanbaxter/circle) ([Sean Baxter](https://x.com/seanbax))
