@@ -142,7 +142,7 @@ One could define the order of bit in a bitfield.
 ### Literals
 - `true`, `false` are Bool
 - `Null` could be the null pointer, and `NullType` its type.
-    - Shorter and more similar to C `NULL`.
+    - Shorter and more similar to `NULL` in C.
 
           
 ### Signed Size
@@ -158,7 +158,7 @@ One could define the order of bit in a bitfield.
     - `Size` - `Size` -> `SSize`
         - Problem: `-` results in `SSize`, but `+` results in `Size`?!
     - The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.
-    - Note: In the end this just didn't work out.
+- Note: In the end this just didn't work out.
 
 
 ### Operators
