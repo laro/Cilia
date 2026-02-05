@@ -169,9 +169,9 @@ For several topics there are alternative ideas, that were discarded but are stil
 ### Better Readable Keywords
 - Instead of `class ... : ...` Cilia could have
     - `class ... extends ...` 
-       - good for extending base classes
+        - good for extending base classes
     - `class ... implements ...`
-       - good fit for implementing pure abstract base classes (like interfaces)
+        - good fit for implementing pure abstract base classes (like interfaces)
 - But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation? (Probably best to use `implements` then, but still not nice.)
 
 ### Basic / Arithmetic Types
@@ -287,6 +287,24 @@ One could define the order of bit in a bitfield.
         - `func*(Int, Int)->Int pointerToFunctionOfIntAndIntToInt`
         - `(func*(Int, Int)->Int)[] arrayOfPointersToFunctionOfIntAndIntToInt`
 
+
+### Switch/Case
+- Old behavior with implicit `fallthrough` on demand.
+  ```
+  switch i fallthrough {
+  case 1:
+  case 2:
+  case 3:
+  case 4:
+  case 5:
+      print("1, 2, 3, 4, or 5")
+      break
+  
+  default:
+      print("default")
+  }
+  ```
+
           
 ### Operators
 - Possible, alternative syntax for `pow(a, x)`:  
@@ -361,7 +379,7 @@ One could define the order of bit in a bitfield.
     - Shorter and more similar to C `NULL`.
 
 
-### String, Char & CodePoint
+### String, Char & Unicode
 - **Code points** could be represented by `UInt32` or by an distinct type `CodePoint` (== `UInt32`).
     - Would it be useful?
 - `WideChar` could be useful for portable code (Linux `UInt32` <-> Windows `UInt16`)

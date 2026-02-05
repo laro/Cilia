@@ -126,21 +126,6 @@ With implicit ~~`break`~~, i.e `break` is the default, and it is not necessary t
       print("default")
   }
   ```
-    - ~~Old behavior on demand~~
-      ```
-      switch i fallthrough {
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-      case 5:
-          print("1, 2, 3, 4, or 5")
-          break
-      
-      default:
-          print("default")
-      }
-      ```
 
 ### Exceptions
 ```
