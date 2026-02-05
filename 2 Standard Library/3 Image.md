@@ -4,7 +4,7 @@ permalink: /standard-library/image/
 
 ## Image
 
-- `cilia::Image<T = Float>`
+- `cilia::Image<T = Float32>`
 - Almost like `cilia::Matrix`,  
   but stored row-major, like:
   ```
@@ -13,3 +13,11 @@ permalink: /standard-library/image/
   6 7 8
   ```
 - `ImageView`
+
+### Datatype & Precision
+Default datatype is `Float32` (with a precision of 32 bits).
+More suited for image processing and machine vision.
+
+For handling of JPEG or PNG images you may use this derivations:
+- `using ColorImage = cilia::Image<RGB<UInt8>>`
+- `using ImageGrey8 = cilia::Image<UInt8>`
