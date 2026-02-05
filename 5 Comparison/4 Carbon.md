@@ -23,4 +23,5 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
     - `for (word: auto in words) { ...; }`
 
-I am not sure, if there really is (or was) a type [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5). Uppercase `Int`, but lowercase `i32`, `i64`?
+I am not sure, if there really is (or was) a type [`Int`](https://bayramblog.medium.com/overview-of-the-carbon-language-part-1-1963e5640ff5).  
+Uppercase `Int`, but lowercase `i32`, `i64`?
