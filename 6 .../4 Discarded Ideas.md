@@ -2,7 +2,7 @@
 permalink: /more/discarded-ideas/
 ---
 
-## Old, Discarded Ideas for Cilia
+## Old Ideas, Discarded for Cilia
 
 For several topics there are alternative ideas, that were discarded but are still worth mentioning.
 
