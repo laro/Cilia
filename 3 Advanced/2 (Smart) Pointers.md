@@ -30,11 +30,11 @@ delete[0] contactInfoPtr
 ### `Type+ pointer`
 This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
 
-- `T+` is short for `UniquePtr<T>`,
+- `Type+` is short for `UniquePtr<Type>`,
     - i.e. a unique pointer to a single object.
-- `T[0]+` is short for `UniquePtr<T[0]>`,
+- `Type[0]+` is short for `UniquePtr<Type[0]>`,
     - i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here.
-    - In C++ `unique_ptr<T[]>` the `T[]` is an "incomplete type". But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
+    - In C++ `unique_ptr<Type[]>` the `Type[]` is an "incomplete type". But in Cilia `Type[]` is an `Array<Type>`, so we use `Type[0]` instead.
 
 ```
 ContactInfo+    contactInfoUniquePtr      = makeUnique<ContactInfo>()
