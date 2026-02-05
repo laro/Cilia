@@ -16,7 +16,7 @@ permalink: /advanced/smart-pointers/
 A "raw" pointer is a classical C/C++ pointer, in Cilia typically without ownership.  
 In C/C++ the ownership depends, case by case.
 
-A "raw" pointer is still possible in Cilia, but it is considered unsafe.
+A "raw" pointer is still possible in Cilia, but it is considered **unsafe**.
 ```
 ContactInfo* contactInfoPtr = new ContactInfo
 delete contactInfoPtr  // With classical/raw pointers you need to free the objects yourself.
