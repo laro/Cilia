@@ -2,7 +2,7 @@
 permalink: /more/other-ideas/
 ---
 
-## Other Ideas, Good & Bad
+## Ideas from Other Languages
 
 Almost every idea comes from somewhere, but some are clearly inspired by a particular language or developer.
 
@@ -59,7 +59,7 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
 ### **Cpp2** (Herb Sutter)
 - [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
 - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
--  [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
+- [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
     - `in`, `inout`, `out`, `move`, `copy`, `forward`
     - I like this and therefore "copied" it. Admittedly without fully understanding the difference between `move` and `forward`.
 - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
