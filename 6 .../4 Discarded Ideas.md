@@ -9,6 +9,9 @@ For several topics there are alternative ideas, that were discarded but are stil
 
 ### Keep Trailing Semicolons
 - As this is difficult & unclear/disputed: Keep C++ semicolons for now?
+- Disadvantages of not having trailing semicolons:
+    - Errors are less easily recognized. (Walter Bright / D: „Redundancy helps“)
+    - Probably a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
 - Implicitly/clever multiline expressions as in Swift, Kotlin and JavaScript?  
   (Actually I don't know / remember the rules anymore.)
 

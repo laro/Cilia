@@ -98,9 +98,6 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
         - (also as in Python).
 - Multiple expressions in a single line _are_ separated by semicolon.  
   `x += offset; y += offset`
-- Disadvantages:
-    - Errors are less easily recognized (Walter Bright / D: „Redundancy helps“)
-    - Probably a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
 - Only in REPL:
     - Trailing semicolon used to suppress evaluation output,  
       as in Matlab, Python, Julia.
