@@ -104,28 +104,28 @@ if 1 <= x <= 10 { ... }
 
 ### Switch / Case
 With implicit ~~`break`~~, i.e `break` is the default, and it is not necessary to explicitly write it (like in Swift). Use `fallthrough` if necessary.
-- ```
-  switch i {
-  case 1:
-      print("1")
-      // implicit break
-  
-  case 2, 3:
-      print("Either 2 or 3")
-      // implicit break
-  
-  case 4:
-      // do something
-      fallthrough
-  case 5:
-      // do something more
-      print("4 or 5")
-      // implicit break
-  
-  default:
-      print("default")
-  }
-  ```
+```
+switch i {
+case 1:
+    print("1")
+    // implicit break
+
+case 2, 3:
+    print("Either 2 or 3")
+    // implicit break
+
+case 4:
+    // do something
+    fallthrough
+case 5:
+    // do something more
+    print("4 or 5")
+    // implicit break
+
+default:
+    print("default")
+}
+```
 
 ### Exceptions
 ```
