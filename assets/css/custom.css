@@ -159,12 +159,12 @@ main dl {
 
 /* Slightly reduce spacing *below* headings for a denser layout. */
 .markdown-body :is(h1, h2) {
-  margin-top: 1.8rem;
+  margin-top: 2.4rem;
   margin-bottom: 0.6rem;
 }
 
 .markdown-body :is(h3, h4, h5, h6) {
-  margin-top: 1.2rem;
+  margin-top: 1.6rem;
   margin-bottom: 0.4rem;
 }
 
