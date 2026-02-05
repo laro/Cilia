@@ -94,37 +94,37 @@ class MyArray<Number T> {
 ### Requires
 
 Further restrict the type with `requires` (as in C++):
-- ```
-  func sq<Number T>(T x) -> T
-  requires (T x) { x * x }
-  {
-      return x * x
-  }
-  ```
-- ```
-  class SlidingAverage<type T, type TSum = T>
-  requires (T x, TSum sum) {
-      sum = 0   // requires assignment of 0
-      sum += x  // requires addition of type T to type TSum
-      sum -= x  // requires subtraction of type T from type TSum
-      sum / 1   // requires to divide sum by 1 (i.e. an Int)
-  } {
-      T+ numbers
-      Int size = 0
-      Int sizeMax = 0
-      Int index = 0
-      TSum sum = 0
-  public:
-      SlidingAverage(Int size) {
-          sizeMax = size
-          numbers = new T[sizeMax]
-      }
-      func append(T value) { ... }
-      func average() -> TSum { ... }
-      func reset() { ... }
-      func reset(Int newSize) { ... }
-  }
-  ```
+```
+func sq<Number T>(T x) -> T
+requires (T x) { x * x }
+{
+    return x * x
+}
+```
+```
+class SlidingAverage<type T, type TSum = T>
+requires (T x, TSum sum) {
+    sum = 0   // requires assignment of 0
+    sum += x  // requires addition of type T to type TSum
+    sum -= x  // requires subtraction of type T from type TSum
+    sum / 1   // requires to divide sum by 1 (i.e. an Int)
+} {
+    T+ numbers
+    Int size = 0
+    Int sizeMax = 0
+    Int index = 0
+    TSum sum = 0
+public:
+    SlidingAverage(Int size) {
+        sizeMax = size
+        numbers = new T[sizeMax]
+    }
+    func append(T value) { ... }
+    func average() -> TSum { ... }
+    func reset() { ... }
+    func reset(Int newSize) { ... }
+}
+```
 
 
 ### Template Extension
