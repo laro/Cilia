@@ -13,6 +13,17 @@ class MyArrayOfInt {
 }
 ```
 
+### `this` is a Reference
+In member functions `this` is a reference to the instance/object (not a pointer).
+```
+class String {
+  func toLower() -> String& {
+    // ...
+    return this
+  }
+}
+```
+
 ### `public` is Default
 Default access specifier is `public`.  
 Default inheritance access specifier is also `public`:
