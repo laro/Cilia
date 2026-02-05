@@ -74,7 +74,7 @@ unsafe {
 ```
 ```
 Type+ uniquePtr = new Type
-Type^ sharedPtr = move(uniquePtr)  // The contactInfoUniquePtr is a NullPtr afterwards.
+Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
 
 You still can use `makeUnique<Type>()` and `makeShared<Type>()`:
