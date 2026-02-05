@@ -7,7 +7,7 @@ permalink: /more/other-ideas/
 Almost every idea comes from somewhere, but some are clearly inspired by a particular language or developer.
 
 
-### [**Circle**](https://github.com/seanbaxter/circle) ([Sean Baxter](https://x.com/seanbax))
+### **[Circle](https://github.com/seanbaxter/circle) ([Sean Baxter](https://x.com/seanbax))**
 - **Fix C++'s "wrong defaults"**  
     Sean Baxter [writes about C++](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
     > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
