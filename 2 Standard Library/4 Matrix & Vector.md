@@ -32,7 +32,7 @@ as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprogr
 - `VectorView`, `MatrixView`
 
 ### Datatype & Precision
-Default datatype is `Float` (with a precision of 64 bits).
+The default datatype is `Float` (64-bit precision), which is better suited for scientific calculations.
 
 Feel free to use your own derivations:
 - `using Vec3 = cilia::Vector3<Float32>`
