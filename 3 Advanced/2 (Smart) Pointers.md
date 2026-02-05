@@ -43,8 +43,7 @@ ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()
 Not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~:  
 There is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type.
 
-TODO: Better just `make<T>(...) -> T+`, as "unique" is "hard to write".
-
+TODO: Better just `make<T>(...) -> T+`, since typing ‘unique’ is cumbersome.
 
 ### `Type^ pointer`
 A pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).  
