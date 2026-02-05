@@ -4,7 +4,7 @@ permalink: /advanced/safety/
 
 ## Safety
 
-### **No implicit downcasts**,  
+### **No Implicit Downcasts**
 Standard conversions only apply when no information is lost.
 
 ~~Not Ok~~ or Ok is
