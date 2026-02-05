@@ -7,14 +7,14 @@ permalink: /advanced/smart-pointers/
 “Make simple things simple” (or at least short to write),  
 encourage use of smart pointers (when you need to).
 
-    - **`Type* pointer`** is a "raw" pointer,
-        - the classical C/C++ pointer.
-    - **`Type+ pointer`** is a "unique pointer",
-        - short for **`UniquePtr<T>`.
-    - **`Type^ pointer`** is a "shared pointer",
-        - short for `SharedPtr<T>`.
-    - **`Type- pointer`** is a "weak pointer",
-        - short for `WeakPtr<T>`.
+- **`Type* pointer`** is a "raw" pointer,
+    - the classical C/C++ pointer.
+- **`Type+ pointer`** is a "unique pointer",
+    - short for **`UniquePtr<T>`.
+- **`Type^ pointer`** is a "shared pointer",
+    - short for `SharedPtr<T>`.
+- **`Type- pointer`** is a "weak pointer",
+    - short for `WeakPtr<T>`.
 
 ### `Type* pointer`
 A "raw" pointer typically has no ownership.
