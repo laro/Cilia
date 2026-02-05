@@ -221,7 +221,7 @@ One could define the order of bit in a bitfield.
     - member variables could be written as  
        `alias x = data[0]`,
     - member functions could use perfect forwarding,
-        - see [https://stackoverflow.com/a/9864472]
+        - see [stackoverflow.com/a/9864472](https://stackoverflow.com/a/9864472)
         - but that would not work for virtual functions.
 
 
