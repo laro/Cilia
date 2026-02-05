@@ -40,14 +40,14 @@ A "pointer plus ownership", a pointer with (exclusive) ownership: the object wil
 ### `Type^ pointer`
 A pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).  
 Inspired by C++/CLI (so its a proven possiblilty).
-        - **`makeShared<T>(...)`**,
-            - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
-            - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
-              also possibler(but not recommended) is ~~`ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
-        - `T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T[0]+`/`UniquePtr<T[0]>` (as in C/C++):
-            - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
-            - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
-                - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
+- **`makeShared<T>(...)`**,
+    - `ContactInfo^ contactInfoSharedPtr = makeShared<ContactInfo>()`.
+    - `ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()`  
+        also possibler(but not recommended) is ~~`ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~ (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
+- `T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T[0]+`/`UniquePtr<T[0]>` (as in C/C++):
+    - `ContactInfo^ contactInfoSharedPtr = new ContactInfo`
+    - `ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)`
+        - The `contactInfoUniquePtr` is a `NullPtr` afterwards.
 
 ### `Type- pointer`
 A pointer to a shared pointer.  
