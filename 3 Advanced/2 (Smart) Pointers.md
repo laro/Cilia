@@ -12,57 +12,30 @@ permalink: /advanced/smart-pointers/
 - `Type- pointer` is short for `WeakPtr<Type>`.
 
 
-### Type* pointer
-A "raw" pointer is a classical C/C++ pointer, in Cilia typically without ownership.  
-In C/C++ the ownership depends, case by case.
-
-A "raw" pointer is still possible in Cilia, but it is considered **unsafe**.
-```
-ContactInfo* contactInfoPtr = new ContactInfo
-delete contactInfoPtr  // With classical/raw pointers you need to free the objects yourself.
-
-ContactInfo* contactInfoPtr = new ContactInfo[10]
-delete[0] contactInfoPtr  // You need to distinguish single-element- and array-pointers yourself.
-```
-
 ### Type+ pointer
+
 This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
 
-- `Type+` is short for `UniquePtr<Type>`,
-    - i.e. a unique pointer to a single object.
-- `Type[0]+` is short for `UniquePtr<Type[0]>`,
-    - i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here.
-    - In C++ `unique_ptr<Type[]>` the `Type[]` is an "incomplete type". But in Cilia `Type[]` is an `Array<Type>`, so we use `Type[0]` instead.
-
 ```
-ContactInfo+    contactInfoUniquePtr      = makeUnique<ContactInfo>()
-ContactInfo[0]+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()
+ContactInfo+ contactInfoUniquePtr = new ContactInfo
 ```
-Not ~~`ContactInfo+ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()`~~:  
-There is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type.
 
-TODO: Better just `make<T>(...) -> T+`, since typing ‘unique’ is cumbersome.
 
 ### Type^ pointer
+
 A pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).  
-Inspired by C++/CLI (so it is a proven possiblilty).
+Inspired by C++/CLI.
 
-```
-ContactInfo^ contactInfoSharedPtr      = makeShared<ContactInfo>()
-ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()
-```
-Also possible (but _not_ recommended) is `ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()` (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
-
-`T^`/`SharedPtr<T>` can take over the pointer from _rvalue_ `T+`/`UniquePtr<T>` and `T[0]+`/`UniquePtr<T[0]>` (as in C/C++):
 ```
 ContactInfo^ contactInfoSharedPtr = new ContactInfo
-ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)
-// The contactInfoUniquePtr is a NullPtr afterwards.
 ```
 
+
 ### Type- pointer
+
 A weak pointer is a pointer to a shared pointer.  
-So with  
+
+With  
 `T- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
 `weakPointerToWindow?.close()`  
@@ -73,8 +46,22 @@ if (Window^ window = weakPointerToWindow.lock()) {
 }
 ```
 
+### Type* pointer
+A "raw" pointer is a classical C/C++ pointer. Ownership depends, case by case, but in Cilia it typically is without ownership.  
+
+A "raw" pointer is considered **unsafe** in Cilia:
+```
+unsafe {
+    ContactInfo* contactInfoPtr = new ContactInfo
+    delete contactInfoPtr  // With classical/raw pointers you need to free the objects yourself.
+
+    ContactInfo* contactInfoPtr = new ContactInfo[10]
+    delete[0] contactInfoPtr  // You need to distinguish single-element- and array-pointers yourself.
+}
+```
+
 ### `new` instead of `makeUnique<>` & `makeShared<>`
-In Cilia `new` is redefined as `makeUnique<Type> -> Type+`, and a right value `Type+` can also be assigned to `Type^` and `Type*`.
+In Cilia `new` is redefined as `makeUnique<Type> -> Type+`, and a _right value_ `Type+` can also be assigned to `Type^` and `Type*`.
 
 ```
 Type+ uniquePtr = new Type
@@ -94,6 +81,28 @@ Type^ sharedPtr = makeShared<Type>()
 
 `makeShared<Type>()` is more efficient for shared pointers `T^`.  
 `new` is a quite 'traditional' syntax, also used in C# and Java.
+
+
+### Type+ vs. Type[10]+
+
+`Type+` is short for `UniquePtr<Type>`, i.e. a unique pointer to a single object.  
+`Type[0]+` is short for `UniquePtr<Type[0]>`, i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here. In C++ `unique_ptr<Type[]>` the `Type[]` is an "incomplete type". But in Cilia `Type[]` is an `Array<Type>`, so we use `Type[0]` instead.
+
+```
+ContactInfo+    contactInfoUniquePtr      = new ContactInfo
+ContactInfo[0]+ contactInfoUniqueArrayPtr = new ContactInfo[10]
+```
+
+Not ~~`ContactInfo+ contactInfoUniqueArrayPtr = new ContactInfo[10]`~~:  
+There is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type.
+
+Also possible (but _not_ recommended) is `ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()` (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
+
+```
+ContactInfo^ contactInfoSharedPtr = new ContactInfo
+ContactInfo^ contactInfoSharedPtr = move(contactInfoUniquePtr)
+// The contactInfoUniquePtr is a NullPtr afterwards.
+```
 
 
 ### Interoperability with Other Languages
