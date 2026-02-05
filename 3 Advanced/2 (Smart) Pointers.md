@@ -104,18 +104,21 @@ Also possible (but _not_ recommended) is `ContactInfo[0]^ contactInfoUniqueArray
 
 
 ### Interoperability with Other Languages
-We may redefine `T^` and `T+` for special cases:
-- `T^` is defined via type traits `SharedPtrType`,  
-    - For C++/Cilia classes `T^` is `SharedPtr<T>`:
-        - `using<type T> T::SharedPtrType = SharedPtr<T>`
-    - Objective-C/Swift classes use their reference counting mechanism:
-        - `using ObjectiveCObject::SharedPtrType = ObjectiveCRefCountPtr`
-    - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).
-        - `using DotNetObject::SharedPtrType = DotNetGCPtr`
-        - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
-    - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
-        - `using JavaObject::SharedPtrType = JavaGCPtr`
-        - Probably very similar to C#/.NET.
-- `T+` is defined via type traits `UniquePtrType`.
-    - For C++/Cilia classes `T+` is `UniquePtr<T>`:
-        - `using<type T> T::UniquePtrType = UniquePtr<T>`
+We can redefine `T^` and `T+` for special cases, like interoperability with garbage collected languages like C# and Java.
+
+`T^` is defined via type traits `SharedPtrType`:
+- For C++/Cilia classes `T^` is `SharedPtr<T>`:  
+  `using<type T> T::SharedPtrType = SharedPtr<T>`
+- Objective-C/Swift classes use their reference counting mechanism:  
+  `using ObjectiveCObject::SharedPtrType = ObjectiveCRefCountPtr`
+- C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).  
+  `using DotNetObject::SharedPtrType = DotNetGCPtr`
+    - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
+- Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
+  `using JavaObject::SharedPtrType = JavaGCPtr`
+    - Probably very similar to C#/.NET.
+
+`T+` is defined via type traits `UniquePtrType`:
+- For C++/Cilia classes `T+` is `UniquePtr<T>`:
+    - `using<type T> T::UniquePtrType = UniquePtr<T>`
+- For Objective-C/Swift, C#/.NET, and Java the `UniquePtrType` will be very similar to the `SharedPtrType`, maybe even identical.
