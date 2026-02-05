@@ -171,5 +171,5 @@ No further safety features planned beyond C++:
 - Not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
     - that is just out of scope.
 - No _additional_ thread safety measures.
-- A thread safety issue can easily lead to a deadlock or crash, and sometimes can even be a security problem.
-- But while thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (mainly because I am not aware of / familiar with better solutions than already available/recommended in C++).
+    - A thread safety issue can easily lead to a deadlock or crash, and sometimes can even be a security problem.
+    - But while thread safety can be a hard problem, there are currently no plans to extend the possibilities beyond plain C++ here (mainly because I am not aware of / familiar with better solutions than already available/recommended in C++).
