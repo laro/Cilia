@@ -34,6 +34,11 @@ permalink: /advanced/misc/
                 - can be set in the IDE or on the command line,  
                   for each file individually.
 
+- When translating C++ code to Cilia then change conflicting names, e.g.
+    - `int var` -> `Int __variable_var`
+    - `class func` -> `class __class_func`
+    - `yield()` -> `func __function_yield()`
+
 - Two-Pass Compiler
     - so no forward declarations necessary,
     - as with C# and Java (but unlike C/C++, due to its single-pass compiler).

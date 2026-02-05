@@ -122,7 +122,3 @@ C++ has a "tradition" of complicated names, keywords or reuse of keywords, simpl
     - `not` in addition to `!`
 - `Int32` instead of `int32_t` or `qint32`,
     - so no postfix "_t" nor prefix "q", and in CamelCase.
-- When translating C++ code to Cilia then change conflicting names, e.g.
-    - `int var` -> `Int __variable_var`
-    - `class func` -> `class __class_func`
-    - `yield()` -> `func __function_yield()`
