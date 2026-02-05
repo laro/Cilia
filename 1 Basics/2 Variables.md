@@ -34,6 +34,11 @@ Some simplifications and restrictions:
 - References
     - `Complex<Float>& complexNumber = complexNumberWithOtherName`
 
+### **Type Inference**
+with `var` / `const`:
+- `var i = 3` instead of ~~`auto i = 3;`~~
+- `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
+
 ### Const
 **`const`** always binds to the right (contrary to C/C++).  
 - One can read `const int` as “a constant integer”.
@@ -54,11 +59,6 @@ Some simplifications and restrictions:
             - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float> arrayOfConstFloat`. But that does not compile anyway, because you cant assign values to an array whose element type is non-assignable. (MSVC says 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.')
         - `const Float[3]` is a `const` static array declarator, interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
         - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
-
-### **Type Inference**
-with `var` / `const`:
-- `var i = 3` instead of ~~`auto i = 3;`~~
-- `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 
 ### Not Allowed
 It is a syntax error to write:
