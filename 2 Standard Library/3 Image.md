@@ -15,7 +15,7 @@ permalink: /standard-library/image/
 - `ImageView`
 
 ### Datatype & Precision
-Default datatype is `Float32` (32-bit precision), better suited for image processing and machine vision.
+The default datatype is `Float32` (32-bit precision), better suited for image processing and machine vision.
 
 For handling of JPEG or PNG images you may use this derivations:
 - `using ColorImage = cilia::Image<RGB<UInt8>>`
