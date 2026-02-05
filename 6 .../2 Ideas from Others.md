@@ -107,13 +107,13 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
     - `>=`, `≥`
     - Operator overloading
         - See:
-            - [https://www.geeksforgeeks.org/operator-overloading-in-julia/](https://www.geeksforgeeks.org/operator-overloading-in-julia/)
+            - [www.geeksforgeeks.org/operator-overloading-in-julia/](https://www.geeksforgeeks.org/operator-overloading-in-julia/)
                 - „Precedence and associativity: When defining new operators or overloading existing ones, you can also specify their precedence and associativity, which determines the order in which they are evaluated.“
                     - That seems quite complicated to parse?!
                     - I cannot find any other reference to this feature, I assume it is a misunderstanding.
-            - [https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm](https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm)
+            - [github.com/JuliaLang/julia/blob/master/src/julia-parser.scm](https://github.com/JuliaLang/julia/blob/master/src/julia-parser.scm)
         - Much more operators
-            - [https://stackoverflow.com/a/60321302](https://stackoverflow.com/a/60321302)
+            - [stackoverflow.com/a/60321302](https://stackoverflow.com/a/60321302)
     - Many kinds of brackets?
-        - [https://stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
+        - [stackoverflow.com/a/33357311](https://stackoverflow.com/a/33357311)
         - TODO: Are these "unusual" brackets meant to be used as operators?
