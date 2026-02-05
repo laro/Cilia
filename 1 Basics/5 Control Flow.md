@@ -31,7 +31,9 @@ if a > b {
 ```
 
 Chained comparison as in Cpp2 (Herb Sutter), Python, Julia
-```if 1 <= x <= 10 { ... }```
+```
+if 1 <= x <= 10 { ... }
+```
 
 ### Loops
 - **while**
@@ -141,19 +143,19 @@ With implicit ~~`break`~~, i.e `break` is the default, and it is not necessary t
           ```
 
 ### Exceptions
-- ```
-  try {
-      // ...
-  } catch Exception ex {
-      print(ex)
-  }
-  ```
-- ```
-  try {
-      // ...
-  } catch Exception ex {
-      print(ex)
-  } catch {
-      print("An unknown exception has occured")
-  }
-  ```
+```
+try {
+    // ...
+} catch Exception ex {
+    print(ex)
+}
+```
+```
+try {
+    // ...
+} catch Exception ex {
+    print(ex)
+} catch {
+    print("An unknown exception has occured")
+}
+```
