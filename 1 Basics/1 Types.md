@@ -29,6 +29,6 @@ Simply use `Int` == `Int64`, as in Swift and Go,
 `Float` is double precision, like Python, unlike C/C++.  
 With modern processors double precision is very fast.
 When concerned with memory bandwith, cache size, and SIMD performance, choose one of the smaller floating-point types.
-But then `BFloat16`, `Float8`, or even `Float4` might be better than `Float32`.
+But then (when available) `BFloat16`, `Float8`, or even `Float4` might be even better than `Float32`.
 
 `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`),
