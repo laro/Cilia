@@ -130,15 +130,15 @@ Further restrict the type with `requires` (as in C++):
 ### Template Extension
 
 - Template **type alias** with `using` (not ~~`typedef`~~)
-    - ```
-      extension<type T> T {
-          using InParameterType = const T&
-      }
-      ```
+  ```
+  extension<type T> T {
+      using InParameterType = const T&
+  }
+  ```
 - Template static constants as type traits
-    - ```
-      extension<type T>          T { Bool IsFloatingPoint = False }
-      extension            Float32 { Bool IsFloatingPoint = True }
-      extension            Float64 { Bool IsFloatingPoint = True }
-      extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
-      ```
+  ```
+  extension<type T>          T { Bool IsFloatingPoint = False }
+  extension            Float32 { Bool IsFloatingPoint = True }
+  extension            Float64 { Bool IsFloatingPoint = True }
+  extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
+  ```
