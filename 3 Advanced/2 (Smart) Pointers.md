@@ -48,7 +48,7 @@ A pointer with shared ownership: the object will be deleted when all "its" point
 Inspired by C++/CLI (so it is a proven possiblilty).
 
 ```
-ContactInfo^ contactInfoSharedPtr      = makeShared<ContactInfo>()`
+ContactInfo^ contactInfoSharedPtr      = makeShared<ContactInfo>()
 ContactInfo^ contactInfoSharedArrayPtr = makeShared<ContactInfo[10]>()
 ```
 Also possible (but _not_ recommended) is `ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()` (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
@@ -72,6 +72,29 @@ if (Window^ window = weakPointerToWindow.lock()) {
     window->close()
 }
 ```
+
+### `new` instead of `makeUnique<>` & `makeShared<>`
+In Cilia `new` is redefined as `makeUnique<Type> -> Type+`, and a right value `Type+` can also be assigned to `Type^` and `Type*`.
+
+```
+Type+ uniquePtr = new Type
+Type^ sharedPtr = new Type
+
+unsafe {
+    Type* ptr = new Type
+    delete ptr
+}
+```
+
+You still can use `makeUnique<Type>()` and `makeShared<Type>()`:
+```
+Type+ uniquePtr = makeUnique<Type>()
+Type^ sharedPtr = makeShared<Type>()
+```
+
+`makeShared<Type>()` is more efficient for shared pointers `T^`.  
+`new` is a quite 'traditional' syntax, also used in C# and Java.
+
 
 ### Interoperability with Other Languages
 We may redefine `T^` and `T+` for special cases:
