@@ -4,8 +4,7 @@ permalink: /advanced/smart-pointers/
 
 ## Short Smart Pointer Syntax
 
-“Make simple things simple” (or at least short to write),  
-encourage use of smart pointers – when you need them, the use of plain local, stack-allocated variables is still preferred, of course.
+“Make simple things simple” (or at least short to write), to encourage use of smart pointers. When you need them, the use of plain local, stack-allocated variables is still preferred, of course.
 
 - `Type* pointer` is a "raw" pointer.
 - `Type+ pointer` is short for `UniquePtr<Type>`.
