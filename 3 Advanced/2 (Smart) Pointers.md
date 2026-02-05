@@ -7,11 +7,7 @@ permalink: /advanced/smart-pointers/
 - **Short Smart Pointer Syntax**
     - “Make simple things simple” (or at least short to write),  
       encourage use of smart pointers (when you need to).
-    - Using `T*`, `T^`, `T+`, `T-` (maybe `T°`, `T.`, ...)
-        - Maybe use something else instead?
-            - `T*̂`, `T*̄`, `T*̇` (easy to confuse)
-            - `T*^`, `T*+`, `T*.` (a bit long)
-            - `T^*`, `T+*`, `T.*` (no)
+    - Using `T*`, `T^`, `T+`, `T-`
     - **`Type* pointer`** is a "raw" pointer,
         - the classical C/C++ pointer.
     - **`Type+ pointer`** is a "unique pointer" ("pointer plus ownership"),

@@ -258,8 +258,43 @@ One could define the order of bit in a bitfield.
 
 
 ### (Smart) Pointers
-- **`Type- pointer`**
-    - `T-` is short for `UniquePtr<T[0]>` (i.e. a unique pointer to a C/C++ array of fixed but unknown size)
+- We may user some more (or just other) characters for the "special" pointers
+    - ASCII
+        - `Type> pointer` (_very_ difficult to read with template types, e.g. `Matrix<Float64>> matrix`)
+        - `Type~ pointer` (also used for binary not and destructor syntax)
+        - `Type# pointer`
+        - `Type% pointer`
+        - `Type§ pointer`
+        - `Type$ pointer`
+        - `Type' pointer`
+        - `Type. pointer`
+    - More exotic characters
+        - (But a character that is difficult to find on the keyboard would not actaully encourage people to use this syntax.)
+        - Latin-1
+            - `Type° pointer`
+            - `Type¹ pointer`
+            - `Type• pointer`
+            - `Type› pointer`
+        - Unicode variants of `T*`
+            - `Type*̂ pointer`
+            - `Type*̄ pointer`
+            - `Type*̇ pointer`
+            - (easy to confuse with `T*`)
+    - `*` plus other character(s)
+        - (a bit long)
+        - `Type*^ pointer`
+        - `Type*+ pointer`
+        - `Type*. pointer`
+        - `Type*° pointer`
+        - `Type*¹ pointer`
+        - `Type*+ pointer`
+        - `Type*> pointer`
+        - `Type*1> pointer`
+        - `Type*¹> pointer`
+        - `I don't like this:
+            - `Type^* pointer`
+            - `Type+* pointer`
+            - `Type.* pointer`
 - `new T` returns a `T+`/`UniquePtr<T>`,
     - so `T+`/`UniquePtr<T>` is the "default type" for pointers,  
       e.g. `ContactInfo+ contactInfoUniquePtr = new ContactInfo`.
@@ -270,26 +305,6 @@ One could define the order of bit in a bitfield.
       `delete contactInfoPtr` (with classical/raw pointers you need to free the objects yourself)
     - `ContactInfo* contactInfoPtr = (new ContactInfo[10]).release()`  
       `delete[] contactInfoPtr` (you need to distinguish single-element- and array-pointers yourself)
-- Other conceivable variants, may be used for `UniquePtr<T>`, `WeakPtr<T>`, ...:
-    - ASCII
-        - **`Type+ pointer`** ("plus pointer", my favourite, maybe even better than `Type^ pointer`)
-        - `Type> pointer` (IMHO nice idea for a pointer, but very difficult to read with template types, e.g. `Matrix<Float64>> matrix`)
-        - `Type~ pointer` (IMHO nice for `WeakPtr<T>`, but also used for binary not and destructor syntax, so not a perfect fit)
-        - `Type# pointer`
-        - `Type% pointer`
-        - `Type§ pointer`
-    - Latin-1 (but a character that is difficult to find on the keyboard would not actaully encourage people to use this syntax)
-        - `Type° pointer` (for `SmartPtr<T>`)
-        - `Type¹ pointer` (for `UniquePtr<T>`)
-        - `Type• pointer`
-        - `Type› pointer`
-    - Multiple, combined characters
-        - `Type*° pointer` (for `SmartPtr<T>`)
-        - `Type*¹ pointer` (for `UniquePtr<T>`)
-        - `Type*+ pointer` (for `WeakPtr<T>`?)
-        - `Type*> pointer` (for `SmartPtr<T>`?)
-        - `Type*1> pointer` (for `UniquePtr<T>`)
-        - `Type*¹> pointer` (for `UniquePtr<T>`)
 
 
 ### `is`, `as`, Casting
