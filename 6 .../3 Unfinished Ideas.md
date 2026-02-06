@@ -40,7 +40,8 @@ Admittedly, many ideas for Cilia are not yet _fully_ developed, but these are no
       reduce(sum: +)
       schedule(dynamic, 65536) { .. }
       ```
-> TODO
+
+> TODO  
 > Syntactically this is not a good solution.
 > - We avoid brackets in `if` and `while`, but then use it for `reduce` and `schedule`...
 > - Syntax should be better, clearer, or more powerful than plain OpenMP, otherwise better use just that.
