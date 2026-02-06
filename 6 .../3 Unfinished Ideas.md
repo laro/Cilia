@@ -4,6 +4,8 @@ permalink: /more/unfinished-ideas/
 
 ## Unfinished Ideas
 
+Admittedly, many ideas for Cilia are not yet _fully_ developed, but these are not at all.
+
 - OpenMP-like parallel programming?
     - Serial code
       ```
