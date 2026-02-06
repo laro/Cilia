@@ -85,6 +85,7 @@ The encoding is not defined,
 - the user has to take care of this,
 - or a subclass with known encoding has to be used (`ASCIIString`, `Latin1String`).
 
+Mainstream one-byte string encodings:
 - **`ASCIIString`**, a string containing only ASCII characters.
     - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`
         - `for aChar in a"abc"`
