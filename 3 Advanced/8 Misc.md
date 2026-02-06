@@ -5,11 +5,11 @@ permalink: /advanced/misc/
 ## Misc
 
 ### C++ Compatibility / Interoperability
-**Compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",
-- as with
-    - Java and Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
-    - C# and C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
-    - Objective-C and Swift
+Cilia is **compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",  
+as with:
+- Java and Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
+- C# and C++/CLI, Visual Basic .NET, F#, A# (Ada), IronPython, IronRuby ...
+- Objective-C and Swift
 
 Bi-directional interoperability, so (with a hypothetical C++/Cilia compiler) it is possible to include
 - C++ headers and modules from Cilia,
@@ -23,7 +23,7 @@ The compiler recognizes the language (C, C++, or Cilia) by:
     - `lang "Cilia" { ... }`
     - ~~`lang "C" { ... }`~~
     - TODO Limited to top level?
-    - Limited to languages where the scope is marked with `{ }`.
+    - Technically limited to languages where the scope is marked with `{ }`.
 - File extension
     - Cilia: `*.cil`, `*.hil`
     - C++: `*.cpp`, `*.hpp` or `*.cxx`, `*.hxx`
