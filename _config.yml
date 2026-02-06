@@ -15,7 +15,6 @@ theme: jekyll-theme-primer
 
 plugins:
   - jekyll-seo-tag
-  - jekyll-sitemap
 
 # Apply the same layout to all pages by default.
 defaults:
