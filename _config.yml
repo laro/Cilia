@@ -1,0 +1,26 @@
+#
+# Jekyll site configuration for https://cilialang.org
+#
+
+title: Cilia
+description: "A collection of ideas for a C++-based programming language."
+lang: en-US
+
+# Canonical site URL (used for sitemap/SEO).
+url: "https://cilialang.org"
+baseurl: ""
+
+# GitHub Pages theme (provides /assets/css/style.css and includes like head-custom.html).
+theme: jekyll-theme-primer
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Apply the same layout to all pages by default.
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
