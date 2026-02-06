@@ -16,29 +16,29 @@ Admittedly, many ideas for Cilia are not yet _fully_ developed, but these are no
   ```
 - Parallel code
   ```
-  for i in 0..<arr.size() parallel { .. }
+  for i in 0..<arr.size() parallel { ... }
   ```
   ```
   for i in 0..<arr.size()
-  parallel batch(1024) { .. }
+  parallel batch(1024) { ... }
   ```
   ```
   for i in 0..<arr.size()
-  parallel if arr.size() > 65535 { .. }
+  parallel if arr.size() > 65535 { ... }
   ```
   ```
   for i in 0..<arr.size()
-  parallel if arr.size() > 65535 { .. }
+  parallel if arr.size() > 65535 { ... }
   ```
   ```
-  for i in 0..<arr.size() parallel reduce(sum: +) { .. }
+  for i in 0..<arr.size() parallel reduce(sum: +) { ... }
   ```
   ```
   for i in 0..<arr.size()
   parallel
   if arr.size() > 65535
   reduce(sum: +)
-  schedule(dynamic, 65536) { .. }
+  schedule(dynamic, 65536) { ... }
   ```
 
 > TODO  
