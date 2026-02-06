@@ -3,8 +3,14 @@ layout: null
 permalink: /sitemap.txt
 ---
 {%- assign base = site.url | append: site.baseurl -%}
-{%- assign content_pages = site.pages | where_exp: "p", "p.path contains '.md'" | sort_natural: "path" -%}
-{%- for p in content_pages -%}
-{%- if p.url and p.url != "" and p.sitemap != false and p.url != "/404.html" and p.url != "/404/" and p.url != "/sitemap.xml" and p.url != "/sitemap.txt" -%}{{ base }}{{ p.url }}
+{%- assign content_pages = site.pages | where_exp: "p", "p.path contains '.md'" -%}
+
+{%- assign home_page = content_pages | where: "url", "/" | first -%}
+{%- if home_page and home_page.sitemap != false -%}{{ base }}{{ home_page.url }}
+{% endif -%}
+
+{%- assign sorted_pages = content_pages | sort_natural: "path" -%}
+{%- for p in sorted_pages -%}
+{%- if p.url and p.url != "" and p.url != "/" and p.sitemap != false and p.url != "/404.html" and p.url != "/404/" and p.url != "/sitemap.xml" and p.url != "/sitemap.txt" -%}{{ base }}{{ p.url }}
 {% endif -%}
 {%- endfor -%}
