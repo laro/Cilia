@@ -291,7 +291,7 @@ One could define the order of bit in a bitfield.
         - `Type*> pointer`
         - `Type*1> pointer`
         - `Type*¹> pointer`
-        - `I don't like this:
+        - I don't like this:
             - `Type^* pointer`
             - `Type+* pointer`
             - `Type.* pointer`
