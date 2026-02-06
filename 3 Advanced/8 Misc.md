@@ -82,6 +82,10 @@ Mixing integer with float
 
 ### [Endianness](https://en.wikipedia.org/wiki/Endianness)
 
+Having integers with defined  helps mainly with binary file or network message formats, that usually have certain (traditional) requirements in this regards.
+
+When integers are read and written in the processor’s native endianness, there is no overhead at all. Handling the non-native endianness merely involves shuffling bytes at read and write time, with no impact on the actual calculations.
+
 Big Endian (Motorola)
 - `cilia::be::Int`, `Int8`, `Int16`, `Int32`, `Int64`
 - MSB first (most significant byte first), starting with the "big end"
