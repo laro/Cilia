@@ -187,7 +187,7 @@ Versioning of the Cilia source code
 
 ### Macros
 
-No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just object-like:
+No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just basics like:
 - `#define`
 - `#if`
 - `#else`
