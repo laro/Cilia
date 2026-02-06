@@ -16,8 +16,6 @@ permalink: /standard-library/array/
     - "Make simple things simple",  
       having a short and traditional syntax for dynamic arrays should encourage people to use it.
     - `T[] arr` is the short form of `cilia::Array<T> arr`
-        - Also `[T] arr`, as in Swift or Rust, has some merits.  
-          And `[3 T] arr` for fixed sized arrays would be fine for me (I don't like `[T;3] arr`), but I'll stick with the more traditional `T[] arr` (like C# and Java).
     - The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
         - that's the more traditional wording,
         - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
