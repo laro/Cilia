@@ -82,7 +82,7 @@ Mixing integer with float
 
 ### [Endianness](https://en.wikipedia.org/wiki/Endianness)
 
-Having integers with defined  helps mainly with binary file or network message formats, that usually have certain (traditional) requirements in this regards.
+Having integers with a defined endianness is mainly useful for binary file and network message formats, which typically follow specific (often traditional) conventions.
 
 When integers are read and written in the processor’s native endianness, there is no overhead at all. Handling the non-native endianness merely involves shuffling bytes at read and write time, with no impact on the actual calculations.
 
