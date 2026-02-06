@@ -155,7 +155,8 @@ I want integer operations **with carry** (flag or UInt) to implement `Int128`, `
 
 Having `cilia::saturating::Int`, that is like `cilia::Int`, but with **saturation** for all operations. So with limit to maximum, no wrap around. Typically using SIMD (as those „media/DSP instructions“ do support saturation natively).  
 See [https://en.wikipedia.org/wiki/Saturation_arithmetic](https://en.wikipedia.org/wiki/Saturation_arithmetic)
-- `saturating::Int8`/`Int16`/`Int32`/`Int64`
+- `saturating::Int`
+    - `saturating::Int8`/`Int16`/`Int32`/`Int64`
 - `saturating::UInt`
     - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
