@@ -18,7 +18,7 @@ Create an alias with `using`, for:
         - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
 - Member **function** alias
     ```
-    class Vector3<type T> : Vector<3, T> {
+    class A : B {
         using func f(String) = g(String)
         using func f = g
     }
