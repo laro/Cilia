@@ -11,56 +11,64 @@ Based on UTF-8, as that IMHO is (among all the Unicode formats)
 - the most compatible (as it is ASCII based),
 - the most efficient, at least for "western" use (and you are free to use UTF16- or UTF32String otherwise).
     
-- Iteration over a `String` or `StringView` by:
-    - **Graphemes**/Grapheme Clusters
-        - represented by `StringView`.
-        - This is the _default form of iteration_ over a `String` or `StringView`
-        - A single grapheme will often consist of multiple code _units_  
-          and may even consist of multiple code _points_ (then it is called a grapheme _cluster_).
-        - `for grapheme in "abc 🥸👮🏻"`
-            - "a", "b", "c", " ", "🥸", "👮🏻"
-            - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
-        - A bit slow, as it has to find grapheme (and cluster) boundaries.
-        - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
-        - Additional/alternative names?
-            - `for graphemeCluster in text.asGraphemeClusters()`?
-    - **Code Points**
-        - represented by `UInt32`,
-            - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
-                - Called "auto decoding" in D.
-            - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
-            - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
-        - **Note:** _Not even with UTF-32_ do all grapheme clusters fit into a single code point,  
-          so not:
-            - Emoji ZWJ Sequences (Zero Width Joiner),
-                - emoji with modifier characters like skin tone or variation selector,
-            - diacritical characters (äöü..., depending on the normal form chosen),
-            - surely some more ...
-        - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
-        - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
-    - **Code Units**
-        - represented by
-            - `Char` for `String`
-                - it is `Char`==`Char8`==`UInt8` and `String`==`UTF8String`
-            - `Char16` for `UTF16String`
-            - `Char32` for `UTF32String`
-        - `for aChar8 in "abc 🥸👮🏻".asArray()`
-            - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
-            - same for
-                - `for aChar8 in u8"abc 🥸👮🏻".asArray()`
-                - `for aChar8 in UTF8String("abc 🥸👮🏻").asArray()`
-        - `for aChar16 in u"abc 🥸👮🏻".asArray()`
-            - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
-            - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
-        - `for aChar32 in U"abc 🥸👮🏻".asArray()`
-            - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
-            - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
+Iteration over a `String` or `StringView` by:
+- **Graphemes**/Grapheme Clusters
+    - represented by `StringView`.
+    - This is the _default form of iteration_ over a `String` or `StringView`
+    - A single grapheme will often consist of multiple code _units_  
+      and may even consist of multiple code _points_ (then it is called a grapheme _cluster_).
+    - `for grapheme in "abc 🥸👮🏻"`
+        - "a", "b", "c", " ", "🥸", "👮🏻"
+        - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
+    - A bit slow, as it has to find grapheme (and cluster) boundaries.
+    - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
+    - Additional/alternative names?
+        - `for graphemeCluster in text.asGraphemeClusters()`?
+- **Code Points**
+    - represented by `UInt32`,
+        - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
+            - Called "auto decoding" in D.
+        - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
+        - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
+    - **Note:** _Not even with UTF-32_ do all grapheme clusters fit into a single code point,  
+      so not:
+        - Emoji ZWJ Sequences (Zero Width Joiner),
+            - emoji with modifier characters like skin tone or variation selector,
+        - diacritical characters (äöü..., depending on the normal form chosen),
+        - surely some more ...
+    - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
+    - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
+- **Code Units**
+    - represented by
+        - `Char` for `String`
+            - it is `Char`==`Char8`==`UInt8` and `String`==`UTF8String`
+        - `Char16` for `UTF16String`
+        - `Char32` for `UTF32String`
+    - `for aChar8 in "abc 🥸👮🏻".asArray()`
+        - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
+        - same for
+            - `for aChar8 in u8"abc 🥸👮🏻".asArray()`
+            - `for aChar8 in UTF8String("abc 🥸👮🏻").asArray()`
+    - `for aChar16 in u"abc 🥸👮🏻".asArray()`
+        - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
+        - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
+    - `for aChar32 in U"abc 🥸👮🏻".asArray()`
+        - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
+        - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
          
 
-- `string.toUpper()`, `string.toLower()`
-    - `toUpper(String) -> String`, `toLower(String) -> String`
+### Convert Upper/Lower Case
+
+- `string.toUpper()`
+- `string.toLower()`
+- `toUpper(String) -> String`
+- `toLower(String) -> String`
+
+
+### Sorting
+
 - `stringArray.sort()`
-    - `sort(Container<String>) -> Container<String>`
+- `sort(Container<String>) -> Container<String>`
 - `compare(stringA, stringB) -> Int`
 
 
