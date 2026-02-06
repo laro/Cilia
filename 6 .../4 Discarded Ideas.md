@@ -244,6 +244,8 @@ One could define the order of bit in a bitfield.
 
 ### Arrays & ArrayViews
 - `Int[] dynamicArrayOfIntegers`
+    - Also the syntax `[T] arr`, as in Swift or Rust, has some merits.  
+      And `[3 T] arr` for fixed sized arrays would be fine for me (I don't like `[T;3] arr`), but I'll stick with the more traditional `T[] arr` (like C# and Java).
     - May be confusing because it is so similar to fixed-size arrays,  
       but IMHO the inconsistency is **already in C/C++**:  
         - in function declarations
