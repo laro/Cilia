@@ -1,0 +1,12 @@
+---
+layout: null
+permalink: /sitemap.txt
+---
+{%- assign base = site.url | append: site.baseurl -%}
+{%- for p in site.pages -%}
+  {%- if p.url and p.url != "" -%}
+    {%- unless p.url == "/sitemap.xml" or p.url == "/sitemap.txt" or p.url == "/404.html" or p.url == "/404/" or p.sitemap == false -%}
+{{ base }}{{ p.url }}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
