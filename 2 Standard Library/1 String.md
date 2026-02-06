@@ -4,8 +4,8 @@ permalink: /standard-library/string/
 
 ## String, Char & Unicode
 
-### String (AKA UTF8String)
-`cilia::String` with _basic/standard_ unicode support.  
+### String
+`cilia::String` (AKA `UTF8String`) with _basic/standard_ unicode support.  
 Based on UTF-8, as that IMHO is (among all the Unicode formats)
 - the most widespread nowadays,
 - the most compatible (as it is ASCII based),
