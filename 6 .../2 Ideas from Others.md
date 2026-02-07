@@ -4,7 +4,7 @@ permalink: /more/other-ideas/
 
 ## Ideas from Other Languages
 
-Almost every idea comes from somewhere, but some are clearly inspired by a particular language or developer. I have adopted several of these ideas, but not all of them (yet).
+Almost every idea comes from somewhere, but some are clearly inspired by a particular language or developer. Several of these ideas have been adopted, some not.
 
 
 ### **[Circle](https://github.com/seanbaxter/circle) ([Sean Baxter](https://x.com/seanbax))**
