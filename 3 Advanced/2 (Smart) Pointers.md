@@ -65,9 +65,8 @@ unsafe {
 }
 ```
 
-### `new`
-`new` is kept, as it is a short and quite 'traditional' syntax, also used in C# and Java. In Cilia `new` is redefined as `makeUnique<Type> -> Type+`, and as a _right value_ `Type+` can also be assigned to `Type^` and `Type*`, you can use new for all three pointer types:
-
+### Dynamic Allocation with `new`
+`new` is kept as a short and quite 'traditional' syntax for **dynamic allocation** (heap allocation), also used in C# and Java. In Cilia `new` is redefined as `makeUnique<Type> -> Type+`, and as a _right value_ `Type+` can also be assigned to `Type^` and `Type*`, you can use new for all three pointer types:
 ```
 Type+ uniquePtr = new Type
 Type^ sharedPtr = new Type
