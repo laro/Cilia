@@ -16,6 +16,7 @@ Create an alias with `using`, for:
     - Not quite possible in C++.
         - With `T& z = data[2]` unfortunately memory is created for the reference (the pointer).
         - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
+        
 - Member **function** alias
     ```
     class A : B {
@@ -25,6 +26,7 @@ Create an alias with `using`, for:
     ```
     - `using func f(String) = g(String)` to alias the function `g(String)`.
     - `using func f = g` to alias _all_ overloads of the function `g`.
+
 - **Type** alias in a class
     ```
     class String {
