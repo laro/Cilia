@@ -36,13 +36,12 @@ ContactInfo^ contactInfoSharedPtr = new ContactInfo
 
 ### Type- pointer
 
-A weak pointer is a pointer to a shared pointer.  
+A weak pointer observes an object managed by a shared pointer without extending its lifetime (it does not increase the reference count).  
+You can `lock()` it to obtain a `T^` if the object is still alive.  
 
 With  
 `T- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
-`weakPointerToWindow?.close()`  
-and
 ```
 if (Window^ window = weakPointerToWindow.lock()) {
     window->show()
@@ -50,6 +49,8 @@ if (Window^ window = weakPointerToWindow.lock()) {
     window->close()
 }
 ```
+and  
+`weakPointerToWindow?.close()`  
 
 ### Type* pointer
 A "raw" pointer is a classical C/C++ pointer. Ownership depends, case by case, but in Cilia it typically is without ownership.
@@ -66,7 +67,12 @@ unsafe {
 ```
 
 ### Dynamic Allocation with `new`
-`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. In Cilia, `new` is redefined as `makeUnique<Type> -> Type+`, and as a _right value_ `Type+` can also be assigned to `Type^` and `Type*`, you can use `new` for all three pointer types:
+`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation.
+
+In Cilia,
+# `new` acts like `makeUnique<Type> -> Type+`, and
+# a _right value_ `Type+` can also be assigned to `Type^` and `Type*`,
+so now you can use `new` for all three pointer types:
 ```
 Type+ uniquePtr = new Type
 Type^ sharedPtr = new Type
@@ -81,7 +87,7 @@ Type+ uniquePtr = new Type
 Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
 
-You still can use `makeShared<Type>()` (which is more efficient for shared pointers `T^`) and `makeUnique<Type>()`, of course:
+You still can use `makeShared<Type>()` (which is more efficient for shared pointers due to a single-allocation optimization) and `makeUnique<Type>()`, of course:
 ```
 Type+ uniquePtr = makeUnique<Type>()
 Type^ sharedPtr = makeShared<Type>()
