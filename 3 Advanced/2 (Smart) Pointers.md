@@ -11,7 +11,7 @@ permalink: /advanced/smart-pointers/
 - `Type^ ptr` is a `SharedPtr<Type> ptr`
 - `Type- ptr` is a `WeakPtr<Type> ptr`
 
-> The use of plain local/stack-allocated or member variables is still preferred, of course.
+> The use of plain local/stack-allocated or member variables is still preferred, of course.  
 > Use (smart) pointers only when you need them. 
 
 
