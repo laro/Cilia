@@ -95,11 +95,14 @@ Type^ sharedPtr = makeShared<Type>()
 `Type[0]+` is short for `UniquePtr<Type[0]>`, i.e. a unique pointer to a C/C++ array of fixed but unknown size, `0` is just a dummy here. In C++ `unique_ptr<Type[]>` the `Type[]` is an "incomplete type". But in Cilia `Type[]` is an `Array<Type>`, so we use `Type[0]` instead.
 
 ```
-ContactInfo+    contactInfoUniquePtr      = new ContactInfo
-ContactInfo[0]+ contactInfoUniqueArrayPtr = new ContactInfo[10]
+Type+    uniquePtr        = new Type
+Type[0]+ uniquePtrToArray = new Type[10]
 ```
 
-Not ~~`ContactInfo+ contactInfoUniqueArrayPtr = new ContactInfo[10]`~~:  
-There is no array-to-single-element-pointer decay possible with `UniquePtr`, as that is a necessary distinction in its type.
+Not ~~`Type+ uniquePtrToArray = new Type[10]`~~. There is no array-to-single-element-pointer decay possible with `T+`/`UniquePtr`, as that is a necessary distinction in its type.
 
-Also possible (but _not_ recommended) is `ContactInfo[0]^ contactInfoUniqueArrayPtr = makeUnique<ContactInfo[10]>()` (whether it is a single-element- or an array-pointer is stored in the SharedPtrInfo).
+A `T^`/`SharedPtr<>` stores in the SharedPtrInfo, if it is a single-element-pointer or an array-pointer, so here it is also possible to write:
+```
+Type^ uniquePtrToArray = makeUnique<Type[10]>()
+```
+But it is _not_ recommended, as `makeShared<Type[10]>()` is more efficient for shared pointers.
