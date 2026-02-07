@@ -72,6 +72,7 @@ unsafe {
 In Cilia,
 1. `new` acts like `makeUnique<Type> -> Type+`, and
 2. a _right value_ `Type+` can also be assigned to `Type^`,
+
 so now you can use `new` for both pointer types:
 ```
 Type+ uniquePtr = new Type
