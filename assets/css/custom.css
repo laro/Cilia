@@ -144,8 +144,9 @@ main dl {
 /*
   Keep code blocks constrained to the same readable line length as text.
   Long lines should scroll horizontally inside the block instead of expanding the layout.
-*/
 .markdown-body main :is(pre, .highlight, div.highlight, figure.highlight, pre.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
+*/
+.markdown-body main :is(.highlight, div.highlight, figure.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
   max-width: 80ch;
   box-sizing: border-box;
 }
