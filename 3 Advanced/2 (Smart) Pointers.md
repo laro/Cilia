@@ -92,7 +92,7 @@ But
 - it is inconvenient to use,
 - allowed in unsafe code only,
 - you need to manage lifetime of the instance yourself (i.e. call `delete`), and
-- you need to distinguish between pointer-tosingle-element from pointer-to-array (i.e. call `delete` or `delete[0]`).
+- you need to distinguish between pointer-to-single-element from pointer-to-array (i.e. call `delete` or `delete[0]`).
 
 ```
 unsafe {
