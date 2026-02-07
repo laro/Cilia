@@ -4,15 +4,20 @@ permalink: /advanced/type-extension/
 
 ## Type Extension
 
-To add "member like" functions/methods, constants, types (and maybe static variables) to "third party" classes/types.  
+To add "member like" things to "third party" classes or or built-in types, that we cannot change otherwise:
+- functions/methods (non-virtual and static),
+- dependent types (`T::InParameterType`) or type aliases,
+- static constants and variables.
+
 In case of conflicts, in-class definitions (inside the class) have priority (and a warning is issued).
+
 Extensions are defined similar to classes, but with the `extension` keyword.
 
 - **Extension methods**
     - Can be called like normal member functions (with standard dot-notation), but they but do not have access to private or protected members themselves.
     - Inside an extension, `this` refers to the instance itself.
     - Also possible for basic/arithmetic types, e.g.:  
-      ```cpp
+      ```
       extension Int {
           func toString() -> String { 
               // Logic to convert Int to String
@@ -26,14 +31,14 @@ Extensions are defined similar to classes, but with the `extension` keyword.
 - **Externally defined alias** (with `using`) for members:
     - Useful for adapting APIs or providing more descriptive names.
     - **Variables**  
-      ```cpp
+      ```
       extension Vector2 {
           using var x = data[0]
           using var y = data[1]
       }
       ```
     - **Functions**  
-      ```cpp
+      ```
       extension std::vector<type T> {
           // Alias for a specific signature
           using func pushBack(String) = push_back(String)
@@ -44,13 +49,13 @@ Extensions are defined similar to classes, but with the `extension` keyword.
         ```
     - **Types**  
         - Define member types or traits externally.
-        - ```cpp
+        - ```
           extension std::string_view {
               using InParameterType = const std::string_view // Pass by value
           }
           ```
 - Static constants, typically for type traits
-  ```cpp
+  ```
   extension Float32 {
       static const Bool IsFloatingPoint = True
   }
@@ -59,16 +64,16 @@ Extensions are defined similar to classes, but with the `extension` keyword.
   }
   ```
 - Static variablers
-    - Why not?
-    - ```cpp
+    - ```
       extension ContactInfo {
           // External mutable static variable
           static Int numOfCallsToExtensionFunctionX = 0
       }
       ```
+    - Rarely used, but why not.
 - Generic Extensions (e.g., for Arrays)
     - Extensions can be parameterized to support generic types and native arrays.
-    - ```cpp
+    - ```
       extension <type T, Int N> T[N] {
           using ValueType = T
           
