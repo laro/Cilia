@@ -80,9 +80,9 @@ Mixing integer with float:
             - `aFloat64 * Float64(anInt64)` // OK
 
 
-### [Endianness](https://en.wikipedia.org/wiki/Endianness)
+### Endianness
 
-Having integers with a defined endianness is mainly useful for binary file and network message formats, which typically follow specific (often traditional) conventions.
+Having integers with a defined [endianness](https://en.wikipedia.org/wiki/Endianness) is mainly useful for binary file and network message formats, which typically follow specific (often traditional) conventions.
 
 When integers are read and written in the processor’s native endianness, there is no overhead at all. Handling the non-native endianness merely involves shuffling bytes at read and write time, with no impact on the actual calculations.
 
