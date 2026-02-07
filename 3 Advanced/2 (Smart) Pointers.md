@@ -93,7 +93,7 @@ Type^ sharedPtr = makeShared<Type>()
 `Type+`/`Type^` is short for `UniquePtr<Type>`/`SharedPtr<Type>`, i.e. a unique/shared pointer to a _single_ object.  
 `Type[0]+`/`Type[0]^` is short for `UniquePtr<Type[0]>`/`SharedPtr<Type[0]>`, i.e. a unique pointer to a C/C++ _array_ of fixed but unknown size, `0` is just a dummy here.
 
-In C++ `unique_ptr<Type[]>`/`shared_ptr<Type[]>` the `Type[]` is an "incomplete type". But in Cilia `Type[]` is an `Array<Type>`, so we use `Type[0]` instead.
+In C++ `unique_ptr<Type[]>`/`shared_ptr<Type[]>`, the `Type[]` is an "incomplete type". But in Cilia `Type[]` is an `Array<Type>`, so we use `Type[0]` instead.
 
 ```
 Type+    uniquePtr        = new Type
