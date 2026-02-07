@@ -126,6 +126,7 @@ Little Endian (Intel)
 
 
 ### Integer Operations with Carry
+
 I want integer operations **with carry** (flag or UInt) to implement `Int128`, `Int256` etc. without the need for processor specific assembler or compiler intrinsics.
 - Add with carry (flag, i.e. one bit only)
     - `UInt c = add(UInt a, UInt b, inout Bool carryFlag)`
@@ -245,7 +246,7 @@ No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just basic
             - `Optional<T+>` internally is just a `T+`,
             - `Optional<T->` internally is just a `T-`.
         - So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.
-        - This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>`.
+        - This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
 ### Anonymous Members
