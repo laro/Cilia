@@ -84,7 +84,7 @@ Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
 
 In Cilia a _right value_ `Type+` can even be assigned to `Type*`,
-so you still can use `new` for raw pointers (in unsafe code):
+so you still can use `new` for raw pointers. Allowed in unsafe code only, and you need to manage lifetime of the instance yourself:
 ```
 unsafe {
     Type* ptr = new Type
