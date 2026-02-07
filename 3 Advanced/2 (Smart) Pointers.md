@@ -67,7 +67,10 @@ unsafe {
 ```
 
 ### Dynamic Allocation with `new`
-`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation.
+`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. `new T` returns a `T+`/`UniquePtr<T>`, so `T+`/`UniquePtr<T>` is the "default type" for pointers:
+```
+ContactInfo+ uniquePtrToContactInfo = new ContactInfo
+```
 
 In Cilia,
 1. `new` acts like `makeUnique<Type> -> Type+`, and
@@ -84,11 +87,20 @@ Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
 
 In Cilia a _right value_ `Type+` can even be assigned to `Type*`,
-so you still can use `new` for raw pointers. Allowed in unsafe code only, and you need to manage lifetime of the instance yourself:
+so you still can use `new` for raw pointers.  
+But
+- it is inconvenient to use,
+- allowed in unsafe code only,
+- you need to manage lifetime of the instance yourself (i.e. call `delete`), and
+- you need to distinguish between pointer-tosingle-element from pointer-to-array (i.e. call `delete` or `delete[0]`).
+
 ```
 unsafe {
     Type* ptr = new Type
     delete ptr
+
+    Type* ptr = new Type[10]
+    delete[10] ptr
 }
 ```
 
