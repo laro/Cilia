@@ -142,16 +142,25 @@ main dl {
 }
 
 /*
+  Keep code blocks constrained to the same readable line length as text.
+  Long lines should scroll horizontally inside the block instead of expanding the layout.
+*/
+.markdown-body main :is(pre, .highlight, div.highlight, figure.highlight, pre.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
+  max-width: 80ch;
+  box-sizing: border-box;
+}
+
+.markdown-body main pre {
+  overflow-x: auto;
+}
+
+/*
   Reduce spacing between a paragraph and a following list.
   Typical theme spacing is ~1em; half is ~0.5em.
 */
 .markdown-body main p:has(+ :is(ul, ol)) {
   margin-bottom: 0.5em;
 }
-
-/*main pre {
-  max-width: 100ch;
-}*/
 
 .markdown-body :is(h1, h2, h3, h4, h5, h6) {
   border-bottom: none;
