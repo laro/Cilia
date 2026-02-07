@@ -19,7 +19,7 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `auto concat(const string_view a, const string_view b) -> string { return ...; }`
 - Loops
     - `for (int i = 1; i <= 10; ++i) { ...; }`
-    - `for (int i = 0; i < words.ssize(); ++i) { ...; }`
+    - `for (size_t i = 0; i < words.size(); ++i) { ...; }`
     - `for (int i : {5, 7, 11, 13}) { ...; }`
     - `for (const auto& word : words) { ... }`
 
