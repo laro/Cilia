@@ -67,23 +67,13 @@ body {
 }
 
 /* Syntax-highlight wrappers used by GitHub Pages / Jekyll / Rouge. */
-.markdown-body :is(.highlight, div.highlight, figure.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
+.markdown-body :is(.highlight, div.highlight, figure.highlight, pre.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
   background-color: var(--color-neutral-muted) !important;
-  border: 1px solid var(--color-border-default) !important;
-  padding: 0 !important;
-  box-sizing: border-box;
 }
 
-.markdown-body pre.highlight {
+.markdown-body :is(.highlight pre, div.highlight pre, figure.highlight pre, pre.highlight) {
   background-color: var(--color-neutral-muted) !important;
   border: 1px solid var(--color-border-default) !important;
-}
-
-.markdown-body :is(.highlight pre, div.highlight pre, figure.highlight pre, .highlighter-rouge .highlight pre) {
-  /* Wrapper provides frame + background; keep inner <pre> flush/transparent. */
-  background-color: transparent !important;
-  border: 0 !important;
-  margin: 0;
 }
 
 .markdown-body pre code {
@@ -100,6 +90,8 @@ body {
 @media (prefers-color-scheme: dark) {
   /* Block code backgrounds */
   .markdown-body pre,
+  .markdown-body .highlight pre,
+  .markdown-body .highlighter-rouge .highlight pre,
   .markdown-body pre.highlight {
     background-color: var(--cilia-code-bg) !important;
     color: var(--cilia-fg) !important;
@@ -111,21 +103,13 @@ body {
   .markdown-body .highlighter-rouge,
   .markdown-body .highlighter-rouge .highlight {
     background-color: var(--cilia-code-bg) !important;
-    border: 1px solid var(--cilia-border) !important;
-    padding: 0 !important;
-    box-sizing: border-box;
-  }
-
-  .markdown-body :is(.highlight pre, .highlighter-rouge .highlight pre) {
-    background-color: transparent !important;
-    border: 0 !important;
-    margin: 0;
   }
 
   /*
     The default GitHub Pages Rouge theme is light and sets many token colors to near-black.
     On a dark code background that becomes unreadable, so force tokens to inherit a light color.
   */
+  .markdown-body .highlight,
   .markdown-body .highlight * {
     color: var(--cilia-fg) !important;
     background-color: transparent !important;
@@ -158,34 +142,16 @@ main dl {
 }
 
 /*
-  Keep code blocks constrained to the same readable line length as text.
-  Long lines should scroll horizontally inside the block instead of expanding the layout.
-*/
-.markdown-body main :is(pre, .highlight, div.highlight, figure.highlight, pre.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
-  max-width: 80ch;
-  box-sizing: border-box;
-}
-
-/* Put the horizontal scrollbar on the wrapper (reduces bottom "band"). */
-.markdown-body main :is(.highlight, div.highlight, figure.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
-  overflow-x: auto;
-}
-
-.markdown-body main :is(.highlight pre, div.highlight pre, figure.highlight pre, .highlighter-rouge .highlight pre) {
-  overflow-x: visible;
-}
-
-.markdown-body main pre {
-  overflow-x: auto;
-}
-
-/*
   Reduce spacing between a paragraph and a following list.
   Typical theme spacing is ~1em; half is ~0.5em.
 */
 .markdown-body main p:has(+ :is(ul, ol)) {
   margin-bottom: 0.5em;
 }
+
+/*main pre {
+  max-width: 100ch;
+}*/
 
 .markdown-body :is(h1, h2, h3, h4, h5, h6) {
   border-bottom: none;
