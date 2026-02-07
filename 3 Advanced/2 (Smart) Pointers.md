@@ -102,6 +102,6 @@ Not ~~`Type+ uniquePtrToArray = new Type[10]`~~. There is no array-to-single-ele
 
 A `T^`/`SharedPtr<>` stores in the SharedPtrInfo, if it is a single-element-pointer or an array-pointer, so here it is also possible to write:
 ```
-Type^ uniquePtrToArray = makeUnique<Type[10]>()
+Type^ sharedPtrToArray = makeUnique<Type[10]>()
 ```
 But it is _not_ recommended, as `makeShared<Type[10]>()` is more efficient for shared pointers.
