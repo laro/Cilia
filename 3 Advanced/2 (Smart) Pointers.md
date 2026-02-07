@@ -67,7 +67,7 @@ unsafe {
 ```
 
 ### Dynamic Allocation with `new`
-`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. `new T` returns a `T+`/`UniquePtr<T>`, so `T+`/`UniquePtr<T>` is the "default type" for pointers:
+`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. `new T` returns a `T+`/`UniquePtr<T>`, so that is the "default type" for pointers:
 ```
 ContactInfo+ uniquePtrToContactInfo = new ContactInfo
 ```
