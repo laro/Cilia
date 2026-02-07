@@ -138,5 +138,9 @@ We can redefine `T^` and `T+` for special cases, like interoperability with garb
 
 `T+` is defined via type traits `UniquePtrType`:
 - For C++/Cilia classes `T+` is `UniquePtr<T>`:
-    - `using<type T> T::UniquePtrType = UniquePtr<T>`
+  ```
+  extension<type T> T {
+      using UniquePtrType = UniquePtr<T>
+  }
+  ```
 - For Objective-C/Swift, C#/.NET, and Java the `UniquePtrType` will be very similar to the `SharedPtrType`, maybe even identical.
