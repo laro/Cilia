@@ -39,9 +39,11 @@ With
 `T- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
 `weakPointerToWindow?.close()`  
-instead of
+and
 ```
 if (Window^ window = weakPointerToWindow.lock()) {
+    window->show()
+    // ...
     window->close()
 }
 ```
@@ -107,15 +109,31 @@ Also possible (but _not_ recommended) is `ContactInfo[0]^ contactInfoUniqueArray
 We can redefine `T^` and `T+` for special cases, like interoperability with garbage collected languages like C# and Java.
 
 `T^` is defined via type traits `SharedPtrType`:
-- For C++/Cilia classes `T^` is `SharedPtr<T>`:  
-  `using<type T> T::SharedPtrType = SharedPtr<T>`
-- Objective-C/Swift classes use their reference counting mechanism:  
-  `using ObjectiveCObject::SharedPtrType = ObjectiveCRefCountPtr`
+- For all C++/Cilia classes `T^` is `SharedPtr<T>`:  
+  ```
+  extension<type T> T {
+      using SharedPtrType = SharedPtr<T>
+  }
+  ```
+- Objective-C/Swift classes use their reference counting mechanism:
+  ```
+  class ObjectiveCObject {
+      using SharedPtrType = ObjectiveCRefCountPtr
+  }
+  ```
 - C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).  
-  `using DotNetObject::SharedPtrType = DotNetGCPtr`
+  ```
+  class DotNetObject {
+      using SharedPtrType = DotNetGCPtr
+  }
+  ```
     - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
 - Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
-  `using JavaObject::SharedPtrType = JavaGCPtr`
+  ```
+  class JavaObject {
+      using SharedPtrType = JavaGCPtr
+  }
+  ```
     - Probably very similar to C#/.NET.
 
 `T+` is defined via type traits `UniquePtrType`:
