@@ -141,6 +141,10 @@ main dl {
   max-width: 80ch;
 }
 
+.markdown-body .highlighter-rouge {
+  max-width: 80ch;
+}
+
 /*
   Reduce spacing between a paragraph and a following list.
   Typical theme spacing is ~1em; half is ~0.5em.
