@@ -4,12 +4,15 @@ permalink: /advanced/smart-pointers/
 
 ## Short Smart Pointer Syntax
 
-“Make simple things simple” (or at least short to write), to encourage use of smart pointers. When you need them. The use of plain local/stack-allocated or member variables is still preferred, of course.
+“Make simple things simple” (or at least short to write), to encourage use of smart pointers.
 
 - `Type* ptr` is a "raw" pointer
 - `Type+ ptr` is a `UniquePtr<Type> ptr`
 - `Type^ ptr` is a `SharedPtr<Type> ptr`
 - `Type- ptr` is a `WeakPtr<Type> ptr`
+
+> The use of plain local/stack-allocated or member variables is still preferred, of course.
+> So use (smart) pointers only when you need them. 
 
 
 ### Type+ pointer
