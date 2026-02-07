@@ -48,9 +48,9 @@ When translating C++ code to Cilia then change conflicting names, e.g.
 So no forward declarations necessary, as with C# and Java (but unlike C/C++, due to its single-pass compiler).
 
 
-### Mixed Arithmetic
+### Restricted Mixed Arithmetic
 
-Mixing signed with unsigned integer
+No mixing of signed with unsigned integer:
 - `Signed + - * / Unsigned` is an error,
     - you have to cast explicitly,
     - i.e. no implicit cast (neither ~~`UInt` -> `Int`~~ nor ~~`Int` -> `UInt`~~).
@@ -61,7 +61,7 @@ Mixing signed with unsigned integer
     - if the literal on the right is `<= 0`
     - TODO Checking for `if aUInt <= -1` would be simple, as `-1` can _not_ implicitly be converted to an UInt. But `0` can, so how to check for that?
 
-Mixing integer with float
+Mixing integer with float:
 - `1 * aFloat` is possible
     - Warning, if the integer literal cannot be reproduced exactly as `Float32`/`64`
 - `anInt * aFloat` is possible
