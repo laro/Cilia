@@ -71,7 +71,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
       }
       ```
     - Rarely used, but why not.
-- Generic Extensions (e.g., for Arrays)
+- Generic Extensions (e.g., for static arrays)
     - Extensions can be parameterized to support generic types and native arrays.
     - ```
       extension <type T, Int N> T[N] {
