@@ -2,7 +2,7 @@
 permalink: /advanced/aliasing/
 ---
 
-## Aliasing
+## Type, Variable, and Function Aliasing
 
 Create an alias with `using`, for:
 - Member **variable** alias
