@@ -70,8 +70,8 @@ unsafe {
 `new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation.
 
 In Cilia,
-# `new` acts like `makeUnique<Type> -> Type+`, and
-# a _right value_ `Type+` can also be assigned to `Type^`,
+1. `new` acts like `makeUnique<Type> -> Type+`, and
+2. a _right value_ `Type+` can also be assigned to `Type^`,
 so now you can use `new` for both pointer types:
 ```
 Type+ uniquePtr = new Type
