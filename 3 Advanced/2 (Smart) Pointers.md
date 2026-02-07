@@ -4,20 +4,20 @@ permalink: /advanced/smart-pointers/
 
 ## Short Smart Pointer Syntax
 
-“Make simple things simple” (or at least short to write), to encourage use of smart pointers.
+"Make simple things simple" (or at least short to write), to encourage the use of smart pointers.
 
 - `Type* ptr` is a "raw" pointer
-- `Type+ ptr` is a `UniquePtr<Type> ptr`
-- `Type^ ptr` is a `SharedPtr<Type> ptr`
-- `Type- ptr` is a `WeakPtr<Type> ptr`
+- `Type+ ptr` is a `UniquePtr<Type>`
+- `Type^ ptr` is a `SharedPtr<Type>`
+- `Type- ptr` is a `WeakPtr<Type>`
 
 > The use of plain local/stack-allocated or member variables is still preferred, of course.  
-> Use (smart) pointers only when you need them. 
+> Use (smart) pointers only when you need them.
 
 
 ### Type+ pointer
 
-This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is deleted (e.g. goes out of scope).
+This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope).
 
 ```
 ContactInfo+ contactInfoUniquePtr = new ContactInfo
@@ -26,7 +26,7 @@ ContactInfo+ contactInfoUniquePtr = new ContactInfo
 
 ### Type^ pointer
 
-A pointer with shared ownership: the object will be deleted when all "its" pointers are deleted (e.g. go out of scope).  
+A pointer with shared ownership: the object will be deleted when all of "its" pointers are destroyed (e.g. when all of them go out of scope).  
 Inspired by C++/CLI.
 
 ```
@@ -52,7 +52,7 @@ if (Window^ window = weakPointerToWindow.lock()) {
 ```
 
 ### Type* pointer
-A "raw" pointer is a classical C/C++ pointer. Ownership depends, case by case, but in Cilia it typically is without ownership.  
+A "raw" pointer is a classical C/C++ pointer. Ownership depends, case by case, but in Cilia it typically is without ownership.
 
 A "raw" pointer is considered **unsafe** in Cilia:
 ```
@@ -66,7 +66,7 @@ unsafe {
 ```
 
 ### Dynamic Allocation with `new`
-`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. In Cilia `new` is redefined as `makeUnique<Type> -> Type+`, and as a _right value_ `Type+` can also be assigned to `Type^` and `Type*`, you can use `new` for all three pointer types:
+`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. In Cilia, `new` is redefined as `makeUnique<Type> -> Type+`, and as a _right value_ `Type+` can also be assigned to `Type^` and `Type*`, you can use `new` for all three pointer types:
 ```
 Type+ uniquePtr = new Type
 Type^ sharedPtr = new Type
@@ -81,7 +81,7 @@ Type+ uniquePtr = new Type
 Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
 
-You still can use `makeShared<Type>()` (that is more efficient for shared pointers `T^`) and `makeUnique<Type>()`, of course:
+You still can use `makeShared<Type>()` (which is more efficient for shared pointers `T^`) and `makeUnique<Type>()`, of course:
 ```
 Type+ uniquePtr = makeUnique<Type>()
 Type^ sharedPtr = makeShared<Type>()
