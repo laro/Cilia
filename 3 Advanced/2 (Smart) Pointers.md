@@ -71,20 +71,24 @@ unsafe {
 
 In Cilia,
 # `new` acts like `makeUnique<Type> -> Type+`, and
-# a _right value_ `Type+` can also be assigned to `Type^` and `Type*`,
-so now you can use `new` for all three pointer types:
+# a _right value_ `Type+` can also be assigned to `Type^`,
+so now you can use `new` for both pointer types:
 ```
 Type+ uniquePtr = new Type
 Type^ sharedPtr = new Type
-
-unsafe {
-    Type* ptr = new Type
-    delete ptr
-}
 ```
 ```
 Type+ uniquePtr = new Type
 Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
+```
+
+In Cilia a _right value_ `Type+` can even be assigned to `Type*`,
+so you still can use `new` for raw pointers (in unsafe code):
+```
+unsafe {
+    Type* ptr = new Type
+    delete ptr
+}
 ```
 
 You still can use `makeShared<Type>()` (which is more efficient for shared pointers due to a single-allocation optimization) and `makeUnique<Type>()`, of course:
