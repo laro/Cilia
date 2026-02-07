@@ -4,7 +4,7 @@ permalink: /advanced/type-extension/
 
 ## Type Extension
 
-To add "member like" things to "third party" classes or or built-in types, that we cannot change otherwise:
+"Third party" classes or or built-in types, that we cannot change otherwise, can be extended with "member like"
 - functions/methods (non-virtual and static),
 - dependent types (`T::InParameterType`) or type aliases,
 - static constants and variables.
