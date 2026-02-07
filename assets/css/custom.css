@@ -166,6 +166,15 @@ main dl {
   box-sizing: border-box;
 }
 
+/* Put the horizontal scrollbar on the wrapper (reduces bottom "band"). */
+.markdown-body main :is(.highlight, div.highlight, figure.highlight, .highlighter-rouge, .highlighter-rouge .highlight) {
+  overflow-x: auto;
+}
+
+.markdown-body main :is(.highlight pre, div.highlight pre, figure.highlight pre, .highlighter-rouge .highlight pre) {
+  overflow-x: visible;
+}
+
 .markdown-body main pre {
   overflow-x: auto;
 }
