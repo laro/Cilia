@@ -12,7 +12,7 @@ permalink: /advanced/smart-pointers/
 - `Type- ptr` is a `WeakPtr<Type> ptr`
 
 > The use of plain local/stack-allocated or member variables is still preferred, of course.
-> So use (smart) pointers only when you need them. 
+> Use (smart) pointers only when you need them. 
 
 
 ### Type+ pointer
@@ -65,8 +65,8 @@ unsafe {
 }
 ```
 
-### `new` instead of `makeUnique<>` & `makeShared<>`
-In Cilia `new` is redefined as `makeUnique<Type> -> Type+`, and a _right value_ `Type+` can also be assigned to `Type^` and `Type*`.
+### `new`
+`new` is kept, as it is a short and quite 'traditional' syntax, also used in C# and Java. In Cilia `new` is redefined as `makeUnique<Type> -> Type+`, and as a _right value_ `Type+` can also be assigned to `Type^` and `Type*`, you can use new for all three pointer types:
 
 ```
 Type+ uniquePtr = new Type
@@ -82,14 +82,11 @@ Type+ uniquePtr = new Type
 Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
 
-You still can use `makeUnique<Type>()` and `makeShared<Type>()`:
+You still can use `makeShared<Type>()` (that is more efficient for shared pointers `T^`) and `makeUnique<Type>()`, of course:
 ```
 Type+ uniquePtr = makeUnique<Type>()
 Type^ sharedPtr = makeShared<Type>()
 ```
-
-`makeShared<Type>()` is more efficient for shared pointers `T^`.  
-`new` is kept, as it is a short and quite 'traditional' syntax, also used in C# and Java.
 
 
 ### `Type+` vs. `Type[10]+`
