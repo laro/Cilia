@@ -10,11 +10,11 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `let mut x: i64 = 42;`
     - `let mut x = 42;`
     - `let x = 42;`
-    - `let mut words: Vec<String> = Vec::new();`
-    - `let mut names: HashSet<String> = HashSet::new();`
-    - `let mut contactInfoForID: HashMap<String, ContactInfo> = HashMap::new();`
+    - `let mut words = Vec::<String>:new();`
+    - `let mut names = HashSet::<String>::new();`
+    - `let mut contactInfoForID = HashMap::<String, ContactInfo>::new();`
 - Functions
-    - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
+    - `fn multiply(a: i64, b: i64) -> i64 { a * b; }`
     - `fn print(a: &ContactInfo) { ...; }`
     - `fn concat(a: &str, b: &str) -> String { return ...; }`
 - Loops
