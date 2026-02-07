@@ -6,7 +6,51 @@ permalink: /more/unfinished-ideas/
 
 Admittedly, many ideas for Cilia are not yet _fully_ developed, but these are not at all.
 
+
+### `T^` to Objects of Other Languages
+
+We can redefine `T^` for special cases, like interoperability with garbage collected languages like C# and Java.
+
+`T^` is defined via type traits `SharedPtrType`:
+- For all C++/Cilia classes `T^` is `SharedPtr<T>`:  
+  ```
+  extension<type T> T {
+      using SharedPtrType = SharedPtr<T>
+  }
+  ```
+- Objective-C/Swift classes use their reference counting mechanism:
+  ```
+  class ObjectiveCObject {
+      using SharedPtrType = ObjectiveCRefCountPtr
+  }
+  ```
+- C#/.NET classes use garbage collected memory for instance/object allocation, add instance/object-pointers to the global list of C#/.NET instance pointers (with GCHandle and/or gcroot).  
+  ```
+  class DotNetObject {
+      using SharedPtrType = DotNetGCPtr
+  }
+  ```
+    - Access/dereferencing creates a temporary `DotNetGCPinnedPtr`, that pins the object (so the garbage collector cannot move it during access).
+- Java classes use garbage collected memory, add pointers to the global list of Java instance pointers.  
+  ```
+  class JavaObject {
+      using SharedPtrType = JavaGCPtr
+  }
+  ```
+    - Probably very similar to C#/.NET.
+
+`T+` is defined via type traits `UniquePtrType`:
+- For C++/Cilia classes `T+` is `UniquePtr<T>`:
+  ```
+  extension<type T> T {
+      using UniquePtrType = UniquePtr<T>
+  }
+  ```
+- For Objective-C/Swift, C#/.NET, and Java the `UniquePtrType` will be very similar to the `SharedPtrType`, maybe even identical.
+
+
 ### OpenMP-like Parallel Programming
+
 - Serial code
   ```
   Floar[] arr = ...
