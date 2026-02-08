@@ -141,6 +141,6 @@ try {
 } catch Exception ex {
     print(ex)
 } catch {
-    print("An unknown exception has occured")
+    print("An unknown exception has occurred")
 }
 ```
