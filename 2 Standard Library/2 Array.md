@@ -53,7 +53,7 @@ extension<type T, Int N> T[N] {
 Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
 But array subscript with `Int+` is unsafe.
 ```
-Int+ array = new Int[3]  // Array-to-pointer decay possible
+Int[0]+ array = new Int[3]
 unsafe {
     array[0] = 0
     array[1] = 0
@@ -64,14 +64,14 @@ unsafe {
 
 Using `Int*` for arrays is possible but generally unsafe.
 ```
-Int+ uniquePtrToArray = new Int[3]  // Array-to-pointer decay possible
+Int[0]+ uniquePtrToArray = new Int[3]
 unsafe {
-    Int* array = uniquePtrToArray.release()
+    Int* array = move(uniquePtrToArray)
     array[0] = 0
     array[1] = 0
     array[2] = 0
-    array[3] = 0  // Undefined behaviour, no bounds check at all
-    delete[] array
+    array[3] = 0    // Undefined behaviour, no bounds check at all
+    delete[] array  // Array-delete!
 }
 ```
 ```
@@ -97,12 +97,12 @@ Int[3]+ arrayPtr = new Int[3]
 But raw pointer access is still `unsafe`:  
 ```
 unsafe {
-    Int[3]* arrayPtr = (new Int[3]).release()
+    Int[3]* arrayPtr = new Int[3]
     (*arrayPtr)[0] = 0
     (*arrayPtr)[1] = 0
     (*arrayPtr)[2] = 0
     (*arrayPtr)[3] = 0  // Compilation error, due to compile time bounds check
-    delete[] arrayPtr
+    delete[] arrayPtr   // Array-delete!
 }
 ```
 

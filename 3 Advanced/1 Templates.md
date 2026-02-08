@@ -80,15 +80,16 @@ class MyArray<Number T> {
           func getRandom<type T>() -> T { ... }
           Int random = getRandom<Int>();
           ```
-- For extension function templates it is necessary to know the _type_-specific template parameter(s) even before we write the function name, where the function-specific template parameters are given.  
-  Therefore we write
-    - `func<type T, Int N> T[N]::size() -> Int { return N }`
-    - `func<type T, Int N> T[N]::convertTo<type TOut>() -> TOut[N] { ... }`  
-        - Not ~~`func T[N]::convertTo<type T, Int N, type TOut>() { ... }`~~, as  
-            - then T and N would be used even before they were declared, and
-            - with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we want to write  
-              `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()` (not ~~`...convertTo<Float, 3, Int>()`~~)
-        - The template parameters `T` and `N` belong to the type of the object `arrayOfThreeFloat` and are determined already. It would not be possible to change them in the call of `convertTo<>()`, so it is not desired to specify them here at all.
+- For extension function templates specify the _type_-specific template parameter(s) first. The function-specific template parameters are given after the function name.  
+  ```
+  extension<type T, Int N> T[N] {
+      size() -> Int { return N }
+      convertTo<type TOut>() -> TOut[N] { ... }
+  }
+  ```
+  This is a "member function template" of a "extension template".
+  So with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we write  
+  `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()`.
 
 
 ### Requires
