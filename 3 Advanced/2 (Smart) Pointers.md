@@ -62,7 +62,7 @@ unsafe {
     delete contactInfoPtr  // With classical/raw pointers you need to free the objects yourself.
 
     ContactInfo[0]* contactInfoPtr = new ContactInfo[10]
-    delete[0] contactInfoPtr  // You need to distinguish single-element- and array-pointers yourself.
+    delete[0] contactInfoPtr  // You need to distinguish between single-element and array pointers yourself.
 }
 ```
 
@@ -92,7 +92,7 @@ so you still can use `new` for raw pointers.
 But it is inconvenient to use as
 - it is allowed in unsafe code only,
 - you need to manage lifetime of the instance yourself (i.e. call `delete`), and
-- you need to distinguish between pointer-to-single-element from pointer-to-array (i.e. call `delete` or `delete[0]`).
+- you need to distinguish between a pointer to a single element and a pointer to an array (i.e. call `delete` or `delete[0]`).
 
 ```
 unsafe {
