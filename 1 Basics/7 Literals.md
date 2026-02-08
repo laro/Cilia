@@ -130,7 +130,7 @@ permalink: /basics/literals/
     - `'Ä'` is a Latin-1 character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
     - `'Ω'` is a `Char16` character literal, that can be converted to `Char32`.
     - `'𝄞'` is a `Char32` character literal.
-    - `'👮🏻'` is an _invalid_ character literal, as grapheme clusters consist of multiple code points.
+    - `'👮🏻'` is an _invalid_ character literal, as grapheme clusters consist of multiple code points. Use the string literal `"👮🏻"` instead.
 
 - Multiline String Literal
     - Use triple double-quotes `"""` to start and end the literal.
