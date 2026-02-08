@@ -7,7 +7,7 @@ func sieveOfEratosthenes(Int n) -> Int[] {
     isPrime[0] = false
     isPrime[1] = false
 
-    Int limit = Int(sqrt(n))
+    Int limit = Int(sqrt(Float(n)))
     for i in 2..limit {
         if !isPrime[i] {
             continue
