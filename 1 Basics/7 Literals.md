@@ -64,7 +64,7 @@ permalink: /basics/literals/
     - `-123` is always `Int` (signed)
 - Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
     - Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
-        - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possibly to give a hex literal as Int argument
+        - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possible to give a hex literal as an Int argument
             - Up to `0x7f` -> `Int8`
             - Up to `0x7fff` -> `Int16`
             - Up to `0x7fffffff` -> `Int32`
@@ -96,8 +96,7 @@ permalink: /basics/literals/
             - up to 71 decimal places -> `Float256`
             - more decimal places     -> `BigFloat`
                 - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
-                    - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as as
-                      arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
+                    - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
         - So a plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
     - Can implicitly be converted to any smaller float type into which it still fits exactly,
         - otherwise explicit cast necessary: `Float16(3.1415926)`
@@ -116,7 +115,7 @@ permalink: /basics/literals/
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
         - If necessary
-            - use `"Text"sz`, `"Text\0“`  or
+            - use `"Text"sz`, `"Text\0"` or
             - convert using `StringZ("Text")`.
     - Data is typically stored in read-only data segments (".rodata") or ROM.
     - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
