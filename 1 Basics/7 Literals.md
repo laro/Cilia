@@ -125,7 +125,8 @@ permalink: /basics/literals/
         - ~~so slicing of String to StringView is possible.~~
         - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
 
-- `'A'` is an ASCII character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
+- `'...'` is a character literal.
+    - `'A'` is an ASCII character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
     - `'Ä'` is a Latin-1 character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
     - `'Ω'` is a `Char16` character literal, that can be converted to `Char32`.
     - `'𝄞'` is a `Char32` character literal.
