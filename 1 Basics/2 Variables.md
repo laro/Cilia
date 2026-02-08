@@ -13,7 +13,7 @@ TypeName variableName
 Some simplifications and restrictions:
 - The type definition is completely on the left-hand side,  
   i.e. before the variable name, also for arrays and bit fields.
-- All variables in a multiple-variable declarations have to be of the exact same type.
+- All variables in a multiple-variable declaration have to be of the exact same type.
 
 ### Examples
 - `Int i`
@@ -24,7 +24,7 @@ Some simplifications and restrictions:
     - `Int[10] highScoreTable`  // Array of ten integers (instead of ~~`Int highScoreTable[10]`~~)
 - Multiple-variable declarations (unlike C/C++)
     - `Float* m, n`        // m _and_ n are pointers
-    - `Int& m = x, n = y`  // m _and_ n are references)
+    - `Int& m = x, n = y`  // m _and_ n are references
     - `Float[2] p1, p2`    // p1 _and_ p2 are arrays of two Float values each
 - Constructors
     - `Image image(width, height, 0.0)`
@@ -56,7 +56,7 @@ with `var` / `const`:
     - `const` as a type qualifier for an array declarator (`[]`):
         - `const Float[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
             - `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`, too. Members of a const array are always effectively const anyway.
-            - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float> arrayOfConstFloat`. But that does not compile anyway, because you cant assign values to an array whose element type is non-assignable. (MSVC says 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.')
+            - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float> arrayOfConstFloat`. But that does not compile anyway, because you can't assign values to an array whose element type is non-assignable. (MSVC says 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.')
         - `const Float[3]` is a `const` static array declarator, interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
         - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
 
