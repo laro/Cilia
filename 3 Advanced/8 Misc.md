@@ -119,7 +119,7 @@ Little Endian (Intel)
     - `HighPrecisionFloat<Int SignificandBits, Int ExponentBits>` as template for custom float types with statically fixed precision, like `Float1024`, `Float2048`, ...
         - NumberOfBits must be multiples of `sizeof(Int)` (i.e. multiples of 64).
     - `DDFloat`, `TDFloat`, `QDFloat`
-        - double-double/triple-double/quad-double arithemtic
+        - double-double/triple-double/quad-double arithmetic
         - [wiki.org/Double-Double Arithmetic](https://en.wikipedia.org/w/index.php?title=Quadruple-precision_floating-point_format)
         - [https://stackoverflow.com/a/6770329](https://stackoverflow.com/a/6770329)
     - General problem: All these types, when saved in binary form, are incompatible to the IEEE 754 format for 128/256/... bit float. So better to save them as string.
@@ -135,14 +135,14 @@ I want integer operations **with carry** (flag or UInt) to implement `Int128`, `
     - `a.add(UInt b, inout Bool carryFlag)`
         - `a = bits63..0(a + b + carryFlag)`  
           `carryFlag = bit64(a + b + carryFlag)`
-- Mutiply with carry (high data, i.e. one UInt)
+- Multiply with carry (high data, i.e. one UInt)
     - `UInt c = multiply(UInt a, UInt b, out UInt cHigh)`
         - `c = bits63..0(a * b)`  
           `cHigh = bit127..64(a * b)`
     - `a.multiply(UInt b, out UInt aHigh)`
         - `a = bits63..0(a * b)`  
           `aHigh = bit127..64(a * b)`
-- Mutiply-Add with carry (high data, i.e. one UInt)
+- Multiply-add with carry (high data, i.e. one UInt)
     - `UInt d = multiplyAdd(UInt a, UInt b, UInt c, out UInt dHigh)`
         - `d = bits63..0(a * b + c)`  
           `dHigh = bit127..64(a * b + c)`
@@ -264,7 +264,7 @@ No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just basic
       Button __anonymousButton1("Ok")
   }
   ```
-- Accessable only through static _reflection_ (C++26).
+- Accessible only through static _reflection_ (C++26).
 - Internally the compiler generates proxy names, e.g. `Label __anonymousLabel1` and `Button __anonymousButton1`.
 - These widgets are member variables of the container, so they don't need to be deleted explicitly.
     - They are added with `container.addChild(Widget* child)`, signaling non-ownership.
