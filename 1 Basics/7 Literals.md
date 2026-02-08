@@ -112,7 +112,7 @@ permalink: /basics/literals/
 - `NaN` is a `Float` literal for NaN ("not a number") values,
     - that can be converted to any float type.
 
-### String
+### String & Char
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
         - If necessary
@@ -125,6 +125,12 @@ permalink: /basics/literals/
     - ~~A StringView starts like a String does: pointer to first character plus length,~~
         - ~~so slicing of String to StringView is possible.~~
         - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
+
+- `'A'` is an ASCII character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
+    - `'Ä'` is a Latin-1 character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
+    - `'Ω'` is a `Char16` character literal, that can be converted to `Char32`.
+    - `'𝄞'` is a `Char32` character literal.
+    - `'👮🏻'` is an _invalid_ character literal, as grapheme clusters consist of multiple code points.
 
 - Multiline String Literal
     - Use triple double-quotes `"""` to start and end the literal.
@@ -160,6 +166,7 @@ permalink: /basics/literals/
     - `f"..."` as in `format`.
     - TODO Any reason to use/prefer any other syntax?
         - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
+
 - Alternative string literals
     - Prefixes
         - as in C++:
