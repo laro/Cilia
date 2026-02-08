@@ -49,7 +49,7 @@ For several topics there are alternative ideas, that were discarded but are stil
 
 
 ### Bitfields
-One could define the order of bit in a bitfield.
+One could define the order of bits in a bitfield.
 - MSB (Most Significant Bit) first.
     - This way you can use
       ```
