@@ -4,7 +4,7 @@ permalink: /advanced/type-extension/
 
 ## Type Extension
 
-"Third party" classes or or built-in types, that we cannot change otherwise, can be extended with "member like"
+"Third party" classes or built-in types that we cannot change otherwise can be extended with "member-like"
 - functions/methods (non-virtual and static),
 - dependent types (`T::InParameterType`) or type aliases,
 - static constants and variables.
@@ -14,7 +14,7 @@ In case of conflicts, in-class definitions (inside the class) have priority (and
 Extensions are defined similar to classes, but with the `extension` keyword.
 
 - **Extension methods**
-    - Can be called like normal member functions (with standard dot-notation), but they but do not have access to private or protected members themselves.
+    - Can be called like normal member functions (with standard dot-notation), but they do not have access to private or protected members.
     - Inside an extension, `this` refers to the instance itself.
     - Also possible for basic/arithmetic types, e.g.:  
       ```
@@ -63,7 +63,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
       static const Bool IsFloatingPoint = True
   }
   ```
-- Static variablers
+- Static variables
     - ```
       extension ContactInfo {
           // External mutable static variable
