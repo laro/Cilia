@@ -92,7 +92,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 - Typically a statement or expression ends with the end of a line.
 - Multiline expressions:
     - Explicitly via `\` at end of line,
-        - it is no whitespace after this continuation-backslash allowed
+        - there is no whitespace after this continuation backslash allowed
         - (as in Python).
     - Up to closing of `(...)` or `[...]`
         - (also as in Python).

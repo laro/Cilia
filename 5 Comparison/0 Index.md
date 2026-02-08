@@ -7,7 +7,7 @@ The comparison on the following pages aims to show the _exact_ equivalent of the
 
 > **Note**
 > - I may not be very familiar with all these languages, or not up to date.
->     - Is there really no range operator and no classical for-loop in neither Cpp2 nor Carbon?
+>     - Is there really no range operator and no classical for-loop in either Cpp2 or Carbon?
 > - I may not even be sufficiently up to date with C++14/17/20/23/26 either.
 
 ### Syntax of Carbon and Cpp2
@@ -41,4 +41,4 @@ In many examples this requirement is “hidden” by immediate assignment of a l
 
 ### Int32 or Int64 as Default
 In C++, Cpp2, Rust, Java, and C# the type `int`/`Int` and/or literals like `42` are 32 bit wide, not 64 bit.  
-That's Ok, this is a syntax comparison, not a performance benchmark.
+That's OK, this is a syntax comparison, not a performance benchmark.

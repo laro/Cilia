@@ -13,7 +13,7 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
     > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
     > They may be counter-intuitive, go against expected practice in other languages, leave data in undefined states, or generally be prone to misuse.
     
-    I am not familiar with all of these issues, but in a new language we certainly coud fix a lot of it.
+    I am not familiar with all of these issues, but in a new language we certainly could fix a lot of it.
     
     1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
         - See [Safety / Initialization](/advanced/safety/#initialization)
@@ -23,7 +23,7 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
     3. [Implicit narrowing conversions.](http://eel.is/c++draft/conv.integral#3)
         - Not allowed,  
           only implicit widening is allowed.
-        - Assigment of integer and float literals to variables of certain precision only possible if "it fits".
+        - Assignment of integer and float literals to variables of certain precision is only possible if "it fits".
     4. [Switches should break rather than fallthrough.](http://eel.is/c++draft/stmt.switch#6)
         - Use the keyword `fallthrough` instead, as in Swift.
     5. [Operator precedence is complicated and wrong.](http://eel.is/c++draft/expr.compound#expr.bit.and)
@@ -50,7 +50,7 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
 - [Versioning with feature directives](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#versioning-with-feature-directives)
     - Standardization is better than having multiple different language "dialects"  
       **but**
-        - for transitioning of existings source code  and
+        - for transitioning existing source code and
         - for the evolution of a language
     - it is a very interesting idea to selectively enable new language features or defaults.
 - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
@@ -96,7 +96,7 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
 - Ranges
 
 ### [**Julia**](https://julialang.org/)
-- "Cilia" sounds like something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org), so maybe I could/should add some more of Julias interesting features to the Cilia wish list.
+- "Cilia" sounds like something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org), so maybe I could/should add some more of Julia's interesting features to the Cilia wish list.
 - Julia has very strong math support. Some of its features should be easy to copy.
     - `b = 2a` as short form of `b = 2*a`
     - `x ÷ y`, integer divide, like `x / y`, truncated to an integer

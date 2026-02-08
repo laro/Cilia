@@ -4,7 +4,7 @@ permalink: /more/unfinished-ideas/
 
 ## Unfinished Ideas
 
-Admittedly, many ideas for Cilia are not yet _fully_ developed, but these are not at all.
+Admittedly, many ideas for Cilia are not yet _fully_ developed, but theese really do need some more work.
 
 
 ### `T^` to Objects of Other Languages
@@ -53,7 +53,7 @@ We can redefine `T^` for special cases, like interoperability with garbage colle
 
 - Serial code
   ```
-  Floar[] arr = ...
+  Float[] arr = ...
   for i in 0..<arr.size() {
       arr[i] = 2 * arr[i]
   }

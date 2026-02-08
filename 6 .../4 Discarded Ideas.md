@@ -116,10 +116,10 @@ One could define the order of bits in a bitfield.
     - `for String str in ["a", "b", "c"] { ... }`
         - `str` is `const String` (not `const StringView&`)
         - ~~`str` is `const String&` (not `const StringView&`)~~
-            - TODO This dosnn't actually make sense here, you can not get a (const) reference to a string, when the underlying array is in fact a `StringView[]`.
+            - TODO This doesn't actually make sense here; you cannot get a (const) reference to a string when the underlying array is in fact a `StringView[]`.
     - `for inout String str in ["a", "b", "c"] { ... }`
         - `str` is `String&`
-        - TODO This dosnn't actually make sense here, you can not get a (mutable/non-const) reference to a string, when the underlying array is in fact a `StringView[]`.
+        - TODO This doesn't actually make sense here; you cannot get a (mutable/non-const) reference to a string when the underlying array is in fact a `StringView[]`.
     - `for copy String str in ["a", "b", "c"] { ... }`
         - `str` is `String`
 
@@ -226,7 +226,7 @@ One could define the order of bits in a bitfield.
 
 
 ### String, Char & Unicode
-- **Code points** could be represented by `UInt32` or by an distinct type `CodePoint` (== `UInt32`).
+- **Code points** could be represented by `UInt32` or by a distinct type `CodePoint` (== `UInt32`).
     - Would it be useful?
 - `WideChar` could be useful for portable code (Linux `UInt32` <-> Windows `UInt16`)
     - But you may use `wchar_t` then.
@@ -260,7 +260,7 @@ One could define the order of bits in a bitfield.
 
 
 ### (Smart) Pointers
-- We may user some more (or just other) characters for the "special" pointers
+- We may use some more (or just other) characters for the "special" pointers
     - ASCII
         - `Type> pointer` (_very_ difficult to read with template types, e.g. `Matrix<Float64>> matrix`)
         - `Type~ pointer` (also used for binary not and destructor syntax)
@@ -271,7 +271,7 @@ One could define the order of bits in a bitfield.
         - `Type' pointer`
         - `Type. pointer`
     - More exotic characters
-        - (But a character that is difficult to find on the keyboard would not actaully encourage people to use this syntax.)
+        - (But a character that is difficult to find on the keyboard would not actually encourage people to use this syntax.)
         - Latin-1
             - `Type° pointer`
             - `Type¹ pointer`
