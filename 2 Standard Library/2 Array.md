@@ -43,8 +43,12 @@ array[3] = 0  // Compilation error, due to compile time bounds check
 ```
 
 `arrayOfThreeIntegers.size()` -> `3`  
-is realized as extension function  
-`func<type T, Int N> T[N]::size() -> Int { return N }`
+is realized as extension function
+```
+extension<type T, Int N> T[N] {
+    func size() -> Int { return N }
+}
+```
 
 Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
 But array subscript with `Int+` is unsafe.
