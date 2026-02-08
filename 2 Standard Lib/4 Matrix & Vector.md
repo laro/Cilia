@@ -1,5 +1,5 @@
 ---
-permalink: /standard-library/matrix-and-vector/
+permalink: /standard-lib/matrix-and-vector/
 ---
 
 ## Matrix & Vector

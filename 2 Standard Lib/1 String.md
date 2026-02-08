@@ -1,5 +1,5 @@
 ---
-permalink: /standard-library/string/
+permalink: /standard-lib/string/
 ---
 
 ## String, Char & Unicode

@@ -1,5 +1,5 @@
 ---
-permalink: /standard-library/image/
+permalink: /standard-lib/image/
 ---
 
 ## Image

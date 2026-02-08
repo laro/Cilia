@@ -1,5 +1,5 @@
 ---
-permalink: /standard-library/stream-file-and-network-io/
+permalink: /standard-lib/stream-file-and-network-io/
 ---
 
 ## Stream, File & Network IO

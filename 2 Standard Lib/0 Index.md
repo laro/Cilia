@@ -1,5 +1,5 @@
 ---
-permalink: /standard-library/
+permalink: /standard-lib/
 ---
 
 ## Standard Library

@@ -1,5 +1,5 @@
 ---
-permalink: /standard-library/array/
+permalink: /standard-lib/array/
 ---
 
 ## Array & ArrayView
