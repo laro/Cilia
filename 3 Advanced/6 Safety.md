@@ -7,7 +7,7 @@ permalink: /advanced/safety/
 ### **No Implicit Downcasts**
 Standard conversions only apply when no information is lost.
 
-~~Not Ok~~ or Ok is
+~~Not OK~~ or OK is
 - `Int8` ->
     - `Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`, `BigInt`
     - ~~`UInt8`, `UInt16`, `UInt32`, `UInt64`, `UInt128`, `UInt256`, `BigUInt`~~
@@ -154,7 +154,7 @@ operator[Int i] -> T& {
   }
 }
 ```
-A function with unsafe code does not necessarily has to be marked as `unsafe` itself. `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
+A function with unsafe code does not necessarily have to be marked as `unsafe` itself. `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
 
 Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves. Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves. Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
 
