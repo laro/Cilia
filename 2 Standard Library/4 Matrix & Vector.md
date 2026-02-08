@@ -34,6 +34,6 @@ as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprogr
 ### Datatype & Precision
 The default datatype is `Float` (64-bit precision), which is better suited for scientific calculations.
 
-Feel free to use your own derivations:
+Feel free to use your own type aliases:
 - `using Vec3 = cilia::Vector3<Float32>`
 - `using RGB = cilia::Vector3<UInt8>`
