@@ -5,7 +5,7 @@ permalink: /standard-library/array/
 ## Array & ArrayView
 
 - **`Int[] dynamicArrayOfIntegers`**
-    - „Dynamic array“ with **dynamic size**
+    - "Dynamic array" with **dynamic size**
       ```
       Int[] array = [0, 1, 2]
       array[0] = 0
@@ -28,7 +28,7 @@ permalink: /standard-library/array/
 
 - **`Int[3] arrayOfThreeIntegers`**  
   (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++)
-    - „Static array“ with **fixed size**
+    - "Static array" with **fixed size**
       ```
       Int[3] array = [0, 1, 2]
       array[0] = 0
@@ -105,7 +105,7 @@ permalink: /standard-library/array/
     - `var subarray = array[1..2]`
     - `var subarray = array[1..<3]`
     - Incomplete ranges (need lower and/or upper bounds before use) are
-      typcally implemented as inline functions that determine the concrete bounds and then call `array[start..end]` (or one of the exclusive counterparts).
+      typically implemented as inline functions that determine the concrete bounds and then call `array[start..end]` (or one of the exclusive counterparts).
         - `var subarray = array[..2]`
         - `var subarray = array[..]`
     - See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
