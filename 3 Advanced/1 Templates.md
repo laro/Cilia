@@ -42,7 +42,7 @@ class MyArray<Number T> {
 - Having to write `typename` (in C++) before dependent names in templates is quite annoying.  
   In Cilia it would be `type` instead, but maybe it is possible to omit it with
     - two-pass compilation,
-    - context-based rules (in `T::Value* x` -> `Value` is a type, in `var y = T::Value* x` -> `Value` is a value),
+    - context-based rules (in `T::Value* x` -> `Value` is a type, in `var y = T::Value* x` -> `Value` is a value), and/or
     - different syntax for types (`T::Value` is a type, `T.Value` is a value).
 
 
