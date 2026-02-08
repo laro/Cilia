@@ -14,7 +14,7 @@ Create an alias with `using`, for:
   }
   ```
     - Not quite possible in C++.
-        - With `T& z = data[2]` unfortunately memory is created for the reference (the pointer).
+        - With `T& z = data[2]`, unfortunately, memory is created for the reference (the pointer).
         - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
         
 - Member **function** alias
