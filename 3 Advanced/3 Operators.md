@@ -30,7 +30,7 @@ permalink: /advanced/operators/
         - Defined on `Bool` only (_not_ on integers).
 - **`not`** in addition to `!` (for boolean negation)
     - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
-    - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyways.  
+    - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyway.  
         (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
     - Still use `~` for bitwise negation,
         - as C/C++/Java/C# programmers are used to it,
@@ -55,7 +55,7 @@ permalink: /advanced/operators/
 ### **Range operator** `..` and `..<`
 - `1..10` and `0..<10` are ranges
     - as in [Kotlin](https://kotlinlang.org/docs/ranges.html)
-    - Similar, but diffentent:
+    - Similar, but different:
         - Swift would be ~~`1...10`~~ and ~~`0..<10`~~
         - Rust would be ~~`1..=10`~~ and ~~`0..10`~~
         - Cpp2 would be ~~`1..=10`~~ and ~~`0..<10`~~ (as of recently)
