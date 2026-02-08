@@ -61,7 +61,7 @@ permalink: /standard-library/stream-file-and-network-io/
     - `out.flush()` writes the data buffer (the `istream` user-level cache) to the operating system.
         - This protects against data loss in the event of a program crash.
     - `out.flushAndSync()` calls `flush()`, then
-        - calls `fsync()` to write the kernel buffers to the file system and then to the harddisk/SSD (the write cache should be written/cleared, too).
+        - calls `fsync()` to write the kernel buffers to the file system and then to the hard disk/SSD (the write cache should be written/cleared, too).
         - This protects against data loss in the event of a program or _system_ crash.
     - `in.read() -> Byte[]` reads
         - everything from the `istream` user-level cache, if not `0`,  
@@ -142,7 +142,7 @@ permalink: /standard-library/stream-file-and-network-io/
         - `connection.setReceiveBufferSize(Int bytes)`
     - `connection.sendBufferSize() -> Int`
         - `connection.setSendBufferSize(Int bytes)`
-- `LocalConnection`, drived from `ByteStream`
+- `LocalConnection`, derived from `ByteStream`
     - `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
     - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
         - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
