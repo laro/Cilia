@@ -49,7 +49,7 @@ class MyArray<Number T> {
 ### **Function** Templates
 
 - _Automatic_ function templates
-    - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template. This is like abbreviated function templates in C++ 20, only ommitting the `auto` keyword.
+    - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template. This is like abbreviated function templates in C++ 20, only omitting the `auto` keyword.
         - Concept `Number`:
           ```
           func sq(Number x) -> Number {
