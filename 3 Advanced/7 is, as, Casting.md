@@ -16,7 +16,7 @@ permalink: /advanced/is-as-casting/
         - `obj as T` instead of `T(obj)`
         - `objPtr as T*` instead of `dynamic_cast<T*>(objPtr)`
         - With `Variant v` where T is one alternative:  
-          `v as T` instead of`std::get<T>(v)`
+          `v as T` instead of `std::get<T>(v)`
         - With `Any a`:  
           `a as T` instead of `std::any_cast<T>(a)`
         - With `Optional<T> o`:  
