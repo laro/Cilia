@@ -4,7 +4,7 @@ permalink: /more/unfinished-ideas/
 
 ## Unfinished Ideas
 
-Admittedly, many ideas for Cilia are not yet _fully_ developed, but theese really do need some more work.
+Admittedly, many ideas for Cilia are not yet _fully_ developed, but these really do need some more work.
 
 
 ### `T^` to Objects of Other Languages
