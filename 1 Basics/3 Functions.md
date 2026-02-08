@@ -97,7 +97,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - ~~Keyword `inout` is also to be given at the caller: `swap(inout a, inout b)`~~
             - No, because
                 - it is verbose,
-                - it is not a reliable warning/guarantee, that the argumemt may be changed, as any reference-like type (e.g. `Span<T>`) allows change even without `inout`.
+                - it is not a reliable warning/guarantee that the argument may be changed, as any reference-like type (e.g. `Span<T>`) allows change even without `inout`.
         - Examples:
             - `for inout str in stringArray { ... }`
                 - `str` is `String&`
@@ -192,7 +192,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - So all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
             - a `String` (as that can implicitly be converted to `StringView`)
             - a `StringView` (that somehow is the more versatile variant of `const String&`),
-            - and therefore also _every third-party string_ class (as long as it is implicitly convertable to `StringView`).
+            - and therefore also _every third-party string_ class (as long as it is implicitly convertible to `StringView`).
         - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
         - Example:
             - `concat(String first, String second)`
