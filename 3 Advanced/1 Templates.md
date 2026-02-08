@@ -87,8 +87,10 @@ class MyArray<Number T> {
       convertTo<type TOut>() -> TOut[N] { ... }
   }
   ```
-  This is a "member function template" of a "extension template".
-  So with `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]` we write  
+  This is a "member function template" of a "extension template".  
+  So with  
+  `Float[3] arrayOfThreeFloat = [1.0, 2.0, 3.0]`  
+  we write  
   `Int[3] arrayOfThreeInt = arrayOfThreeFloat.convertTo<Int>()`.
 
 
