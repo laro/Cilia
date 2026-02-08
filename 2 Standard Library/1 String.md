@@ -91,7 +91,7 @@ Or a subclass with known encoding has to be used:
             - Compilation error, if string literal contains non-ASCII characters.
             - same for `for aChar in ASCIIString("abc")`
                 - but Exception thrown, if string contains non-ASCII characters.
-    - Implicitly convertable to `String`==`UTF8String`.
+    - Implicitly convertible to `String`==`UTF8String`.
         - Very fast conversion, as all characters have the same binary representation.
 - **`Latin1String`**, a string containing only Latin-1 (ISO 8859-1) characters.
     - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`
@@ -101,7 +101,7 @@ Or a subclass with known encoding has to be used:
             - Compilation error, if string literal contains non-Latin-1 characters.
             - same for `for aChar in Latin1String("abc")`
                 - but Exception thrown, if string contains non-Latin1 characters.
-    - Explicitly convertable to `String`==`UTF8String`.
+    - Explicitly convertible to `String`==`UTF8String`.
         - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
 
 
@@ -119,9 +119,9 @@ but otherwise are like `UInt8`, `UInt16`, `UInt32`.
 > - Locale data for more than 300 locales
 > - Language sensitive text collation (sorting) and searching based on the Unicode Collation Algorithm (=ISO 14651)
 > - Regular expression matching and Unicode sets
-> - Transformations for normalization, upper/lowercase, script triterations (50+ pairs)
+> - Transformations for normalization, upper/lowercase, script transliterations (50+ pairs)
 > - Resource bundles for storing and accessing localized information
-> - Date/Number/Message formatting and parsing of culture specific input/ou formats
+> - Date/Number/Message formatting and parsing of culture-specific input/output formats
 > - Calendar specific date and time manipulation
 > - Text boundary analysis for finding characters, word and sentence boundaries
 
