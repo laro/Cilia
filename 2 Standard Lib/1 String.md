@@ -74,12 +74,11 @@ Iteration over a `String` or `StringView` by:
 
 ### ByteString
 
-`ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters),  
-like
-- ASCII
-- Latin-1
-- ANSI (mostly identical to Latin-1)
-- almost every one of the "code pages"
+`ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters), like:
+- ASCII,
+- Latin-1,
+- ANSI (mostly identical to Latin-1),
+- almost every one of the "code pages".
 
 The encoding is not defined, the user has to take care of this.  
 Or a subclass with known encoding has to be used:
