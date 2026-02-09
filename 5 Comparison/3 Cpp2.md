@@ -23,5 +23,5 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `for (5, 7, 11, 13) do (i) { ...; }`
     - `for words do (word) { ...; }`
 
-In Cpp2 `int` and `42` are typically 32 bit wide, not 64 bit.  
-Is there really no range operator and no classical for-loop in Cpp2?
+> In Cpp2 `int` and `42` are typically 32 bit wide, not 64 bit.  
+> Is there really no range operator and no classical for-loop in Cpp2?

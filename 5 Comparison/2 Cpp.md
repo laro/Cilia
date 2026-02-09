@@ -23,4 +23,4 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `for (int i : {5, 7, 11, 13}) { ...; }`
     - `for (const auto& word : words) { ... }`
 
-In C++ `int` and `42` are typically 32 bit wide, not 64 bit.  
+> In C++ `int` and `42` are typically 32 bit wide, not 64 bit.  

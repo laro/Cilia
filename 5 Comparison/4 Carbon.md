@@ -23,4 +23,4 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
     - `for (word: auto in words) { ...; }`
 
-Is there really no range operator and no classical for-loop in Carbon?
+> Is there really no range operator and no classical for-loop in Carbon?

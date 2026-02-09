@@ -23,4 +23,4 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `for (int i : List.of(5, 7, 11, 13)) { ... }`
     - `for (var word : words) { ... }`
 
-In Java `int` and `42` are 32 bit wide, not 64 bit.  
+> In Java `int` and `42` are 32 bit wide, not 64 bit.  
