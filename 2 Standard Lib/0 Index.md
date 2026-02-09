@@ -6,7 +6,7 @@ permalink: /standard-lib/
 
 Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
 
-With a Cilia version of each standard class/concept (i.e. CamelCase class names and camelCase function and variable names).
+With a Cilia variant of each standard class/concept (with CamelCase class names and camelCase function and variable names):
 - `cilia::String` instead of `std::string`
 - `Map` instead of `map`
     - `Dictionary` as alias with deprecation warning, as a hint for C# programmers.
