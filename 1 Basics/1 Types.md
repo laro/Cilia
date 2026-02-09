@@ -24,7 +24,7 @@ Simply use `Int` == `Int64`, as in Swift and Go,
 `Int` == `Int32` on systems with a 32-bit address bus only (i.e. old/small platforms, like Win32, Amiga, Atari, in general Motorola 68K, Intel 386, old SPARC, MIPS, POWER),  
 `Int` == `Int16` on systems with a 16-bit address bus (i.e. very old/small microcontrollers like AVR/ATmega328/Arduino Uno, in general 6502 or Z80 CPUs, classic 8-bit home computers).
 
-`Byte` == `std::byte`, i.e. _not_ the same type as UInt8 for parameter overloading.
+`Byte` == `std::byte`, i.e. _not_ the same type as `UInt8` for parameter overloading.
 
 `Float` == `Float64`, so it is double precision, like Python, unlike C/C++.  
 `Float` == `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`),
