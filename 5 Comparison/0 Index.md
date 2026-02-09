@@ -2,7 +2,8 @@
 permalink: /comparison/
 ---
 
-## Comparison of Cilia with Other Languages
+## Comparing Cilia to Other Languages
+
 The comparison on the following pages aims to show the _exact_ equivalent of the [Cilia code](/comparison/cilia/#by-example).
 
 > **Note**
@@ -10,7 +11,9 @@ The comparison on the following pages aims to show the _exact_ equivalent of the
 >     - Is there really no range operator and no classical for-loop in either Cpp2 or Carbon?
 > - I may not even be sufficiently up to date with C++14/17/20/23/26 either.
 
+
 ### Syntax of Carbon and Cpp2
+
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 
 [Someone said in an interview](https://www.stroustrup.com/devXinterview.html) (way back in 2000):
@@ -20,6 +23,7 @@ I like many aspects, especially of Cpp2, but not the `name: Type` syntax. It ind
 
 
 ### Default vs. Explicit Initialization
+
 Arrays, sets, and maps are **default-constructed**, so they can be used immediately after declaration (for example, to add values in a loop):
 ```
 String[] words
@@ -40,5 +44,6 @@ In many examples this requirement is “hidden” by immediate assignment of a l
 
 
 ### Int32 or Int64 as Default
+
 In C++, Cpp2, Rust, Java, and C# the type `int`/`Int` and/or literals like `42` are 32 bit wide, not 64 bit.  
 That's OK, this is a syntax comparison, not a performance benchmark.
