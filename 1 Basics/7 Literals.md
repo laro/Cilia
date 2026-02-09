@@ -178,7 +178,7 @@ permalink: /basics/literals/
         - TODO Any reason, not to?
 
 ### Char
-- `'...'` is a character literal.
+- `' '` is a character literal.
     - `'A'` is an ASCII character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
     - `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
     - `'Ω'` is a `Char16` character literal, that can be converted to `Char32`.
