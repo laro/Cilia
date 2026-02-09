@@ -303,6 +303,17 @@
         - Top-level (root) Markdown pages (not in a directory)
         - One entry per section directory (links to its landing page)
       {% endcomment %}
+      {% comment %}
+        Site search:
+        - This is a simple redirect form to DuckDuckGo/Google (no API keys).
+        - We default to searching within the configured site.url via a `site:` prefix.
+      {% endcomment %}
+      {% assign search_site_host = site.url
+        | default: ""
+        | replace: "https://", ""
+        | replace: "http://", ""
+        | split: "/"
+        | first %}
       <ul class="nav-main">
         {% if home_page %}
           <li>
@@ -393,6 +404,34 @@
         {% endfor %}
       </ul>
 
+      <form
+        class="nav-search"
+        id="navSearch"
+        action="https://duckduckgo.com/"
+        method="get"
+        role="search"
+        aria-label="Search this site"
+        data-site="{{ search_site_host }}"
+      >
+        <label class="sr-only" for="navSearchInput">Search</label>
+        <div class="nav-search-row">
+          <select id="navSearchEngine" class="nav-search-engine" aria-label="Search engine">
+            <option value="ddg" selected>DuckDuckGo</option>
+            <option value="google">Google</option>
+          </select>
+          <input
+            id="navSearchInput"
+            class="nav-search-input"
+            type="search"
+            name="q"
+            placeholder="Search…"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <button class="nav-search-button" type="submit">Search</button>
+        </div>
+      </form>
+
       {% if has_active_subnav %}
         {% comment %}
           Sub-navigation for the active section:
@@ -478,6 +517,46 @@
           } else if (e.key === "ArrowRight") {
             if (navigateRel("next")) e.preventDefault();
           }
+        });
+      })();
+    </script>
+    <script>
+      // Search box behavior:
+      // - Redirects to DuckDuckGo or Google.
+      // - Prefixes the query with `site:<host>` unless the query already contains "site:".
+      (function () {
+        var form = document.getElementById("navSearch");
+        if (!form) return;
+
+        var input = document.getElementById("navSearchInput");
+        var engine = document.getElementById("navSearchEngine");
+        if (!input || !engine) return;
+
+        function setEngineAction(value) {
+          if (value === "google") {
+            form.action = "https://www.google.com/search";
+          } else {
+            form.action = "https://duckduckgo.com/";
+          }
+        }
+
+        engine.addEventListener("change", function () {
+          setEngineAction(engine.value);
+        });
+        setEngineAction(engine.value);
+
+        form.addEventListener("submit", function () {
+          var q = (input.value || "").trim();
+          if (!q) return;
+
+          // Only scope to the site if we have a host configured.
+          var siteHost = (form.getAttribute("data-site") || "").trim();
+          if (!siteHost) return;
+
+          // If the user already specified a site:, keep their query as-is.
+          if (/(\s|^)site:/i.test(q)) return;
+
+          input.value = "site:" + siteHost + " " + q;
         });
       })();
     </script>
