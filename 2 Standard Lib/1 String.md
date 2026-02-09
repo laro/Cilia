@@ -138,3 +138,8 @@ but otherwise are like `UInt8`, `UInt16`, `UInt32`.
     - `stringArray.sort(locale)`
         - `sort(Container<String>, locale) -> Container<String>`
     - `compare(stringA, stringB, locale) -> Int`
+- Even iterating through graphemes (or graphe clusters) is complicated for some/rare/historic scripts.
+    - Basic is Latin, combining marks, ZWJ, flags, variant selector, CJK (Han, Hiragana, Katakana, Hangul).
+        - So most everything is covered.
+    - Give more complex cases to ICU (Arabic, Devanagari, Thai).
+        - Maybe via weak linking.
