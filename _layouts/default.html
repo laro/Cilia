@@ -502,6 +502,77 @@
           return true;
         }
 
+        // Swipe navigation (mobile):
+        // - Swipe right -> prev, swipe left -> next.
+        // - Avoids triggering during vertical scrolling.
+        // - Ignores edge swipes to avoid fighting Safari back/forward gestures.
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var touchStartTime = 0;
+        var touchActive = false;
+
+        function isNearEdge(x) {
+          var edgePx = 24;
+          return x <= edgePx || x >= (window.innerWidth - edgePx);
+        }
+
+        document.addEventListener(
+          "touchstart",
+          function (e) {
+            if (!e.touches || e.touches.length !== 1) return;
+            if (isTypingContext(document.activeElement)) return;
+            if (isTypingContext(e.target)) return;
+
+            var t = e.touches[0];
+            if (!t) return;
+            if (isNearEdge(t.clientX)) return;
+
+            touchStartX = t.clientX;
+            touchStartY = t.clientY;
+            touchStartTime = Date.now();
+            touchActive = true;
+          },
+          { passive: true }
+        );
+
+        document.addEventListener(
+          "touchend",
+          function (e) {
+            if (!touchActive) return;
+            touchActive = false;
+
+            if (!e.changedTouches || e.changedTouches.length !== 1) return;
+            if (isTypingContext(document.activeElement)) return;
+            if (isTypingContext(e.target)) return;
+
+            var t = e.changedTouches[0];
+            if (!t) return;
+
+            var dx = t.clientX - touchStartX;
+            var dy = t.clientY - touchStartY;
+            var dt = Date.now() - touchStartTime;
+
+            // Heuristics tuned to avoid accidental navigation while scrolling.
+            var minDx = 80;
+            var maxDy = 50;
+            var maxDt = 600;
+
+            if (dt > maxDt) return;
+            if (Math.abs(dx) < minDx) return;
+            if (Math.abs(dy) > maxDy) return;
+            if (Math.abs(dx) < Math.abs(dy) * 1.5) return;
+
+            if (dx > 0) {
+              // Swipe right: go to previous page.
+              if (navigateRel("prev")) e.preventDefault();
+            } else {
+              // Swipe left: go to next page.
+              if (navigateRel("next")) e.preventDefault();
+            }
+          },
+          { passive: false }
+        );
+
         document.addEventListener("keydown", function (e) {
           if (e.defaultPrevented) return;
           if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
