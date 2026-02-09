@@ -22,9 +22,9 @@ Cilia is mainly a **new syntax for C++**, so it has the same core features:
 
 Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
 
-Currently it is more of a **wish list**, a "thought experiment".
-But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
-In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
+> Currently it is more of a **wish list**, a "thought experiment".
+> But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
+> In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
 
 
 ## Cilia by Example
