@@ -9,7 +9,7 @@ Admittedly, many ideas for Cilia are not yet _fully_ developed, but these really
 
 ### `T^` to Objects of Other Languages
 
-We can redefine `T^` for special cases, like interoperability with garbage collected languages like C# and Java.
+We can redefine `T^` for interoperability with other languages, e.g. garbage collected languages like C# and Java.
 
 `T^` is defined via type traits `SharedPtrType`:
 - For all C++/Cilia classes `T^` is `SharedPtr<T>`:  
