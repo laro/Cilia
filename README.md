@@ -12,8 +12,8 @@ Many of C++'s shortcomings stem from the fact that it inherited from C or that b
 
 Cilia is mainly a **new syntax for C++**, so it has the same core features:
 - compiled to machine code,
-- statically typed,
 - high performance & low-level control,
+- statically typed,
 - object-oriented (with classes, inheritance, polymorphism),
 - generic programming (with templates, concepts),
 - memory & resource management with [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) & smart pointers (instead of garbage collection),
@@ -22,7 +22,7 @@ Cilia is mainly a **new syntax for C++**, so it has the same core features:
 
 Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
 
-> Currently it is more of a **wish list**, a "thought experiment".
+> Currently it is more of a **wish list**, a "thought experiment".  
 > But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
 > In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
 
