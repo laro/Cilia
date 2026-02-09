@@ -103,11 +103,13 @@ permalink: /advanced/operators/
 - `<<` Shift left
     - Here a logical shift left with unsigned integers is the same as an arithmetic shift left with signed integers.
 - `>>>` Rotate right
-    - Circular shift right, only defined for unsigned integers,
-    - and only for fixed size integers (i.e. not for `BigInt`).
+    - Circular shift right,
+    - only defined for unsigned integers,
+    - and only for fixed size integers (i.e. not for `BigUInt`).
 - `<<<` Rotate left
-    - Circular shift left, only defined for unsigned integers,
-    - and only for fixed size integers (i.e. not for `BigInt`).
+    - Circular shift left,
+    - only defined for unsigned integers,
+    - and only for fixed size integers (i.e. not for `BigUInt`).
 
 
 
