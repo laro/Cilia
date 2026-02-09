@@ -18,12 +18,12 @@ With a Cilia version of each standard class/concept (i.e. CamelCase class names 
     - `StringStream` instead of `stringstream`
         - `TextStream`, `ByteStream`, ...
 
-Mostly a shallow wrapper, e.g. `class cilia::String : public std::string { ... }`,
-with "**aliases**" for
-- member variables  
+Mostly a shallow wrapper, e.g. `class cilia::String : public std::string { ... }`,  
+with "**aliases**" for:
+- Member variables  
   `using var x = data[0]`  
   `using var y = data[1]`
-- member functions  
+- Member functions  
   `using func pushBack = push_back`
 
 A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it.  
