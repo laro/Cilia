@@ -97,10 +97,17 @@ permalink: /advanced/operators/
     - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 ### Bit-Shift & Rotation
-- `>>` Shift right (logical shift with unsigned integers, arithmetic shift with signed integers)
-- `<<` Shift left (here a logical shift left with unsigned integers is the same as an arithmetic shift left with signed integers)
-- `>>>` Rotate right (circular shift right, only defined for unsigned integers)
-- `<<<` Rotate left (circular shift left, only defined for unsigned integers)
+- `>>` Shift right
+    - Logical shift with unsigned integers,
+    - arithmetic shift with signed integers.
+- `<<` Shift left
+    - Here a logical shift left with unsigned integers is the same as an arithmetic shift left with signed integers.
+- `>>>` Rotate right
+    - Circular shift right, only defined for unsigned integers,
+    - and only for fixed size integers (i.e. not for `BigInt`).
+- `<<<` Rotate left
+    - Circular shift left, only defined for unsigned integers,
+    - and only for fixed size integers (i.e. not for `BigInt`).
 
 
 
