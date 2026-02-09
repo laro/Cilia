@@ -129,7 +129,7 @@ So we would have:
       ```
 
 ### Safe / Unsafe
-**`safe`** as default, **`unsafe`** code blocks as escape.  
+**`safe`** code blocks as default, **`unsafe`** as escape.  
 Mainly to guide developers:
 - to signal what to do and what not to do,
 - `unsafe` is not regularly used, normally you just use the already _existing_, carefully developed and tested abstractions (like `Array`, `Vector`, `Matrix`, ...).
