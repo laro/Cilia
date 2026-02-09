@@ -251,7 +251,7 @@ nav ul.nav-sub a {
 /* Keep the search reasonably narrow on small screens */
 @media (max-width: 600px) {
   .nav-search-input {
-    width: 7ch;
+    width: 8ch;
   }
 }
 
