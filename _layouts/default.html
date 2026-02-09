@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+{% comment %}
+  Layout: default
+
+  Responsibilities
+  - Render a consistent page chrome (primary navigation, optional section sub-nav, footer).
+  - Compute a good HTML <title> from page content / file structure.
+  - Provide keyboard navigation (Left/Right arrows) based on <link rel="prev|next">.
+  - Add heading anchor links via AnchorJS.
+
+  Content conventions used by this layout
+  - Documentation pages are Markdown files (.md) in the repository.
+  - Section folders may be prefixed with numbers (e.g. "1 Basics/"); the numeric prefix is
+    stripped from navigation labels.
+  - Section index pages are expected to be named "0 Index.md" (preferred) or "Index.md";
+    when not present, the first page in the section is used as the section landing page.
+{% endcomment %}
 <html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
   <head>
     <meta charset="UTF-8">
@@ -6,19 +22,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 {% seo title=false %}
+    {% comment %}
+      Key navigation ("keynav")
+      - Determines prev/next pages in a linear order (sorted by path).
+      - Exposes them as <link rel="prev|next"> in the <head>.
+      - The script at the bottom uses these link tags for ArrowLeft/ArrowRight navigation.
+    {% endcomment %}
     {% assign all_md_pages_for_keynav = site.pages
       | where_exp: "p", "p.path contains '.md'"
       | sort_natural: "path" %}
 
+    {% comment %}
+      Determine the canonical "home" URL.
+      Notes:
+      - Jekyll's home page is typically README.md (url "/"), but this keeps it flexible.
+    {% endcomment %}
     {% assign keynav_home_url = "/" %}
     {% assign keynav_home_page = all_md_pages_for_keynav | where: "url", "/" | first %}
     {% if keynav_home_page %}
       {% assign keynav_home_url = keynav_home_page.url %}
     {% endif %}
 
+    {% comment %}
+      Build the linear sequence used for prev/next:
+      - Home is excluded from the linear sequence so we can special-case it below.
+    {% endcomment %}
     {% assign keynav_linear_pages = all_md_pages_for_keynav
       | where_exp: "p", "p.url != keynav_home_url" %}
 
+    {% comment %}
+      Find prev/next by scanning the linear list in order.
+      Once the current page is found, the next iteration's page becomes "next".
+    {% endcomment %}
     {% assign keynav_prev_url = nil %}
     {% assign keynav_next_url = nil %}
     {% assign keynav_prev_page = nil %}
@@ -37,6 +72,11 @@
       {% assign keynav_prev_page = p %}
     {% endfor %}
 
+    {% comment %}
+      Identify the first section's landing page so we can connect Home -> first section.
+      We prefer "0 Index.md" / "Index.md" inside that first section; otherwise we fall back
+      to that section's first page.
+    {% endcomment %}
     {% assign keynav_first_section_index_url = "" %}
     {% assign keynav_first_section_dir = "" %}
     {% assign keynav_first_section_first_page = nil %}
@@ -66,6 +106,11 @@
       {% assign keynav_first_section_index_url = keynav_first_section_first_page.url %}
     {% endif %}
 
+    {% comment %}
+      Keynav special-cases:
+      - Home's "next" should point at the first section landing page.
+      - The first section landing page's "prev" should point back to Home.
+    {% endcomment %}
     {% if page.url == keynav_home_url and keynav_first_section_index_url != "" %}
       {% assign keynav_prev_url = nil %}
       {% assign keynav_next_url = keynav_first_section_index_url %}
@@ -73,6 +118,10 @@
       {% assign keynav_prev_url = keynav_home_url %}
     {% endif %}
 
+    {% comment %}
+      Human-friendly page title derived from filename.
+      - If the filename starts with a numeric prefix (e.g. "7 Literals.md"), strip the prefix.
+    {% endcomment %}
     {% assign page_filename = page.path | split: '/' | last %}
     {% assign page_base_name = page_filename | split: '.' | first %}
     {% assign page_parts = page_base_name | split: ' ' %}
@@ -84,10 +133,18 @@
     {% endif %}
 
     {% comment %}
-      Prefer the first H1 from the rendered page content for the HTML <title>.
-      Avoid generic titles like "README" or "Index" by falling back to a more meaningful name.
+      HTML <title> computation strategy:
+      - Base fallback title is derived from file name (see above).
+      - README.md becomes the site title (or "Home") to avoid showing "README".
+      - Index pages ("0 Index.md" / "Index.md") show the section name (or site title).
+      - Prefer the first rendered heading (H1, then H2) from the page content, but avoid
+        generic headings like "README" or "Index".
     {% endcomment %}
 
+    {% comment %}
+      Human-friendly section title derived from section directory.
+      - If the directory starts with a numeric prefix (e.g. "2 Standard Lib"), strip it.
+    {% endcomment %}
     {% assign section_dir = "" %}
     {% if page.path contains '/' %}
       {% assign section_dir = page.path | split: '/' | first %}
@@ -142,12 +199,23 @@
     <title>{{ final_title }}{% if site.title and site.title != final_title %} | {{ site.title }}{% endif %}</title>
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=" | append: site.github.build_revision | relative_url }}">
+    {% comment %}
+      These are used by the keyboard navigation script (ArrowLeft/ArrowRight).
+      They are also meaningful to crawlers and some browsers.
+    {% endcomment %}
     {% if keynav_prev_url %}<link rel="prev" href="{{ keynav_prev_url | relative_url }}">{% endif %}
     {% if keynav_next_url %}<link rel="next" href="{{ keynav_next_url | relative_url }}">{% endif %}
     {% include head-custom.html %}
   </head>
 
   <body>
+    {% comment %}
+      Navigation model:
+      - all_md_pages: all Markdown pages sorted by path.
+      - section_dirs: unique top-level directories (built via token string because Liquid
+        doesn't have a native "set").
+      - active_section_dir: the current top-level directory, used for sub-navigation.
+    {% endcomment %}
     {% assign all_md_pages = site.pages
       | where_exp: "p", "p.path contains '.md'"
       | sort_natural: "path" %}
@@ -170,6 +238,11 @@
     {% endfor %}
     {% assign section_dirs = section_dirs_tokens | split: '|' | sort_natural %}
 
+    {% comment %}
+      Home link label:
+      - If the home page is README.md, display a friendly project name ("Cilia").
+      - Otherwise, derive it from the file name.
+    {% endcomment %}
     {% assign home_page = all_md_pages | where: "url", "/" | first %}
     {% if home_page %}
       {% assign home_filename = home_page.path | split: '/' | last %}
@@ -190,6 +263,11 @@
         | where_exp: "p", "p.path contains active_prefix"
         | sort_natural: "path" %}
 
+      {% comment %}
+        Active section landing page:
+        - Prefer "0 Index.md", otherwise the first page in the section.
+        - The landing page itself is excluded from the sub-nav list.
+      {% endcomment %}
       {% assign active_section_index_page = "" %}
       {% for p in active_section_pages %}
         {% assign p_filename = p.path | split: '/' | last %}
@@ -219,6 +297,12 @@
     {% endif %}
 
     <nav aria-label="Primary">
+      {% comment %}
+        Primary navigation:
+        - Home
+        - Top-level (root) Markdown pages (not in a directory)
+        - One entry per section directory (links to its landing page)
+      {% endcomment %}
       <ul class="nav-main">
         {% if home_page %}
           <li>
@@ -253,6 +337,12 @@
 
         {% for section_dir in section_dirs %}
           {% if section_dir != "" %}
+            {% comment %}
+              Section label and landing link:
+              - Strip numeric prefix from the directory label, same as for page titles.
+              - Prefer "0 Index.md" as section index, otherwise first page.
+              - aria-current="location" marks the active section while browsing inside it.
+            {% endcomment %}
             {% assign section_parts = section_dir | split: ' ' %}
             {% assign section_first = section_parts | first %}
             {% assign section_first_as_num_str = section_first | plus: 0 | append: '' %}
@@ -304,6 +394,11 @@
       </ul>
 
       {% if has_active_subnav %}
+        {% comment %}
+          Sub-navigation for the active section:
+          - Lists all pages in the active section except "0 Index.md" (the landing page).
+          - Uses aria-current="page" for the current page.
+        {% endcomment %}
         {% assign active_section_display_title = active_section_dir %}
         {% assign active_section_parts = active_section_dir | split: ' ' %}
         {% assign active_section_first = active_section_parts | first %}
@@ -347,9 +442,17 @@
         </div>
       </footer>
     </div>
+    {% comment %}
+      Anchor links for headings:
+      - AnchorJS scans headings and inserts linkable anchors.
+    {% endcomment %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
     <script>anchors.add();</script>
     <script>
+      // Keyboard navigation:
+      // - ArrowLeft navigates to <link rel="prev"> if present.
+      // - ArrowRight navigates to <link rel="next"> if present.
+      // - Disabled while typing in inputs/textarea/select or contenteditable elements.
       (function () {
         function isTypingContext(el) {
           if (!el) return false;
