@@ -73,8 +73,15 @@
       {% assign keynav_prev_url = keynav_home_url %}
     {% endif %}
 
-    {% capture page_display_title %}{% include title_from_heading.html page=page %}{% endcapture %}
-    {% assign page_display_title = page_display_title | strip %}
+    {% assign page_filename = page.path | split: '/' | last %}
+    {% assign page_base_name = page_filename | split: '.' | first %}
+    {% assign page_parts = page_base_name | split: ' ' %}
+    {% assign page_first = page_parts | first %}
+    {% assign page_first_as_num_str = page_first | plus: 0 | append: '' %}
+    {% assign page_display_title = page_base_name %}
+    {% if page_parts.size > 1 and page_first == page_first_as_num_str %}
+      {% assign page_display_title = page_base_name | remove_first: page_first | remove_first: ' ' %}
+    {% endif %}
     <title>{{ page_display_title }}{% if site.title and site.title != page_display_title %} | {{ site.title }}{% endif %}</title>
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=" | append: site.github.build_revision | relative_url }}">
@@ -108,8 +115,12 @@
 
     {% assign home_page = all_md_pages | where: "url", "/" | first %}
     {% if home_page %}
-      {% capture home_display_title %}{% include title_from_heading.html page=home_page %}{% endcapture %}
-      {% assign home_display_title = home_display_title | strip %}
+      {% assign home_filename = home_page.path | split: '/' | last %}
+      {% if home_filename == "README.md" %}
+        {% assign home_display_title = "Cilia" %}
+      {% else %}
+        {% assign home_display_title = home_filename | split: '.' | first %}
+      {% endif %}
     {% else %}
       {% assign home_display_title = "Home" %}
     {% endif %}
@@ -164,8 +175,15 @@
         {% for p in all_md_pages %}
           {% unless p.path contains '/' %}
             {% if home_page == nil or p.url != home_page.url %}
-              {% capture p_display_title %}{% include title_from_heading.html page=p %}{% endcapture %}
-              {% assign p_display_title = p_display_title | strip %}
+              {% assign p_filename = p.path | split: '/' | last %}
+              {% assign p_base_name = p_filename | split: '.' | first %}
+              {% assign p_parts = p_base_name | split: ' ' %}
+              {% assign p_first = p_parts | first %}
+              {% assign p_first_as_num_str = p_first | plus: 0 | append: '' %}
+              {% assign p_display_title = p_base_name %}
+              {% if p_parts.size > 1 and p_first == p_first_as_num_str %}
+                {% assign p_display_title = p_base_name | remove_first: p_first | remove_first: ' ' %}
+              {% endif %}
               <li>
                 <a
                   href="{{ p.url | relative_url }}"
@@ -212,14 +230,6 @@
               {% endif %}
             {% endif %}
 
-            {% if section_index_page %}
-              {% capture section_display_title_from_heading %}{% include title_from_heading.html page=section_index_page %}{% endcapture %}
-              {% assign section_display_title_from_heading = section_display_title_from_heading | strip %}
-              {% if section_display_title_from_heading != "" %}
-                {% assign section_display_title = section_display_title_from_heading %}
-              {% endif %}
-            {% endif %}
-
             <li>
               <a
                 href="{{ section_index_url | relative_url }}"
@@ -245,20 +255,18 @@
           {% assign active_section_display_title = active_section_dir | remove_first: active_section_first | remove_first: ' ' %}
         {% endif %}
 
-        {% if active_section_index_page %}
-          {% capture active_section_display_title_from_heading %}{% include title_from_heading.html page=active_section_index_page %}{% endcapture %}
-          {% assign active_section_display_title_from_heading = active_section_display_title_from_heading | strip %}
-          {% if active_section_display_title_from_heading != "" %}
-            {% assign active_section_display_title = active_section_display_title_from_heading %}
-          {% endif %}
-        {% endif %}
-
         <ul class="nav-sub" aria-label="{{ active_section_display_title }} sub-pages">
           {% for c in active_section_pages %}
             {% assign c_filename = c.path | split: '/' | last %}
             {% if c_filename != "0 Index.md" %}
-              {% capture c_display_title %}{% include title_from_heading.html page=c %}{% endcapture %}
-              {% assign c_display_title = c_display_title | strip %}
+              {% assign c_base_name = c_filename | split: '.' | first %}
+              {% assign c_parts = c_base_name | split: ' ' %}
+              {% assign c_first = c_parts | first %}
+              {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
+              {% assign c_display_title = c_base_name %}
+              {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
+                {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
+              {% endif %}
               <li>
                 <a
                   href="{{ c.url | relative_url }}"
