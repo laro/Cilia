@@ -21,8 +21,6 @@ Simply use `Int` == `Int64`, as in Swift and Go,
 - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
 - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 
-Int is Int32 on systems with a 32-bit address bus, and Int16 on systems with an 8- or 16-bit address bus (i.e., very old or small microcontrollers like AVR/ATmega328/Arduino Uno, or classic 8-/16-bit home computers such as those based on 6502 or Z80 CPUs).
-
 `Int` == `Int32` on systems with a 32-bit address bus only (i.e. old/small platforms, like Win32, Amiga, Atari),  
 `Int` == `Int16` on systems with a 16-bit address bus (i.e. very old/small microcontrollers with 16 bit addresses, like AVR/ATmega328/Arduino Uno, or classic 8-bit home computers such as those based on 6502 or Z80 CPUs).
 
