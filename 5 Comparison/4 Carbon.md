@@ -22,3 +22,5 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `var i: i64 = 0;  while (i < words.ssize()) { ...; ++i; }`
     - `for (i: i64 in (5, 7, 11, 13)) { ...; }`
     - `for (word: auto in words) { ...; }`
+
+Is there really no range operator and no classical for-loop in Carbon?

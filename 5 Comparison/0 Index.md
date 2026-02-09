@@ -8,7 +8,6 @@ The comparison on the following pages aims to show the _exact_ equivalent of the
 
 > **Note**
 > - I may not be very familiar with all these languages, or not up to date.
->     - Is there really no range operator and no classical for-loop in either Cpp2 or Carbon?
 > - I may not even be sufficiently up to date with C++14/17/20/23/26 either.
 
 
