@@ -82,7 +82,53 @@
     {% if page_parts.size > 1 and page_first == page_first_as_num_str %}
       {% assign page_display_title = page_base_name | remove_first: page_first | remove_first: ' ' %}
     {% endif %}
-    <title>{{ page_display_title }}{% if site.title and site.title != page_display_title %} | {{ site.title }}{% endif %}</title>
+
+    {% comment %}
+      Prefer the first H1 from the rendered page content for the HTML <title>.
+      Avoid generic titles like "README" or "Index" by falling back to a more meaningful name.
+    {% endcomment %}
+
+    {% assign section_dir = "" %}
+    {% if page.path contains '/' %}
+      {% assign section_dir = page.path | split: '/' | first %}
+    {% endif %}
+    {% assign section_parts = section_dir | split: ' ' %}
+    {% assign section_first = section_parts | first %}
+    {% assign section_first_as_num_str = section_first | plus: 0 | append: '' %}
+    {% assign section_display_title = section_dir %}
+    {% if section_parts.size > 1 and section_first == section_first_as_num_str %}
+      {% assign section_display_title = section_dir | remove_first: section_first | remove_first: ' ' %}
+    {% endif %}
+
+    {% assign fallback_title = page_display_title %}
+    {% if page_filename == "README.md" %}
+      {% assign fallback_title = site.title | default: "Home" %}
+    {% elsif page_filename == "0 Index.md" or page_filename == "Index.md" %}
+      {% if section_display_title != "" %}
+        {% assign fallback_title = section_display_title %}
+      {% else %}
+        {% assign fallback_title = site.title | default: "Home" %}
+      {% endif %}
+    {% endif %}
+
+    {% assign h1_title = "" %}
+    {% if content contains "<h1" %}
+      {% assign h1_after = content | split: "<h1" | slice: 1 %}
+      {% if h1_after %}
+        {% assign h1_tag_and_inner = h1_after | split: "</h1>" | first %}
+        {% assign h1_parts = h1_tag_and_inner | split: ">" %}
+        {% assign h1_inner_html = h1_parts | slice: 1, 999 | join: ">" %}
+        {% assign h1_title = h1_inner_html | strip_html | strip %}
+      {% endif %}
+    {% endif %}
+
+    {% assign final_title = fallback_title %}
+    {% assign h1_title_down = h1_title | downcase %}
+    {% if h1_title != "" and h1_title_down != "readme" and h1_title_down != "index" %}
+      {% assign final_title = h1_title %}
+    {% endif %}
+
+    <title>{{ final_title }}{% if site.title and site.title != final_title %} | {{ site.title }}{% endif %}</title>
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=" | append: site.github.build_revision | relative_url }}">
     {% if keynav_prev_url %}<link rel="prev" href="{{ keynav_prev_url | relative_url }}">{% endif %}
