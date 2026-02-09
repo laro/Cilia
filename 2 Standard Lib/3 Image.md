@@ -4,8 +4,8 @@ permalink: /standard-lib/image/
 
 ## Image
 
-- `cilia::Image<T = Float32>`
-- Almost like `cilia::Matrix`,  
+- `Image<T = Float32>`
+- Almost like `Matrix`,  
   but stored row-major, like:
   ```
   0 1 2
