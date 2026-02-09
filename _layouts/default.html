@@ -402,35 +402,30 @@
             </li>
           {% endif %}
         {% endfor %}
-      </ul>
 
-      <form
-        class="nav-search"
-        id="navSearch"
-        action="https://duckduckgo.com/"
-        method="get"
-        role="search"
-        aria-label="Search this site"
-        data-site="{{ search_site_host }}"
-      >
-        <label class="sr-only" for="navSearchInput">Search</label>
-        <div class="nav-search-row">
-          <select id="navSearchEngine" class="nav-search-engine" aria-label="Search engine">
-            <option value="ddg" selected>DuckDuckGo</option>
-            <option value="google">Google</option>
-          </select>
-          <input
-            id="navSearchInput"
-            class="nav-search-input"
-            type="search"
-            name="q"
-            placeholder="Search…"
-            autocomplete="off"
-            spellcheck="false"
+        <li class="nav-search-item">
+          <form
+            class="nav-search nav-search--inline"
+            id="navSearch"
+            action="https://www.google.com/search"
+            method="get"
+            role="search"
+            aria-label="Search this site"
+            data-site="{{ search_site_host }}"
           >
-          <button class="nav-search-button" type="submit">Search</button>
-        </div>
-      </form>
+            <label class="sr-only" for="navSearchInput">Search</label>
+            <input
+              id="navSearchInput"
+              class="nav-search-input"
+              type="search"
+              name="q"
+              placeholder="Search…"
+              autocomplete="off"
+              spellcheck="false"
+            >
+          </form>
+        </li>
+      </ul>
 
       {% if has_active_subnav %}
         {% comment %}
@@ -522,28 +517,14 @@
     </script>
     <script>
       // Search box behavior:
-      // - Redirects to DuckDuckGo or Google.
+      // - Redirects to Google.
       // - Prefixes the query with `site:<host>` unless the query already contains "site:".
       (function () {
         var form = document.getElementById("navSearch");
         if (!form) return;
 
         var input = document.getElementById("navSearchInput");
-        var engine = document.getElementById("navSearchEngine");
-        if (!input || !engine) return;
-
-        function setEngineAction(value) {
-          if (value === "google") {
-            form.action = "https://www.google.com/search";
-          } else {
-            form.action = "https://duckduckgo.com/";
-          }
-        }
-
-        engine.addEventListener("change", function () {
-          setEngineAction(engine.value);
-        });
-        setEngineAction(engine.value);
+        if (!input) return;
 
         form.addEventListener("submit", function () {
           var q = (input.value || "").trim();
