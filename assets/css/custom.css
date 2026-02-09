@@ -227,6 +227,10 @@ nav ul.nav-sub a {
 .nav-search-item {
   display: flex;
   align-items: center;
+  /* Match first-level navigation link typography */
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
 .nav-search--inline {
