@@ -7,27 +7,27 @@ permalink: /standard-lib/matrix-and-vector/
 ### **Geometry**
 For small, _fixed size_ vectors & matrices,  
 as typically used in geometry (i.e. 2D, 3D, 4D).
-- `cilia::Vector<Int size, T = Float>`
-    - `cilia::Vector2<T = Float>`
-    - `cilia::Vector3<T = Float>`
-    - `cilia::Vector4<T = Float>`
-- `cilia::Matrix<Int rows, Int columns, T = Float>`
-    - `cilia::Matrix22<T = Float>`
-    - `cilia::Matrix33<T = Float>`
-    - `cilia::Matrix44<T = Float>`
+- `Vector<Int size, T = Float>`
+    - `Vector2<T = Float>`
+    - `Vector3<T = Float>`
+    - `Vector4<T = Float>`
+- `Matrix<Int rows, Int columns, T = Float>`
+    - `Matrix22<T = Float>`
+    - `Matrix33<T = Float>`
+    - `Matrix44<T = Float>`
 
 ### Linear Algebra
 For large, dynamically sized vectors & matrices,  
 as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms).
-- `cilia::Vector<T = Float>`
-- `cilia::Matrix<T = Float>`
+- `Vector<T = Float>`
+- `Matrix<T = Float>`
     - Stored column-major, like:
         ```
         0 3 6
         1 4 7
         2 5 8
         ```
-- `cilia::MDArray<Int dimensions, T = Float>`
+- `MDArray<Int dimensions, T = Float>`
     - also see `MDSpan`
 - `VectorView`, `MatrixView`
 
