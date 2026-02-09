@@ -111,7 +111,7 @@ permalink: /basics/literals/
 - `NaN` is a `Float` literal for NaN ("not a number") values,
     - that can be converted to any float type.
 
-### String & Char
+### String
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
         - If necessary
@@ -124,13 +124,6 @@ permalink: /basics/literals/
     - ~~A StringView starts like a String does: pointer to first character plus length,~~
         - ~~so slicing of String to StringView is possible.~~
         - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
-
-- `'...'` is a character literal.
-    - `'A'` is an ASCII character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
-    - `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
-    - `'Ω'` is a `Char16` character literal, that can be converted to `Char32`.
-    - `'𝄞'` is a `Char32` character literal.
-    - `'👮🏻'` is an _invalid_ character literal, as grapheme clusters consist of multiple code points. Use the string literal `"👮🏻"` instead.
 
 - Multiline String Literal
     - Use triple double-quotes `"""` to start and end the literal.
@@ -183,6 +176,14 @@ permalink: /basics/literals/
             - `"...\0"` is a StringView of a zero terminated string.
     - All these available for multiline string literals and interpolated strings, too.
         - TODO Any reason, not to?
+
+### Char
+- `'...'` is a character literal.
+    - `'A'` is an ASCII character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
+    - `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`, that can be converted to `Char16` and `Char32`.
+    - `'Ω'` is a `Char16` character literal, that can be converted to `Char32`.
+    - `'𝄞'` is a `Char32` character literal.
+    - `'👮🏻'` is an _invalid_ character literal, as grapheme clusters consist of multiple code points. Use the string literal `"👮🏻"` instead.
 
 ### Array
 - `[1, 2, 3]` is an array (here an `Int[3]`),
