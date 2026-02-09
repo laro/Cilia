@@ -111,21 +111,32 @@
       {% endif %}
     {% endif %}
 
-    {% assign h1_title = "" %}
+    {% assign heading_title = "" %}
+
     {% if content contains "<h1" %}
       {% assign h1_after = content | split: "<h1" | slice: 1 %}
       {% if h1_after %}
         {% assign h1_tag_and_inner = h1_after | split: "</h1>" | first %}
         {% assign h1_parts = h1_tag_and_inner | split: ">" %}
         {% assign h1_inner_html = h1_parts | slice: 1, 999 | join: ">" %}
-        {% assign h1_title = h1_inner_html | strip_html | strip %}
+        {% assign heading_title = h1_inner_html | strip_html | strip %}
+      {% endif %}
+    {% endif %}
+
+    {% if heading_title == "" and content contains "<h2" %}
+      {% assign h2_after = content | split: "<h2" | slice: 1 %}
+      {% if h2_after %}
+        {% assign h2_tag_and_inner = h2_after | split: "</h2>" | first %}
+        {% assign h2_parts = h2_tag_and_inner | split: ">" %}
+        {% assign h2_inner_html = h2_parts | slice: 1, 999 | join: ">" %}
+        {% assign heading_title = h2_inner_html | strip_html | strip %}
       {% endif %}
     {% endif %}
 
     {% assign final_title = fallback_title %}
-    {% assign h1_title_down = h1_title | downcase %}
-    {% if h1_title != "" and h1_title_down != "readme" and h1_title_down != "index" %}
-      {% assign final_title = h1_title %}
+    {% assign heading_title_down = heading_title | downcase %}
+    {% if heading_title != "" and heading_title_down != "readme" and heading_title_down != "index" %}
+      {% assign final_title = heading_title %}
     {% endif %}
 
     <title>{{ final_title }}{% if site.title and site.title != final_title %} | {{ site.title }}{% endif %}</title>
