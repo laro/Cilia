@@ -245,13 +245,13 @@ nav ul.nav-sub a {
   background: var(--color-canvas-default);
   color: var(--color-fg-default);
   padding: 0.15rem 0.55rem;
-  width: 16ch;
+  width: 10ch;
 }
 
 /* Keep the search reasonably narrow on small screens */
 @media (max-width: 600px) {
   .nav-search-input {
-    width: 12ch;
+    width: 7ch;
   }
 }
 
