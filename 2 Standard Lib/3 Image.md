@@ -4,14 +4,16 @@ permalink: /standard-lib/image/
 
 ## Image
 
-- `Image<T = Float32>`
-- Almost like `Matrix`,  
-  but stored row-major, like:
-  ```
-  0 1 2
-  3 4 5
-  6 7 8
-  ```
+```
+Image<T = Float32>
+```
+Almost like `Matrix`,  
+but stored row-major, like:
+```
+0 1 2
+3 4 5
+6 7 8
+```
 - `ImageView`
 
 ### Datatype & Precision
