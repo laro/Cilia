@@ -15,6 +15,18 @@ as typically used in geometry (i.e. 2D, 3D, 4D).
     - `Matrix22<T = Float>`
     - `Matrix33<T = Float>`
     - `Matrix44<T = Float>`
+ 
+> **Note**
+> To avoid a naming conflict, we either need
+> ```
+> cilia::StaticVectorBase<Int size, T = Float>
+> cilia::Vector<T = Float>
+> ```
+> or
+> ```
+> cilia::geometry::Vector<Int size, T = Float>
+> cilia::linalg::Vector<T = Float>
+> ```
 
 ### Linear Algebra
 For large, dynamically sized vectors & matrices,  
@@ -32,8 +44,8 @@ as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprogr
 - `VectorView`, `MatrixView`
 
 ### Datatype & Precision
-The default datatype is `Float` (64-bit precision), which is better suited for scientific calculations.
+The default datatype is `Float` (with 64-bit precision), which is well suited for scientific calculations.
 
-Feel free to use your own type aliases:
+Feel free to define your own type aliases:
 - `using Vec3 = cilia::Vector3<Float32>`
 - `using RGB = cilia::Vector3<UInt8>`
