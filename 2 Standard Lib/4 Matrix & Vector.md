@@ -8,16 +8,18 @@ permalink: /standard-lib/matrix-and-vector/
 
 For small, _fixed size_ vectors & matrices, as typically used in geometry (i.e. 2D, 3D, 4D).
 ```
-Vector<Int size, T = Float>  // as base class
 Vector2<T = Float>
 Vector3<T = Float>
 Vector4<T = Float>
+
+Vector<Int size, T = Float>  // as base class
 ```
 ```
-Matrix<Int rows, Int columns, T = Float>  // as base class
 Matrix22<T = Float>
 Matrix33<T = Float>
 Matrix44<T = Float>
+
+Matrix<Int rows, Int columns, T = Float>  // as base class
 ```
 Using `namespace geometry` to avoid naming conflicts, but `Vector2/3/4` could still be (also) in namespace `cilia`.
 
