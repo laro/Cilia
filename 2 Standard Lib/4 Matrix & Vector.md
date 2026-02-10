@@ -16,7 +16,7 @@ as typically used in geometry (i.e. 2D, 3D, 4D).
     - `Matrix33<T = Float>`
     - `Matrix44<T = Float>`
  
-> **Note**
+> **Note**  
 > To avoid a naming conflict, we either need
 > ```
 > cilia::StaticVectorBase<Int size, T = Float>
