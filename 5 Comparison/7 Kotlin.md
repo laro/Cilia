@@ -10,7 +10,7 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `var x: Int = 42`
     - `var x = 42`
     - `val x = 42`
-    - `var words: MutableList<String> = mutableListOf()` (an `Array` would have a fixed size)
+    - `var words: MutableList<String> = mutableListOf()`
     - `var names: MutableSet<String> = mutableSetOf()`
     - `var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`
 - Functions
@@ -25,3 +25,4 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
 
 > **Note**  
 > In Kotlin `Int` and `42` are 32 bit wide, not 64 bits.  
+> An `Array` has a fixed size.
