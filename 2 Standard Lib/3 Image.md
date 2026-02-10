@@ -26,6 +26,13 @@ image.resize(width, height, Interpolation::Bilinear)
 image.threshold(lower, upper)
 ```
 
+Examples for `operator[x, y]`:
+```
+auto center = image[width / 2, height / 2];
+image[10, 20] = 0.0f;
+auto gradientX = image[x + 1, y] - image[x - 1, y];
+```
+
 - `ImageView`
 
 
