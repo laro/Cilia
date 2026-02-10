@@ -546,6 +546,8 @@
       // Keyboard navigation:
       // - ArrowLeft navigates to <link rel="prev"> if present.
       // - ArrowRight navigates to <link rel="next"> if present.
+      // - "s" focuses the search input.
+      // - Escape leaves the search input and restores window focus.
       // - Disabled while typing in inputs/textarea/select or contenteditable elements.
       (function () {
         function isTypingContext(el) {
@@ -567,6 +569,15 @@
           if (!searchInput) return false;
           searchInput.focus();
           searchInput.select();
+          return true;
+        }
+
+        function blurSearchInput() {
+          var searchInput = document.getElementById("navSearchInput");
+          if (!searchInput) return false;
+          if (document.activeElement !== searchInput) return false;
+          searchInput.blur();
+          window.focus();
           return true;
         }
 
@@ -644,9 +655,14 @@
         document.addEventListener("keydown", function (e) {
           if (e.defaultPrevented) return;
           if (e.altKey || e.ctrlKey || e.metaKey) return;
-          if (isTypingContext(document.activeElement)) return;
 
           var key = (e.key || "").toLowerCase();
+          if (key === "escape") {
+            if (blurSearchInput()) e.preventDefault();
+            return;
+          }
+
+          if (isTypingContext(document.activeElement)) return;
 
           if (key === "arrowleft") {
             if (navigateRel("prev")) e.preventDefault();
