@@ -32,7 +32,7 @@ for i in 0..9 {
 ```
 
 In contrast, languages like Swift, Rust, Kotlin, Java, and C# require explicit initialization of collections before they can be used. After declaration, an instance must therefore be assigned explicitly:
-```swift
+```
 var words: [String] = []
 for i in 0...9 {
     words.append("\(i)")
