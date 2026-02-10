@@ -5,7 +5,7 @@ permalink: /standard-lib/image/
 ## Image
 
 ```
-Image<T = Float32>
+Image<type T = Float32>
 ```
 
 Common image-processing examples:
@@ -17,13 +17,15 @@ func resize<type T>(Image<T> image, Int width, Int height, Interpolation interpo
 func threshold<type T>(Image<T> image, T lower, T upper) -> Image<T>
 ```
 
-Same operations as in-place member functions:
+Same operations as member functions:
 ```
-image.gaussianBlur(sigma)
-image.medianFilter(kernelSize)
-image.sobelEdges()
-image.resize(width, height, Interpolation::Bilinear)
-image.threshold(lower, upper)
+class Image<type T = Float32> {
+    func gaussianBlur(Float sigma) -> Image<T>
+    func medianFilter(Int kernelSize) -> Image<T>
+    func sobelEdges() -> Image<T>
+    func resize(Int width, Int height, Interpolation interpolation) -> Image<T>
+    func threshold(T lower, T upper) -> Image<T>
+}
 ```
 
 Examples for `operator[x, y]`:
