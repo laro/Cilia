@@ -458,11 +458,11 @@
               id="navSearchInput"
               class="nav-search-input"
               type="search"
-              name="q"
               placeholder="Search…"
               autocomplete="off"
               spellcheck="false"
             >
+            <input type="hidden" id="navSearchQuery" name="q" value="">
           </form>
         </li>
       </ul>
@@ -649,7 +649,9 @@
     <script>
       // Search box behavior:
       // - Redirects to Google.
-      // - Prefixes the query with `site:<host>` unless the query already contains "site:".
+      // - Sends the query through a hidden `q` field.
+      // - Prefixes with `site:<host>` unless the query already contains "site:".
+      // - Keeps the visible text input unchanged.
       (function () {
         var form = document.getElementById("navSearch");
         if (!form) return;
@@ -657,18 +659,22 @@
         var input = document.getElementById("navSearchInput");
         if (!input) return;
 
+        var hiddenQuery = document.getElementById("navSearchQuery");
+        if (!hiddenQuery) return;
+
         form.addEventListener("submit", function () {
           var q = (input.value || "").trim();
           if (!q) return;
 
+          var submitQuery = q;
+
           // Only scope to the site if we have a host configured.
           var siteHost = (form.getAttribute("data-site") || "").trim();
-          if (!siteHost) return;
+          if (siteHost && !/(\s|^)site:/i.test(q)) {
+            submitQuery = "site:" + siteHost + " " + q;
+          }
 
-          // If the user already specified a site:, keep their query as-is.
-          if (/(\s|^)site:/i.test(q)) return;
-
-          input.value = "site:" + siteHost + " " + q;
+          hiddenQuery.value = submitQuery;
         });
       })();
     </script>
