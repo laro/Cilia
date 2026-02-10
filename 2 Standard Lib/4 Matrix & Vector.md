@@ -16,7 +16,7 @@ as typically used in geometry (i.e. 2D, 3D, 4D).
     - `Matrix22<T = Float>`
     - `Matrix33<T = Float>`
     - `Matrix44<T = Float>`
-- `namespace geometry`
+- Using `namespace geometry` to avoid a naming conflicts, but `Vector2/3/4` could be (also) in namespace `cilia`.
 
 
 ### Linear Algebra
@@ -34,20 +34,8 @@ as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprogr
 - `MDArray<Int dimensions, T = Float>`
     - also see `MDSpan`
 - `VectorView`, `MatrixView`
-- `namespace linalg`
+- Using `namespace linalg`.
  
-> **Note**  
-> To avoid a naming conflict, we either need
-> ```
-> cilia::StaticVectorBase<Int size, T = Float>
-> cilia::Vector<T = Float>
-> ```
-> or
-> ```
-> cilia::geometry::Vector<Int size, T = Float>
-> cilia::linalg::Vector<T = Float>
-> ```
-
 
 ### Datatype & Precision
 
