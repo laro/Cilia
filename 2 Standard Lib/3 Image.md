@@ -8,6 +8,24 @@ permalink: /standard-lib/image/
 Image<T = Float32>
 ```
 
+Common image-processing examples:
+```
+gaussianBlur(image, sigma)
+medianFilter(image, kernelSize)
+sobelEdges(image)
+resize(image, width, height, Interpolation::Bilinear)
+threshold(image, lower, upper)
+```
+
+Same operations as in-place member functions:
+```
+image.gaussianBlur(sigma)
+image.medianFilter(kernelSize)
+image.sobelEdges()
+image.resize(width, height, Interpolation::Bilinear)
+image.threshold(lower, upper)
+```
+
 - `ImageView`
 
 
