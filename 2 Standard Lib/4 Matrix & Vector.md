@@ -21,12 +21,12 @@ Matrix44<T = Float>
 
 Matrix<Int rows, Int columns, T = Float>  // as base class
 ```
-Using `namespace geometry` to avoid naming conflicts, but `Vector2/3/4` could still be (also) in namespace `cilia`.
+Using the namespace `cilia::geometry` to avoid naming conflicts, but `Vector2/3/4` could still be (also) in namespace `cilia`.
 
 
 ### Linear Algebra
 
-For large, dynamically sized vectors & matrices, as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms), in the `namespace linalg`.
+For large, dynamically sized vectors & matrices, as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms), in the namespace `cilia::linalg`.
 ```
 Vector<T = Float>
 Matrix<T = Float>
