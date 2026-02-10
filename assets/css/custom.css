@@ -137,12 +137,9 @@ body {
 main p,
 main li,
 main blockquote,
-main dl {
-  max-width: 80ch;
-}
-
+main dl,
 .markdown-body .highlighter-rouge {
-  max-width: 80ch;
+    max-width: 65ch;
 }
 
 /*
@@ -152,10 +149,6 @@ main dl {
 .markdown-body main p:has(+ :is(ul, ol)) {
   margin-bottom: 0.5em;
 }
-
-/*main pre {
-  max-width: 100ch;
-}*/
 
 .markdown-body :is(h1, h2, h3, h4, h5, h6) {
   border-bottom: none;
@@ -248,13 +241,6 @@ nav ul.nav-sub a {
   width: 10ch;
 }
 
-/* Keep the search reasonably narrow on small screens */
-@media (max-width: 600px) {
-  .nav-search-input {
-    width: 8ch;
-  }
-}
-
 /* Accessibility: visually hidden label */
 .sr-only {
   position: absolute !important;
@@ -301,7 +287,7 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
-/* Mobile: reduce whitespace above the menu. */
+/* Mobile / small screens */
 @media (max-width: 600px) {
   body {
     /* Some GitHub Pages themes add generous body padding on small screens. */
@@ -309,6 +295,12 @@ nav a[aria-current="location"] {
   }
 
   nav {
+    /* reduce whitespace above the menu. */
     margin-top: 0px;
+  }
+
+  /* Keep the search reasonably narrow on small screens */
+  .nav-search-input {
+    width: 8ch;
   }
 }
