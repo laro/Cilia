@@ -2,7 +2,7 @@
 permalink: /advanced/aliasing/
 ---
 
-## Type, Variable, and Function Aliasing
+## Aliasing of Types, Variables, and Functions
 
 Create an alias with `using`, for:
 - Member **variable** alias
@@ -16,7 +16,7 @@ Create an alias with `using`, for:
     - Not quite possible in C++.
         - With `T& z = data[2]`, unfortunately, memory is created for the reference (the pointer).
         - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
-        
+
 - Member **function** alias
     ```
     class A : B {
