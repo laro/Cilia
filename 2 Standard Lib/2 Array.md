@@ -163,8 +163,11 @@ AKA Map (or Dictionary).
 There is no difference between these two forms, but the long form is necessary for other map variants (SortedMap, HashMap, etc.).
 
 Example:
-`ContactInfo[String] contactInfoForID` as short form of  
-`Map<String, ContactInfo> contactInfoForID`.
+```
+ContactInfo[String] contactInfoForID
+// as short form of  
+Map<String, ContactInfo> contactInfoForID
+```
 
 Maybe partial template specialization:
 - `Map<Int, ...>` is a `HashMap`
