@@ -126,9 +126,19 @@
     {% assign page_base_name = page_filename | split: '.' | first %}
     {% assign page_parts = page_base_name | split: ' ' %}
     {% assign page_first = page_parts | first %}
-    {% assign page_first_as_num_str = page_first | plus: 0 | append: '' %}
+    {% assign page_first_non_digits = page_first
+      | remove: '0'
+      | remove: '1'
+      | remove: '2'
+      | remove: '3'
+      | remove: '4'
+      | remove: '5'
+      | remove: '6'
+      | remove: '7'
+      | remove: '8'
+      | remove: '9' %}
     {% assign page_display_title = page_base_name %}
-    {% if page_parts.size > 1 and page_first == page_first_as_num_str %}
+    {% if page_parts.size > 1 and page_first_non_digits == '' and page_first != '' %}
       {% assign page_display_title = page_base_name | remove_first: page_first | remove_first: ' ' %}
     {% endif %}
 
@@ -151,9 +161,19 @@
     {% endif %}
     {% assign section_parts = section_dir | split: ' ' %}
     {% assign section_first = section_parts | first %}
-    {% assign section_first_as_num_str = section_first | plus: 0 | append: '' %}
+    {% assign section_first_non_digits = section_first
+      | remove: '0'
+      | remove: '1'
+      | remove: '2'
+      | remove: '3'
+      | remove: '4'
+      | remove: '5'
+      | remove: '6'
+      | remove: '7'
+      | remove: '8'
+      | remove: '9' %}
     {% assign section_display_title = section_dir %}
-    {% if section_parts.size > 1 and section_first == section_first_as_num_str %}
+    {% if section_parts.size > 1 and section_first_non_digits == '' and section_first != '' %}
       {% assign section_display_title = section_dir | remove_first: section_first | remove_first: ' ' %}
     {% endif %}
 
@@ -331,9 +351,19 @@
               {% assign p_base_name = p_filename | split: '.' | first %}
               {% assign p_parts = p_base_name | split: ' ' %}
               {% assign p_first = p_parts | first %}
-              {% assign p_first_as_num_str = p_first | plus: 0 | append: '' %}
+              {% assign p_first_non_digits = p_first
+                | remove: '0'
+                | remove: '1'
+                | remove: '2'
+                | remove: '3'
+                | remove: '4'
+                | remove: '5'
+                | remove: '6'
+                | remove: '7'
+                | remove: '8'
+                | remove: '9' %}
               {% assign p_display_title = p_base_name %}
-              {% if p_parts.size > 1 and p_first == p_first_as_num_str %}
+              {% if p_parts.size > 1 and p_first_non_digits == '' and p_first != '' %}
                 {% assign p_display_title = p_base_name | remove_first: p_first | remove_first: ' ' %}
               {% endif %}
               <li>
@@ -356,9 +386,19 @@
             {% endcomment %}
             {% assign section_parts = section_dir | split: ' ' %}
             {% assign section_first = section_parts | first %}
-            {% assign section_first_as_num_str = section_first | plus: 0 | append: '' %}
+            {% assign section_first_non_digits = section_first
+              | remove: '0'
+              | remove: '1'
+              | remove: '2'
+              | remove: '3'
+              | remove: '4'
+              | remove: '5'
+              | remove: '6'
+              | remove: '7'
+              | remove: '8'
+              | remove: '9' %}
             {% assign section_display_title = section_dir %}
-            {% if section_parts.size > 1 and section_first == section_first_as_num_str %}
+            {% if section_parts.size > 1 and section_first_non_digits == '' and section_first != '' %}
               {% assign section_display_title = section_dir | remove_first: section_first | remove_first: ' ' %}
             {% endif %}
 
@@ -436,8 +476,18 @@
         {% assign active_section_display_title = active_section_dir %}
         {% assign active_section_parts = active_section_dir | split: ' ' %}
         {% assign active_section_first = active_section_parts | first %}
-        {% assign active_section_first_as_num_str = active_section_first | plus: 0 | append: '' %}
-        {% if active_section_parts.size > 1 and active_section_first == active_section_first_as_num_str %}
+        {% assign active_section_first_non_digits = active_section_first
+          | remove: '0'
+          | remove: '1'
+          | remove: '2'
+          | remove: '3'
+          | remove: '4'
+          | remove: '5'
+          | remove: '6'
+          | remove: '7'
+          | remove: '8'
+          | remove: '9' %}
+        {% if active_section_parts.size > 1 and active_section_first_non_digits == '' and active_section_first != '' %}
           {% assign active_section_display_title = active_section_dir | remove_first: active_section_first | remove_first: ' ' %}
         {% endif %}
 
@@ -448,9 +498,19 @@
               {% assign c_base_name = c_filename | split: '.' | first %}
               {% assign c_parts = c_base_name | split: ' ' %}
               {% assign c_first = c_parts | first %}
-              {% assign c_first_as_num_str = c_first | plus: 0 | append: '' %}
+              {% assign c_first_non_digits = c_first
+                | remove: '0'
+                | remove: '1'
+                | remove: '2'
+                | remove: '3'
+                | remove: '4'
+                | remove: '5'
+                | remove: '6'
+                | remove: '7'
+                | remove: '8'
+                | remove: '9' %}
               {% assign c_display_title = c_base_name %}
-              {% if c_parts.size > 1 and c_first == c_first_as_num_str %}
+              {% if c_parts.size > 1 and c_first_non_digits == '' and c_first != '' %}
                 {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
               {% endif %}
               <li>
