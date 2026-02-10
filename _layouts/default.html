@@ -12,7 +12,7 @@
   - Documentation pages are Markdown files (.md) in the repository.
   - Section folders may be prefixed with numbers (e.g. "1 Basics/"); the numeric prefix is
     stripped from navigation labels.
-  - Section index pages are expected to be named "0 Index.md" (preferred) or "Index.md";
+  - Section index pages are expected to be named "0 Index.md" / "00 Index.md" (preferred) or "Index.md";
     when not present, the first page in the section is used as the section landing page.
 {% endcomment %}
 <html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
@@ -74,7 +74,7 @@
 
     {% comment %}
       Identify the first section's landing page so we can connect Home -> first section.
-      We prefer "0 Index.md" / "Index.md" inside that first section; otherwise we fall back
+      We prefer "0 Index.md" / "00 Index.md" / "Index.md" inside that first section; otherwise we fall back
       to that section's first page.
     {% endcomment %}
     {% assign keynav_first_section_index_url = "" %}
@@ -94,7 +94,7 @@
       {% for p in all_md_pages_for_keynav %}
         {% if p.path contains keynav_first_section_prefix %}
           {% assign p_filename = p.path | split: '/' | last %}
-          {% if p_filename == "0 Index.md" or p_filename == "Index.md" %}
+          {% if p_filename == "0 Index.md" or p_filename == "00 Index.md" or p_filename == "Index.md" %}
             {% assign keynav_first_section_index_url = p.url %}
             {% break %}
           {% endif %}
@@ -146,7 +146,7 @@
       HTML <title> computation strategy:
       - Base fallback title is derived from file name (see above).
       - README.md becomes the site title (or "Home") to avoid showing "README".
-      - Index pages ("0 Index.md" / "Index.md") show the section name (or site title).
+      - Index pages ("0 Index.md" / "00 Index.md" / "Index.md") show the section name (or site title).
       - Prefer the first rendered heading (H1, then H2) from the page content, but avoid
         generic headings like "README" or "Index".
     {% endcomment %}
@@ -180,7 +180,7 @@
     {% assign fallback_title = page_display_title %}
     {% if page_filename == "README.md" %}
       {% assign fallback_title = site.title | default: "Home" %}
-    {% elsif page_filename == "0 Index.md" or page_filename == "Index.md" %}
+    {% elsif page_filename == "0 Index.md" or page_filename == "00 Index.md" or page_filename == "Index.md" %}
       {% if section_display_title != "" %}
         {% assign fallback_title = section_display_title %}
       {% else %}
@@ -285,13 +285,13 @@
 
       {% comment %}
         Active section landing page:
-        - Prefer "0 Index.md", otherwise the first page in the section.
+        - Prefer "0 Index.md" / "00 Index.md", otherwise the first page in the section.
         - The landing page itself is excluded from the sub-nav list.
       {% endcomment %}
       {% assign active_section_index_page = "" %}
       {% for p in active_section_pages %}
         {% assign p_filename = p.path | split: '/' | last %}
-        {% if p_filename == "0 Index.md" %}
+        {% if p_filename == "0 Index.md" or p_filename == "00 Index.md" %}
           {% assign active_section_index_page = p %}
           {% assign active_section_index_url = p.url %}
           {% break %}
@@ -307,7 +307,7 @@
       {% assign active_submenu_item_count = 0 %}
       {% for p in active_section_pages %}
         {% assign p_filename = p.path | split: '/' | last %}
-        {% if p_filename != "0 Index.md" %}
+        {% if p_filename != "0 Index.md" and p_filename != "00 Index.md" %}
           {% assign active_submenu_item_count = active_submenu_item_count | plus: 1 %}
         {% endif %}
       {% endfor %}
@@ -381,7 +381,7 @@
             {% comment %}
               Section label and landing link:
               - Strip numeric prefix from the directory label, same as for page titles.
-              - Prefer "0 Index.md" as section index, otherwise first page.
+              - Prefer "0 Index.md" / "00 Index.md" as section index, otherwise first page.
               - aria-current="location" marks the active section while browsing inside it.
             {% endcomment %}
             {% assign section_parts = section_dir | split: ' ' %}
@@ -413,7 +413,7 @@
 
             {% for p in section_pages %}
               {% assign p_filename = p.path | split: '/' | last %}
-              {% if p_filename == "0 Index.md" %}
+              {% if p_filename == "0 Index.md" or p_filename == "00 Index.md" %}
                 {% assign section_index_page = p %}
                 {% assign section_index_url = p.url %}
                 {% assign section_has_index_md = true %}
@@ -470,7 +470,7 @@
       {% if has_active_subnav %}
         {% comment %}
           Sub-navigation for the active section:
-          - Lists all pages in the active section except "0 Index.md" (the landing page).
+          - Lists all pages in the active section except "0 Index.md" / "00 Index.md" (the landing page).
           - Uses aria-current="page" for the current page.
         {% endcomment %}
         {% assign active_section_display_title = active_section_dir %}
@@ -494,7 +494,7 @@
         <ul class="nav-sub" aria-label="{{ active_section_display_title }} sub-pages">
           {% for c in active_section_pages %}
             {% assign c_filename = c.path | split: '/' | last %}
-            {% if c_filename != "0 Index.md" %}
+            {% if c_filename != "0 Index.md" and c_filename != "00 Index.md" %}
               {% assign c_base_name = c_filename | split: '.' | first %}
               {% assign c_parts = c_base_name | split: ' ' %}
               {% assign c_first = c_parts | first %}
