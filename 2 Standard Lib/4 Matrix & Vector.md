@@ -6,8 +6,7 @@ permalink: /standard-lib/matrix-and-vector/
 
 ### **Geometry**
 
-For small, _fixed size_ vectors & matrices,  
-as typically used in geometry (i.e. 2D, 3D, 4D).
+For small, _fixed size_ vectors & matrices, as typically used in geometry (i.e. 2D, 3D, 4D).
 ```
 Vector<Int size, T = Float>  // as base class
 Vector2<T = Float>
@@ -25,8 +24,7 @@ Using `namespace geometry` to avoid naming conflicts, but `Vector2/3/4` could st
 
 ### Linear Algebra
 
-For large, dynamically sized vectors & matrices,  
-as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms), in the `namespace linalg`.
+For large, dynamically sized vectors & matrices, as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms), in the `namespace linalg`.
 ```
 Vector<T = Float>
 Matrix<T = Float>
