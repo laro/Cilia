@@ -30,17 +30,19 @@ Vector<T = Float>
 Matrix<T = Float>
 ```
 
-Stored column-major, like:
+- `MDArray<Int dimensions, T = Float>`
+    - also see `MDSpan`
+- `VectorView`, `MatrixView`
+
+
+### Column-Major
+Matrices (unlike images) are stored column-major, like:
 ```
 0 3 6
 1 4 7
 2 5 8
 ```
 
-- `MDArray<Int dimensions, T = Float>`
-    - also see `MDSpan`
-- `VectorView`, `MatrixView`
- 
 
 ### Datatype & Precision
 
