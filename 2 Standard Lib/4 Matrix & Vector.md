@@ -8,33 +8,40 @@ permalink: /standard-lib/matrix-and-vector/
 
 For small, _fixed size_ vectors & matrices,  
 as typically used in geometry (i.e. 2D, 3D, 4D).
-- `Vector<Int size, T = Float>`
-    - `Vector2<T = Float>`
-    - `Vector3<T = Float>`
-    - `Vector4<T = Float>`
-- `Matrix<Int rows, Int columns, T = Float>`
-    - `Matrix22<T = Float>`
-    - `Matrix33<T = Float>`
-    - `Matrix44<T = Float>`
-- Using `namespace geometry` to avoid a naming conflicts, but `Vector2/3/4` could be (also) in namespace `cilia`.
+```
+Vector<Int size, T = Float>  // as base class
+Vector2<T = Float>
+Vector3<T = Float>
+Vector4<T = Float>
+```
+```
+Matrix<Int rows, Int columns, T = Float>  // as base class
+Matrix22<T = Float>
+Matrix33<T = Float>
+Matrix44<T = Float>
+```
+Using `namespace geometry` to avoid a naming conflicts, but `Vector2/3/4` could be (also) in namespace `cilia`.
 
 
 ### Linear Algebra
 
 For large, dynamically sized vectors & matrices,  
-as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms).
-- `Vector<T = Float>`
-- `Matrix<T = Float>`
-    - Stored column-major, like:
-        ```
-        0 3 6
-        1 4 7
-        2 5 8
-        ```
+as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms), in the `namespace linalg`.
+```
+Vector<T = Float>
+Matrix<T = Float>
+```
+
+Stored column-major, like:
+```
+0 3 6
+1 4 7
+2 5 8
+```
+
 - `MDArray<Int dimensions, T = Float>`
     - also see `MDSpan`
 - `VectorView`, `MatrixView`
-- Using `namespace linalg`.
  
 
 ### Datatype & Precision
