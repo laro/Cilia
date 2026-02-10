@@ -4,7 +4,10 @@ permalink: /comparison/
 
 ## Comparing Cilia to Other Languages
 
-The comparison on the following pages aims to show the _exact_ equivalent of the [Cilia code](/comparison/cilia/#by-example).
+The comparison on the following pages aims to show the exact equivalent of the [Cilia code](/comparison/cilia/#by-example).
+
+In C++, Cpp2, Rust, Java, C#, and D the type `int`/`Int` and/or literals like `42` are 32 bit wide, not 64 bit.  
+That's OK, this is a syntax comparison, not a performance benchmark.
 
 > **Note**  
 > I may not be very familiar with all these languages, or not up to date.  
@@ -40,9 +43,3 @@ for i in 0...9 {
 ```
 
 In many examples this requirement is “hidden” by immediate assignment of a literal (such as ["one", "two", "three"]) or a function return value. It’s not a big deal, but in practice I still find the need for explicit initialization of empty collections somewhat annoying.
-
-
-### Int32 or Int64 as Default
-
-In C++, Cpp2, Rust, Java, C#, and D the type `int`/`Int` and/or literals like `42` are 32 bit wide, not 64 bit.  
-That's OK, this is a syntax comparison, not a performance benchmark.
