@@ -20,7 +20,7 @@ Matrix22<T = Float>
 Matrix33<T = Float>
 Matrix44<T = Float>
 ```
-Using `namespace geometry` to avoid a naming conflicts, but `Vector2/3/4` could be (also) in namespace `cilia`.
+Using `namespace geometry` to avoid naming conflicts, but `Vector2/3/4` could still be (also) in namespace `cilia`.
 
 
 ### Linear Algebra
