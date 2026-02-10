@@ -17,7 +17,7 @@ but stored row-major, like:
 - `ImageView`
 
 ### Datatype & Precision
-The default datatype is `Float32` (32-bit precision), better suited for image processing and machine vision.
+The default datatype is `Float32` (32-bit precision), well suited for image processing and machine vision.
 
 For handling JPEG or PNG images you may use these derivations:
 - `using ColorImage = cilia::Image<RGB<UInt8>>`
