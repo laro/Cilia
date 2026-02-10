@@ -5,7 +5,9 @@ permalink: /basics/signed-size/
 ## Signed Size
 
 `Int` (i.e. signed) as type for `*.size()`, because mixing signed and unsigned integer (e.g. "signed - unsigned") and even calculating "unsigned - unsigned" is difficult to handle.
-- Problem in C/C++: `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
+
+Problem in C/C++:
+- `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
     
 When working with sizes, calculating the difference is common; then you are limited to `Int`/~~`SSize`~~/~~`PtrDiff`~~ (i.e. signed integer) anyway.
 
