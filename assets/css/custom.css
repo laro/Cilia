@@ -49,6 +49,12 @@ body {
   color: var(--color-fg-default);
 }
 
+/* Always reserve a vertical scrollbar gutter to prevent layout shift. */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 .markdown-body {
   color: var(--color-fg-default);
 }
