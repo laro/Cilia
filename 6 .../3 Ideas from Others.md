@@ -61,7 +61,7 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
 - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
 - [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
     - `in`, `inout`, `out`, `move`, `copy`, `forward`
-    - I like this and therefore "copied" it. Admittedly without fully understanding the difference between `move` and `forward`.
+    - I like this and therefore "copied" it.
 - [Labelled `break` and `continue`](https://github.com/ntrel/cpp2?tab=readme-ov-file#labelled-break-and-continue) (i.e. multi-level)
   ```
   outer: while true {
