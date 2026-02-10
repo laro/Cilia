@@ -5,7 +5,7 @@ permalink: /standard-lib/array/
 ## Array & ArrayView
 
 "Make simple things simple",  
-having a short and traditional syntax for dynamic and associative arrays should encourage people to use it.
+having a short and traditional syntax not only for static, but also for dynamic and associative arrays should encourage people to use it.
 
 
 ### Dynamic Array
