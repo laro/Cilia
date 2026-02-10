@@ -4,6 +4,10 @@ permalink: /standard-lib/array/
 
 ## Array & ArrayView
 
+"Make simple things simple",  
+having a short and traditional syntax for dynamic and associative arrays should encourage people to use it.
+
+
 ### Dynamic Array
 
 **`Int[] dynamicArrayOfIntegers`** is an array with **dynamic size**.
@@ -14,8 +18,6 @@ array[1] = 0
 array[2] = 0
 array[3] = 0  // Runtime error, no compile time bounds check
 ```
-"Make simple things simple",  
-having a short and traditional syntax for dynamic arrays should encourage people to use it.
 
 `T[] arr` is the short form of `cilia::Array<T> arr`.
 
@@ -157,9 +159,6 @@ See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 AKA Map (or Dictionary).  
 **`TValue[TKey]`** as short form of `Map<TKey, TValue>` (as [in D](https://dlang.org/spec/hash-map.html)).
-
-"Make simple things simple",  
-having a short syntax for associative arrays so they are easy to use.
 
 There is no difference between these two forms, but the long form is necessary for other map variants (SortedMap, HashMap, etc.).
 
