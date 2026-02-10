@@ -11,8 +11,6 @@ Mixing signed and unsigned integers is error-prone, and even pure unsigned arith
 Classic C/C++ pitfall:  
 `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
     
-When working with sizes, calculating the difference is common; then you are limited to `Int`/~~`SSize`~~/~~`PtrDiff`~~ (i.e. signed integer) anyway.
-
 When working with sizes, subtraction is common. The moment you compute differences, you need a signed type anyway. Therefore ~~`Size`~~ and ~~`SSize`~~/~~`PtrDiff`~~ are unnecessary — just use `Int`. `UInt` should be reserved for rare cases like hardware registers, bit masks, and flags — _not_ for sizes.
 
 See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
