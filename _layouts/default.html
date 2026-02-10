@@ -576,6 +576,9 @@
           var searchInput = document.getElementById("navSearchInput");
           if (!searchInput) return false;
           if (document.activeElement !== searchInput) return false;
+          searchInput.value = "";
+          var hiddenQuery = document.getElementById("navSearchQuery");
+          if (hiddenQuery) hiddenQuery.value = "";
           searchInput.blur();
           window.focus();
           return true;
