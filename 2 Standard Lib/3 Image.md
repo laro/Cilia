@@ -10,11 +10,11 @@ Image<T = Float32>
 
 Common image-processing examples:
 ```
-func gaussianBlur<type T>(const Image<T>& image, Float sigma) -> Image<T>
-func medianFilter<type T>(const Image<T>& image, Int kernelSize) -> Image<T>
-func sobelEdges<type T>(const Image<T>& image) -> Image<T>
-func resize<type T>(const Image<T>& image, Int width, Int height, Interpolation interpolation) -> Image<T>
-func threshold<type T>(const Image<T>& image, T lower, T upper) -> Image<T>
+func gaussianBlur<type T>(Image<T> image, Float sigma) -> Image<T>
+func medianFilter<type T>(Image<T> image, Int kernelSize) -> Image<T>
+func sobelEdges<type T>(Image<T> image) -> Image<T>
+func resize<type T>(Image<T> image, Int width, Int height, Interpolation interpolation) -> Image<T>
+func threshold<type T>(Image<T> image, T lower, T upper) -> Image<T>
 ```
 
 Same operations as in-place member functions:
