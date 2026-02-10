@@ -141,7 +141,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
         - Technically a right-value reference (`X&&`)
     - **`forward`**
         - for perfect forwarding in template functions.
-        - TODO Technically a right-value reference (`X&&`), too?
+        - Technically written as a right-value reference (`X&&`), too.
 
 - Type traits **`InParameterType`** to determine the concrete type to be used for `in`-passing.
     - The rule of thumb is:
