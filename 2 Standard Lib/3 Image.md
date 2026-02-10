@@ -21,4 +21,4 @@ The default datatype is `Float32` (32-bit precision), better suited for image pr
 
 For handling JPEG or PNG images you may use these derivations:
 - `using ColorImage = cilia::Image<RGB<UInt8>>`
-- `using ImageGrey8 = cilia::Image<UInt8>`
+- `using Grey8Image = cilia::Image<UInt8>`
