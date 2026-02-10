@@ -22,9 +22,9 @@ array[3] = 0  // Runtime error, no compile time bounds check
 `T[] arr` is the short form of `cilia::Array<T> arr`.
 
 The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
-  - that's the more traditional wording,
-  - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
-  - `Vector` could too easily collide with the mathematical vector (as used in linear algebra and geometry).
+- that's the more traditional wording,
+- by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
+- `Vector` could too easily collide with the mathematical vector (as used in linear algebra and geometry).
 
 "Raw" C/C++ arrays are handled with `T*` instead.  
 `std::array` is called `cilia::StaticArray` instead.

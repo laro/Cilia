@@ -562,6 +562,14 @@
           return true;
         }
 
+        function focusSearchInput() {
+          var searchInput = document.getElementById("navSearchInput");
+          if (!searchInput) return false;
+          searchInput.focus();
+          searchInput.select();
+          return true;
+        }
+
         // Swipe navigation (mobile):
         // - Swipe right -> prev, swipe left -> next.
         // - Avoids triggering during vertical scrolling.
@@ -635,13 +643,17 @@
 
         document.addEventListener("keydown", function (e) {
           if (e.defaultPrevented) return;
-          if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+          if (e.altKey || e.ctrlKey || e.metaKey) return;
           if (isTypingContext(document.activeElement)) return;
 
-          if (e.key === "ArrowLeft") {
+          var key = (e.key || "").toLowerCase();
+
+          if (key === "arrowleft") {
             if (navigateRel("prev")) e.preventDefault();
-          } else if (e.key === "ArrowRight") {
+          } else if (key === "arrowright") {
             if (navigateRel("next")) e.preventDefault();
+          } else if (key === "s") {
+            if (focusSearchInput()) e.preventDefault();
           }
         });
       })();
