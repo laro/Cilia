@@ -7,16 +7,22 @@ permalink: /standard-lib/image/
 ```
 Image<T = Float32>
 ```
-Almost like `Matrix`,  
-but stored row-major, like:
+
+- `ImageView`
+
+
+### Row-Major
+
+Images (unlike matrices) are stored row-major, like:
 ```
 0 1 2
 3 4 5
 6 7 8
 ```
-- `ImageView`
+
 
 ### Datatype & Precision
+
 The default datatype is `Float32` (32-bit precision), well suited for image processing and machine vision.
 
 For handling JPEG or PNG images you may use these derivations:

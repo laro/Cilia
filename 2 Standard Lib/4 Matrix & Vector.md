@@ -38,6 +38,7 @@ Matrix<T = Float>
 
 
 ### Column-Major
+
 Matrices (unlike images) are stored column-major, like:
 ```
 0 3 6
