@@ -44,5 +44,5 @@ In many examples this requirement is “hidden” by immediate assignment of a l
 
 ### Int32 or Int64 as Default
 
-In C++, Cpp2, Rust, Java, and C# the type `int`/`Int` and/or literals like `42` are 32 bit wide, not 64 bit.  
+In C++, Cpp2, Rust, Java, C#, and D the type `int`/`Int` and/or literals like `42` are 32 bit wide, not 64 bit.  
 That's OK, this is a syntax comparison, not a performance benchmark.
