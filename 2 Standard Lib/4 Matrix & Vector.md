@@ -12,7 +12,7 @@ as typically used in geometry (i.e. 2D, 3D, 4D).
     - `Vector2<T = Float>`
     - `Vector3<T = Float>`
     - `Vector4<T = Float>`
-- `geometry::Matrix<Int rows, Int columns, T = Float>`
+- `Matrix<Int rows, Int columns, T = Float>`
     - `Matrix22<T = Float>`
     - `Matrix33<T = Float>`
     - `Matrix44<T = Float>`
