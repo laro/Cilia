@@ -69,8 +69,8 @@ unsafe {
 ### Dynamic Allocation with `new`
 `new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. `new T` returns a `T+`/`UniquePtr<T>`, so that is the "default type" for pointers:
 ```
-var uniquePtrToContactInfo = new ContactInfo
 ContactInfo+ uniquePtrToContactInfo = new ContactInfo
+var alsoAUniquePtrToContactInfo = new ContactInfo
 ```
 
 In Cilia,
