@@ -6,7 +6,7 @@ permalink: /comparison/
 
 The comparison on the following pages aims to show the _exact_ equivalent of the [Cilia code](/comparison/cilia/#by-example).
 
-> Note
+> **Note**
 > - I may not be very familiar with all these languages, or not up to date.
 > - I may not even be sufficiently up to date with C++14/17/20/23/26 either.
 
