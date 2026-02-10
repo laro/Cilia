@@ -23,5 +23,5 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `for i in [5, 7, 11, 13].iter() { ...; }`
     - `for word in words.iter() { ...; }`
 
-> **Note**
+> **Note**  
 > In Rust `42` is an `i32`, not an `i64`.  
