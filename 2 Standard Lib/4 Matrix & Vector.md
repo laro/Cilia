@@ -12,10 +12,11 @@ as typically used in geometry (i.e. 2D, 3D, 4D).
     - `Vector2<T = Float>`
     - `Vector3<T = Float>`
     - `Vector4<T = Float>`
-- `Matrix<Int rows, Int columns, T = Float>`
+- `geometry::Matrix<Int rows, Int columns, T = Float>`
     - `Matrix22<T = Float>`
     - `Matrix33<T = Float>`
     - `Matrix44<T = Float>`
+- `namespace geometry`
 
 
 ### Linear Algebra
@@ -33,6 +34,7 @@ as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprogr
 - `MDArray<Int dimensions, T = Float>`
     - also see `MDSpan`
 - `VectorView`, `MatrixView`
+- `namespace linalg`
  
 > **Note**  
 > To avoid a naming conflict, we either need
