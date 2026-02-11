@@ -238,10 +238,10 @@ Should work for `Optional<T>` and also for `T*`, `T^`, `T+`, `T-` pointers.
 With `ContactInfo* contactInfo = ...`
 - ```String? name = contactInfo?.name```  
   translates to  
-  ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt);```
+  ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt)```
 - ```String name = contactInfo?.name ?? ""```  
   translates to  
-  ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");```
+  ```String name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("")```
 
 #### Optional Pointers
 Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, but _not_ `Optional<>` _for pointers_.
