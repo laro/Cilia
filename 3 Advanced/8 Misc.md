@@ -199,54 +199,60 @@ No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just basic
 - `#endif`
 
 
-### Optional Chaining
+### Optionals
 
-- ```String? name = ...```  
+```String? name = ...```  
+translates to  
+```Optional<String> name = ...```
+
+#### Optional Chaining
+- ```Int? len = name?.length()```  
   translates to  
-  ```Optional<String> name = ...```
-    - ```Int? len = name?.length()```  
-      translates to  
-      ```Optional<Int> len = (name ? Optional((*name).length()) : NullOpt```
-    - ```Int len = name?.length() ?? 0```  
-      translates to  
-      ```Int len = (name ? Optional((*name).length()) : NullOpt).valueOr(0)```
-        - ~~```Int len = name?.length()```~~ is not allowed, i.e. no implicit `.value()`, that could throw an exception.
-    - ```Bool? isJpeg = name?.endsWith(".jpeg")```  
-      translates to  
-      ```Optional<Bool> isJpeg = name ? Optional((*name).endsWith(".jpeg")) : NullOpt```
-    - ```Bool isJpeg = name?.endsWith(".jpeg") ?? false```  
-      translates to  
-      ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false)```
-    - ```Int? len = pointerToWindow?.title()?.length()```  
-      translates to  
-      ```
-      Optional<String> __tmpTitle = pointerToWindow ?
-          Optional((*pointerToWindow).title())
-          :
-          NullOpt
-      
-      Optional<Int> len = __tmpTitle ?
-          Optional((*__tmpTitle).length())
-          :
-          NullOpt
-      ```
-- Should work for `Optional<T>` and  `T*`, `T^`, `T+`, `T-`
-    - With `ContactInfo* contactInfo = ...`
-        - ```String? name = contactInfo?.name```  
-          translates to  
-          ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt);```
-        - ```String name = contactInfo?.name ?? ""```  
-          translates to  
-          ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");```
-- Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`.
-    - `Optional<>` for pointers:
-        - As a pointer can be null in itself:
-            - `Optional<T*>` internally is just a `T*`,
-            - `Optional<T^>` internally is just a `T^`,
-            - `Optional<T+>` internally is just a `T+`,
-            - `Optional<T->` internally is just a `T-`.
-        - So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.
-        - This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
+  ```Optional<Int> len = (name ? Optional((*name).length()) : NullOpt```
+- ```Int len = name?.length() ?? 0```  
+  translates to  
+  ```Int len = (name ? Optional((*name).length()) : NullOpt).valueOr(0)```
+    - ~~```Int len = name?.length()```~~ is not allowed, i.e. no implicit `.value()`, that could throw an exception.
+- ```Bool? isJpeg = name?.endsWith(".jpeg")```  
+  translates to  
+  ```Optional<Bool> isJpeg = name ? Optional((*name).endsWith(".jpeg")) : NullOpt```
+- ```Bool isJpeg = name?.endsWith(".jpeg") ?? false```  
+  translates to  
+  ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false)```
+- ```Int? len = pointerToWindow?.title()?.length()```  
+  translates to  
+  ```
+  Optional<String> __tmpTitle = pointerToWindow ?
+      Optional((*pointerToWindow).title())
+      :
+      NullOpt
+  
+  Optional<Int> len = __tmpTitle ?
+      Optional((*__tmpTitle).length())
+      :
+      NullOpt
+  ```
+#### Optional Member Access
+Should work for `Optional<T>` and also for `T*`, `T^`, `T+`, `T-` pointers.  
+With `ContactInfo* contactInfo = ...`
+- ```String? name = contactInfo?.name```  
+  translates to  
+  ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt);```
+- ```String name = contactInfo?.name ?? ""```  
+  translates to  
+  ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");```
+
+#### Optional Pointers
+Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, but `Optional<>` _for pointers_ is just a pointer.  
+As a pointer can be null in itself:
+- `Optional<T*>` internally is just a `T*`,
+- `Optional<T^>` internally is just a `T^`,
+- `Optional<T+>` internally is just a `T+`,
+- `Optional<T->` internally is just a `T-`.
+
+So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.
+
+This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
 ### Anonymous Members
