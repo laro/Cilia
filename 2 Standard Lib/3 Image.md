@@ -31,7 +31,7 @@ Same operations as free functions:
 - `func threshold<type T>(Image<T> image, T lower, T upper) -> Image<T>`
 
 
-Examples for `operator[x, y]`:
+Pixel access with `operator[x, y]`:
 - `var centerValue = image[width/2, height/2]`
 - `image[10, 20] = 0.0`
 - `var gradientX = image[x + 1, y] - image[x - 1, y]`
