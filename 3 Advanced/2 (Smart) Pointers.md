@@ -80,12 +80,13 @@ unsafe {
 
 ### Dynamic Allocation with `new`
 
-`new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. `new T` returns a `T+`/`UniquePtr<T>`, so that is the "default type" for pointers:
+`new` is kept for dynamic/heap allocation, as a short and quite 'traditional' syntax (also used in C# and Java). `new T` returns a `T+`, so that is the "default type" for pointers:
 ```
 ContactInfo+ uniquePtrToContactInfo = new ContactInfo
 var alsoAUniquePtrToContactInfo = new ContactInfo
 ```
 
+#### `new` for `T^`
 In Cilia,
 1. `new` acts like `makeUnique<T> -> T+`, and
 2. a _right value_ `T+` can also be moved to a `T^`,
@@ -102,6 +103,7 @@ T^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 
 With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the smart pointer.
 
+#### `new` for `T*`
 In Cilia a _right value_ `T+` can even be assigned to `T*`,
 so you still can use `new` for raw pointers.  
 But it is inconvenient to use as
