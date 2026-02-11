@@ -45,7 +45,8 @@ with `var` / `const`:
 - `const` binds more strongly than `*`, `&`, and `?`, but less strongly than `[]`.
     - So the keyword `const` is always interpreted as a type qualifier to what appears immediately to its right, which can be:
         - a type specifier (e.g. `Float`),
-        - a pointer declarator (`*`), or
+        - a pointer declarator (`*`),
+        - an optional declarator (`?`), or
         - a type specifier with array declarator (`Float[]`, `Float[3]`, or `Float[String]`).
 - `const` as a type qualifier for a reference (`&`) is not allowed, i.e. no ~~`Float const&`~~.
     - `const Float&` is allowed, of course.
