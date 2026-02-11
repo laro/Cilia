@@ -148,6 +148,10 @@ main dl,
     max-width: 65ch;
 }
 
+main li:has(span.wide) {
+    max-width: none;
+}
+
 /*
   Reduce spacing between a paragraph and a following list.
   Typical theme spacing is ~1em; half is ~0.5em.
