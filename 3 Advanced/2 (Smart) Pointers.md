@@ -87,7 +87,7 @@ Type+ uniquePtr = new Type
 Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
 
-With `T+`/`T^` you do _not_ need to call `delete`, that is done by the smart pointer.
+With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the smart pointer.
 
 In Cilia a _right value_ `Type+` can even be assigned to `Type*`,
 so you still can use `new` for raw pointers.  
