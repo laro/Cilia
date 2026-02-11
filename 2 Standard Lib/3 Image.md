@@ -5,9 +5,11 @@ permalink: /standard-lib/image/
 ## Image
 
 ```
-class Image<type T = Float32> { ... }
+class Image<type T = Float32> : linalg::Matrix<T> {
+    ...
+}
 ```
-Basically a two dimensional array.
+Basically a two dimensional array, with dynamic size.
 
 `ImageView` as "read-only reference" of sub-areas.  
 `ImageBasicView` as "read-only reference" with continuous pixels.
