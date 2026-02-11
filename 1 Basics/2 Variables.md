@@ -47,7 +47,7 @@ with `var` / `const`:
         - a type specifier (e.g. `Float`),
         - a pointer declarator (`*`),
         - an optional declarator (`?`), or
-        - a type specifier with array declarator (`Float[]`, `Float[3]`, or `Float[String]`).
+        - a type specifier with array declarator (e.g. `Float[]`, `Float[3]`, or `Float[String]`).
 - `const` as a type qualifier for a reference (`&`) is not allowed, i.e. no ~~`Float const&`~~.
     - `const Float&` is allowed, of course.
 - Examples:
