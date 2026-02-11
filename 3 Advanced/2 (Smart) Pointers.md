@@ -4,7 +4,8 @@ permalink: /advanced/smart-pointers/
 
 ## Short Smart Pointer Syntax
 
-"Make simple things simple" (or at least short to write), to encourage the use of smart pointers.
+"Make simple things simple" (or at least short to write),  
+to encourage the use of smart pointers.
 
 - `T* ptr` is a "raw" pointer
 - `T+ ptr` is a `UniquePtr<T>`
