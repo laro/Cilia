@@ -13,7 +13,7 @@ and a bit like the evolution
 - from Java to Kotlin,
 - from Objective-C to Swift.
 
-\
+<br>
 
 > **Why a new language, why not extending C++?**
 
@@ -30,7 +30,7 @@ Some parts are impossible – or at least extremely unlikely – to include in a
 - [New/simplified keywords](/#better-readable-keywords)
 - [No trailing semicolons](/#no-trailing-semicolons)
 
-\
+<br>
 
 > **Why "Cilia"?**
 
