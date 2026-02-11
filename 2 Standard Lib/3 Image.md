@@ -14,7 +14,6 @@ Basically a two-dimensional array with dynamic size.
 Pixel access with `operator[x, y]`:
 - `var centerValue = image[width/2, height/2]`
 - `image[10, 20] = 0.0`
-- `var gradientX = image[x + 1, y] - image[x - 1, y]`
 
 `ImageView` as "read-only reference" of sub-areas (with stride).  
 `ImageBasicView` as "read-only reference" with continuous pixels (i.e. no stride, just cut off at top or bottom).
