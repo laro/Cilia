@@ -17,12 +17,11 @@ permalink: /advanced/smart-pointers/
 
 ### Type+ pointer
 
-This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope).
+This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope). Unique pointers have _zero_ overhead over plain, raw C/C++ pointers. 
 
 ```
 ContactInfo+ contactInfoUniquePtr = new ContactInfo
 ```
-Unique pointers have _zero_ overhead over plain, raw C/C++ pointers. 
 
 
 ### Type^ pointer
