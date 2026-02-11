@@ -2,7 +2,7 @@
 permalink: /comparison/
 ---
 
-## Comparing Cilia to Other Languages
+## Syntax Comparison of Cilia with Other Languages
 
 The comparison on the following pages aims to show the exact equivalent of the [Cilia code](/comparison/cilia/#by-example).
 
