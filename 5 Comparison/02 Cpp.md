@@ -16,7 +16,7 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
 - Functions
     - `auto multiply(int a, int b) -> int { return a * b; }`
     - `auto print(const ContactInfo& a) { ...; }`
-    - `auto concat(const string_view a, const string_view b) -> string { return ...; }`
+    - <span class="longline">`auto concat(const string_view a, const string_view b) -> string { return ...; }`</span>
 - Loops
     - `for (int i = 1; i <= 10; ++i) { ...; }`
     - `for (size_t i = 0; i < words.size(); ++i) { ...; }`
