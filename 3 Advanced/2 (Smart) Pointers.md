@@ -6,16 +6,16 @@ permalink: /advanced/smart-pointers/
 
 "Make simple things simple" (or at least short to write), to encourage the use of smart pointers.
 
-- `Type* ptr` is a "raw" pointer
-- `Type+ ptr` is a `UniquePtr<Type>`
-- `Type^ ptr` is a `SharedPtr<Type>`
-- `Type- ptr` is a `WeakPtr<Type>`
+- `T* ptr` is a "raw" pointer
+- `T+ ptr` is a `UniquePtr<T>`
+- `T^ ptr` is a `SharedPtr<T>`
+- `T- ptr` is a `WeakPtr<T>`
 
 > The use of plain local/stack-allocated or of member variables is still preferred, of course.  
 > Use (smart) pointers only when you need them.
 
 
-### Type+ pointer
+### `T+` pointer
 
 This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope). Unique pointers have _zero_ overhead over plain, raw C/C++ pointers. 
 
@@ -24,7 +24,7 @@ ContactInfo+ uniquePtrTocontactInfo = new ContactInfo
 ```
 
 
-### Type^ pointer
+### `T^` pointer
 
 A pointer with shared ownership: the object will be deleted when all of "its" pointers are destroyed (e.g. when all of them go out of scope).  
 Inspired by C++/CLI.
@@ -39,13 +39,13 @@ ContactInfo^ sharedPtrToCcontactInfo = makeShared<ContactInfo>()
 ```
 
 
-### Type- pointer
+### `T-` pointer
 
 A weak pointer observes an object managed by a shared pointer without extending its lifetime (it does not increase the reference count).  
-You can `lock()` it to obtain a `Type^` if the object is still alive.  
+You can `lock()` it to obtain a `T^` if the object is still alive.  
 
 Initialized as  
-`Type- weakPointerToWindow = sharedPointerToWindow`  
+`T- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
 ```
 if (Window^ window = weakPointerToWindow.lock()) {
@@ -60,7 +60,7 @@ weakPointerToWindow?.close()
 ```
 
 
-### Type* pointer
+### `T*` pointer
 
 A "raw" pointer is a classical C/C++ pointer. Ownership depends, case by case, but in Cilia it typically is without ownership.
 
@@ -85,22 +85,22 @@ var alsoAUniquePtrToContactInfo = new ContactInfo
 ```
 
 In Cilia,
-1. `new` acts like `makeUnique<Type> -> Type+`, and
-2. a _right value_ `Type+` can also be moved to a `Type^`,
+1. `new` acts like `makeUnique<T> -> T+`, and
+2. a _right value_ `T+` can also be moved to a `T^`,
 
 so now you can use `new` for both pointer types:
 ```
-Type+ uniquePtr = new Type
-Type^ sharedPtr = new Type
+T+ uniquePtr = new T
+T^ sharedPtr = new T
 ```
 ```
-Type+ uniquePtr = new Type
-Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
+T+ uniquePtr = new T
+T^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
 
 With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the smart pointer.
 
-In Cilia a _right value_ `Type+` can even be assigned to `Type*`,
+In Cilia a _right value_ `T+` can even be assigned to `T*`,
 so you still can use `new` for raw pointers.  
 But it is inconvenient to use as
 - it is allowed in unsafe code only,
@@ -109,28 +109,28 @@ But it is inconvenient to use as
 
 ```
 unsafe {
-    Type* ptr = new Type
+    T* ptr = new T
     delete ptr
 
-    Type* ptr = new Type[10]
+    T* ptr = new T[10]
     delete[10] ptr
 }
 ```
 
 
-### `Type+`/`Type^` vs. `Type[0]+`/`Type[0]^`
+### `T+`/`T^` vs. `T[0]+`/`T[0]^`
 
-`Type+`/`Type^` is a unique/shared pointer to a _single_ object.  
-`Type[0]+`/`Type[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed but unknown size, `0` is just a dummy here.
+`T+`/`T^` is a unique/shared pointer to a _single_ object.  
+`T[0]+`/`T[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed but unknown size, `0` is just a dummy here.
 
-In C++ `unique_ptr<Type[]>`/`shared_ptr<Type[]>`, the `Type[]` is an "incomplete type". But in Cilia `Type[]` is an `Array<Type>`, so we use `Type[0]` instead.
+In C++ `unique_ptr<T[]>`/`shared_ptr<T[]>`, the `T[]` is an "incomplete type". But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
 
 ```
-Type+    uniquePtr        = new Type
-Type[0]+ uniquePtrToArray = new Type[10]
+T+    uniquePtr        = new T
+T[0]+ uniquePtrToArray = new T[10]
 
-Type^    sharedPtr        = new Type
-Type[0]^ sharedPtrToArray = new Type[10]
+T^    sharedPtr        = new T
+T[0]^ sharedPtrToArray = new T[10]
 ```
 
-Not ~~`Type+ uniquePtrToArray = new Type[10]`~~. There is no array-to-single-element-pointer decay possible with `T+`/`UniquePtr<T>` or `T^`/`SharedPtr<T>`, as that is a necessary distinction in the type.
+Not ~~`T+ uniquePtrToArray = new T[10]`~~. There is no array-to-single-element-pointer decay possible with `T+`/`UniquePtr<T>` or `T^`/`SharedPtr<T>`, as that is a necessary distinction in the type.
