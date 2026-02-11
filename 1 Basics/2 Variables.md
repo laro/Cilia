@@ -62,7 +62,8 @@ with `var` / `const`:
     - `const Float[3]`  
       is a `const` static array of three `Float` (which effectively are `const`, too).
     - `const ContactInfo[String] constMapOfContactInfoByName`  
-      is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
+      is equivalent to `const Map<String, ContactInfo>`,
+        - keys and values of a `const Map` are always `const`, too.
 
 ### Not Allowed
 It is a syntax error to write:
