@@ -107,7 +107,7 @@ so you still can use `new` for raw pointers.
 But it is inconvenient to use as
 - it is allowed in unsafe code only,
 - you need to manage lifetime of the instance yourself (i.e. call `delete`), and
-- you need to distinguish between a pointer to a single element and a pointer to an array (i.e. call `delete` or `delete[0]`).
+- you need to distinguish between a "pointer to a single element" and a "pointer to an array" (i.e. call `delete` or `delete[0]`).
 
 ```
 unsafe {
