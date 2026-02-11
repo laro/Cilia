@@ -14,7 +14,7 @@ and a bit like the evolution
 - from Objective-C to Swift.
 
 
-### Why a new language, why not extending C++?
+> **Why a new language, why not extending C++?**
 
 - The [CamelCase style](/#camelcase-style) could basically be achieved in C++, too.
 - C++ could be extended by some features:
@@ -28,7 +28,7 @@ and a bit like the evolution
     - [No trailing semicolons](/#no-trailing-semicolons)
 
 
-### Why "Cilia"?
+> **Why "Cilia"?**
 
 Starting with "C" is a kind of tradition.  
 All the most obvious names (like [C2](http://c2lang.org/), [C3](https://c3-lang.org), [Cpp2](https://github.com/hsutter/cppfront#cppfront), [Cone](https://cone.jondgoodwin.com/), [D](https://dlang.org/)) and many others were already taken `¯\_(ツ)_/¯`.  
