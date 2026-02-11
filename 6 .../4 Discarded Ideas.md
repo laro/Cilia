@@ -7,8 +7,8 @@ permalink: /more/discarded-ideas/
 For several topics there are alternative ideas, that were discarded but are still worth mentioning.
 
 
-### Keep Trailing Semicolons
-- As this is difficult & unclear/disputed: Keep C++ semicolons for now?
+### Trailing Semicolons
+- As this is difficult & unclear/disputed: We could keep C++ semicolons.
 - Disadvantages of not having trailing semicolons:
     - Errors are less easily recognized. (Walter Bright / D: „Redundancy helps“)
     - Probably a completely new parser must be written, as the one from clang (for C++) no longer fits at all.
