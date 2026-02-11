@@ -20,7 +20,7 @@ permalink: /advanced/smart-pointers/
 This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope). Unique pointers have _zero_ overhead over plain, raw C/C++ pointers. 
 
 ```
-ContactInfo+ contactInfoUniquePtr = new ContactInfo
+ContactInfo+ uniquePtrTocontactInfo = new ContactInfo
 ```
 
 
@@ -30,7 +30,7 @@ A pointer with shared ownership: the object will be deleted when all of "its" po
 Inspired by C++/CLI.
 
 ```
-ContactInfo^ contactInfoSharedPtr = new ContactInfo
+ContactInfo^ sharedPtrToCcontactInfo = new ContactInfo
 ```
 
 
@@ -61,8 +61,8 @@ unsafe {
     ContactInfo* contactInfoPtr = new ContactInfo
     delete contactInfoPtr  // With classical/raw pointers you need to free the objects yourself.
 
-    ContactInfo[0]* contactInfoPtr = new ContactInfo[10]
-    delete[0] contactInfoPtr  // You need to distinguish between single-element and array pointers yourself.
+    ContactInfo[0]* contactInfoArrayPtr = new ContactInfo[10]
+    delete[0] contactInfoArrayPtr  // You need to distinguish between single-element and array pointers yourself.
 }
 ```
 
