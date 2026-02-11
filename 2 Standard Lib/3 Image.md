@@ -9,19 +9,12 @@ class Image<type T = Float32> : linalg::Matrix<T> {
     ...
 }
 ```
-Basically a two dimensional array, with dynamic size.
+Basically a two-dimensional array with dynamic size.
 
-`ImageView` as "read-only reference" of sub-areas.  
-`ImageBasicView` as "read-only reference" with continuous pixels.
+`ImageView` as "read-only reference" of sub-areas (with stride).  
+`ImageBasicView` as "read-only reference" with continuous pixels (i.e. no stride, just cut off at top or bottom).
 
-Common image-processing examples:
-- `func gaussianBlur<type T>(Image<T> image, Float sigma) -> Image<T>`
-- `func medianFilter<type T>(Image<T> image, Int kernelSize) -> Image<T>`
-- `func sobelEdges<type T>(Image<T> image) -> Image<T>`
-- `func resize<type T>(Image<T> image, Int width, Int height, Interpolation interpolation) -> Image<T>`
-- `func threshold<type T>(Image<T> image, T lower, T upper) -> Image<T>`
-
-Same operations as member functions:
+Common image-processing member functions:
 - `class Image<type T = Float32> {`
     - `func gaussianBlur(Float sigma) -> Image<T>`
     - `func medianFilter(Int kernelSize) -> Image<T>`
@@ -29,6 +22,14 @@ Same operations as member functions:
     - `func resize(Int width, Int height, Interpolation interpolation) -> Image<T>`
     - `func threshold(T lower, T upper) -> Image<T>`
 - `}`
+
+Same operations as free functions:
+- `func gaussianBlur<type T>(Image<T> image, Float sigma) -> Image<T>`
+- `func medianFilter<type T>(Image<T> image, Int kernelSize) -> Image<T>`
+- `func sobelEdges<type T>(Image<T> image) -> Image<T>`
+- <span class="wide">`func resize<type T>(Image<T> image, Int width, Int height, Interpolation interpolation) -> Image<T>`</span>
+- `func threshold<type T>(Image<T> image, T lower, T upper) -> Image<T>`
+
 
 Examples for `operator[x, y]`:
 - `var centerValue = image[width/2, height/2]`
