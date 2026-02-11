@@ -49,13 +49,14 @@ Initialized as
 `T- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
 ```
-if (Window^ window = weakPointerToWindow.lock()) {
-    window->show()
+Window^ shreadPtrToWindow = weakPointerToWindow.lock()
+if shreadPtrToWindow {
+    shreadPtrToWindow->show()
     // ...
-    window->close()
+    shreadPtrToWindow->close()
 }
 ```
-and
+or
 ```
 weakPointerToWindow?.close()
 ```
