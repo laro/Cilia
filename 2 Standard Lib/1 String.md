@@ -143,14 +143,15 @@ Even iterating through graphemes (or graphe clusters) is complicated for some/ra
         - `for line in text.asLines()`
         - Break after:
           
-            | Name | Codepoint | Meaning             |
-            |------|-----------|---------------------|
-            | LF   | 000A      | `\n`                |
-            | CR   | 000D      | `\r`                |
-            | CRLF | 000D 000A | Windows             |
-            | NEL  | 0085      | Next Line           |
-            | LS   | 2028      | Line Separator      |
-            | PS   | 2029      | Paragraph Separator |
+            | Name | Codepoint         | Meaning                |
+            |------|-------------------|------------------------|
+            | LF   | `U+000A`          | `\n`, Unix/Linux/macOS |
+            | CR   | `U+000D`          | `\r`, Classic Mac      |
+            | CRLF | `U+000D` `U+000A` | Windows                |
+            | LFCR | `U+000A` `U+000D` | AmigaOS                |
+            | NEL  | `U+0085`          | Next Line              |
+            | LS   | `U+2028`          | Line Separator         |
+            | PS   | `U+2029`          | Paragraph Separator    |
         
 Depending on locale
 - `string.toUpper(locale)`, `string.toLower(locale)`
