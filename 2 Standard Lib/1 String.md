@@ -124,22 +124,24 @@ but otherwise are like `UInt8`, `UInt16`, `UInt32`.
 > - Calendar specific date and time manipulation
 > - Text boundary analysis for finding characters, word and sentence boundaries
 
+Even iterating through graphemes (or graphe clusters) is complicated for some/rare/historic scripts.
+- Basic is Latin, combining marks, ZWJ, flags, variant selector, CJK (Han, Hiragana, Katakana, Hangul).
+    - So most everything is covered.
+- Give more complex cases to ICU (Arabic, Devanagari, Thai).
+    - Maybe via weak linking.
+
 `import icu` adds extension methods for `cilia::String`
-- Allows iteration over:
+- Allow iteration over:
     - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
         - `for word in text.asWords()`
     - lines
         - `for line in text.asLines()`
     - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
-        - `for sentence in text.asSentences()`
-- Depending on locale
-    - `string.toUpper(locale)`, `string.toLower(locale)`
-        - `toUpper(String, locale) -> String`, `toLower(String, locale) -> String`
-    - `stringArray.sort(locale)`
-        - `sort(Container<String>, locale) -> Container<String>`
-    - `compare(stringA, stringB, locale) -> Int`
-- Even iterating through graphemes (or graphe clusters) is complicated for some/rare/historic scripts.
-    - Basic is Latin, combining marks, ZWJ, flags, variant selector, CJK (Han, Hiragana, Katakana, Hangul).
-        - So most everything is covered.
-    - Give more complex cases to ICU (Arabic, Devanagari, Thai).
-        - Maybe via weak linking.
+    - `for sentence in text.asSentences()`
+        
+Depending on locale
+- `string.toUpper(locale)`, `string.toLower(locale)`
+    - `toUpper(String, locale) -> String`, `toLower(String, locale) -> String`
+- `stringArray.sort(locale)`
+    - `sort(Container<String>, locale) -> Container<String>`
+- `compare(stringA, stringB, locale) -> Int`
