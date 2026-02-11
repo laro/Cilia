@@ -232,6 +232,7 @@ translates to
       :
       NullOpt
   ```
+  
 #### Optional Member Access
 Should work for `Optional<T>` and also for `T*`, `T^`, `T+`, `T-` pointers.  
 With `ContactInfo* contactInfo = ...`
@@ -243,15 +244,14 @@ With `ContactInfo* contactInfo = ...`
   ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("");```
 
 #### Optional Pointers
-Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, but `Optional<>` _for pointers_ is just a pointer.  
-As a pointer can be null in itself:
+Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, but _not_ `Optional<>` _for pointers_.
+That is _just a pointer_, as a pointer can be null in itself:
 - `Optional<T*>` internally is just a `T*`,
 - `Optional<T^>` internally is just a `T^`,
 - `Optional<T+>` internally is just a `T+`,
 - `Optional<T->` internally is just a `T-`.
 
-So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.
-
+So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.  
 This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
