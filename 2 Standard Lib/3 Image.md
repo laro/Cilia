@@ -20,7 +20,7 @@ Pixel access with `operator[x, y]`:
 `ImageBasicView` as "read-only reference" with continuous pixels (i.e. no stride, just cut off at top or bottom).
 
 Common image-processing member functions:
-- `class Image<type T = Float32> {`
+- `extension Image<type T> {`
     - `func gaussianBlur(Float sigma) -> Image<T>`
     - `func medianFilter(Int kernelSize) -> Image<T>`
     - `func sobelEdges() -> Image<T>`
