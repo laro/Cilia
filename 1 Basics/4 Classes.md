@@ -38,6 +38,5 @@ class MySubClass : protected ABaseClass {
 ```
 
 ### No ~~`struct`~~
-Not using ~~`struct`~~, as it would be just too similar to `class` (especially in Cilia) with no real benefit.  
-Keep as a reserved keyword for future use.  
+Not using ~~`struct`~~, as it would be just too similar to `class` (especially in Cilia) with no real benefit. Keep as a reserved keyword for future use.  
 Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
