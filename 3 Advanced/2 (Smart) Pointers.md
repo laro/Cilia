@@ -44,7 +44,7 @@ ContactInfo^ sharedPtrToCcontactInfo = makeShared<ContactInfo>()
 A weak pointer observes an object managed by a shared pointer without extending its lifetime (it does not increase the reference count).  
 You can `lock()` it to obtain a `T^` if the object is still alive.  
 
-With  
+Initialized as  
 `T- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
 ```
