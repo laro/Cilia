@@ -21,11 +21,11 @@ Pixel access with `operator[x, y]`:
 
 Common image-processing member functions:
 - `extension Image<type T> {`
-    - `func gaussianBlur(Float sigma) -> Image<T>`
-    - `func medianFilter(Int kernelSize) -> Image<T>`
-    - `func sobelEdges() -> Image<T>`
-    - `func resize(Int width, Int height, Interpolation interpolation) -> Image<T>`
-    - `func threshold(T lower, T upper) -> Image<T>`
+    - `func gaussianBlur(Float sigma) -> Image<T>&`
+    - `func medianFilter(Int kernelSize) -> Image<T>&`
+    - `func sobelEdges() -> Image<T>&`
+    - `func resize(Int width, Int height, Interpolation interpolation) -> Image<T>&`
+    - `func threshold(T lower, T upper) -> Image<T>&`
 - `}`
 
 Same operations as free functions:
