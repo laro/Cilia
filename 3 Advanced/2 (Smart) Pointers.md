@@ -32,6 +32,9 @@ Inspired by C++/CLI.
 ```
 ContactInfo^ sharedPtrToCcontactInfo = new ContactInfo
 ```
+```
+ContactInfo^ sharedPtrToCcontactInfo = makeShared<ContactInfo>()
+```
 
 
 ### Type- pointer
