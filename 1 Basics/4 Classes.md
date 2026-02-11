@@ -13,8 +13,7 @@ class MyArrayOfInt {
 }
 ```
 
-### `this` is a Reference
-In member functions `this` is a reference to the instance/object (not a pointer).
+In member functions **`this` is a reference** to the instance/object (not a pointer).
 ```
 class String {
   func toLower() -> String& {
@@ -24,8 +23,7 @@ class String {
 }
 ```
 
-### `public` is Default
-Default access specifier is `public`.  
+**Default access specifier is `public`**.  
 Default inheritance access specifier is also `public`:
 ```
 class MySubClass : MyBaseClass {
