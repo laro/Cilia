@@ -117,12 +117,6 @@ unsafe {
 }
 ```
 
-You still can use `makeShared<Type>()` (which is more efficient for shared pointers due to a single-allocation optimization) and `makeUnique<Type>()`, of course:
-```
-Type+ uniquePtr = makeUnique<Type>()  // same as "new Type"
-Type^ sharedPtr = makeShared<Type>()
-```
-
 
 ### `Type+`/`Type^` vs. `Type[0]+`/`Type[0]^`
 
