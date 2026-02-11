@@ -13,7 +13,7 @@ Based on UTF-8, as that IMHO is (among all the Unicode formats)
     
 Iteration over a `String` or `StringView` by:
 - **Graphemes**/Grapheme Clusters
-    - represented by `StringView`.
+    - each represented by a `StringView`.
     - This is the _default form of iteration_ over a `String` or `StringView`
     - A single grapheme will often consist of multiple code _units_  
       and may even consist of multiple code _points_ (then it is called a grapheme _cluster_).
@@ -25,7 +25,7 @@ Iteration over a `String` or `StringView` by:
     - Additional/alternative names?
         - `for graphemeCluster in text.asGraphemeClusters()`?
 - **Code Points**
-    - represented by `UInt32`,
+    - each represented by a `UInt32`,
         - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
             - Called "auto decoding" in D.
         - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
@@ -39,7 +39,7 @@ Iteration over a `String` or `StringView` by:
     - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
     - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
 - **Code Units**
-    - represented by
+    - each represented by a
         - `Char` for `String`
             - it is `Char`==`Char8`==`UInt8` and `String`==`UTF8String`
         - `Char16` for `UTF16String`
@@ -55,6 +55,19 @@ Iteration over a `String` or `StringView` by:
     - `for aChar32 in U"abc 🥸👮🏻".asArray()`
         - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
         - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
+- Lines
+    - `for line in text.asLines()`
+    - Break after:
+      
+        | Name | Codepoint         | Meaning                      |
+        |------|-------------------|------------------------------|
+        | LF   | `U+000A`          | `\n`, Unix/Linux/macOS       |
+        | CR   | `U+000D`          | `\r`, Classic Mac            |
+        | CRLF | `U+000D` `U+000A` | Windows                      |
+        | LFCR | `U+000A` `U+000D` | AmigaOS                      |
+        | NEL  | `U+0085`          | Next Line, EBCDIC/Mainframes |
+        | LS   | `U+2028`          | Line Separator               |
+        | PS   | `U+2029`          | Paragraph Separator          |
          
 
 ### Convert Upper/Lower Case
@@ -140,19 +153,6 @@ Even iterating through graphemes (or graphe clusters) is complicated for some/ra
         - `for sentence in text.asSentences()`
         - Needs list of abbreviations, like "e.g.", "i.e.", "o.ä.". Still just a heuristic, after all.
         - Using the RuleBasedBreakIterator for sentences, `BreakIterator::createSentenceInstance(...)`.
-    - Lines
-        - `for line in text.asLines()`
-        - Break after:
-          
-            | Name | Codepoint         | Meaning                      |
-            |------|-------------------|------------------------------|
-            | LF   | `U+000A`          | `\n`, Unix/Linux/macOS       |
-            | CR   | `U+000D`          | `\r`, Classic Mac            |
-            | CRLF | `U+000D` `U+000A` | Windows                      |
-            | LFCR | `U+000A` `U+000D` | AmigaOS                      |
-            | NEL  | `U+0085`          | Next Line, EBCDIC/Mainframes |
-            | LS   | `U+2028`          | Line Separator               |
-            | PS   | `U+2029`          | Paragraph Separator          |
         
 Depending on locale
 - `string.toUpper(locale)`, `string.toLower(locale)`
