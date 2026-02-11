@@ -21,9 +21,7 @@ While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new s
 [Bjarne Stroustrup said](https://www.stroustrup.com/devXinterview.html) (way back in 2000) in an interview about C++:
 > Today, I'd look for a _much_ simpler syntax—and probably clash with people's confusion between the familiar and the simple.
 
-I like many aspects, especially of Cpp2 (Herb Sutter), but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. And familiarity is essential when it comes to languages; that’s basically how they work.
-
-Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
+I like many aspects, especially of Cpp2 (Herb Sutter), but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
 
 
 ### Default vs. Explicit Initialization
