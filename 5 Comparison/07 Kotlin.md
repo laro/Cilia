@@ -24,5 +24,5 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `for (word in words) { ... }`
 
 > **Note**  
-> In Kotlin `Int` and `42` are 32 bit wide, not 64 bits.  
+> In Kotlin `Int` and `42` are 32 bits wide, not 64 bits.  
 > An `Array` has a fixed size.
