@@ -23,7 +23,8 @@ class String {
 }
 ```
 
-**Default member access specifier is `public`**.  
+**Default member access specifier is `public`**.
+
 Default inheritance access specifier is also `public`:
 ```
 class MySubClass : ThePublicBaseClass {
