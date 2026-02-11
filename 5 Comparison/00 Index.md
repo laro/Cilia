@@ -2,12 +2,12 @@
 permalink: /comparison/
 ---
 
-## Syntax Comparison of Cilia with Other Languages
+## Syntax Comparison with Other Languages
 
-The comparison on the following pages aims to show the exact equivalent of the [Cilia code](/comparison/cilia/#by-example).
+The syntax comparison on the following pages aims to show the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in various other languages.
 
 In C++, Cpp2, Rust, Java, C#, and D the type `int`/`Int` and/or literals like `42` are 32 bits wide, not 64 bits.
-That's OK, this is a syntax comparison, not a performance benchmark.
+That's OK, this is not a performance benchmark.
 
 > **Note**  
 > I may not be very familiar with all these languages, or not up to date.  
