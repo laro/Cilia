@@ -5,10 +5,8 @@ permalink: /basics/types/
 ## Basic / Arithmetic Types
 
 - `Bool`
-- `Int` == `Int64`
-    - `Int8`, `Int16`, `Int32`, `Int64`
-- `UInt`
-    - `UInt8`, `UInt16`, `UInt32`, `UInt64`
+- `Int`, `Int8`, `Int16`, `Int32`, `Int64`
+- `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`
 - `Byte`
 - `Float` == `Float64`  
     - `Float16`, `Float32`, `Float64`
