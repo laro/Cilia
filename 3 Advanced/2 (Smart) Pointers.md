@@ -111,10 +111,15 @@ But it is inconvenient to use as
 
 ```
 unsafe {
-    T* ptr = new T
+    T* ptr = NullPtr
+
+    ptr = new T
     delete ptr
 
-    T* ptr = new T[10]
+    ptr = new T[10]
+    delete[0] ptr
+
+    ptr = new T[10]
     delete[10] ptr
 }
 ```
