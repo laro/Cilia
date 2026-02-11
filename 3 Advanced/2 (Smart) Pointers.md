@@ -64,7 +64,7 @@ weakPointerToWindow?.close()
 
 ### `T*` pointer
 
-A "raw" pointer is a classical C/C++ pointer. Ownership depends, case by case, but in Cilia it typically is without ownership.
+A "raw" pointer is a classical C/C++ pointer. Ownership depends, case by case. In Cilia it typically is without ownership, as for pointers _with_ ownership you would use a `T+` pointer instead.
 
 A "raw" pointer is considered **unsafe** in Cilia:
 ```
