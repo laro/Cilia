@@ -44,4 +44,6 @@ for i in 0...9 {
 }
 ```
 
-In many examples this requirement is “hidden” by immediate assignment of a literal (such as ["one", "two", "three"]) or a function return value. It’s not a big deal, but in practice I still find the need for explicit initialization of empty collections somewhat annoying.
+In many examples this requirement is “hidden” by immediate assignment of a literal (such as ["one", "two", "three"]) or of a function return value.
+
+It’s not a big deal, but in practice I still find the need for explicit initialization of empty collections somewhat annoying.
