@@ -73,6 +73,8 @@ ContactInfo+ uniquePtrToContactInfo = new ContactInfo
 var alsoAUniquePtrToContactInfo = new ContactInfo
 ```
 
+With `T+`/`UniquePtr<T>` you do _not_ need to call `delete`, that is done by the owning pointer.
+
 In Cilia,
 1. `new` acts like `makeUnique<Type> -> Type+`, and
 2. a _right value_ `Type+` can also be moved to a `Type^`,
