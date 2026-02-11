@@ -118,9 +118,6 @@ unsafe {
 
     ptr = new T[10]
     delete[0] ptr
-
-    ptr = new T[10]
-    delete[10] ptr
 }
 ```
 
