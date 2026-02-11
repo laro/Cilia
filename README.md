@@ -105,7 +105,7 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 
 ## Better Readable Keywords
-C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia can call into C++ (and vice versa), but is a separate language, so its syntax does not need to be backwards compatible.
+C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia uses simpler, clearer keywords.
 
 - Cilia has
     - `var` instead of ~~`auto`~~
