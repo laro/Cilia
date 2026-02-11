@@ -136,8 +136,9 @@ Even iterating through graphemes (or graphe clusters) is complicated for some/ra
         - `for word in text.asWords()`
         - Important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words.
         - Using the Unicode Text Segmentation Algorithm (UAX #29), the RuleBasedBreakIterator for words, `BreakIterator::createWordInstance(...)`.
-    - Sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
+    - Sentences
         - `for sentence in text.asSentences()`
+        - Needs list of abbreviations, like "e.g.", "i.e.", "o.ä.". Still just a heuristic, after all.
         - Using the RuleBasedBreakIterator for sentences, `BreakIterator::createSentenceInstance(...)`.
     - Lines
         - `for line in text.asLines()`
