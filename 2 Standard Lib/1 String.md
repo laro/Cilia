@@ -142,13 +142,14 @@ Even iterating through graphemes (or graphe clusters) is complicated for some/ra
     - So most everything is covered.
 - Give more complex cases to ICU (Arabic, Devanagari, Thai).
     - Maybe via weak linking.
+    - Using the Unicode Text Segmentation Algorithm (UAX #29), the RuleBasedBreakIterator for characters, `BreakIterator::createCharacterInstance(...)`.
 
 `import icu` adds extension methods for `cilia::String`
 - Allow iteration over:
     - Words
         - `for word in text.asWords()`
         - Important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words.
-        - Using the Unicode Text Segmentation Algorithm (UAX #29), the RuleBasedBreakIterator for words, `BreakIterator::createWordInstance(...)`.
+        - Using the RuleBasedBreakIterator for words, `BreakIterator::createWordInstance(...)`.
     - Sentences
         - `for sentence in text.asSentences()`
         - Needs list of abbreviations, like "e.g.", "i.e.", "o.ä.". Still just a heuristic, after all.
