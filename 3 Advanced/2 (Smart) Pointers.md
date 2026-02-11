@@ -106,7 +106,7 @@ With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the 
 #### `new` for `T*`
 In Cilia a _right value_ `T+` can even be assigned to `T*`,
 so you still can use `new` for raw pointers.  
-But it is inconvenient to use as
+But it is inconvenient to use, as
 - it is allowed in unsafe code only,
 - you need to manage lifetime of the instance yourself (i.e. call `delete`), and
 - you need to distinguish between a "pointer to a single element" and a "pointer to an array" (i.e. call `delete` or `delete[0]`).
