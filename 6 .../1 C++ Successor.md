@@ -37,5 +37,5 @@ But some parts are impossible – or at least extremely unlikely – to include 
 Starting with "C" is a kind of tradition.  
 All the most obvious names (like [C2](http://c2lang.org/), [C3](https://c3-lang.org), [Cpp2](https://github.com/hsutter/cppfront#cppfront), [Cone](https://cone.jondgoodwin.com/), [D](https://dlang.org/) and many others) were already taken `¯\_(ツ)_/¯`.  
 [Julia](https://julialang.org) is a nice language,
-so now Cilia got a "[cute](https://forum.qt.io/topic/132893/qt-pronunciation)" name.  
+so now Cilia got its "[cute](https://forum.qt.io/topic/132893/qt-pronunciation)" name.  
 "C/Celia" comes to mind. I like C++ much more than plain C, but "C++/Cilia" is a bit unwieldy.
