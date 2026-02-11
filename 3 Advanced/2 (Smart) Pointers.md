@@ -129,8 +129,8 @@ unsafe {
 `T+`/`T^` is a unique/shared pointer to a _single_ object.  
 `T[0]+`/`T[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed but unknown size (`0` is just a dummy here).
 
-> In C++ `unique_ptr<T[]>`/`shared_ptr<T[]>`, the `T[]` is an "incomplete type".
-> But in Cilia `T[]` is an `Array<T>`, so we use `T[0]` instead.
+> In C++, `T[]` is an "incomplete type".
+> In Cilia, we write `T[0]` instead, because `T[]` there is actually an `Array<T>`.
 
 ```
 T+    uniquePtr        = new T
