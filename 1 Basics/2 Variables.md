@@ -54,12 +54,15 @@ with `var` / `const`:
     - `const Float* pointerToConstantFloat`
     - `const Float const* constantPointerToConstantFloat`
     - `Float const* constantPointerToMutableFloat`
-    - `const` as a type qualifier for an array declarator (`[]`):
-        - `const Float[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`.
-            - `Float const[] constArrayOfFloat` is equivalent to `const Array<Float> constArrayOfFloat`, too. Members of a const array are always effectively const anyway.
-            - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float> arrayOfConstFloat`. But that does not compile anyway, because you can't assign values to an array whose element type is non-assignable. (MSVC says 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.')
-        - `const Float[3]` is a `const` static array declarator, interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
-        - `const ContactInfo[String] constMapOfContactInfoByName` is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
+    - `const Float[] constArrayOfFloat`  
+       is equivalent to `const Array<Float> constArrayOfFloat`.
+        - `Float const[] constArrayOfFloat`  
+          is equivalent to `const Array<Float> constArrayOfFloat`, too. Members of a const array are always effectively const anyway.
+        - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float> arrayOfConstFloat`. But that does not compile anyway, because you can't assign values to an array whose element type is non-assignable. (MSVC says 'The C++ Standard forbids containers of `const` elements because `allocator<const T>` is ill-formed.')
+    - `const Float[3]`  
+      is a `const` static array declarator, interpreted as a `const` static array of three `Float` (which effectively are `const`, too).
+    - `const ContactInfo[String] constMapOfContactInfoByName`  
+      is equivalent to `const Map<String, ContactInfo> constMapOfContactInfoByName`.
 
 ### Not Allowed
 It is a syntax error to write:
