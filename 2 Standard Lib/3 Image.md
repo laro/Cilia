@@ -51,5 +51,5 @@ Images (unlike matrices) are stored row-major, like:
 The default datatype is `Float32` (32-bit precision), well suited for image processing and machine vision.
 
 For handling JPEG or PNG images you may use these derivations:
-- `using ColorImage = cilia::Image<RGB<UInt8>>`
+- `using RGB24Image = cilia::Image<RGB<UInt8>>`
 - `using Grey8Image = cilia::Image<UInt8>`
