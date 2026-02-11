@@ -151,7 +151,7 @@ See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
         - `cilia::StaticMDArray<Int, 3, 2, 200> intArray3D`
 - Mixed forms of static and dynamic array
     - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
-    - `Int[3,4][] dynamicArrayOfThreeByFourArrayOfInt`
+    - `Int[3,4][] dynamicArrayOfArrayOfThreeByFourInt`
 - `MDArrayView`
 
 
