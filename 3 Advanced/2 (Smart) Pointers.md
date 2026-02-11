@@ -73,8 +73,6 @@ ContactInfo+ uniquePtrToContactInfo = new ContactInfo
 var alsoAUniquePtrToContactInfo = new ContactInfo
 ```
 
-With `T+`/`UniquePtr<T>` you do _not_ need to call `delete`, that is done by the owning pointer.
-
 In Cilia,
 1. `new` acts like `makeUnique<Type> -> Type+`, and
 2. a _right value_ `Type+` can also be moved to a `Type^`,
@@ -88,6 +86,8 @@ Type^ sharedPtr = new Type
 Type+ uniquePtr = new Type
 Type^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 ```
+
+With `T+`/`T^` you do _not_ need to call `delete`, that is done by the smart pointer.
 
 In Cilia a _right value_ `Type+` can even be assigned to `Type*`,
 so you still can use `new` for raw pointers.  
