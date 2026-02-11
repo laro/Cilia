@@ -42,10 +42,10 @@ ContactInfo^ sharedPtrToCcontactInfo = makeShared<ContactInfo>()
 ### Type- pointer
 
 A weak pointer observes an object managed by a shared pointer without extending its lifetime (it does not increase the reference count).  
-You can `lock()` it to obtain a `T^` if the object is still alive.  
+You can `lock()` it to obtain a `Type^` if the object is still alive.  
 
 Initialized as  
-`T- weakPointerToWindow = sharedPointerToWindow`  
+`Type- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
 ```
 if (Window^ window = weakPointerToWindow.lock()) {
