@@ -22,6 +22,7 @@ This is a "pointer plus ownership", a pointer with (exclusive) ownership: the ob
 ```
 ContactInfo+ contactInfoUniquePtr = new ContactInfo
 ```
+Unique pointers have _zero_ overhead over plain, raw C/C++ pointers. 
 
 
 ### Type^ pointer
