@@ -13,7 +13,7 @@ and a bit like the evolution
 - from Java to Kotlin,
 - from Objective-C to Swift.
 
-
+  
 > **Why a new language, why not extending C++?**
 
 - The [CamelCase style](/#camelcase-style) could basically be achieved in C++, too.
