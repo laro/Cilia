@@ -15,11 +15,11 @@ func multiplyAdd(Float x, y, Int z) -> Float {
     - Easier parsing due to clear distinction between function declaration vs. variable declaration,  
       avoiding the [most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse).
 - Function parameters are given as `TypeName parameterName`, as with variable declarations.
-- Multiple function parameters of the (exact) same type can be combined, as with variable declarations.
+- Multiple function parameters of the (exact) same type can be combined, as with variable declarations:
     - `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
-- Always and only in the trailing return type syntax (using `-> ReturnType`),
-    - but void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~
-      (like `func print(String line) { ... }`).
+- Always and only in the trailing return type syntax (using `-> ReturnType`).
+- Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:
+    - `func print(String line) { ... }`
 - **Lambdas**
     - `[](Int i) -> Float { i * 3.14 }`  
       as in C++
