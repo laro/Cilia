@@ -54,7 +54,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
               using InParameterType = const std::string_view // Pass by value
           }
           ```
-- Static constants, typically for type traits
+- Static **constants**, typically for type traits
   ```
   extension Float32 {
       static const Bool IsFloatingPoint = True
@@ -63,7 +63,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
       static const Bool IsFloatingPoint = True
   }
   ```
-- Static variables
+- _Static_ variables
     - ```
       extension ContactInfo {
           // External mutable static variable
@@ -71,7 +71,8 @@ Extensions are defined similar to classes, but with the `extension` keyword.
       }
       ```
     - Rarely used, but why not.
-- Generic Extensions
+    - It is not possible to add _member_ variables, as that would change the size of the class.
+- **Generic Extensions**
     - Extensions can be parameterized to support 
         - generic types and
         - basic types, e.g. native static arrays.
