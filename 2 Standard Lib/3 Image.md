@@ -5,37 +5,33 @@ permalink: /standard-lib/image/
 ## Image
 
 ```
-Image<type T = Float32>
+class Image<type T = Float32> { ... }
 ```
+Basically a two dimensional array.
+
+`ImageView` as "read-only reference" of sub-areas.  
+`ImageBasicView` as "read-only reference" with continuous pixels.
 
 Common image-processing examples:
-```
-func gaussianBlur<type T>(Image<T> image, Float sigma) -> Image<T>
-func medianFilter<type T>(Image<T> image, Int kernelSize) -> Image<T>
-func sobelEdges<type T>(Image<T> image) -> Image<T>
-func resize<type T>(Image<T> image, Int width, Int height, Interpolation interpolation) -> Image<T>
-func threshold<type T>(Image<T> image, T lower, T upper) -> Image<T>
-```
+- `func gaussianBlur<type T>(Image<T> image, Float sigma) -> Image<T>`
+- `func medianFilter<type T>(Image<T> image, Int kernelSize) -> Image<T>`
+- `func sobelEdges<type T>(Image<T> image) -> Image<T>`
+- `func resize<type T>(Image<T> image, Int width, Int height, Interpolation interpolation) -> Image<T>`
+- `func threshold<type T>(Image<T> image, T lower, T upper) -> Image<T>`
 
 Same operations as member functions:
-```
-class Image<type T = Float32> {
-    func gaussianBlur(Float sigma) -> Image<T>
-    func medianFilter(Int kernelSize) -> Image<T>
-    func sobelEdges() -> Image<T>
-    func resize(Int width, Int height, Interpolation interpolation) -> Image<T>
-    func threshold(T lower, T upper) -> Image<T>
-}
-```
+- `class Image<type T = Float32> {`
+    - `func gaussianBlur(Float sigma) -> Image<T>`
+    - `func medianFilter(Int kernelSize) -> Image<T>`
+    - `func sobelEdges() -> Image<T>`
+    - `func resize(Int width, Int height, Interpolation interpolation) -> Image<T>`
+    - `func threshold(T lower, T upper) -> Image<T>`
+- `}`
 
 Examples for `operator[x, y]`:
-```
-var centerValue = image[width/2, height/2];
-image[10, 20] = 0.0f;
-var gradientX = image[x + 1, y] - image[x - 1, y];
-```
-
-- `ImageView`
+- `var centerValue = image[width/2, height/2]`
+- `image[10, 20] = 0.0`
+- `var gradientX = image[x + 1, y] - image[x - 1, y]`
 
 
 ### Row-Major
