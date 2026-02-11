@@ -132,12 +132,24 @@ Even iterating through graphemes (or graphe clusters) is complicated for some/ra
 
 `import icu` adds extension methods for `cilia::String`
 - Allow iteration over:
-    - words (important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words)
+    - Words
         - `for word in text.asWords()`
-    - lines
+        - Important/difficult for Chinese, Japanese, Thai or Khmer, needs list of words.
+        - Using the Unicode Text Segmentation Algorithm (UAX #29), the RuleBasedBreakIterator for words, `BreakIterator::createWordInstance(...)`.
+    - Sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
+        - `for sentence in text.asSentences()`
+        - Using the RuleBasedBreakIterator for sentences, `BreakIterator::createSentenceInstance(...)`.
+    - Lines
         - `for line in text.asLines()`
-    - sentences (needs list of abbreviations, like "e.g.", "i.e.", "o.ä.")
-    - `for sentence in text.asSentences()`
+        - Break after:
+            | Name | Codepoint     | Meaning             |
+            |------|---------------|---------------------|
+            | LF   | U+000A        | `\n`                |
+            | CR   | U+000D        | `\r`                |
+            | CRLF | U+000D U+000A | Windows             |
+            | NEL  | U+0085        | Next Line           |
+            | LS   | U+2028        | Line Separator      |
+            | PS   | U+2029        | Paragraph Separator |
         
 Depending on locale
 - `string.toUpper(locale)`, `string.toLower(locale)`
