@@ -66,7 +66,7 @@ Standard conversions only apply when no information is lost.
     - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
 
 ### Signed Size
-Using [**signed `Int` as size**](/cilia/basics/signed-size/)
+Using [**signed `Int` as size**](/basics/signed-size/)
 
 ### **Range & Validation Checks**
 The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
