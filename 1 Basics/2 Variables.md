@@ -20,6 +20,7 @@ Some simplifications and restrictions:
 - `Int i = 0`
 - `Int x, y`
 - `Int x = 99, y = 199`
+- `Complex<Float>& complexNumber = complexNumberWithOtherName`
 - `Int[10] highScoreTable`  // Array of ten integers (instead of ~~`Int highScoreTable[10]`~~)
 - Multiple-variable declarations (unlike C/C++)
     - `Float* m, n`        // m _and_ n are pointers
@@ -30,8 +31,6 @@ Some simplifications and restrictions:
     - `Image image()`
         - is the same as `Image image`, i.e. it is a variable declaration,
         - a function declaration would be written as `func image() -> Image`.
-- References
-    - `Complex<Float>& complexNumber = complexNumberWithOtherName`
 
 ### **Type Inference**
 with `var` / `const`:
