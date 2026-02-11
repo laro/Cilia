@@ -32,6 +32,8 @@ Inspired by C++/CLI.
 ```
 ContactInfo^ sharedPtrToCcontactInfo = new ContactInfo
 ```
+
+For shared pointers `makeShared<Type>()` is more efficient due to a single-allocation optimization:
 ```
 ContactInfo^ sharedPtrToCcontactInfo = makeShared<ContactInfo>()
 ```
