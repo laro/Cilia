@@ -18,7 +18,13 @@ With a Cilia variant of each standard class/concept (with CamelCase class names 
     - `StringStream` instead of `stringstream`
         - `TextStream`, `ByteStream`, ...
 
-Mostly a shallow wrapper, e.g. `class cilia::String : public std::string { ... }`,  
+
+### Shallow Wrappers
+
+Mostly realized as shallow wrappers, like
+```
+class cilia::String : public std::string { ... }
+```
 with "**aliases**" for:
 - Member variables  
   `using var x = data[0]`  
@@ -29,4 +35,4 @@ with "**aliases**" for:
 A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it.  
 But only _with_ a wrapper do we have
 - a Cilia standard library in the "idiomatic" Cilia style (i.e. CamelCase),
-- whose types/classes are also used with existing C++ APIs (i.e. using Int, Int32, String and StringView instead of long / long long, int32_t, string and string_view).
+- whose types/classes can also be used with existing C++ APIs (i.e. using `Int`, `Int32`, `String`, `StringView`, `T[]`, etc. instead of `long` / `long long`, `int32_t`, `string`, `string_view`, `vector<T>`).
