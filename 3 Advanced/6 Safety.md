@@ -160,7 +160,8 @@ Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to 
 
 ### Int with Overflow Check
 `cilia::safe::Int` is like `cilia::Int`, but with **overflow check** for all operations, may throw OverflowException (or abort the program).
-- `safe::Int8`/`Int16`/`Int32`/`Int64`
+- `safe::Int`
+    - `safe::Int8`/`Int16`/`Int32`/`Int64`
 - `safe::UInt`
     - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
