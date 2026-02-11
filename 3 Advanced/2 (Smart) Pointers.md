@@ -140,4 +140,4 @@ T^    sharedPtr        = new T
 T[0]^ sharedPtrToArray = new T[10]
 ```
 
-Not ~~`T+ uniquePtrToArray = new T[10]`~~. There is no array-to-single-element-pointer decay possible with `T+`/`UniquePtr<T>` or `T^`/`SharedPtr<T>`, as that is a necessary distinction in the type.
+Not ~~`T+ uniquePtrToArray = new T[10]`~~. There is no array-to-single-element-pointer decay possible with `T+` or `T^`, as that is a necessary distinction in the type.
