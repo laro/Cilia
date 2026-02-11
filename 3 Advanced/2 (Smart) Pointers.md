@@ -54,10 +54,14 @@ if (Window^ window = weakPointerToWindow.lock()) {
     window->close()
 }
 ```
-and  
-`weakPointerToWindow?.close()`  
+and
+```
+weakPointerToWindow?.close()
+```
+
 
 ### Type* pointer
+
 A "raw" pointer is a classical C/C++ pointer. Ownership depends, case by case, but in Cilia it typically is without ownership.
 
 A "raw" pointer is considered **unsafe** in Cilia:
@@ -71,7 +75,9 @@ unsafe {
 }
 ```
 
+
 ### Dynamic Allocation with `new`
+
 `new` is kept as a short and quite 'traditional' syntax (also used in C# and Java) for dynamic/heap allocation. `new T` returns a `T+`/`UniquePtr<T>`, so that is the "default type" for pointers:
 ```
 ContactInfo+ uniquePtrToContactInfo = new ContactInfo
