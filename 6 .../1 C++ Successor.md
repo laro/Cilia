@@ -12,7 +12,7 @@ Cilia is similar to
 and a bit like the evolution
 - from Java to Kotlin,
 - from Objective-C to Swift.
-<br>
+
 <br>
 
 > **Why a new language, why not extending C++?**
@@ -29,7 +29,7 @@ But some parts are impossible – or at least extremely unlikely – to include 
 - New array declaration (`Int[3] array` instead of `Int array[3]`, `Int[] array` instead of `vector<Int> array`)
 - [New/simplified keywords](/#better-readable-keywords)
 - [No trailing semicolons](/#no-trailing-semicolons)
-<br>
+
 <br>
 
 > **Why "Cilia"?**
