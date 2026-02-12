@@ -176,6 +176,18 @@ Reserved keywords for _future_ use (maybe, maybe not).
 - `template`, as it still is unclear, if the "new", shorter template expressions are really better.
 - `let` for `const` variable declarations?
 - `constfunc` instead of `constexpr` or `consteval`?
+- `module`
+- `import`
+- `export`
+- `package`
+- `match`
+- `defer`
+- `let`
+- `mut`
+- `override`
+- `final`
+- `sealed`
+- `alias`
 
 
 ### Cilia Versioning
