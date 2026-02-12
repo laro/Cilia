@@ -260,16 +260,16 @@ class ContactInfo {
     String phone
 }
 class User {
-    String loginName
+    String username
     ContactInfo* ptrToContactInfo = NullPtr
 }
 User? user = ...
-```
-```
+
 // Not this:
 //T*? optionalPtrToContactInfo = user?.ptrToContactInfo
 // But this:
 T* ptrToContactInfo = user?.ptrToContactInfo
+
 String realName = ptrToContactInfo?.name ?? ""
 ```
 
