@@ -252,7 +252,8 @@ And while technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, 
 - `Optional<T+>` internally is just a `T+`,
 - `Optional<T->` internally is just a `T-`.
 
-Therefore an `Optional<T*>` can be assigned to a plain `T*`:
+Therefore an `T*?`/`Optional<T*>` can be assigned to a plain `T*`, and you better use just that:
+:
 ```
 class ContactInfo {
     String name
@@ -265,16 +266,14 @@ class User {
 User? user = ...
 ```
 ```
-T*? optionalPtrToContactInfo = user?.ptrToContactInfo
-String realName = optionalPtrToContactInfo?.name ?? ""
-```
-And you better use just a plain `T*`, not `T*?`:
-```
+// Not this:
+//T*? optionalPtrToContactInfo = user?.ptrToContactInfo
+// But this:
 T* ptrToContactInfo = user?.ptrToContactInfo
 String realName = ptrToContactInfo?.name ?? ""
 ```
 
-So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.  
+So in Cilia for an `T*?`/`Optional<T*>` that has a value, that value is never `NullPtr`.  
 This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
