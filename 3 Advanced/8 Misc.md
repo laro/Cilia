@@ -244,14 +244,14 @@ With `ContactInfo* contactInfo = ...`
   ```String name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("")```
 
 #### Optional Pointers
-Technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, but _not_ `Optional<>` _for pointers_.
-That is _just a pointer_, as a pointer can be null in itself:
+A plain `T*` can be used like an optional.
+
+And while technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, _for pointers_ `T*` the `Optional<T*>` is _just a pointer_, as a pointer can be null in itself:
 - `Optional<T*>` internally is just a `T*`,
 - `Optional<T^>` internally is just a `T^`,
 - `Optional<T+>` internally is just a `T+`,
 - `Optional<T->` internally is just a `T-`.
 
-So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.  
 Therefore an `Optional<T*>` can be assigned to a plain `T*`:
 ```
 class ContactInfo {
@@ -268,12 +268,13 @@ User? user = ...
 T*? optionalPtrToContactInfo = user?.ptrToContactInfo
 String realName = optionalPtrToContactInfo?.name ?? ""
 ```
-So you use just a plain `T*`, not `T*?`:
+And you better use just a plain `T*`, not `T*?`:
 ```
 T* ptrToContactInfo = user?.ptrToContactInfo
 String realName = ptrToContactInfo?.name ?? ""
 ```
 
+So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.  
 This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
