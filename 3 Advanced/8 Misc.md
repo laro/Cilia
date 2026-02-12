@@ -252,6 +252,28 @@ That is _just a pointer_, as a pointer can be null in itself:
 - `Optional<T->` internally is just a `T-`.
 
 So in Cilia for an `Optional<T*>` that has a value, that value is never `NullPtr`.  
+Therefore an `Optional<T*>` can be assigned to a plain `T*`:
+```
+class ContactInfo {
+    String name
+    String phone
+}
+class User {
+    String loginName
+    ContactInfo* contactInfo = NullPtr
+}
+User? user = ...
+```
+```
+T*? optionalPtrToContactInfo = user?.contactInfo
+String realName = optionalPtrToContactInfo?.name ?? ""
+```
+So you use just a plain `T*`, not `T*?`:
+```
+T* ptrToContactInfo = user?.contactInfo
+String realName = ptrToContactInfo?.name ?? ""
+```
+
 This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
