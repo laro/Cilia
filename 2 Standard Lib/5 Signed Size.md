@@ -1,5 +1,5 @@
 ---
-permalink: /basics/signed-size/
+permalink: /standard-lib/signed-size/
 ---
 
 ## Signed Size
