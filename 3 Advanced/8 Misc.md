@@ -260,17 +260,17 @@ class ContactInfo {
 }
 class User {
     String loginName
-    ContactInfo* contactInfo = NullPtr
+    ContactInfo* ptrToContactInfo = NullPtr
 }
 User? user = ...
 ```
 ```
-T*? optionalPtrToContactInfo = user?.contactInfo
+T*? optionalPtrToContactInfo = user?.ptrToContactInfo
 String realName = optionalPtrToContactInfo?.name ?? ""
 ```
 So you use just a plain `T*`, not `T*?`:
 ```
-T* ptrToContactInfo = user?.contactInfo
+T* ptrToContactInfo = user?.ptrToContactInfo
 String realName = ptrToContactInfo?.name ?? ""
 ```
 
