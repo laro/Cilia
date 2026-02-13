@@ -27,17 +27,17 @@ as in C++
 ### `const` Member Functions
 ```
 class MyArrayOfInt {
-  const func size() -> Int { ... }
+    const func size() -> Int { ... }
 }
 ```
 
 ### `constexpr`, `consteval`
 ```
 constexpr multiply(Int x, y) -> Int {
-  return x * y
+    return x * y
 }
 consteval multiply(Int x, y) -> Int {
-  return x * y
+    return x * y
 }
 ```
 
