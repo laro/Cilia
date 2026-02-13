@@ -273,7 +273,7 @@ T* ptrToContactInfo = user?.ptrToContactInfo
 String realName = ptrToContactInfo?.name ?? ""
 ```
 
-So in Cilia for a `T*?`/`Optional<T*>` that has a value, that value is never `NullPtr`. And when you assign `NullPtr` to a `T*?`/`Optional<T*>`, then `hasValue()` returns `false`.  
+So in Cilia for a `T*?`/`Optional<T*>` that has a value, that value is never `NullPtr`. And when you assign `NullPtr` to a `T*?`/`Optional<T*> optionalPtr`, then `optionalPtr.hasValue()` returns `false`.  
 This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
