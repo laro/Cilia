@@ -68,7 +68,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 - The argument of `catch ... { ... }` is passed as **`in`**  
   (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here).
   
-### Parameter passing mode keywords:
+### Parameter Passing Mode Keywords
 - **`in`**
     - to mark parameters used as input.
     - Is the default if no parameter passing keyword is given.
