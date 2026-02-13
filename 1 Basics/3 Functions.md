@@ -42,12 +42,13 @@ consteval multiply(Int x, y) -> Int {
 ```
 
 ### Function pointers
-- Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
-- Examples:
-    - **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
-    - **`func(Int)* pointerToFunctionOfInt`**
-    - `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero
-    - `func(Int)& referenceToFunctionOfInt`
+Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
+
+Examples:
+- **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
+- **`func(Int)* pointerToFunctionOfInt`**
+- `func(Int, Int -> Int)& referenceToFunctionOfIntAndIntToInt` // Can't be zero
+- `func(Int)& referenceToFunctionOfInt`
 
 
 ## Function Parameter Passing Modes
