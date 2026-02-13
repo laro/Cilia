@@ -234,9 +234,11 @@ Special **trick for types with views**
     - (Which you don't have to write down explicitly, because `const&` simply is the standard for user defined types.)
 
 ### Type Trait `CopyParameterType`
-Type trait **`CopyParameterType`** of a type `T` typically simply is `T`  
-`extension<type T> T { CopyParameterType = T }`  
-but for `View`-types it is the corresponding "full" type:
+The type trait `CopyParameterType` of a type `T` typically is simply `T` itself:
+```
+extension<type T> T { CopyParameterType = T }
+```
+But for `View`-types it is the corresponding "full" type:
 ```
 extension       StringView { CopyParameterType = String }
 extension        ArrayView { CopyParameterType = Array }
