@@ -31,4 +31,4 @@ Simply use `Int` (that is `Int64`, like in Swift and Go),
 `Float` is `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`).  
 With modern processors double precision is very fast.
 When concerned with memory bandwidth, cache size, and SIMD performance, choose one of the smaller floating-point types like `Float32`
-or (if available) `BFloat16`, `Float8`, or even `Float4`.
+or (if available) `BFloat16`, `Float8`, maybe even `Float4`.
