@@ -206,7 +206,7 @@ Then all functions with a `String` (AKA `in String`) parameter would _implicitly
 
 This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
 
-> **Example**
+> **Example**  
 > `concat(String first, String second)`  
 > is short for `concat(in String first, in String second)`  
 > and extends to `concat(const StringView first, const StringView second)`.
@@ -267,9 +267,9 @@ extension MDArrayBasicView { CopyParameterType = MDArray }
 
 The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
 
-Example:
-- `for copy str in ["an", "array", "of", "words"] { ... }`
-    - While the literal `["an", "array", "of", "words"]` is a `StringView[]`,  
-      `str` is a `String` (not a ~~`StringView`~~).
-    - This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.
-    - (This is currently the only useful example I can think of.)
+> **Example**  
+> `for copy str in ["an", "array", "of", "words"] { ... }`
+> While the literal `["an", "array", "of", "words"]` is a `StringView[]`,
+> `str` is a `String` (not a ~~`StringView`~~).  
+> This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.  
+> (This is currently the only useful example I can think of.)
