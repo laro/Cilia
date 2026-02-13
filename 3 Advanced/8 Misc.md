@@ -264,7 +264,7 @@ And while technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, 
 - `Optional<T+>` internally is just a `T+`,
 - `Optional<T->` internally is just a `T-`.
 
-Therefore an `T*?`/`Optional<T*>` can be assigned to a plain `T*`, and you better use just that:
+Therefore a `T*?`/`Optional<T*>` can be assigned to a plain `T*`, and you better use just that:
 :
 ```
 class ContactInfo {
