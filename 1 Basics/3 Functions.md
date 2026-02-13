@@ -24,7 +24,7 @@ Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:
 `[](Int i) -> Float { i * 3.14 }`  
 as in C++
 
-### `const` member functions
+### `const` Member Functions
 ```
 class MyArrayOfInt {
   const func size() -> Int {
