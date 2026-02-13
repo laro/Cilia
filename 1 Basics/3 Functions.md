@@ -13,7 +13,7 @@ func multiplyAdd(Float x, y, Int z) -> Float {
 Function declarations start with the keyword `func`, as in Swift.  
 Easier parsing due to clear distinction between function declaration vs. variable declaration, avoiding the [most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse).
 
-Function parameters are given as `TypeName parameterName`, as with variable declarations. Multiple function parameters of the (exact) same type can be combined, as with variable declarations:  
+Function parameters are given as `TypeName parameterName`, multiple function parameters of the (exact) same type can be combined:  
 `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
 
 Always and only in the trailing return type syntax (using `-> ReturnType`).  
