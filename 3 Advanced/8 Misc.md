@@ -265,16 +265,6 @@ And while technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, 
 
 Therefore a `T*?`/`Optional<T*>` can be assigned to a plain `T*`, and you better use just that:
 ```
-class ContactInfo {
-    String name
-    String phone
-}
-class User {
-    String username
-    ContactInfo* ptrToContactInfo = NullPtr
-}
-User? user = ...
-
 // Not this:
 //T*? optionalPtrToContactInfo = user?.ptrToContactInfo
 // But this:
