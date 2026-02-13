@@ -180,11 +180,11 @@ As a generic rule, `Complex<T>` is passed the same way as `T`:
 ```
 extension<type T> Complex<T> { InParameterType = T::InParameterType }
 ```
-And the generic rule is refined/corrected with:
+As `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default), the generic rule is refined/corrected with:
 ```
 extension Complex<Float128> { InParameterType = const Complex<Float128>& }
 ```
-As `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default).
+
 
 Special **trick for types with views**
 - Applicable only for types `X` that have an `XView` counterpart where
