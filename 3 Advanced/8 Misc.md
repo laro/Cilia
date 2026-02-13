@@ -239,23 +239,23 @@ translates to
 - ```Bool isJpeg = name?.endsWith(".jpeg") ?? false```  
   translates to  
   ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false)```
-- ```Int? len = pointerToWindow?.title()?.length()```  
-  translates to  
-  ```
-  Optional<String> __tmpTitle = pointerToWindow ?
-      Optional((*pointerToWindow).title())
-      :
-      NullOpt
-  
-  Optional<Int> len = __tmpTitle ?
-      Optional((*__tmpTitle).length())
-      :
-      NullOpt
-  ```
   
 #### Optional Pointers
 Plain `T*` as well as `T^`, `T+`, `T-` pointers can be used like an optional.
-So the examples above are also valid with `ContactInfo* contactInfo = ...`.
+
+```Int? len = pointerToWindow?.title()?.length()```  
+translates to  
+```
+Optional<String> __tmpTitle = pointerToWindow ?
+  Optional((*pointerToWindow).title())
+  :
+  NullOpt
+
+Optional<Int> len = __tmpTitle ?
+  Optional((*__tmpTitle).length())
+  :
+  NullOpt
+```
 
 And while technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, _for pointers_ `T*` the `Optional<T*>` is _just a pointer_, as a pointer can be null in itself:
 - `Optional<T*>` internally is just a `T*`,
