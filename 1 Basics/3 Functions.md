@@ -273,5 +273,6 @@ The idea is to get a _mutable copy_ of the object, even without understanding th
 > ```
 > While the literal `["an", "array", "of", "words"]` is a `StringView[]`,
 > `str` is a `String` (not a ~~`StringView`~~).  
-> This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.  
-> (This is currently the only useful example I can think of.)
+
+This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.  
+(This is currently the only useful example I can think of.)
