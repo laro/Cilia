@@ -27,11 +27,7 @@ as in C++
 ### `const` Member Functions
 ```
 class MyArrayOfInt {
-  const func size() -> Int {
-      return size_;
-  }
-protected:
-  Int size_ = 0
+  const func size() -> Int { ... }
 }
 ```
 
