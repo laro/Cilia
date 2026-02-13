@@ -170,20 +170,18 @@ extension   UInt32 { InParameterType = const UInt32 }
 extension   UInt64 { InParameterType = const UInt64 }
 extension  Float32 { InParameterType = const Float32 }
 extension  Float64 { InParameterType = const Float64 }
-extension  std::string_view { InParameterType = const std::string_view }
-extension std::span<type T> { InParameterType = const std::span<T> }
+extension   std::string_view { InParameterType = const std::string_view }
+extension  std::span<type T> { InParameterType = const std::span<T> }
 ...
 ```
 This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
 
-As a generic rule, `Complex<T>` is passed the same way as `T`:
 ```
 extension<type T> Complex<T> { InParameterType = T::InParameterType }
+extension  Complex<Float128> { InParameterType = const Complex<Float128>& }
 ```
-As `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default), the generic rule is refined/corrected with:
-```
-extension Complex<Float128> { InParameterType = const Complex<Float128>& }
-```
+Accordung to the generic rule, `Complex<T>` is passed the same way as `T`. But as `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default), the generic rule is corrected.
+
 
 #### Special Trick for Types with Views
 Applicable only for types `X` that have an `XView` counterpart where
