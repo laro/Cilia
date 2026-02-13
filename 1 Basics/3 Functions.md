@@ -202,7 +202,7 @@ Special **trick for types with views**
         - `concat(String first, String second)`
         - is short for `concat(in String first, in String second)`
         - and extends to `concat(const StringView first, const StringView second)`
-    - For cases where you need to _change_ the string parameter, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
+    - For cases where you need to _change_ the string parameter, passing mode **`in`** is not suitable anyway (neither is a `const String&` nor a `const StringView`) . And all other passing modes (`inout`, `out`, `copy`, `move`, `forward`) are using the real `String`.
     - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just for consistency.
       ```
       String[] stringArray = ["a", "b", "c"]
