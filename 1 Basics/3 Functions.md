@@ -252,7 +252,7 @@ The type trait `CopyParameterType` of a type `T` typically is simply `T` itself:
 ```
 extension<type T> T { CopyParameterType = T }
 ```
-But for `View`-types it is the corresponding "full" type:
+But for `View`-types the corresponding "full" type is used instead:
 ```
 extension       StringView { CopyParameterType = String }
 extension        ArrayView { CopyParameterType = Array }
