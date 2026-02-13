@@ -186,56 +186,61 @@ extension Complex<Float128> { InParameterType = const Complex<Float128>& }
 ```
 
 #### Special Trick for Types with Views
-- Applicable only for types `X` that have an `XView` counterpart where
-    - `X` can implicitly be converted to `XView`,
-    - `XView` can (explicitly) be converted to `X`, and
-    - `XView` has the same "interface" as `const X` (i.e. contiguous memory access).
-- like:  
-    - `String` - `StringView`
-    - `Array` - `ArrayView`
-    - `Vector` - `VectorView`
-- As example, with `String`/`StringView`:
-    - `extension String { InParameterType = const StringView }`  
-      i.e. **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
-    - So all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
-        - a `String` (as that can implicitly be converted to `StringView`)
-        - a `StringView` (that somehow is the more versatile variant of `const String&`),
-        - and therefore also _every third-party string_ class (as long as it is implicitly convertible to `StringView`).
-    - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
-    - Example:
-        - `concat(String first, String second)`
-        - is short for `concat(in String first, in String second)`
-        - and extends to `concat(const StringView first, const StringView second)`
-    - For cases where you need to _change_ the string parameter, passing mode **`in`** is not suitable anyway (neither is a `const String&` nor a `const StringView`) . And all other passing modes (`inout`, `out`, `copy`, `move`, `forward`) are using the real `String`.
-    - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just for consistency.
-      ```
-      String[] stringArray = ["a", "b", "c"]
-      for str in stringArray {
-          // str is a const StringView
-      }
-      ```
-- This is not possible with every view type, as some views do not guarantee contiguous memory access (typically when they do support stride):
-    - ~~`Matrix` - `MatrixView`~~
-    - ~~`Image` - `ImageView`~~
-    - ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
-    - Maybe having some `XBasicView` instead, explicitly _without_ stride support,  
-      that can cut off at start and end, but no slicing:
-        - `Matrix` - `MatrixBasicView`
-        - `Image` - `ImageBasicView`
-        - `MDArray` - `MDArrayBasicView`
-- Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
-    - ```
-      extension String { InParameterType = const StringView }
-      extension  Array { InParameterType = const ArrayView }
-      extension Vector { InParameterType = const VectorView }
-      ```
-- Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
-    - ```
-      extension  Matrix { InParameterType = const MatrixBasicView& }
-      extension   Image { InParameterType = const ImageBasicView& }
-      extension MDArray { InParameterType = const MDArrayBasicView& }
-      ```
-    - (Which you don't have to write down explicitly, because `const&` simply is the standard for user defined types.)
+Applicable only for types `X` that have an `XView` counterpart where
+- `X` can implicitly be converted to `XView`,
+- `XView` can (explicitly) be converted to `X`, and
+- `XView` has the same "interface" as `const X` (e.g. contiguous memory access).
+like:  
+- `String` - `StringView`
+- `Array` - `ArrayView`
+- `Vector` - `VectorView`
+
+As example, with `String`/`StringView`:
+- `extension String { InParameterType = const StringView }`  
+  i.e. **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
+- So all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
+    - a `String` (as that can implicitly be converted to `StringView`)
+    - a `StringView` (that somehow is the more versatile variant of `const String&`),
+    - and therefore also _every third-party string_ class (as long as it is implicitly convertible to `StringView`).
+- This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
+- Example:
+    - `concat(String first, String second)`
+    - is short for `concat(in String first, in String second)`
+    - and extends to `concat(const StringView first, const StringView second)`
+- For cases where you need to _change_ the string parameter, passing mode **`in`** is not suitable anyway (neither is a `const String&` nor a `const StringView`) . And all other passing modes (`inout`, `out`, `copy`, `move`, `forward`) are using the real `String`.
+- Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just for consistency.
+  ```
+  String[] stringArray = ["a", "b", "c"]
+  for str in stringArray {
+      // str is a const StringView
+  }
+  ```
+
+This is not possible with every view type, as some views do not guarantee contiguous memory access (typically when they do support stride):
+- ~~`Matrix` - `MatrixView`~~
+- ~~`Image` - `ImageView`~~
+- ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
+- Maybe having some `XBasicView` instead, explicitly _without_ stride support,  
+  that can cut off at start and end, but no slicing:
+    - `Matrix` - `MatrixBasicView`
+    - `Image` - `ImageBasicView`
+    - `MDArray` - `MDArrayBasicView`
+
+Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
+```
+extension String { InParameterType = const StringView }
+extension  Array { InParameterType = const ArrayView }
+extension Vector { InParameterType = const VectorView }
+```
+
+Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
+```
+extension  Matrix { InParameterType = const MatrixBasicView& }
+extension   Image { InParameterType = const ImageBasicView& }
+extension MDArray { InParameterType = const MDArrayBasicView& }
+```
+But you do _not_ have to write that explicitly, because `const&` simply is the standard for user defined types anyway.
+
 
 ### Type Trait `CopyParameterType`
 The type trait `CopyParameterType` of a type `T` typically is simply `T` itself:
