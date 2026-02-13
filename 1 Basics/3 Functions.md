@@ -268,7 +268,9 @@ extension MDArrayBasicView { CopyParameterType = MDArray }
 The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
 
 > **Example**  
-> `for copy str in ["an", "array", "of", "words"] { ... }`
+> ```
+> for copy str in ["an", "array", "of", "words"] { ... }
+> ```
 > While the literal `["an", "array", "of", "words"]` is a `StringView[]`,
 > `str` is a `String` (not a ~~`StringView`~~).  
 > This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.  
