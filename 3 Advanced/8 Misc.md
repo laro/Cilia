@@ -218,7 +218,6 @@ translates to
 ```Optional<String> name = ...```
 
 #### Optional Member Access
-With `ContactInfo* contactInfo = ...`
 - ```String? name = contactInfo?.name```  
   translates to  
   ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt)```
@@ -255,7 +254,8 @@ With `ContactInfo* contactInfo = ...`
   ```
   
 #### Optional Pointers
-A plain `T*`, as well as `T^`, `T+`, `T-` pointers, can be used like an optional.
+Plain `T*` as well as `T^`, `T+`, `T-` pointers can be used like an optional.
+So the examples above are also valid with `ContactInfo* contactInfo = ...`.
 
 And while technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, _for pointers_ `T*` the `Optional<T*>` is _just a pointer_, as a pointer can be null in itself:
 - `Optional<T*>` internally is just a `T*`,
@@ -264,7 +264,6 @@ And while technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, 
 - `Optional<T->` internally is just a `T-`.
 
 Therefore a `T*?`/`Optional<T*>` can be assigned to a plain `T*`, and you better use just that:
-:
 ```
 class ContactInfo {
     String name
