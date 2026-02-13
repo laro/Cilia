@@ -144,7 +144,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - for perfect forwarding in template functions.
     - Technically written as a right-value reference (`X&&`), too.
 
-### Type trait `InParameterType`
+### Type Trait `InParameterType`
 The type trait `InParameterType` determines the concrete type to be used for `in`-passing.
 
 The rule of thumb is:
