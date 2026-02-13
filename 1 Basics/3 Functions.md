@@ -10,25 +10,23 @@ func multiplyAdd(Float x, y, Int z) -> Float {
 }
 ```
 
-Function declarations start with the keyword `func`,
-- as in Swift.
-- Easier parsing due to clear distinction between function declaration vs. variable declaration,  
-  avoiding the [most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse).
+Function declarations start with the keyword `func`, as in Swift.  
+Easier parsing due to clear distinction between function declaration vs. variable declaration, avoiding the [most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse).
 
 Function parameters are given as `TypeName parameterName`, as with variable declarations.
 
-Multiple function parameters of the (exact) same type can be combined, as with variable declarations:
-- `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
+Multiple function parameters of the (exact) same type can be combined, as with variable declarations:  
+`func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
 
-Always and only in the trailing return type syntax (using `-> ReturnType`).
-Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:
+Always and only in the trailing return type syntax (using `-> ReturnType`).  
+Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:  
 `func print(String line) { ... }`
 
-**Lambdas**
+### Lambdas
 `[](Int i) -> Float { i * 3.14 }`  
 as in C++
 
-**Const** member functions:
+### `const` member functions
 ```
 class MyArrayOfInt {
   const func size() -> Int {
@@ -39,7 +37,7 @@ protected:
 }
 ```
 
-**`constexpr`** and `consteval`
+### `constexpr`** and `consteval`
 ```
 constexpr multiply(Int x, y) -> Int {
   return x * y
@@ -49,7 +47,7 @@ consteval multiply(Int x, y) -> Int {
 }
 ```
 
-**Function pointers**
+### Function pointers
 - Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
 - Examples:
     - **`func(Int, Int -> Int)* pointerToFunctionOfIntAndIntToInt`**
