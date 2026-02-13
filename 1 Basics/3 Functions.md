@@ -185,8 +185,7 @@ As `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), de
 extension Complex<Float128> { InParameterType = const Complex<Float128>& }
 ```
 
-
-Special **trick for types with views**
+#### Special Trick for Types with Views
 - Applicable only for types `X` that have an `XView` counterpart where
     - `X` can implicitly be converted to `XView`,
     - `XView` can (explicitly) be converted to `X`, and
