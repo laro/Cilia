@@ -31,7 +31,7 @@ class MyArrayOfInt {
 }
 ```
 
-### `constexpr`** and `consteval`
+### `constexpr`, `consteval`
 ```
 constexpr multiply(Int x, y) -> Int {
   return x * y
