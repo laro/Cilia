@@ -21,7 +21,7 @@ Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:
 `func print(String line) { ... }`
 
 ### Lambdas
-`[](Int i) -> Float { i * 3.14 }`  
+`[](Int i) -> Float { i * 3.1415926 }`  
 as in C++
 
 ### `const` Member Functions
