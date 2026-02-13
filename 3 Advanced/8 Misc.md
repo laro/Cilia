@@ -241,7 +241,7 @@ translates to
   ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false)```
   
 #### Optional Pointers
-Plain `T*` as well as `T^`, `T+`, `T-` pointers can be used like an optional.
+Plain `T*` as well as `T^`, `T+`, `T-` can be used like an optional.
 
 ```Int? len = pointerToWindow?.title()?.length()```  
 translates to  
