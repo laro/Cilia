@@ -206,7 +206,7 @@ Then all functions with a `String` (AKA `in String`) parameter would _implicitly
 
 This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
 
-Example:
+Example:  
 `concat(String first, String second)`  
 is short for `concat(in String first, in String second)`  
 and extends to `concat(const StringView first, const StringView second)`.
