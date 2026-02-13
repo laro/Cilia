@@ -217,6 +217,15 @@ No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just basic
 translates to  
 ```Optional<String> name = ...```
 
+#### Optional Member Access
+With `ContactInfo* contactInfo = ...`
+- ```String? name = contactInfo?.name```  
+  translates to  
+  ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt)```
+- ```String name = contactInfo?.name ?? ""```  
+  translates to  
+  ```String name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("")```
+
 #### Optional Chaining
 - ```Int? len = name?.length()```  
   translates to  
@@ -245,18 +254,8 @@ translates to
       NullOpt
   ```
   
-#### Optional Member Access
-Should work for `Optional<T>` and also for `T*`, `T^`, `T+`, `T-` pointers.  
-With `ContactInfo* contactInfo = ...`
-- ```String? name = contactInfo?.name```  
-  translates to  
-  ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt)```
-- ```String name = contactInfo?.name ?? ""```  
-  translates to  
-  ```String name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("")```
-
 #### Optional Pointers
-A plain `T*` can be used like an optional.
+A plain `T*`, as well as `T^`, `T+`, `T-` pointers, can be used like an optional.
 
 And while technically an `Optional<T>` is an object `T` plus a `Bool hasValue`, _for pointers_ `T*` the `Optional<T*>` is _just a pointer_, as a pointer can be null in itself:
 - `Optional<T*>` internally is just a `T*`,
