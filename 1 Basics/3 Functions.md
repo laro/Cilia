@@ -190,14 +190,12 @@ Applicable only for types `X` that have an `XView` counterpart where
 - `XView` has the same "interface" as `const X` (e.g. contiguous memory access).
 
 Like:  
-- `String` - `StringView`
-- `Array` - `ArrayView`
-- `Vector` - `VectorView`
-
-As example, with `String`/`StringView`:
 ```
 extension String { InParameterType = const StringView }
+extension  Array { InParameterType = const ArrayView }
+extension Vector { InParameterType = const VectorView }
 ```
+
 So **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
 Then all functions with a `String` (AKA `in String`) parameter would _implicitly_ accept
 - a `String` (as that can implicitly be converted to `StringView`)
