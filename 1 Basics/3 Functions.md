@@ -174,12 +174,17 @@ extension  std::string_view { InParameterType = const std::string_view }
 extension std::span<type T> { InParameterType = const std::span<T> }
 ...
 ```
-`extension<type T> Complex<T> { InParameterType = T::InParameterType }`
-- A generic rule: `Complex<T>` is passed the same way as `T`,
-- could be further refined/corrected with  
-  `extension Complex<Float128> { InParameterType = const Complex<Float128>& }`  
-  as `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference), despite `sizeof(Float128)` is 16 bytes (so pass by value would be the default).
 This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
+
+As a generic rule, `Complex<T>` is passed the same way as `T`:
+```
+extension<type T> Complex<T> { InParameterType = T::InParameterType }
+```
+And the generic rule is refined/corrected with:
+```
+extension Complex<Float128> { InParameterType = const Complex<Float128>& }
+```
+As `sizeof(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeof(Float128)` is 16 bytes (so pass by value would be the default).
 
 Special **trick for types with views**
 - Applicable only for types `X` that have an `XView` counterpart where
