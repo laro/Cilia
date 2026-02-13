@@ -39,7 +39,7 @@ with `var` / `const`:
 
 ### Const
 **`const`** always binds to the right (contrary to C/C++).  
-- One can read `const int` as “a constant integer”.
+- One can read `const Int` as “a constant integer”.
 - `const` binds more strongly than `*`, `&`, and `?`, but less strongly than `[]`.
     - So the keyword `const` is always interpreted as a type qualifier to what appears immediately to its right, which can be:
         - a type specifier (e.g. `Float`),
