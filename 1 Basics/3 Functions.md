@@ -200,14 +200,16 @@ Special **trick for types with views**
     - This way people do not necessarily need to understand the concept of a `StringView`. They simply write `String` and still cover all these cases.
     - Example:
         - `concat(String first, String second)`
-            - is short for `concat(in String first, in String second)`
-            - and extends to `concat(const StringView first, const StringView second)`
+        - is short for `concat(in String first, in String second)`
+        - and extends to `concat(const StringView first, const StringView second)`
     - For cases where you need to _change_ the string parameter, an **`in`**`String` (whether it is a `const String&` or a `const StringView`) is not suitable anyway. And all other parameter passing modes (`inout`, `out`, `copy`, `move`, `forward`) are based on real `String`s.
     - Though I don't see any advantage with respect to the `for ... in` loop, I would still apply the same rules just for consistency.
-    - Example:
-        - `String[] stringArray = ["a", "b", "c"]`  
-          `for str in stringArray { ... }`
-            - `str` is `const StringView`
+      ```
+      String[] stringArray = ["a", "b", "c"]
+      for str in stringArray {
+          // str is a const StringView
+      }
+      ```
 - This is not possible with every view type, as some views do not guarantee contiguous memory access (typically when they do support stride):
     - ~~`Matrix` - `MatrixView`~~
     - ~~`Image` - `ImageView`~~
@@ -231,7 +233,7 @@ Special **trick for types with views**
       ```
     - (Which you don't have to write down explicitly, because `const&` simply is the standard for user defined types.)
 
-### Type Trait `InParameterType`
+### Type Trait `CopyParameterType`
 Type trait **`CopyParameterType`** of a type `T` typically simply is `T`  
 `extension<type T> T { CopyParameterType = T }`  
 but for `View`-types it is the corresponding "full" type:
