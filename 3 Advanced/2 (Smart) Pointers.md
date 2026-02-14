@@ -127,7 +127,7 @@ unsafe {
 `T[0]+`/`T[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed but unknown size (`0` is just a dummy here).
 
 > In C++, `T[]` is an "incomplete type".
-> In Cilia, we write `T[0]` instead, because `T[]` there is actually an `Array<T>`.
+> In Cilia, we write `T[0]` instead, because here `T[]` is actually a dynamic `Array<T>`.
 
 ```
 T+    uniquePtr        = new T
