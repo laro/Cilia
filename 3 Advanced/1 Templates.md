@@ -149,9 +149,9 @@ public:
 
 ## ADL / Argument Dependent Lookup
 
-Same as in C++. While the rules are complicated and sometimes lead to errors, they are at least well understud. And it helps a lot with C++ compatibility.
+Same behavior as in C++. ADL lets generic code find overloads in the namespace of the argument types, so common customization points work naturally (for example `operator<<`, unqualified `begin/end`, and `swap`). The lookup rules are complex, but matching C++ semantics is essential for predictable interop with existing C++ APIs and libraries.
 
 
 ## Partial Template Specialization
 
-Same as in C++. While the rules are complicated, they are at least well understud. And it helps a lot with C++ compatibility.
+Same behavior as in C++. Partial specialization is a practical way to customize behavior for families of types (for example traits and container-like wrappers) without rewriting full implementations. Keeping the C++ model avoids surprises for experienced users and preserves compatibility with common C++ template patterns.
