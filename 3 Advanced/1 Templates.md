@@ -145,3 +145,13 @@ public:
   extension            Float64 { Bool IsFloatingPoint = True }
   extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
   ```
+
+
+## ADL / Argument Dependent Lookup
+
+Same as in C++. While the rules are complicated and sometimes lead to errors, they are at least well understud. And it helps a lot with C++ compatibility.
+
+
+## Partial Template Specialization
+
+Same as in C++. While the rules are complicated, they are at least well understud. And it helps a lot with C++ compatibility.
