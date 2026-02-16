@@ -28,7 +28,7 @@ ContactInfo+ uniquePtrToContactInfo = new ContactInfo
 ## `T^` pointer
 
 A pointer with shared ownership: the object will be deleted when all of "its" pointers are destroyed (e.g. when all of them go out of scope).  
-Inspired by C++/CLI.
+Syntax is inspired by C++/CLI.
 
 ```
 ContactInfo^ sharedPtrToCcontactInfo = new ContactInfo
