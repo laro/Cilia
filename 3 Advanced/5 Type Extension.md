@@ -2,7 +2,7 @@
 permalink: /advanced/type-extension/
 ---
 
-## Type Extension
+# Type Extension
 
 "Third party" classes or built-in types that we cannot change otherwise can be extended with "member-like"
 - functions/methods (non-virtual and static),

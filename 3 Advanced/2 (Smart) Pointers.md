@@ -2,7 +2,7 @@
 permalink: /advanced/smart-pointers/
 ---
 
-## Short Smart Pointer Syntax
+# Short Smart Pointer Syntax
 
 "Make simple things simple" (or at least short to write),  
 to encourage the use of smart pointers.
@@ -16,7 +16,7 @@ to encourage the use of smart pointers.
 > Use (smart) pointers only when you need them.
 
 
-### `T+` pointer
+## `T+` pointer
 
 This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope). Unique pointers have _zero_ overhead over plain, raw C/C++ pointers. 
 
@@ -25,7 +25,7 @@ ContactInfo+ uniquePtrToContactInfo = new ContactInfo
 ```
 
 
-### `T^` pointer
+## `T^` pointer
 
 A pointer with shared ownership: the object will be deleted when all of "its" pointers are destroyed (e.g. when all of them go out of scope).  
 Inspired by C++/CLI.
@@ -37,7 +37,7 @@ ContactInfo^ sharedPtrToCcontactInfo = new ContactInfo
 For shared pointers using `makeShared<ContactInfo>()` is more efficient (due to a single-allocation optimization):
 
 
-### `T-` pointer
+## `T-` pointer
 
 A weak pointer observes an object managed by a shared pointer without extending its lifetime (it does not increase the reference count).  
 You can `lock()` it to obtain a `T^` if the object is still alive.  
@@ -59,7 +59,7 @@ weakPointerToWindow?.close()
 ```
 
 
-### `T*` pointer
+## `T*` pointer
 
 A "raw", plain, classical C/C++ pointer. Ownership depends, case by case. In Cilia a `T*` typically is without ownership, as for pointers _with_ ownership you would use a `T+` pointer instead.
 
@@ -75,7 +75,7 @@ unsafe {
 ```
 
 
-### Dynamic Allocation with `new`
+## Dynamic Allocation with `new`
 
 `new` is kept for dynamic/heap allocation, as a short and quite 'traditional' syntax (also used in C# and Java). `new T` returns a `T+`, so that is the "default type" for pointers:
 ```
@@ -83,7 +83,7 @@ ContactInfo+ uniquePtrToContactInfo = new ContactInfo
 var alsoAUniquePtrToContactInfo = new ContactInfo
 ```
 
-#### `new` for `T^`
+### `new` for `T^`
 In Cilia,
 1. `new` acts like `makeUnique<T> -> T+`, and
 2. a _right value_ `T+` can also be moved to a `T^`,
@@ -100,7 +100,7 @@ T^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
 
 With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the smart pointer.
 
-#### `new` for `T*`
+### `new` for `T*`
 In Cilia a _right value_ `T+` can even be assigned to `T*`,
 so you still can use `new` for raw pointers.  
 But it is inconvenient to use, as
@@ -121,7 +121,7 @@ unsafe {
 ```
 
 
-### `T+`/`T^` vs. `T[0]+`/`T[0]^`
+## `T+`/`T^` vs. `T[0]+`/`T[0]^`
 
 `T+`/`T^` is a unique/shared pointer to a _single_ object.  
 `T[0]+`/`T[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed but unknown size (`0` is just a dummy here).

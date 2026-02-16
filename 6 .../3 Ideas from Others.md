@@ -2,12 +2,12 @@
 permalink: /more/other-ideas/
 ---
 
-## Ideas from Other Languages
+# Ideas from Other Languages
 
 Almost every idea comes from somewhere, but some are clearly inspired by a particular language or developer. Several of these ideas have been adopted, some not.
 
 
-### **[Circle](https://github.com/seanbaxter/circle) ([Sean Baxter](https://x.com/seanbax))**
+## **[Circle](https://github.com/seanbaxter/circle) ([Sean Baxter](https://x.com/seanbax))**
 - **Fix C++'s "wrong defaults"**  
     Sean Baxter [writes about C++](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
     > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
@@ -56,7 +56,7 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
 - [Circle C++ with Memory Safety](https://www.circle-lang.org/site/index.html)
     - Extending C++ for Rust-level safety.
 
-### **Cpp2** (Herb Sutter)
+## **Cpp2** (Herb Sutter)
 - [is](https://hsutter.github.io/cppfront/cpp2/expressions/#is-safe-typevalue-queries)
 - [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts-and-conversions)
 - [Function](https://hsutter.github.io/cppfront/cpp2/functions/) [Parameter Passing](https://hsutter.github.io/cppfront/cpp2/functions/#parameters)
@@ -91,11 +91,11 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
 - [Unified `operator=` for assignment, constructor, and destructor)](https://github.com/ntrel/cpp2?tab=readme-ov-file#operator).
     - Takes a bit of getting used to.
 
-### **Rust**
+## **Rust**
 - Security, of course: borrow checker etc.
 - Ranges
 
-### [**Julia**](https://julialang.org/)
+## [**Julia**](https://julialang.org/)
 - "Cilia" sounds like something in between [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Julia](https://julialang.org), so maybe I could/should add some more of Julia's interesting features to the Cilia wish list.
 - Julia has very strong math support. Some of its features should be easy to copy.
     - `b = 2a` as short form of `b = 2*a`

@@ -2,15 +2,15 @@
 permalink: /examples/quicksort/
 ---
 
-## QuickSort
+# QuickSort
 
-### Cilia
+## Cilia
 
 ```text
 {% include_relative QuickSort.cil %}
 ```
 
-### C++
+## C++
 
 ```text
 {% include_relative QuickSort.cpp %}

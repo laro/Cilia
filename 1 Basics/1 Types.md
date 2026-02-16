@@ -2,7 +2,7 @@
 permalink: /basics/types/
 ---
 
-## Basic / Arithmetic Types
+# Basic / Arithmetic Types
 
 - `Bool`
 - `Int`
@@ -13,7 +13,7 @@ permalink: /basics/types/
     - `Float16`, `Float32`, `Float64`
 
 
-### Notes
+## Notes
 
 It is `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
 

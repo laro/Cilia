@@ -2,12 +2,12 @@
 permalink: /more/discarded-ideas/
 ---
 
-## Old, Discarded Ideas
+# Old, Discarded Ideas
 
 For several topics there are alternative ideas, that were discarded but are still worth mentioning.
 
 
-### Trailing Semicolons
+## Trailing Semicolons
 - We could keep the trailing semicolons for now.
 - Disadvantages of not having trailing semicolons:
     - Errors are less easily recognized. (Walter Bright / D: „Redundancy helps“)
@@ -16,7 +16,7 @@ For several topics there are alternative ideas, that were discarded but are stil
   (Actually I don't know / remember the rules anymore.)
 
 
-### Better Readable Keywords
+## Better Readable Keywords
 - Instead of `class ... : ...` Cilia could have
     - `class ... extends ...` 
         - good for extending base classes
@@ -25,13 +25,13 @@ For several topics there are alternative ideas, that were discarded but are stil
 - But then we would have two different keywords. And what about mixed cases, i.e. abstract classes with partly function implementation? (Probably best to use `implements` then, but still not nice.)
 
 
-### Basic / Arithmetic Types
+## Basic / Arithmetic Types
 - `Float` could be 32-bit float: `Float` == `Float32`,
     - like in C++.
     - Then `Float` == `Float32` on all platforms.
 
 
-### Variable Declaration
+## Variable Declaration
 - Very short variable declaration:
     - Maybe possible to simply write `i = 3`?
     - Maybe `i := 3`?
@@ -48,7 +48,7 @@ For several topics there are alternative ideas, that were discarded but are stil
     - Not starting with `var` could be especially problematic in connection with omitting the trailing semicolons.
 
 
-### Bitfields
+## Bitfields
 One could define the order of bits in a bitfield.
 - MSB (Most Significant Bit) first.
     - This way you can use
@@ -87,7 +87,7 @@ One could define the order of bits in a bitfield.
       ```
 
 
-### Functions
+## Functions
 - Function declarations could start with the keyword
     - `fn` (Rust, Carbon, New Circle),
     - `fun` (Kotlin), or
@@ -109,7 +109,7 @@ One could define the order of bits in a bitfield.
         - `(func*(Int, Int)->Int)[] arrayOfPointersToFunctionOfIntAndIntToInt`
 
 
-### Function/Loop Parameter Passing
+## Function/Loop Parameter Passing
 - If you want even the basic type to be different, we could write:
     - `for Double d in [1, 2, 3] { ... }`
         - `d` is `const Double`
@@ -124,7 +124,7 @@ One could define the order of bits in a bitfield.
         - `str` is `String`
 
 
-### Switch/Case
+## Switch/Case
 - Old behavior with implicit `fallthrough` on demand.
   ```
   switch i fallthrough {
@@ -142,13 +142,13 @@ One could define the order of bits in a bitfield.
   ```
 
 
-### Literals
+## Literals
 - `true`, `false` are Bool
 - `Null` could be the null pointer, and `NullType` its type.
     - Shorter and more similar to `NULL` in C.
 
           
-### Signed Size
+## Signed Size
 - `UInt` as type for `*.size()` (i.e. still unsigned)  
   but with new rules for mixed integer arithmetic:
     - Unsigned +-*/ Signed -> Signed.
@@ -164,7 +164,7 @@ One could define the order of bits in a bitfield.
 - Note: In the end this just didn't work out.
 
 
-### Operators
+## Operators
 - Possible, alternative syntax for `pow(a, x)`:  
   `a**x` (as Python did)
 - Some more kinds of range literals could be useful:
@@ -198,7 +198,7 @@ One could define the order of bits in a bitfield.
     - Note: No, Cilia is a C++ descendant after all.
 
 
-### Templates
+## Templates
 - **Class** templates  
     - Partial template specialization could be written
       ```
@@ -216,7 +216,7 @@ One could define the order of bits in a bitfield.
     - `template<type T> using T::InArgumentType = const T&`
 
 
-### Cilia Standard Library
+## Cilia Standard Library
 - "**Alias**" for 
     - member variables could be written as  
        `alias x = data[0]`,
@@ -225,7 +225,7 @@ One could define the order of bits in a bitfield.
         - but that would not work for virtual functions.
 
 
-### String, Char & Unicode
+## String, Char & Unicode
 - **Code points** could be represented by `UInt32` or by a distinct type `CodePoint` (== `UInt32`).
     - Would it be useful?
 - `WideChar` could be useful for portable code (Linux `UInt32` <-> Windows `UInt16`)
@@ -242,7 +242,7 @@ One could define the order of bits in a bitfield.
         - `for sentence in text.bySentence()`
      
 
-### Arrays & ArrayViews
+## Arrays & ArrayViews
 - `Int[] dynamicArrayOfIntegers`
     - Also the syntax `[T] arr`, as in Swift or Rust, has some merits.  
       And `[3 T] arr` for fixed sized arrays would be fine for me (I don't like `[T;3] arr`), but I'll stick with the more traditional `T[] arr` (like C# and Java).
@@ -259,7 +259,7 @@ One could define the order of bits in a bitfield.
     - `Int[3,4,]`
 
 
-### (Smart) Pointers
+## (Smart) Pointers
 - We may use some more (or just other) characters for the "special" pointers
     - ASCII
         - `Type> pointer` (_very_ difficult to read with template types, e.g. `Matrix<Float64>> matrix`)
@@ -299,7 +299,7 @@ One could define the order of bits in a bitfield.
             - `Type.* pointer`
 
 
-### `is`, `as`, Casting
+## `is`, `as`, Casting
 - Automatic casts
     - As multiple inheritance is problematic here:
         - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
@@ -308,7 +308,7 @@ One could define the order of bits in a bitfield.
             - as in C#
 
 
-### Versioning
+## Versioning
 Versioning of the Cilia source code could alternatively be done
 - via file ".cilia_version" in a (project) directory,
 - via file extension: 

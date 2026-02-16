@@ -2,7 +2,7 @@
 permalink: /basics/functions/
 ---
 
-## Function Declaration
+# Function Declaration
 
 ```
 func multiplyAdd(Float x, y, Int z) -> Float {
@@ -20,18 +20,18 @@ Always and only in the trailing return type syntax (using `-> ReturnType`).
 Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:  
 `func print(String line) { ... }`
 
-### Lambdas
+## Lambdas
 `[](Int i) -> Float { i * 3.1415926 }`  
 as in C++
 
-### `const` Member Functions
+## `const` Member Functions
 ```
 class MyArrayOfInt {
     const func size() -> Int { ... }
 }
 ```
 
-### `constexpr`, `consteval`
+## `constexpr`, `consteval`
 ```
 constexpr multiply(Int x, y) -> Int {
     return x * y
@@ -41,7 +41,7 @@ consteval multiply(Int x, y) -> Int {
 }
 ```
 
-### Function pointers
+## Function pointers
 Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
 
 Examples:
@@ -51,7 +51,7 @@ Examples:
 - `func(Int)& referenceToFunctionOfInt`
 
 
-## Function Parameter Passing Modes
+# Function Parameter Passing Modes
 
 Each function parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it’s input-only, mutable, output, copied, or moved.  
 The basic idea is to have the most efficient/appropriate parameter passing as the _default_, and to give more the intent than the technical realization.  
@@ -68,7 +68,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 - The argument of `catch ... { ... }` is passed as **`in`**  
   (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here).
   
-### Parameter Passing Mode Keywords
+## Parameter Passing Mode Keywords
 - **`in`**
     - to mark parameters used as input.
     - Is the default if no parameter passing keyword is given.
@@ -144,7 +144,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
     - for perfect forwarding in template functions.
     - Technically written as a right-value reference (`X&&`), too.
 
-### Type Trait `InParameterType`
+## Type Trait `InParameterType`
 The type trait `InParameterType` determines the concrete type to be used for `in`-passing.
 
 The rule of thumb is:
@@ -183,7 +183,7 @@ extension  Complex<Float128> { InParameterType = const Complex<Float128>& }
 Accordung to the generic rule, `Complex<T>` is passed the same way as `T`. But as `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default), the generic rule is corrected.
 
 
-#### Special Trick for Types with Views
+### Special Trick for Types with Views
 Applicable only for types `X` that have an `XView` counterpart where
 - `X` can implicitly be converted to `XView`,
 - `XView` can (explicitly) be converted to `X`, and
@@ -245,7 +245,7 @@ extension MDArray { InParameterType = const MDArrayBasicView& }
 But you do _not_ have to write that explicitly, because `const&` simply is the standard for user defined types anyway.
 
 
-### Type Trait `CopyParameterType`
+## Type Trait `CopyParameterType`
 The type trait `CopyParameterType` of a type `T` typically is simply `T` itself:
 ```
 extension<type T> T { CopyParameterType = T }

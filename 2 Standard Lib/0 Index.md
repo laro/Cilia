@@ -2,7 +2,7 @@
 permalink: /standard-lib/
 ---
 
-## Standard Library
+# Standard Library
 
 Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
 
@@ -19,7 +19,7 @@ With a Cilia variant of each standard class/concept (with CamelCase class names 
         - `TextStream`, `ByteStream`, ...
 
 
-### Shallow Wrappers
+## Shallow Wrappers
 
 Mostly realized as shallow wrappers, like
 ```

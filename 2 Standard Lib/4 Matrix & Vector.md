@@ -2,9 +2,9 @@
 permalink: /standard-lib/matrix-and-vector/
 ---
 
-## Matrix & Vector
+# Matrix & Vector
 
-### **Geometry**
+## **Geometry**
 
 For small, _fixed size_ vectors & matrices, as typically used in geometry (i.e. 2D, 3D, 4D).
 ```
@@ -24,7 +24,7 @@ Matrix<Int rows, Int columns, T = Float>  // as base class
 Using the namespace `cilia::geometry` to avoid naming conflicts, but `Vector2/3/4` could still be (also) in namespace `cilia`.
 
 
-### Linear Algebra
+## Linear Algebra
 
 For large, dynamically sized vectors & matrices, as typically used in linear algebra (i.e. BLAS – Basic Linear Algebra Subprograms), in the namespace `cilia::linalg`.
 ```
@@ -37,7 +37,7 @@ Matrix<T = Float>
 - `VectorView`, `MatrixView`
 
 
-### Column-Major
+## Column-Major
 
 Matrices (unlike images) are stored column-major, like:
 ```
@@ -47,7 +47,7 @@ Matrices (unlike images) are stored column-major, like:
 ```
 
 
-### Datatype & Precision
+## Datatype & Precision
 
 The default datatype is `Float` (with 64-bit precision), which is well suited for scientific calculations.
 

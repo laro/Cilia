@@ -2,15 +2,15 @@
 permalink: /examples/sieve-of-eratosthenes/
 ---
 
-## Sieve of Eratosthenes
+# Sieve of Eratosthenes
 
-### Cilia
+## Cilia
 
 ```text
 {% include_relative SieveOfEratosthenes.cil %}
 ```
 
-### C++
+## C++
 
 ```text
 {% include_relative SieveOfEratosthenes.cpp %}

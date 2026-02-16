@@ -2,7 +2,7 @@
 permalink: /standard-lib/signed-size/
 ---
 
-## Signed Size
+# Signed Size
 
 Use `Int` (i.e. signed) as the return type for `*.size()`.
 

@@ -2,9 +2,9 @@
 permalink: /standard-lib/string/
 ---
 
-## String, Char & Unicode
+# String, Char & Unicode
 
-### String
+## String
 `cilia::String` (AKA `UTF8String`) with _basic/standard_ unicode support.  
 Based on UTF-8, as that IMHO is (among all the Unicode formats)
 - the most widespread nowadays,
@@ -70,7 +70,7 @@ Iteration over a `String` or `StringView` by:
         | PS   | `U+2029`          | Paragraph Separator          |
          
 
-### Convert Upper/Lower Case
+## Convert Upper/Lower Case
 
 - `string.toUpper()`
 - `string.toLower()`
@@ -78,14 +78,14 @@ Iteration over a `String` or `StringView` by:
 - `toLower(String) -> String`
 
 
-### Sorting
+## Sorting
 
 - `stringArray.sort()`
 - `sort(Container<String>) -> Container<String>`
 - `compare(stringA, stringB) -> Int`
 
 
-### ByteString
+## ByteString
 
 `ByteString` to represent the strings with single byte encoding (i.e. the classical strings consisting of one-byte characters), like:
 - ASCII,
@@ -117,12 +117,12 @@ Or a subclass with known encoding has to be used:
         - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
 
 
-### Char
+## Char
 `Char8`, `Char16`, `Char32` are considered as _different_ types for parameter overloading,
 but otherwise are like `UInt8`, `UInt16`, `UInt32`.
 
 
-### ICU
+## ICU
 
 [International Components for Unicode](https://unicode-org.github.io/icu/userguide/icu4c/) ("ICU") for advanced Unicode support.
 > The ICU libraries provide support for:

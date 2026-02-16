@@ -2,15 +2,15 @@
 permalink: /examples/matrix-multiply/
 ---
 
-## Matrix Multiply
+# Matrix Multiply
 
-### Cilia
+## Cilia
 
 ```text
 {% include_relative MatrixMultiply.cil %}
 ```
 
-### C++
+## C++
 
 ```text
 {% include_relative MatrixMultiply.cpp %}

@@ -2,12 +2,12 @@
 permalink: /more/unfinished-ideas/
 ---
 
-## Unfinished Ideas
+# Unfinished Ideas
 
 Admittedly, many ideas for Cilia are not yet _fully_ developed, but these really do need some more work.
 
 
-### `T^` to Objects of Other Languages
+## `T^` to Objects of Other Languages
 
 We can redefine `T^` for interoperability with other languages, e.g. garbage collected languages like C# and Java.
 
@@ -49,7 +49,7 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 - For Objective-C/Swift, C#/.NET, and Java the `UniquePtrType` will be very similar to the `SharedPtrType`, maybe even identical.
 
 
-### Exotic Operators (e.g. Unicode)
+## Exotic Operators (e.g. Unicode)
 
 - ⊕, ⊖, ⊗, ⊘, ⊙, ⊛, ⊞, ⊟, ∪, ∩, ∖, ∈, ∉, ∋, ∌, ∧, ∨, ¬, ∷, ∶, ∝, ∼, ≈, ≉, ≠, ≤, ≥, ≪, ≫, ⊂, ⊃, ⊆, ⊇, ∅, ∇, ∂, ∞, ∑, ∏, ∫, ∮, ∵, ∴, ∗, ∘, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
 - Reserved for future use, as it could get complicated and confusing.
@@ -71,7 +71,7 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
     - Also see [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)
 
 
-### OpenMP-like Parallel Programming
+## OpenMP-like Parallel Programming
 
 - Serial code
   ```

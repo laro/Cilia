@@ -2,7 +2,7 @@
 permalink: /standard-lib/image/
 ---
 
-## Image
+# Image
 
 ```
 class Image<type T = Float32> : linalg::Matrix<T> {
@@ -35,7 +35,7 @@ Same operations as free functions:
 - `func threshold<type T>(Image<T> image, T lower, T upper) -> Image<T>`
 
 
-### Row-Major
+## Row-Major
 
 Images (unlike matrices) are stored row-major, like:
 ```
@@ -45,7 +45,7 @@ Images (unlike matrices) are stored row-major, like:
 ```
 
 
-### Datatype & Precision
+## Datatype & Precision
 
 The default datatype is `Float32` (32-bit precision), well suited for image processing and machine vision.
 

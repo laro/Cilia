@@ -2,7 +2,7 @@
 permalink: /basics/variables/
 ---
 
-## Variable Declaration
+# Variable Declaration
 
 `Int i` as variable declaration,  
 very much as in C/C++ (and Java, C#).
@@ -15,7 +15,7 @@ Some simplifications and restrictions:
   i.e. before the variable name, also for arrays and bit fields.
 - All variables in a multiple-variable declaration have to be of the exact same type.
 
-### Examples
+## Examples
 - `Int i`
 - `Int i = 0`
 - `Int x, y`
@@ -32,12 +32,12 @@ Some simplifications and restrictions:
         - is the same as `Image image`, i.e. it is a variable declaration,
         - a function declaration would be written as `func image() -> Image`.
 
-### **Type Inference**
+## **Type Inference**
 with `var` / `const`:
 - `var i = 3` instead of ~~`auto i = 3;`~~
 - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 
-### Const
+## Const
 **`const`** always binds to the right (contrary to C/C++).  
 - One can read `const Int` as “a constant integer”.
 - `const` binds more strongly than `*`, `&`, and `?`, but less strongly than `[]`.
@@ -63,7 +63,7 @@ with `var` / `const`:
       is equivalent to `const Map<String, ContactInfo>`,
         - keys and values of a `const Map` are always `const`, too.
 
-### Not Allowed
+## Not Allowed
 It is a syntax error to write:
 - ~~`Float* m, &n`~~
     - Type variations within multiple-variable declarations are _not_ allowed.
@@ -91,7 +91,7 @@ It is a syntax error to write:
         - Brace initialization only for constructors with `InitializerList<T>` as parameter (i.e. for "list-initialization" and "copy-list-initialization").
     - See [Misc](/cilia/misc/#misc) / Mixed arithmetic and [https://stackoverflow.com/a/18222927](https://stackoverflow.com/a/18222927)
 
-### Bit Fields
+## Bit Fields
 - `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
 - TODO Standardization of the bit field layout would be nice (LSB-first like on LittleEndian/Intel, or MSB-first like on BigEndian/Motorola),
     - but IMHO there is no clear/logical/right definition (especially with LittleEndian).

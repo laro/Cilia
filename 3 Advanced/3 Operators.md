@@ -2,13 +2,13 @@
 permalink: /advanced/operators/
 ---
 
-## Operators
+# Operators
 
-### Power function
+## Power function
 - **`a^x`** for `pow(a, x)` (as in Julia),
 - "raise a to the power of x".
 
-### Boolean operators
+## Boolean operators
 - **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`** in addition to `&&`/`&`, `||`/`|`, ...
     - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
         [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
@@ -38,7 +38,7 @@ permalink: /advanced/operators/
 - **`xor`** _instead_ of `^`  
     because we want `^` for the power function.
 
-### Equality
+## Equality
 - Default `operator==`
     - If not defined, then
         - use negated `operator!=` (if defined), or
@@ -52,7 +52,7 @@ permalink: /advanced/operators/
         - use `operator<=>` (if defined), or
         - use negated generated `operator==`.
 
-### **Range operator** `..` and `..<`
+## **Range operator** `..` and `..<`
 - `1..10` and `0..<10` are ranges
     - as in [Kotlin](https://kotlinlang.org/docs/ranges.html)
     - Similar, but different:
@@ -96,7 +96,7 @@ permalink: /advanced/operators/
             - `..:2` – `RangeFullByStep(2)`
     - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
-### Bit-Shift & Rotation
+## Bit-Shift & Rotation
 - `>>` Shift right
     - Logical shift with unsigned integers,
     - arithmetic shift with signed integers.

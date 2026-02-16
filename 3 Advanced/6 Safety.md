@@ -2,9 +2,9 @@
 permalink: /advanced/safety/
 ---
 
-## Safety
+# Safety
 
-### **No Implicit Downcasts**
+## **No Implicit Downcasts**
 Standard conversions only apply when no information is lost.
 
 ~~Not OK~~ or OK is
@@ -65,10 +65,10 @@ Standard conversions only apply when no information is lost.
     - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
     - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
 
-### Signed Size
+## Signed Size
 Using [**signed `Int` as size**](/basics/signed-size/)
 
-### **Range & Validation Checks**
+## **Range & Validation Checks**
 The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
 - range checks, to detect **buffer overflows** or similar,
 - safe iterators, to detect invalid iterators.
@@ -99,7 +99,7 @@ So we would have:
         - so memory layout is compatible to Release,
     - _optionally_ using unsafe containers (with unsafe iterators, for even better performance).
 
-### **Initialization**
+## **Initialization**
 - No initialization means random values. In this case they are in fact often zero, but _not always_.
 - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't want to always initialize everything.
     - With virtual memory it could actually be (almost) "free" to initialize _large_ arrays with zero. But only when using heap memory directly. Small memory regions, that were used before, still need to be overwritten with zeros.
@@ -128,7 +128,7 @@ So we would have:
       var arrayPtr = new Array<Float>(10, 1.0)    // No warning
       ```
 
-### Safe / Unsafe
+## Safe / Unsafe
 **`safe`** code blocks as default, **`unsafe`** as escape.  
 Mainly to guide developers:
 - to signal what to do and what not to do,
@@ -158,7 +158,7 @@ A function with unsafe code does not necessarily have to be marked as `unsafe` i
 
 Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves. Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves. Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
 
-### Int with Overflow Check
+## Int with Overflow Check
 `cilia::safe::Int` is like `cilia::Int`, but with **overflow check** for all operations, may throw OverflowException (or abort the program).
 - `safe::Int`
     - `safe::Int8`/`Int16`/`Int32`/`Int64`
@@ -167,7 +167,7 @@ Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to 
 
 Generally considered to be too costly for "normal" integers, even in languages that are otherwise considered as "safe".
 
-### Not like Rust
+## Not like Rust
 No further safety features planned beyond C++:
 - Not as in [Rust](https://www.rust-lang.org/) or [Hylo](https://www.hylo-lang.org/),
     - that is just out of scope.

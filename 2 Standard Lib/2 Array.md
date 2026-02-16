@@ -2,13 +2,13 @@
 permalink: /standard-lib/array/
 ---
 
-## Array & ArrayView
+# Array & ArrayView
 
 "Make simple things simple",  
 having a short and traditional syntax not only for static, but also for dynamic and associative arrays should encourage people to use it.
 
 
-### Dynamic Array
+## Dynamic Array
 
 **`Int[] dynamicArrayOfIntegers`** is an array with **dynamic size**.
 ```
@@ -34,7 +34,7 @@ In C/C++ `T[]` means "array of certain (inferred) size",
 - Also see [https://cplusplus.com/forum/beginner/267321/#msg1150228](https://cplusplus.com/forum/beginner/267321/#msg1150228)
 
 
-### Static Array
+## Static Array
 **`Int[3] arrayOfThreeIntegers`** is an array with **fixed size** (instead of ~~`Int arrayOfThreeIntegers[3]`~~ in C/C++).
 ```
 Int[3] array = [0, 1, 2]
@@ -109,7 +109,7 @@ unsafe {
 ```
 
 
-### Examples
+## Examples
 
 - `Int[] dynamicArrayOfInt`
 - `Int[3] arrayOfThreeInt`
@@ -119,7 +119,7 @@ unsafe {
 - `String*[] dynamicArrayOfPointersToString`
 
 
-### ArrayView
+## ArrayView
 
 AKA Slice AKA Subarray.
 - `var subarray = array[1..2]`
@@ -132,7 +132,7 @@ Incomplete ranges (need lower and/or upper bounds before use) are typically impl
 See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 
-### Multidimensional Array
+## Multidimensional Array
 
 - dynamic size
     - **`Int[,] dynamic2DArray`**  
@@ -155,7 +155,7 @@ See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - `MDArrayView`
 
 
-## Associative Array
+# Associative Array
 
 AKA Map (or Dictionary).  
 **`TValue[TKey]`** as short form of `Map<TKey, TValue>` (as [in D](https://dlang.org/spec/hash-map.html)).

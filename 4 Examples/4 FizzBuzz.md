@@ -2,15 +2,15 @@
 permalink: /examples/fizzbuzz/
 ---
 
-## FizzBuzz
+# FizzBuzz
 
-### Cilia
+## Cilia
 
 ```text
 {% include_relative FizzBuzz.cil %}
 ```
 
-### C++
+## C++
 
 ```text
 {% include_relative FizzBuzz.cpp %}

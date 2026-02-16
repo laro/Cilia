@@ -2,16 +2,16 @@
 permalink: /standard-lib/stream-file-and-network-io/
 ---
 
-## Stream, File & Network IO
+# Stream, File & Network IO
 
-### Global IO functions
+## Global IO functions
 
 - `print("...")` with Newline, calls `cout.writeLine()`.
 - `scan() -> String` reads up to Newline, calls `cin.readLine()`.
 - `ask("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
 
 
-### Streams
+## Streams
 
 - **`TextStream`**
     - `cout.write("...")` without newline.
@@ -100,7 +100,7 @@ permalink: /standard-lib/stream-file-and-network-io/
         - and the end of the file is reached or the pipe/socket is closed.
 
 
-### File IO
+## File IO
 
 - **`File`**, derived from `ByteStream`
     - `file.size() -> Int`
@@ -116,7 +116,7 @@ permalink: /standard-lib/stream-file-and-network-io/
     - `file.path() -> String`
 
 
-### Network IO
+## Network IO
 
 - `NetworkConnection`, derived from `ByteStream`,
     - a base class for TCP/IP, Bluetooth, infrared, ...
@@ -152,7 +152,7 @@ permalink: /standard-lib/stream-file-and-network-io/
     - `setDataBits(Int)`
 
 
-### Class Hierarchy
+## Class Hierarchy
 
 - `ByteStream`
     - `File`

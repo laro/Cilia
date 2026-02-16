@@ -2,9 +2,9 @@
 permalink: /advanced/misc/
 ---
 
-## Misc
+# Misc
 
-### C++ Compatibility / Interoperability
+## C++ Compatibility / Interoperability
 Cilia is **compatible to C++** and maybe other languages of this "**language family**" / "**ecosystem**",  
 as with:
 - Java and Kotlin, Scala, Groovy, Clojure, Fantom, Ceylon, Jython, JRuby ...
@@ -43,12 +43,12 @@ When translating C++ code to Cilia then change conflicting names, e.g.
 - `yield()` -> `func __function_yield()`
 
 
-### Two-Pass Compiler
+## Two-Pass Compiler
 
 So no forward declarations necessary, as with C# and Java (but unlike C/C++, due to its single-pass compiler).
 
 
-### Restricted Mixed Arithmetic
+## Restricted Mixed Arithmetic
 
 No mixing of signed with unsigned integer:
 - `Signed + - * / Unsigned` is an error,
@@ -80,7 +80,7 @@ Mixing integer with float:
             - `aFloat64 * Float64(anInt64)` // OK
 
 
-### Endianness
+## Endianness
 
 Having integers with a defined [endianness](https://en.wikipedia.org/wiki/Endianness) is mainly useful for binary file and network message formats, which typically follow specific (often traditional) conventions.
 
@@ -99,7 +99,7 @@ Little Endian (Intel)
 - "[USB byte order](http://cholla.mmto.org/computers/usb/endian.html)"
 
 
-### Extended & Arbitrary Precision Integer & Float
+## Extended & Arbitrary Precision Integer & Float
 
 - `Int128`, `Int256`
 - `UInt128`, `UInt256` e.g. for SHA256
@@ -125,7 +125,7 @@ Little Endian (Intel)
     - General problem: All these types, when saved in binary form, are incompatible to the IEEE 754 format for 128/256/... bit float. So better to save them as string.
 
 
-### Integer Operations with Carry
+## Integer Operations with Carry
 
 I want integer operations **with carry** (flag or UInt) to implement `Int128`, `Int256` etc. without the need for processor specific assembler or compiler intrinsics.
 - Add with carry (flag, i.e. one bit only)
@@ -156,7 +156,7 @@ I want integer operations **with carry** (flag or UInt) to implement `Int128`, `
     - `a.shiftOneLeft(inout carryFlag)`
 
 
-### Saturation Arithmetic
+## Saturation Arithmetic
 
 `cilia::saturating::Int` behaves like `cilia::Int`, but applies saturation to all operations. Values are clamped to their minimum and maximum limits instead of wrapping around. This is typically implemented using SIMD, as many media/DSP instruction sets provide native support for saturation.  
 See [https://en.wikipedia.org/wiki/Saturation_arithmetic](https://en.wikipedia.org/wiki/Saturation_arithmetic)
@@ -166,7 +166,7 @@ See [https://en.wikipedia.org/wiki/Saturation_arithmetic](https://en.wikipedia.o
     - `saturating::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
 
-### Reserved Keywords
+## Reserved Keywords
 
 Reserved keywords for _future_ use (maybe, maybe not).
 - `parallel` for `parallel for ...`
@@ -190,7 +190,7 @@ Reserved keywords for _future_ use (maybe, maybe not).
 - `alias`
 
 
-### Cilia Versioning
+## Cilia Versioning
 
 Versioning of the Cilia source code
 - Via file ".cilVersion" in a (project) directory,
@@ -202,7 +202,7 @@ Versioning of the Cilia source code
     - "*.25b.cil" – second version from the year 2025
 
 
-### Macros
+## Macros
 
 No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just basics like:
 - `#define`
@@ -211,13 +211,13 @@ No [function-like macros](https://www.geeksforgeeks.org/cpp-macros/), just basic
 - `#endif`
 
 
-### Optionals
+## Optionals
 
 ```String? name = ...```  
 translates to  
 ```Optional<String> name = ...```
 
-#### Optional Member Access
+### Optional Member Access
 - ```String? name = contactInfo?.name```  
   translates to  
   ```Optional<String> name = (contactInfo ? Optional((*contactInfo).name) : NullOpt)```
@@ -225,7 +225,7 @@ translates to
   translates to  
   ```String name = (contactInfo ? Optional((*contactInfo).name) : NullOpt).valueOr("")```
 
-#### Optional Chaining
+### Optional Chaining
 - ```Int? len = name?.length()```  
   translates to  
   ```Optional<Int> len = (name ? Optional((*name).length()) : NullOpt```
@@ -240,7 +240,7 @@ translates to
   translates to  
   ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false)```
   
-#### Optional Pointers
+### Optional Pointers
 Plain `T*` as well as `T^`, `T+`, `T-` can be used like an optional.
 
 ```Int? len = pointerToWindow?.title()?.length()```  
@@ -277,7 +277,8 @@ So in Cilia for a `T*?`/`Optional<T*>` that has a value, that value is never `Nu
 This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
-### Anonymous Members
+## Anonymous Members
+
 - You write
   ```
   class OkDialog : Window {
@@ -321,7 +322,7 @@ This is different than in C++, so for interop with C++ you may need to use `std:
   ```
 
 
-### Anonymous Class Declarations
+## Anonymous Class Declarations
 
 - You write
   ```
@@ -353,7 +354,7 @@ This is different than in C++, so for interop with C++ you may need to use `std:
   ```
 
 
-### Late / Deferred Compiled Member Functions
+## Late / Deferred Compiled Member Functions
 
 For Compile Time Polymorphism, instead of CRTP (Curiously Recurring Template Pattern).
 - You write

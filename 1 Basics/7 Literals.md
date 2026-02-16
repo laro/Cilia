@@ -2,13 +2,13 @@
 permalink: /basics/literals/
 ---
 
-## Literals
+# Literals
 
-### Bool
+## Bool
 - `True`, `False` are `Bool`,
     - uppercase as they are constants (as in Python).
 
-### Integer
+## Integer
 - `123` is an integer literal of arbitrary precision
     - Typical integer literals like `123456` are interpreted as `Int`
         - in case of type inferring, parameter overloading and template matching.
@@ -85,7 +85,7 @@ permalink: /basics/literals/
         - because an `Int` should not be accidentally interpreted as a `Bool`
         - cast if necessary: `Bool a = Bool(1)`
 
-### Floating Point
+## Floating Point
 - `1.0` is a floating point literal
     - Floating point literals are interpreted according to the size/precision requirements.
         - Counting the decimal places  
@@ -111,7 +111,7 @@ permalink: /basics/literals/
 - `NaN` is a `Float` literal for NaN ("not a number") values,
     - that can be converted to any float type.
 
-### String
+## String
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
         - If necessary

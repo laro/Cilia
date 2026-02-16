@@ -2,12 +2,12 @@
 permalink: /basics/control-flow/
 ---
 
-## Control Flow
+# Control Flow
 
 Branches, loops, and exceptions,  
 without braces around the condition clause (as in Python, Swift, Go, Ruby).
 
-### Conditional Branches
+## Conditional Branches
 ```
 if a > b {
     // ...
@@ -35,7 +35,7 @@ Chained comparison as in Cpp2 (Herb Sutter), Python, Julia
 if 1 <= x <= 10 { ... }
 ```
 
-### Loops
+## Loops
 - **while**
   ```
   while a > b {

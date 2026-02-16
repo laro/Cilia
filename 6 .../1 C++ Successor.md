@@ -2,7 +2,7 @@
 permalink: /more/cpp-successor/
 ---
 
-## C++ "Successor" Language / Syntax
+# C++ "Successor" Language / Syntax
 
 Cilia is similar to
 - [Cpp2/CppFront](https://github.com/hsutter/cppfront#cppfront),
