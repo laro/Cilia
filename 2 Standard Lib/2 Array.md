@@ -155,7 +155,7 @@ See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 - `MDArrayView`
 
 
-# Associative Array
+## Associative Array
 
 AKA Map (or Dictionary).  
 **`TValue[TKey]`** as short form of `Map<TKey, TValue>` (as [in D](https://dlang.org/spec/hash-map.html)).
