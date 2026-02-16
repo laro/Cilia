@@ -20,6 +20,7 @@ Always and only in the trailing return type syntax (using `-> ReturnType`).
 Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:  
 `func print(String line) { ... }`
 
+## Misc
 - Lambdas
   `[](Int i) -> Float { i * 3.1415926 }`  
   as in C++
