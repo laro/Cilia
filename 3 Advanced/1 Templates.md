@@ -149,7 +149,7 @@ public:
 
 ## Argument Dependent Lookup (ADL, Koenig Lookup)
 
-Same behavior as in C++. ADL lets generic code find overloads in the namespace of the argument types, so common customization points work naturally (for example `operator<<`, unqualified `begin`/`end`, and `swap`). The lookup rules are complex, but matching C++ semantics is essential for predictable interop with existing C++ APIs and libraries.
+Same behavior as in C++. ADL lets generic code find overloads in the namespace of the argument types, so helps to customize `operator<<`, unqualified `begin`/`end`, `swap`, etc. The lookup rules are complex, but matching C++ semantics is important for predictable interop with existing C++ APIs and libraries.
 
 
 ## Partial Template Specialization (PTS)
