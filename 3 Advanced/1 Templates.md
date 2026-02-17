@@ -148,13 +148,11 @@ extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
 ```
 
 
-## Argument Dependent Lookup (ADL, Koenig Lookup)
+## Same Rules for ADL & PTS as in C++
 
-Same behavior as in C++. ADL lets generic code find overloads in the namespace of the argument types, so helps to customize `operator<<`, unqualified `begin`/`end`, `swap`, etc. The lookup rules are complex, but matching C++ semantics is important for interop with existing C++ APIs and libraries. I try to avoid having different rules for Cilia and C++ classes.
+The rules and bahvior for ADL (**Argument Dependent Lookup**, Koenig Lookup) and PTS (**Partial Template Specialization**) are the same as in C++. While the lookup rules are complex, matching C++ semantics is important for interop with existing C++ APIs and libraries. I try to avoid having different rules for Cilia and C++ classes.
 
-With modules and extension functions (instead of free functions like `begin`/`end`), hopefully there will be fewer problems with ADL anyway.
+- Argument Dependent Lookup lets generic code find overloads in the namespace of the argument types, so helps to customize `operator<<`, unqualified `begin`/`end`, `swap`, etc.
+- Partial Template Specialization is a practical way to customize behavior for families of types (for example traits and container-like wrappers) without rewriting full implementations.
 
-
-## Partial Template Specialization (PTS)
-
-Same behavior as in C++. Partial specialization is a practical way to customize behavior for families of types (for example traits and container-like wrappers) without rewriting full implementations. Keeping the C++ model avoids surprises and preserves compatibility with common C++ template patterns. I try to avoid having different rules for Cilia and C++ classes.
+With modules and extension functions (instead of free functions like `begin`/`end`), hopefully there will be fewer problems with ADL & PTS anyway.
