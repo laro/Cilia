@@ -8,7 +8,7 @@ The basic "new idea" is, to define templates (classes and functions) mostly the 
 Similar as in Java, C#, Swift and Rust.
 
 
-## **Class** Templates  
+## Class Templates  
 
 The template parameters (`<...>`) are given after the class name, so that the definition is similar to the usage (in a variable declaration).
 ```
@@ -46,7 +46,7 @@ class MyArray<Number T> {
     - different syntax for types (`T::Value` is a type, `T.Value` is a value).
 
 
-## **Function** Templates
+## Function Templates
 
 - _Automatic_ function templates
     - If the type of (at least) one of the function parameters is a concept, then the function is (in fact) a function template. This is like abbreviated function templates in C++ 20, only omitting the `auto` keyword.
@@ -130,7 +130,7 @@ public:
 ```
 
 
-## **Extension* Templates
+##*Extension Templates
 
 Template **type alias** with `using` (not ~~`typedef`~~):
 ```
