@@ -130,7 +130,7 @@ public:
 ```
 
 
-##*Extension Templates
+## Extension Templates
 
 Template **type alias** with `using` (not ~~`typedef`~~):
 ```
