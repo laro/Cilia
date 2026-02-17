@@ -152,8 +152,6 @@ extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
 
 Same behavior as in C++. ADL lets generic code find overloads in the namespace of the argument types, so helps to customize `operator<<`, unqualified `begin`/`end`, `swap`, etc. The lookup rules are complex, but matching C++ semantics is important for interop with existing C++ APIs and libraries. I try to avoid having different rules for Cilia and C++ classes.
 
-With modules and extension functions werden die Probleme mit ADL hoffentloichn ohnehin weniger sein.
-
 With modules and extension functions (instead of free functions like `begin`/`end`), hopefully there will be fewer problems with ADL anyway.
 
 
