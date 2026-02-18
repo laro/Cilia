@@ -155,4 +155,6 @@ The rules and bahvior for ADL (**Argument Dependent Lookup**, Koenig Lookup) and
 - Argument Dependent Lookup lets generic code find overloads in the namespace of the argument types, so helps to customize `operator<<`, unqualified `begin()`/`end()`, `swap()`, etc.
 - Partial Template Specialization is a practical way to customize behavior for families of types (for example traits and container-like wrappers) without rewriting full implementations.
 
-With modules and extension functions (instead of free functions like `begin`/`end`), hopefully there will be fewer problems with ADL & PTS anyway.
+The problems with ADL (and maybe PTS) are reduced a bit, as
+- with modules fewer functions are exported,
+- and with extension functions, member functions are used by default (e.g. `container.begin()`/`container.end()` instead of free functions `begin(container)`/`end(container)`).
