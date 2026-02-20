@@ -175,9 +175,11 @@ The problems with ADL are reduced a bit, as
   `begin(container)`/`end(container)`
 - and with extension functions, member functions are used by default  
   ```
-  container.begin()`/`container.end()
+  container.begin()
+  container.end()
   ```
   instead of free functions  
   ```
-  begin(container)`/`end(container)
+  begin(container)
+  end(container)
   ```
