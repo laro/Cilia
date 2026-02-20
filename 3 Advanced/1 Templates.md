@@ -169,4 +169,7 @@ Cilia follows the same rules for ADL and PTS as C++. While they are complex, the
 
 The problems with ADL are reduced a bit, as
 - modules limit accidental visibility by exporting only explicitly declared functions,
-- and with extension functions, member functions are used by default (e.g. `container.begin()`/`container.end()` instead of free functions `begin(container)`/`end(container)`).
+- and with extension functions, member functions are used by default  
+  `container.begin()`/`container.end()`  
+  instead of free functions  
+  `begin(container)`/`end(container)`
