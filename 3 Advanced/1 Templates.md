@@ -150,6 +150,8 @@ extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
 
 ## Same Rules for ADL & PTS as in C++
 
+Cilia follows the same rules for ADL and PTS as C++. While they are complex, their problems are "well known and understood", and matching C++ semantics is important for interop with existing C++ APIs and libraries. I try to avoid having different rules for Cilia and C++ classes.
+
 ADL (**Argument Dependent Lookup**, Koenig Lookup) lets generic code find overloads in the namespace of the argument types, so helps to customize `operator<<`, unqualified `begin()`/`end()`, `swap()`, etc.  
 
 Problems:
@@ -164,8 +166,6 @@ Problems:
 - Unexpected specialization selection.
 - Cryptic and hard-to-debug template errors, when specializations interact in complex ways.
 - ODR and visibility issues.
-
-Cilia follows the same rules for ADL and PTS as C++. While they are complex, their problems are "well known and understood", and matching C++ semantics is important for interop with existing C++ APIs and libraries. I try to avoid having different rules for Cilia and C++ classes.
 
 The problems with ADL are reduced a bit, as
 - modules limit accidental visibility by exporting only explicitly declared functions,
