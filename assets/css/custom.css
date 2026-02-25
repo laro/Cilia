@@ -131,6 +131,12 @@ html {
   }
 }
 
+/* Override theme's table layout (disable display: block, width: 100%, overflow: auto) */
+.markdown-body table {
+  display: table;
+  width: auto;
+}
+
 .markdown-body hr {
   background-color: var(--color-border-default);
 }
