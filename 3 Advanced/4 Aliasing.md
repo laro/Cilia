@@ -1,5 +1,6 @@
 ---
 permalink: /advanced/aliasing/
+description: "Cilia aliasing: using for member variables and functions. Type aliases, enables CamelCase wrapper design."
 ---
 
 # Aliasing of Types, Variables, and Functions

@@ -1,5 +1,6 @@
 ---
 permalink: /basics/types/
+description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. Int defaults to Int64 like Swift and Go."
 ---
 
 # Basic / Arithmetic Types

@@ -1,5 +1,6 @@
 ---
 permalink: /examples/quicksort/
+description: "QuickSort implementation in Cilia and C++. Recursive sorting algorithm side-by-side comparison."
 ---
 
 # QuickSort

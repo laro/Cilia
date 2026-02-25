@@ -1,5 +1,6 @@
 ---
 permalink: /standard-lib/matrix-and-vector/
+description: "Cilia Matrix and Vector: Vector2/3/4, Matrix22/33/44 for geometry. Fixed-size and dynamic matrices."
 ---
 
 # Matrix & Vector

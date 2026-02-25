@@ -1,5 +1,6 @@
 ---
 permalink: /comparison/cilia/
+description: "Cilia syntax by example: types, variables, functions, loops. Reference for comparison with other languages."
 ---
 
 These are some basic lines of code in Cilia:

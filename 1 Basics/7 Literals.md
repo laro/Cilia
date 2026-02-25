@@ -1,5 +1,6 @@
 ---
 permalink: /basics/literals/
+description: "Cilia literals: True/False, integers with arbitrary precision, floats, strings, character escapes, and number separators."
 ---
 
 # Literals

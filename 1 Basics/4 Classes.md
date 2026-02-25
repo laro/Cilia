@@ -1,5 +1,6 @@
 ---
 permalink: /basics/classes/
+description: "Cilia class declaration: C++-like syntax with this as reference. Member variables, functions, inheritance."
 ---
 
 # Class Declaration

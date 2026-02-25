@@ -1,5 +1,6 @@
 ---
 permalink: /comparison/kotlin/
+description: "Kotlin equivalent of Cilia code. var/val, MutableList, mutableSetOf, mutableMapOf. JVM syntax."
 ---
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Kotlin:

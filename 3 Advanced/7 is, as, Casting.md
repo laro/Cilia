@@ -1,5 +1,6 @@
 ---
 permalink: /advanced/is-as-casting/
+description: "Cilia is/as: type queries (obj is Int), safe casts (obj as T). Replaces dynamic_cast, std::get, value()."
 ---
 
 # `is`, `as`, Casting

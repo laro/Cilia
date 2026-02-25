@@ -1,5 +1,6 @@
 ---
 permalink: /advanced/smart-pointers/
+description: "Cilia smart pointers: T+ UniquePtr, T^ SharedPtr, T- WeakPtr. Short syntax to encourage safe memory management."
 ---
 
 # Short Smart Pointer Syntax

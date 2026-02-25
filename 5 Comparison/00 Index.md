@@ -1,5 +1,6 @@
 ---
 permalink: /comparison/
+description: "Cilia syntax comparison with C++, Cpp2, Carbon, Rust, Swift, Kotlin, Java, C#, D. Side-by-side equivalents."
 ---
 
 # Syntax Comparison with Other Languages

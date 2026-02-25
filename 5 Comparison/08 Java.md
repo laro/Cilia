@@ -1,5 +1,6 @@
 ---
 permalink: /comparison/java/
+description: "Java equivalent of Cilia code. ArrayList, HashSet, HashMap, var, static methods. JVM collections."
 ---
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Java:

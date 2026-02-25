@@ -1,5 +1,6 @@
 ---
 permalink: /advanced/safety/
+description: "Cilia safety: no implicit downcasts, initialization rules, bounds checking. Safe type conversions only."
 ---
 
 # Safety

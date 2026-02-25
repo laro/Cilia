@@ -1,5 +1,6 @@
 ---
 permalink: /basics/control-flow/
+description: "Cilia control flow: if/else, switch, for, while without braces around conditions. Exceptions, break, continue."
 ---
 
 # Control Flow

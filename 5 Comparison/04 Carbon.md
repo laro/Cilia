@@ -1,5 +1,6 @@
 ---
 permalink: /comparison/carbon/
+description: "Carbon equivalent of Cilia code. var/let, fn keyword, Array(String), HashMap. Google's C++ successor."
 ---
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Carbon:

@@ -1,5 +1,6 @@
 ---
 permalink: /more/discarded-ideas/
+description: "Cilia discarded ideas: trailing semicolons, extends/implements, Float as Float32. Alternatives considered."
 ---
 
 # Old, Discarded Ideas

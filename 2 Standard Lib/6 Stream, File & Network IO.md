@@ -1,5 +1,6 @@
 ---
 permalink: /standard-lib/stream-file-and-network-io/
+description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStream, network sockets. Global cout/cin."
 ---
 
 # Stream, File & Network IO

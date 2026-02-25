@@ -1,5 +1,6 @@
 ---
 permalink: /standard-lib/
+description: "Cilia standard library in namespace cilia: String, Array, Map, CamelCase names. Shallow wrappers over C++ std."
 ---
 
 # Standard Library

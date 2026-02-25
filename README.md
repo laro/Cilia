@@ -1,5 +1,6 @@
 ---
 permalink: /
+description: "Cilia: A C++-based programming language with simplified syntax, CamelCase stdlib, RAII, and templates. Documentation, examples, and comparisons."
 ---
 
 # Cilia

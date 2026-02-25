@@ -1,5 +1,6 @@
 ---
 permalink: /comparison/rust/
+description: "Rust equivalent of Cilia code. let mut, Vec, HashSet, HashMap, fn. Ownership and borrowing syntax."
 ---
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Rust:

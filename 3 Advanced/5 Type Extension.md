@@ -1,5 +1,6 @@
 ---
 permalink: /advanced/type-extension/
+description: "Cilia type extension: add methods to third-party types. Extension methods, static members, extension keyword."
 ---
 
 # Type Extension

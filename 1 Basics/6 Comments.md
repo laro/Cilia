@@ -1,5 +1,6 @@
 ---
 permalink: /basics/comments/
+description: "Cilia comments: single-line // and nested block comments /* ... */ as in Swift and Rust."
 ---
 
 # Comments

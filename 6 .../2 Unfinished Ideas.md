@@ -1,5 +1,6 @@
 ---
 permalink: /more/unfinished-ideas/
+description: "Cilia unfinished ideas: T^ for GC languages, interoperability with C#, Java, Objective-C/Swift."
 ---
 
 # Unfinished Ideas

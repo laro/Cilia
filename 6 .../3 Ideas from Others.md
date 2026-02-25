@@ -1,5 +1,6 @@
 ---
 permalink: /more/other-ideas/
+description: "Cilia ideas from Circle, Carbon, Cpp2, others. Fix C++ wrong defaults, integral promotions, narrowing."
 ---
 
 # Ideas from Other Languages

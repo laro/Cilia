@@ -1,5 +1,6 @@
 ---
 permalink: /standard-lib/array/
+description: "Cilia Array and ArrayView: Int[] dynamic arrays, Int[10] static, associative arrays. Simple syntax for common cases."
 ---
 
 # Array & ArrayView

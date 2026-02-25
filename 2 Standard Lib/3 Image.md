@@ -1,5 +1,6 @@
 ---
 permalink: /standard-lib/image/
+description: "Cilia Image: 2D array with operator[x,y], ImageView, ImageBasicView. Gaussian blur, median filter, Sobel edges."
 ---
 
 # Image

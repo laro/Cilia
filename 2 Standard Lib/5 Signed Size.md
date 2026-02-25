@@ -1,5 +1,6 @@
 ---
 permalink: /standard-lib/signed-size/
+description: "Cilia uses Int (signed) for size(). Why signed: avoids unsigned pitfalls, Stroustrup and Sutter recommend it."
 ---
 
 # Signed Size

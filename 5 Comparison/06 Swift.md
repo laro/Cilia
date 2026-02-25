@@ -1,5 +1,6 @@
 ---
 permalink: /comparison/swift/
+description: "Swift equivalent of Cilia code. var/let, [String], Set, [String: ContactInfo]. Closest syntax match."
 ---
 
 This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Swift:

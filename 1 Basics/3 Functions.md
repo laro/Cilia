@@ -1,5 +1,6 @@
 ---
 permalink: /basics/functions/
+description: "Cilia functions: func keyword, trailing return type, combined parameters. Avoids most vexing parse, supports lambdas."
 ---
 
 # Function Declaration

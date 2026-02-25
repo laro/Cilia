@@ -1,5 +1,6 @@
 ---
 permalink: /basics/variables/
+description: "Cilia variable declaration: TypeName variableName syntax. Arrays as Int[10] or Int[], multiple variables of same type."
 ---
 
 # Variable Declaration

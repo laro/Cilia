@@ -1,5 +1,6 @@
 ---
 permalink: /advanced/templates/
+description: "Cilia templates: class and function templates defined like usage. Similar to Java, C#, Swift, Rust."
 ---
 
 # Templates

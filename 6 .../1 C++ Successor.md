@@ -1,5 +1,6 @@
 ---
 permalink: /more/cpp-successor/
+description: "Why Cilia as C++ successor: like Cpp2, Carbon, Circle. CamelCase, new syntax, C++ interoperability."
 ---
 
 # C++ "Successor" Language / Syntax

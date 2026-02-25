@@ -1,5 +1,6 @@
 ---
 permalink: /standard-lib/string/
+description: "Cilia String and Unicode: UTF-8 based, grapheme iteration, StringView, Char handling. Swift/Java-style API."
 ---
 
 # String, Char & Unicode

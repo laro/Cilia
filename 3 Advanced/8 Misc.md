@@ -1,5 +1,6 @@
 ---
 permalink: /advanced/misc/
+description: "Cilia misc: C++ interoperability, lang blocks, modules. Bi-directional C++/Cilia includes and calls."
 ---
 
 # Misc

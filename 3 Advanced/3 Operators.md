@@ -1,5 +1,6 @@
 ---
 permalink: /advanced/operators/
+description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overloading, precedence, custom operators."
 ---
 
 # Operators

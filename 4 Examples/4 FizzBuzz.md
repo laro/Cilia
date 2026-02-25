@@ -1,5 +1,6 @@
 ---
 permalink: /examples/fizzbuzz/
+description: "FizzBuzz example in Cilia and C++. Classic programming exercise with side-by-side code."
 ---
 
 # FizzBuzz
