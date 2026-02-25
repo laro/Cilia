@@ -3,7 +3,7 @@
 #
 
 title: Cilia
-description: "A collection of ideas for a C++-based programming language."
+description: "Cilia is a collection of ideas for a C++-based programming language. Explore syntax, types, safety, templates, stdlib, and comparisons with Rust, Carbon, and Swift."
 lang: en-US
 
 # Canonical site URL (used for sitemap/SEO).
