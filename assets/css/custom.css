@@ -120,6 +120,15 @@ html {
     color: var(--cilia-fg) !important;
     background-color: transparent !important;
   }
+
+  /* Tables: dark background in dark theme */
+  .markdown-body table,
+  .markdown-body table th,
+  .markdown-body table td {
+    background-color: var(--cilia-code-bg) !important;
+    border-color: var(--cilia-border) !important;
+    color: var(--cilia-fg) !important;
+  }
 }
 
 .markdown-body hr {
