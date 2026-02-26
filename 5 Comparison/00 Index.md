@@ -24,7 +24,7 @@ While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new s
 
 I like many aspects, especially of Cpp2 (Herb Sutter), but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
 
-> Note:
+> **Note**  
 > As far as I know, Bjarne Stroustrup has never said, which syntax he would choose today.
 
 
