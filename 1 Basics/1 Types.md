@@ -6,12 +6,16 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 # Basic / Arithmetic Types
 
 - `Bool`
-- `Int`
-    - `Int8`, `Int16`, `Int32`, `Int64`
-    - `UInt`, `UInt8`, `UInt16`, `UInt32`, `UInt64`
+- `Int`, `UInt`
 - `Byte`
 - `Float`  
-    - `Float16`, `Float32`, `Float64`
+
+
+## Specific Types
+
+- `Int8`, `Int16`, `Int32`, `Int64`
+- `UInt8`, `UInt16`, `UInt32`, `UInt64`
+- `Float16`, `Float32`, `Float64`
 
 
 ## Notes
