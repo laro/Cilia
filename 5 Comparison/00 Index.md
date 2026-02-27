@@ -17,12 +17,15 @@ That's OK, this is not a performance benchmark.
 
 ## Syntax of Carbon and Cpp2
 
+[Bjarne Stroustrup said](https://www.stroustrup.com/devXinterview.html) (way back in 2000) in an interview about C++:
+> Today, I'd look for a _much_ simpler syntax — and probably clash with people's confusion between the familiar and the simple.
+
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 
-[Bjarne Stroustrup said](https://www.stroustrup.com/devXinterview.html) (way back in 2000) in an interview about C++:
-> Today, I'd look for a _much_ simpler syntax—and probably clash with people's confusion between the familiar and the simple.
-
 I like many aspects, especially of Cpp2 (Herb Sutter), but not the `name: Type` syntax. It indeed does not feel familiar to me, IMHO unnecessarily so. Cilia is a bit more conservative/traditional here. And I think its syntax is still "easy enough" to parse.
+
+> **Note**  
+> As far as I know, Bjarne Stroustrup has never said, which syntax he would choose today.
 
 
 ## Default vs. Explicit Initialization
