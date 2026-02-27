@@ -20,8 +20,8 @@ and a bit like the evolution
 
 The [CamelCase style](/#camelcase-style) could basically be achieved in C++, too.
 
-C++ could be extended by some features:
-- Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow but "perfect" wrapper for the C++ standard library (i.e. a translation layer).
+C++ could be extended by some features:  
+Aliasing of member names (functions and variables) seems necessary for having a CamelCase standard library, that is realized as a shallow but "perfect" wrapper for the C++ standard library (i.e. a translation layer).
 
 But some parts are impossible – or at least extremely unlikely – to include in a future C++ standard:
 - [Const reference as default type](/basics/functions/#function-parameter-passing-modes) for function parameters
