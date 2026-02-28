@@ -7,7 +7,8 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 
 - `Bool`
 - `Int`
-    - `UInt`, `Byte`
+- `UInt`
+- `Byte`
 - `Float`  
 
 
