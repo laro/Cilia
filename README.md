@@ -11,22 +11,6 @@ I'd like to have the standard library roughly in the style of Swift, Java or [Qt
 - **Simplified Syntax**  
 Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed. Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
 
-Cilia is mainly a **new syntax for C++**, so it has the same core features:
-- compiled to machine code,
-- high performance & low-level control,
-- statically typed,
-- object-oriented (with classes, inheritance, polymorphism),
-- generic programming (with templates, concepts),
-- memory & resource management with [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) & smart pointers (instead of garbage collection),
-- exceptions, const correctness,
-- compile-time computation, coroutines, static reflection.
-
-Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
-
-> Currently it is more of a **wish list**, a "thought experiment".  
-> But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
-> In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
-
 
 ## Cilia by Example
 
@@ -52,7 +36,27 @@ Furthermore it is a collection of – in my opinion – quite obvious ideas. And
 Corresponding examples for C++, Cpp2, Carbon, Rust, Swift, Kotlin, Java, C#, and D are given [separately](/comparison/).
 
 
+## New Syntax for C++
+
+Cilia is mainly a new syntax for C++, so it has the same core features:
+- compiled to machine code,
+- high performance & low-level control,
+- statically typed,
+- object-oriented (with classes, inheritance, polymorphism),
+- generic programming (with templates, concepts),
+- memory & resource management with [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization) & smart pointers (instead of garbage collection),
+- exceptions, const correctness,
+- compile-time computation, coroutines, static reflection.
+
+Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
+
+> Currently it is more of a **wish list**, a "thought experiment".  
+> But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
+> In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
+
+
 ## CamelCase Style
+
 Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 
 - All types and **classes** in **UpperCamelCase** (AKA PascalCase).
