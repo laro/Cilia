@@ -5,8 +5,8 @@ description: "Cilia: A C++-based programming language with simplified syntax, Ca
 
 # Cilia, a C++-based Programming Language with Simplified Syntax
 
-<span style="padding:12px; display:block; float:left; margin-left:-90px; margin-right:16px; margin-bottom:8px;">
-  <img src="assets/images/CiliaLogo.svg" alt="Cilia Logo" width="50">
+<span style="padding:12px; display:block; float:left; margin-left:-115px; margin-right:16px; margin-bottom:8px;">
+  <img src="assets/images/CiliaLogo.svg" alt="Cilia Logo" width="75">
 </span>
 
 This is a collection of ideas for a programming language that is **based on C++**, but with
