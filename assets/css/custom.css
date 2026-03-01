@@ -59,6 +59,10 @@ html {
   color: var(--color-fg-default);
 }
 
+.markdown-body img {
+  background-color: transparent;
+}
+
 .markdown-body a {
   color: var(--color-accent-fg);
 }
