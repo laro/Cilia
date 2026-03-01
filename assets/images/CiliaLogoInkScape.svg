@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1024"
+   height="1024"
+   viewBox="0 0 1024 1024"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="CiliaLogoInkScape.svg"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.38654293"
+     inkscape:cx="573.02821"
+     inkscape:cy="737.30492"
+     inkscape:window-width="1280"
+     inkscape:window-height="769"
+     inkscape:window-x="0"
+     inkscape:window-y="29"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,59,0,1 @ F,0,0,1,0,59,0,1 @ F,0,0,1,0,59,0,1 @ F,0,0,1,0,59,0,1 @ F,0,0,1,0,59,0,1 @ F,0,0,1,0,59,0,1"
+       radius="60"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       style="display:none;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.999999;stroke-miterlimit:1.5"
+       id="path3"
+       inkscape:flatsided="true"
+       sodipodi:sides="6"
+       sodipodi:cx="512"
+       sodipodi:cy="512"
+       sodipodi:r1="427.03348"
+       sodipodi:r2="369.82184"
+       sodipodi:arg1="0.52359878"
+       sodipodi:arg2="1.0471976"
+       inkscape:rounded="3.469447e-18"
+       inkscape:randomized="0"
+       d="M 881.82184,725.51674 512,939.03348 142.17816,725.51674 l 0,-427.03348 L 512,84.966522 881.82184,298.48326 Z"
+       inkscape:label="HexagonEdges" />
+    <path
+       id="path2"
+       d="M 460.90451,926.58188 178.50932,763.54095 a 102.191,102.191 59.999998 0 1 -51.0955,-88.5 l -1e-5,-326.08188 a 102.191,102.191 120 0 1 51.09549,-88.5 L 460.90449,97.418123 a 102.191,102.191 -180 0 1 102.191,-3e-6 l 282.39519,163.04093 a 102.191,102.191 59.999998 0 1 51.0955,88.5 l 10e-6,326.08188 a 102.191,102.191 120 0 1 -51.09549,88.5 L 563.09551,926.58188 a 102.191,102.191 -180 0 1 -102.191,0 z"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.999999;stroke-miterlimit:1.5"
+       inkscape:label="Hexagon" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:1.5;stroke-opacity:1;vector-effect:non-scaling-stroke;-inkscape-stroke:hairline;stroke-dasharray:none"
+       id="path11"
+       cx="510.50122"
+       cy="512"
+       rx="146.99051"
+       ry="148.59807"
+       inkscape:label="CircleInner" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-miterlimit:1.5;stroke-opacity:1;vector-effect:non-scaling-stroke;-inkscape-stroke:hairline;stroke-dasharray:none"
+       id="path11-0"
+       cx="512"
+       cy="511.10352"
+       rx="269.83008"
+       ry="268.93359"
+       inkscape:label="CircleOuterr" />
+    <path
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.999999;stroke-miterlimit:1.5"
+       d="M 512,512 881.82184,725.51674"
+       id="path5"
+       inkscape:label="CenterToBottomRight" />
+    <path
+       style="display:inline;fill:#aa0000;fill-opacity:1;stroke:#000000;stroke-width:0.999999;stroke-miterlimit:1.5"
+       d="M 142.17816,725.51674 881.82184,298.48326"
+       id="path4"
+       inkscape:label="BottomLeftToTopRight" />
+  </g>
+</svg>

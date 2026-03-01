@@ -217,6 +217,7 @@
     {% endif %}
 
     <title>{{ final_title }}{% if site.title and site.title != final_title %} | {{ site.title }}{% endif %}</title>
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/CiliaLogo.svg' | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=" | append: site.github.build_revision | relative_url }}">
     {% comment %}
