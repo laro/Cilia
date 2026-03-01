@@ -13,6 +13,8 @@ Many of C++'s shortcomings stem from the fact that it inherited from C or that b
 
 Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
 
+![Cilia Logo](assets/images/CiliaLogo.svg)
+
 > Currently it is more of a **wish list**, a "thought experiment".  
 > But a transpiler seems to be feasible (like Herb Sutter is doing it with Cpp2).
 > In the long run one could imagine a Cilia parser/frontend, producing an AST for the common backend of an existing C++ compiler (like clang).
