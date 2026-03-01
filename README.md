@@ -13,7 +13,7 @@ Many of C++'s shortcomings stem from the fact that it inherited from C or that b
 
 Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
 
-<span style="background:#333; padding:12px; display:block; float:left; border-radius:8px; margin-right:16px; margin-bottom:8px;">
+<span style="background:#333; padding:12px; display:block; float:left; margin-left:-90px; margin-right:16px; margin-bottom:8px; border-radius:8px;">
   <img src="assets/images/CiliaLogo.svg" alt="Cilia Logo" width="50">
 </span>
 
