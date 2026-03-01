@@ -13,6 +13,7 @@ Many of C++'s shortcomings stem from the fact that it inherited from C or that b
 
 Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
 
+<img src="assets/images/CiliaLogo.svg" alt="Cilia Logo" width="200">
 ![Cilia Logo](assets/images/CiliaLogo.svg)
 
 > Currently it is more of a **wish list**, a "thought experiment".  
