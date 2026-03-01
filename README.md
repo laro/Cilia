@@ -46,7 +46,7 @@ Furthermore it is a collection of – in my opinion – quite obvious ideas. And
 Corresponding examples for C++, Cpp2, Carbon, Rust, Swift, Kotlin, Java, C#, and D are given [separately](/comparison/).
 
 
-## New Syntax for C++
+## C++ with a New Syntax
 
 Cilia is mainly a new syntax for C++, so it has the same core features:
 - compiled to machine code,
