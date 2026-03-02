@@ -23,6 +23,7 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 
 ## Notes
 
+### Integer
 Simply use `Int` (that is `Int64`, like in Swift and Go),
 - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
 - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
@@ -32,10 +33,14 @@ Simply use `Int` (that is `Int64`, like in Swift and Go),
 - `Int32` on systems with a 32-bit address bus only (i.e. old/small platforms, like Win32/x86),
 - `Int16` on systems with a 16-bit address bus (i.e. very old/small microcontrollers like AVR/ATmega328/Arduino Uno, 6502, Z80).
 
+### Boolean
 It is `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
 
+### Byte
 `Byte` is `std::byte`, i.e. _not_ the same type as `UInt8` for parameter overloading.
+It is used to represent raw memory, for binary buffers, serialization, or low-level I/O.
 
+### Floating Point
 `Float` is
 - `Float64` / double precision (like in Python, unlike C/C++).  
 - `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`).  
