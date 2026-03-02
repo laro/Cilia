@@ -36,8 +36,9 @@ It is `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
 
 `Byte` is `std::byte`, i.e. _not_ the same type as `UInt8` for parameter overloading.
 
-`Float` is `Float64` / double precision (like in Python, unlike C/C++).  
-`Float` is `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`).  
+`Float` is
+- `Float64` / double precision (like in Python, unlike C/C++).  
+- `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`).  
 With modern processors double precision is very fast.
 When concerned with memory bandwidth, cache size, and SIMD performance, choose one of the smaller floating-point types like `Float32`
 or (if available) `BFloat16`, `Float8`, maybe even `Float4`.
