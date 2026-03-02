@@ -5,6 +5,8 @@ description: "Cilia literals: True/False, integers with arbitrary precision, flo
 
 # Literals
 
+Literals are fixed values written directly in source code—such as numbers, strings.
+
 ## Bool
 - `True`, `False` are `Bool`,
     - uppercase as they are constants (as in Python).
