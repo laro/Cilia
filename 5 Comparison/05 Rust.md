@@ -13,7 +13,7 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `let x = 42;`
     - `let mut words = Vec::<String>::new();`
     - `let mut names = HashSet::<String>::new();`
-    - `let mut contactInfoForID = HashMap::<String, ContactInfo>::new();`
+    - <span class="wide">`let mut contactInfoForID = HashMap::<String, ContactInfo>::new();`</span>
 - Functions
     - `fn multiply(a: i64, b: i64) -> i64 { a * b }`
     - `fn print(a: &ContactInfo) { ...; }`

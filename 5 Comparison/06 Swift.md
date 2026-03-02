@@ -17,7 +17,7 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
 - Functions
     - `func multiply(_ a: Int, _ b: Int) -> Int { return a * b }`
     - `func print(_ a: ContactInfo) { ... }`
-    - `func concat(_ a: String, _ b: String) -> String { return ... }`
+    - <span class="wide">`func concat(_ a: String, _ b: String) -> String { return ... }`</span>
 - Loops
     - `for i in 1...10 { ... }`
     - `for i in 0..<words.count { ... }`
