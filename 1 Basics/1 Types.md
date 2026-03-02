@@ -27,8 +27,10 @@ Simply use `Int` (that is `Int64`, like in Swift and Go),
 - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
 - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 
-`Int` is `Int32` on systems with a 32-bit address bus only (i.e. old/small platforms, like Win32/x86),  
-`Int` is `Int16` on systems with a 16-bit address bus (i.e. very old/small microcontrollers like AVR/ATmega328/Arduino Uno, 6502, Z80).
+`Int` is
+- `Int64` on virtually all modern systems,
+- `Int32` on systems with a 32-bit address bus only (i.e. old/small platforms, like Win32/x86),
+- `Int16` on systems with a 16-bit address bus (i.e. very old/small microcontrollers like AVR/ATmega328/Arduino Uno, 6502, Z80).
 
 It is `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
 
