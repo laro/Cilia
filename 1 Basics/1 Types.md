@@ -14,12 +14,11 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 
 ## Width-Specified Types
 
-|       |        |         |
-|-------|--------|---------|
-| Int8  | UInt8  |         |
-| Int16 | UInt16 | Float16 |
-| Int32 | UInt32 | Float32 |
-| Int64 | UInt64 | Float64 |
+|---------|----------|-----------|
+| `Int8`  | `UInt8`  |           |
+| `Int16` | `UInt16` |           |
+| `Int32` | `UInt32` | `Float32` |
+| `Int64` | `UInt64` | `Float64` |
 
 
 ## Notes
