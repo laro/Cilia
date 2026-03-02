@@ -183,7 +183,6 @@ Reserved keywords for _future_ use (maybe, maybe not).
 - `package`
 - `match`
 - `defer`
-- `let`
 - `mut`
 - `override`
 - `final`
