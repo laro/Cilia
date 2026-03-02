@@ -21,7 +21,9 @@ Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:
 Function parameters are given as `TypeName parameterName`, multiple function parameters of the (exact) same type can be combined:  
 `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
 
+
 ## Misc
+
 - Lambdas as in C++
   ```
   [](Int i) -> Float { i * 3.1415926 }
@@ -44,7 +46,9 @@ Function parameters are given as `TypeName parameterName`, multiple function par
   }
   ```
 
+
 ## Function pointers
+
 Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
 
 Examples:
@@ -56,6 +60,6 @@ Examples:
 
 ## Function Parameters
 
-By default, function parameters are passed as const reference. Only small types (with a size of up to 16 bytes) are passed as const value.
+By default, function arguments are passed as const reference. Only small types (with a size of up to 16 bytes) are passed as const value.
 
 For details, see [Function Parameters](/advanced/function-parameters/).
