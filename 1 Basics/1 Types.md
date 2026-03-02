@@ -5,18 +5,17 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 
 # Basic / Arithmetic Types
 
+- `Int`, `UInt`
 - `Bool`
-- `Int`
-- `UInt`
 - `Byte`
 - `Float`  
 
 
 ## Width-Specified Types
 
-| Signed  | Unsigned | Float    |
-|---------|----------|----------|
-| `Int8`  | `UInt8`  |          |
+| Signed  | Unsigned | Float     |
+|---------|----------|-----------|
+| `Int8`  | `UInt8`  |           |
 | `Int16` | `UInt16` |           |
 | `Int32` | `UInt32` | `Float32` |
 | `Int64` | `UInt64` | `Float64` |
@@ -24,14 +23,14 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 
 ## Notes
 
-It is `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
-
 Simply use `Int` (that is `Int64`, like in Swift and Go),
 - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
 - _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 
 `Int` is `Int32` on systems with a 32-bit address bus only (i.e. old/small platforms, like Win32/x86),  
 `Int` is `Int16` on systems with a 16-bit address bus (i.e. very old/small microcontrollers like AVR/ATmega328/Arduino Uno, 6502, Z80).
+
+It is `Bool`, not ~~`bool`~~ nor ~~`Boolean`~~.
 
 `Byte` is `std::byte`, i.e. _not_ the same type as `UInt8` for parameter overloading.
 
