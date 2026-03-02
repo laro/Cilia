@@ -14,12 +14,12 @@ func multiplyAdd(Float x, y, Int z) -> Float {
 Function declarations start with the keyword `func`, as in Swift.  
 Easier parsing due to clear distinction between function declaration vs. variable declaration, avoiding the [most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse).
 
-Function parameters are given as `TypeName parameterName`, multiple function parameters of the (exact) same type can be combined:  
-`func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
-
 Always and only in the trailing return type syntax (using `-> ReturnType`).  
 Void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:  
 `func print(String line) { ... }`
+
+Function parameters are given as `TypeName parameterName`, multiple function parameters of the (exact) same type can be combined:  
+`func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
 
 ## Misc
 - Lambdas as in C++
