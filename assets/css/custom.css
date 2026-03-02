@@ -49,23 +49,6 @@ body {
   color: var(--color-fg-default);
 }
 
-/* Sticky footer: footer stays at bottom of page; when content is short, at bottom of viewport. */
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-body > .container-lg {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-body > .container-lg > main {
-  flex: 1;
-}
-
 /* Always reserve a vertical scrollbar gutter to prevent layout shift. */
 html {
   overflow-y: scroll;
