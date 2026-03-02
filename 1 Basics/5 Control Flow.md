@@ -5,8 +5,7 @@ description: "Cilia control flow: if/else, switch, for, while without braces aro
 
 # Control Flow
 
-Branches, loops, and exceptions,  
-without braces around the condition clause (as in Python, Swift, Go, Ruby).
+Branches, loops, and exceptions,   without braces around the condition clause (as in Python, Swift, Go, Ruby).
 
 ## Conditional Branches
 ```
