@@ -102,7 +102,9 @@ if 1 <= x <= 10 { ... }
         - Note: When the `<Condition>` is empty, then it needs to be replaced with `True`,
             - e.g. `for (;;) { ... }` is translated to `while True { ... }`.
 
-### Switch / Case
+
+## Switch / Case
+
 With implicit ~~`break`~~, i.e `break` is the default, and it is not necessary to explicitly write it (like in Swift). Use `fallthrough` if necessary.
 ```
 switch i {
@@ -127,7 +129,9 @@ default:
 }
 ```
 
-### Exceptions
+
+## Exceptions
+
 ```
 try {
     // ...
