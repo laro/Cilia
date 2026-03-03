@@ -63,22 +63,18 @@ html {
   color: var(--color-fg-default);
 }
 
-/* Float left on wide screens, inline above text on narrow screens (75px content width) */
-.float-left-75px {
-  display: inline;
-  padding: 12px 0;
-  margin: 0;
-  vertical-align: middle;
+/* Image inline with heading, vertically centered */
+h1:has(.float-left-75px) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-@media (min-width: 1000px) {
-  .float-left-75px {
-    float: left;
-    padding: 12px;
-    margin-left: -115px;
-    margin-right: 16px;
-    margin-bottom: 8px;
-  }
+.float-left-75px {
+  display: block;
+  padding: 0;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 .markdown-body img {
