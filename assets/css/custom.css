@@ -63,18 +63,11 @@ html {
   color: var(--color-fg-default);
 }
 
-/* Image inline with heading, vertically centered */
-h1:has(.float-left-75px) {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
 
 .float-left-75px {
   display: block;
   padding: 0;
   margin: 0;
-  flex-shrink: 0;
 }
 
 @media (min-width: 1000px) {

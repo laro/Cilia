@@ -3,7 +3,11 @@ permalink: /
 description: "Cilia: A C++-based programming language with simplified syntax, CamelCase stdlib, RAII, and templates. Documentation, examples, and comparisons."
 ---
 
-# <span class="float-left-75px"><img src="assets/images/CiliaLogo.svg" alt="Cilia Logo" width="75"></span> Cilia Programming Language
+# Cilia Programming Language
+
+<span class="float-left-75px">
+  <img src="assets/images/CiliaLogo.svg" alt="Cilia Logo" width="75">
+</span>
 
 This is a collection of ideas for a programming language that is **based on C++**, but with
 - **CamelCase Style**  
