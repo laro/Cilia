@@ -105,7 +105,7 @@ if 1 <= x <= 10 { ... }
 
 ## Switch / Case
 
-With implicit ~~`break`~~, i.e `break` is the default, and it is not necessary to explicitly write it (like in Swift). Use `fallthrough` if necessary.
+With implicit ~~`break`~~ (like in Swift), i.e `break` is the default, and it is not necessary to explicitly write it. Use `fallthrough` if necessary.
 ```
 switch i {
 case 1:
