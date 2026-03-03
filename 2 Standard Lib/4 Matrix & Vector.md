@@ -5,6 +5,9 @@ description: "Cilia Matrix and Vector: Vector2/3/4, Matrix22/33/44 for geometry.
 
 # Matrix & Vector
 
+Fixed-size types for geometry (2D/3D/4D) and dynamic types for linear algebra. For general-purpose data storage, use `Array`, not `Vector`.
+
+
 ## **Geometry**
 
 For small, _fixed size_ vectors & matrices, as typically used in geometry (i.e. 2D, 3D, 4D).
