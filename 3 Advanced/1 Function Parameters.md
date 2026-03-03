@@ -11,18 +11,17 @@ The basic idea is to have the most efficient/appropriate parameter passing as th
 
 Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/functions/) (surely inspired by the `out` parameters of C#, and by Ada).
 
-- **Default is passing as `in`**-parameter.
-    - So if no parameter passing keyword is given, `in` parameter passing is used.
-    - All other parameter passing methods need to be explicitly given.
-- Function call parameters are passed as either **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, or **`forward`**.
-    - Wording fits nicely for function parameters: How does the parameter get into the function body (or out of it).
-- The loop variable of `for ... in` is passed as either **`in`**, **`inout`**, **`copy`**, or **`move`**  
-  (`out` and `forward` are not applicable here).
-    - With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
-- The argument of `catch ... { ... }` is passed as **`in`**  
-  (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here).
-  
+**Default is passing as `in`**-parameter. So if no parameter passing keyword is given, `in` parameter passing is used. All other parameter passing methods need to be explicitly given.
+
+Function call parameters are passed as either **`in`**, **`inout`**, **`out`**, **`copy`**, **`move`**, or **`forward`**. The wording fits nicely for function parameters: How does the parameter get into the function body (or out of it).
+
+The loop variable of `for ... in` is passed as either **`in`**, **`inout`**, **`copy`**, or **`move`** (`out` and `forward` are not applicable here). With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).
+
+The argument of `catch ... { ... }` is passed as **`in`** (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here).
+
+
 ## Parameter Passing Mode Keywords
+
 - **`in`**
     - to mark parameters used as input.
     - Is the default if no parameter passing keyword is given.
