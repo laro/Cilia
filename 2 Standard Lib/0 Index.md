@@ -5,9 +5,9 @@ description: "Cilia standard library in namespace cilia: String, Array, Map, Cam
 
 # Standard Library
 
-Standard library in namespace `cilia` (instead of `std` to avoid naming conflicts and to allow easy parallel use).
+The standard library is in the namespace `cilia` (instead of `std`, to avoid naming conflicts and to allow easy parallel use).
 
-With a Cilia variant of each standard class/concept (with CamelCase class names and camelCase function and variable names):
+There is a Cilia variant of each standard class/concept (with CamelCase class names and camelCase function and variable names):
 - `cilia::String` instead of `std::string`
 - `Map` instead of `map`
     - `Dictionary` as alias with deprecation warning, as a hint for C# programmers.
