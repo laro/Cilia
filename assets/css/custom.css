@@ -65,7 +65,7 @@ html {
 
 /* Float left on wide screens, inline above text on narrow screens (75px content width) */
 .float-left-75px {
-  display: block;
+  display: inline;
   padding: 12px 0;
   margin: 0;
 }
