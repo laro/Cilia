@@ -49,7 +49,7 @@ Function parameters are given as `TypeName parameterName`, multiple function par
   ```
 
 
-## Function pointers
+## Function Pointers
 
 Trying to maintain consistency between declarations of functions, function pointers, functors and lambdas.
 
