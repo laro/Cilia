@@ -5,7 +5,11 @@ description: "Cilia String and Unicode: UTF-8 based, grapheme iteration, StringV
 
 # String, Char & Unicode
 
+Text handling is based on UTF-8 (Unicode) by default.
+
+
 ## String
+
 `cilia::String` (AKA `UTF8String`) with _basic/standard_ unicode support.  
 Based on UTF-8, as that IMHO is (among all the Unicode formats)
 - the most widespread nowadays,
