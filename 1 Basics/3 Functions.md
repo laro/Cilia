@@ -14,7 +14,7 @@ func multiplyAdd(Float x, y, Int z) -> Float {
 Function declarations start with the keyword `func`, as in Swift.  
 Easier parsing due to clear distinction between function declaration vs. variable declaration, avoiding the [most vexing parse](https://en.wikipedia.org/wiki/Most_vexing_parse).
 
-Using the trailing return type syntax (using `-> ReturnType`), but void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:
+Using the trailing return type syntax `-> ReturnType`, but void functions (AKA "procedures") are written _without_ trailing ~~`-> Void`~~:
 ```
 func print(String line) { ... }
 ```
