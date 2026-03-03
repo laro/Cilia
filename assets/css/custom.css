@@ -55,6 +55,10 @@ html {
   scrollbar-gutter: stable;
 }
 
+.container-lg {
+  max-width: 800px;
+}
+
 .markdown-body {
   color: var(--color-fg-default);
 }
