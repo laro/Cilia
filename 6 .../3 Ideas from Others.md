@@ -10,12 +10,12 @@ Almost every idea comes from somewhere, but some are clearly inspired by a parti
 
 ## **[Circle](https://github.com/seanbaxter/circle) ([Sean Baxter](https://x.com/seanbax))**
 - **Fix C++'s "wrong defaults"**  
-    Sean Baxter [writes about C++](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
-    > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
-    > They may be counter-intuitive, go against expected practice in other languages, leave data in undefined states, or generally be prone to misuse.
-    
-    I am not familiar with all of these issues, but in a new language we certainly could fix a lot of it.
-    
+  Sean Baxter [about C++](https://github.com/seanbaxter/circle/blob/master/new-circle/README.md#to-err-is-human-to-fix-divine):
+  > C++ has a number of "wrong defaults," design decisions either inherited from C or specific to C++ which many programmers consider mistakes.
+  > They may be counter-intuitive, go against expected practice in other languages, leave data in undefined states, or generally be prone to misuse.
+  
+  I am not familiar with all of these issues, but in a new language we certainly could fix a lot of it.
+  
     1. [Uninitialized automatic variables.](http://eel.is/c++draft/dcl.init#general-7.3)
         - See [Safety / Initialization](/advanced/safety/#initialization)
     2. [Integral promotions.](http://eel.is/c++draft/conv.prom)
