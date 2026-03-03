@@ -77,6 +77,16 @@ h1:has(.float-left-75px) {
   flex-shrink: 0;
 }
 
+@media (min-width: 1000px) {
+  .float-left-75px {
+    float: left;
+    padding: 12px;
+    margin-left: -115px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+  }
+}
+
 .markdown-body img {
   background-color: transparent;
 }
