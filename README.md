@@ -5,7 +5,7 @@ description: "Cilia: A C++-based programming language with simplified syntax, Ca
 
 # Cilia Programming Language
 
-<span style="padding:12px; display:block; float:left; margin-left:-115px; margin-right:16px; margin-bottom:8px;">
+<span class="float-left-75px">
   <img src="assets/images/CiliaLogo.svg" alt="Cilia Logo" width="75">
 </span>
 

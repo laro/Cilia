@@ -59,6 +59,22 @@ html {
   color: var(--color-fg-default);
 }
 
+/* Float left on wide screens, inline above text on narrow screens (75px content width) */
+.float-left-75px {
+  display: block;
+  padding: 12px 0;
+}
+
+@media (min-width: 600px) {
+  .float-left-75px {
+    float: left;
+    padding: 12px;
+    margin-left: -115px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+  }
+}
+
 .markdown-body img {
   background-color: transparent;
 }
