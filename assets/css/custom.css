@@ -127,6 +127,9 @@ html {
 
   /* Tables: dark background in dark theme */
   .markdown-body table,
+  .markdown-body table tr,
+  .markdown-body table tr:nth-child(even),
+  .markdown-body table tr:nth-child(odd),
   .markdown-body table th,
   .markdown-body table td {
     background-color: var(--cilia-code-bg) !important;
@@ -138,6 +141,13 @@ html {
 .markdown-body table {
   display: table;
   width: auto;
+}
+
+/* No alternating row background (zebra striping) on markdown tables */
+.markdown-body table tr,
+.markdown-body table tr:nth-child(even),
+.markdown-body table tr:nth-child(odd) {
+  background-color: var(--color-canvas-default) !important;
 }
 
 .markdown-body hr {
