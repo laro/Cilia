@@ -23,14 +23,14 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 
 ## Integer
 
-Simply use `Int` (that is `Int64`, like in Swift and Go),
-- _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
-- _not_ ~~`Long`~~ nor ~~`LongLong`~~.
-
 `Int` is
-- `Int64` on virtually all modern systems,
+- `Int64` (like in Swift and Go) on virtually all modern systems,
 - `Int32` on systems with a 32-bit address bus only (i.e. old/small platforms, like Win32/x86),
 - `Int16` on systems with a 16-bit address bus (i.e. very old/small microcontrollers like AVR/ATmega328/Arduino Uno, 6502, Z80).
+
+Simply use `Int`,
+- _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
+- _not_ ~~`Long`~~ nor ~~`LongLong`~~.
 
 
 ## Boolean
