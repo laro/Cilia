@@ -51,4 +51,4 @@ It is used to represent raw memory, for binary buffers, serialization, or low-le
 
 With modern processors double precision is very fast.
 When concerned with memory bandwidth, cache size, and SIMD performance, choose one of the smaller floating-point types like `Float32`
-or (if available) `BFloat16`, `Float8`, maybe even `Float4`.
+or (if available) `BFloat16`, `Float16`, `Float8`, maybe even `Float4`.
