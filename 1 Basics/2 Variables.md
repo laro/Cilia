@@ -72,7 +72,7 @@ It is a syntax error to write:
     - Type variations within multiple-variable declarations are _not_ allowed.
     - It has to be the exact same type.
 - ~~`Int x, y = 0`~~
-    - You need to initalize both variables: ~~`Int x = 0, y = 0`~~
+    - You need to initalize both variables: `Int x = 0, y = 0`
 - ~~`Float*m`~~
     - Whitespace _between_ type specification and variable name is mandatory.
     - TODO Probably too difficult to realize, as the lexer already removes all whitespace.
