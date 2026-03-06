@@ -14,7 +14,9 @@ TypeName variableName
 Some simplifications and restrictions:
 - The type definition is completely on the left-hand side,  
   i.e. before the variable name, also for arrays and bit fields.
-- All variables in a multiple-variable declaration have to be of the exact same type.
+- In a multiple-variable declaration
+  - all variables have to be of the exact same type,
+  - either all variables are initialized or none is.
 
 ## Examples
 - `Int i`
