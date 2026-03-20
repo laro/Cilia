@@ -5,7 +5,7 @@ description: "Cilia syntax comparison with C++, Cpp2, Carbon, Rust, Swift, Kotli
 
 # Syntax Comparison with Other Languages
 
-The syntax comparison on the following pages aims to show the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in various other languages.
+The syntax comparison on the following pages aims to show the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in various other languages (see above).
 
 In [C++](cpp/), [Cpp2](cpp2/), [Rust](rust/), [Java](java/), [C#](csharp/), and [D](d/) the type `int`/`Int` and/or literals like `42` are 32 bits wide, not 64 bits.
 That's OK, this is not a performance benchmark.
