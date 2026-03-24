@@ -536,7 +536,7 @@
     <footer>
       {% if keynav_prev_url %}
         <nav>
-          <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&#x25C5;</a>
+          <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">←</a>
         </nav>
       {% endif %}
       <small>
@@ -544,10 +544,6 @@
       </small>
       {% if keynav_next_url %}
         <nav>
-          <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x25BB;</a>
-          <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x21C0;</a>
-          <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x25BA;</a>
-          <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">›</a>
           <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">→</a>
         </nav>
       {% endif %}
