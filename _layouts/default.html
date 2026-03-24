@@ -534,19 +534,19 @@
     </div>
 
     <footer>
-      {% if keynav_prev_url %}
-        <nav>
+      <nav>
+        {% if keynav_prev_url %}
           <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page" title="Use cursor keys left/right">←</a>
-        </nav>
-      {% endif %}
+        {% endif %}
+      </nav>
       <small>
         © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
       </small>
-      {% if keynav_next_url %}
-        <nav>
+      <nav>
+        {% if keynav_next_url %}
           <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page" title="Use cursor keys left/right">→</a>
-        </nav>
-      {% endif %}
+        {% endif %}
+      </nav>
     </footer>
 
     {% comment %}
