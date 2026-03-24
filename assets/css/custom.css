@@ -360,45 +360,6 @@ nav a[aria-current="location"] {
   column-gap: 0.75rem;
 }
 
-.site-footer__edge {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.site-footer__edge--prev {
-  justify-content: flex-start;
-}
-
-.site-footer__edge--next {
-  justify-content: flex-end;
-}
-
-.site-footer__center {
-  min-width: 0;
-}
-
-/* Compact arrow controls (not inside top <nav>, so primary nav rules do not apply) */
-.site-footer__edge a {
-  display: inline-block;
-  font-size: 1.75rem;
-  font-weight: 600;
-  line-height: 1;
-  padding: 0.35rem 0.6rem;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  text-decoration: none;
-  color: var(--color-accent-fg);
-}
-
-.site-footer__edge a:visited {
-  color: var(--color-accent-fg);
-}
-
-.site-footer__edge a:hover,
-.site-footer__edge a:focus-visible {
-  border-color: var(--color-accent-fg);
-}
 
 /* Mobile / small screens */
 @media (max-width: 600px) {
