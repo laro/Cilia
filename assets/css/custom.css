@@ -345,34 +345,34 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
-/* Page footer: full-width grid, license centered, prev/next at the sides (not main nav). */
+/* Page footer: full-width flex row, license grows in the middle, prev/next at the sides (not main nav). */
 body > footer {
   box-sizing: border-box;
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: 0.75rem 1rem;
   margin-top: 2rem;
   margin-bottom: 3rem;
   padding: 0.75rem max(1rem, env(safe-area-inset-right, 0px)) 0.6rem max(1rem, env(safe-area-inset-left, 0px));
-  text-align: center;
 }
 
 body > footer .footer-keynav-prev {
-  grid-column: 1;
-  justify-self: start;
+  flex: 0 0 auto;
   text-align: start;
 }
 
 body > footer .footer-license {
-  grid-column: 2;
+  flex: 1 1 12rem;
+  min-width: 0;
+  text-align: center;
   color: var(--color-fg-muted);
 }
 
 body > footer .footer-keynav-next {
-  grid-column: 3;
-  justify-self: end;
+  flex: 0 0 auto;
   text-align: end;
 }
 
