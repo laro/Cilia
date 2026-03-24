@@ -348,35 +348,11 @@ nav a[aria-current="location"] {
 /* Page footer: full-width flex row, license grows in the middle, prev/next at the sides (not main nav). */
 body > footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: 2rem;
   padding: 0.75rem 1rem 0.6rem 1rem;
 }
-/*
-body > footer .footer-keynav-prev {
-  flex: 0 0 auto;
-  text-align: start;
-}
-
-body > footer .footer-license {
-  flex: 1 1 12rem;
-  min-width: 0;
-  text-align: center;
-  color: var(--color-fg-muted);
-}
-
-body > footer .footer-keynav-next {
-  flex: 0 0 auto;
-  text-align: end;
-}
-
-body > footer a[rel="prev"],
-body > footer a[rel="next"] {
-  font-size: 1.35rem;
-  font-weight: 600;
-  line-height: 1;
-  padding: 0.15rem 0.45rem;
-}*/
 
 
 /* Mobile / small screens */
