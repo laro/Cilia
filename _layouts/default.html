@@ -6,7 +6,7 @@
   - Render a consistent page chrome (primary navigation, optional section sub-nav, footer).
   - Compute a good HTML <title> from page content / file structure.
   - Provide keyboard navigation (Left/Right arrows) based on <link rel="prev|next">.
-  - Show prev/next links at the bottom of the page (&lt; / &gt;) using the same keynav targets.
+  - Show prev/next controls (&lt; / &gt;) on the same row as the footer, flush to the viewport edges.
   - Add heading anchor links via AnchorJS.
 
   Content conventions used by this layout
@@ -532,25 +532,23 @@
         {{ content }}
       </main>
 
-      <div class="page-keynav-bleed">
-        <nav class="page-keynav" aria-label="Page navigation">
-          <div class="page-keynav__side page-keynav__side--prev">
+      <footer class="site-footer">
+        <div class="site-footer__row mt-5 pt-3">
+          <div class="site-footer__edge site-footer__edge--prev">
             {% if keynav_prev_url %}
               <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&lt;</a>
             {% endif %}
           </div>
-          <div class="page-keynav__side page-keynav__side--next">
+          <div class="site-footer__center">
+            <div class="footer text-center text-gray">
+              © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
+            </div>
+          </div>
+          <div class="site-footer__edge site-footer__edge--next">
             {% if keynav_next_url %}
               <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&gt;</a>
             {% endif %}
           </div>
-        </nav>
-      </div>
-
-      <footer>
-        <br/>
-        <div class="footer mt-5 pt-3 text-center text-gray">
-          © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
         </div>
       </footer>
     </div>

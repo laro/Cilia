@@ -345,54 +345,58 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
-/* Bottom prev/next (“<” / “>”), full viewport width; links at outer edges */
-.page-keynav-bleed {
+/* Footer row: copyright centered; prev/next at viewport left/right (same vertical band) */
+.site-footer__row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
   width: 100vw;
+  max-width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   box-sizing: border-box;
   padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
   padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
-  margin-top: 2.5rem;
-  margin-bottom: 0.25rem;
+  column-gap: 0.75rem;
 }
 
-.page-keynav {
+.site-footer__edge {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  flex-shrink: 0;
 }
 
-.page-keynav__side {
-  flex: 1 1 0;
+.site-footer__edge--prev {
+  justify-content: flex-start;
+}
+
+.site-footer__edge--next {
+  justify-content: flex-end;
+}
+
+.site-footer__center {
   min-width: 0;
 }
 
-.page-keynav__side--prev {
-  text-align: left;
-}
-
-.page-keynav__side--next {
-  text-align: right;
-}
-
-/* Override primary nav link styles: compact arrow controls */
-nav.page-keynav a {
+/* Compact arrow controls (not inside top <nav>, so primary nav rules do not apply) */
+.site-footer__edge a {
+  display: inline-block;
   font-size: 1.75rem;
   font-weight: 600;
   line-height: 1;
   padding: 0.35rem 0.6rem;
   border-radius: 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
   color: var(--color-accent-fg);
 }
 
-nav.page-keynav a:visited {
+.site-footer__edge a:visited {
   color: var(--color-accent-fg);
 }
 
-nav.page-keynav a:hover,
-nav.page-keynav a:focus-visible {
+.site-footer__edge a:hover,
+.site-footer__edge a:focus-visible {
   border-color: var(--color-accent-fg);
 }
 
