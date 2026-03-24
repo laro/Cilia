@@ -531,21 +531,22 @@
       <main>
         {{ content }}
       </main>
-
-      <footer>
-        {% if keynav_prev_url %}
-          <nav>
-            <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&#x25C5;</a>
-          </nav>
-        {% endif %}
-        © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
-        {% if keynav_next_url %}
-          <nav>
-            <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x25BB;</a>
-          </nav>
-        {% endif %}
-      </footer>
     </div>
+
+    <footer>
+      {% if keynav_prev_url %}
+        <nav>
+          <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&#x25C5;</a>
+        </nav>
+      {% endif %}
+      © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
+      {% if keynav_next_url %}
+        <nav>
+          <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x25BB;</a>
+        </nav>
+      {% endif %}
+    </footer>
+
     {% comment %}
       Anchor links for headings:
       - AnchorJS scans headings and inserts linkable anchors.
