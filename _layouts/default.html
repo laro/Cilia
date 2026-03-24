@@ -6,7 +6,7 @@
   - Render a consistent page chrome (primary navigation, optional section sub-nav, footer).
   - Compute a good HTML <title> from page content / file structure.
   - Provide keyboard navigation (Left/Right arrows) based on <link rel="prev|next">.
-  - Show prev/next controls (&lt; / &gt;) on the same row as the footer, flush to the viewport edges.
+  - Show prev/next controls (U+25C5 / U+25BB) on the same row as the footer, flush to the viewport edges.
   - Add heading anchor links via AnchorJS.
 
   Content conventions used by this layout
@@ -536,7 +536,7 @@
         <div class="site-footer__row mt-5 pt-3">
           <div class="site-footer__edge site-footer__edge--prev">
             {% if keynav_prev_url %}
-              <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&lt;</a>
+              <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&#x25C5;</a>
             {% endif %}
           </div>
           <div class="site-footer__center">
@@ -546,7 +546,7 @@
           </div>
           <div class="site-footer__edge site-footer__edge--next">
             {% if keynav_next_url %}
-              <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&gt;</a>
+              <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x25BB;</a>
             {% endif %}
           </div>
         </div>
