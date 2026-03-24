@@ -354,17 +354,6 @@ body > footer {
   padding: 1rem;
 }
 
-footer a {
-  display: inline-block;
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 1.25;
-  text-decoration: none;
-  border: 1px solid transparent;
-  border-radius: 12px;
-  padding: 0.1rem 0.35rem;
-}
-
 
 /* Mobile / small screens */
 @media (max-width: 600px) {
