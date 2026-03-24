@@ -358,7 +358,7 @@ body > footer {
   margin-bottom: 3rem;
   padding: 0.75rem max(1rem, env(safe-area-inset-right, 0px)) 0.6rem max(1rem, env(safe-area-inset-left, 0px));
 }
-
+/*
 body > footer .footer-keynav-prev {
   flex: 0 0 auto;
   text-align: start;
@@ -382,7 +382,7 @@ body > footer a[rel="next"] {
   font-weight: 600;
   line-height: 1;
   padding: 0.15rem 0.45rem;
-}
+}*/
 
 
 /* Mobile / small screens */
