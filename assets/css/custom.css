@@ -355,10 +355,6 @@ body > footer {
   padding: 1rem;
 }
 
-body > footer > nav {
-  flex-direction: row;
-}
-
 
 /* Mobile / small screens */
 @media (max-width: 600px) {
