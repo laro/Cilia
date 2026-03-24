@@ -345,6 +345,57 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
+/* Bottom prev/next (“<” / “>”), full viewport width; links at outer edges */
+.page-keynav-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+  padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+  margin-top: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.page-keynav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-keynav__side {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.page-keynav__side--prev {
+  text-align: left;
+}
+
+.page-keynav__side--next {
+  text-align: right;
+}
+
+/* Override primary nav link styles: compact arrow controls */
+nav.page-keynav a {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.35rem 0.6rem;
+  border-radius: 10px;
+  color: var(--color-accent-fg);
+}
+
+nav.page-keynav a:visited {
+  color: var(--color-accent-fg);
+}
+
+nav.page-keynav a:hover,
+nav.page-keynav a:focus-visible {
+  border-color: var(--color-accent-fg);
+}
+
 /* Mobile / small screens */
 @media (max-width: 600px) {
   body {

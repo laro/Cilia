@@ -6,6 +6,7 @@
   - Render a consistent page chrome (primary navigation, optional section sub-nav, footer).
   - Compute a good HTML <title> from page content / file structure.
   - Provide keyboard navigation (Left/Right arrows) based on <link rel="prev|next">.
+  - Show prev/next links at the bottom of the page (&lt; / &gt;) using the same keynav targets.
   - Add heading anchor links via AnchorJS.
 
   Content conventions used by this layout
@@ -530,6 +531,21 @@
       <main>
         {{ content }}
       </main>
+
+      <div class="page-keynav-bleed">
+        <nav class="page-keynav" aria-label="Page navigation">
+          <div class="page-keynav__side page-keynav__side--prev">
+            {% if keynav_prev_url %}
+              <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&lt;</a>
+            {% endif %}
+          </div>
+          <div class="page-keynav__side page-keynav__side--next">
+            {% if keynav_next_url %}
+              <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&gt;</a>
+            {% endif %}
+          </div>
+        </nav>
+      </div>
 
       <footer>
         <br/>
