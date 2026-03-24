@@ -345,6 +345,7 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
+
 /* Page footer: full-width flex row, license grows in the middle, prev/next at the sides (not main nav). */
 body > footer {
   display: flex;
@@ -352,6 +353,10 @@ body > footer {
   justify-content: space-between;
   margin-top: 2rem;
   padding: 1rem;
+}
+
+body > footer > nav {
+  flex-direction: row;
 }
 
 
