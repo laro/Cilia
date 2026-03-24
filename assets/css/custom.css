@@ -355,6 +355,10 @@ body > footer {
   padding: 1rem;
 }
 
+body > footer > small{
+  margin-top: 12px;
+}
+
 
 /* Mobile / small screens */
 @media (max-width: 600px) {
