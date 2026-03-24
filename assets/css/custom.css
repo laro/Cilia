@@ -345,31 +345,36 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
-/* Page footer: centered line, prev/next at the sides (scoped so main nav rules do not apply). */
-.markdown-body > footer {
-  position: relative;
-  text-align: center;
+/* Page footer: full-width grid, license centered, prev/next at the sides (not main nav). */
+body > footer {
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem 1rem;
   margin-top: 2rem;
-  padding: 0.6rem 2.25rem;
+  margin-bottom: 3rem;
+  padding: 0.75rem max(1rem, env(safe-area-inset-right, 0px)) 0.6rem max(1rem, env(safe-area-inset-left, 0px));
+  text-align: center;
 }
 
-.markdown-body > footer > nav {
-  margin-top: 0;
-  display: block;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+body > footer > :nth-child(1) {
+  justify-self: start;
+  text-align: start;
 }
 
-.markdown-body > footer > nav:has(a[rel="prev"]) {
-  left: 0;
+body > footer > :nth-child(2) {
+  color: var(--color-fg-muted);
 }
 
-.markdown-body > footer > nav:has(a[rel="next"]) {
-  right: 0;
+body > footer > :nth-child(3) {
+  justify-self: end;
+  text-align: end;
 }
 
-.markdown-body > footer > nav a {
+body > footer a[rel="prev"],
+body > footer a[rel="next"] {
   font-size: 1.35rem;
   font-weight: 600;
   line-height: 1;
