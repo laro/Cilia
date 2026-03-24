@@ -359,16 +359,19 @@ body > footer {
   text-align: center;
 }
 
-body > footer > :nth-child(1) {
+body > footer .footer-keynav-prev {
+  grid-column: 1;
   justify-self: start;
   text-align: start;
 }
 
-body > footer > :nth-child(2) {
+body > footer .footer-license {
+  grid-column: 2;
   color: var(--color-fg-muted);
 }
 
-body > footer > :nth-child(3) {
+body > footer .footer-keynav-next {
+  grid-column: 3;
   justify-self: end;
   text-align: end;
 }

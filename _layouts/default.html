@@ -533,19 +533,19 @@
       </main>
     </div>
     <footer>
-      <div>
-        {% if keynav_prev_url %}
+      {% if keynav_prev_url %}
+        <div class="footer-keynav-prev">
           <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&#x25C5;</a>
-        {% endif %}
-      </div>
-      <small>
+        </div>
+      {% endif %}
+      <small class="footer-license">
         © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
       </small>
-      <div>
-        {% if keynav_next_url %}
+      {% if keynav_next_url %}
+        <div class="footer-keynav-next">
           <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x25BB;</a>
-        {% endif %}
-      </div>
+        </div>
+      {% endif %}
     </footer>
     {% comment %}
       Anchor links for headings:
