@@ -346,12 +346,12 @@ nav a[aria-current="location"] {
 }
 
 /* Page footer: full-width flex row, license grows in the middle, prev/next at the sides (not main nav). */
-body > footer > nav {
+body > footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 2rem;
-  padding: 0.75rem 1rem 0.6rem 1rem;
+  padding: 1rem;
 }
 
 
