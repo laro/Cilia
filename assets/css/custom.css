@@ -345,6 +345,37 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
+/* Page footer: centered line, prev/next at the sides (scoped so main nav rules do not apply). */
+.markdown-body > footer {
+  position: relative;
+  text-align: center;
+  margin-top: 2rem;
+  padding: 0.6rem 2.25rem;
+}
+
+.markdown-body > footer > nav {
+  margin-top: 0;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.markdown-body > footer > nav:has(a[rel="prev"]) {
+  left: 0;
+}
+
+.markdown-body > footer > nav:has(a[rel="next"]) {
+  right: 0;
+}
+
+.markdown-body > footer > nav a {
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.15rem 0.45rem;
+}
+
 
 /* Mobile / small screens */
 @media (max-width: 600px) {
