@@ -532,18 +532,24 @@
         {{ content }}
       </main>
 
-      <footer>
-        {% if keynav_prev_url %}
-          <nav>
-            <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&#x25C5;</a>
-          </nav>
-        {% endif %}
-        © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
-        {% if keynav_next_url %}
-          <nav>
-            <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x25BB;</a>
-          </nav>
-        {% endif %}
+      <footer class="site-footer">
+        <div class="site-footer__row mt-5 pt-3">
+          <div class="site-footer__edge site-footer__edge--prev">
+            {% if keynav_prev_url %}
+              <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page">&#x25C5;</a>
+            {% endif %}
+          </div>
+          <div class="site-footer__center">
+            <div class="footer text-center text-gray">
+              © 2024-2026 Lars Rosenboom, licensed under <a href="/LICENSE.txt">CC-BY-NC-ND-4.0</a>
+            </div>
+          </div>
+          <div class="site-footer__edge site-footer__edge--next">
+            {% if keynav_next_url %}
+              <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page">&#x25BB;</a>
+            {% endif %}
+          </div>
+        </div>
       </footer>
     </div>
     {% comment %}
