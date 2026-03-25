@@ -536,7 +536,7 @@
     <footer>
       <nav>
         {% if keynav_prev_url %}
-          <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page" title="Use cursor keys left/right">←</a>
+          <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page" title="Use cursor keys">←</a>
         {% endif %}
       </nav>
       <small>
@@ -544,7 +544,7 @@
       </small>
       <nav>
         {% if keynav_next_url %}
-          <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page" title="Use cursor keys left/right">→</a>
+          <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page" title="Use cursor keys">→</a>
         {% endif %}
       </nav>
     </footer>
