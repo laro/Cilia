@@ -15,10 +15,6 @@ I'd like to have the standard library roughly in the style of Swift, Java or [Qt
 - **Simplified Syntax**  
 Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed. Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
 
-<span class="float-left-75px">
-  <img src="assets/images/CiliaLogo2.svg" alt="Cilia Logo" width="75">
-</span>
-
 Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
 
 > **Note**  
