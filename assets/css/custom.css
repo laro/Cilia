@@ -379,12 +379,19 @@ body > footer .footer-keynav-link:focus-visible {
 }
 
 body > footer .footer-keynav-title {
+  display: inline-block;
   font-size: 0.72rem;
   line-height: 1.2;
   max-height: 9rem;
   overflow: hidden;
   writing-mode: vertical-rl;
   text-orientation: mixed;
+}
+
+/* Previous link: vertical label reads downward to match the ← side. */
+body > footer .footer-keynav-link--prev .footer-keynav-title {
+  transform: rotate(180deg);
+  transform-origin: center center;
 }
 
 body > footer .footer-keynav-arrow {
