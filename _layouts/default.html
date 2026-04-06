@@ -442,11 +442,7 @@
             class="footer-keynav-link footer-keynav-link--prev"
             href="{{ keynav_prev_url | relative_url }}"
             rel="prev"
-            {% if keynav_prev_title != "" %}
-              aria-label="Previous page: {{ keynav_prev_title }}"
-            {% else %}
-              aria-label="Previous page"
-            {% endif %}
+            aria-label="Previous page: {{ keynav_prev_title }}"
             title="Use cursor keys"
           >
             {% if keynav_prev_title != "" %}
@@ -465,11 +461,7 @@
             class="footer-keynav-link"
             href="{{ keynav_next_url | relative_url }}"
             rel="next"
-            {% if keynav_next_title != "" %}
-              aria-label="Next page: {{ keynav_next_title }}"
-            {% else %}
-              aria-label="Next page"
-            {% endif %}
+            aria-label="Next page: {{ keynav_next_title }}"
             title="Use cursor keys"
           >
             {% if keynav_next_title != "" %}
