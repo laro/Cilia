@@ -351,11 +351,11 @@ body > footer {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  padding-bottom: 1rem;
 }
 
 body > footer > small {
   text-align: center;
-  padding-bottom: 1rem;
 }
 
 body > footer .footer-keynav-link {
@@ -416,7 +416,7 @@ body > footer .footer-keynav-arrow {
     width: 8ch;
   }
 
-  body > footer > small {
+  body > footer {
     padding: 0.2rem;
   }
 }
