@@ -415,4 +415,8 @@ body > footer .footer-keynav-arrow {
   .nav-search-input {
     width: 8ch;
   }
+  
+  body > footer {
+    padding: 0rem;
+  }
 }
