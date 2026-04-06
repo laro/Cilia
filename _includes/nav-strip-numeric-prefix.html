@@ -1,0 +1,23 @@
+{% comment %}
+  Strip a leading numeric token from the first word of label (e.g. "1 Basics" -> "Basics",
+  "7 Literals" from filename stem -> "Literals"). Same rule as primary nav labels.
+{% endcomment %}
+{% assign nsp_label = include.label %}
+{% assign nsp_parts = nsp_label | split: ' ' %}
+{% assign nsp_first = nsp_parts | first %}
+{% assign nsp_first_nd = nsp_first
+  | remove: '0'
+  | remove: '1'
+  | remove: '2'
+  | remove: '3'
+  | remove: '4'
+  | remove: '5'
+  | remove: '6'
+  | remove: '7'
+  | remove: '8'
+  | remove: '9' %}
+{% assign nsp_out = nsp_label %}
+{% if nsp_parts.size > 1 and nsp_first_nd == '' and nsp_first != '' %}
+  {% assign nsp_out = nsp_label | remove_first: nsp_first | remove_first: ' ' %}
+{% endif %}
+{{ nsp_out }}

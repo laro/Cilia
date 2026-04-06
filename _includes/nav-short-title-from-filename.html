@@ -1,0 +1,6 @@
+{% comment %}
+  Menu short title from a Markdown filename (with or without path), e.g. "7 Literals.md".
+{% endcomment %}
+{% assign ntsf_fn = include.filename | split: '/' | last %}
+{% assign ntsf_base = ntsf_fn | split: '.' | first %}
+{% include nav-strip-numeric-prefix.html label=ntsf_base %}

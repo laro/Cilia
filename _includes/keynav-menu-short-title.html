@@ -1,0 +1,25 @@
+{% comment %}
+  Short navigation label for keynav footer targets — same rules as primary menu + sub-nav filenames.
+{% endcomment %}
+{% assign kms_t = include.target %}
+{% if kms_t %}
+  {% if kms_t.url == keynav_home_url %}
+    {{ home_display_title }}
+  {% elsif kms_t.path contains '/' %}
+    {% assign kms_section_dir = kms_t.path | split: '/' | first %}
+    {% capture kms_section_index_url %}
+      {% include nav-primary-section-index-url.html section_dir=kms_section_dir %}
+    {% endcapture %}
+    {% assign kms_section_index_url = kms_section_index_url | strip %}
+    {% if kms_t.url == kms_section_index_url %}
+      {% capture kms_cap %}{% include nav-strip-numeric-prefix.html label=kms_section_dir %}{% endcapture %}
+      {{ kms_cap | strip }}
+    {% else %}
+      {% assign kms_fn = kms_t.path | split: '/' | last %}
+      {% include nav-short-title-from-filename.html filename=kms_fn %}
+    {% endif %}
+  {% else %}
+    {% assign kms_fn = kms_t.path | split: '/' | last %}
+    {% include nav-short-title-from-filename.html filename=kms_fn %}
+  {% endif %}
+{% endif %}

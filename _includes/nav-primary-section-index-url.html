@@ -1,0 +1,24 @@
+{% comment %}
+  Primary-nav section landing URL: prefer "0 Index.md" / "00 Index.md", else first page in section.
+  Outputs page.url only (no whitespace). Expects include.section_dir and all_md_pages in scope.
+{% endcomment %}
+{% assign ns_section_dir = include.section_dir %}
+{% assign ns_prefix = ns_section_dir | append: '/' %}
+{% assign ns_pages = all_md_pages
+  | where_exp: "p", "p.path contains ns_prefix"
+  | sort_natural: "path" %}
+{% assign ns_out_url = "" %}
+{% for ns_p in ns_pages %}
+  {% assign ns_fn = ns_p.path | split: '/' | last %}
+  {% if ns_fn == "0 Index.md" or ns_fn == "00 Index.md" %}
+    {% assign ns_out_url = ns_p.url %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% if ns_out_url == "" %}
+  {% assign ns_first_p = ns_pages | first %}
+  {% if ns_first_p %}
+    {% assign ns_out_url = ns_first_p.url %}
+  {% endif %}
+{% endif %}
+{{ ns_out_url }}

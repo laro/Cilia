@@ -359,6 +359,39 @@ body > footer > small{
   margin-top: 12px;
 }
 
+body > footer .footer-keynav-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: min(100%, 9rem);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  padding: 0.2rem 0.3rem;
+}
+
+body > footer .footer-keynav-link:hover,
+body > footer .footer-keynav-link:focus-visible {
+  text-decoration: none;
+}
+
+body > footer .footer-keynav-title {
+  font-size: 0.72rem;
+  line-height: 1.2;
+  max-height: 9rem;
+  overflow: hidden;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+body > footer .footer-keynav-arrow {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
 
 /* Mobile / small screens */
 @media (max-width: 600px) {

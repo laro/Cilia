@@ -124,24 +124,10 @@
       - If the filename starts with a numeric prefix (e.g. "7 Literals.md"), strip the prefix.
     {% endcomment %}
     {% assign page_filename = page.path | split: '/' | last %}
-    {% assign page_base_name = page_filename | split: '.' | first %}
-    {% assign page_parts = page_base_name | split: ' ' %}
-    {% assign page_first = page_parts | first %}
-    {% assign page_first_non_digits = page_first
-      | remove: '0'
-      | remove: '1'
-      | remove: '2'
-      | remove: '3'
-      | remove: '4'
-      | remove: '5'
-      | remove: '6'
-      | remove: '7'
-      | remove: '8'
-      | remove: '9' %}
-    {% assign page_display_title = page_base_name %}
-    {% if page_parts.size > 1 and page_first_non_digits == '' and page_first != '' %}
-      {% assign page_display_title = page_base_name | remove_first: page_first | remove_first: ' ' %}
-    {% endif %}
+    {% capture page_display_title %}
+      {% include nav-short-title-from-filename.html filename=page_filename %}
+    {% endcapture %}
+    {% assign page_display_title = page_display_title | strip %}
 
     {% comment %}
       HTML <title> computation strategy:
@@ -160,23 +146,10 @@
     {% if page.path contains '/' %}
       {% assign section_dir = page.path | split: '/' | first %}
     {% endif %}
-    {% assign section_parts = section_dir | split: ' ' %}
-    {% assign section_first = section_parts | first %}
-    {% assign section_first_non_digits = section_first
-      | remove: '0'
-      | remove: '1'
-      | remove: '2'
-      | remove: '3'
-      | remove: '4'
-      | remove: '5'
-      | remove: '6'
-      | remove: '7'
-      | remove: '8'
-      | remove: '9' %}
-    {% assign section_display_title = section_dir %}
-    {% if section_parts.size > 1 and section_first_non_digits == '' and section_first != '' %}
-      {% assign section_display_title = section_dir | remove_first: section_first | remove_first: ' ' %}
-    {% endif %}
+    {% capture section_display_title %}
+      {% include nav-strip-numeric-prefix.html label=section_dir %}
+    {% endcapture %}
+    {% assign section_display_title = section_display_title | strip %}
 
     {% assign fallback_title = page_display_title %}
     {% if page_filename == "README.md" %}
@@ -277,6 +250,23 @@
       {% assign home_display_title = "Home" %}
     {% endif %}
 
+    {% assign keynav_prev_title = "" %}
+    {% assign keynav_next_title = "" %}
+    {% if keynav_prev_url %}
+      {% assign keynav_prev_target = all_md_pages_for_keynav | where: "url", keynav_prev_url | first %}
+      {% capture keynav_prev_title %}
+        {% include keynav-menu-short-title.html target=keynav_prev_target %}
+      {% endcapture %}
+      {% assign keynav_prev_title = keynav_prev_title | strip %}
+    {% endif %}
+    {% if keynav_next_url %}
+      {% assign keynav_next_target = all_md_pages_for_keynav | where: "url", keynav_next_url | first %}
+      {% capture keynav_next_title %}
+        {% include keynav-menu-short-title.html target=keynav_next_target %}
+      {% endcapture %}
+      {% assign keynav_next_title = keynav_next_title | strip %}
+    {% endif %}
+
     {% assign has_active_subnav = false %}
     {% assign active_section_index_url = "" %}
     {% if active_section_dir != "" %}
@@ -350,29 +340,11 @@
           {% unless p.path contains '/' %}
             {% if home_page == nil or p.url != home_page.url %}
               {% assign p_filename = p.path | split: '/' | last %}
-              {% assign p_base_name = p_filename | split: '.' | first %}
-              {% assign p_parts = p_base_name | split: ' ' %}
-              {% assign p_first = p_parts | first %}
-              {% assign p_first_non_digits = p_first
-                | remove: '0'
-                | remove: '1'
-                | remove: '2'
-                | remove: '3'
-                | remove: '4'
-                | remove: '5'
-                | remove: '6'
-                | remove: '7'
-                | remove: '8'
-                | remove: '9' %}
-              {% assign p_display_title = p_base_name %}
-              {% if p_parts.size > 1 and p_first_non_digits == '' and p_first != '' %}
-                {% assign p_display_title = p_base_name | remove_first: p_first | remove_first: ' ' %}
-              {% endif %}
               <li>
                 <a
                   href="{{ p.url | relative_url }}"
                   {% if p.url == page.url %}aria-current="page"{% endif %}
-                >{{ p_display_title }}</a>
+                >{% include nav-short-title-from-filename.html filename=p_filename %}</a>
               </li>
             {% endif %}
           {% endunless %}
@@ -386,49 +358,10 @@
               - Prefer "0 Index.md" / "00 Index.md" as section index, otherwise first page.
               - aria-current="location" marks the active section while browsing inside it.
             {% endcomment %}
-            {% assign section_parts = section_dir | split: ' ' %}
-            {% assign section_first = section_parts | first %}
-            {% assign section_first_non_digits = section_first
-              | remove: '0'
-              | remove: '1'
-              | remove: '2'
-              | remove: '3'
-              | remove: '4'
-              | remove: '5'
-              | remove: '6'
-              | remove: '7'
-              | remove: '8'
-              | remove: '9' %}
-            {% assign section_display_title = section_dir %}
-            {% if section_parts.size > 1 and section_first_non_digits == '' and section_first != '' %}
-              {% assign section_display_title = section_dir | remove_first: section_first | remove_first: ' ' %}
-            {% endif %}
-
-            {% assign section_prefix = section_dir | append: '/' %}
-            {% assign section_pages = all_md_pages
-              | where_exp: "p", "p.path contains section_prefix"
-              | sort_natural: "path" %}
-
-            {% assign section_index_page = "" %}
-            {% assign section_index_url = "" %}
-            {% assign section_has_index_md = false %}
-
-            {% for p in section_pages %}
-              {% assign p_filename = p.path | split: '/' | last %}
-              {% if p_filename == "0 Index.md" or p_filename == "00 Index.md" %}
-                {% assign section_index_page = p %}
-                {% assign section_index_url = p.url %}
-                {% assign section_has_index_md = true %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
-
-            {% if section_index_page == "" %}
-              {% assign section_index_page = section_pages | first %}
-              {% if section_index_page %}
-                {% assign section_index_url = section_index_page.url %}
-              {% endif %}
-            {% endif %}
+            {% capture section_index_url %}
+              {% include nav-primary-section-index-url.html section_dir=section_dir %}
+            {% endcapture %}
+            {% assign section_index_url = section_index_url | strip %}
 
             <li>
               <a
@@ -440,7 +373,7 @@
                     aria-current="location"
                   {% endif %}
                 {% endif %}
-              >{{ section_display_title }}</a>
+              >{% include nav-strip-numeric-prefix.html label=section_dir %}</a>
             </li>
           {% endif %}
         {% endfor %}
@@ -475,51 +408,20 @@
           - Lists all pages in the active section except "0 Index.md" / "00 Index.md" (the landing page).
           - Uses aria-current="page" for the current page.
         {% endcomment %}
-        {% assign active_section_display_title = active_section_dir %}
-        {% assign active_section_parts = active_section_dir | split: ' ' %}
-        {% assign active_section_first = active_section_parts | first %}
-        {% assign active_section_first_non_digits = active_section_first
-          | remove: '0'
-          | remove: '1'
-          | remove: '2'
-          | remove: '3'
-          | remove: '4'
-          | remove: '5'
-          | remove: '6'
-          | remove: '7'
-          | remove: '8'
-          | remove: '9' %}
-        {% if active_section_parts.size > 1 and active_section_first_non_digits == '' and active_section_first != '' %}
-          {% assign active_section_display_title = active_section_dir | remove_first: active_section_first | remove_first: ' ' %}
-        {% endif %}
+        {% capture active_section_display_title %}
+          {% include nav-strip-numeric-prefix.html label=active_section_dir %}
+        {% endcapture %}
+        {% assign active_section_display_title = active_section_display_title | strip %}
 
         <ul class="nav-sub" aria-label="{{ active_section_display_title }} sub-pages">
           {% for c in active_section_pages %}
             {% assign c_filename = c.path | split: '/' | last %}
             {% if c_filename != "0 Index.md" and c_filename != "00 Index.md" %}
-              {% assign c_base_name = c_filename | split: '.' | first %}
-              {% assign c_parts = c_base_name | split: ' ' %}
-              {% assign c_first = c_parts | first %}
-              {% assign c_first_non_digits = c_first
-                | remove: '0'
-                | remove: '1'
-                | remove: '2'
-                | remove: '3'
-                | remove: '4'
-                | remove: '5'
-                | remove: '6'
-                | remove: '7'
-                | remove: '8'
-                | remove: '9' %}
-              {% assign c_display_title = c_base_name %}
-              {% if c_parts.size > 1 and c_first_non_digits == '' and c_first != '' %}
-                {% assign c_display_title = c_base_name | remove_first: c_first | remove_first: ' ' %}
-              {% endif %}
               <li>
                 <a
                   href="{{ c.url | relative_url }}"
                   {% if c.url == page.url %}aria-current="page"{% endif %}
-                >{{ c_display_title }}</a>
+                >{% include nav-short-title-from-filename.html filename=c_filename %}</a>
               </li>
             {% endif %}
           {% endfor %}
@@ -536,7 +438,22 @@
     <footer>
       <nav>
         {% if keynav_prev_url %}
-          <a href="{{ keynav_prev_url | relative_url }}" rel="prev" aria-label="Previous page" title="Use cursor keys">←</a>
+          <a
+            class="footer-keynav-link"
+            href="{{ keynav_prev_url | relative_url }}"
+            rel="prev"
+            {% if keynav_prev_title != "" %}
+              aria-label="Previous page: {{ keynav_prev_title }}"
+            {% else %}
+              aria-label="Previous page"
+            {% endif %}
+            title="Use cursor keys"
+          >
+            {% if keynav_prev_title != "" %}
+              <span class="footer-keynav-title">{{ keynav_prev_title }}</span>
+            {% endif %}
+            <span class="footer-keynav-arrow" aria-hidden="true">←</span>
+          </a>
         {% endif %}
       </nav>
       <small>
@@ -544,7 +461,22 @@
       </small>
       <nav>
         {% if keynav_next_url %}
-          <a href="{{ keynav_next_url | relative_url }}" rel="next" aria-label="Next page" title="Use cursor keys">→</a>
+          <a
+            class="footer-keynav-link"
+            href="{{ keynav_next_url | relative_url }}"
+            rel="next"
+            {% if keynav_next_title != "" %}
+              aria-label="Next page: {{ keynav_next_title }}"
+            {% else %}
+              aria-label="Next page"
+            {% endif %}
+            title="Use cursor keys"
+          >
+            {% if keynav_next_title != "" %}
+              <span class="footer-keynav-title">{{ keynav_next_title }}</span>
+            {% endif %}
+            <span class="footer-keynav-arrow" aria-hidden="true">→</span>
+          </a>
         {% endif %}
       </nav>
     </footer>
