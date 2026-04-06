@@ -349,7 +349,7 @@ nav a[aria-current="location"] {
 /* Page footer: full-width flex row, license grows in the middle, prev/next at the sides (not main nav). */
 body > footer {
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
   padding-bottom: 1rem;
 }
