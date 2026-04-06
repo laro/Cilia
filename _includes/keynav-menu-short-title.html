@@ -1,21 +1,22 @@
 {% comment %}
-  Short navigation label for keynav footer targets — same rules as primary menu + sub-nav filenames.
+  Label for keynav prev/next targets, aligned with the menu:
+  - Home: home_display_title.
+  - Root-level .md: short title from filename.
+  - Inside a section: match sub-nav when the page would appear there — every file except
+    "0 Index.md" / "00 Index.md" uses the same short title as nav-sub; those two index files
+    use the primary section label (folder name with numeric prefix stripped).
 {% endcomment %}
 {% assign kms_t = include.target %}
 {% if kms_t %}
   {% if kms_t.url == keynav_home_url %}
     {{ home_display_title }}
   {% elsif kms_t.path contains '/' %}
+    {% assign kms_fn = kms_t.path | split: '/' | last %}
     {% assign kms_section_dir = kms_t.path | split: '/' | first %}
-    {% capture kms_section_index_url %}
-      {% include nav-primary-section-index-url.html section_dir=kms_section_dir %}
-    {% endcapture %}
-    {% assign kms_section_index_url = kms_section_index_url | strip %}
-    {% if kms_t.url == kms_section_index_url %}
+    {% if kms_fn == "0 Index.md" or kms_fn == "00 Index.md" %}
       {% capture kms_cap %}{% include nav-strip-numeric-prefix.html label=kms_section_dir %}{% endcapture %}
       {{ kms_cap | strip }}
     {% else %}
-      {% assign kms_fn = kms_t.path | split: '/' | last %}
       {% include nav-short-title-from-filename.html filename=kms_fn %}
     {% endif %}
   {% else %}
