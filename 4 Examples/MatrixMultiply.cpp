@@ -3,7 +3,7 @@ auto multiply(const Matrix& A, const Matrix& B) -> Matrix {
     int n = A.columns();
     int p = B.columns();
 
-    Matrix C(m, n);
+    Matrix C(m, p);
 
     for (int i = 0; i < m; ++i) {
         for (int j = 0; j < p; ++j) {

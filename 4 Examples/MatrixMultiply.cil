@@ -3,7 +3,7 @@ func multiply(Matrix A, B) -> Matrix {
     Int n = A.columns()
     Int p = B.columns()
 
-    Matrix C(m, n);
+    Matrix C(m, p);
 
     for i in 0..<m {
         for j in 0..<p {
