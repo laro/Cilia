@@ -309,6 +309,15 @@ One could define the order of bits in a bitfield.
             - as in C#
 
 
+## C++ Compatibility / Interoperability
+The compiler recognizes the language (C, C++, or Cilia) by marked blocks:
+- `lang "C++" { ... }`
+- `lang "Cilia" { ... }`
+- `lang "C" { ... }`
+- Could be lLimited to top level.
+- Could be extended to other languages as well, but technically this is limited to languages where the scope is marked with `{ }`.
+
+
 ## Versioning
 Versioning of the Cilia source code could alternatively be done
 - via file ".cilia_version" in a (project) directory,

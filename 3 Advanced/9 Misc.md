@@ -19,12 +19,6 @@ Bi-directional interoperability, so (with a hypothetical C++/Cilia compiler) it 
 Can call C functions, access C structs (as C++ can do).
 
 The compiler recognizes the language (C, C++, or Cilia) by:
-- Marked blocks
-    - `lang "C++" { ... }`
-    - `lang "Cilia" { ... }`
-    - ~~`lang "C" { ... }`~~
-    - TODO Limited to top level?
-    - Technically limited to languages where the scope is marked with `{ }`.
 - File extension
     - Cilia: `*.cil`, `*.hil`
     - C++: `*.cpp`, `*.hpp` or `*.cxx`, `*.hxx`
