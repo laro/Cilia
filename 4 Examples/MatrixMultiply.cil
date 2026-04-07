@@ -9,8 +9,8 @@ func multiply(Matrix A, B) -> Matrix {
     Matrix C(m, p);
 
     for i in 0..<m {
-        for j in 0..<p {
-            for k in 0..<n {
+        for k in 0..<n {
+            for j in 0..<p {
                 C[i, j] += A[i, k] * B[k, j]
             }
         }
