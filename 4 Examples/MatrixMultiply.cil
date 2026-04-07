@@ -1,7 +1,10 @@
 func multiply(Matrix A, B) -> Matrix {
     Int m = A.rows()
     Int n = A.columns()
+    Int o = B.rows()
     Int p = B.columns()
+
+    assert(n == o, "A.columns() must equal B.rows() for matrix multiplication")
 
     Matrix C(m, p);
 
