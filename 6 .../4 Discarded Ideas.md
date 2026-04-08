@@ -314,8 +314,12 @@ The compiler recognizes the language (C, C++, or Cilia) by marked blocks:
 - `lang "C++" { ... }`
 - `lang "Cilia" { ... }`
 - `lang "C" { ... }`
-- Could be lLimited to top level.
-- Could be extended to other languages as well, but technically this is limited to languages where the scope is marked with `{ }`.
+Could be limited to top level.  
+Could be extended to other languages as well, but technically this is limited to languages where the scope is marked with `{ }`.
+
+> Note:  
+> Mixing languages at file level is complicated already, and it is not desirable to have
+> wild combinations of Cilia and C/C++ source code in one file anyway.
 
 
 ## Versioning
