@@ -95,8 +95,7 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
     - `cilia::lapack`, `cilia::geometry`
     - I don't think this is that important, but it helps to differentiate between classes and namespaces.
 
-Acronyms of at most two letters stay fully upper-case inside names, e.g. `userID`, `IOStream`.  
-Longer abbreviations follow normal camel-case segments, e.g. 'HttpRequest', 'XmlWriter'.
+Acronyms of at most two letters stay fully upper-case inside names, e.g. `userID`, `IOStream`. Longer abbreviations follow normal camel-case segments, e.g. 'HttpRequest', 'XmlWriter'.
 
 
 ## No Trailing Semicolons
