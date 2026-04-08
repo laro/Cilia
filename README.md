@@ -64,6 +64,9 @@ Cilia is mainly a new syntax for C++, so it has the same core features:
 
 Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 
+Acronyms of at most two letters stay fully upper-case inside names, e.g. `userID`, `IOStream`. Longer abbreviations follow normal camel-case segments.
+
+
 - All types and **classes** in **UpperCamelCase** (AKA PascalCase).
     - `Bool`, `Int`, `Int32`, `UInt`, `BigInt`, `Float`
     - `String`, `Array`, `Map`, `ForwardList`, `UnorderedMap`, `ValueType`
