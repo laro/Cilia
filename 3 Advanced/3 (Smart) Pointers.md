@@ -13,8 +13,7 @@ to encourage the use of smart pointers.
 - `T^ ptr` is a `SharedPtr<T>`
 - `T- ptr` is a `WeakPtr<T>`
 
-> The use of plain local/stack-allocated or of member variables is still preferred, of course.  
-> Use (smart) pointers only when you need them.
+> The use of plain local/stack-allocated or of member variables is still preferred, of course. Use (smart) pointers only when you need them.
 
 
 ## `T+` pointer
