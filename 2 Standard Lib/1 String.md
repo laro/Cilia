@@ -34,8 +34,7 @@ Iteration over a `String` or `StringView` by:
         - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
         - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
         - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
-    - **Note:** _Not even with UTF-32_ do all grapheme clusters fit into a single code point,  
-      so not:
+    - **Note:** _Not even with UTF-32_ do all grapheme clusters fit into a single code point, so not:
         - Emoji ZWJ Sequences (Zero Width Joiner),
             - emoji with modifier characters like skin tone or variation selector,
         - diacritical characters (äöü..., depending on the normal form chosen),
