@@ -17,22 +17,21 @@ Based on UTF-8, as that IMHO is (among all the Unicode formats)
 - the most efficient, at least for "western" use (and you are free to use UTF16- or UTF32String otherwise).
     
 Iteration over a `String` or `StringView` by:
-- **Graphemes**/Grapheme Clusters
+- **Grapheme Clusters**
     - each represented by a `StringView`.
     - This is the _default form of iteration_ over a `String` or `StringView`
-    - A single grapheme will often consist of multiple code _units_  
-      and may even consist of multiple code _points_ (then it is called a grapheme _cluster_).
-    - `for grapheme in "abc 🥸👮🏻"`
+    - A single grapheme cluster will often consist of multiple code _units_  
+      and may even consist of multiple code _points_ (therefore it is called a grapheme _cluster_).
+    - `for graphemeCluster in "abc 🥸👮🏻"`
         - "a", "b", "c", " ", "🥸", "👮🏻"
         - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
-    - A bit slow, as it has to find grapheme (and cluster) boundaries.
+    - Not as fast as iterating over bytes, as it has to find grapheme cluster boundaries.
     - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
     - Additional/alternative names?
         - `for graphemeCluster in text.asGraphemeClusters()`?
 - **Code Points**
-    - each represented by a `UInt32`,
+    - each represented by an `Int32`,
         - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
-            - Called "auto decoding" in D.
         - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
         - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
     - **Note:** _Not even with UTF-32_ do all grapheme clusters fit into a single code point,  
@@ -41,12 +40,12 @@ Iteration over a `String` or `StringView` by:
             - emoji with modifier characters like skin tone or variation selector,
         - diacritical characters (äöü..., depending on the normal form chosen),
         - surely some more ...
-    - A bit faster than iteration over grapheme clusters, but still slow, as it has to find code point boundaries in UTF-8/16 strings.
+    - A bit faster than iteration over grapheme clusters, but it still has to find code point boundaries in UTF-8/16 strings.
     - Fast with UTF-32 strings, but UTF-32 strings in general are often slower than UTF-8, simply due to their size (cache, memory bandwidth).
 - **Code Units**
     - each represented by a
         - `Char` for `String`
-            - it is `Char`==`Char8`==`UInt8` and `String`==`UTF8String`
+            - it is `Char`==`Char8` and `String`==`UTF8String`
         - `Char16` for `UTF16String`
         - `Char32` for `UTF32String`
     - `for aChar8 in "abc 🥸👮🏻".asArray()`
@@ -123,8 +122,7 @@ Or a subclass with known encoding has to be used:
 
 
 ## Char
-`Char8`, `Char16`, `Char32` are considered as _different_ types for parameter overloading,
-but otherwise are like `UInt8`, `UInt16`, `UInt32`.
+`Char8`, `Char16`, `Char32` are considered as _different_ types for parameter overloading, but otherwise are like `UInt8`, `UInt16`, `UInt32`.
 
 
 ## ICU
@@ -142,7 +140,7 @@ but otherwise are like `UInt8`, `UInt16`, `UInt32`.
 > - Calendar specific date and time manipulation
 > - Text boundary analysis for finding characters, word and sentence boundaries
 
-Even iterating through graphemes (or graphe clusters) is complicated for some/rare/historic scripts.
+Even iterating through graphemes clusters is complicated for some/rare/historic scripts.
 - Basic is Latin, combining marks, ZWJ, flags, variant selector, CJK (Han, Hiragana, Katakana, Hangul).
     - So most everything is covered.
 - Give more complex cases to ICU (Arabic, Devanagari, Thai).
