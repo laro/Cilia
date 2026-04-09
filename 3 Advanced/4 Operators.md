@@ -5,11 +5,11 @@ description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overlo
 
 # Operators
 
-## Power function
+## Power Function
 - **`a^x`** for `pow(a, x)` (as in Julia),
 - "raise a to the power of x".
 
-## Boolean operators
+## Boolean Operators
 - **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`** in addition to `&&`/`&`, `||`/`|`, ...
     - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
         [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
@@ -53,7 +53,7 @@ description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overlo
         - use `operator<=>` (if defined), or
         - use negated generated `operator==`.
 
-## **Range operator** `..` and `..<`
+## **Range Operator** `..` and `..<`
 - `1..10` and `0..<10` are ranges
     - as in [Kotlin](https://kotlinlang.org/docs/ranges.html)
     - Similar, but different:
@@ -119,7 +119,7 @@ description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overlo
 - Keyword **`operator`** instead of `func`.
 - As with normal functions: Parameters are passed as `in` by default (i.e. `const T&` or `const T`).
 
-### Assignment operator
+### Assignment Operator
 ```
 class Int256 {
     operator =(Int256 other) { ... }
@@ -135,7 +135,7 @@ class Int256 {
   }
   ```
 
-### Arithmetic operators
+### Arithmetic Operators
 ```
 operator +(Int256 a, b) -> Int256 { ... }
 operator -(Int256 a, b) -> Int256 { ... }
@@ -144,7 +144,7 @@ operator /(Int256 a, b) -> Int256 { ... }
 operator %(Int256 a, b) -> Int256 { ... }
 ```
 
-### Shift and rotate operators
+### Shift and Rotate Operators
 ```
 operator <<(Int256 a, Int shiftCount) -> Int256 { ... }
 operator >>(Int256 a, Int shiftCount) -> Int256 { ... }
@@ -152,7 +152,7 @@ operator <<<(UInt256 a, Int shiftCount) -> UInt256 { ... }
 operator >>>(UInt256 a, Int shiftCount) -> UInt256 { ... }
 ```
 
-### Compound assignment operators
+### Compound Assignment Operators
 ```
 class Int256 {
     operator +=(Int256 other) { ... }
@@ -172,7 +172,7 @@ class UInt256 {
 ```
 - Not ~~`operator ^=(Int256 other) { ... }`~~
 
-### Increment and decrement operators
+### Increment and Decrement Operators
 ```
 class Int256 {
     operator ++() -> Int256& { ... }
@@ -182,7 +182,7 @@ class Int256 {
 }
 ```
 
-### Relational and comparison operators
+### Relational and Comparison Operators
 ```
 operator ==(Int256 a, b) -> Bool { ... }
 operator !=(Int256 a, b) -> Bool { ... }
@@ -193,7 +193,7 @@ operator >=(Int256 a, b) -> Bool { ... }
 operator <=>(Int256 a, b) -> Int { ... }
 ```
 
-### Logical operators
+### Logical Operators
 - Boolean operators
   ```
   operator and(Bool a, b) -> Bool { ... }
