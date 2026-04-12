@@ -126,7 +126,7 @@ Or a subclass with known encoding has to be used:
 
 ## ICU
 
-[International Components for Unicode](https://unicode-org.github.io/icu/userguide/icu4c/) ("ICU") for advanced Unicode support.
+[International Components for Unicode](https://icu.unicode.org) ("ICU", "[ICU4C](https://unicode-org.github.io/icu/userguide/icu4c/)", "[ICU4C](https://icu4x.unicode.org)") for advanced Unicode support.
 > The ICU libraries provide support for:
 > - The latest version of the Unicode standard
 > - Character set conversions with support for over 220 codepages
