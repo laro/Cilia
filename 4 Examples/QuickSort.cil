@@ -18,15 +18,13 @@ func quickSort<Sortable T>(Span<T> array) {
         if left < right {
             swap(inout array[left], inout array[right])
             ++left
-            if right > 0 { // Protection against underflow
-                --right
-            }
+            --right
         }
     }
 
     // Recursion on the two sub-arrays
     if right > 0 {
-        quickSort(array.first(right + 1))
+        quickSort(array.first(right))
     }
     if left < array.size() - 1 {
         quickSort(array.subSpan(left))

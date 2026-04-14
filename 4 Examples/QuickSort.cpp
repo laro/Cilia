@@ -18,15 +18,13 @@ template <typename T> void quicksort(span<T> array) {
         if (left < right) {
             swap(array[left], array[right]);
             ++left;
-            if (right > 0) { // Protection against underflow
-                --right;
-            }
+            --right;
         }
     }
 
     // Recursion on the two sub-arrays
     if (right > 0) {
-        quicksort(array.first(right + 1));
+        quicksort(array.first(right));
     }
     if (left < int(array.size()) - 1) {
         quicksort(array.subspan(left));
