@@ -15,7 +15,7 @@ template <typename T> void quicksort(span<T> array) {
             --right;
         }
 
-        if (left < right) {
+        if (left <= right) {
             swap(array[left], array[right]);
             ++left;
             --right;
@@ -24,7 +24,7 @@ template <typename T> void quicksort(span<T> array) {
 
     // Recursion on the two sub-arrays
     if (right > 0) {
-        quicksort(array.first(right));
+        quicksort(array.first(right + 1));
     }
     if (left < int(array.size()) - 1) {
         quicksort(array.subspan(left));
