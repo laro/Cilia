@@ -233,9 +233,9 @@ translates to
 - ```Bool? isJpeg = name?.endsWith(".jpeg")```  
   translates to  
   ```Optional<Bool> isJpeg = name ? Optional((*name).endsWith(".jpeg")) : NullOpt```
-- ```Bool isJpeg = name?.endsWith(".jpeg") ?? false```  
+- ```Bool isJpeg = name?.endsWith(".jpeg") ?? False```  
   translates to  
-  ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(false)```
+  ```Bool isJpeg = (name ? Optional((*name).endsWith(".jpeg")) : NullOpt).valueOr(False)```
   
 ### Optional Pointers
 Plain `T*` as well as `T^`, `T+`, `T-` can be used like an optional.
@@ -270,7 +270,7 @@ T* ptrToContactInfo = user?.ptrToContactInfo
 String realName = ptrToContactInfo?.name ?? ""
 ```
 
-So in Cilia for a `T*?`/`Optional<T*>` that has a value, that value is never `NullPtr`. And when you assign `NullPtr` to a `T*?`/`Optional<T*> optionalPtr`, then `optionalPtr.hasValue()` returns `false`.  
+So in Cilia for a `T*?`/`Optional<T*>` that has a value, that value is never `NullPtr`. And when you assign `NullPtr` to a `T*?`/`Optional<T*> optionalPtr`, then `optionalPtr.hasValue()` returns `False`.  
 This is different than in C++, so for interop with C++ you may need to use `std::optional<T*>` or `Optional<Optional<T*>>`.
 
 
