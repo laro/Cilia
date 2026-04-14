@@ -6,7 +6,7 @@ func multiply(Matrix A, B) -> Matrix {
 
     assert(n == o, "A.columns() must equal B.rows() for matrix multiplication")
 
-    Matrix C(m, p);
+    Matrix C(m, p)
 
     for i in 0..<m {
         for k in 0..<n {
