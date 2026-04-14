@@ -144,7 +144,7 @@ One could define the order of bits in a bitfield.
 
 
 ## Literals
-- Lowercase `true`, `false` are Bool
+- Lowercase `true`, `false` as boolean literals.
 - `Null` could be the null pointer, and `NullType` its type.
     - Shorter and more similar to `NULL` in C.
 
