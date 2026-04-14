@@ -3,9 +3,9 @@ func sieveOfEratosthenes(Int n) -> Int[] {
         return {}
     }
 
-    Bool[] isPrime(n + 1, true)
-    isPrime[0] = false
-    isPrime[1] = false
+    Bool[] isPrime(n + 1, True)
+    isPrime[0] = False
+    isPrime[1] = False
 
     Int limit = Int(sqrt(Float(n)))
     for i in 2..limit {
@@ -13,7 +13,7 @@ func sieveOfEratosthenes(Int n) -> Int[] {
             continue
         }
         for j in i*i..n : i {
-            isPrime[j] = false
+            isPrime[j] = False
         }
     }
 
