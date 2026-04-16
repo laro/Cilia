@@ -99,7 +99,8 @@ if 1 <= x <= 10 { ... }
           }
           ```
         - IMHO the code is even more clear when written as while-loop.
-        - Note: When the `<Condition>` is empty, then it needs to be replaced with `True`, so `for (;;) { ... }` is translated to `while True { ... }`.
+        - Note:  
+          When the `<Condition>` is empty, then it needs to be replaced with `True`, so `for (;;) { ... }` is translated to `while True { ... }`.
 
 
 ## Switch / Case
