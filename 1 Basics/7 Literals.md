@@ -186,7 +186,7 @@ Literals are fixed values written directly in source code – such as numbers, s
     - `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
     - `'Ω'` is a `Char16` character literal. (Can implicitly be converted to `Char32`.)
     - `'𝄞'` is a `Char32` character literal.
-    - `'👮🏻'` is an _invalid_ character literal, as it is a grapheme clusters consisting of multiple code points. Use the string literal `"👮🏻"` instead.
+    - `'👮🏻'` is an _invalid_ character literal, as it is a grapheme cluster consisting of multiple code points. Use the string literal `"👮🏻"` instead.
 
 ### Array
 - `[1, 2, 3]` is an array (here an `Int[3]`),
