@@ -44,7 +44,9 @@ Furthermore it is a collection of – in my opinion – quite obvious ideas. And
     - `for i in [5, 7, 11, 13] { ... }`
     - `for word in words { ... }`
 
-Corresponding examples for C++, Cpp2, Carbon, Rust, Swift, Kotlin, Java, C#, and D are given [separately](/comparison/).
+Corresponding examples for C++, Cpp2, Carbon, etc. are given [separately](/comparison/).
+
+Also see example code for [Matrix Multiply](/examples/matrix-multiply/), [Sieve of Eratosthenes](/examples/sieve-of-eratosthenes/), [QuickSort](/examples/quicksort/), and [FizzBuzz](/examples/fizzbuzz/).
 
 
 ## C++ with a New Syntax
