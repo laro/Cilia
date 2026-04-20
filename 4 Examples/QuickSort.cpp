@@ -3,7 +3,7 @@ template <typename T> void quicksort(span<T> array) {
         return;
     }
 
-    T pivot = array[array.size() / 2];
+    const T pivot = array[array.size() / 2];
     int left = 0;
     int right = array.size() - 1;
 
