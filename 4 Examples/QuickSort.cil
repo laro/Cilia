@@ -3,7 +3,7 @@ func quickSort<Sortable T>(Span<T> array) {
         return
     }
 
-    T pivot = array[array.size() / 2]
+    const T pivot = array[array.size() / 2]
     Int left = 0
     Int right = array.size() - 1
 
