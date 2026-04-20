@@ -6,7 +6,7 @@ auto multiply(const Matrix& A, const Matrix& B) -> Matrix {
     const int o = B.rows();
     const int p = B.columns();
 
-    assert(n == o && "A.columns() must equal B.rows() for matrix multiplication");
+    assert(n == o && "A.columns() must equal B.rows()");
 
     Matrix C(m, p);
 
