@@ -26,4 +26,4 @@ func sieveOfEratosthenes(Int n) -> Int[] {
     }
 
     return primes
-}
+} 
