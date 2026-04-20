@@ -1,5 +1,3 @@
-#include <cassert>
-
 auto multiply(const Matrix& A, const Matrix& B) -> Matrix {
     const int m = A.rows();
     const int n = A.columns();
