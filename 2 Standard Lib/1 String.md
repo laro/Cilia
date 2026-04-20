@@ -66,8 +66,8 @@ Iteration over a `String` or `StringView` by:
         |------|-------------------|------------------------------|
         | LF   | `U+000A`          | `\n`, Unix/Linux/macOS       |
         | CR   | `U+000D`          | `\r`, Classic Mac            |
-        | CRLF | `U+000D` `U+000A` | Windows                      |
-        | LFCR | `U+000A` `U+000D` | AmigaOS                      |
+        | CRLF | `U+000D` `U+000A` | `\r\n`, Windows              |
+        | LFCR | `U+000A` `U+000D` | `\n\r`, AmigaOS              |
         | NEL  | `U+0085`          | Next Line, EBCDIC/Mainframes |
         | LS   | `U+2028`          | Line Separator               |
         | PS   | `U+2029`          | Paragraph Separator          |
