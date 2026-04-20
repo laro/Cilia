@@ -4,7 +4,7 @@ func multiply(Matrix A, B) -> Matrix {
     const o = B.rows()
     const p = B.columns()
 
-    assert(n == o, "A.columns() must equal B.rows() for matrix multiplication")
+    assert(n == o, "A.columns() must equal B.rows()")
 
     Matrix C(m, p)
 
