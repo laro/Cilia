@@ -1,10 +1,10 @@
 #include <cassert>
 
 auto multiply(const Matrix& A, const Matrix& B) -> Matrix {
-    int m = A.rows();
-    int n = A.columns();
-    int o = B.rows();
-    int p = B.columns();
+    const int m = A.rows();
+    const int n = A.columns();
+    const int o = B.rows();
+    const int p = B.columns();
 
     assert(n == o && "A.columns() must equal B.rows() for matrix multiplication");
 
