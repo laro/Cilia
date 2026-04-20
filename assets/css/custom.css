@@ -191,8 +191,8 @@ html {
 main p,
 main li,
 main blockquote,
-main dl/*,
-.markdown-body .highlighter-rouge*/ {
+main dl,
+.markdown-body .highlighter-rouge {
     max-width: 65ch;
 }
 
