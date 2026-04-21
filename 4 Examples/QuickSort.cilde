@@ -1,0 +1,32 @@
+func quickSort<Sortable T>(Span<T> array) {
+    if array.size() <= 1 {
+        return
+    }
+
+    const T pivot = array[array.size() / 2]
+    Int left = 0
+    Int right = array.size() - 1
+
+    while left < right {
+        while array[left] < pivot {
+            ++left
+        }
+        while array[right] > pivot {
+            --right
+        }
+
+        if left <= right {
+            swap(inout array[left], inout array[right])
+            ++left
+            --right
+        }
+    }
+
+    // Recursion on the two sub-arrays
+    if right > 0 {
+        quickSort(array.first(right + 1))
+    }
+    if left < array.size() - 1 {
+        quickSort(array.subSpan(left))
+    }
+}
