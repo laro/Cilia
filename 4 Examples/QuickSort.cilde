@@ -1,32 +1,32 @@
-func quickSort<Sortable T>(Span<T> array) {
-    if array.size() <= 1 {
-        return
+funktion schnellSort<Sortierbar T>(Spanne<T> reihe) {
+    wenn reihe.größe() <= 1 {
+        zurück
     }
 
-    const T pivot = array[array.size() / 2]
-    Int left = 0
-    Int right = array.size() - 1
+    konstant T pivot = reihe[reihe.größe() / 2]
+    Ganzzahl links = 0
+    Ganzzahl rechts = reihe.größe() - 1
 
-    while left < right {
-        while array[left] < pivot {
-            ++left
+    solange links < rechts {
+        solange reihe[links] < pivot {
+            ++links
         }
-        while array[right] > pivot {
-            --right
+        solange reihe[rechts] > pivot {
+            --rechts
         }
 
-        if left <= right {
-            swap(inout array[left], inout array[right])
-            ++left
-            --right
+        wenn links <= rechts {
+            tausche(einaus reihe[links], einaus reihe[rechts])
+            ++links
+            --rechts
         }
     }
 
-    // Recursion on the two sub-arrays
-    if right > 0 {
-        quickSort(array.first(right + 1))
+    // Rekursion über die beiden Teilreihen
+    wenn rechts > 0 {
+        schnellSort(reihe.erste(rechts + 1))
     }
-    if left < array.size() - 1 {
-        quickSort(array.subSpan(left))
+    wenn links < reihe.größe() - 1 {
+        schnellSort(reihe.teilspanne(links))
     }
 }
