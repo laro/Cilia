@@ -8,9 +8,9 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
 - Types
     - `i32`, `i64`, `f32`
 - Variables
-    - `var x: i64 = 42;`
-    - `var x: auto = 42;`
-    - `let x: auto = 42;`
+    - `var n: i64 = 42;`
+    - `var n: auto = 42;`
+    - `let n: auto = 42;`
     - `var words: Array(String);`
     - `var names: Set(String);`
     - `var contactInfoForID: HashMap(String, ContactInfo);`

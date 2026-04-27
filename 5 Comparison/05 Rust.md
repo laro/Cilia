@@ -8,7 +8,7 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
 - Types
     - `isize`, `i32`, `i64`, `f32`
 - Variables
-    - `let mut x: i64 = 42;`
+    - `let mut n: i64 = 42;`
     - `let mut n = 42;`
     - `let n = 42;`
     - `let mut words = Vec::<String>::new();`

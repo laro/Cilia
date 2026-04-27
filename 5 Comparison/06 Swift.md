@@ -8,7 +8,7 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
 - Types
     - `Int`, `Int32`, `Int64`, `Float`
 - Variables
-    - `var x: Int = 42`
+    - `var n: Int = 42`
     - `var n = 42`
     - `let n = 42`
     - `var words: [String] = []`
