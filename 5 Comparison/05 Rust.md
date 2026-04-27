@@ -9,8 +9,8 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `isize`, `i32`, `i64`, `f32`
 - Variables
     - `let mut x: i64 = 42;`
-    - `let mut x = 42;`
-    - `let x = 42;`
+    - `let mut n = 42;`
+    - `let n = 42;`
     - `let mut words = Vec::<String>::new();`
     - `let mut names = HashSet::<String>::new();`
     - <span class="wide">`let mut contactInfoForID = HashMap::<String, ContactInfo>::new();`</span>

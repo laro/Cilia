@@ -9,8 +9,8 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `Int`, `Long`, `Float`
 - Variables
     - `var x: Int = 42`
-    - `var x = 42`
-    - `val x = 42`
+    - `var n = 42`
+    - `val n = 42`
     - `var words: MutableList<String> = mutableListOf()`
     - `var names: MutableSet<String> = mutableSetOf()`
     - <span class="wide">`var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`</span>

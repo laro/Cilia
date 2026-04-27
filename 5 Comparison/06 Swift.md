@@ -9,8 +9,8 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `Int`, `Int32`, `Int64`, `Float`
 - Variables
     - `var x: Int = 42`
-    - `var x = 42`
-    - `let x = 42`
+    - `var n = 42`
+    - `let n = 42`
     - `var words: [String] = []`
     - `var names: Set<String> = Set()`
     - `var contactInfoForID: [String: ContactInfo] = [:]`

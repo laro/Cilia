@@ -28,9 +28,9 @@ Furthermore it is a collection of – in my opinion – quite obvious ideas. And
 - Types
     - `Int`, `Int32`, `Int64`, `Float`
 - Variables
-    - `Int x = 42`
-    - `var x = 42`
-    - `const x = 42`
+    - `Int n = 42`
+    - `var n = 42`
+    - `const n = 42`
     - `String[] words`
     - `Set<String> names`
     - `ContactInfo[String] contactInfoForID`

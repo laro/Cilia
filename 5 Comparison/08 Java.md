@@ -8,9 +8,9 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
 - Types
     - `int`, `long`, `float`
 - Variables
-    - `int x = 42;`
-    - `var x = 42;`
-    - `final var x = 42;`
+    - `int n = 42;`
+    - `var n = 42;`
+    - `final var n = 42;`
     - `var words = new ArrayList<String>();`
     - `var names = new HashSet<String>();`
     - `var contactInfoForID = new HashMap<String, ContactInfo>();`
