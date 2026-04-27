@@ -3,7 +3,7 @@ func sieveOfEratosthenes(Int n) -> Int[] {
         return {}
     }
 
-    Bool[] isPrime(n + 1, True)
+    BitArray isPrime(n + 1, True)
     isPrime[0] = False
     isPrime[1] = False
 
