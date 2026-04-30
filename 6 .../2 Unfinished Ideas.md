@@ -50,6 +50,13 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 - For Objective-C/Swift, C#/.NET, and Java the `UniquePtrType` will be very similar to the `SharedPtrType`, maybe even identical.
 
 
+## Simplified Logic Keywords
+
+- `and`, `or` in addition to `&&`/`&`, `||`/`|`
+- `xor` in addition to `!=`/`^`
+- `not` in addition to `!`
+
+
 ## Exotic Operators (e.g. Unicode)
 
 - ⊕, ⊖, ⊗, ⊘, ⊙, ⊛, ⊞, ⊟, ∪, ∩, ∖, ∈, ∉, ∋, ∌, ∧, ∨, ¬, ∷, ∶, ∝, ∼, ≈, ≉, ≠, ≤, ≥, ≪, ≫, ⊂, ⊃, ⊆, ⊇, ∅, ∇, ∂, ∞, ∑, ∏, ∫, ∮, ∵, ∴, ∗, ∘, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
