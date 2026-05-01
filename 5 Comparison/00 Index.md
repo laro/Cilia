@@ -24,7 +24,7 @@ I like many aspects, especially of Cpp2 (Herb Sutter), but not the `name: Type` 
 [Bjarne Stroustrup said](https://www.stroustrup.com/devXinterview.html) (way back in 2000) in an interview about C++:
 > Today, I'd look for a _much_ simpler syntax — and probably clash with people's confusion between the familiar and the simple.
 
-["Tja"](https://translate.google.com/?sl=de&tl=en&text=Tja&op=translate), maybe.
+Well... maybe.
 
 
 ## Default vs. Explicit Initialization
