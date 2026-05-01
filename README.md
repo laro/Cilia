@@ -61,6 +61,11 @@ Cilia is mainly a new syntax for C++, so it has the same core features:
 - exceptions, const correctness,
 - compile-time computation, coroutines, static reflection.
 
+> **Note**  
+> So in Cilia everything is as in C++, unless stated otherwise
+> on these pages. Cilia by design mainly changes the syntax
+> ("syntactic sugar"), not the internal mechanisms.
+
 
 ## CamelCase Style
 
