@@ -25,7 +25,7 @@ I like many aspects, especially of Cpp2 (Herb Sutter), but not the `name: Type` 
 > Today, I'd look for a _much_ simpler syntax — and probably clash with people's confusion between the familiar and the simple.
 
 Well... maybe.  
-In any case, a certain degree of familiarity surely helps in understanding a 'new' language.
+In any case, a certain degree of familiarity surely helps in understanding a "new" language.
 
 
 ## Default vs. Explicit Initialization
