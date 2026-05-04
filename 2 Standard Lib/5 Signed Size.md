@@ -12,7 +12,7 @@ Mixing signed and unsigned integers is error-prone, and even pure unsigned arith
 Classic C/C++ pitfall:  
 `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
     
-When working with sizes, subtraction is common. The moment you compute differences, you need a signed type anyway. So just use `Int`, then ~~`Size`~~, ~~`SSize`~~, and ~~`PtrDiff`~~ are unnecessary. `UInt` should be reserved for rare cases like hashes, hardware registers, bit masks, and flags — _not_ used for sizes.
+When working with sizes, subtraction is common. The moment you compute differences, you need a signed type anyway. So just use `Int`, then ~~`Size`~~, ~~`SSize`~~, and ~~`PtrDiff`~~ are unnecessary. `UInt` should be reserved for cases like hardware registers, bit masks, flags, and hashes — _not_ used for sizes.
 
 See also [Going Native 2012, Day 2, Interactive Panel: Ask Us Anything](https://www.youtube.com/watch?v=Puio5dly9N8)
 - [12:53 - 13:10](https://youtu.be/Puio5dly9N8?t=774)  
