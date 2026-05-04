@@ -15,7 +15,7 @@ Classic C/C++ pitfall:
 When working with sizes, subtraction is common. The moment you compute differences, you need a signed type anyway. So just use `Int`, then ~~`Size`~~, ~~`SSize`~~, and ~~`PtrDiff`~~ are unnecessary. `UInt` should be reserved for rare cases like hashes, hardware registers, bit masks, and flags — _not_ used for sizes.
 
 See also Going Native 2012, Day 2, Interactive Panel: Ask Us Anything
-- [12:53 - 13:10](https://youtu.be/Puio5dly9N8?t=773)
+- [12:53 - 13:10](https://youtu.be/Puio5dly9N8?t=774)
   Bjarne Stroustrup:
     - "Use ints until you have a reason not to."
     - "Don't use unsigned unless you are fiddling with bit patters."
