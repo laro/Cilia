@@ -13,11 +13,9 @@ Classic C/C++ pitfall:
 `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
     
 When working with sizes, subtraction is common. The moment you compute differences, you need a signed type anyway. So just use `Int`, then ~~`Size`~~, ~~`SSize`~~, and ~~`PtrDiff`~~ are unnecessary.
-
 `UInt` should be reserved for cases like hardware registers, bit masks, flags, and hashes — _not_ used for sizes.
 
 Anyone who needs more than 2GB of data in a single "byte array", should please use a 64 bit platform.
-
 For bounds checking, the two comparisons `x >= 0` and `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step.
 
 
