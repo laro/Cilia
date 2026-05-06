@@ -10,8 +10,16 @@ Use `Int` (i.e. signed) as the return type for `*.size()`.
 Mixing signed and unsigned integers is error-prone, and even pure unsigned arithmetic is often unintuitive and dangerous.
 
 Classic C/C++ pitfall:  
-`aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
-    
+```
+size_t i = 9;
+while (i >= 0) {
+    --i;
+}
+```
+This is an endless loop, as `i` is _always_ `>= 0`.  
+With unsigned `0 - 1` is not `-1` but `0xffffffffffffffff`, i.e. a really big, positive integer.
+
+
 When working with sizes, subtraction is common. The moment you compute differences, you need a signed type anyway. So just use `Int`, then ~~`Size`~~, ~~`SSize`~~, and ~~`PtrDiff`~~ are unnecessary.
 `UInt` should be reserved for cases like hardware registers, bit masks, flags, and hashes — _not_ used for sizes.
 
