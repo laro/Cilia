@@ -12,7 +12,16 @@ Mixing signed and unsigned integers is error-prone, and even pure unsigned arith
 Classic C/C++ pitfall:  
 `aUInt - 1 >= 0` is _always_ true (even if `aUInt` is `0`)
     
-When working with sizes, subtraction is common. The moment you compute differences, you need a signed type anyway. So just use `Int`, then ~~`Size`~~, ~~`SSize`~~, and ~~`PtrDiff`~~ are unnecessary. `UInt` should be reserved for cases like hardware registers, bit masks, flags, and hashes — _not_ used for sizes.
+When working with sizes, subtraction is common. The moment you compute differences, you need a signed type anyway. So just use `Int`, then ~~`Size`~~, ~~`SSize`~~, and ~~`PtrDiff`~~ are unnecessary.
+
+`UInt` should be reserved for cases like hardware registers, bit masks, flags, and hashes — _not_ used for sizes.
+
+Anyone who needs more than 2GB of data in a single "byte array", should please use a 64 bit platform.
+
+For bounds checking, the two comparisons `x >= 0` and `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step.
+
+
+## The C++ Experts About It
 
 See also [Going Native 2012, Day 2, Interactive Panel: Ask Us Anything](https://www.youtube.com/watch?v=Puio5dly9N8)
 - [12:53 - 13:10](https://youtu.be/Puio5dly9N8?t=774)  
@@ -25,6 +34,3 @@ See also [Going Native 2012, Day 2, Interactive Panel: Ask Us Anything](https://
 - [1:02:51 - 1:03:14](https://youtu.be/Puio5dly9N8?feature=shared&t=3771)  
   Herb Sutter and Chandler Carruth about _unsigned_ `size_t` in the C++ STL containers: "They are wrong", "We are sorry"
 
-Anyone who needs more than 2GB of data in a single "byte array", should please use a 64 bit platform.
-
-For bounds checking, the two comparisons `x >= 0` and `x < width` may very well be reduced to a single `UInt(x) < width` _by the compiler_ in an optimization step.
