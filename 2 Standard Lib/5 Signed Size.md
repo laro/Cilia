@@ -31,10 +31,10 @@ For bounds checking, the two comparisons `x >= 0` and `x < width` may very well 
 
 See also [Going Native 2012, Day 2, Interactive Panel: Ask Us Anything](https://www.youtube.com/watch?v=Puio5dly9N8)
 - [12:53 - 13:10](https://youtu.be/Puio5dly9N8?t=774)  
-  Bjarne Stroustrup:
-    - "Use ints until you have a reason not to."
-    - "Don't use unsigned unless you are fiddling with bit patters."
-    - "Never mix signed and unsigned."
+  Bjarne Stroustrup:  
+  "Use ints until you have a reason not to.  
+  Don't use unsigned unless you are fiddling with bit patters.  
+  Never mix signed and unsigned."
 - [42:41 - 45:28](https://youtu.be/Puio5dly9N8?feature=shared&t=2561)  
   Bjarne Stroustrup and Herb Sutter recommend using _signed_ integer.
 - [1:02:51 - 1:03:14](https://youtu.be/Puio5dly9N8?feature=shared&t=3771)  
