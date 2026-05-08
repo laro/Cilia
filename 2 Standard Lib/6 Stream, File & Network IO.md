@@ -105,8 +105,8 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
     - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
     - `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
     - `in.isEof()` returns `True` if
-        - no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
-        - and the end of the file is reached or the pipe/socket is closed.
+        - the end of the file is reached (or the pipe/socket is closed),
+        - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer).
 
 
 ## File IO
