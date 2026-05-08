@@ -12,9 +12,15 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
 
 ## Global IO functions
 
-- `print("...")` with Newline, calls `cout.writeLine()`.
-- `scan() -> String` reads up to Newline, calls `cin.readLine()`.
-- `ask("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
+- `print("...")` with Newline,
+    - calls `cout.writeLine()`.
+- `readLine() -> String` reads up to Newline,
+    - calls `cin.readLine()`.
+- `input("Name? ") -> String`
+    - as in Python,
+    - calls `cout.write()`, then `cin.readLine()`.
+    - `input(String prompt = "") -> String`
+    - TODO `ask("Name? ") -> String` or `prompt("Name? ") -> String`?
 
 
 ## TextStream
