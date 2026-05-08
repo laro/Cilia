@@ -20,7 +20,7 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
     - as in Python,
     - calls `cout.write()`, then `cin.readLine()`.
     - `input(String prompt = "") -> String`
-    - TODO `ask("Name? ") -> String` or `prompt("Name? ") -> String`?
+    - TODO `ask()` or `prompt()`?
 
 
 ## TextStream
