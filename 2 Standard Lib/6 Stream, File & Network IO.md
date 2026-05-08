@@ -46,7 +46,7 @@ Reading
     - Returns a `String`, as UTF-8 "characters"/grapheme clusters may consist of multiple code points (therefore called a "grapheme _cluster_").
     - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
     - When the end of file is reached, then it returns `""`.
-    - Unicode variant of ~~`cin.readChar() -> String`~~.
+    - Unicode variant of ~~`cin.readChar() -> Char`~~.
     - TODO? `cin.readCodePoint() -> Char32` reads a single Unicode code point (as `Char32`).
         - But beware: some grapheme clusters, like emoji, consist of _multiple_ code points.
         - When the end of file is reached, then it returns `-1`.
