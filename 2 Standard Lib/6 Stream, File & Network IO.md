@@ -5,6 +5,11 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
 
 # Stream, File & Network IO
 
+> **Note**  
+> This is not necessarily part of the core language.
+> I'm just thinking about what a good API might look like.
+
+
 ## Global IO functions
 
 - `print("...")` with Newline, calls `cout.writeLine()`.
@@ -33,13 +38,13 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
         - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
         - When the end of file is reached, then it returns `""`.
         - But as empty lines are also read as `""`, you need to check `isEOF()` here.
-    - `cin.readGrapheme() -> String` reads a single grapheme (mostly a character).
-        - Returns a String, as UTF-8 "characters"/graphemes may consist of multiple code points (called a "grapheme cluster").
+    - `cin.readGraphemeCluster() -> String` reads a single grapheme cluster (mostly a character).
+        - Returns a `String`, as UTF-8 "characters"/grapheme clusters may consist of multiple code points (therefore called a "grapheme _cluster_").
         - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
         - When the end of file is reached, then it returns `""`.
         - Unicode variant of ~~`cin.readChar() -> String`~~.
-        - TODO? `cin.readCodePoint() -> Int32` reads a single Unicode code point (as Int32).
-            - But beware: some graphemes, like emoji, consist of multiple code points.
+        - TODO? `cin.readCodePoint() -> Char32` reads a single Unicode code point (as `Char32`).
+            - But beware: some grapheme clusters, like emoji, consist of _multiple_ code points.
             - When the end of file is reached, then it returns `-1`.
     - `cin.tryToRead() -> String` reads everything that is immediately available,
         - possibly/often returns `""`, it never blocks.
@@ -50,9 +55,9 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
             - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
                 Returns `""` when no data is buffered anymore (then maybe the end of file is reached).
         - Meant for polling / busy loops only, so _rarely_ appropriate.
-        - You need to check isEOF() separately!
+        - You need to check isEof() separately!
             - As you cannot distinguish "no data available" from EOF or pipe/socket closed.
-    - `cin.isEOF()` returns `True` if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
+    - `cin.isEof()` returns `True` if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
         - and the end of the file is reached or the pipe/socket is closed.
         - Only really necessary to call this function when using `cin.readImmediately()` or `cin.readLine()`.
 
@@ -68,13 +73,13 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
         - everything from the `istream` user-level cache, if not `0`,  
             otherwise everything from the kernel buffer/cache:
             - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically 64 KB).
-                Blocks when this buffer is empty.
-                When the pipe/socket is closed (and no data is buffered anymore), then it returns an empty array.
+                - Blocks when this buffer is empty.
+                - When the pipe/socket is closed (and no data is buffered anymore), then it returns an empty array.
             - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
-                Blocks when this cache is empty.
-                When the end of file is reached (and no data is cached anymore), then it returns an empty array.
+                - Blocks when this cache is empty.
+                - When the end of file is reached (and no data is cached anymore), then it returns an empty array.
     - `in.read(Int n) -> Byte[]` reads exactly n bytes.
-        - Blocks until (at least) the given number of bytes are read.
+        - Blocks until the given number of bytes are read.
         - Throws an exception if end of file is reached (or pipe/socket closed) before n bytes are read.
     - `in.read(Int minimum, maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes.
         - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
@@ -85,11 +90,11 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
         - Throws an exception if end of file reached (or pipe/socket closed) before `minimum` bytes are read.
         - The effective `maximum` if defined by `buffer.size()`.
             - You may limit the maximum number of bytes to read by using `buffer.subspan(0, 4096)`,
-                or configure the starting point (in the buffer) by using `buffer.subspan(100)`.
+              or configure the starting point (in the buffer) by using `buffer.subspan(100)`.
         - Usually more efficient, as the buffer is reused and less allocations are necessary.
     - `in.available() -> Int` says how many bytes are _immediately_ available for reading.
         - Returns the size of the `istream` cache, if not 0,  
-            otherwise reports the size of the kernel cache/buffer.
+          otherwise reports the size of the kernel cache/buffer.
         - As that is the number of bytes you would get with the next `in.read()`.
     - `in.peek(Int n) -> Byte[]`
         - Blocks until (at least) the `minimum` number of bytes are read.
@@ -97,7 +102,8 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
         - TODO Limited to 16 bytes or to the buffer size?
     - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
     - `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
-    - `in.isEOF()` returns `True` if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
+    - `in.isEof()` returns `True` if
+        - no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
         - and the end of the file is reached or the pipe/socket is closed.
 
 
