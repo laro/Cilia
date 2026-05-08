@@ -133,7 +133,7 @@ Reading
 - `file.seekFromEnd(Int distanceToEnd)`
     - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
 - `file.truncate()` truncates the file at the current position.
-    - `file.truncate(Int n)` truncates the file at the given position.
+    - `file.truncateAt(Int n)` truncates the file at the given position.
 - `file.path() -> String`
 
 
