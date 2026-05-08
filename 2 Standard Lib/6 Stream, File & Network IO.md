@@ -37,7 +37,7 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
             - (Maybe even `\n\r` from AmigaOS, and `NEL`/`U+0085` from EBCDIC/IBM.)
         - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
         - When the end of file is reached, then it returns `""`.
-        - But as empty lines are also read as `""`, you need to check `isEOF()` here.
+        - But as empty lines are also read as `""`, you need to check `isEof()` here.
     - `cin.readGraphemeCluster() -> String` reads a single grapheme cluster (mostly a character).
         - Returns a `String`, as UTF-8 "characters"/grapheme clusters may consist of multiple code points (therefore called a "grapheme _cluster_").
         - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
