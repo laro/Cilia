@@ -57,9 +57,11 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
         - Meant for polling / busy loops only, so _rarely_ appropriate.
         - You need to check isEof() separately!
             - As you cannot distinguish "no data available" from EOF or pipe/socket closed.
-    - `cin.isEof()` returns `True` if no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
-        - and the end of the file is reached or the pipe/socket is closed.
-        - Only really necessary to call this function when using `cin.readImmediately()` or `cin.readLine()`.
+    - `cin.isEof()`
+        - returns `True` if
+            - the end of the file is reached (or the pipe/socket is closed),
+            - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
+        - Typically necessary to call this function when `cin.read()` or `cin.readLine()` return `""`.
 
 - **`ByteStream`**
     - `out.close()`
