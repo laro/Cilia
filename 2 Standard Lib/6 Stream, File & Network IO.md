@@ -41,7 +41,7 @@ Reading
         - (Maybe even `\n\r` from AmigaOS, and `NEL`/`U+0085` from EBCDIC/IBM.)
     - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
     - When the end of file is reached, then it returns `""`.
-    - But as empty lines are also read as `""`, you need to check `isEof()` here.
+    - But as empty lines are also read as `""`, you need to check `atEnd()` here.
 - `cin.readGraphemeCluster() -> String` reads a single grapheme cluster (mostly a character).
     - Returns a `String`, as UTF-8 "characters"/grapheme clusters may consist of multiple code points (therefore called a "grapheme _cluster_").
     - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
@@ -59,9 +59,9 @@ Reading
         - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
             Returns `""` when no data is buffered anymore (then maybe the end of file is reached).
     - Meant for polling / busy loops only, so _rarely_ appropriate.
-    - You need to check `isEof()` separately!
+    - You need to check `atEnd()` separately!
         - As you cannot distinguish "no data available" from EOF or pipe/socket closed.
-- `cin.isEof()`
+- `cin.atEnd()` (instead of ~~`cin.isEof()`~~)
     - returns `True` if
         - the end of the file is reached (or the pipe/socket is closed),
         - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
@@ -116,7 +116,7 @@ Reading
     - TODO Limited to 16 bytes or to the buffer size?
 - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
 - `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
-- `in.isEof()` returns `True` if
+- `in.atEnd()` returns `True` if
     - the end of the file is reached (or the pipe/socket is closed),
     - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer).
 
