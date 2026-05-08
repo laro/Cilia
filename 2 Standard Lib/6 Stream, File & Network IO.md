@@ -59,7 +59,7 @@ Reading
         - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
             Returns `""` when no data is buffered anymore (then maybe the end of file is reached).
     - Meant for polling / busy loops only, so _rarely_ appropriate.
-    - You need to check isEof() separately!
+    - You need to check `isEof()` separately!
         - As you cannot distinguish "no data available" from EOF or pipe/socket closed.
 - `cin.isEof()`
     - returns `True` if
