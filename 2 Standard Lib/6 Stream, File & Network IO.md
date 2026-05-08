@@ -17,11 +17,12 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
 - `ask("Name? ") -> String` calls `cout.write()`, then `cin.readLine()`.
 
 
-## Streams
+## TextStream
 
-- **`TextStream`**
+- Writing
     - `cout.write("...")` without newline.
     - `cout.writeLine("...")` with newline.
+- Reading
     - `cin.read() -> String` reads
         - everything from the `istream` user-level cache (if not empty),
         - or (otherwise) everything from the kernel buffer/cache:
@@ -63,7 +64,10 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
             - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
         - Typically necessary to call this function when `cin.read()` or `cin.readLine()` return `""`.
 
-- **`ByteStream`**
+
+## ByteStream
+
+- Wrtiting
     - `out.close()`
     - `out.write(Byte[])`
     - `out.flush()` writes the data buffer (the `istream` user-level cache) to the operating system.
@@ -71,6 +75,7 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
     - `out.flushAndSync()` calls `flush()`, then
         - calls `fsync()` to write the kernel buffers to the file system and then to the hard disk/SSD (the write cache should be written/cleared, too).
         - This protects against data loss in the event of a program or _system_ crash.
+- Reading
     - `in.read() -> Byte[]` reads
         - everything from the `istream` user-level cache, if not `0`,  
             otherwise everything from the kernel buffer/cache:
@@ -112,18 +117,18 @@ description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStre
 
 ## File IO
 
-- **`File`**, derived from `ByteStream`
-    - `file.size() -> Int`
-    - `file.position() -> Int`
-        - `file.setPosition(Int n)` (AKA `file.seekFromStart()`)
-        - A common position for read and write.
-    - `file.seek(Int offsetToCurrentPos)`
-        - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
-    - `file.seekFromEnd(Int distanceToEnd)`
-        - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
-    - `file.truncate()` truncates the file at the current position.
-        - `file.truncate(Int n)` truncates the file at the given position.
-    - `file.path() -> String`
+**`File`**, derived from `ByteStream`.
+- `file.size() -> Int`
+- `file.position() -> Int`
+    - `file.setPosition(Int n)` (AKA `file.seekFromStart()`)
+    - A common position for read and write.
+- `file.seek(Int offsetToCurrentPos)`
+    - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
+- `file.seekFromEnd(Int distanceToEnd)`
+    - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
+- `file.truncate()` truncates the file at the current position.
+    - `file.truncate(Int n)` truncates the file at the given position.
+- `file.path() -> String`
 
 
 ## Network IO
