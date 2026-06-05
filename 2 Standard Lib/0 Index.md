@@ -19,8 +19,8 @@ There is a Cilia variant of each standard class/concept (with CamelCase class na
     - `Array` instead of `vector`
     - `StringStream` instead of `stringstream`
         - `TextStream`, `ByteStream`, ...
-    - `LinkedList` instead of `list` (A doubly linked list; Doesn't need a short name, as a plain `Array` most often is much more efficient.)
-        - `ForwardLinkedList` instead of `forward_list` (A singly linked list; even more rare.)
+    - `LinkedList` instead of `list` (A doubly linked list; Doesn't need a short name, a plain `Array` most often is more apropriate anyway.)
+        - `ForwardLinkedList` instead of `forward_list` (A singly linked list; Even more rare.)
     - `HashMap` instead of `unordered_map`
         - `MultiMap` instead of `multimap`
         - `HashMultiMap` instead of `unordered_multimap`
