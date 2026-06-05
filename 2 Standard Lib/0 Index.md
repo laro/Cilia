@@ -10,14 +10,23 @@ The standard library is in the namespace `cilia` (instead of `std`, to avoid nam
 There is a Cilia variant of each standard class/concept (with CamelCase class names and camelCase function and variable names):
 - `cilia::String` instead of `std::string`
 - `Map` instead of `map`
-    - `Dictionary` as alias with deprecation warning, as a hint for C# programmers.
-- `ForwardList` instead of `forward_list`
-- `UnorderedMap` instead of `unordered_map`
+    - `FlatMap` instead of `flat_map`
+- `Set` instead of `set`
+    - `FlatSet` instead of `flat_set`
+- `SharedPtr` instead of `shared_ptr`
 - `ValueType` instead of `value_type`
 - Some exceptions/variations:
     - `Array` instead of `vector`
     - `StringStream` instead of `stringstream`
         - `TextStream`, `ByteStream`, ...
+    - `LinkedList` instead of `list` (A doubly linked list; Doesn't need a short name, as a plain `Array` most often is much more efficient.)
+        - `ForwardLinkedList` instead of `forward_list` (A singly linked list.)
+    - `HashMap` instead of `unordered_map`
+        - `MultiMap` instead of `multimap`
+        - `HashMultiMap` instead of `unordered_multimap`
+    - `HashSet` instead of `unordered_set`
+        - `MultiSet` instead of `multiset`
+        - `MultiHashSet` instead of `unordered_multiset`
 
 
 ## Shallow Wrappers
