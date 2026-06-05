@@ -9,12 +9,12 @@ The standard library is in the namespace `cilia` (instead of `std`, to avoid nam
 
 There is a Cilia variant of each standard class/concept (with CamelCase class names and camelCase function and variable names):
 - `cilia::String` instead of `std::string`
+- `SharedPtr` instead of `shared_ptr`
+- `ValueType` instead of `value_type`
 - `Map` instead of `map`
     - `FlatMap` instead of `flat_map`
 - `Set` instead of `set`
     - `FlatSet` instead of `flat_set`
-- `SharedPtr` instead of `shared_ptr`
-- `ValueType` instead of `value_type`
 - Some exceptions/variations:
     - `Array` instead of `vector`
     - `StringStream` instead of `stringstream`
