@@ -43,8 +43,8 @@ with "**aliases**" for:
 - Member functions  
   `using func pushBack = push_back`
 
-A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it.  
-We can even use the basic Cilia types when using the C++ APIs, e.g.
+A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it. We can even use the basic Cilia types when using the C++ APIs,  
+e.g.
 - `Int` for `long` (or `long long`),
 - `Int32` for `int32_t`,
 - `String` for `string`,
