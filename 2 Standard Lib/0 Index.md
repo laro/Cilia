@@ -15,18 +15,19 @@ There is a Cilia variant of each standard class/concept (with CamelCase class na
     - `FlatMap` instead of `flat_map`
 - `Set` instead of `set`
     - `FlatSet` instead of `flat_set`
-- Some exceptions/variations:
-    - `Array` instead of `vector`
-    - `StringStream` instead of `stringstream`
-        - `TextStream`, `ByteStream`, ...
-    - `LinkedList` instead of `list` (A doubly linked list; Doesn't need a short name, a plain `Array` most often is more apropriate anyway.)
-        - `ForwardLinkedList` instead of `forward_list` (A singly linked list; Even more rare.)
-    - `HashMap` instead of `unordered_map`
-        - `MultiMap` instead of `multimap`
-        - `HashMultiMap` instead of `unordered_multimap`
-    - `HashSet` instead of `unordered_set`
-        - `MultiSet` instead of `multiset`
-        - `HashMultiSet` instead of `unordered_multiset`
+
+Some exceptions/variations:
+- `Array` instead of `vector`
+- `StringStream` instead of `stringstream`
+    - `TextStream`, `ByteStream`, ...
+- `LinkedList` instead of `list` (A doubly linked list; Doesn't need a short name, a plain `Array` most often is more apropriate anyway.)
+    - `ForwardLinkedList` instead of `forward_list` (A singly linked list; Even more rare.)
+- `HashMap` instead of `unordered_map`
+    - `MultiMap` instead of `multimap`
+    - `HashMultiMap` instead of `unordered_multimap`
+- `HashSet` instead of `unordered_set`
+    - `MultiSet` instead of `multiset`
+    - `HashMultiSet` instead of `unordered_multiset`
 
 
 ## Shallow Wrappers
