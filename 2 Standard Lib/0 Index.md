@@ -49,7 +49,7 @@ e.g.
 - `Int32` for `int32_t`,
 - `String` for `string`,
 - `StringView` for `string_view`,
-- `T[]` for `vector<T>`), etc.
+- `T[]` for `vector<T>`, etc.
 
 But only _with_ a wrapper do we have a Cilia standard library in the "idiomatic" Cilia style, i.e.
 - CamelCase class and camelCase function names,
