@@ -44,11 +44,13 @@ with "**aliases**" for:
   `using func pushBack = push_back`
 
 A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it.  
-But only _with_ a wrapper do we have
-- a Cilia standard library in the "idiomatic" Cilia style (i.e. CamelCase),
-- whose types/classes can also be used with existing C++ APIs, i.e. using
-    - `Int` instead of `long` (or `long long`),
-    - `Int32` instead of `int32_t`,
-    - `String` instead of `string`,
-    - `StringView` instead of `string_view`,
-    - `T[]` instead of `vector<T>`), etc.
+We can even use the basic Cilia types when using the C++ APIs, e.g.
+- `Int` for `long` (or `long long`),
+- `Int32` for `int32_t`,
+- `String` for `string`,
+- `StringView` for `string_view`,
+- `T[]` for `vector<T>`), etc.
+
+But only _with_ a wrapper do we have a Cilia standard library in the "idiomatic" Cilia style, i.e.
+- CamelCase)class and camelCase function names,
+- `Int` insteasd of `size_t`.
