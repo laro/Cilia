@@ -52,5 +52,5 @@ We can even use the basic Cilia types when using the C++ APIs, e.g.
 - `T[]` for `vector<T>`), etc.
 
 But only _with_ a wrapper do we have a Cilia standard library in the "idiomatic" Cilia style, i.e.
-- CamelCase)class and camelCase function names,
+- CamelCase class and camelCase function names,
 - `Int` insteasd of `size_t`.
