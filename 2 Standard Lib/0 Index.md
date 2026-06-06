@@ -46,13 +46,9 @@ with "**aliases**" for:
 A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it.  
 But only _with_ a wrapper do we have
 - a Cilia standard library in the "idiomatic" Cilia style (i.e. CamelCase),
-- whose types/classes can also be used with existing C++ APIs, i.e. using the Cilia name instead of the C++ name:
-
-  | Cilia        | C++           |
-  | ------------ | ------------- |
-  | `Int`        | `long long`   |
-  | `Int32`      | `int32_t`     |
-  | `String`     | `string`      |
-  | `StringView` | `string_view` |
-  | `T[]`        | `vector<T>`   |
-
+- whose types/classes can also be used with existing C++ APIs, i.e. using
+    - `Int` instead of `long` (or `long long`),
+    - `Int32` instead of `int32_t`,
+    - `String` instead of `string`,
+    - `StringView` instead of `string_view`,
+    - `T[]` instead of `vector<T>`), etc.
