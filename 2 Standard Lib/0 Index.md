@@ -20,8 +20,8 @@ Some exceptions/variations:
 - `Array` instead of `vector`
 - `StringStream` instead of `stringstream`
     - `TextStream`, `ByteStream`, ...
-- `LinkedList` instead of `list` (A doubly linked list; Doesn't need a short name, a plain `Array` most often is more apropriate anyway.)
-    - `ForwardLinkedList` instead of `forward_list` (A singly linked list; Even more rare.)
+- `LinkedList` instead of `list` (a doubly linked list)
+    - `ForwardLinkedList` instead of `forward_list` (a singly linked list)
 - `HashMap` instead of `unordered_map`
     - `MultiMap` instead of `multimap`
     - `HashMultiMap` instead of `unordered_multimap`
