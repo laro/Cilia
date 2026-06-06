@@ -194,6 +194,8 @@ Reading
     - `DeviceStream`
         - `SerialConnection` for RS-232/UART.
         - `USBConnection` for USB bulk transfers.
+- `TextStream`
+    - `StringStream`
 - `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
     - `UDPSocket` for UDP over IP.
     - `UnixDomainSocket` in datagram configuration.
