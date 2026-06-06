@@ -45,7 +45,7 @@ with "**aliases**" for:
 
 A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it. We can even use the basic Cilia types when using the C++ APIs,  
 e.g.
-- `Int` for `long` (or `long long`),
+- `Int` for `long` / `long long`,
 - `Int32` for `int32_t`,
 - `String` for `string`,
 - `StringView` for `string_view`,
