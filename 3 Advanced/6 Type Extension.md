@@ -89,3 +89,12 @@ Extensions are defined similar to classes, but with the `extension` keyword.
           func end()   -> T* { return &this[N] }
       }
       ```
+- **Extension classes**
+  ```
+  extension String : std::string {
+      using func append = push_back
+  }
+  ```
+  - Allow to create drop-in replacements for existing classes.
+      - With no-op conversion similar to `operator String&`, but in both directions.
+  - Extension classes do _not_ have any additional member variables.
