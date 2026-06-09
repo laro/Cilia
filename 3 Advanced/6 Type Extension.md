@@ -92,7 +92,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
 - **Extension classes**
   ```
   extension class String : std::string {
-      using func append = push_back
+      using func startsWith = starts_with
   }
   ```
   - Allow to create drop-in replacements for existing classes.
