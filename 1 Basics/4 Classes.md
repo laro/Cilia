@@ -8,9 +8,9 @@ description: "Cilia class declaration: C++-like syntax with this as reference. M
 Quite as in C++
 ```
 class MyArrayOfInt {
-  Int* numbers = NullPtr
-  Int size = 0
-  func clear()
+    Int* numbers = NullPtr
+    Int size = 0
+    func clear()
 }
 ```
 
@@ -20,10 +20,10 @@ class MyArrayOfInt {
 In member functions `this` is a reference to the instance/object (not a pointer).
 ```
 class String {
-  func toLower() -> String& {
-    // ...
-    return this
-  }
+    func toLower() -> String& {
+        // ...
+        return this
+    }
 }
 ```
 
@@ -35,12 +35,29 @@ Default member access specifier is `public`.
 Default inheritance access specifier is also `public`:
 ```
 class MySubClass : ThePublicBaseClass {
-  ...
+    ...
 }
 ```
 ```
 class MySubClass : protected ABaseClass {
-  ...
+    ...
+}
+```
+
+
+## Interfaces
+```
+interface Seekable {
+    func seek(Int offset)
+    func getPosition() -> Int
+}
+```
+instead of
+```
+class Seekable {
+    virtual ~Seekable() = default
+    virtual func seek(Int offset) = 0
+    virtual func getPosition() -> Int = 0
 }
 ```
 
