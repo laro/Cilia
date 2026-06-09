@@ -91,7 +91,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
       ```
 - **Extension classes**
   ```
-  extension String : std::string {
+  extension class String : std::string {
       using func append = push_back
   }
   ```
