@@ -60,6 +60,10 @@ class Seekable {
     virtual func getPosition() -> Int = 0
 }
 ```
+Interfaces have
+- no fields,
+- no constructors, and
+- all methods are public.
 
 
 ## No ~~`struct`~~
