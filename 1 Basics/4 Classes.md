@@ -61,7 +61,7 @@ class Seekable {
 }
 ```
 Interfaces have
-- no fields,
+- no non-static member variables ("data members", "fields"),
 - no constructors, and
 - all methods are public.
 
