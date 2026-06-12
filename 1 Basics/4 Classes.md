@@ -62,9 +62,9 @@ class Seekable {
 ```
 Interfaces have
 - no member variables ("data members", "fields"),
-    - maybe `const static`,
+    - maybe allow`const static`,
 - no constructors, and
-- all methods are public.
+- all methods are automatically `public` and `virtual`.
 
 
 ## No ~~`struct`~~
