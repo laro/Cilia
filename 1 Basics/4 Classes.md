@@ -64,7 +64,8 @@ Interfaces have
 - no member variables ("data members", "fields"),
     - maybe allow`const static`,
 - no constructors, and
-- all methods are automatically `public` and `virtual`.
+- all methods are automatically `public` and `virtual`,
+    - optionally with default implementation.
 
 
 ## No ~~`struct`~~
