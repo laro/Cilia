@@ -181,11 +181,11 @@ Depending on locale
   <thead>
     <tr>
       <th colspan="2">Member Function</th>
-      <th rowspan="2">Free Function</th>
+      <th>Free Function</th>
     </tr>
     <tr>
       <th>In-Place</th>
-      <th>Copy</th>
+      <th colspan="2">Copy</th>
     </tr>
   </thead>
   <tbody>
