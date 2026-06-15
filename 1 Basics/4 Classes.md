@@ -88,11 +88,15 @@ Because interfaces have **no member variables**, a class can never inherit the s
 interface A {
     func name() -> String
 }
-interface B {
-    func name() -> String
+interface B : A {
+    ...
 }
-// There is only ever one object, with no duplicated state.
-class C : A, B {
+interface C : A {
+    ...
+}
+// `A` is reached via both `B` and `C`, but there is only ever one
+// object, with no duplicated state.
+class D : B, C {
     func name() -> String { return "C" }
 }
 ```
