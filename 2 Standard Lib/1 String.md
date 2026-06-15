@@ -167,9 +167,11 @@ Depending on locale
 
 ## In-Place vs. Copy
 
-- `string.uppercase() -> String&` vs. `string.uppercased() -> String` vs. `uppercase(String) -> String`
-- `string.lowercase() -> String&` vs. `string.lowercased() -> String` vs. `lowercase(String) -> String`
-- `string.trim() -> String&` vs. `string.trimmed() -> StringView` vs. `trim(String) -> String`
-- `string.trimLeft() -> String&` vs. `string.trimmedLeft() -> StringView` vs. `trimLeft(String) -> String`
-- `string.trimRight() -> String&` vs. `string.trimmedRight() -> StringView` vs. `trimRight(String) -> String`
-- `string.reverse() -> String&` vs. `string.reversed() -> String` vs. `reverse(String) -> String`
+| In-Place                        | Copy                                  | Free Function                 |
+| ------------------------------- | ------------------------------------- | ----------------------------- |
+| `string.uppercase() -> String&` | `string.uppercased() -> String`       | `uppercase(String) -> String` |
+| `string.lowercase() -> String&` | `string.lowercased() -> String`       | `lowercase(String) -> String` |
+| `string.trim() -> String&`      | `string.trimmed() -> StringView`      | `trim(String) -> String`      |
+| `string.trimLeft() -> String&`  | `string.trimmedLeft() -> StringView`  | `trimLeft(String) -> String`  |
+| `string.trimRight() -> String&` | `string.trimmedRight() -> StringView` | `trimRight(String) -> String` |
+| `string.reverse() -> String&`   | `string.reversed() -> String`         | `reverse(String) -> String`   |
