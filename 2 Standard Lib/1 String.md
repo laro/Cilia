@@ -167,7 +167,8 @@ Depending on locale
 
 ## In-Place vs. Copy
 
-| In-Place                        | Copy                                  | Free Function                 |
+| Member Function                 | Member Function                       | Free Function                 |
+| In-Place                        | Copy                                  | Copy                          |
 | ------------------------------- | ------------------------------------- | ----------------------------- |
 | `string.uppercase() -> String&` | `string.uppercased() -> String`       | `uppercase(String) -> String` |
 | `string.lowercase() -> String&` | `string.lowercased() -> String`       | `lowercase(String) -> String` |
@@ -175,3 +176,48 @@ Depending on locale
 | `string.trimLeft() -> String&`  | `string.trimmedLeft() -> StringView`  | `trimLeft(String) -> String`  |
 | `string.trimRight() -> String&` | `string.trimmedRight() -> StringView` | `trimRight(String) -> String` |
 | `string.reverse() -> String&`   | `string.reversed() -> String`         | `reverse(String) -> String`   |
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2">Member Function</th>
+      <th rowspan="2">Free Function</th>
+    </tr>
+    <tr>
+      <th>In-Place</th>
+      <th>Copy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>string.uppercase() -> String&amp;</code></td>
+      <td><code>string.uppercased() -> String</code></td>
+      <td><code>uppercase(String) -> String</code></td>
+    </tr>
+    <tr>
+      <td><code>string.lowercase() -> String&amp;</code></td>
+      <td><code>string.lowercased() -> String</code></td>
+      <td><code>lowercase(String) -> String</code></td>
+    </tr>
+    <tr>
+      <td><code>string.trim() -> String&amp;</code></td>
+      <td><code>string.trimmed() -> StringView</code></td>
+      <td><code>trim(String) -> String</code></td>
+    </tr>
+    <tr>
+      <td><code>string.trimLeft() -> String&amp;</code></td>
+      <td><code>string.trimmedLeft() -> StringView</code></td>
+      <td><code>trimLeft(String) -> String</code></td>
+    </tr>
+    <tr>
+      <td><code>string.trimRight() -> String&amp;</code></td>
+      <td><code>string.trimmedRight() -> StringView</code></td>
+      <td><code>trimRight(String) -> String</code></td>
+    </tr>
+    <tr>
+      <td><code>string.reverse() -> String&amp;</code></td>
+      <td><code>string.reversed() -> String</code></td>
+      <td><code>reverse(String) -> String</code></td>
+    </tr>
+  </tbody>
+</table>
