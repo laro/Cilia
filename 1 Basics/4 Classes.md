@@ -71,6 +71,52 @@ Interfaces have
     - optionally with default implementation.
 
 
+### Multiple Interfaces
+
+A class can implement several interfaces:
+```
+class File : Stream, Seekable, Closeable {
+    ...
+}
+```
+
+
+### No Diamond Problem for State
+
+Because interfaces have **no member variables**, a class can never inherit the same data member twice. The classic C++ "diamond problem" — duplicated base-class state — therefore cannot occur, and no `virtual` inheritance is needed to merge base subobjects:
+```
+interface A {
+    func name() -> String
+}
+interface B {
+    func name() -> String
+}
+// There is only ever one object, with no duplicated state.
+class C : A, B {
+    func name() -> String { return "C" }
+}
+```
+
+
+### Ambiguous Default Implementations
+
+The only ambiguity that can remain is a **method** for which _two_ interfaces provide a (different) default implementation. The compiler then requires the class to resolve it explicitly by overriding the method. A specific interface's default can still be called via `Interface::method()`:
+```
+interface Greeter {
+    func greet() -> String { return "Hello from Greeter" }
+}
+interface Logger {
+    func greet() -> String { return "Hello from Logger" }
+}
+class Service : Greeter, Logger {
+    // Required, as it would otherwise be ambiguous.
+    override func greet() -> String {
+        return Greeter::greet()   // explicitly pick one
+    }
+}
+```
+
+
 ## No ~~`struct`~~
 
 Not using ~~`struct`~~, as it would be just too similar to `class` (especially in Cilia) with no real benefit. Keep as a reserved keyword for future use.  
