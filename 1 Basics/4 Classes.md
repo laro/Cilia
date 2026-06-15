@@ -53,7 +53,7 @@ interface Seekable {
     func getPosition() -> Int
 }
 ```
-instead of
+instead of (but still possible)
 ```
 class Seekable {
     virtual ~Seekable() = default
