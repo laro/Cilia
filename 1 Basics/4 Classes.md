@@ -7,9 +7,11 @@ description: "Cilia class declaration: C++-like syntax with this as reference. M
 
 Quite as in C++
 ```
+/// Manual container; normally you'd just use Int[].
 class MyArrayOfInt {
-    Int* numbers = NullPtr
+    Int[0]+ numbers = NullPtr
     Int size = 0
+    Int capacity = 0
     func clear()
 }
 ```
