@@ -23,7 +23,9 @@ In member functions `this` is a reference to the instance/object (not a pointer)
 ```
 class String {
     func toLower() -> String& {
-        // ...
+        for i in 0..<size {
+            this[i].toLower()
+        }
         return this
     }
 }
