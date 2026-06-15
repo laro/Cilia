@@ -21,8 +21,8 @@ class MyArrayOfInt {
 
 In member functions `this` is a reference to the instance/object (not a pointer).
 ```
-class String {
-    func toLower() -> String& {
+class Latin1String {
+    func toLower() -> Latin1String& {
         for i in 0..<size {
             this[i].toLower()
         }
