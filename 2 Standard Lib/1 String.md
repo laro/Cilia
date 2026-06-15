@@ -158,8 +158,8 @@ Even iterating through graphemes clusters is complicated for some/rare/historic 
         - Using the RuleBasedBreakIterator for sentences, `BreakIterator::createSentenceInstance(...)`.
         
 Depending on locale
-- `string.toUpper(locale)`, `string.toLower(locale)`
-    - `toUpper(String, locale) -> String`, `toLower(String, locale) -> String`
+- `string.uppercase(locale)`, `string.lowercase(locale)`
+    - `uppercase(String, locale) -> String`, `lowercase(String, locale) -> String`
 - `stringArray.sort(locale)`
     - `sort(Container<String>, locale) -> Container<String>`
 - `compare(stringA, stringB, locale) -> Int`
@@ -167,9 +167,9 @@ Depending on locale
 
 ## In-Place vs. Copy
 
-- `string.toUppercase() -> String&` vs. `string.uppercase() -> String` vs. `toUppercase(String) -> String`
-- `string.toLowercase() -> String&` vs. `string.lowercase() -> String` vs. `toLowercase(String) -> String`
-- `string.trim() -> String&` vs. `string.trimmed() -> String` vs. `trim(String) -> String`
-- `string.trimLeft() -> String&` vs. `string.trimmedLeft() -> String` vs. `trimLeft(String) -> String`
-- `string.trimRight() -> String&` vs. `string.trimmedRight() -> String` vs. `trimRight(String) -> String`
+- `string.uppercase() -> String&` vs. `string.uppercased() -> String` vs. `uppercase(String) -> String`
+- `string.lowercase() -> String&` vs. `string.lowercased() -> String` vs. `lowercase(String) -> String`
+- `string.trim() -> String&` vs. `string.trimmed() -> StringView` vs. `trim(String) -> String`
+- `string.trimLeft() -> String&` vs. `string.trimmedLeft() -> StringView` vs. `trimLeft(String) -> String`
+- `string.trimRight() -> String&` vs. `string.trimmedRight() -> StringView` vs. `trimRight(String) -> String`
 - `string.reverse() -> String&` vs. `string.reversed() -> String` vs. `reverse(String) -> String`
