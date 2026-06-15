@@ -26,6 +26,7 @@ class String {
     }
 }
 ```
+Getting the pointer via `&this`.
 
 
 ## `public` as Default
