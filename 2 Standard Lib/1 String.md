@@ -163,3 +163,13 @@ Depending on locale
 - `stringArray.sort(locale)`
     - `sort(Container<String>, locale) -> Container<String>`
 - `compare(stringA, stringB, locale) -> Int`
+
+
+## In-Place vs. Copy
+
+- `string.toUppercase() -> String&` vs. `string.uppercase() -> String` vs. `toUppercase(String) -> String`
+- `string.toLowercase() -> String&` vs. `string.lowercase() -> String` vs. `toLowercase(String) -> String`
+- `string.trim() -> String&` vs. `string.trimmed() -> String` vs. `trim(String) -> String`
+- `string.trimLeft() -> String&` vs. `string.trimmedLeft() -> String` vs. `trimLeft(String) -> String`
+- `string.trimRight() -> String&` vs. `string.trimmedRight() -> String` vs. `trimRight(String) -> String`
+- `string.reverse() -> String&` vs. `string.reversed() -> String` vs. `reverse(String) -> String`
