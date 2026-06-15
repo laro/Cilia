@@ -112,9 +112,11 @@ The only ambiguity that can remain is a **method** for which _two_ interfaces pr
 interface Greeter {
     func greet() -> String { return "Hello from Greeter" }
 }
+
 interface Logger {
     func greet() -> String { return "Hello from Logger" }
 }
+
 class Service : Greeter, Logger {
     // Required, as it would otherwise be ambiguous.
     override func greet() -> String {
