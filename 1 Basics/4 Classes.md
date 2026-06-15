@@ -7,7 +7,7 @@ description: "Cilia class declaration: C++-like syntax with this as reference. M
 
 Quite as in C++
 ```
-/// Manual container; normally you'd just use Int[].
+// Manual container; normally you'd just use Int[].
 class MyArrayOfInt {
     Int[0]+ numbers = NullPtr
     Int size = 0
