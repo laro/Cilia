@@ -7,7 +7,7 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 
 - `Bool`
 - `Int`, `UInt`, `Byte`
-- `Float`  
+- `Float`
 
 
 ## Width-Specified Types
@@ -46,7 +46,7 @@ It is used to represent raw memory, for binary buffers, serialization, or low-le
 ## Floating Point
 
 `Float` is
-- `Float64` / double precision (like in Python, unlike C/C++).  
+- `Float64` / double precision (like in Python, unlike C/C++).
 - `Float32` on old/small platforms only (i.e. those with hardware support for `Float32` but not for `Float64`).
 
 With modern processors double precision is very fast.
