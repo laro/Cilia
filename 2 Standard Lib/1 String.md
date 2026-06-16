@@ -176,6 +176,5 @@ Depending on locale
 | `string.trimLeft() -> String&`      | `string.trimmedLeft() -> StringView`  | `trimLeft(String) -> String`        |
 | `string.trimRight() -> String&`     | `string.trimmedRight() -> StringView` | `trimRight(String) -> String`       |
 | `string.reverse() -> String&`       | `string.reversed() -> String`         | `reverse(String) -> String`         |
-| `string.sort() -> String&`          | `string.sorted() -> String`           | `sort(String) -> String`            |
 | `string.replace(String) -> String&` | `string.replaced(String) -> String`   | `replace(String, String) -> String` |
 {:.wide-table}
