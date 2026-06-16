@@ -168,7 +168,7 @@ Depending on locale
 ## In-Place vs. Copy
 
 | Member Function                 | Member Function                       | Free Function                 |
-| In-Place                        | Copy                                  | Copy                          |
+| In-Place                        | Copy or View                          | Copy                          |
 | ------------------------------- | ------------------------------------- | ----------------------------- |
 | `string.uppercase() -> String&` | `string.uppercased() -> String`       | `uppercase(String) -> String` |
 | `string.lowercase() -> String&` | `string.lowercased() -> String`       | `lowercase(String) -> String` |
