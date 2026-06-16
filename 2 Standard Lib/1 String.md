@@ -99,7 +99,7 @@ Or a subclass with known encoding has to be used:
     - Implicitly convertible to `String`==`UTF8String`.
         - Very fast conversion, as all characters have the same binary representation.
 - **`Latin1String`**, a string containing only Latin-1 (ISO 8859-1) characters.
-    - Iteration over an `Latin1String` or `Latin1StringView` by `Char`==`Char8`
+    - Iteration over a `Latin1String` or `Latin1StringView` by `Char`==`Char8`
         - `for aChar in l"äßç"`
             - 0xe4, 0xdf, 0xe7
             - 'ä', 'ß', 'ç'
