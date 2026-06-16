@@ -27,8 +27,6 @@ Iteration over a `String` or `StringView` by:
         - "\x61", "\x62", "\x63", "\x20", "\xf0\x9f\xa5\xb8", "\xf0\x9f\x91\xae\xf0\x9f\x8f\xbb"
     - Not as fast as iterating over bytes, as it has to find grapheme cluster boundaries.
     - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
-    - Additional/alternative names?
-        - `for graphemeCluster in text.asGraphemeClusters()`?
 - **Code Points**
     - each represented by an `Int32`,
         - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
