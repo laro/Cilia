@@ -167,13 +167,15 @@ Depending on locale
 
 ## In-Place vs. Copy
 
-| Member Function                 | Member Function                       | Free Function                 |
-| In-Place                        | Copy or View                          | Copy                          |
-| ------------------------------- | ------------------------------------- | ----------------------------- |
-| `string.uppercase() -> String&` | `string.uppercased() -> String`       | `uppercase(String) -> String` |
-| `string.lowercase() -> String&` | `string.lowercased() -> String`       | `lowercase(String) -> String` |
-| `string.trim() -> String&`      | `string.trimmed() -> StringView`      | `trim(String) -> String`      |
-| `string.trimLeft() -> String&`  | `string.trimmedLeft() -> StringView`  | `trimLeft(String) -> String`  |
-| `string.trimRight() -> String&` | `string.trimmedRight() -> StringView` | `trimRight(String) -> String` |
-| `string.reverse() -> String&`   | `string.reversed() -> String`         | `reverse(String) -> String`   |
+| Member Function                     | Member Function                       | Free Function                      |
+| In-Place                            | Copy or View                          | Copy                               |
+| ----------------------------------- | ------------------------------------- | ---------------------------------- |
+| `string.uppercase() -> String&`     | `string.uppercased() -> String`       | `uppercase(String) -> String`      |
+| `string.lowercase() -> String&`     | `string.lowercased() -> String`       | `lowercase(String) -> String`      |
+| `string.trim() -> String&`          | `string.trimmed() -> StringView`      | `trim(String) -> String`           |
+| `string.trimLeft() -> String&`      | `string.trimmedLeft() -> StringView`  | `trimLeft(String) -> String`       |
+| `string.trimRight() -> String&`     | `string.trimmedRight() -> StringView` | `trimRight(String) -> String`      |
+| `string.reverse() -> String&`       | `string.reversed() -> String`         | `reverse(String) -> String`        |
+| `string.sort() -> String&`          | `string.sorted() -> String`           | `sort(String) -> String`           |
+| `string.replace(String) -> String&` | `string.replaced(String) -> String`   | `replace(String, String) -> String` |
 {:.wide-table}
