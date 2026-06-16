@@ -35,7 +35,7 @@ Some simplifications and restrictions:
         - is the same as `Image image`, i.e. it is a variable declaration,
         - a function declaration would be written as `func image() -> Image`.
 
-## **Type Inference**
+## Type Inference
 with `var` / `const`:
 - `var i = 3` instead of ~~`auto i = 3;`~~
 - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
@@ -72,7 +72,7 @@ It is a syntax error to write:
     - Type variations within multiple-variable declarations are _not_ allowed.
     - It has to be the exact same type.
 - ~~`Int x, y = 0`~~
-    - You need to initalize both variables: `Int x = 0, y = 0`
+    - You need to initialize both variables: `Int x = 0, y = 0`
 - ~~`Float*m`~~
     - Whitespace _between_ type specification and variable name is mandatory.
     - TODO Probably too difficult to realize, as the lexer already removes all whitespace.
