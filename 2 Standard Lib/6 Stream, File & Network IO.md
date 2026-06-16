@@ -30,7 +30,7 @@ For input / output of _binary_ data.
 Writing
 - `out.close()`
 - `out.write(Byte[])`
-- `out.flush()` writes the data buffer (the `istream` user-level cache) to the operating system.
+- `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
     - This protects against data loss in the event of a program crash.
 - `out.flushAndSync()` calls `flush()`, then
     - calls `fsync()` to write the kernel buffers to the file system and then to the hard disk/SSD (the write cache should be written/cleared, too).
@@ -66,7 +66,7 @@ Reading
       otherwise reports the size of the kernel cache/buffer.
     - As that is the number of bytes you would get with the next `in.read()`.
 - `in.peek(Int n) -> Byte[]`
-    - Blocks until (at least) the `minimum` number of bytes are read.
+    - Blocks until (at least) the given minimum (`n`) number of bytes are read.
     - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
     - TODO Limited to 16 bytes or to the buffer size?
 - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
