@@ -47,17 +47,17 @@ Iteration over a `String` or `StringView` by:
             - it is `Char`==`Char8` and `String`==`UTF8String`
         - `Char16` for `UTF16String`
         - `Char32` for `UTF32String`
-    - `for aChar8 in "abc 🥸👮🏻".asArray()`
+    - `for aChar8 in "abc 🥸👮🏻".asCodeUnits()`
         - 0x61, 0x62, 0x63, 0x20,  &nbsp;  0xf0, 0x9f, 0xa5, 0xb8,  &nbsp;  0xf0, 0x9f, 0x91, 0xae, 0xf0, 0x9f, 0x8f, 0xbb
         - same for
-            - `for aChar8 in u8"abc 🥸👮🏻".asArray()`
-            - `for aChar8 in UTF8String("abc 🥸👮🏻").asArray()`
-    - `for aChar16 in u"abc 🥸👮🏻".asArray()`
+            - `for aChar8 in u8"abc 🥸👮🏻".asCodeUnits()`
+            - `for aChar8 in UTF8String("abc 🥸👮🏻").asCodeUnits()`
+    - `for aChar16 in u"abc 🥸👮🏻".asCodeUnits()`
         - 0x0061, 0x0062, 0x0063, 0x0020,  &nbsp;  0xD83E, 0xDD78,  &nbsp;  0xD83D, 0xDC6E, 0xD83C, 0xDFFB
-        - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asArray()`
-    - `for aChar32 in U"abc 🥸👮🏻".asArray()`
+        - same for `for aChar16 in UTF16String("abc 🥸👮🏻").asCodeUnits()`
+    - `for aChar32 in U"abc 🥸👮🏻".asCodeUnits()`
         - 0x00000061, 0x00000062, 0x00000063, 0x00000020,  &nbsp;  0x0001F978,  &nbsp;  0x0001F46E , 0x0001F3FB
-        - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asArray()`
+        - same for `for aChar32 in UTF32String("abc 🥸👮🏻").asCodeUnits()`
 - Lines
     - `for line in text.asLines()`
     - Break after:
@@ -106,7 +106,7 @@ Or a subclass with known encoding has to be used:
             - 0xe4, 0xdf, 0xe7
             - 'ä', 'ß', 'ç'
             - Compilation error, if string literal contains non-Latin-1 characters.
-            - same for `for aChar in Latin1String("abc")`
+            - same for `for aChar in Latin1String("äßç")`
                 - but Exception thrown, if string contains non-Latin1 characters.
     - Explicitly convertible to `String`==`UTF8String`.
         - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
