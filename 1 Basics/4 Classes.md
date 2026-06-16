@@ -26,7 +26,7 @@ In member functions `this` is a reference to the instance/object (not a pointer)
 class Latin1String {
     func toLower() -> Latin1String& {
         for i in 0..<size {
-            this[i].toLower()
+            this[i].lowercase()
         }
         return this
     }
@@ -69,7 +69,7 @@ class Seekable {
 ```
 Interfaces have
 - no member variables ("data members", "fields"),
-    - maybe allow`const static`,
+    - TODO maybe allow`const static`,
 - no constructors, and
 - all methods are automatically `public` and `virtual`,
     - optionally with default implementation.
