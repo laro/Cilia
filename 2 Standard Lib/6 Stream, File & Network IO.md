@@ -143,10 +143,10 @@ Reading
 - `file.path() -> String`
 
 
-## Network & Device IO, Sockets, Pipes
+## Network & Device IO
 
 - `NetworkConnection`, derived from `ByteStream`,
-    - a base class for TCP/IP, Bluetooth, infrared, ...
+    - a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
     - `connection.connect(...)`
     - `connection.disconnect()`
     - `connection.isConnected() -> Bool`
@@ -187,11 +187,11 @@ Reading
     - `NetworkConnection`
         - `TcpConnection`
             - `TlsConnection` / `SslConnection`
-        - `SshStream`
+        - `SshConnection`
     - `LocalConnection` for interprocess communication.
         - `Pipe`
-        - `UnixDomainStream` in stream configuration.
-    - `DeviceStream`
+        - `UnixDomainConnection` in stream configuration.
+    - `DeviceConnection`
         - `SerialConnection` for RS-232/UART.
         - `UsbConnection` for USB bulk transfers.
 - `TextStream`
