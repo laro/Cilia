@@ -163,6 +163,20 @@ html {
   width: auto;
 }
 
+/*
+  Einzelne Tabellen dürfen ausnahmsweise breiter als der 800px-Container sein.
+  Anwendung in Markdown (Kramdown-IAL), direkt in der Zeile unter der Tabelle:
+    {:.wide-table}
+  Die Tabelle wird nur so breit wie nötig, maximal jedoch (fast) Viewport-Breite,
+  und bleibt dabei mittig zur Seite ausgerichtet.
+*/
+.markdown-body table.wide-table {
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 /* No alternating row background (zebra striping) on markdown tables */
 .markdown-body table tr,
 .markdown-body table tr:nth-child(even),
