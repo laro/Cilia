@@ -73,14 +73,6 @@ Iteration over a `String` or `StringView` by:
         | PS   | `U+2029`          | Paragraph Separator          |
          
 
-## Convert Upper/Lower Case
-
-- `string.toUpper()`
-- `string.toLower()`
-- `toUpper(String) -> String`
-- `toLower(String) -> String`
-
-
 ## Sorting
 
 - `stringArray.sort()`
