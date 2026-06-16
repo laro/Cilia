@@ -47,8 +47,8 @@ Images (unlike matrices) are stored row-major, like:
 
 The transposition is achieved simply by swapping the two indices in `operator[]`:
 ```
-operator [Int x, y] -> T& {
-    return Matrix<T>::operator [y, x]
+operator[Int x, y] -> T& {
+    return Matrix<T>::operator[y, x]
 }
 ```
 
