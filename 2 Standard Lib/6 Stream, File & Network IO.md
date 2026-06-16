@@ -191,6 +191,7 @@ Reading
     - `LocalConnection` for interprocess communication.
         - `Pipe`
         - `UnixDomainConnection` in stream configuration.
+    - `BluetoothRfcommConnection` Bluetooth RFCOMM
     - `DeviceConnection`
         - `SerialConnection` for RS-232/UART.
         - `UsbConnection` for USB bulk transfers.
@@ -203,6 +204,6 @@ Reading
         - `I2CDevice` (register read/write cycles)
         - `SpiDevice` (chip-select-controlled frames)
         - `CanBusNode`
-    - `BluetoothConnection` Bluetooth RFCOMM / L2CAP
+    - `BluetoothL2CapConnection` Bluetooth L2CAP
     - `ZigbeeEndpoint`
     - `WebSocketConnection` (message frames over TCP)
