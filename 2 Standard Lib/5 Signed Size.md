@@ -33,7 +33,7 @@ See also [Going Native 2012, Day 2, Interactive Panel: Ask Us Anything](https://
 - [12:53 - 13:10](https://youtu.be/Puio5dly9N8?t=774)  
   Bjarne Stroustrup:  
   "Use ints until you have a reason not to.  
-  Don't use unsigned unless you are fiddling with bit patters.  
+  Don't use unsigned unless you are fiddling with bit patterns.  
   Never mix signed and unsigned."
 - [42:41 - 45:28](https://youtu.be/Puio5dly9N8?feature=shared&t=2561)  
   Bjarne Stroustrup and Herb Sutter recommend using _signed_ integer.
