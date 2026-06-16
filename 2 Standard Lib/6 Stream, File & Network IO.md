@@ -184,16 +184,16 @@ Reading
 - `ByteStream`
     - `File`
     - `MemoryStream` as RAM buffer.
-    - `NetworkStream`
+    - `NetworkConnection`
         - `TcpConnection`
             - `TlsConnection` / `SslConnection`
         - `SshStream`
-    - `LocalStream` for interprocess communication.
+    - `LocalConnection` for interprocess communication.
         - `Pipe`
         - `UnixDomainStream` in stream configuration.
     - `DeviceStream`
         - `SerialConnection` for RS-232/UART.
-        - `USBConnection` for USB bulk transfers.
+        - `UsbConnection` for USB bulk transfers.
 - `TextStream`
     - `StringStream`
 - `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
