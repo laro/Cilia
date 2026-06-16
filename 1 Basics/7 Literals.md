@@ -180,7 +180,7 @@ Literals are fixed values written directly in source code – such as numbers, s
     - All these available for multiline string literals and interpolated strings, too.
         - TODO Any reason, not to?
 
-### Char
+## Char
 - `' '` is a character literal.
     - `'A'` is an ASCII character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
     - `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
@@ -188,7 +188,7 @@ Literals are fixed values written directly in source code – such as numbers, s
     - `'𝄞'` is a `Char32` character literal.
     - `'👮🏻'` is an _invalid_ character literal, as it is a grapheme cluster consisting of multiple code points. Use the string literal `"👮🏻"` instead.
 
-### Array
+## Array
 - `[1, 2, 3]` is an array (here an `Int[3]`),
     - all elements have the same type.
 - `{1, "Text", 3.0}` is an initialization list,
@@ -209,7 +209,7 @@ Literals are fixed values written directly in source code – such as numbers, s
   ]
   ```
 
-### Misc
+## Misc
 - `NullPtr` is the null pointer,
     - it is of the type `NullPtrType`,
     - explicit cast necessary to convert any pointer to `Int`.
