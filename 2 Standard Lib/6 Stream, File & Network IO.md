@@ -1,6 +1,6 @@
 ---
 permalink: /standard-lib/stream-file-and-network-io/
-description: "Cilia IO: print(), scan(), ask(). TextStream, ByteStream, FileStream, network sockets. Global cout/cin."
+description: "Cilia IO: print(), input(), ask(). TextStream, ByteStream, FileStream, network sockets. Global cout/cin."
 ---
 
 # Stream, File & Network IO
@@ -143,7 +143,7 @@ Reading
 - `file.path() -> String`
 
 
-## Network IO
+## Network & Device IO, Sockets, Pipes
 
 - `NetworkConnection`, derived from `ByteStream`,
     - a base class for TCP/IP, Bluetooth, infrared, ...
@@ -175,7 +175,7 @@ Reading
         - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
 - `SerialConnection` (RS-232/UART)
     - `setBaudRate(Int)`
-    - `setParity(Bool)`
+    - `setParity(Parity)`
     - `setDataBits(Int)`
 
 
@@ -185,9 +185,9 @@ Reading
     - `File`
     - `MemoryStream` as RAM buffer.
     - `NetworkStream`
-        - `TCPConnection`
-            - `TLSConnection` / `SSLConnection`
-        - `SSHStream`
+        - `TcpConnection`
+            - `TlsConnection` / `SslConnection`
+        - `SshStream`
     - `LocalStream` for interprocess communication.
         - `Pipe`
         - `UnixDomainStream` in stream configuration.
@@ -197,12 +197,12 @@ Reading
 - `TextStream`
     - `StringStream`
 - `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
-    - `UDPSocket` for UDP over IP.
+    - `UdpSocket` for UDP over IP.
     - `UnixDomainSocket` in datagram configuration.
     - Communication with sensors on microcontrollers
         - `I2CDevice` (register read/write cycles)
-        - `SPIDevice` (chip-select-controlled frames)
-        - `CANBusNode`
+        - `SpiDevice` (chip-select-controlled frames)
+        - `CanBusNode`
     - `BluetoothConnection` Bluetooth RFCOMM / L2CAP
     - `ZigbeeEndpoint`
     - `WebSocketConnection` (message frames over TCP)
