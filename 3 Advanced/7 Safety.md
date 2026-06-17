@@ -1,11 +1,11 @@
 ---
 permalink: /advanced/safety/
-description: "Cilia safety: no implicit downcasts, initialization rules, bounds checking. Safe type conversions only."
+description: "Cilia safety: no implicit lossy conversions, initialization rules, bounds checking. Safe type conversions only."
 ---
 
 # Safety
 
-## **No Implicit Downcasts**
+## No Implicit Lossy Conversions
 Standard conversions only apply when no information is lost.
 
 ~~Not OK~~ or OK is
@@ -66,10 +66,12 @@ Standard conversions only apply when no information is lost.
     - ~~`Int8`, `Int16`, `Int32`, `Int64`, `Int128`, `Int256`,~~ `BigInt`
     - ~~`Float16`, `Float32`, `Float64`, `Float128`, `Float256`,~~ `BigFloat`
 
+
 ## Signed Size
 Using [**signed `Int` as size**](/standard-lib/signed-size/)
 
-## **Range & Validation Checks**
+
+## Range & Validation Checks
 The low hanging fruit would be to enable _by default_, also in release builds (not only in debug):
 - range checks, to detect **buffer overflows** or similar,
 - safe iterators, to detect invalid iterators.
@@ -100,8 +102,9 @@ So we would have:
         - so memory layout is compatible to Release,
     - _optionally_ using unsafe containers (with unsafe iterators, for even better performance).
 
-## **Initialization**
-- No initialization means random values. In this case they are in fact often zero, but _not always_.
+
+## Initialization
+- No initialization means indeterminate/undefined/random values. In this case they are in fact often zero, but _not always_.
 - Initializing large arrays (e.g. `Array`, `Image`, `Vector`, or `Matrix` with many elements) takes a noticeable amount of time, so we don't want to always initialize everything.
     - With virtual memory it could actually be (almost) "free" to initialize _large_ arrays with zero. But only when using heap memory directly. Small memory regions, that were used before, still need to be overwritten with zeros.
 - We could consider it an error (or at least warn) if not initialized,  
@@ -155,9 +158,10 @@ operator[Int i] -> T& {
   }
 }
 ```
-A function with unsafe code does not necessarily have to be marked as `unsafe` itself. `unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
-
 Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to be marked with `unsafe` themselves. Only functions containing unsafe code _not_ enclosed in an `unsafe` block have to be marked with `unsafe` themselves. Unsafe is transitive (from an `unsafe` inner function to the outer function), but limited to the scope of `unsafe` blocks.
+
+`unsafe` is a marker for those parts (subfunctions or code blocks) that are not safe (i.e. dangerous) and need to be checked carefully.
+
 
 ## Int with Overflow Check
 `cilia::safe::Int` is like `cilia::Int`, but with **overflow check** for all operations, may throw OverflowException (or abort the program).
@@ -167,6 +171,7 @@ Functions containing unsafe code enclosed in an `unsafe` block _do not_ have to 
     - `safe::UInt8`/`UInt16`/`UInt32`/`UInt64`
 
 Generally considered to be too costly for "normal" integers, even in languages that are otherwise considered as "safe".
+
 
 ## Not like Rust
 No further safety features planned beyond C++:
