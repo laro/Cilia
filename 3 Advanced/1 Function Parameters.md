@@ -136,7 +136,7 @@ This way developers only need to extend this list if they create a _small_ class
 extension<type T> Complex<T> { InParameterType = T::InParameterType }
 extension  Complex<Float128> { InParameterType = const Complex<Float128>& }
 ```
-Accordung to the generic rule, `Complex<T>` is passed the same way as `T`. But as `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default), the generic rule is corrected.
+According to the generic rule, `Complex<T>` is passed the same way as `T`. But as `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default), the generic rule is corrected.
 
 
 #### Special Trick for Types with Views
@@ -148,8 +148,7 @@ Applicable only for types `X` that have an `XView` counterpart where
 Like:  
 ```
 extension String { InParameterType = const StringView }
-extension  Array { InParameterType = const ArrayView }
-extension Vector { InParameterType = const VectorView }
+extension<type T>  T[0] { InParameterType = const Span }
 ```
 
 So **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
@@ -225,7 +224,7 @@ The idea is to get a _mutable copy_ of the object, even without understanding th
 > ```
 > for copy str in ["an", "array", "of", "words"] { ... }
 > ```
-> While the literal `["an", "array", "of", "words"]` is a `StringView[]`,
+> While the literal `["an", "array", "of", "words"]` is a `StringView[4]`,
 > `str` is a `String` (not a ~~`StringView`~~).  
 
 This way people do not necessarily need to understand the concept of a `StringView` literal. They simply write `copy` to get a `String` with a copy of the content of the `StringView`.  
