@@ -65,12 +65,12 @@ Extensions are defined similar to classes, but with the `extension` keyword.
   }
   ```
 - _Static_ variables
-    - ```
-      extension ContactInfo {
-          // External mutable static variable
-          static Int numOfCallsToExtensionFunctionX = 0
-      }
-      ```
+  ```
+  extension ContactInfo {
+      // External mutable static variable
+      static Int numOfCallsToExtensionFunctionX = 0
+  }
+  ```
     - Rarely used, but why not.
     - It is not possible to add _member_ variables, as that would change the size of the class.
 - **Generic Extensions**
