@@ -29,9 +29,9 @@ Create an alias with `using`, for:
     - `using func f = g` to alias _all_ overloads of the function `g`.
 
 - **Type** alias in a class
-    ```
-    class String {
-        using InParameterType = const StringView
-    }
-    ```
+  ```
+  class String {
+      using InParameterType = const StringView
+  }
+  ```
     - (No ~~`typedef`~~.)
