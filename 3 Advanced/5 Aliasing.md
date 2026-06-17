@@ -3,7 +3,7 @@ permalink: /advanced/aliasing/
 description: "Cilia aliasing: using for member variables and functions. Type aliases, enables CamelCase wrapper design."
 ---
 
-# Aliasing of Types, Variables, and Functions
+# Aliasing of Variables, Functions, and Types
 
 Create an alias with `using`, for:
 - Member **variable** alias
@@ -14,17 +14,17 @@ Create an alias with `using`, for:
       using T   z = data[2]
   }
   ```
-    - Not quite possible in C++.
-        - With `T& z = data[2]`, unfortunately, memory is created for the reference (the pointer).
-        - And this indeed is necessary here, because the reference could be assigned differently in the constructor, so it is not possible to optimize it away.
+    - Not quite possible in C++:
+        - With `T& z = data[2]`, unfortunately, memory is allocated for the reference (the pointer).
+        - And the compiler cannot optimize it away, because the reference could be rebound in the constructor.
 
 - Member **function** alias
-    ```
-    class A : B {
-        using func f(String) = g(String)
-        using func f = g
-    }
-    ```
+  ```
+  class A : B {
+      using func f(String) = g(String)
+      using func f = g
+  }
+  ```
     - `using func f(String) = g(String)` to alias the function `g(String)`.
     - `using func f = g` to alias _all_ overloads of the function `g`.
 
