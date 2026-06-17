@@ -78,7 +78,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
         - generic types and
         - basic types, e.g. native static arrays.
     - ```
-      extension <type T, Int N> T[N] {
+      extension<type T, Int N> T[N] {
           using ValueType = T
           
           func length() -> Int {

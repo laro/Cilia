@@ -14,7 +14,7 @@ Similar as in Java, C#, Swift and Rust.
 The template parameters (`<...>`) are given after the class name, so that the definition is similar to the usage (in a variable declaration).
 ```
 class MyArray<Number T> {
-    T* numbers = NullPtr
+    T+ numbers = NullPtr
     Int size = 0
 }
 ```
@@ -142,10 +142,10 @@ extension<type T> T {
 
 Template static constants as type traits:
 ```
-extension<type T>          T { Bool IsFloatingPoint = False }
-extension            Float32 { Bool IsFloatingPoint = True }
-extension            Float64 { Bool IsFloatingPoint = True }
-extension<type T> Complex<T> { Bool IsFloatingPoint = T::IsFloatingPoint }
+extension<type T>          T { static const Bool IsFloatingPoint = False }
+extension            Float32 { static const Bool IsFloatingPoint = True }
+extension            Float64 { static const Bool IsFloatingPoint = True }
+extension<type T> Complex<T> { static const Bool IsFloatingPoint = T::IsFloatingPoint }
 ```
 
 
