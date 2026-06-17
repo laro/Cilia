@@ -21,7 +21,7 @@ to encourage the use of smart pointers.
 This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope). Unique pointers have zero overhead over plain, raw C/C++ pointers. 
 
 ```
-ContactInfo+ uniquePtrToContactInfo = new ContactInfo
+ContactInfo+ uniquePointerToContactInfo = new ContactInfo
 ```
 
 
@@ -31,7 +31,7 @@ A pointer with shared ownership: the object will be deleted when all of "its" po
 Syntax is inspired by C++/CLI.
 
 ```
-ContactInfo^ sharedPtrToContactInfo = new ContactInfo
+ContactInfo^ sharedPointerToContactInfo = new ContactInfo
 ```
 
 For shared pointers using `makeShared<ContactInfo>()` is more efficient (due to the single-allocation optimization).
@@ -85,13 +85,13 @@ var alsoAUniquePtrToContactInfo = new ContactInfo
 
 ### `new` for `T^`
 In Cilia,
-1. `new` acts like `makeUnique<T> -> T+`, and
+1. `new` acts like `makeUnique<T>() -> T+`, and
 2. a _right value_ `T+` can also be moved to a `T^`,
 
 so now you can use `new` for both pointer types:
 ```
 T+ uniquePtr = new T
-T^ sharedPtr = new T
+T^ sharedPtr = new T // Note: nice and short, but does two allocations
 ```
 ```
 T+ uniquePtr = new T
@@ -124,7 +124,7 @@ unsafe {
 ## `T+`/`T^` vs. `T[0]+`/`T[0]^`
 
 `T+`/`T^` is a unique/shared pointer to a _single_ object.  
-`T[0]+`/`T[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed but unknown size (`0` is just a dummy here).
+`T[0]+`/`T[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed size, but a size unknown at compile time (`0` is just a dummy here).
 
 > In C++, `T[]` is an "incomplete type".
 > In Cilia, we write `T[0]` instead, because here `T[]` is actually a dynamic `Array<T>`.
