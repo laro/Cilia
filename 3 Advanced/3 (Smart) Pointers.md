@@ -31,7 +31,7 @@ A pointer with shared ownership: the object will be deleted when all of "its" po
 Syntax is inspired by C++/CLI.
 
 ```
-ContactInfo^ sharedPtrToCcontactInfo = new ContactInfo
+ContactInfo^ sharedPtrToContactInfo = new ContactInfo
 ```
 
 For shared pointers using `makeShared<ContactInfo>()` is more efficient (due to the single-allocation optimization).
@@ -46,11 +46,11 @@ Initialized as
 `T- weakPointerToWindow = sharedPointerToWindow`  
 you can write  
 ```
-Window^ shreadPtrToWindow = weakPointerToWindow.lock()
-if shreadPtrToWindow {
-    shreadPtrToWindow->show()
+Window^ sharedPtrToWindow = weakPointerToWindow.lock()
+if sharedPtrToWindow {
+    sharedPtrToWindow->show()
     // ...
-    shreadPtrToWindow->close()
+    sharedPtrToWindow->close()
 }
 ```
 or
