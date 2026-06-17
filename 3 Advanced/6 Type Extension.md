@@ -46,8 +46,8 @@ Extensions are defined similar to classes, but with the `extension` keyword.
           
           // Alias for all overloads of 'push_back'
           using func append = push_back
-        }
-        ```
+      }
+      ```
     - **Types**  
         - Define member types or traits externally.
         - ```
