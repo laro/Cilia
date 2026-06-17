@@ -23,7 +23,7 @@ class MyArray<Number T> {
   class MyUniquePtr<type T> {
       ... destructor calls delete ...
   }
-  class MyUniquePtr<type T[Int N]> {
+  class MyUniquePtr<type T[]> {
       ... destructor calls delete[] ...
   }
   ```
