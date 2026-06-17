@@ -102,10 +102,11 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
     - `cilia::lapack`, `cilia::geometry`
     - Helps to differentiate between classes and namespaces.
 
-Acronyms of at most two letters stay fully upper-case inside names, e.g. `userID`, `IOStream`. Longer abbreviations follow normal camel-case segments, e.g. 'HttpRequest', 'XmlWriter'.
+Acronyms of at most two letters stay fully upper-case inside names, e.g. `userID`, `IOStream`. Longer abbreviations follow normal camel-case segments, e.g. `HttpRequest`, `XmlWriter`.
 
 
 ## No Trailing Semicolons
+
 For better readability.  
 When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Julia.
 - Typically a statement or expression ends with the end of a line.
@@ -124,11 +125,12 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 
 ## Better Readable Keywords
+
 C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia uses simpler, clearer keywords.
 
 - Cilia has
-    - `var` instead of ~~`auto`~~
-    - `func` instead of ~~`auto`~~
+    - `var` instead of ~~`auto`~~ with variable declaration
+    - `func` instead of ~~`auto`~~ with functions declarations
     - `type` instead of ~~`typename`~~
     - `await` instead of ~~`co_await`~~
     - `yield` instead of ~~`co_yield`~~
