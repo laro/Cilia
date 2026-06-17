@@ -124,7 +124,7 @@ unsafe {
 ## `T+`/`T^` vs. `T[0]+`/`T[0]^`
 
 `T+`/`T^` is a unique/shared pointer to a _single_ object.  
-`T[0]+`/`T[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed size, but a size unknown at compile time (`0` is just a dummy here).
+`T[0]+`/`T[0]^` is a unique/shared pointer to a C/C++ _array_ of fixed size, but a size that is unknown to the type system (`0` is just a dummy here).
 
 > In C++, `T[]` is an "incomplete type".
 > In Cilia, we write `T[0]` instead, because here `T[]` is actually a dynamic `Array<T>`.
