@@ -5,7 +5,8 @@ description: "Cilia class declaration: C++-like syntax with this as reference. M
 
 # Class Declaration
 
-Quite as in C++
+Quite as in C++,  
+but default member access specifier is `public`.
 ```
 // Manual container; normally you'd just use Int[].
 class MyArrayOfInt {
@@ -15,6 +16,18 @@ protected:
     Int[0]+ numbers = NullPtr
     Int size = 0
     Int capacity = 0
+}
+```
+
+Default inheritance access specifier is also `public`:
+```
+class MySubClass : ThePublicBaseClass {
+    ...
+}
+```
+```
+class MySubClass : protected TheProtectedBaseClass {
+    ...
 }
 ```
 
@@ -33,23 +46,6 @@ class Latin1String {
 }
 ```
 Getting the pointer via `&this`.
-
-
-## `public` as Default
-
-Default member access specifier is `public`.
-
-Default inheritance access specifier is also `public`:
-```
-class MySubClass : ThePublicBaseClass {
-    ...
-}
-```
-```
-class MySubClass : protected ABaseClass {
-    ...
-}
-```
 
 
 ## Interfaces
