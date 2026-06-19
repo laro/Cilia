@@ -6,13 +6,17 @@ description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overlo
 # Operators
 
 ## Power Function
+
 - **`a^x`** for `pow(a, x)` (as in Julia),
 - "raise a to the power of x".
 
+
 ## Boolean Operators
-- **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`** in addition to `&&`/`&`, `||`/`|`, ...
+
+- **`and`**, **`or`** in addition to `&&`/`&`, `||`/`|`,
     - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
-        [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon)
+        [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon),
+    - actually this is valid C++, too.
     - Used for both
         - boolean operation (when used on Bool)
             - `aBool`**`and`**`anotherBool` -> `Bool`
@@ -36,10 +40,15 @@ description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overlo
     - Still use `~` for bitwise negation,
         - as C/C++/Java/C# programmers are used to it,
         - as we keep `~T` for the destructor anyway.
-- **`xor`** _instead_ of `^`  
-    because we want `^` for the power function.
+- **`nand`** and **`nor`**,  
+    - as in VHDL and as possible in Julia.
+- **`xor`** _instead_ of `^`,
+    - because we want `^` for the power function.
+- Not ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~, ~~`not_eq`~~.
+
 
 ## Equality
+
 - Default `operator==`
     - If not defined, then
         - use negated `operator!=` (if defined), or
@@ -53,7 +62,9 @@ description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overlo
         - use `operator<=>` (if defined), or
         - use negated generated `operator==`.
 
+
 ## **Range Operator** `..` and `..<`
+
 - `1..10` and `0..<10` are ranges
     - as in [Kotlin](https://kotlinlang.org/docs/ranges.html)
     - Similar, but different:
@@ -97,7 +108,9 @@ description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overlo
             - `..:2` – `RangeFullByStep(2)`
     - See Rust [Ranges](https://doc.rust-lang.org/std/ops/index.html#structs) and [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
+
 ## Bit-Shift & Rotation
+
 - `>>` Shift right
     - Logical shift with unsigned integers,
     - arithmetic shift with signed integers.
