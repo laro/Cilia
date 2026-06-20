@@ -6,7 +6,7 @@ description: "Cilia type extension: add methods to third-party types. Extension 
 # Type Extension
 
 "Third party" classes or built-in types that we cannot change otherwise can be extended with "member-like"
-- functions/methods (non-virtual and static),
+- functions/methods (only non-virtual and static),
 - dependent types (`T::InParameterType`) or type aliases,
 - static constants and variables.
 
