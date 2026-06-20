@@ -81,7 +81,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
   }
   ```
     - Rarely used, but why not.
-    - It is not possible to add _member_ variables, as that would change the size of the class.
+    - It is not possible to add _non-static_ member variables, as that would change the size of the class.
 
 
 ## Generic Extensions
