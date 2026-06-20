@@ -53,18 +53,18 @@ Extensions are defined similar to classes, but with the `extension` keyword.
       using func append = push_back
   }
   ```
-- **Types**  
-    - Define member types or traits externally.
-    - ```
-      extension std::string_view {
-          using InParameterType = const std::string_view // Pass by value
-      }
-      ```
 
 
-## Static Constants & Variables
+## Type Traits
 
-- Static constants, typically for type traits
+Define member types or traits externally.
+- Types
+  ```
+  extension std::string_view {
+      using InParameterType = const std::string_view // Pass by value
+  }
+  ```
+- Static constants
   ```
   extension Float32 {
       static const Bool IsFloatingPoint = True
@@ -73,15 +73,19 @@ Extensions are defined similar to classes, but with the `extension` keyword.
       static const Bool IsFloatingPoint = True
   }
   ```
-- Static variables
-  ```
-  extension ContactInfo {
-      // External mutable static variable
-      static Int numOfCallsToExtensionFunctionX = 0
-  }
-  ```
-    - Rarely used, but why not.
-    - It is not possible to add _non-static_ member variables, as that would change the size of the class.
+
+
+## Static Variables
+
+Rarely used, but why not.  
+It is not possible to add _non-static_ member variables, as that would change the size of the class.
+
+```
+extension ContactInfo {
+    // External mutable static variable
+    static Int numOfCallsToExtensionFunctionX = 0
+}
+```
 
 
 ## Generic Extensions
