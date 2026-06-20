@@ -19,18 +19,18 @@ Extensions are defined similar to classes, but with the `extension` keyword.
 
 - Can be called like normal member functions (with standard dot-notation), but they do not have access to private or protected members.
 - Inside an extension, `this` refers to the instance itself.
-- Also possible for basic/arithmetic types, e.g.:  
-    ```
-    extension Int {
-        func toString() -> String { 
-            // Logic to convert Int to String
-        }
-    }
-    
-    // Usage:
-    Int i = 10
-    i.toString()
-    ```
+- Also possible for basic/arithmetic types, e.g.:
+  ```
+  extension Int {
+      func toString() -> String { 
+          // Logic to convert Int to String
+      }
+  }
+  
+  // Usage:
+  Int i = 10
+  i.toString()
+  ```
 
 
 ## Externally Defined Alias
