@@ -35,32 +35,31 @@ Extensions are defined similar to classes, but with the `extension` keyword.
 
 ## Externally Defined Alias
 
-(with `using`) for members:
-- Useful for adapting APIs or providing more descriptive names.
-- **Variables**  
-    ```
-    extension Vector2 {
-        using var x = data[0]
-        using var y = data[1]
-    }
-    ```
-- **Functions**  
-    ```
-    extension std::vector<type T> {
-        // Alias for a specific signature
-        using func pushBack(String) = push_back(String)
-        
-        // Alias for all overloads of 'push_back'
-        using func append = push_back
-    }
-    ```
+`using` for members, useful for adapting APIs or providing more descriptive names.
+- **Variables**
+  ```
+  extension Vector2 {
+      using var x = data[0]
+      using var y = data[1]
+  }
+  ```
+- **Functions**
+  ```
+  extension std::vector<type T> {
+      // Alias for a specific signature
+      using func pushBack(String) = push_back(String)
+      
+      // Alias for all overloads of 'push_back'
+      using func append = push_back
+  }
+  ```
 - **Types**  
     - Define member types or traits externally.
     - ```
-        extension std::string_view {
-            using InParameterType = const std::string_view // Pass by value
-        }
-        ```
+      extension std::string_view {
+          using InParameterType = const std::string_view // Pass by value
+      }
+      ```
 
 
 ## Static Constants & Variables
@@ -89,6 +88,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
 Extensions can be parameterized to support 
 - generic types and
 - basic types, e.g. native static arrays.
+
 ```
 extension<type T, Int N> T[N] {
     using ValueType = T
@@ -103,10 +103,11 @@ extension<type T, Int N> T[N] {
 ```
 
 ## Extension Classes
+Allow to create drop-in replacements for existing classes. With no-op conversion similar to `operator String&`, but in both directions.  
+Extension classes do _not_ have any additional member variables.
+
 ```
 extension class String : std::string {
     using func startsWith = starts_with
 }
 ```
-Allow to create drop-in replacements for existing classes. With no-op conversion similar to `operator String&`, but in both directions.  
-Extension classes do _not_ have any additional member variables.
