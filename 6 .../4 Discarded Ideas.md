@@ -157,7 +157,7 @@ One could define the order of bits in a bitfield.
         - `1` is `Int` (signed)
             - `1u` is `UInt` (unsigned)
         - Therefore `if aUInt - 1 >= 0` is a useful expression (as `1` is signed, `aUInt - 1` is signed, too)
-        - But then also `aUInt + 1 == anInt`
+        - But then also `aUInt + 1 == anInt`, i.e. it would be hard to calculate with `UInt` at all.
 - Or
     - `Size` - `Size` -> `SSize`
         - Problem: `-` results in `SSize`, but `+` results in `Size`?!
