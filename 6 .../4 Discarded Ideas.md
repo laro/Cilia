@@ -175,7 +175,7 @@ One could define the order of bits in a bitfield.
         - RangeExclusiveStartByStep(8, 0, -3)
     - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
         - RangeExclusiveEndByStep(8, 0, -1)
-    - `8..>0:-1` – 8, 7, 6, 5, 4, 3, 2, 1
+    - `8..>0:-3` – 8, 5, 2
         - RangeDownwardsExclusiveEndByStep(8, 0, -1)
     - Incomplete ranges
         - `0<..` – RangeFromExclusiveStart(0)
@@ -232,7 +232,6 @@ One could define the order of bits in a bitfield.
 - `WideChar` could be useful for portable code (Linux `UInt32` <-> Windows `UInt16`)
     - But you may use `wchar_t` then.
 - Alternative names/syntax to iterate over strings:
-    - `for codeUnit in "abc 🥸👮🏻".asCodeUnits()` (a bit more explicit/clear than `.asArray()`)
     - Is `byWord()` (like in "word by word") a better naming?
         - `for graphemeCluster in text.byGraphemeCluster()`
         - `for codePoint in text.byCodePoint()`
