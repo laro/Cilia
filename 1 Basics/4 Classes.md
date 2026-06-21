@@ -40,23 +40,7 @@ class MySubClass : protected ProtectedBaseClass {
 ```
 
 
-**Multiple inheritance** is still allowed, but not recommended. Use [interfaces](#interfaces) instead.
-
-
-## `this`-Reference
-
-In member functions `this` is a reference to the instance/object (not a pointer).
-```
-class Latin1String {
-    func toLower() -> Latin1String& {
-        for i in 0..<size {
-            this[i].lowercase()
-        }
-        return this
-    }
-}
-```
-Getting the pointer via `&this`.
+**Multiple inheritance** of classes is still allowed, but not recommended. Use [interfaces](#interfaces) instead.
 
 
 ## Interfaces
@@ -141,3 +125,19 @@ class Service : Greeter, Logger {
 
 Not using ~~`struct`~~, as it would be just too similar to `class` (especially in Cilia) with no real benefit. Keep as a reserved keyword for future use.  
 Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
+
+
+## `this`-Reference
+
+In member functions `this` is a reference to the instance/object (not a pointer).
+```
+class Latin1String {
+    func toLower() -> Latin1String& {
+        for i in 0..<size {
+            this[i].lowercase()
+        }
+        return this
+    }
+}
+```
+Getting the pointer via `&this`.
