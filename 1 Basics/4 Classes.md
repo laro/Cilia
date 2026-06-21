@@ -33,15 +33,14 @@ Default inheritance access specifier is also `public`:
 class MySubClass : PublicBaseClass {
     ...
 }
-```
-```
+
 class MySubClass : protected ProtectedBaseClass {
     ...
 }
 ```
 
 
-Multiple inheritance is still allowed, but not recommended. Use [interfaces](#interfaces) instead.
+**Multiple inheritance** is still allowed, but not recommended. Use [interfaces](#interfaces) instead.
 
 
 ## `this`-Reference
