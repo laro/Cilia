@@ -137,13 +137,6 @@ try {
     // ...
 } catch Exception ex {
     print(ex)
-}
-```
-```
-try {
-    // ...
-} catch Exception ex {
-    print(ex)
 } catch {
     print("An unknown exception has occurred")
 }
