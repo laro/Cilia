@@ -5,7 +5,7 @@ description: "Cilia class declaration: C++-like syntax with this as reference. M
 
 # Class Declaration
 
-Quite as in C++, also with multiple inheritance,  
+Quite as in C++,  
 but default member access specifier is `public`.
 ```
 // Manual container; normally you'd just use Int[].
@@ -27,6 +27,7 @@ protected:
 }
 ```
 
+
 Default inheritance access specifier is also `public`:
 ```
 class MySubClass : PublicBaseClass {
@@ -38,6 +39,9 @@ class MySubClass : protected ProtectedBaseClass {
     ...
 }
 ```
+
+
+Multiple inheritance is still allowed, but not recommended. Use [interfaces](#interfaces) instead.
 
 
 ## `this`-Reference
