@@ -11,8 +11,6 @@ but default member access specifier is `public`.
 // Manual container; normally you'd just use Int[].
 class MyArrayOfInt {
     func append(Int value)
-    func removeLast() -> Int
-    func reserve(Int newCapacity)
     func clear()
 
     const operator[Int i] -> const Int&
