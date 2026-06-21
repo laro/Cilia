@@ -148,3 +148,4 @@ try {
     print("An unknown exception has occurred")
 }
 ```
+No ~~`finally`~~, use RAII/RROD instead.
