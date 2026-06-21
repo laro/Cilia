@@ -18,7 +18,7 @@ to encourage the use of smart pointers.
 
 ## `T+` pointer
 
-This is a "pointer plus ownership", a pointer with (exclusive) ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope). Unique pointers have zero overhead over plain, raw C/C++ pointers. 
+This is a "pointer plus ownership", a pointer with exclusive ("unique") ownership: the object will be deleted when the pointer is destroyed (e.g. when it goes out of scope). Unique pointers have zero overhead over plain, raw C/C++ pointers. 
 
 ```
 ContactInfo+ uniquePointerToContactInfo = new ContactInfo
