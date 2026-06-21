@@ -151,11 +151,11 @@ extension<type T> Complex<T> { static const Bool IsFloatingPoint = T::IsFloating
 
 ## Same Rules for ADL & PTS as in C++
 
-Cilia follows the same rules for ADL and PTS as C++. While they are complex, their problems are "well known and understood", and matching C++ semantics is important for interop with existing C++ APIs and libraries.  
+Cilia follows the same rules for Argument Dependent Lookup (ADL, "Koenig Lookup") and Partial Template Specialization (PTS) as C++. While they are complex, their problems are "well known and understood", and matching C++ semantics is important for interop with existing C++ APIs and libraries.  
 Having different rules for Cilia and C++ classes would be even more complex, and other rules might introduce other problems.
 
-### Argument Dependent Lookup (ADL)
-ADL (Koenig Lookup) lets generic code find overloads in the namespace of the argument types, so helps to customize `operator<<`, unqualified `begin()`/`end()`, `swap()`, etc.  
+### Argument Dependent Lookup
+ADL lets generic code find overloads in the namespace of the argument types, so helps to customize `operator<<`, unqualified `begin()`/`end()`, `swap()`, etc.  
 
 Problems:
 - Unexpected overloads, when functions from unrelated namespaces are found unintentionally.
@@ -176,7 +176,7 @@ The problems with ADL are reduced a bit, as
   end(container)
   ```
 
-### Partial Template Specialization (PTS)
+### Partial Template Specialization
 PTS is a practical way to customize behavior for families of types (for example traits and container-like wrappers) without rewriting full implementations.
 
 Problems:
