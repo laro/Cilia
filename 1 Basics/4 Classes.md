@@ -10,7 +10,17 @@ but default member access specifier is `public`.
 ```
 // Manual container; normally you'd just use Int[].
 class MyArrayOfInt {
+    func append(Int value)
+    func removeLast() -> Int
+    func reserve(Int newCapacity)
     func clear()
+
+    const operator[Int i] -> const Int&
+    operator[Int i] -> Int&
+
+    const func size() -> Int
+    const func capacity() -> Int
+    const func isEmpty() -> Bool
 
 protected:
     Int[0]+ numbers = NullPtr
