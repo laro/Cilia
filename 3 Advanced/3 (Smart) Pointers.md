@@ -34,7 +34,11 @@ Syntax is inspired by C++/CLI.
 ContactInfo^ sharedPointerToContactInfo = new ContactInfo
 ```
 
-For shared pointers using `makeShared<ContactInfo>()` is more efficient (due to the single-allocation optimization).
+For shared pointers using `makeShared` is more efficient (due to the single-allocation optimization).
+
+```
+ContactInfo^ sharedPointerToContactInfo = makeShared<ContactInfo>()
+```
 
 
 ## `T-` pointer
