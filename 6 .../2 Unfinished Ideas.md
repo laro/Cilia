@@ -61,13 +61,6 @@ operator ≤(Int256 a, b) -> Bool { return a <= b }
 operator ≥(Int256 a, b) -> Bool { return a >= b }
 operator ≠(Int256 a, b) -> Bool { return a != b }
 
-// Logical / boolean
-operator ∧(Bool a, b) -> Bool { return a and b }
-operator ∨(Bool a, b) -> Bool { return a or b }
-operator ⊼(Bool a, b) -> Bool { return a nand b }
-operator ⊽(Bool a, b) -> Bool { return a nor b }
-operator ¬(Bool a) -> Bool { return not a }       // unary
-
 // Set membership
 operator ∈(T x, Set<T> s) -> Bool { return s.contains(x) }
 operator ∉(T x, Set<T> s) -> Bool { return not s.contains(x) }
@@ -80,6 +73,8 @@ operator ⊇(Set<T> a, b) -> Bool { return a.isSupersetOf(b) }
 operator ⊂(Set<T> a, b) -> Bool { return a.isProperSubsetOf(b) }
 operator ⊃(Set<T> a, b) -> Bool { return a.isProperSupersetOf(b) }
 ```
+
+`∧`, `∨`, `⊼`, `⊽`, `¬` are already listed in the [Operators](/advanced/operators/) chapter.
 
 Maybe also this:
 ```
@@ -121,8 +116,7 @@ For some symbols (e.g. `⊕ ⊗ ⊘ ∘ ∪ ∩ ∖`) fixity and precedence have
 
 The two main difficulties (see also the [Operators](/advanced/operators/) chapter) are:
 - operator precedence,
-- unary (prefix, postfix) vs. binary (infix) operators, and
-- bracket variants.
+- unary (prefix, postfix) vs. binary (infix) operators.
 
 Modelled after Swift/Haskell, preferably with _named_ precedence groups instead of magic numbers:
 ```
@@ -134,7 +128,7 @@ operator ∖(Set a, b)    -> Set    infix left  precedence Union         { ... }
 operator √(Float a)     -> Float  prefix                               { ... }   // unary
 ```
 - Fixity (`prefix`/`infix`/`postfix`) is part of the signature, so unary and binary forms are distinct declarations (just like `-` in C++).
-- Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF), so the lexer can cleanly separate identifiers and operators.
+- Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF plus some), so the lexer can cleanly separate identifiers and operators.
 
 
 ### Bracket / "Sandwich" Notation

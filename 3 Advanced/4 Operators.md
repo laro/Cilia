@@ -223,6 +223,7 @@ operator <=>(Int256 a, b) -> Int { ... }
   operator ⊼(Bool a, b) -> Bool { return a nand b }
   operator ⊽(Bool a, b) -> Bool { return a nor b }
   operator ⊻(Bool a, b) -> Bool { return a xor b }
+  operator ¬(Bool a) -> Bool { return not a }
   ```
     - Defined for _`Bool`_ (not for integers),
     - operators `!`, not ~~`~`~~,
