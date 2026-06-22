@@ -108,6 +108,20 @@ operator ∥(Vec a, b) -> Bool      { ... }   // parallel to
 operator ∦(Vec a, b) -> Bool      { ... }   // not parallel to
 ```
 
+These operators have no ASCII equivalent to inherit from, so each is assigned (by analogy to the existing arithmetic/comparison groups) to a named precedence group and fixity:
+
+| Precedence group | Operators | Fixity | Notes |
+| --- | --- | --- | --- |
+| (unary, high) | `⊖` | prefix | negation; binds tighter than any infix operator |
+| `Multiplication` (like `* /`) | `×` `⋅` `⊙` `⊘` | infix left | cross/dot product, Hadamard product/division |
+| `Multiplication` (like `* /`) | `⊛` `∗` | infix left | convolution; distributes over addition, so multiplicative |
+| `Addition` (like `+ -`) | `⊞` `⊟` | infix left | element-wise addition/subtraction |
+| `Addition` (like `+ -`) | `⊕` `⊖` | infix left | direct sum, vector subtraction |
+| `Comparison` (like `< <= ==`) | `⟂` `∥` `∦` | infix, non-associative | return `Bool`, so they group with the relational operators |
+
+- `⊖` is declared twice: once `prefix` (unary negation, Z. 98) and once `infix` (binary subtraction, Z. 99). Fixity is part of the signature, so the two forms are distinct (see next section).
+- `×` and `⋅` share the `Multiplication` group and are left-associative, so `a × b ⋅ c` parses as `(a × b) ⋅ c` (the scalar triple product), which is the intended reading.
+
 
 ### Custom Operators with Declared Precedence
 
