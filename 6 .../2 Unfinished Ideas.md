@@ -108,18 +108,31 @@ operator ∥(Vec a, b) -> Bool      { ... }   // parallel to
 operator ∦(Vec a, b) -> Bool      { ... }   // not parallel to
 ```
 
-These operators have no ASCII equivalent to inherit from, so each is assigned (by analogy to the existing arithmetic/comparison groups) to a named precedence group and fixity:
+These operators have no ASCII equivalent to inherit from, so each is assigned (by analogy to the existing arithmetic/comparison groups) to a named precedence group and fixity. The table sorts in **all currently known operators** — the ASCII operators from the [Operators](/advanced/operators/) chapter, the Unicode synonyms above, and the new vector/matrix operators — from tightest to loosest binding:
 
-| Precedence group              | Operators               | Fixity                |
-| ----------------------------- | ----------------------- | --------------------- |
-| (unary, high)                 | `⊖`                     | prefix                |
-| `Multiplication` (like `* /`) | `×` `⋅` `⊙` `⊘` `⊛` `∗` | infix left            |
-| `Addition` (like `+ -`)       | `⊞` `⊟` `⊕` `⊖`         | infix left            |
-| `Comparison` (like `< <= ==`) | `⟂` `∥` `∦`             | infix, non-associative |
-{:.wide-table}
+| Precedence group | Operators | Fixity |
+| --- | --- | --- |
+| Postfix / call | `a()` `a[]` `a.b` `a++` `a--` | postfix |
+| Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
+| `Power` | `^` | infix right |
+| `Multiplication` | `*` `/` `%` `×` `⋅` `⊙` `⊘` `⊛` `∗` | infix left |
+| `Addition` | `+` `-` `⊞` `⊟` `⊕` `⊖` | infix left |
+| `Shift` / `Rotation` | `<<` `>>` `<<<` `>>>` | infix left |
+| `Range` | `..` `..<` | infix, non-associative |
+| `Comparison` | `<` `>` `<=` `>=` `≤` `≥` `<=>` `∈` `∉` `∋` `∌` `⊆` `⊇` `⊂` `⊃` `⟂` `∥` `∦` | infix, non-associative |
+| `Equality` | `==` `!=` `≠` | infix, non-associative |
+| `BitwiseAnd` | `&` | infix left |
+| `BitwiseXor` | `xor` `⊻` | infix left |
+| `BitwiseOr` | `\|` | infix left |
+| `LogicalAnd` | `&&` `and` `∧` | infix left |
+| `LogicalOr` | `\|\|` `or` `∨` | infix left |
+| `Assignment` | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `<<<=` `>>>=` `&=` `\|=` `&&=` `\|\|=` | infix right |
 
 - `⊖` is declared twice: once `prefix` (unary negation, Z. 98) and once `infix` (binary subtraction, Z. 99). Fixity is part of the signature, so the two forms are distinct (see next section).
 - `×` and `⋅` share the `Multiplication` group and are left-associative, so `a × b ⋅ c` parses as `(a × b) ⋅ c` (the scalar triple product), which is the intended reading.
+- The word operators `and`/`or` (and their synonyms `∧`/`∨`) keep their logical-level precedence whether applied to `Bool` or to integers; `nand`/`nor` (`⊼`/`⊽`) group with `and`/`or` respectively.
+- The custom operators of the next section (`∘`, `⊗`, `∪`, `∩`, `∖`) introduce their own named groups (`Composition`, `Tensor`, `Union`, `Intersection`), whose position relative to the groups above is fixed at declaration.
+- Cross-group ordering follows C++ (see the [Operators](/advanced/operators/) chapter); per [Ideas from Others](/more/ideas-from-others/) this ordering may still be simplified.
 
 
 ### Custom Operators with Declared Precedence
