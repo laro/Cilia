@@ -108,7 +108,7 @@ operator ∥(Vec a, b) -> Bool      { ... }   // parallel to
 operator ∦(Vec a, b) -> Bool      { ... }   // not parallel to
 ```
 
-These operators have no ASCII equivalent to inherit from, so each is assigned (by analogy to the existing arithmetic/comparison groups) to a named precedence group and fixity. The table sorts in **all currently known operators** — the ASCII operators from the [Operators](/advanced/operators/) chapter, the Unicode synonyms above, and the new vector/matrix operators — from tightest to loosest binding:
+Some operators have no ASCII equivalent to inherit from, so each is assigned (by analogy to the existing arithmetic/comparison groups) to a named precedence group and fixity. The table sorts in **all currently known operators** — the ASCII operators from the [Operators](/advanced/operators/) chapter, the Unicode synonyms above, and the new vector/matrix operators — from tightest to loosest binding:
 
 | Precedence group | Operators | Fixity |
 | --- | --- | --- |
