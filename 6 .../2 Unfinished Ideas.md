@@ -94,14 +94,21 @@ A common use case for custom operators, as the ASCII set has no good notation fo
 ```
 operator ×(Vec3 a, b) -> Vec3     { ... }   // cross product (beware of confusion with the letter 'x')
 operator ⋅(Vec a, b) -> Float     { ... }   // dot / scalar / inner product
+
 operator ⊙(Matrix a, b) -> Matrix { ... }   // Hadamard (element-wise) product
 operator ⊞(Matrix a, b) -> Matrix { ... }   // element-wise addition ("boxplus")
 operator ⊟(Matrix a, b) -> Matrix { ... }   // element-wise subtraction ("boxminus")
+
 operator ⊕(Vec a, b) -> Vec       { ... }   // direct sum: {1 2} ⊕ {3 4} -> {1 2 3 4}
 operator ⊖(Vec a) -> Vec          { ... }   // negation (unary)
 operator ⊖(Vec a, b) -> Vec       { ... }   // subtraction (binary)
 operator ⊛(Signal a, b) -> Signal { ... }   // convolution
 operator ∗(Signal a, b) -> Signal { ... }   // convolution (alternative)
+
+operator ∠(Vec a, b) -> Float     { ... }   // angle between two vectors
+operator ⟂(Vec a, b) -> Bool      { ... }   // perpendicular / orthogonal
+operator ∥(Vec a, b) -> Bool      { ... }   // parallel to
+operator ∦(Vec a, b) -> Bool      { ... }   // not parallel to
 ```
 Related: `⊗` (tensor/Kronecker product) – see the general custom operators below.
 
@@ -164,11 +171,7 @@ Remaining candidate symbols, not yet assigned to one of the cases above (with th
     - `∇` nabla / del – gradient, divergence, curl.
     - `∂` partial derivative.
 - Geometry
-    - `∠` angle.
     - `∟` right angle.
-    - `⟂` perpendicular / orthogonal.
-    - `∥` parallel to.
-    - `∦` not parallel to.
 - Ratios / proportions
     - `∶` ratio (`a ∶ b`).
     - `∷` proportion (`a∶b ∷ c∶d`); beware: `::` is the scope operator in C++ & Cilia.
