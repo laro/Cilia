@@ -52,39 +52,8 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 
 ## Exotic Operators (e.g. Unicode)
 
-### Synonyms for Existing Operators
-
-For `≤ ≥ ≠` the Unicode character is just an alternative spelling of an existing operator, so no new parsing mechanism is needed.
-```
-// Comparison
-operator ≤(Int256 a, b) -> Bool { return a <= b }
-operator ≥(Int256 a, b) -> Bool { return a >= b }
-operator ≠(Int256 a, b) -> Bool { return a != b }
-```
-
-`∧`, `∨`, `⊼`, `⊽`, `¬` are already listed in the [Operators](/advanced/operators/) chapter.
-
-### Synonyms for Functions
-
-The set membership/subset symbols have no ASCII operator equivalent (they are synonyms for _functions_, not operators), so they are new operator symbols. They are not just an alternative spelling, but parse as relational operators, i.e. they inherit the (infix) fixity and precedence group of the comparison operators above:
-```
-// Set membership
-operator ∈(T x, Set<T> s) -> Bool { return s.contains(x) }
-operator ∉(T x, Set<T> s) -> Bool { return not s.contains(x) }
-operator ∋(Set<T> s, T x) -> Bool { return s.contains(x) }
-operator ∌(Set<T> s, T x) -> Bool { return not s.contains(x) }
-
-// Subset / superset
-operator ⊆(Set<T> a, b) -> Bool { return a.isSubsetOf(b) }
-operator ⊇(Set<T> a, b) -> Bool { return a.isSupersetOf(b) }
-operator ⊂(Set<T> a, b) -> Bool { return a.isProperSubsetOf(b) }
-operator ⊃(Set<T> a, b) -> Bool { return a.isProperSupersetOf(b) }
-```
-
-
 ### Vector / Matrix Operators
 
-A common use case for custom operators, as the ASCII set has no good notation for these:
 ```
 operator ×(Vec3 a, b) -> Vec3     { ... }   // cross product (beware of confusion with the letter 'x')
 operator ⋅(Vec a, b) -> Float     { ... }   // dot / scalar / inner product
@@ -103,12 +72,31 @@ operator ∗(Signal a, b) -> Signal { ... }   // convolution (alternative)
 func ∠(Vec a, b) -> Float        { ... }  // angle between two vectors
 func ∠(Point3D a, b, c) -> Float { ... }  // angle between three points (vectors ab and bc)
 
-operator ⟂(Vec a, b) -> Bool      { ... }   // perpendicular / orthogonal
-operator ∥(Vec a, b) -> Bool      { ... }   // parallel to
-operator ∦(Vec a, b) -> Bool      { ... }   // not parallel to
+operator ⟂(Vec a, b) -> Bool { ... }   // perpendicular / orthogonal
+operator ∥(Vec a, b) -> Bool  { ... }   // parallel to
+operator ∦(Vec a, b) -> Bool  { ... }   // not parallel to
 ```
 
-Some operators have no ASCII equivalent to inherit from, so each is assigned (by analogy to the existing arithmetic/comparison groups) to a named precedence group and fixity. The table sorts in **all currently known operators** — the ASCII operators from the [Operators](/advanced/operators/) chapter, the Unicode synonyms above, and the new vector/matrix operators — from tightest to loosest binding:
+### Set Symbols
+
+The set membership/subset symbols parse as relational operators, i.e. they inherit the (infix) fixity and precedence group of the comparison operators:
+```
+// Set membership
+operator ∈(T x, Set<T> s) -> Bool { return s.contains(x) }
+operator ∉(T x, Set<T> s) -> Bool { return not s.contains(x) }
+operator ∋(Set<T> s, T x) -> Bool { return s.contains(x) }
+operator ∌(Set<T> s, T x) -> Bool { return not s.contains(x) }
+
+// Subset / superset
+operator ⊆(Set<T> a, b) -> Bool { return a.isSubsetOf(b) }
+operator ⊇(Set<T> a, b) -> Bool { return a.isSupersetOf(b) }
+operator ⊂(Set<T> a, b) -> Bool { return a.isProperSubsetOf(b) }
+operator ⊃(Set<T> a, b) -> Bool { return a.isProperSupersetOf(b) }
+```
+
+### Operator Precedence
+
+The table sorts in **all currently known operators** from tightest to loosest binding:
 
 | Precedence group | Operators | Fixity |
 | --- | --- | --- |
@@ -176,6 +164,7 @@ bracket ⟨T a, b⟩ -> Float         { ... }                // inner product
     - `「...」`, `『...』`, `〈...〉`, `《...》`, `【...】`, `〖...〗`, `〔...〕`, `〘...〙`, `⦗...⦘`
     - Some may be used in reversed order: `≫...≪`
     - Also see [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)
+
 
 ### Later
 

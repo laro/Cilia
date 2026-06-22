@@ -204,6 +204,10 @@ operator >(Int256 a, b) -> Bool { ... }
 operator <=(Int256 a, b) -> Bool { ... }
 operator >=(Int256 a, b) -> Bool { ... }
 operator <=>(Int256 a, b) -> Int { ... }
+
+operator ≠(Int256 a, b) -> Bool { return a != b }
+operator ≤(Int256 a, b) -> Bool { return a <= b }
+operator ≥(Int256 a, b) -> Bool { return a >= b }
 ```
 
 ### Logical Operators
@@ -215,6 +219,7 @@ operator <=>(Int256 a, b) -> Int { ... }
   operator nor(Bool a, b) -> Bool { ... }
   operator xor(Bool a, b) -> Bool { ... }
   operator not(Bool a) -> Bool { ... }
+
   operator &&(Bool a, b) -> Bool { return a and b }
   operator ||(Bool a, b) -> Bool { return a or b }
   operator !(Bool a) -> Bool { return not a }
@@ -236,6 +241,7 @@ operator <=>(Int256 a, b) -> Int { ... }
   operator nor(Int256 a, b) -> Int256 { ... }
   operator xor(Int256 a, b) -> Int256 { ... }
   operator not(Int256 a) -> Int256 { ... }
+
   operator &(Int256 a, b) -> Int256 { return a and b }
   operator |(Int256 a, b) -> Int256 { return a or b }
   operator ~(Int256 a) -> Int256 { return not a }
