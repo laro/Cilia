@@ -90,8 +90,7 @@ operator ∝(Float a, b) -> Bool { return isProportional(a, b) }
 
 ### Custom Operators with Declared Precedence
 
-For some symbols (e.g. `⊕ ⊗ ⊘ ∘ ∪ ∩ ∖`) fixity and
-precedence have to be given at declaration. 
+For some symbols (e.g. `⊕ ⊗ ⊘ ∘ ∪ ∩ ∖`) fixity and precedence have to be given at declaration. 
 
 The two main difficulties (see also the [Operators](/advanced/operators/) chapter) are:
 - operator precedence,
@@ -111,12 +110,13 @@ operator ⊖(Vec a, b) -> Vec   infix left  precedence Additive     { ... }   //
 
 ### Bracket / "Sandwich" Notation
 
-`|x|`, `‖x‖`, `⟨a, b⟩` etc. are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator"). These should be a dedicated construct, _not_ `operator`:
+`‖x‖`, `⟨a, b⟩` etc. are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator"). These should be a dedicated construct, _not_ `operator`:
 ```
-bracket |…|    (Vec v) -> Float          { return v.length() }   // abs / norm
-bracket ⟨…, …⟩ (T a, b) -> InnerProduct   { ... }
+bracket ‖Vec v‖ -> Float          { return v.length() }   // abs / norm
+bracket ⟨T a, b⟩ -> InnerProduct  { ... }
 ```
-- `|x|` for `abs(x)` then collides with nothing, as it is a dedicated bracket type.
+- `|x|` for `abs(x)` is problematic, as `|` is the bitwise `or` operator: an expression like `a | b | c` would be ambiguous (bitwise `or` vs. `a * |b| * c`).
+    - So `‖x‖` (U+2016) might be the better choice for `abs(x)`, too.
 - `‖x‖` (U+2016) for `norm(x)` instead of `||x||`, which would interfere with `||` as logical `or`.
 - More bracket variants:
     - `≪...≫`
@@ -134,10 +134,9 @@ Many of the symbols seem more suitable for a computer algebra system (CAS) than 
 Reserved for future use, as it could get complicated and confusing.
 Full list of candidate symbols, not yet assigned to one of the cases above:
 
-- ⊕, ⊖, ⊗, ⊘, ⊙, ⊛, ⊞, ⊟, ∪, ∩, ∖, ∈, ∉, ∋, ∌, ∧, ∨, ¬, ∷, ∶, ∝, ∼, ≈, ≉, ≠, ≤, ≥, ≪, ≫, ⊂, ⊃, ⊆, ⊇, ∅, ∇, ∂, ∞, ∑, ∏, ∫, ∮, ∵, ∴, ∗, ∘, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
+- ⊙, ⊛, ⊞, ⊟, ∷, ∶, ∅, ∇, ∂, ∞, ∵, ∴, ∗, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
 
-- `∑`, `∏`, `∫`, `∮` are _not_ operators: they need an index/binder (e.g. `∑_{i=1}^{n}`),
-  which is macro/CAS territory, so they stay plain functions `sum(...)`, `product(...)`, `integrate(...)`.
+- `∑`, `∏`, `∫`, `∮` are _not_ operators: they need an index/binder (e.g. `∑_{i=1}^{n}`), so for now they stay plain functions `sum(...)`, `product(...)`, `integrate(...)`.
 
 
 ## OpenMP-like Parallel Programming
