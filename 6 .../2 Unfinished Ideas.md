@@ -115,7 +115,7 @@ operator ∦(Vec a, b) -> Bool      { ... }   // not parallel to
 
 ### Custom Operators with Declared Precedence
 
-For some symbols (e.g. `⊕ ⊗ ⊘ ∘ ∪ ∩ ∖`) fixity and precedence have to be given at declaration. 
+For some symbols fixity and precedence have to be given at declaration. 
 
 The two main difficulties (see also the [Operators](/advanced/operators/) chapter) are:
 - operator precedence,
