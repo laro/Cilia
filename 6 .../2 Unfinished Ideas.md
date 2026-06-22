@@ -177,15 +177,11 @@ Remaining candidate symbols, not yet assigned to one of the cases above (with th
 - Ratios / proportions
     - `∶` ratio (`a ∶ b`).
     - `∷` proportion (`a∶b ∷ c∶d`); beware: `::` is the scope operator in C++ & Cilia.
-
-Maybe also:
-```
-// Approximate comparison
-operator ≈(Float a, b) -> Bool { return isClose(a, b) }
-operator ≉(Float a, b) -> Bool { return not isClose(a, b) }
-operator ∼(Float a, b) -> Bool { return isSimilar(a, b) }
-operator ∝(Float a, b) -> Bool { return isProportional(a, b) }
-```
+    - `∝` "proportional to" – `isProportional(a, b)`.
+- Approximate comparison / similarity
+    - `≈` "almost equal to" – `isClose(a, b)`.
+    - `≉` "not almost equal to" – `not isClose(a, b)`.
+    - `∼` "tilde operator" / "similar to" – `isSimilar(a, b)`.
 
 - `∑`, `∏`, `∫`, `∮` are _not_ operators: they need an index/binder (e.g. `∑_{i=1}^{n}`), so for now they stay plain functions `sum(...)`, `product(...)`, `integrate(...)`.
 
