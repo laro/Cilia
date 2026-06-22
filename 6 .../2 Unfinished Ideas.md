@@ -108,6 +108,26 @@ operator ⊖(Vec a, b) -> Vec   infix left  precedence Additive     { ... }   //
 - Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF), so the lexer can cleanly separate identifiers and operators.
 
 
+### Vector / Matrix Operators
+
+A common use case for custom operators, as the ASCII set has no good notation for these:
+```
+operator ×(Vec3 a, b) -> Vec3        infix left precedence Multiplicative { ... }   // cross product
+operator ∙(Vec a, b) -> Float        infix left precedence Multiplicative { ... }   // dot / scalar product
+operator ⊙(Matrix a, b) -> Matrix    infix left precedence Multiplicative { ... }   // Hadamard (element-wise) product
+operator ⊞(Matrix a, b) -> Matrix    infix left precedence Additive       { ... }   // element-wise addition
+operator ⊟(Matrix a, b) -> Matrix    infix left precedence Additive       { ... }   // element-wise subtraction
+operator ⊛(Signal a, b) -> Signal    infix left precedence Multiplicative { ... }   // convolution
+operator ∗(Signal a, b) -> Signal    infix left precedence Multiplicative { ... }   // convolution (alternative)
+```
+- `×` cross product – the most obvious candidate, but beware of confusion with `x` (the letter).
+- `∙` dot product (scalar/inner product) – note the similar-looking real "dot operator" `⋅` (U+22C5).
+- `⊙` Hadamard product (element-wise multiplication).
+- `⊞`, `⊟` element-wise addition/subtraction ("boxplus"/"boxminus").
+- `⊛`, `∗` convolution (e.g. for signals/images).
+- Related: `⊗` (tensor/Kronecker product), `⊕` (direct sum) – see the general custom operators above.
+
+
 ### Bracket / "Sandwich" Notation
 
 `‖x‖`, `⟨a, b⟩` etc. are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator"). These should be a dedicated construct, _not_ `operator`:
@@ -132,9 +152,30 @@ bracket ⟨T a, b⟩ -> InnerProduct  { ... }
 Many of the symbols seem more suitable for a computer algebra system (CAS) than for a general purpose programming language, so they stay unassigned for now.
 
 Reserved for future use, as it could get complicated and confusing.
-Full list of candidate symbols, not yet assigned to one of the cases above:
+Remaining candidate symbols, not yet assigned to one of the cases above (with their usual mathematical meaning):
 
-- ⊙, ⊛, ⊞, ⊟, ∷, ∶, ∅, ∇, ∂, ∞, ∵, ∴, ∗, ∙, ∟, ∥, ∦, ∠, ⟂, ≜, ≝, ≔, ≕
+- Definition / assignment
+    - `≔` "colon equals" (`:=`) – defined as / assignment.
+    - `≕` "equals colon" (`=:`) – same, but reversed direction.
+    - `≜` "delta equal to" – equal by definition.
+    - `≝` "equal to by definition".
+- Logic / proof notation
+    - `∴` therefore.
+    - `∵` because.
+    - `∅` empty set.
+    - `∞` infinity.
+- Calculus
+    - `∇` nabla / del – gradient, divergence, curl.
+    - `∂` partial derivative.
+- Geometry
+    - `∠` angle.
+    - `∟` right angle.
+    - `⟂` perpendicular / orthogonal.
+    - `∥` parallel to.
+    - `∦` not parallel to.
+- Ratios / proportions
+    - `∶` ratio (`a ∶ b`).
+    - `∷` proportion (`a∶b ∷ c∶d`); beware: `::` is the scope operator in C++ & Cilia.
 
 - `∑`, `∏`, `∫`, `∮` are _not_ operators: they need an index/binder (e.g. `∑_{i=1}^{n}`), so for now they stay plain functions `sum(...)`, `product(...)`, `integrate(...)`.
 
