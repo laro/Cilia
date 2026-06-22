@@ -115,24 +115,23 @@ Some operators have no ASCII equivalent to inherit from, so each is assigned (by
 | Postfix / call | `a()` `a[]` `a.b` `a++` `a--` | postfix |
 | Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
 | `Power` | `^` | infix right |
-| `Multiplication` | `*` `/` `%` `×` `⋅` `⊙` `⊘` `⊛` `∗` | infix left |
-| `Addition` | `+` `-` `⊞` `⊟` `⊕` `⊖` | infix left |
+| `Multiplication` | `*` `/` `%` `×` `⋅` `⊙` `⊘` `⊛` `∗` `&` | infix left |
+| `Addition` | `+` `-` `⊞` `⊟` `⊕` `⊖` `\|` | infix left |
 | `Shift` / `Rotation` | `<<` `>>` `<<<` `>>>` | infix left |
 | `Range` | `..` `..<` | infix, non-associative |
 | `Comparison` | `<` `>` `<=` `>=` `≤` `≥` `<=>` `∈` `∉` `∋` `∌` `⊆` `⊇` `⊂` `⊃` `⟂` `∥` `∦` | infix, non-associative |
 | `Equality` | `==` `!=` `≠` | infix, non-associative |
-| `BitwiseAnd` | `&` | infix left |
-| `BitwiseXor` | `xor` `⊻` | infix left |
-| `BitwiseOr` | `\|` | infix left |
 | `LogicalAnd` | `&&` `and` `∧` | infix left |
+| `LogicalXor` | `xor` `⊻` | infix left |
 | `LogicalOr` | `\|\|` `or` `∨` | infix left |
 | `Assignment` | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `<<<=` `>>>=` `&=` `\|=` `&&=` `\|\|=` | infix right |
 
 - `⊖` is declared twice: once `prefix` (unary negation, Z. 98) and once `infix` (binary subtraction, Z. 99). Fixity is part of the signature, so the two forms are distinct (see next section).
 - `×` and `⋅` share the `Multiplication` group and are left-associative, so `a × b ⋅ c` parses as `(a × b) ⋅ c` (the scalar triple product), which is the intended reading.
-- The word operators `and`/`or` (and their synonyms `∧`/`∨`) keep their logical-level precedence whether applied to `Bool` or to integers; `nand`/`nor` (`⊼`/`⊽`) group with `and`/`or` respectively.
+- The bitwise *symbols* `&` and `\|` follow Go's precedence: `&` binds like `*` (`Multiplication`), `\|` like `+` (`Addition`), so both bind **tighter** than `Comparison`/`Equality`. This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
+- The word operators `and`/`or`/`xor` (and their Unicode synonyms `∧`/`∨`/`⊻`) keep their logical-level precedence whether applied to `Bool` or to integers; `nand`/`nor` (`⊼`/`⊽`) group with `and`/`or` respectively. Bitwise XOR therefore has no tight-binding ASCII symbol (`^` is `Power`) — use the word `xor` (at logical level) or parenthesize.
 - The custom operators of the next section (`∘`, `⊗`, `∪`, `∩`, `∖`) introduce their own named groups (`Composition`, `Tensor`, `Union`, `Intersection`), whose position relative to the groups above is fixed at declaration.
-- Cross-group ordering follows C++ (see the [Operators](/advanced/operators/) chapter); per [Ideas from Others](/more/ideas-from-others/) this ordering may still be simplified.
+- Cross-group ordering otherwise follows C++ (see the [Operators](/advanced/operators/) chapter), except the bitwise symbols `&`/`\|`, which follow Go (see above); per [Ideas from Others](/more/ideas-from-others/) this ordering may still be simplified.
 
 
 ### Custom Operators with Declared Precedence
