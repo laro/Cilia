@@ -88,26 +88,6 @@ operator ∼(Float a, b) -> Bool { return isSimilar(a, b) }
 operator ∝(Float a, b) -> Bool { return isProportional(a, b) }
 ```
 
-### Custom Operators with Declared Precedence
-
-For some symbols (e.g. `⊕ ⊗ ⊘ ∘ ∪ ∩ ∖`) fixity and precedence have to be given at declaration. 
-
-The two main difficulties (see also the [Operators](/advanced/operators/) chapter) are:
-- operator precedence,
-- unary (prefix, postfix) vs. binary (infix) operators, and
-- bracket variants.
-
-Modelled after Swift/Haskell, preferably with _named_ precedence groups instead of magic numbers:
-```
-operator ⊕(Vec a, b) -> Vec   infix left  precedence Additive     { ... }
-operator ∘(Fn f, g) -> Fn     infix right precedence Composition  { ... }
-operator ⊖(Vec a)    -> Vec   prefix                              { ... }   // unary
-operator ⊖(Vec a, b) -> Vec   infix left  precedence Additive     { ... }   // binary
-```
-- Fixity (`prefix`/`infix`/`postfix`) is part of the signature, so unary and binary forms are distinct declarations (just like `-` in C++).
-- Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF), so the lexer can cleanly separate identifiers and operators.
-
-
 ### Vector / Matrix Operators
 
 A common use case for custom operators, as the ASCII set has no good notation for these:
@@ -126,6 +106,26 @@ operator ∗(Signal a, b) -> Signal    infix left precedence Multiplicative { ..
 - `⊞`, `⊟` element-wise addition/subtraction ("boxplus"/"boxminus").
 - `⊛`, `∗` convolution (e.g. for signals/images).
 - Related: `⊗` (tensor/Kronecker product), `⊕` (direct sum) – see the general custom operators above.
+
+
+### Custom Operators with Declared Precedence
+
+For some symbols (e.g. `⊕ ⊗ ⊘ ∘ ∪ ∩ ∖`) fixity and precedence have to be given at declaration. 
+
+The two main difficulties (see also the [Operators](/advanced/operators/) chapter) are:
+- operator precedence,
+- unary (prefix, postfix) vs. binary (infix) operators, and
+- bracket variants.
+
+Modelled after Swift/Haskell, preferably with _named_ precedence groups instead of magic numbers:
+```
+operator ⊕(Vec a, b) -> Vec   infix left  precedence Additive     { ... }
+operator ∘(Fn f, g) -> Fn     infix right precedence Composition  { ... }
+operator ⊖(Vec a)    -> Vec   prefix                              { ... }   // unary
+operator ⊖(Vec a, b) -> Vec   infix left  precedence Additive     { ... }   // binary
+```
+- Fixity (`prefix`/`infix`/`postfix`) is part of the signature, so unary and binary forms are distinct declarations (just like `-` in C++).
+- Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF), so the lexer can cleanly separate identifiers and operators.
 
 
 ### Bracket / "Sandwich" Notation
