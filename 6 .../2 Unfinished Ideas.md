@@ -96,6 +96,7 @@ operator ×(Vec3 a, b) -> Vec3     { ... }   // cross product (beware of confusi
 operator ⋅(Vec a, b) -> Float     { ... }   // dot / scalar / inner product
 
 operator ⊙(Matrix a, b) -> Matrix { ... }   // Hadamard (element-wise) product
+operator ⊘(Matrix a, b) -> Matrix { ... }   // Hadamard (element-wise) division
 operator ⊞(Matrix a, b) -> Matrix { ... }   // element-wise addition ("boxplus")
 operator ⊟(Matrix a, b) -> Matrix { ... }   // element-wise subtraction ("boxminus")
 
