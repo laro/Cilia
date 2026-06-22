@@ -100,8 +100,8 @@ operator ⊖(Vec a, b) -> Vec       { ... }   // subtraction (binary)
 operator ⊛(Signal a, b) -> Signal { ... }   // convolution
 operator ∗(Signal a, b) -> Signal { ... }   // convolution (alternative)
 
-func ∠(Vec a, b) -> Float            { ... }   // angle between two vectors
-func ∠(Point3D a, b, c) -> Float { ... }   // angle between three points (vectors ab and bc)
+func ∠(Vec a, b) -> Float            { ... }  // angle between two vectors
+func ∠(Point3D a, b, c) -> Float { ... }      // angle between three points (vectors ab and bc)
 
 operator ⟂(Vec a, b) -> Bool      { ... }   // perpendicular / orthogonal
 operator ∥(Vec a, b) -> Bool      { ... }   // parallel to
