@@ -64,7 +64,9 @@ operator ≠(Int256 a, b) -> Bool { return a != b }
 // Logical / boolean
 operator ∧(Bool a, b) -> Bool { return a and b }
 operator ∨(Bool a, b) -> Bool { return a or b }
-operator ¬(Bool a) -> Bool { return not a }            // unary
+operator ⊼(Bool a, b) -> Bool { return a nand b }
+operator ⊽(Bool a, b) -> Bool { return a nor b }
+operator ¬(Bool a) -> Bool { return not a }       // unary
 
 // Set membership
 operator ∈(T x, Set<T> s) -> Bool { return s.contains(x) }
