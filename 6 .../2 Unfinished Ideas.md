@@ -52,7 +52,7 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 
 ## Exotic Operators (e.g. Unicode)
 
-### Synonyms for Existing Operators or Functions
+### Synonyms for Existing Operators
 
 For `≤ ≥ ≠` the Unicode character is just an alternative spelling of an existing operator, so no new parsing mechanism is needed.
 ```
@@ -61,6 +61,10 @@ operator ≤(Int256 a, b) -> Bool { return a <= b }
 operator ≥(Int256 a, b) -> Bool { return a >= b }
 operator ≠(Int256 a, b) -> Bool { return a != b }
 ```
+
+`∧`, `∨`, `⊼`, `⊽`, `¬` are already listed in the [Operators](/advanced/operators/) chapter.
+
+### Synonyms for Functions
 
 The set membership/subset symbols have no ASCII operator equivalent (they are synonyms for _functions_, not operators), so they are new operator symbols. They are not just an alternative spelling, but parse as relational operators, i.e. they inherit the (infix) fixity and precedence group of the comparison operators above:
 ```
@@ -77,16 +81,6 @@ operator ⊂(Set<T> a, b) -> Bool { return a.isProperSubsetOf(b) }
 operator ⊃(Set<T> a, b) -> Bool { return a.isProperSupersetOf(b) }
 ```
 
-`∧`, `∨`, `⊼`, `⊽`, `¬` are already listed in the [Operators](/advanced/operators/) chapter.
-
-Maybe also this:
-```
-// Approximate comparison
-operator ≈(Float a, b) -> Bool { return isClose(a, b) }
-operator ≉(Float a, b) -> Bool { return not isClose(a, b) }
-operator ∼(Float a, b) -> Bool { return isSimilar(a, b) }
-operator ∝(Float a, b) -> Bool { return isProportional(a, b) }
-```
 
 ### Vector / Matrix Operators
 
@@ -183,6 +177,15 @@ Remaining candidate symbols, not yet assigned to one of the cases above (with th
 - Ratios / proportions
     - `∶` ratio (`a ∶ b`).
     - `∷` proportion (`a∶b ∷ c∶d`); beware: `::` is the scope operator in C++ & Cilia.
+
+Maybe also:
+```
+// Approximate comparison
+operator ≈(Float a, b) -> Bool { return isClose(a, b) }
+operator ≉(Float a, b) -> Bool { return not isClose(a, b) }
+operator ∼(Float a, b) -> Bool { return isSimilar(a, b) }
+operator ∝(Float a, b) -> Bool { return isProportional(a, b) }
+```
 
 - `∑`, `∏`, `∫`, `∮` are _not_ operators: they need an index/binder (e.g. `∑_{i=1}^{n}`), so for now they stay plain functions `sum(...)`, `product(...)`, `integrate(...)`.
 
