@@ -166,8 +166,8 @@ One could define the order of bits in a bitfield.
 
 
 ## Operators
-- Possible, alternative syntax for `pow(a, x)`:  
-  `a**x` (as Python did)
+- The Julia-style `a^x` for `pow(a, x)` was discarded:  
+  now `a**x` is used (as in Python), so that `^` is free for bitwise XOR (with tight binding).
 - Some more kinds of range literals could be useful:
     - `8>..0:-1` – 7, 6, 5, 4, 3, 2, 1, 0
         - RangeExclusiveStartByStep(8, 0, -1)

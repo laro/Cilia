@@ -1,14 +1,15 @@
 ---
 permalink: /advanced/operators/
-description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overloading, precedence, custom operators."
+description: "Cilia operators: a**b for pow, and/or/nand/nor/xor. Operator overloading, precedence, custom operators."
 ---
 
 # Operators
 
 ## Power Function
 
-- **`a^x`** for `pow(a, x)` (as in Julia),
-- "raise a to the power of x".
+- **`a**x`** for `pow(a, x)` (as in Python),
+- "raise a to the power of x",
+- `infix right` precedence (group `Power`), so `a**b**c` parses as `a**(b**c)`.
 
 
 ## Boolean Operators
@@ -42,8 +43,9 @@ description: "Cilia operators: a^x for pow, and/or/nand/nor/xor. Operator overlo
         - as we keep `~T` for the destructor anyway.
 - **`nand`** and **`nor`**,  
     - as in VHDL and as possible in Julia.
-- **`xor`** _instead_ of `^`,
-    - because we want `^` for the power function.
+- **`xor`** and the symbol **`^`** for XOR,
+    - `^` for bitwise XOR (integers only) with tight binding, like `&` and `|`,
+    - still _also_ the word `xor` (as with `and`/`or`), which is a bit clearer and also works on `Bool`.
 - Not ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~, ~~`not_eq`~~.
 
 
@@ -177,13 +179,13 @@ class Int256 {
     operator >>=(Int shiftCount) { ... }
     operator &=(Int256 other) { ... }
     operator |=(Int256 other) { ... }
+    operator ^=(Int256 other) { ... }
 }
 class UInt256 {
     operator <<<=(Int shiftCount) { ... }
     operator >>>=(Int shiftCount) { ... }
 }
 ```
-- Not ~~`operator ^=(Int256 other) { ... }`~~
 
 ### Increment and Decrement Operators
 ```
@@ -244,6 +246,7 @@ operator ≥(Int256 a, b) -> Bool { return a >= b }
 
   operator &(Int256 a, b) -> Int256 { return a and b }
   operator |(Int256 a, b) -> Int256 { return a or b }
+  operator ^(Int256 a, b) -> Int256 { return a xor b }
   operator ~(Int256 a) -> Int256 { return not a }
   operator ∧(Int256 a, b) -> Int256 { return a and b }
   operator ∨(Int256 a, b) -> Int256 { return a or b }
@@ -253,7 +256,7 @@ operator ≥(Int256 a, b) -> Bool { return a >= b }
   ```
     - Defined for _integers_ (not for `Bool`),
     - operators `~`, not ~~`!`~~,
-        - `&` and `|`, not ~~`&&` and `||`~~.
+        - `&`, `|` and `^`, not ~~`&&` and `||`~~.
 
 ### Subscript/Bracket Operator
 ```
