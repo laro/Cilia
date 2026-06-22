@@ -110,12 +110,12 @@ operator ∦(Vec a, b) -> Bool      { ... }   // not parallel to
 
 These operators have no ASCII equivalent to inherit from, so each is assigned (by analogy to the existing arithmetic/comparison groups) to a named precedence group and fixity:
 
-| Precedence group | Operators | Fixity |
-| --- | --- | --- |
-| (unary, high) | `⊖` | prefix |
-| `Multiplication` (like `* /`) | `×` `⋅` `⊙` `⊘` `⊛` `∗` | infix left |
-| `Addition` (like `+ -`) | `⊞` `⊟` `⊕` `⊖` | infix left |
-| `Comparison` (like `< <= ==`) | `⟂` `∥` `∦` | infix, non-associative |
+| Precedence group              | Operators               | Fixity                |
+| ----------------------------- | ----------------------- | --------------------- |
+| (unary, high)                 | `⊖`                     | prefix                |
+| `Multiplication` (like `* /`) | `×` `⋅` `⊙` `⊘` `⊛` `∗` | infix left            |
+| `Addition` (like `+ -`)       | `⊞` `⊟` `⊕` `⊖`         | infix left            |
+| `Comparison` (like `< <= ==`) | `⟂` `∥` `∦`             | infix, non-associative |
 {:.wide-table}
 
 - `⊖` is declared twice: once `prefix` (unary negation, Z. 98) and once `infix` (binary subtraction, Z. 99). Fixity is part of the signature, so the two forms are distinct (see next section).
