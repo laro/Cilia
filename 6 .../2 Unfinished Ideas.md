@@ -113,7 +113,7 @@ operator ⊖(Vec a, b) -> Vec   infix left  precedence Additive     { ... }   //
 A common use case for custom operators, as the ASCII set has no good notation for these:
 ```
 operator ×(Vec3 a, b) -> Vec3        infix left precedence Multiplicative { ... }   // cross product
-operator ∙(Vec a, b) -> Float        infix left precedence Multiplicative { ... }   // dot / scalar product
+operator ⋅(Vec a, b) -> Float        infix left precedence Multiplicative { ... }   // dot / scalar product
 operator ⊙(Matrix a, b) -> Matrix    infix left precedence Multiplicative { ... }   // Hadamard (element-wise) product
 operator ⊞(Matrix a, b) -> Matrix    infix left precedence Additive       { ... }   // element-wise addition
 operator ⊟(Matrix a, b) -> Matrix    infix left precedence Additive       { ... }   // element-wise subtraction
@@ -121,7 +121,7 @@ operator ⊛(Signal a, b) -> Signal    infix left precedence Multiplicative { ..
 operator ∗(Signal a, b) -> Signal    infix left precedence Multiplicative { ... }   // convolution (alternative)
 ```
 - `×` cross product – the most obvious candidate, but beware of confusion with `x` (the letter).
-- `∙` dot product (scalar/inner product) – note the similar-looking real "dot operator" `⋅` (U+22C5).
+- `⋅` dot product (scalar/inner product).
 - `⊙` Hadamard product (element-wise multiplication).
 - `⊞`, `⊟` element-wise addition/subtraction ("boxplus"/"boxminus").
 - `⊛`, `∗` convolution (e.g. for signals/images).
