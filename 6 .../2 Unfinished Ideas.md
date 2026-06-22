@@ -111,7 +111,6 @@ operator ⟂(Vec a, b) -> Bool      { ... }   // perpendicular / orthogonal
 operator ∥(Vec a, b) -> Bool      { ... }   // parallel to
 operator ∦(Vec a, b) -> Bool      { ... }   // not parallel to
 ```
-Related: `⊗` (tensor/Kronecker product) – see the general custom operators below.
 
 
 ### Custom Operators with Declared Precedence
