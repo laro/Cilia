@@ -97,6 +97,9 @@ operator ⋅(Vec a, b) -> Float        infix left precedence Multiplicative { ..
 operator ⊙(Matrix a, b) -> Matrix    infix left precedence Multiplicative { ... }   // Hadamard (element-wise) product
 operator ⊞(Matrix a, b) -> Matrix    infix left precedence Additive       { ... }   // element-wise addition
 operator ⊟(Matrix a, b) -> Matrix    infix left precedence Additive       { ... }   // element-wise subtraction
+operator ⊕(Vec a, b) -> Vec          infix left precedence Additive       { ... }   // direct sum
+operator ⊖(Vec a) -> Vec             prefix                               { ... }   // negation (unary)
+operator ⊖(Vec a, b) -> Vec          infix left precedence Additive       { ... }   // subtraction (binary)
 operator ⊛(Signal a, b) -> Signal    infix left precedence Multiplicative { ... }   // convolution
 operator ∗(Signal a, b) -> Signal    infix left precedence Multiplicative { ... }   // convolution (alternative)
 ```
@@ -104,8 +107,9 @@ operator ∗(Signal a, b) -> Signal    infix left precedence Multiplicative { ..
 - `⋅` dot product (scalar/inner product).
 - `⊙` Hadamard product (element-wise multiplication).
 - `⊞`, `⊟` element-wise addition/subtraction ("boxplus"/"boxminus").
+- `⊕` direct sum; `⊖` negation (unary) / subtraction (binary) – the same symbol with distinct fixity.
 - `⊛`, `∗` convolution (e.g. for signals/images).
-- Related: `⊗` (tensor/Kronecker product), `⊕` (direct sum) – see the general custom operators above.
+- Related: `⊗` (tensor/Kronecker product) – see the general custom operators below.
 
 
 ### Custom Operators with Declared Precedence
@@ -119,10 +123,8 @@ The two main difficulties (see also the [Operators](/advanced/operators/) chapte
 
 Modelled after Swift/Haskell, preferably with _named_ precedence groups instead of magic numbers:
 ```
-operator ⊕(Vec a, b) -> Vec   infix left  precedence Additive     { ... }
 operator ∘(Fn f, g) -> Fn     infix right precedence Composition  { ... }
-operator ⊖(Vec a)    -> Vec   prefix                              { ... }   // unary
-operator ⊖(Vec a, b) -> Vec   infix left  precedence Additive     { ... }   // binary
+operator √(Float a) -> Float  prefix                              { ... }   // unary
 ```
 - Fixity (`prefix`/`infix`/`postfix`) is part of the signature, so unary and binary forms are distinct declarations (just like `-` in C++).
 - Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF), so the lexer can cleanly separate identifiers and operators.
