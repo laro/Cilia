@@ -97,19 +97,13 @@ operator ⋅(Vec a, b) -> Float     { ... }   // dot / scalar / inner product
 operator ⊙(Matrix a, b) -> Matrix { ... }   // Hadamard (element-wise) product
 operator ⊞(Matrix a, b) -> Matrix { ... }   // element-wise addition ("boxplus")
 operator ⊟(Matrix a, b) -> Matrix { ... }   // element-wise subtraction ("boxminus")
-operator ⊕(Vec a, b) -> Vec       { ... }   // direct sum
+operator ⊕(Vec a, b) -> Vec       { ... }   // direct sum: {1 2} ⊕ {3 4} -> {1 2 3 4}
 operator ⊖(Vec a) -> Vec          { ... }   // negation (unary)
 operator ⊖(Vec a, b) -> Vec       { ... }   // subtraction (binary)
 operator ⊛(Signal a, b) -> Signal { ... }   // convolution
 operator ∗(Signal a, b) -> Signal { ... }   // convolution (alternative)
 ```
-- `×` cross product – the most obvious candidate, but beware of confusion with `x` (the letter).
-- `⋅` dot product (scalar/inner product).
-- `⊙` Hadamard product (element-wise multiplication).
-- `⊞`, `⊟` element-wise addition/subtraction ("boxplus"/"boxminus").
-- `⊕` direct sum; `⊖` negation (unary) / subtraction (binary) – the same symbol with distinct fixity.
-- `⊛`, `∗` convolution (e.g. for signals/images).
-- Related: `⊗` (tensor/Kronecker product) – see the general custom operators below.
+Related: `⊗` (tensor/Kronecker product) – see the general custom operators below.
 
 
 ### Custom Operators with Declared Precedence
