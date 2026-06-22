@@ -124,10 +124,10 @@ The two main difficulties (see also the [Operators](/advanced/operators/) chapte
 Modelled after Swift/Haskell, preferably with _named_ precedence groups instead of magic numbers:
 ```
 operator ∘(Fn f, g)     -> Fn     infix right precedence Composition   { ... }
-operator ⊗(Matrix a, b) -> Matrix infix left  precedence Tensor        { ... }   // tensor / Kronecker product
-operator ∪(Set a, b)    -> Set    infix left  precedence Union         { ... }   // union
-operator ∩(Set a, b)    -> Set    infix left  precedence Intersection  { ... }   // intersection (binds tighter than ∪)
-operator ∖(Set a, b)    -> Set    infix left  precedence Union         { ... }   // set difference: a without b
+operator ⊗(Matrix a, b) -> Matrix infix  left precedence Tensor        { ... }   // tensor / Kronecker product
+operator ∪(Set a, b)    -> Set    infix  left precedence Union         { ... }   // union
+operator ∩(Set a, b)    -> Set    infix  left precedence Intersection  { ... }   // intersection (binds tighter than ∪)
+operator ∖(Set a, b)    -> Set    infix  left precedence Union         { ... }   // set difference: a without b
 operator √(Float a)     -> Float  prefix                               { ... }   // unary
 ```
 - Fixity (`prefix`/`infix`/`postfix`) is part of the signature, so unary and binary forms are distinct declarations (just like `-` in C++).
