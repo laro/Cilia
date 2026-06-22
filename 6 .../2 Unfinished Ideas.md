@@ -92,16 +92,16 @@ operator ∝(Float a, b) -> Bool { return isProportional(a, b) }
 
 A common use case for custom operators, as the ASCII set has no good notation for these:
 ```
-operator ×(Vec3 a, b) -> Vec3        infix left precedence Multiplicative { ... }   // cross product
-operator ⋅(Vec a, b) -> Float        infix left precedence Multiplicative { ... }   // dot / scalar product
-operator ⊙(Matrix a, b) -> Matrix    infix left precedence Multiplicative { ... }   // Hadamard (element-wise) product
-operator ⊞(Matrix a, b) -> Matrix    infix left precedence Additive       { ... }   // element-wise addition
-operator ⊟(Matrix a, b) -> Matrix    infix left precedence Additive       { ... }   // element-wise subtraction
-operator ⊕(Vec a, b) -> Vec          infix left precedence Additive       { ... }   // direct sum
-operator ⊖(Vec a) -> Vec             prefix                               { ... }   // negation (unary)
-operator ⊖(Vec a, b) -> Vec          infix left precedence Additive       { ... }   // subtraction (binary)
-operator ⊛(Signal a, b) -> Signal    infix left precedence Multiplicative { ... }   // convolution
-operator ∗(Signal a, b) -> Signal    infix left precedence Multiplicative { ... }   // convolution (alternative)
+operator ×(Vec3 a, b) -> Vec3     { ... }   // cross product (beware of confusion with the letter 'x'
+operator ⋅(Vec a, b) -> Float     { ... }   // dot / scalar / inner product
+operator ⊙(Matrix a, b) -> Matrix { ... }   // Hadamard (element-wise) product
+operator ⊞(Matrix a, b) -> Matrix { ... }   // element-wise addition ("boxplus")
+operator ⊟(Matrix a, b) -> Matrix { ... }   // element-wise subtraction ("boxminus")
+operator ⊕(Vec a, b) -> Vec       { ... }   // direct sum
+operator ⊖(Vec a) -> Vec          { ... }   // negation (unary)
+operator ⊖(Vec a, b) -> Vec       { ... }   // subtraction (binary)
+operator ⊛(Signal a, b) -> Signal { ... }   // convolution
+operator ∗(Signal a, b) -> Signal { ... }   // convolution (alternative)
 ```
 - `×` cross product – the most obvious candidate, but beware of confusion with `x` (the letter).
 - `⋅` dot product (scalar/inner product).
