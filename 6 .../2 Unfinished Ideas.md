@@ -54,13 +54,16 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 
 ### Synonyms for Existing Operators or Functions
 
-The Unicode character is just an alternative spelling, so no new parsing mechanism is needed.
+For `≤ ≥ ≠` the Unicode character is just an alternative spelling of an existing operator, so no new parsing mechanism is needed.
 ```
 // Comparison
 operator ≤(Int256 a, b) -> Bool { return a <= b }
 operator ≥(Int256 a, b) -> Bool { return a >= b }
 operator ≠(Int256 a, b) -> Bool { return a != b }
+```
 
+The set membership/subset symbols have no ASCII operator equivalent (they are synonyms for _functions_, not operators), so they are new operator symbols. They are not just an alternative spelling, but parse as relational operators, i.e. they inherit the (infix) fixity and precedence group of the comparison operators above:
+```
 // Set membership
 operator ∈(T x, Set<T> s) -> Bool { return s.contains(x) }
 operator ∉(T x, Set<T> s) -> Bool { return not s.contains(x) }
@@ -128,7 +131,9 @@ operator ∖(Set a, b)    -> Set    infix left  precedence Union         { ... }
 operator √(Float a)     -> Float  prefix                               { ... }   // unary
 ```
 - Fixity (`prefix`/`infix`/`postfix`) is part of the signature, so unary and binary forms are distinct declarations (just like `-` in C++).
-- Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF plus some), so the lexer can cleanly separate identifiers and operators.
+    - Only `infix` operators need an explicit precedence group; `prefix`/`postfix` operators have a fixed (high) precedence, which is why `√` above declares none.
+- Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF plus some, e.g. `×` U+00D7, `⟂` U+27C2, `⟨ ⟩` U+27E8/9, `‖` U+2016), so the lexer can cleanly separate identifiers and operators.
+- The whitelist should exclude (or the compiler should warn about) characters that are easily confused with ASCII operators or with each other, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
 
 
 ### Bracket / "Sandwich" Notation
@@ -136,11 +141,12 @@ operator √(Float a)     -> Float  prefix                               { ... }
 `‖x‖`, `⟨a, b⟩` etc. are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator"). These should be a dedicated construct, _not_ `operator`:
 ```
 bracket ‖Vec v‖ -> Float          { return v.length() }   // abs / norm
-bracket ⟨T a, b⟩ -> InnerProduct  { ... }
+bracket ⟨T a, b⟩ -> Float         { ... }                // inner product
 ```
 - `|x|` for `abs(x)` is problematic, as `|` is the bitwise `or` operator: an expression like `a | b | c` would be ambiguous (bitwise `or` vs. `a * |b| * c`).
     - So `‖x‖` (U+2016) might be the better choice for `abs(x)`, too.
 - `‖x‖` (U+2016) for `norm(x)` instead of `||x||`, which would interfere with `||` as logical `or`.
+- Symmetric delimiters that use the _same_ character for open and close (like `‖…‖`) cannot be nested unambiguously: `‖a + ‖b‖‖` has the same problem as `|a + |b||`. Only asymmetric pairs (e.g. `⟨…⟩`) nest cleanly, so `‖…‖` should be restricted to non-nested use (or nesting must be disallowed).
 - More bracket variants:
     - `≪...≫`
     - `‹...›` , `«...»`
@@ -169,7 +175,7 @@ Remaining candidate symbols, not yet assigned to one of the cases above (with th
     - `∞` infinity.
 - Calculus
     - `∇` nabla / del – gradient, divergence, curl.
-    - `∂` partial derivative.
+    - `∂` partial derivative.‚
 - Geometry
     - `∟` right angle.
 - Ratios / proportions
