@@ -92,7 +92,7 @@ operator ∝(Float a, b) -> Bool { return isProportional(a, b) }
 
 A common use case for custom operators, as the ASCII set has no good notation for these:
 ```
-operator ×(Vec3 a, b) -> Vec3     { ... }   // cross product (beware of confusion with the letter 'x'
+operator ×(Vec3 a, b) -> Vec3     { ... }   // cross product (beware of confusion with the letter 'x')
 operator ⋅(Vec a, b) -> Float     { ... }   // dot / scalar / inner product
 operator ⊙(Matrix a, b) -> Matrix { ... }   // Hadamard (element-wise) product
 operator ⊞(Matrix a, b) -> Matrix { ... }   // element-wise addition ("boxplus")
