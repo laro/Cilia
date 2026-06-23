@@ -77,7 +77,7 @@ operator ∥(Vec a, b) -> Bool  { ... }   // parallel to
 operator ∦(Vec a, b) -> Bool  { ... }   // not parallel to
 ```
 
-### Set Symbols
+### Set Operators
 
 The set membership/subset symbols parse as relational operators, i.e. they inherit the (infix) fixity and precedence group of the comparison operators:
 ```
@@ -147,7 +147,7 @@ operator √(Float a)     -> Float  prefix                               { ... }
 
 ### Bracket / "Sandwich" Operator
 
-`‖x‖`, `⟨a, b⟩` etc. are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator"). These should be a dedicated construct, _not_ `operator`:
+`‖x‖`, `⟨a, b⟩` etc. are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator").
 ```
 operator ‖Vec v‖ -> Float  { return v.length() }  // norm
 operator ⟨T a, b⟩ -> Float { ... }                // inner product
