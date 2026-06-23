@@ -32,13 +32,14 @@ Still _also_ use **`&&`** and **`||`** for boolean operation,
 
 **`not`** in addition to `!` (for boolean negation),
 - as `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
-Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyway. (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
+
+Still _also_ `!` for negation, as we keep `!=` for "not equal" anyway. (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
 
 Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
 
-- Also use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
+Also use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
 
-- Not using ~~`not_eq`~~.
+Not using ~~`not_eq`~~.
 
 
 ### Bitwise (Int) Operators
@@ -54,7 +55,7 @@ Use **`~`** for bitwise negation,
 - as C/C++/Java/C# programmers are used to it,
 - as we keep `~T` for the destructor anyway.
 
-- Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~.
+Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~.
 
 
 ## Equality
