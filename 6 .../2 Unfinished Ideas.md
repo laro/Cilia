@@ -145,17 +145,17 @@ operator √(Float a)     -> Float  prefix                               { ... }
 - The whitelist should exclude (or the compiler should warn about) characters that are easily confused with ASCII operators or with each other, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
 
 
-### Bracket / "Sandwich" Notation
+### Bracket / "Sandwich" Operator
 
 `‖x‖`, `⟨a, b⟩` etc. are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator"). These should be a dedicated construct, _not_ `operator`:
 ```
-bracket ‖Vec v‖ -> Float          { return v.length() }   // abs / norm
-bracket ⟨T a, b⟩ -> Float         { ... }                // inner product
+operator ‖Vec v‖ -> Float  { return v.length() }  // norm
+operator ⟨T a, b⟩ -> Float { ... }                // inner product
 ```
 - `|x|` for `abs(x)` is problematic, as `|` is the bitwise `or` operator: an expression like `a | b | c` would be ambiguous (bitwise `or` vs. `a * |b| * c`).
-    - So `‖x‖` (U+2016) might be the better choice for `abs(x)`, too.
+    - So when `|x|` is not allowed for `abs()`, what's the point of having `‖x‖` (U+2016) for `norm(x)`?
 - `‖x‖` (U+2016) for `norm(x)` instead of `||x||`, which would interfere with `||` as logical `or`.
-- Symmetric delimiters that use the _same_ character for open and close (like `‖…‖`) cannot be nested unambiguously: `‖a + ‖b‖‖` has the same problem as `|a + |b||`. Only asymmetric pairs (e.g. `⟨…⟩`) nest cleanly, so `‖…‖` should be restricted to non-nested use (or nesting must be disallowed).
+- Symmetric delimiters that use the _same_ character for open and close (like `‖…‖`) cannot be nested unambiguously: `‖a + ‖b‖‖` and `|a + |b||` nare ambiguous. Only asymmetric pairs (e.g. `⟨…⟩`) nest cleanly, so `‖…‖` and `|…|` should be restricted to non-nested use (or nesting must be disallowed).
 - More bracket variants:
     - `≪...≫`
     - `‹...›` , `«...»`
