@@ -7,17 +7,15 @@ description: "Cilia operators: a**b for pow, and/or/nand/nor/xor. Operator overl
 
 ## Power Function
 
-- **`a**x`** for `pow(a, x)` (as in Python),
-- "raise a to the power of x",
-- `infix right` precedence (group `Power`), so `a**b**c` parses as `a**(b**c)`.
+**`a**x`** for `pow(a, x)` (as in Python), "raise a to the power of x".
+
+`infix right` precedence (group `Power`), so `a**b**c` parses as `a**(b**c)`.
 
 
 ## Boolean and Bitwise Operators
 
 No mixed types allowed (you need to explicitly cast one side instead).
-- similar to [Python](https://www.w3schools.com/python/python_operators.asp),
-    [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon),
-- Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~, ~~`not_eq`~~.
+
 
 ### Logical (Bool) Operators
 
@@ -40,6 +38,8 @@ Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are
 
 - Also use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
 
+- Not using ~~`not_eq`~~.
+
 
 ### Bitwise (Int) Operators
 
@@ -53,6 +53,8 @@ Use **`&`** and **`|`** for bitwise operation,
 Use **`~`** for bitwise negation,
 - as C/C++/Java/C# programmers are used to it,
 - as we keep `~T` for the destructor anyway.
+
+- Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~.
 
 
 ## Equality
