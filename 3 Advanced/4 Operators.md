@@ -12,41 +12,47 @@ description: "Cilia operators: a**b for pow, and/or/nand/nor/xor. Operator overl
 - `infix right` precedence (group `Power`), so `a**b**c` parses as `a**(b**c)`.
 
 
-## Boolean Operators
+## Boolean and Bitwise Operators
 
-- **`and`**, **`or`** in addition to `&&`/`&`, `||`/`|`,
-    - similar to [Python](https://www.w3schools.com/python/python_operators.asp),
-        [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon),
-    - actually this is valid C++, too.
-    - Used for both
-        - boolean operation (when used on Bool)
-            - `aBool`**`and`**`anotherBool` -> `Bool`
-        - bitwise operation (when used on integers)
-            - `anInt`**`and`**`anotherInt` -> `Int`
-        - No mixed types allowed (you need to explicitly cast one side instead).
-    - Words like `and` and `or` IMHO are a bit clearer than `&&`/`&` and `||`/`|`, so they are recommended.
-    - Still _also_ use `&` and `|` for bitwise operation,
-        - as C/C++/Java/C# programmers are used to it,
-        - as we keep `&=` and `|=` anyway.
-    - Still _also_ use `&&` and `||` for boolean operation,
-        - as C/C++/Java/C# programmers are used to it,
-            - even [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
-                and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`,
-        - as we want `&&=` and `||=` anyway.
-        - Defined on `Bool` only (_not_ on integers).
-- **`not`** in addition to `!` (for boolean negation)
-    - `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
-    - Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyway.  
-        (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
-    - Still use `~` for bitwise negation,
-        - as C/C++/Java/C# programmers are used to it,
-        - as we keep `~T` for the destructor anyway.
-- **`nand`** and **`nor`**,  
-    - as in VHDL and as possible in Julia.
-- **`xor`** and the symbol **`^`** for XOR,
-    - `^` for bitwise XOR (integers only) with tight binding, like `&` and `|`,
-    - still _also_ the word `xor` (as with `and`/`or`), which is a bit clearer and also works on `Bool`.
-- Not ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~, ~~`not_eq`~~.
+No mixed types allowed (you need to explicitly cast one side instead).
+- similar to [Python](https://www.w3schools.com/python/python_operators.asp),
+    [Carbon](https://www.naukri.com/code360/library/operators-and-precedence-in-carbon),
+- Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~, ~~`not_eq`~~.
+
+### Logical (Bool) Operators
+
+The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` only, e.g. `aBool`**`and`**`anotherBool` -> `Bool`.  
+Actually this is valid C++, too.  
+**`nand`** and **`nor`** as in VHDL and as possible in Julia.
+
+Still _also_ use **`&&`** and **`||`** for boolean operation,
+- as C/C++/Java/C# programmers are used to it,
+    - even [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
+        and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`,
+- as we want `&&=` and `||=` anyway.
+- Defined on `Bool` only (_not_ on integers).
+
+**`not`** in addition to `!` (for boolean negation),
+- as `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
+Still _also_ `!` for negation (in addition to `not`), as we keep `!=` for "not equal" anyway. (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
+
+Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
+
+- Also use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
+
+
+### Bitwise (Int) Operators
+
+`xor` is the only word operator defined on integers, e.g. `anInt`**`xor`**`anotherInt` -> `Int`.
+Still _also_ use **`^`** and the mathematical symbol **`⊻`** for bitwise XOR (integers only), all with tight binding, but `xor` is a bit clearer.
+
+Use **`&`** and **`|`** for bitwise operation,
+- as C/C++/Java/C# programmers are used to it,
+- as we keep `&=` and `|=` anyway.
+
+Use **`~`** for bitwise negation,
+- as C/C++/Java/C# programmers are used to it,
+- as we keep `~T` for the destructor anyway.
 
 
 ## Equality
