@@ -19,7 +19,7 @@ No mixed types allowed (you need to explicitly cast one side instead).
 
 ### Logical (Bool) Operators
 
-The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` only, e.g. `aBool`**`and`**`anotherBool` -> `Bool`.  
+The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g. `aBool`**`and`**`anotherBool` -> `Bool`.  
 Actually this is valid C++, too.  
 **`nand`** and **`nor`** as in VHDL and as possible in Julia.
 
@@ -44,9 +44,6 @@ Not using ~~`not_eq`~~.
 
 ### Bitwise (Int) Operators
 
-`xor` is the only word operator defined on integers, e.g. `anInt`**`xor`**`anotherInt` -> `Int`.
-Still _also_ use **`^`** and the mathematical symbol **`⊻`** for bitwise XOR (integers only), all with tight binding, but `xor` is a bit clearer.
-
 Use **`&`** and **`|`** for bitwise operation,
 - as C/C++/Java/C# programmers are used to it,
 - as we keep `&=` and `|=` anyway.
@@ -54,6 +51,9 @@ Use **`&`** and **`|`** for bitwise operation,
 Use **`~`** for bitwise negation,
 - as C/C++/Java/C# programmers are used to it,
 - as we keep `~T` for the destructor anyway.
+
+`xor` is the only word operator defined on integers, e.g. `anInt`**`xor`**`anotherInt` -> `Int`.  
+Still _also_ use **`^`** and the mathematical symbol **`⊻`** for bitwise XOR (integers only), all with tight binding, but `xor` is a bit clearer.
 
 Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~.
 
