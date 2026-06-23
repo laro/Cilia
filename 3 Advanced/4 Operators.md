@@ -21,7 +21,7 @@ No mixed types allowed (you need to explicitly cast one side instead).
 
 The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g. `aBool`**`and`**`anotherBool` -> `Bool`.  
 Actually this is valid C++, too.  
-**`nand`** and **`nor`** as in VHDL and as possible in Julia.
+**`nand`** and **`nor`** (as in VHDL).
 
 Still _also_ use **`&&`** and **`||`** for boolean operation,
 - as C/C++/Java/C# programmers are used to it,
