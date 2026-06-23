@@ -44,10 +44,9 @@ Not using ~~`not_eq`~~.
 
 ### Bitwise (Int) Operators
 
-Use **`&`** and **`|`** for bitwise and/or, as well as `&=` and `|=`, and **`~`** for bitwise negation.
+Use **`&`** and **`|`** for bitwise and/or, as well as `&=` and `|=`, and **`~`** for bitwise negation, all with tight binding.
 
-`xor` is the only word operator defined on integers, e.g. `anInt`**`xor`**`anotherInt` -> `Int`.  
-Still _also_ use **`^`** and the mathematical symbol **`⊻`** for bitwise XOR (integers only), all with tight binding.
+`xor` is the only word operator defined on integers, e.g. `anInt`**`xor`**`anotherInt` -> `Int`. Still _also_ use **`^`** and the mathematical symbol **`⊻`** for bitwise XOR (integers only).
 
 Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~.
 
