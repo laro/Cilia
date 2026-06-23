@@ -28,14 +28,14 @@ Still _also_ use **`&&`** and **`||`** for boolean operation,
     - even [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
         and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`,
 - as we want `&&=` and `||=` anyway.
-- Defined on `Bool` only (_not_ on integers).
 
-**`not`** in addition to `!` (for boolean negation),
-- as `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
+**`not`** in addition to `!` (for boolean negation), as `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
 
 Still _also_ `!` for negation, as we keep `!=` for "not equal" anyway. (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
 
 Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
+
+`and`/`or`/`nand`/`nor`/`not` are _not_ also used for bitwise operations, because bitwise operators bind more strongly than logical operators.
 
 Also use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
 
@@ -44,16 +44,10 @@ Not using ~~`not_eq`~~.
 
 ### Bitwise (Int) Operators
 
-Use **`&`** and **`|`** for bitwise operation,
-- as C/C++/Java/C# programmers are used to it,
-- as we keep `&=` and `|=` anyway.
-
-Use **`~`** for bitwise negation,
-- as C/C++/Java/C# programmers are used to it,
-- as we keep `~T` for the destructor anyway.
+Use **`&`** and **`|`** for bitwise and/or, as well as `&=` and `|=`, and **`~`** for bitwise negation.
 
 `xor` is the only word operator defined on integers, e.g. `anInt`**`xor`**`anotherInt` -> `Int`.  
-Still _also_ use **`^`** and the mathematical symbol **`⊻`** for bitwise XOR (integers only), all with tight binding, but `xor` is a bit clearer.
+Still _also_ use **`^`** and the mathematical symbol **`⊻`** for bitwise XOR (integers only), all with tight binding.
 
 Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~.
 
