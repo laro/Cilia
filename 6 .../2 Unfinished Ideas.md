@@ -104,7 +104,7 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
 | `Power` | `**` | infix right |
 | `Multiplication` | `*` `/` `%` `×` `⋅` `⊙` `⊘` `⊛` `∗` `&` | infix left |
-| `Addition` | `+` `-` `⊞` `⊟` `⊕` `⊖` `\|` `^` | infix left |
+| `Addition` | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` | infix left |
 | `Shift` / `Rotation` | `<<` `>>` `<<<` `>>>` | infix left |
 | `Range` | `..` `..<` | infix, non-associative |
 | `Comparison` | `<` `>` `<=` `>=` `≤` `≥` `<=>` `∈` `∉` `∋` `∌` `⊆` `⊇` `⊂` `⊃` `⟂` `∥` `∦` | infix, non-associative |
