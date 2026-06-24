@@ -113,8 +113,9 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | `LogicalXor` | `xor` `⊻` | infix left |
 | `LogicalOr` | `||` `or` `∨` | infix left |
 | `Assignment` | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `<<<=` `>>>=` `&=` `|=` `^=` `&&=` `||=` | infix right |
+{:.wide-table}
 
-- `⊖` is declared twice: once `prefix` (unary negation, Z. 98) and once `infix` (binary subtraction, Z. 99). Fixity is part of the signature, so the two forms are distinct (see next section).
+- `⊖` is declared twice: once `prefix` (unary negation) and once `infix` (binary subtraction). Fixity is part of the signature, so the two forms are distinct (see next section).
 - `×` and `⋅` share the `Multiplication` group and are left-associative, so `a × b ⋅ c` parses as `(a × b) ⋅ c` (the scalar triple product), which is the intended reading.
 - The bitwise symbols `&`, `^` and `|` follow Go's precedence: `&` binds like `*` (`Multiplication`), `^` and `|` like `+` (`Addition`), so all three bind tighter than `Comparison`/`Equality`. This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
 - The word operators `and`/`or`/`xor` (and their Unicode synonyms `∧`/`∨`/`⊻`) keep their logical-level precedence whether applied to `Bool` or to integers; `nand`/`nor` (`⊼`/`⊽`) group with `and`/`or` respectively. For tight-binding bitwise XOR use the symbol `^` (group `Addition`, like `|`).
