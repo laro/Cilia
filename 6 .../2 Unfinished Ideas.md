@@ -104,13 +104,13 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
 | `Power` | `**` | infix right |
 | `Multiplication` | `*` `/` `%` `×` `⋅` `⊙` `⊘` `⊛` `∗` `&` | infix left |
-| `Addition` | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` | infix left |
+| `Addition` | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` `xor` | infix left |
 | `Shift` / `Rotation` | `<<` `>>` `<<<` `>>>` | infix left |
 | `Range` | `..` `..<` | infix, non-associative |
 | `Comparison` | `<` `>` `<=` `>=` `≤` `≥` `<=>` `∈` `∉` `∋` `∌` `⊆` `⊇` `⊂` `⊃` `⟂` `∥` `∦` | infix, non-associative |
 | `Equality` | `==` `!=` `≠` | infix, non-associative |
 | `LogicalAnd` | `&&` `and` `∧` | infix left |
-| `LogicalXor` | `xor` `⊻` | infix left |
+| `LogicalXor` | `⊻` | infix left |
 | `LogicalOr` | `||` `or` `∨` | infix left |
 | `Assignment` | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `<<<=` `>>>=` `&=` `|=` `^=` `&&=` `||=` | infix right |
 {:.wide-table}
