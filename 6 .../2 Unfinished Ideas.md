@@ -100,19 +100,19 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 
 | Precedence group | Operators | Fixity |
 | --- | --- | --- |
-| Postfix / call | `a()` `a[]` `a.b` `a++` `a--` | postfix |
+| Postfix (call) | `a()` `a[]` `a.b` `a++` `a--` | postfix |
 | Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
-| `Power` | `**` | infix right |
-| `Multiplication` | `*` `/` `%` `×` `⋅` `⊙` `⊘` `⊛` `∗` `&` | infix left |
-| `Addition` | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` `xor` | infix left |
-| `Shift` / `Rotation` | `<<` `>>` `<<<` `>>>` | infix left |
-| `Range` | `..` `..<` | infix, non-associative |
-| `Comparison` | `<` `>` `<=` `>=` `≤` `≥` `<=>` `∈` `∉` `∋` `∌` `⊆` `⊇` `⊂` `⊃` `⟂` `∥` `∦` | infix, non-associative |
-| `Equality` | `==` `!=` `≠` | infix, non-associative |
-| `LogicalAnd` | `&&` `and` `∧` | infix left |
-| `LogicalXor` | `⊻` | infix left |
-| `LogicalOr` | `||` `or` `∨` | infix left |
-| `Assignment` | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `<<<=` `>>>=` `&=` `|=` `^=` `&&=` `||=` | infix right |
+| Power | `**` | infix right |
+| Multiplication | `*` `/` `%` `×` `⋅` `⊙` `⊘` `⊛` `∗` `&` | infix left |
+| Addition | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` `xor` | infix left |
+| ShiftRotation | `<<` `>>` `<<<` `>>>` | infix left |
+| Range | `..` `..<` | infix, non-associative |
+| Comparison | `<` `>` `<=` `>=` `≤` `≥` `<=>` `∈` `∉` `∋` `∌` `⊆` `⊇` `⊂` `⊃` `⟂` `∥` `∦` | infix, non-associative |
+| Equality | `==` `!=` `≠` | infix, non-associative |
+| LogicalAnd | `&&` `and` `∧` | infix left |
+| LogicalXor | `⊻` | infix left |
+| LogicalOr | `||` `or` `∨` | infix left |
+| Assignment | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `<<<=` `>>>=` `&=` `|=` `^=` `&&=` `||=` | infix right |
 {:.wide-table}
 
 - `⊖` is declared twice: once `prefix` (unary negation) and once `infix` (binary subtraction). Fixity is part of the signature, so the two forms are distinct (see next section).
