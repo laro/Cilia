@@ -103,17 +103,17 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | Postfix (call) | `a()` `a[]` `a.b` `a++` `a--` | postfix |
 | Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
 | Power | `**` | infix right |
-| Multiplication | `*` `/` `%` `×` `⋅` `⊙` `⊘` `⊛` `∗` `&` | infix left |
+| Multiplication | `*` `/` `%`, `×` `⋅`, `⊙` `⊘`, `⊛` `∗`, `&` | infix left |
 | Addition | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` `xor` | infix left |
 | ShiftRotation | `<<` `>>` `<<<` `>>>` | infix left |
 | Range | `..` `..<` | infix, non-associative |
 | ThreeWay | `<=>` | infix, non-associative |
-| Comparison | `<` `>` `<=` `>=` `≤` `≥`    `∈` `∉` `∋` `∌`    `⊆` `⊇` `⊂` `⊃`    `⟂` `∥` `∦` | infix, non-associative |
+| Comparison | `<` `>` `<=` `>=` `≤` `≥`, `∈` `∉` `∋` `∌`, `⊆` `⊇` `⊂` `⊃`, `⟂` `∥` `∦` | infix, non-associative |
 | Equality | `==` `!=` `≠` | infix, non-associative |
 | LogicalAnd | `&&` `and` `∧` | infix left |
 | LogicalXor | `⊻` | infix left |
 | LogicalOr | `||` `or` `∨` | infix left |
-| Assignment | `=` `+=` `-=` `*=` `/=` `%=` `<<=` `>>=` `<<<=` `>>>=` `&=` `|=` `^=` `&&=` `||=` | infix right |
+| Assignment | `=`, `+=` `-=` `*=` `/=` `%=`, `<<=` `>>=` `<<<=` `>>>=`, `&=` `|=` `^=`, `&&=` `||=` | infix right |
 {:.wide-table}
 
 - The three-way comparison `<=>` sits in its own `ThreeWay` group, binding tighter than `Comparison`/`Equality` (as in C++), because it returns an `Ordering` rather than a `Bool`; this keeps `a <=> b` from being mixed up with the relational chain.
