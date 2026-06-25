@@ -47,9 +47,13 @@ It is also possible to use the mathematical symbols **`∧`**, **`∨`**, **`⊼
 
 ### Bitwise (Int) Operators
 
-Use **`&`** and **`|`** for bitwise and/or, as well as `&=` and `|=`, and **`~`** for bitwise negation, all with tight binding.
+Use **`&`** and **`|`** for bitwise and/or, **`~`** for bitwise negation, and **`^`** for bitwise xor, all with tight binding.
 
-`xor` is the only word operator defined on integers, e.g. `anInt`**`xor`**`anotherInt` -> `Int`. Still _also_ use **`^`** and the mathematical symbol **`⊻`** for bitwise XOR (integers only).
+Example:  
+`anInt`**`&`**`anotherInt` -> `Int`. 
+
+Also `&=`, `|=`, and `^=`.
+
 
 Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~.
 
