@@ -20,8 +20,11 @@ No mixed types allowed (you need to explicitly cast one side instead).
 ### Logical (Bool) Operators
 
 The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g. `aBool`**`and`**`anotherBool` -> `Bool`.  
-Actually this is valid C++, too.  
+Actually this is valid C++, too.
+
 **`nand`** and **`nor`** (as in VHDL).
+
+**`xor`** is a Bool operator, too (unlike C++, where it is a bitwise operator).
 
 Still _also_ use **`&&`** and **`||`** for boolean operation,
 - as C/C++/Java/C# programmers are used to it,
@@ -37,9 +40,9 @@ Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are
 
 `and`/`or`/`nand`/`nor`/`not` are _not_ also used for bitwise operations, because bitwise operators bind more strongly than logical operators.
 
-Also use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
+It is also possible to use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
 
-Not using ~~`not_eq`~~.
+~~`not_eq`~~ is not supported.
 
 
 ### Bitwise (Int) Operators
