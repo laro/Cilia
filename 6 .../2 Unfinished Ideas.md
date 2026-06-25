@@ -52,6 +52,11 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 
 ## Exotic Operators (e.g. Unicode)
 
+### Logical / Bool Operators
+
+It is also possible to use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
+
+
 ### Vector / Matrix Operators
 
 ```
