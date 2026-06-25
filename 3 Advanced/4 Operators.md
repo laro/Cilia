@@ -159,19 +159,19 @@ class Int256 {
 
 ### Arithmetic Operators
 ```
-operator +(Int256 a, b) -> Int256 { ... }
-operator -(Int256 a, b) -> Int256 { ... }
-operator *(Int256 a, b) -> Int256 { ... }
-operator /(Int256 a, b) -> Int256 { ... }
-operator %(Int256 a, b) -> Int256 { ... }
+operator (Int256 a) + (Int256 b) -> Int256 { ... }
+operator (Int256 a) - (Int256 b) -> Int256 { ... }
+operator (Int256 a) * (Int256 b) -> Int256 { ... }
+operator (Int256 a) / (Int256 b) -> Int256 { ... }
+operator (Int256 a) % (Int256 b) -> Int256 { ... }
 ```
 
 ### Shift and Rotate Operators
 ```
-operator <<(Int256 a, Int shiftCount) -> Int256 { ... }
-operator >>(Int256 a, Int shiftCount) -> Int256 { ... }
-operator <<<(UInt256 a, Int shiftCount) -> UInt256 { ... }
-operator >>>(UInt256 a, Int shiftCount) -> UInt256 { ... }
+operator (Int256 a) << (Int shiftCount) -> Int256 { ... }
+operator (Int256 a) >> (Int shiftCount) -> Int256 { ... }
+operator (UInt256 a) <<< (Int shiftCount) -> UInt256 { ... }
+operator (UInt256 a) >>> (Int shiftCount) -> UInt256 { ... }
 ```
 
 ### Compound Assignment Operators
@@ -206,37 +206,37 @@ class Int256 {
 
 ### Relational and Comparison Operators
 ```
-operator ==(Int256 a, b) -> Bool { ... }
-operator !=(Int256 a, b) -> Bool { ... }
-operator <(Int256 a, b) -> Bool { ... }
-operator >(Int256 a, b) -> Bool { ... }
-operator <=(Int256 a, b) -> Bool { ... }
-operator >=(Int256 a, b) -> Bool { ... }
-operator <=>(Int256 a, b) -> Int { ... }
+operator (Int256 a) == (Int256 b) -> Bool { ... }
+operator (Int256 a) != (Int256 b) -> Bool { ... }
+operator (Int256 a) < (Int256 b) -> Bool { ... }
+operator (Int256 a) > (Int256 b) -> Bool { ... }
+operator (Int256 a) <= (Int256 b) -> Bool { ... }
+operator (Int256 a) >= (Int256 b) -> Bool { ... }
+operator (Int256 a) <=> (Int256 b) -> Int { ... }
 
-operator ≠(Int256 a, b) -> Bool { return a != b }
-operator ≤(Int256 a, b) -> Bool { return a <= b }
-operator ≥(Int256 a, b) -> Bool { return a >= b }
+operator (Int256 a) ≠ (Int256 b) -> Bool { return a != b }
+operator (Int256 a) ≤ (Int256 b) -> Bool { return a <= b }
+operator (Int256 a) ≥ (Int256 b) -> Bool { return a >= b }
 ```
 
 ### Logical Operators
 - Boolean operators
   ```
-  operator and(Bool a, b) -> Bool { ... }
-  operator or(Bool a, b) -> Bool { ... }
-  operator nand(Bool a, b) -> Bool { ... }
-  operator nor(Bool a, b) -> Bool { ... }
-  operator xor(Bool a, b) -> Bool { ... }
+  operator (Bool a) and (Bool b) -> Bool { ... }
+  operator (Bool a) or (Bool b) -> Bool { ... }
+  operator (Bool a) nand (Bool b) -> Bool { ... }
+  operator (Bool a) nor (Bool b) -> Bool { ... }
+  operator (Bool a) xor (Bool b) -> Bool { ... }
   operator not(Bool a) -> Bool { ... }
 
-  operator &&(Bool a, b) -> Bool { return a and b }
-  operator ||(Bool a, b) -> Bool { return a or b }
+  operator (Bool a) && (Bool b) -> Bool { return a and b }
+  operator (Bool a) || (Bool b) -> Bool { return a or b }
   operator !(Bool a) -> Bool { return not a }
-  operator ∧(Bool a, b) -> Bool { return a and b }
-  operator ∨(Bool a, b) -> Bool { return a or b }
-  operator ⊼(Bool a, b) -> Bool { return a nand b }
-  operator ⊽(Bool a, b) -> Bool { return a nor b }
-  operator ⊻(Bool a, b) -> Bool { return a xor b }
+  operator (Bool a) ∧ (Bool b) -> Bool { return a and b }
+  operator (Bool a) ∨ (Bool b) -> Bool { return a or b }
+  operator (Bool a) ⊼ (Bool b) -> Bool { return a nand b }
+  operator (Bool a) ⊽ (Bool b) -> Bool { return a nor b }
+  operator (Bool a) ⊻ (Bool b) -> Bool { return a xor b }
   operator ¬(Bool a) -> Bool { return not a }
   ```
     - Defined for _`Bool`_ (not for integers),
@@ -244,22 +244,22 @@ operator ≥(Int256 a, b) -> Bool { return a >= b }
         - `&&` and `||`, not ~~`&` and `|`~~.
 - Bitwise operators
   ```
-  operator and(Int256 a, b) -> Int256 { ... }
-  operator or(Int256 a, b) -> Int256 { ... }
-  operator nand(Int256 a, b) -> Int256 { ... }
-  operator nor(Int256 a, b) -> Int256 { ... }
-  operator xor(Int256 a, b) -> Int256 { ... }
+  operator (Int256 a) and (Int256 b) -> Int256 { ... }
+  operator (Int256 a) or (Int256 b) -> Int256 { ... }
+  operator (Int256 a) nand (Int256 b) -> Int256 { ... }
+  operator (Int256 a) nor (Int256 b) -> Int256 { ... }
+  operator (Int256 a) xor (Int256 b) -> Int256 { ... }
   operator not(Int256 a) -> Int256 { ... }
 
-  operator &(Int256 a, b) -> Int256 { return a and b }
-  operator |(Int256 a, b) -> Int256 { return a or b }
-  operator ^(Int256 a, b) -> Int256 { return a xor b }
+  operator (Int256 a) & (Int256 b) -> Int256 { return a and b }
+  operator (Int256 a) | (Int256 b) -> Int256 { return a or b }
+  operator (Int256 a) ^ (Int256 b) -> Int256 { return a xor b }
   operator ~(Int256 a) -> Int256 { return not a }
-  operator ∧(Int256 a, b) -> Int256 { return a and b }
-  operator ∨(Int256 a, b) -> Int256 { return a or b }
-  operator ⊼(Int256 a, b) -> Int256 { return a nand b }
-  operator ⊽(Int256 a, b) -> Int256 { return a nor b }
-  operator ⊻(Int256 a, b) -> Int256 { return a xor b }
+  operator (Int256 a) ∧ (Int256 b) -> Int256 { return a and b }
+  operator (Int256 a) ∨ (Int256 b) -> Int256 { return a or b }
+  operator (Int256 a) ⊼ (Int256 b) -> Int256 { return a nand b }
+  operator (Int256 a) ⊽ (Int256 b) -> Int256 { return a nor b }
+  operator (Int256 a) ⊻ (Int256 b) -> Int256 { return a xor b }
   ```
     - Defined for _integers_ (not for `Bool`),
     - operators `~`, not ~~`!`~~,
