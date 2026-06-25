@@ -242,13 +242,6 @@ operator (Int256 a) ≥ (Int256 b) -> Bool { return a >= b }
         - `&&` and `||`, not ~~`&` and `|`~~.
 - Bitwise operators
   ```
-  operator (Int256 a) and (Int256 b) -> Int256 { ... }
-  operator (Int256 a) or (Int256 b) -> Int256 { ... }
-  operator (Int256 a) nand (Int256 b) -> Int256 { ... }
-  operator (Int256 a) nor (Int256 b) -> Int256 { ... }
-  operator (Int256 a) xor (Int256 b) -> Int256 { ... }
-  operator not(Int256 a) -> Int256 { ... }
-
   operator (Int256 a) & (Int256 b) -> Int256 { return a and b }
   operator (Int256 a) | (Int256 b) -> Int256 { return a or b }
   operator (Int256 a) ^ (Int256 b) -> Int256 { return a xor b }
