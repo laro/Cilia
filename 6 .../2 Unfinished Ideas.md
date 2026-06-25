@@ -76,7 +76,10 @@ operator ∗(Signal a, b) -> Signal { ... }   // convolution (alternative)
 
 func ∠(Vec a, b) -> Float        { ... }  // angle between two vectors
 func ∠(Point3D a, b, c) -> Float { ... }  // angle between three points (vectors ab and bc)
+```
 
+Unclear, if these should have an epsilon (ε) value here. And then they would be function calls, not infix operators:
+```
 operator ⟂(Vec a, b) -> Bool { ... }   // perpendicular / orthogonal
 operator ∥(Vec a, b) -> Bool  { ... }   // parallel to
 operator ∦(Vec a, b) -> Bool  { ... }   // not parallel to
