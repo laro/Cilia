@@ -255,11 +255,6 @@ operator (Int256 a) ≥ (Int256 b) -> Bool { return a >= b }
   operator (Int256 a) | (Int256 b) -> Int256 { return a or b }
   operator (Int256 a) ^ (Int256 b) -> Int256 { return a xor b }
   operator ~(Int256 a) -> Int256 { return not a }
-  operator (Int256 a) ∧ (Int256 b) -> Int256 { return a and b }
-  operator (Int256 a) ∨ (Int256 b) -> Int256 { return a or b }
-  operator (Int256 a) ⊼ (Int256 b) -> Int256 { return a nand b }
-  operator (Int256 a) ⊽ (Int256 b) -> Int256 { return a nor b }
-  operator (Int256 a) ⊻ (Int256 b) -> Int256 { return a xor b }
   ```
     - Defined for _integers_ (not for `Bool`),
     - operators `~`, not ~~`!`~~,
