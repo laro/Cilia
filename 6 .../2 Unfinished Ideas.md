@@ -171,9 +171,8 @@ operator ⟨T a, b⟩ -> Float { ... }                // inner product
 - More bracket variants:
     - `≪...≫`
     - `‹...›` , `«...»`
-    - `⦅...⦆` , `〚...〛` , `⦃...⦄`
-    - `（...）`, `［...］`, `｛...｝`, `｟...｠`
-    - `「...」`, `『...』`, `〈...〉`, `《...》`, `【...】`, `〖...〗`, `〔...〕`, `〘...〙`, `⦗...⦘`
+    - `⦅...⦆` , `⟦...⟧` , `⦃...⦄`
+    - `⟨...⟩` , `⟪...⟫` , `⦗...⦘`
     - Some may be used in reversed order: `≫...≪`
     - Also see [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)
 
