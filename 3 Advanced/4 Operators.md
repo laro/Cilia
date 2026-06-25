@@ -230,6 +230,7 @@ operator (Int256 a) ≥ (Int256 b) -> Bool { return a >= b }
   operator (Bool a) && (Bool b) -> Bool { return a and b }
   operator (Bool a) || (Bool b) -> Bool { return a or b }
   operator !(Bool a) -> Bool { return not a }
+  
   operator (Bool a) ∧ (Bool b) -> Bool { return a and b }
   operator (Bool a) ∨ (Bool b) -> Bool { return a or b }
   operator (Bool a) ⊼ (Bool b) -> Bool { return a nand b }
