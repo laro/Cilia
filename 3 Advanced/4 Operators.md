@@ -19,8 +19,10 @@ No mixed types allowed (you need to explicitly cast one side instead).
 
 ### Logical (Bool) Operators
 
-The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g. `aBool`**`and`**`anotherBool` -> `Bool`.  
-Actually this is valid C++, too.
+The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g.  `aBool`**`and`**`anotherBool` -> `Bool`.  
+Actually **`and`** / **`or`** are valid C++ keywords, too.
+
+Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
 
 **`nand`** and **`nor`** (as in VHDL).
 
@@ -36,18 +38,16 @@ Still _also_ use **`&&`** and **`||`** for boolean operation,
 
 Still _also_ `!` for negation, as we keep `!=` for "not equal" anyway. (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
 
-Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
-
 `and`/`or`/`nand`/`nor`/`not` are _not_ also used for bitwise operations, because bitwise operators bind more strongly than logical operators.
 
 It is also possible to use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
 
-~~`not_eq`~~ is not supported.
+The keyword ~~`not_eq`~~ is not supported.
 
 
 ### Bitwise (Int) Operators
 
-Use **`&`** and **`|`** for bitwise and/or, **`~`** for bitwise negation, and **`^`** for bitwise xor, all with tight binding.
+Use **`&`** / **`|`** for bitwise and / or, **`~`** for bitwise negation, and **`^`** for bitwise xor, all with tight binding.
 
 Example:  
 `anInt`**`&`**`anotherInt` -> `Int`. 
@@ -55,7 +55,7 @@ Example:
 Also `&=`, `|=`, and `^=`.
 
 
-Not using ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~.
+The keywords ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~ are not supported.
 
 
 ## Equality
