@@ -144,15 +144,15 @@ The two main difficulties (see also the [Operators](/advanced/operators/) chapte
 
 Modelled after Swift/Haskell, preferably with _named_ precedence groups instead of magic numbers:
 ```
-operator (Fn f) ∘ (Fn g)         -> Fn     infix right precedence Composition   { ... }
-operator (Matrix a) ⊗ (Matrix b) -> Matrix infix  left precedence Tensor        { ... }   // tensor / Kronecker product
-operator (Set a) ∪ (Set b)       -> Set    infix  left precedence Union         { ... }   // union
-operator (Set a) ∩ (Set b)       -> Set    infix  left precedence Intersection  { ... }   // intersection (binds tighter than ∪)
-operator (Set a) ∖ (Set b)       -> Set    infix  left precedence Union         { ... }   // set difference: a without b
-operator √(Float a)              -> Float  prefix                               { ... }   // unary
+operator (Fn f) ∘ (Fn g)         -> Fn     right precedence Composition     { ... }
+operator (Matrix a) ⊗ (Matrix b) -> Matrix left  precedence Tensor          { ... }   // tensor / Kronecker product
+operator (Set a) ∪ (Set b)       -> Set    left  precedence Union           { ... }   // union
+operator (Set a) ∩ (Set b)       -> Set    left  precedence Intersection    { ... }   // intersection (binds tighter than ∪)
+operator (Set a) ∖ (Set b)       -> Set    left  precedence Union           { ... }   // set difference: a without b
+operator √(Float a)              -> Float                                   { ... }   // unary (prefix by position)
 ```
-- Fixity (`prefix`/`infix`/`postfix`) is part of the signature, so unary and binary forms are distinct declarations (just like `-` in C++).
-    - Only `infix` operators need an explicit precedence group; `prefix`/`postfix` operators have a fixed (high) precedence, which is why `√` above declares none.
+- Fixity is determined by the position of the operator symbol: before the operand (prefix, e.g. `√(Float a)`), between the operands (infix, e.g. `(Set a) ∪ (Set b)`), or after the operand (postfix). So unary and binary forms are distinct declarations (just like `-` in C++).
+    - Only infix operators need an explicit precedence group; prefix/postfix operators have a fixed (high) precedence, which is why `√` above declares none.
 - Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF plus some, e.g. `×` U+00D7, `⟂` U+27C2, `⟨ ⟩` U+27E8/9, `‖` U+2016), so the lexer can cleanly separate identifiers and operators.
 - The whitelist should exclude (or the compiler should warn about) characters that are easily confused with ASCII operators or with each other, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
 
