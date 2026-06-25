@@ -109,14 +109,14 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
 | Power | `**` | infix right |
 | Multiplication | `*` `/` `%`&emsp;`×` `⋅`&emsp;`⊙` `⊘`&emsp;`⊛` `∗`&emsp;`&` | infix left |
-| Addition | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` `xor` | infix left |
+| Addition | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` | infix left |
 | ShiftRotation | `<<` `>>` `<<<` `>>>` | infix left |
 | Range | `..` `..<` | infix, non-associative |
 | ThreeWay | `<=>` | infix, non-associative |
 | Comparison | `<` `>` `<=` `>=` `≤` `≥`&emsp;`∈` `∉` `∋` `∌`&emsp;`⊆` `⊇` `⊂` `⊃`&emsp;`⟂` `∥` `∦` | infix, non-associative |
 | Equality | `==` `!=` `≠` | infix, non-associative |
 | LogicalAnd | `&&` `and` `∧` | infix left |
-| LogicalXor | `⊻` | infix left |
+| LogicalXor | `xor` `⊻` | infix left |
 | LogicalOr | `||` `or` `∨` | infix left |
 | Assignment | `=`&emsp;`+=` `-=` `*=` `/=` `%=`&emsp;`<<=` `>>=` `<<<=` `>>>=`&emsp;`&=` `|=` `^=`&emsp;`&&=` `||=` | infix right |
 {:.wide-table}
