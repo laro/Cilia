@@ -60,19 +60,19 @@ It is also possible to use the mathematical symbols **`∧`**, **`∨`**, **`⊼
 ### Vector / Matrix Operators
 
 ```
-operator ×(Vec3 a, b) -> Vec3     { ... }   // cross product (beware of confusion with the letter 'x')
-operator ⋅(Vec a, b) -> Float     { ... }   // dot / scalar / inner product
+operator (Vec3 a) × (Vec3 b) -> Vec3       { ... }   // cross product (beware of confusion with the letter 'x')
+operator (Vec a) ⋅ (Vec b) -> Float        { ... }   // dot / scalar / inner product
 
-operator ⊙(Matrix a, b) -> Matrix { ... }   // Hadamard (element-wise) product
-operator ⊘(Matrix a, b) -> Matrix { ... }   // Hadamard (element-wise) division
-operator ⊞(Matrix a, b) -> Matrix { ... }   // element-wise addition ("boxplus")
-operator ⊟(Matrix a, b) -> Matrix { ... }   // element-wise subtraction ("boxminus")
+operator (Matrix a) ⊙ (Matrix b) -> Matrix { ... }   // Hadamard (element-wise) product
+operator (Matrix a) ⊘ (Matrix b) -> Matrix { ... }   // Hadamard (element-wise) division
+operator (Matrix a) ⊞ (Matrix b) -> Matrix { ... }   // element-wise addition ("boxplus")
+operator (Matrix a) ⊟ (Matrix b) -> Matrix { ... }   // element-wise subtraction ("boxminus")
 
-operator ⊕(Vec a, b) -> Vec       { ... }   // direct sum: {1 2} ⊕ {3 4} -> {1 2 3 4}
-operator ⊖(Vec a) -> Vec          { ... }   // negation (unary)
-operator ⊖(Vec a, b) -> Vec       { ... }   // subtraction (binary)
-operator ⊛(Signal a, b) -> Signal { ... }   // convolution
-operator ∗(Signal a, b) -> Signal { ... }   // convolution (alternative)
+operator (Vec a) ⊕ (Vec b) -> Vec          { ... }   // direct sum: {1 2} ⊕ {3 4} -> {1 2 3 4}
+operator ⊖(Vec a) -> Vec                   { ... }   // negation (unary)
+operator (Vec a) ⊖ (Vec b) -> Vec          { ... }   // subtraction (binary)
+operator (Signal a) ⊛ (Signal b) -> Signal { ... }   // convolution
+operator (Signal a) ∗ (Signal b) -> Signal { ... }   // convolution (alternative)
 
 func ∠(Vec a, b) -> Float        { ... }  // angle between two vectors
 func ∠(Point3D a, b, c) -> Float { ... }  // angle between three points (vectors ab and bc)
@@ -80,9 +80,9 @@ func ∠(Point3D a, b, c) -> Float { ... }  // angle between three points (vecto
 
 Unclear, if these should have an epsilon (ε) value here. And then they would be function calls, not infix operators:
 ```
-operator ⟂(Vec a, b) -> Bool { ... }   // perpendicular / orthogonal
-operator ∥(Vec a, b) -> Bool  { ... }   // parallel to
-operator ∦(Vec a, b) -> Bool  { ... }   // not parallel to
+operator (Vec a) ⟂ (Vec b) -> Bool { ... }   // perpendicular / orthogonal
+operator (Vec a) ∥ (Vec b) -> Bool { ... }   // parallel to
+operator (Vec a) ∦ (Vec b) -> Bool { ... }   // not parallel to
 ```
 
 ### Set Operators
@@ -90,16 +90,16 @@ operator ∦(Vec a, b) -> Bool  { ... }   // not parallel to
 The set membership/subset symbols parse as relational operators, i.e. they inherit the (infix) fixity and precedence group of the comparison operators:
 ```
 // Set membership
-operator ∈(T x, Set<T> s) -> Bool { return s.contains(x) }
-operator ∉(T x, Set<T> s) -> Bool { return not s.contains(x) }
-operator ∋(Set<T> s, T x) -> Bool { return s.contains(x) }
-operator ∌(Set<T> s, T x) -> Bool { return not s.contains(x) }
+operator (T x) ∈ (Set<T> s) -> Bool { return s.contains(x) }
+operator (T x) ∉ (Set<T> s) -> Bool { return not s.contains(x) }
+operator (Set<T> s) ∋ (T x) -> Bool { return s.contains(x) }
+operator (Set<T> s) ∌ (T x) -> Bool { return not s.contains(x) }
 
 // Subset / superset
-operator ⊆(Set<T> a, b) -> Bool { return a.isSubsetOf(b) }
-operator ⊇(Set<T> a, b) -> Bool { return a.isSupersetOf(b) }
-operator ⊂(Set<T> a, b) -> Bool { return a.isProperSubsetOf(b) }
-operator ⊃(Set<T> a, b) -> Bool { return a.isProperSupersetOf(b) }
+operator (Set<T> a) ⊆ (Set<T> b) -> Bool { return a.isSubsetOf(b) }
+operator (Set<T> a) ⊇ (Set<T> b) -> Bool { return a.isSupersetOf(b) }
+operator (Set<T> a) ⊂ (Set<T> b) -> Bool { return a.isProperSubsetOf(b) }
+operator (Set<T> a) ⊃ (Set<T> b) -> Bool { return a.isProperSupersetOf(b) }
 ```
 
 ### Operator Precedence
@@ -144,12 +144,12 @@ The two main difficulties (see also the [Operators](/advanced/operators/) chapte
 
 Modelled after Swift/Haskell, preferably with _named_ precedence groups instead of magic numbers:
 ```
-operator ∘(Fn f, g)     -> Fn     infix right precedence Composition   { ... }
-operator ⊗(Matrix a, b) -> Matrix infix  left precedence Tensor        { ... }   // tensor / Kronecker product
-operator ∪(Set a, b)    -> Set    infix  left precedence Union         { ... }   // union
-operator ∩(Set a, b)    -> Set    infix  left precedence Intersection  { ... }   // intersection (binds tighter than ∪)
-operator ∖(Set a, b)    -> Set    infix  left precedence Union         { ... }   // set difference: a without b
-operator √(Float a)     -> Float  prefix                               { ... }   // unary
+operator (Fn f) ∘ (Fn g)         -> Fn     infix right precedence Composition   { ... }
+operator (Matrix a) ⊗ (Matrix b) -> Matrix infix  left precedence Tensor        { ... }   // tensor / Kronecker product
+operator (Set a) ∪ (Set b)       -> Set    infix  left precedence Union         { ... }   // union
+operator (Set a) ∩ (Set b)       -> Set    infix  left precedence Intersection  { ... }   // intersection (binds tighter than ∪)
+operator (Set a) ∖ (Set b)       -> Set    infix  left precedence Union         { ... }   // set difference: a without b
+operator √(Float a)              -> Float  prefix                               { ... }   // unary
 ```
 - Fixity (`prefix`/`infix`/`postfix`) is part of the signature, so unary and binary forms are distinct declarations (just like `-` in C++).
     - Only `infix` operators need an explicit precedence group; `prefix`/`postfix` operators have a fixed (high) precedence, which is why `√` above declares none.
