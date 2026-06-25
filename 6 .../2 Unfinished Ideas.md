@@ -126,7 +126,7 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 
 - The three-way comparison `<=>` sits in its own `ThreeWay` group, binding tighter than `Comparison`/`Equality` (as in C++), because it returns an `Ordering` rather than a `Bool`; this keeps `a <=> b` from being mixed up with the relational chain.
 - The `Comparison` group bundles relational `Bool` predicates of four kinds at the same precedence: ordering (`<` `>` `<=` `>=` `≤` `≥`), set membership (`∈` `∉` `∋` `∌`), subset/superset (`⊆` `⊇` `⊂` `⊃`) and geometric relations (`⟂` `∥` `∦`).
-- `⊖` is declared twice: once `prefix` (unary negation) and once `infix` (binary subtraction). Fixity is part of the signature, so the two forms are distinct (see next section).
+- `⊖` is declared twice: once prefix (unary negation) and once infix (binary subtraction). Fixity is part of the signature, so the two forms are distinct (see next section).
 - `×` and `⋅` share the `Multiplication` group and are left-associative, so `a × b ⋅ c` parses as `(a × b) ⋅ c` (the scalar triple product), which is the intended reading.
 - The bitwise symbols `&`, `^` and `|` follow Go's precedence: `&` binds like `*` (`Multiplication`), `^` and `|` like `+` (`Addition`), so all three bind tighter than `Comparison`/`Equality`. This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
 - The word operators `and`/`or`/`xor` (and their Unicode synonyms `∧`/`∨`/`⊻`) keep their logical-level precedence whether applied to `Bool` or to integers; `nand`/`nor` (`⊼`/`⊽`) group with `and`/`or` respectively. For tight-binding bitwise XOR use the symbol `^` (group `Addition`, like `|`).
