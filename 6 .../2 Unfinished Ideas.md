@@ -113,7 +113,7 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | ShiftRotation | `<<` `>>` `<<<` `>>>` | infix left |
 | Range | `..` `..<` | infix, non-associative |
 | ThreeWay | `<=>` | infix, non-associative |
-| Comparison | `<` `>` `<=` `>=` `≤` `≥` &emsp; `∈` `∉` `∋` `∌` &emsp; `⊆` `⊇` `⊂` `⊃` &emsp; `⟂` `∥` `∦` | infix, non-associative |
+| Comparison | `<` `>` `<=` `>=` `≤` `≥`&emsp;`∈` `∉` `∋` `∌` &emsp; `⊆` `⊇` `⊂` `⊃` &emsp; `⟂` `∥` `∦` | infix, non-associative |
 | Equality | `==` `!=` `≠` | infix, non-associative |
 | LogicalAnd | `&&` `and` `∧` | infix left |
 | LogicalXor | `⊻` | infix left |
