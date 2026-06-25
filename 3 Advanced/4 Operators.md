@@ -196,12 +196,10 @@ class UInt256 {
 
 ### Increment and Decrement Operators
 ```
-class Int256 {
-    operator ++() -> Int256& { ... }
-    operator ++(Int dummy) -> Int256 { ... } // post-increment
-    operator --() -> Int256& { ... }
-    operator --(Int dummy) -> Int256 { ... } // post-decrement
-}
+operator ++(Int256 x) -> Int256& { ... }   // pre-increment
+operator (Int256 x)++ -> Int256  { ... }   // post-increment
+operator --(Int256 x) -> Int256& { ... }   // pre-decrement
+operator (Int256 x)-- -> Int256  { ... }   // post-decrement
 ```
 
 ### Relational and Comparison Operators
