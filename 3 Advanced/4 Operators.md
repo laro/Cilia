@@ -22,7 +22,7 @@ No mixed types allowed (you need to explicitly cast one side instead).
 The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`**, **`not`** are used on `Bool` (only).
 
 Example:  
-`aBool`**`and`**`anotherBool` -> `Bool` 
+`aBool`**`and`**`anotherBool` -> `Bool`
 
 `nand` and `nor` as in VHDL.  
 `xor` in Cilia is a _Bool_ operator (unlike C++, where it is a bitwise operator).
@@ -245,10 +245,10 @@ operator (Int256 a) ≥ (Int256 b) -> Bool { return a >= b }
         - `&&` and `||`, not ~~`&` and `|`~~.
 - Bitwise operators
   ```
-  operator (Int256 a) & (Int256 b) -> Int256 { return a and b }
-  operator (Int256 a) | (Int256 b) -> Int256 { return a or b }
-  operator (Int256 a) ^ (Int256 b) -> Int256 { return a xor b }
-  operator ~(Int256 a) -> Int256 { return not a }
+  operator (Int256 a) & (Int256 b) -> Int256 { ... }
+  operator (Int256 a) | (Int256 b) -> Int256 { ... }
+  operator (Int256 a) ^ (Int256 b) -> Int256 { ... }
+  operator ~(Int256 a) -> Int256 { ... }
   ```
     - Defined for _integers_ (not for `Bool`),
     - operators `~`, not ~~`!`~~,
@@ -276,7 +276,7 @@ class MyImage<type T> {
 ```
 class MyFunctor {
     // Functor call
-    operator (Int a, Float b, String c) {
+    operator (Int a, Float b, String c) -> String {
         ...
     }
 }
