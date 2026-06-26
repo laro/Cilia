@@ -19,7 +19,10 @@ No mixed types allowed (you need to explicitly cast one side instead).
 
 ### Logical (Bool) Operators
 
-The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g.  `aBool`**`and`**`anotherBool` -> `Bool`.  
+The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g.:
+```
+aBool and anotherBool -> Bool
+```  
 
 **`nand`** and **`nor`** (as in VHDL).
 
