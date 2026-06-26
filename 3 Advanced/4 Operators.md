@@ -19,9 +19,10 @@ No mixed types allowed (you need to explicitly cast one side instead).
 
 ### Logical (Bool) Operators
 
-The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g.:
-```
-aBool and anotherBool -> Bool
+The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only).
+
+Example:  
+`aBool`**`and`**`anotherBool` -> `Bool`
 ```  
 
 `nand` and `nor` as in VHDL.
@@ -51,7 +52,7 @@ The keyword ~~`not_eq`~~ is not supported.
 Use **`&`** / **`|`** for bitwise and / or, **`~`** for bitwise negation, and **`^`** for bitwise xor, all with tight binding.
 
 Example:  
-`anInt`**`&`**`anotherInt` -> `Int`. 
+`anInt`**`&`**`anotherInt` -> `Int`
 
 Also `&=`, `|=`, and `^=`.
 
