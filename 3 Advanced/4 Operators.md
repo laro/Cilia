@@ -21,12 +21,12 @@ No mixed types allowed (you need to explicitly cast one side instead).
 
 The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`not`** are used on `Bool` (only), e.g.  `aBool`**`and`**`anotherBool` -> `Bool`.  
 
-Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
-And actually **`and`** / **`or`** are valid C++ keywords, too.
-
 **`nand`** and **`nor`** (as in VHDL).
 
 **`xor`** is a Bool operator, too (unlike C++, where it is a bitwise operator).
+
+Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
+And actually **`and`** / **`or`** are valid C++ keywords, too.
 
 Still _also_ use **`&&`** and **`||`** for boolean operation,
 - as C/C++/Java/C# programmers are used to it,
