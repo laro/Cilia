@@ -19,17 +19,26 @@ No mixed types allowed (you need to explicitly cast one side instead).
 
 ### Logical (Bool) Operators
 
-The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`**, **`not`** are used on `Bool` (only).
+Example:  
+`aBool`**`and`**`anotherBool` -> `Bool`
+
+The following word operators are used on `Bool` (only):
+
+| Operator | Meaning      |
+| -------- | ------------ |
+| `and`    | logical and  |
+| `or`     | logical or   |
+| `nand`   | logical nand |
+| `nor`    | logical nor  |
+| `xor`    | logical xor  |
+| `not`    | logical not  |
 
 Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
 And actually `and` / `or` are valid C++ keywords, too.
 
 `not` in addition to `!` (for boolean negation), as `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
 
-Example:  
-`aBool`**`and`**`anotherBool` -> `Bool`
-
-`xor` in Cilia is a _Bool_ operator (unlike C++, where it is a bitwise operator).
+`xor` in Cilia is a _logical/Bool_ operator (unlike C++, where it is a bitwise operator).
 
 Still _also_ use **`&&`** and **`||`** for boolean operation,
 - as C/C++/Java/C# programmers are used to it,
