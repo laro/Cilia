@@ -21,22 +21,21 @@ No mixed types allowed (you need to explicitly cast one side instead).
 
 The word operators **`and`**, **`or`**, **`nand`**, **`nor`**, **`xor`**, **`not`** are used on `Bool` (only).
 
+Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
+And actually `and` / `or` are valid C++ keywords, too.
+
+`not` in addition to `!` (for boolean negation), as `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
+
 Example:  
 `aBool`**`and`**`anotherBool` -> `Bool`
 
-`nand` and `nor` as in VHDL.  
 `xor` in Cilia is a _Bool_ operator (unlike C++, where it is a bitwise operator).
-
-Words like `and` and `or` IMHO are a bit clearer than `&&` and `||`, so they are recommended.
-And actually `and` / `or` are valid C++ keywords, too.
 
 Still _also_ use **`&&`** and **`||`** for boolean operation,
 - as C/C++/Java/C# programmers are used to it,
     - even [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/basicoperators/#Logical-Operators)
         and [Kotlin](https://www.w3schools.com/kotlin/kotlin_operators.php) keep `&&` and `||`,
 - as we want `&&=` and `||=` anyway.
-
-`not` in addition to `!` (for boolean negation), as `not` is a bit clearer than `!` (especially as many modern languages like Rust and Swift use `!` also for error handling).
 
 Still _also_ `!` for negation, as we keep `!=` for "not equal" anyway. (We could use `<>` instead of `!=`, but that's really not familiar to C/C++ programmers.)
 
