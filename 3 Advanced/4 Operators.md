@@ -46,13 +46,23 @@ The keyword ~~`not_eq`~~ is not supported.
 
 ### Bitwise (Int) Operators
 
-Use **`&`** / **`|`** for bitwise and / or, **`~`** for bitwise negation, and **`^`** for bitwise xor, all with tight binding.
-
 Example:  
 `anInt`**`&`**`anotherInt` -> `Int`
 
-Also `&=`, `|=`, and `^=`.
+| Operator | Meaning            |
+| -------- | ------------------ |
+| `&`      | bitwise and        |
+| `|`      | bitwise or         |
+| `~`      | bitwise negation   |
+| `^`      | bitwise xor        |
 
+All bind tightly.
+
+| Operator | Meaning            |
+| -------- | ------------------ |
+| `&=`     | bitwise and assign |
+| `|=`     | bitwise or assign  |
+| `^=`     | bitwise xor assign |
 
 The keywords ~~`bitand`~~, ~~`bitor`~~, ~~`compl`~~, ~~`and_eq`~~, ~~`or_eq`~~, ~~`xor_eq`~~ are not supported.
 
