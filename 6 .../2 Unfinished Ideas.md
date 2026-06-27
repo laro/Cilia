@@ -55,6 +55,14 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 ### Logical / Bool Operators
 
 It is also possible to use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
+```
+operator (Bool a) ∧ (Bool b) -> Bool { return a and b }
+operator (Bool a) ∨ (Bool b) -> Bool { return a or b }
+operator (Bool a) ⊼ (Bool b) -> Bool { return a nand b }
+operator (Bool a) ⊽ (Bool b) -> Bool { return a nor b }
+operator (Bool a) ⊻ (Bool b) -> Bool { return a xor b }
+operator ¬(Bool a) -> Bool { return not a }
+```
 
 
 ### Vector / Matrix Operators
@@ -124,14 +132,16 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | Assignment | `=`&emsp;`+=` `-=` `*=` `/=` `%=`&emsp;`<<=` `>>=` `<<<=` `>>>=`&emsp;`&=` `|=` `^=`&emsp;`&&=` `||=` | infix right |
 {:.wide-table}
 
-- The three-way comparison `<=>` sits in its own `ThreeWay` group, binding tighter than `Comparison`/`Equality` (as in C++), because it returns an `Ordering` rather than a `Bool`; this keeps `a <=> b` from being mixed up with the relational chain.
-- The `Comparison` group bundles relational `Bool` predicates of four kinds at the same precedence: ordering (`<` `>` `<=` `>=` `≤` `≥`), set membership (`∈` `∉` `∋` `∌`), subset/superset (`⊆` `⊇` `⊂` `⊃`) and geometric relations (`⟂` `∥` `∦`).
-- `⊖` is declared twice: once prefix (unary negation) and once infix (binary subtraction). Fixity is part of the signature, so the two forms are distinct (see next section).
-- `×` and `⋅` share the `Multiplication` group and are left-associative, so `a × b ⋅ c` parses as `(a × b) ⋅ c` (the scalar triple product), which is the intended reading.
-- The bitwise symbols `&`, `^` and `|` follow Go's precedence: `&` binds like `*` (`Multiplication`), `^` and `|` like `+` (`Addition`), so all three bind tighter than `Comparison`/`Equality`. This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
-- The word operators `and`/`or`/`xor` (and their Unicode synonyms `∧`/`∨`/`⊻`) keep their logical-level precedence whether applied to `Bool` or to integers; `nand`/`nor` (`⊼`/`⊽`) group with `and`/`or` respectively. For tight-binding bitwise XOR use the symbol `^` (group `Addition`, like `|`).
-- The custom operators of the next section (`∘`, `⊗`, `∪`, `∩`, `∖`) introduce their own named groups (`Composition`, `Tensor`, `Union`, `Intersection`), whose position relative to the groups above is fixed at declaration.
-- Cross-group ordering otherwise follows C++ (see the [Operators](/advanced/operators/) chapter), except the bitwise symbols `&`/`|`, which follow Go (see above); per [Ideas from Others](/more/ideas-from-others/) this ordering may still be simplified.
+The bitwise symbols `&`, `^` and `|` follow Go's precedence: `&` binds like `*` (`Multiplication`), `^` and `|` like `+` (`Addition`), so all three bind tighter than `Comparison`/`Equality`. This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
+
+> **Note**  
+> The global precedence ordering should be replaced by partial precedence ordering,
+> as nobody can remember all these precedence levels.
+> 
+> See [Carbon Expression Precedence](https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#precedence):
+>> Expressions are interpreted based on a partial precedence ordering. Expression components which lack a relative ordering must be disambiguated by the developer, for example by adding parentheses; otherwise, the expression will be invalid due to ambiguity. Precedence orderings will only be added when it's reasonable to expect most developers to understand the precedence without parentheses.
+> 
+> Also see [Circle simpler_precedence](https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#precedence)
 
 
 ### Custom Operators with Declared Precedence
