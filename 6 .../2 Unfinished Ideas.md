@@ -146,7 +146,7 @@ The bitwise symbols `&`, `^` and `|` get their own precedence groups (`BitwiseAn
 > 
 > Also see [Circle simpler_precedence](https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#precedence)
 
-
+```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph BT
     parens["(...)"]
@@ -287,6 +287,7 @@ graph BT
     ref & expressionStatement --> logicalExpression
     if ---> ref
     insideParens & assignment --> if
+```
 
 
 ### Custom Operators with Declared Precedence
