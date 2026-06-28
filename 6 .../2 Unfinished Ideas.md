@@ -157,6 +157,9 @@ graph BT
     unqualifiedName["x"]
     click unqualifiedName "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#unqualified-names"
 
+    sandwich["‖x‖
+              ⟨a, b⟩"]
+
     top((" "))
 
     suffixOps{"x.y
@@ -169,10 +172,10 @@ graph BT
 
     qualifiedType["const T
                    partial T"]
-    click pointer-type "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/type_operators.md"
+    click qualifiedType "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/type_operators.md"
 
     pointerType{"T*"}
-    click pointer-type "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/type_operators.md"
+    click pointerType "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/type_operators.md"
 
     pointer{"*x
              &x"}
@@ -188,54 +191,75 @@ graph BT
             --x;"]
     click incDec "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/assignment.md"
 
+    prefixMath["√x
+                ⊖x
+                ¬x"]
+
     unary((" "))
 
     as["x as T"]
     click as "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/implicit_conversions.md"
 
-    multiplication>"x * y
-                    x / y"]
+    power>"x ** y"]
+
+    multiplication>"x * y    x / y    x % y
+                    x × y    x ⋅ y
+                    x ⊙ y    x ⊘ y
+                    x ⊛ y    x ∗ y"]
     click multiplication "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
 
-    addition>"x + y
-              x - y"]
+    addition>"x + y    x - y
+              x ⊞ y    x ⊟ y
+              x ⊕ y    x ⊖ y"]
     click addition "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
 
-    modulo["x % y"]
-    click modulo "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
+    shift["x << y    x >> y
+           x <<< y   x >>> y"]
+    click shift "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
 
     bitwise_and>"x & y"]
-    bitwise_or>"x | y"]
     bitwise_xor>"x ^ y"]
+    bitwise_or>"x | y"]
     click bitwise_and "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
-    click bitwise_or "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
     click bitwise_xor "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
+    click bitwise_or "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
 
-    shift["x << y
-           x >> y"]
-    click shift "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
+    range>"x .. y
+           x ..< y"]
+
+    threeWay>"x <=> y"]
 
     binaryOps((" "))
 
     where["T where R"]
 
-    comparison["x == y
-                x != y
-                x < y
-                x <= y
-                x > y
-                x >= y"]
+    comparison["x < y    x <= y   (≤)
+                x > y    x >= y   (≥)
+                x ∈ y    x ∉ y    x ∋ y    x ∌ y
+                x ⊆ y    x ⊇ y    x ⊂ y    x ⊃ y
+                x ⟂ y    x ∥ y    x ∦ y"]
     click comparison "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/comparison_operators.md"
+
+    equality["x == y    x != y   (≠)"]
+    click equality "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/comparison_operators.md"
 
     not["not x"]
     click not "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
 
     logicalOperand((" "))
 
-    and>"x and y"]
+    and>"x and y
+         x && y
+         x ∧ y"]
     click and "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
 
-    or>"x or y"]
+    xor>"x xor y
+         x ⊻ y"]
+    click xor "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
+
+    or>"x or y
+        x || y
+        x ∨ y"]
     click or "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
 
     logicalExpression((" "))
@@ -253,7 +277,13 @@ graph BT
 
     expressionStatement["x;"]
 
-    top --> parens & braces & unqualifiedName
+    %% Custom / partial precedence, declared at the operator definition (see below)
+    custom["f ∘ g           (Composition)
+            a ⊗ b           (Tensor)
+            a ∪ b    a ∩ b  (Union / Intersection)
+            a ∖ b           (set difference)"]
+
+    top --> parens & braces & unqualifiedName & sandwich
 
     suffixOps --> top
 
@@ -261,8 +291,8 @@ graph BT
     pointerType --> qualifiedType
 
     pointer --> suffixOps
-    negation & complement & incDec --> pointer
-    unary --> pointerType & negation & complement
+    negation & complement & incDec & prefixMath --> pointer
+    unary --> pointerType & negation & complement & prefixMath
 
     %% Use a longer arrow here to put `not` next to other unary operators
     not ---> suffixOps
@@ -270,20 +300,29 @@ graph BT
     %% `as` at the same level as `where` and comparisons
     as -----> unary
 
-    multiplication & modulo & bitwise_and & bitwise_or & bitwise_xor & shift --> unary
+    %% Binary chain, tightest (power) to loosest (threeWay); see the precedence table above
+    power --> unary
+    multiplication --> power
     addition --> multiplication
-    binaryOps --> addition & modulo & bitwise_and & bitwise_or & bitwise_xor & shift
+    shift --> addition
+    bitwise_and --> shift
+    bitwise_xor --> bitwise_and
+    bitwise_or --> bitwise_xor
+    range --> bitwise_or
+    threeWay --> range
+    binaryOps --> threeWay
 
     where --> binaryOps
     comparison --> binaryOps
-    logicalOperand --> comparison & not
+    equality --> comparison
+    logicalOperand --> equality & not
 
-    %% This helps group `and` and `or` together
-    classDef hidden display: none;
-    HIDDEN:::hidden ~~~ logicalOperand
+    %% LogicalAnd tighter than LogicalXor tighter than LogicalOr
+    and --> logicalOperand
+    xor --> and
+    or --> xor
 
-    and & or --> logicalOperand
-    logicalExpression --> as & where & and & or
+    logicalExpression --> as & where & or
     ref & expressionStatement --> logicalExpression
     if ---> ref
     insideParens & assignment --> if
