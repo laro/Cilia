@@ -116,22 +116,22 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 
 | Precedence group | Operators | Fixity |
 | --- | --- | --- |
-| Postfix (call) | `a()` `a[]` `a.b` `a++` `a--` | postfix |
+| Postfix (call)       | `a()` `a[]` `a.b` `a++` `a--` | postfix |
 | Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
-| Power | `**` | infix right |
-| Multiplication | `*` `/` `%`&emsp;`×` `⋅`&emsp;`⊙` `⊘`&emsp;`⊛` `∗` | infix left |
-| Addition | `+` `-` `⊞` `⊟` `⊕` `⊖` | infix left |
-| ShiftRotation | `<<` `>>` `<<<` `>>>` | infix left |
+| Power                | `**` | infix right |
+| Multiplication       | `*` `/` `%`&emsp;`×` `⋅`&emsp;`⊙` `⊘`&emsp;`⊛` `∗` | infix left |
+| Addition             | `+` `-` `⊞` `⊟` `⊕` `⊖` | infix left |
+| ShiftRotation        | `<<` `>>` `<<<` `>>>` | infix left |
 | BitwiseAnd | `&` | infix left |
 | BitwiseXor | `^` | infix left |
-| BitwiseOr | `|` | infix left |
-| Range | `..` `..<` | infix, non-associative |
-| ThreeWay | `<=>` | infix, non-associative |
+| BitwiseOr  | `|` | infix left |
+| Range      | `..` `..<` | infix, non-associative |
+| ThreeWay   | `<=>` | infix, non-associative |
 | Comparison | `<` `>` `<=` `>=` `≤` `≥`&emsp;`∈` `∉` `∋` `∌`&emsp;`⊆` `⊇` `⊂` `⊃`&emsp;`⟂` `∥` `∦` | infix, non-associative |
-| Equality | `==` `!=` `≠` | infix, non-associative |
-| LogicalAnd | `&&` `and` `∧` | infix left |
-| LogicalXor | `xor` `⊻` | infix left |
-| LogicalOr | `||` `or` `∨` | infix left |
+| Equality   | `==` `!=` `≠` | infix, non-associative |
+| LogicalAnd | `and` `&&` `∧` | infix left |
+| LogicalXor | `xor` `⊻`      | infix left |
+| LogicalOr  | `or` `||` `∨`  | infix left |
 | Assignment | `=`&emsp;`+=` `-=` `*=` `/=` `%=`&emsp;`<<=` `>>=` `<<<=` `>>>=`&emsp;`&=` `|=` `^=`&emsp;`&&=` `||=` | infix right |
 {:.wide-table}
 
