@@ -1,0 +1,30 @@
+<!--
+  Mermaid-Unterstützung für GitHub Pages.
+
+  kramdown (der Markdown-Prozessor von Jekyll) rendert ```mermaid-Blöcke nur als
+  <pre><code class="language-mermaid">…</code></pre> und nicht als Diagramm.
+  Dieses Skript lädt mermaid.js, wandelt diese Blöcke in das von mermaid erwartete
+  Format um und rendert sie clientseitig.
+-->
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+  // Diagramm-Theme an die Hell-/Dunkel-Einstellung des Browsers/OS koppeln.
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  mermaid.initialize({
+    startOnLoad: false,
+    // 'loose' wird benötigt, damit die click-Direktiven mit externen URLs funktionieren.
+    securityLevel: 'loose',
+    theme: prefersDark ? 'dark' : 'default',
+  });
+
+  // Die von kramdown erzeugten Code-Blöcke in <pre class="mermaid">…</pre> umwandeln.
+  document.querySelectorAll('pre > code.language-mermaid').forEach((code) => {
+    const pre = code.parentElement;
+    pre.className = 'mermaid';
+    pre.textContent = code.textContent;
+  });
+
+  await mermaid.run();
+</script>
