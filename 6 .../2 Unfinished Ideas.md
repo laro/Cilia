@@ -147,6 +147,148 @@ The bitwise symbols `&`, `^` and `|` get their own precedence groups (`BitwiseAn
 > Also see [Circle simpler_precedence](https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#precedence)
 
 
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+graph BT
+    parens["(...)"]
+
+    braces["{...}"]
+    click braces "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/classes.md#literals"
+
+    unqualifiedName["x"]
+    click unqualifiedName "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#unqualified-names"
+
+    top((" "))
+
+    suffixOps{"x.y
+               x.(...)
+               x->y
+               x->(...)
+               x(...)
+               x[y]"}
+    click suffixOps "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#suffix-operators"
+
+    qualifiedType["const T
+                   partial T"]
+    click pointer-type "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/type_operators.md"
+
+    pointerType{"T*"}
+    click pointer-type "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/type_operators.md"
+
+    pointer{"*x
+             &x"}
+    click pointer "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/pointer.md"
+
+    negation["-x"]
+    click negation "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
+
+    complement["^x"]
+    click complement "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
+
+    incDec["++x;
+            --x;"]
+    click incDec "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/assignment.md"
+
+    unary((" "))
+
+    as["x as T"]
+    click as "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/implicit_conversions.md"
+
+    multiplication>"x * y
+                    x / y"]
+    click multiplication "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
+
+    addition>"x + y
+              x - y"]
+    click addition "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
+
+    modulo["x % y"]
+    click modulo "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
+
+    bitwise_and>"x & y"]
+    bitwise_or>"x | y"]
+    bitwise_xor>"x ^ y"]
+    click bitwise_and "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
+    click bitwise_or "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
+    click bitwise_xor "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
+
+    shift["x << y
+           x >> y"]
+    click shift "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
+
+    binaryOps((" "))
+
+    where["T where R"]
+
+    comparison["x == y
+                x != y
+                x < y
+                x <= y
+                x > y
+                x >= y"]
+    click comparison "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/comparison_operators.md"
+
+    not["not x"]
+    click not "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
+
+    logicalOperand((" "))
+
+    and>"x and y"]
+    click and "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
+
+    or>"x or y"]
+    click or "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
+
+    logicalExpression((" "))
+
+    ref["ref x"]
+
+    if>"if x then y else z"]
+    click if "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/if.md"
+
+    insideParens["(...)"]
+
+    assignment["x = y;
+                x $= y;"]
+    click assignment "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/assignment.md"
+
+    expressionStatement["x;"]
+
+    top --> parens & braces & unqualifiedName
+
+    suffixOps --> top
+
+    qualifiedType --> suffixOps
+    pointerType --> qualifiedType
+
+    pointer --> suffixOps
+    negation & complement & incDec --> pointer
+    unary --> pointerType & negation & complement
+
+    %% Use a longer arrow here to put `not` next to other unary operators
+    not ---> suffixOps
+
+    %% `as` at the same level as `where` and comparisons
+    as -----> unary
+
+    multiplication & modulo & bitwise_and & bitwise_or & bitwise_xor & shift --> unary
+    addition --> multiplication
+    binaryOps --> addition & modulo & bitwise_and & bitwise_or & bitwise_xor & shift
+
+    where --> binaryOps
+    comparison --> binaryOps
+    logicalOperand --> comparison & not
+
+    %% This helps group `and` and `or` together
+    classDef hidden display: none;
+    HIDDEN:::hidden ~~~ logicalOperand
+
+    and & or --> logicalOperand
+    logicalExpression --> as & where & and & or
+    ref & expressionStatement --> logicalExpression
+    if ---> ref
+    insideParens & assignment --> if
+
+
 ### Custom Operators with Declared Precedence
 
 For some symbols fixity and precedence have to be given at declaration. 
