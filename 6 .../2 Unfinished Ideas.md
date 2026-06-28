@@ -119,9 +119,12 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | Postfix (call) | `a()` `a[]` `a.b` `a++` `a--` | postfix |
 | Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
 | Power | `**` | infix right |
-| Multiplication | `*` `/` `%`&emsp;`×` `⋅`&emsp;`⊙` `⊘`&emsp;`⊛` `∗`&emsp;`&` | infix left |
-| Addition | `+` `-` `⊞` `⊟` `⊕` `⊖` `|` `^` | infix left |
+| Multiplication | `*` `/` `%`&emsp;`×` `⋅`&emsp;`⊙` `⊘`&emsp;`⊛` `∗` | infix left |
+| Addition | `+` `-` `⊞` `⊟` `⊕` `⊖` | infix left |
 | ShiftRotation | `<<` `>>` `<<<` `>>>` | infix left |
+| BitwiseAnd | `&` | infix left |
+| BitwiseXor | `^` | infix left |
+| BitwiseOr | `|` | infix left |
 | Range | `..` `..<` | infix, non-associative |
 | ThreeWay | `<=>` | infix, non-associative |
 | Comparison | `<` `>` `<=` `>=` `≤` `≥`&emsp;`∈` `∉` `∋` `∌`&emsp;`⊆` `⊇` `⊂` `⊃`&emsp;`⟂` `∥` `∦` | infix, non-associative |
@@ -132,7 +135,7 @@ The table sorts in **all currently known operators** from tightest to loosest bi
 | Assignment | `=`&emsp;`+=` `-=` `*=` `/=` `%=`&emsp;`<<=` `>>=` `<<<=` `>>>=`&emsp;`&=` `|=` `^=`&emsp;`&&=` `||=` | infix right |
 {:.wide-table}
 
-The bitwise symbols `&`, `^` and `|` follow Go's precedence: `&` binds like `*` (`Multiplication`), `^` and `|` like `+` (`Addition`), so all three bind tighter than `Comparison`/`Equality`. This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
+The bitwise symbols `&`, `^` and `|` get their own precedence groups (`BitwiseAnd` tighter than `BitwiseXor` tighter than `BitwiseOr`), separate from the arithmetic operators `*`/`/` and `+`/`-`. All three still bind tighter than `Comparison`/`Equality`. This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
 
 > **Note**  
 > The global precedence ordering should be replaced by partial precedence ordering,
