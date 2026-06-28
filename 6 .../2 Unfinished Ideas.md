@@ -220,12 +220,14 @@ More bracket variants (asymmetric pairs only; some may be used in reversed order
 | `❴...❵` | ornamental | curly bracket ornament |
 
 
-### Later
+### Later / Never
 
 Many of the symbols seem more suitable for a computer algebra system (CAS) than for a general purpose programming language, so they stay unassigned for now.
 
 Reserved for future use, as it could get complicated and confusing.
 Remaining candidate symbols, not yet assigned to one of the cases above (with their usual mathematical meaning):
+
+- `∑`, `∏`, `∫`, `∮` are _not_ operators: they need an index/binder (e.g. `∑_{i=1}^{n}`), so for now they stay plain functions `sum(...)`, `product(...)`, `integrate(...)`.
 
 - Definition / assignment
     - `≔` "colon equals" (`:=`) – defined as / assignment.
@@ -250,8 +252,6 @@ Remaining candidate symbols, not yet assigned to one of the cases above (with th
     - `≈` "almost equal to" – `isClose(a, b)`.
     - `≉` "not almost equal to" – `not isClose(a, b)`.
     - `∼` "tilde operator" / "similar to" – `isSimilar(a, b)`.
-
-- `∑`, `∏`, `∫`, `∮` are _not_ operators: they need an index/binder (e.g. `∑_{i=1}^{n}`), so for now they stay plain functions `sum(...)`, `product(...)`, `integrate(...)`.
 
 
 ## OpenMP-like Parallel Programming
