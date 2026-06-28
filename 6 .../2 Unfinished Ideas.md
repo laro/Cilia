@@ -175,8 +175,8 @@ operator ‖Vec v‖ -> Float  { return v.length() }  // norm
 operator ⟨T a, b⟩ -> Float { ... }                // inner product
 ```
 - `|x|` for `abs(x)` is problematic, as `|` is the bitwise `or` operator: an expression like `a | b | c` would be ambiguous (bitwise `or` vs. `a * |b| * c`).
-    - So when `|x|` is not allowed for `abs()`, what's the point of having `‖x‖` (U+2016) for `norm(x)`?
 - `‖x‖` (U+2016) for `norm(x)` instead of `||x||`, which would interfere with `||` as logical `or`.
+    - So when `|x|` is not allowed for `abs()`, what's the point of having `‖x‖` (U+2016) for `norm(x)`?
 - Symmetric delimiters that use the _same_ character for open and close (like `‖…‖`) cannot be nested unambiguously: `‖a + ‖b‖‖` and `|a + |b||` are ambiguous. Only asymmetric pairs (e.g. `⟨…⟩`) nest cleanly, so `‖…‖` and `|…|` should be restricted to non-nested use (or nesting must be disallowed).
 
 More bracket variants (asymmetric pairs only; some may be used in reversed order, e.g. `≫...≪`; see also [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)):
