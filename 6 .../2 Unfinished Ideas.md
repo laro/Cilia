@@ -372,13 +372,19 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - `and`, `xor` and `or` relative to each other.
 
 
-The node shapes encode each group's
+The **node shapes** encode each group's
 
 - associativity (for binary operators)
+    - non-associative,
+    - left-associative,
+    - right-associative,
 - or the analogous repeatability (for unary operators),
-- and circles are helper nodes (not a precedence group),
+    - non-repeating,
+    - repeating,
 
-i.e. what it means to chain the **same** precedence group without parentheses.
+i.e. what it means to chain the **same** precedence group without parentheses.  
+Circles are helper nodes only (not a precedence group).
+
 
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
