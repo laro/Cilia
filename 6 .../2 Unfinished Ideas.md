@@ -388,8 +388,7 @@ graph LR
 i.e. what it means to chain the **same** precedence group without parentheses.
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph LR
-    direction TB
+graph TB
     subgraph binary
         direction LR
 
@@ -411,6 +410,9 @@ graph LR
         rhombus{"Rhombus<br/>repeating<br/>x.y.z, *&x, T**"}
 
         rect ~~~ rhombus
+    end
+    subgraph helper node
+        circle((" "))
     end
 ```
 
