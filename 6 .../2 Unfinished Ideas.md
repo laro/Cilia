@@ -392,24 +392,26 @@ graph TB
     subgraph binary
         direction LR
 
-        rect["non-associative
+        nonAssociative["non-associative
         a == b == c needs parens"]
 
-        flagToLeft>"Flag<br/>left-associative<br/>a + b + c = (a + b) + c"]
+        leftAssociative>"left-associative
+        a + b + c = (a + b) + c"]
 
-        flagToRight["right associative
+        rightAssociative["right associative
         a ** b ** c = a ** (b ** c)"]
 
-        rect ~~~ flagToLeft ~~~ flagToRight
+        nonAssociative ~~~ leftAssociative ~~~ rightAssociative
     end
     subgraph unary
         direction LR
 
-        rect["Rectangle<br/>non-repeating"]
+        nonRepeating["non-repeating"]
 
-        rhombus{"Rhombus<br/>repeating<br/>x.y.z, *&x, T**"}
+        repeating{"repeating
+        x.y.z, *&x, T**"}
 
-        rect ~~~ rhombus
+        nonRepeating ~~~ repeating
     end
     subgraph helper node
         circle((" "))
