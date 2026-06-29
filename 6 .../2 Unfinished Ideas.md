@@ -181,8 +181,13 @@ graph BT
     negation["-x"]
     click negation "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
 
-    complement["^x"]
+    complement["^x
+                ~x"]
     click complement "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
+
+    prefixMath["+x
+                √x
+                ⊖x"]
 
     incDec["++x;
             --x;"]
@@ -193,12 +198,17 @@ graph BT
     as["x as T"]
     click as "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/implicit_conversions.md"
 
-    multiplication>"x * y
-                    x / y"]
+    power>"x ** y"]
+
+    multiplication>"x * y      x / y
+                    x × y      x ⋅ y
+                    x ⊙ y      x ⊘ y
+                    x ⊛ y      x ∗ y"]
     click multiplication "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
 
-    addition>"x + y
-              x - y"]
+    addition>"x + y      x - y
+              x ⊞ y      x ⊟ y
+              x ⊕ y      x ⊖ y"]
     click addition "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
 
     modulo["x % y"]
@@ -211,31 +221,52 @@ graph BT
     click bitwise_or "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
     click bitwise_xor "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
 
-    shift["x << y
-           x >> y"]
+    shift["x << y     x >> y
+           x <<< y    x >>> y"]
     click shift "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
 
     binaryOps((" "))
 
+    range>"x .. y
+           x ..< y"]
+
     where["T where R"]
 
-    comparison["x == y
-                x != y
-                x < y
-                x <= y
-                x > y
-                x >= y"]
+    threeWay["x <=> y"]
+
+    comparison["x < y      x > y
+                x <= y     x >= y
+                x ≤ y      x ≥ y
+                x ∈ y      x ∉ y
+                x ∋ y      x ∌ y
+                x ⊆ y      x ⊇ y
+                x ⊂ y      x ⊃ y
+                x ⟂ y      x ∥ y      x ∦ y"]
     click comparison "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/comparison_operators.md"
 
-    not["not x"]
+    equality["x == y
+              x != y
+              x ≠ y"]
+    click equality "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/comparison_operators.md"
+
+    not["not x
+         !x
+         ¬x"]
     click not "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
 
     logicalOperand((" "))
 
-    and>"x and y"]
+    and>"x and y
+         x && y
+         x ∧ y"]
     click and "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
 
-    or>"x or y"]
+    logicalXor>"x xor y
+                x ⊻ y"]
+
+    or>"x or y
+        x || y
+        x ∨ y"]
     click or "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/logical_operators.md"
 
     logicalExpression((" "))
@@ -247,8 +278,13 @@ graph BT
 
     insideParens["(...)"]
 
-    assignment["x = y;
-                x $= y;"]
+    assignment["x = y;      x $= y;
+                x += y;     x -= y;
+                x *= y;     x /= y;     x %= y;
+                x <<= y;    x >>= y;
+                x <<<= y;   x >>>= y;
+                x &= y;     x |= y;     x ^= y;
+                x &&= y;    x ||= y;"]
     click assignment "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/assignment.md"
 
     expressionStatement["x;"]
@@ -261,8 +297,8 @@ graph BT
     pointerType --> qualifiedType
 
     pointer --> suffixOps
-    negation & complement & incDec --> pointer
-    unary --> pointerType & negation & complement
+    negation & complement & prefixMath & incDec --> pointer
+    unary --> pointerType & negation & complement & prefixMath
 
     %% Use a longer arrow here to put `not` next to other unary operators
     not ---> suffixOps
@@ -270,24 +306,42 @@ graph BT
     %% `as` at the same level as `where` and comparisons
     as -----> unary
 
-    multiplication & modulo & bitwise_and & bitwise_or & bitwise_xor & shift --> unary
+    %% `**` binds tighter than multiplication, looser than the prefix/unary operators
+    multiplication --> power
+    power --> unary
+
+    modulo & bitwise_and & bitwise_or & bitwise_xor & shift --> unary
     addition --> multiplication
     binaryOps --> addition & modulo & bitwise_and & bitwise_or & bitwise_xor & shift
 
-    where --> binaryOps
-    comparison --> binaryOps
-    logicalOperand --> comparison & not
+    %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
+    range --> binaryOps
 
-    %% This helps group `and` and `or` together
+    where --> binaryOps
+    threeWay & comparison & equality --> range
+    logicalOperand --> threeWay & comparison & equality & not
+
+    %% This helps group `and`, `xor` and `or` together
     classDef hidden display: none;
     HIDDEN:::hidden ~~~ logicalOperand
 
-    and & or --> logicalOperand
-    logicalExpression --> as & where & and & or
+    and & logicalXor & or --> logicalOperand
+    logicalExpression --> as & where & and & logicalXor & or
     ref & expressionStatement --> logicalExpression
     if ---> ref
     insideParens & assignment --> if
 ```
+
+The graph above now also covers the contemplated Unicode/Cilia operators, but — as in
+the original — only as a **partial** ordering. Relations that most developers can be
+expected to know are drawn as edges (e.g. `*` tighter than `+`, `**` tighter than `*`,
+arithmetic tighter than ranges, ranges tighter than the comparisons, and all of these
+tighter than the logical operators and assignment). Pairs that nobody reliably ranks
+are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
+- the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
+- `..`/`..<` relative to `<=>`,
+- `<`/`<=`/…, `==`/`!=`, and `<=>` relative to each other,
+- `and`, `xor` and `or` relative to each other.
 
 
 ### Custom Operators with Declared Precedence
