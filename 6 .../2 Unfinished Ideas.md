@@ -263,16 +263,21 @@ graph BT
 
     logicalOperand((" "))
 
-    and>"x and y
-         x && y
-         x ∧ y"]
+    and>"x and y"]
 
-    logicalXor>"x xor y
-                x ⊻ y"]
+    andAmp>"x && y"]
 
-    or>"x or y
-        x || y
-        x ∨ y"]
+    andSym>"x ∧ y"]
+
+    logicalXor>"x xor y"]
+
+    logicalXorSym>"x ⊻ y"]
+
+    or>"x or y"]
+
+    orAmp>"x || y"]
+
+    orSym>"x ∨ y"]
 
     logicalExpression((" "))
 
@@ -335,12 +340,12 @@ graph BT
     threeWay & comparison & equality --> range
     logicalOperand --> threeWay & comparison & equality & not
 
-    %% This helps group `and`, `xor` and `or` together
+    %% This helps group the logical operators together
     classDef hidden display: none;
     HIDDEN:::hidden ~~~ logicalOperand
 
-    and & logicalXor & or --> logicalOperand
-    logicalExpression --> as & and & logicalXor & or
+    and & andAmp & andSym & logicalXor & logicalXorSym & or & orAmp & orSym --> logicalOperand
+    logicalExpression --> as & and & andAmp & andSym & logicalXor & logicalXorSym & or & orAmp & orSym
     ref & expressionStatement --> logicalExpression
     if ---> ref
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
@@ -360,7 +365,7 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
 - `..`/`..<` relative to `<=>`,
 - `<`/`<=`/…, `==`/`!=`, and `<=>` relative to each other,
-- `and`, `xor` and `or` relative to each other.
+- `and`, `&&`, `∧`, `xor`, `⊻`, `or`, `||`, and `∨` relative to each other.
 
 
 The **node shapes** encode each group's
