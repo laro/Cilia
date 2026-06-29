@@ -112,30 +112,36 @@ operator (Set<T> a) ⊃ (Set<T> b) -> Bool { return a.isProperSupersetOf(b) }
 
 ### Operator Precedence
 
-The table sorts in **all currently known operators** from tightest to loosest binding:
+List of **all currently known operators**:
 
-| Precedence group | Operators | Fixity |
-| --- | --- | --- |
-| Postfix (call)       | `a()` `a[]` `a.b` `a++` `a--` | postfix |
-| Prefix (unary, high) | `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬` | prefix |
-| Power                | `**` | infix right |
-| Multiplication       | `*` `/` `%`&emsp;`×` `⋅`&emsp;`⊙` `⊘`&emsp;`⊛` `∗` | infix left |
-| Addition             | `+` `-` `⊞` `⊟` `⊕` `⊖` | infix left |
-| ShiftRotation        | `<<` `>>` `<<<` `>>>` | infix left |
-| BitwiseAnd | `&` | infix left |
-| BitwiseXor | `^` | infix left |
-| BitwiseOr  | `|` | infix left |
-| Range      | `..` `..<` | infix, non-associative |
-| ThreeWay   | `<=>` | infix, non-associative |
-| Comparison | `<` `>` `<=` `>=` `≤` `≥`&emsp;`∈` `∉` `∋` `∌`&emsp;`⊆` `⊇` `⊂` `⊃`&emsp;`⟂` `∥` `∦` | infix, non-associative |
-| Equality   | `==` `!=` `≠` | infix, non-associative |
-| LogicalAnd | `and` `&&` `∧` | infix left |
-| LogicalXor | `xor` `⊻`      | infix left |
-| LogicalOr  | `or` `||` `∨`  | infix left |
-| Assignment | `=`&emsp;`+=` `-=` `*=` `/=` `%=`&emsp;`<<=` `>>=` `<<<=` `>>>=`&emsp;`&=` `|=` `^=`&emsp;`&&=` `||=` | infix right |
-{:.wide-table}
-
-The bitwise symbols `&`, `^` and `|` get their own precedence groups (`BitwiseAnd` tighter than `BitwiseXor` tighter than `BitwiseOr`), separate from the arithmetic operators `*`/`/` and `+`/`-`. All three still bind tighter than `Comparison`/`Equality`. This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
+- Postfix
+    - `a()` `a[]` `a.b` `a++` `a--`
+- Prefix
+    - `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬`
+- Infix
+    - `**`
+    - `*` `/` `%`
+    - `×` `⋅`
+    - `⊙` `⊘`
+    - `⊛` `∗`
+    - `+` `-` `⊞` `⊟` `⊕` `⊖`
+    - `<<` `>>` `<<<` `>>>`
+    - `&` `^` `|`
+    - `..` `..<`
+    - `<=>`
+    - `<` `>` `<=` `>=` `≤` `≥`
+    - `∈` `∉` `∋` `∌`
+    - `⊆` `⊇` `⊂` `⊃`
+    - `⟂` `∥` `∦`
+    - `==` `!=` `≠`
+    - `and` `&&` `∧`
+    - `xor` `⊻`     
+    - `or` `||` `∨` 
+    - `=`
+    - `+=` `-=` `*=` `/=` `%=`
+    - `<<=` `>>=` `<<<=` `>>>=`
+    - `&=` `|=` `^=`
+    - `&&=` `||=`
 
 > **Note**  
 > The global precedence ordering should be replaced by partial precedence ordering,
@@ -353,6 +359,7 @@ graph BT
     if ---> ref
     insideParens & assignment --> if
 ```
+{:.wide-table}
 
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
 - `*` tighter than `+`,
@@ -360,6 +367,8 @@ The graph above covers the **partial** ordering of all contemplated Unicode/Cili
 - arithmetic tighter than ranges,
 - ranges tighter than the comparisons,
 - and all of these tighter than the logical operators and assignment.
+
+This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
 
 Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
