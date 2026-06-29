@@ -264,20 +264,16 @@ graph BT
     logicalOperand((" "))
 
     and>"x and y"]
+    or>"x or y"]
+    xor>"x xor y"]
 
     andAmp>"x && y"]
-
-    andSym>"x ∧ y"]
-
-    logicalXor>"x xor y"]
-
-    logicalXorSym>"x ⊻ y"]
-
-    or>"x or y"]
-
     orAmp>"x || y"]
 
+    andSym>"x ∧ y"]
     orSym>"x ∨ y"]
+    xorSym>"x ⊻ y"]
+
 
     logicalExpression((" "))
 
@@ -344,8 +340,8 @@ graph BT
     classDef hidden display: none;
     HIDDEN:::hidden ~~~ logicalOperand
 
-    and & andAmp & andSym & logicalXor & logicalXorSym & or & orAmp & orSym --> logicalOperand
-    logicalExpression --> as & and & andAmp & andSym & logicalXor & logicalXorSym & or & orAmp & orSym
+    and & andAmp & andSym & xor & xorSym & or & orAmp & orSym --> logicalOperand
+    logicalExpression --> as & and & andAmp & andSym & xor & xorSym & or & orAmp & orSym
     ref & expressionStatement --> logicalExpression
     if ---> ref
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
