@@ -297,7 +297,6 @@ graph BT
     insideParens["(...)"]
 
     assignment["x = y
-                x $= y
                 x += y
                 x -= y
                 x *= y
