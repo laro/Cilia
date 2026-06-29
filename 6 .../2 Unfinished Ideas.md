@@ -398,8 +398,8 @@ graph TB
         leftAssociative>"left-associative
         a + b + c = (a + b) + c"]
 
-        rightAssociative["right associative
-        a ** b ** c = a ** (b ** c)"]
+        rightAssociative[\"right associative
+        a ** b ** c = a ** (b ** c)"\]
 
         nonAssociative ~~~ leftAssociative ~~~ rightAssociative
     end
