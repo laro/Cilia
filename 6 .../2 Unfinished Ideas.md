@@ -240,18 +240,21 @@ graph BT
                 x <= y
                 x >= y
                 x ≤ y
-                x ≥ y
-                x ∈ y
+                x ≥ y"]
+
+    membership["x ∈ y
                 x ∉ y
                 x ∋ y
-                x ∌ y
-                x ⊆ y
-                x ⊇ y
-                x ⊂ y
-                x ⊃ y
-                x ⟂ y
-                x ∥ y
-                x ∦ y"]
+                x ∌ y"]
+
+    subset["x ⊆ y
+            x ⊇ y
+            x ⊂ y
+            x ⊃ y"]
+
+    parallel["x ⟂ y
+              x ∥ y
+              x ∦ y"]
 
     equality["x == y
               x != y
@@ -333,8 +336,8 @@ graph BT
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
     range --> binaryOps
 
-    threeWay & comparison & equality --> range
-    logicalOperand --> threeWay & comparison & equality & not
+    threeWay & comparison & membership & subset & parallel & equality --> range
+    logicalOperand --> threeWay & comparison & membership & subset & parallel & equality & not
 
     %% This helps group the logical operators together
     classDef hidden display: none;
