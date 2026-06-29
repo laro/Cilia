@@ -347,7 +347,7 @@ graph BT
     if ---> logicalExpression
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
 ```
-{:.wide-pre}
+{:.extra-wide-pre}
 
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
 - `*` tighter than `+`,
