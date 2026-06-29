@@ -359,32 +359,9 @@ graph BT
 ```
 
 The node shapes encode each group's
-```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph LR
-    rect[" "]
-    flagToLeft>" "]
-    flagToRight[" "]
-
-    rect ~~~ flagToLeft ~~~ flagToRight
-```
 - associativity (for binary operators)
 - or the analogous repeatability (for unary operators),
-```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph LR
-    rect["Rectangle<br/>non-repeating"]
-
-    rhombus{"Rhombus<br/>repeating<br/>x.y.z, *&x, T**"}
-
-    rect ~~~ rhombus
-```
 - and in general, circles are helper nodes only (not a precedence group)
-```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph LR
-    circle((" "))
-```
 i.e. what it means to chain the **same** precedence group without parentheses.
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
