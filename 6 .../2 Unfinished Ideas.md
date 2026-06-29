@@ -280,8 +280,6 @@ graph BT
 
     logicalExpression((" "))
 
-    ref["ref x"]
-
     if>"if x then y else z"]
 
     insideParens["(…)"]
