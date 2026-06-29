@@ -313,7 +313,7 @@ graph BT
                 x ||= y"]
     click assignment "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/assignment.md"
 
-    expressionStatement["x"]
+    expressionStatement["x;"]
 
     top --> parens & braces & unqualifiedName
 
