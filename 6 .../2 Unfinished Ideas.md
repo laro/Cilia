@@ -359,41 +359,13 @@ graph BT
 ```
 
 The node shapes encode each group's
+
 - associativity (for binary operators)
 - or the analogous repeatability (for unary operators),
 - and in general, circles are helper nodes only (not a precedence group)
+
 i.e. what it means to chain the **same** precedence group without parentheses.
-```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph TB
-    subgraph binary
-        direction LR
 
-        nonAssociative["non-associative
-        a == b == c needs parens"]
-
-        leftAssociative>"left-associative
-        a + b + c = (a + b) + c"]
-
-        rightAssociative[\"right associative
-        a ** b ** c = a ** (b ** c)"\]
-
-        nonAssociative ~~~ leftAssociative ~~~ rightAssociative
-    end
-    subgraph unary
-        direction LR
-
-        nonRepeating["non-repeating"]
-
-        repeating{"repeating
-        x.y.z, *&x, T**"}
-
-        nonRepeating ~~~ repeating
-    end
-    subgraph helper node
-        circle((" "))
-    end
-```
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph LR
