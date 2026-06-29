@@ -198,7 +198,7 @@ graph BT
     as["x as T"]
     click as "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/implicit_conversions.md"
 
-    power["x ** y (right assiciative)"]
+    power[\"x ** y"\]
 
     multiplication>"x * y
                     x / y
