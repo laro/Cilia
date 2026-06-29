@@ -149,9 +149,9 @@ The bitwise symbols `&`, `^` and `|` get their own precedence groups (`BitwiseAn
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph BT
-    parens["(...)"]
+    parens["(…)"]
 
-    braces["{...}"]
+    braces["{…}"]
     click braces "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/classes.md#literals"
 
     unqualifiedName["x"]
