@@ -304,8 +304,6 @@ graph BT
     assignLogical["x &&= y
                    x ||= y"]
 
-    expressionStatement["x;"]
-
     top --> parens & braces & unqualifiedName
 
     suffixOps --> top
@@ -338,8 +336,7 @@ graph BT
     logicalOperand --> threeWay & comparison & membership & subset & parallel & equality & not
 
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
-    logicalExpression --> as & and & andAmp & andSym & xor & xorSym & or & orAmp & orSym
-    expressionStatement --> logicalExpression
+    logicalExpression --> as & and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
     if ---> logicalExpression
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
 ```
