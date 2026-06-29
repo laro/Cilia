@@ -394,6 +394,38 @@ graph TB
         circle((" "))
     end
 ```
+```mermaid
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+graph LR
+    binary@{ shape: brace-r, label: "Binary" }
+
+    nonAssociative["non-associative
+    a == b == c needs parens"]
+
+    leftAssociative>"left-associative
+    a + b + c = (a + b) + c"]
+
+    rightAssociative[\"right associative
+    a ** b ** c = a ** (b ** c)"\]
+
+
+    unary@{ shape: brace-r, label: "Unary" }
+
+    nonRepeating["non-repeating"]
+
+    repeating{"repeating
+    x.y.z, *&x, T**"}
+
+
+    helper@{ shape: brace-r, label: "Helper Node" }
+
+    circle((" "))
+
+
+    binary ~~~ nonAssociative ~~~ leftAssociative ~~~ rightAssociative
+    unary ~~~ nonRepeating ~~~ repeating
+    helper ~~~ circle
+```
 
 
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
