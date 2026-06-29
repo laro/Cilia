@@ -181,7 +181,9 @@ html {
   Einzelne Code-Blöcke (inkl. Mermaid) dürfen ausnahmsweise breiter als der 800px-Container sein.
   Anwendung in Markdown (Kramdown-IAL), direkt in der Zeile unter dem Block:
     {:.wide-pre}
-  Analog zu wide-table: so breit wie nötig, maximal (fast) Viewport-Breite, mittig ausgerichtet.
+    {:.extra-wide-pre}
+  wide-pre: so breit wie nötig, maximal (fast) Viewport-Breite, mittig ausgerichtet.
+  extra-wide-pre: volle Viewport-Breite (100vw), mittig ausgerichtet.
 */
 .markdown-body .highlighter-rouge.wide-pre,
 .markdown-body .highlighter-rouge:has(pre.wide-pre) {
@@ -194,6 +196,20 @@ html {
 
 .markdown-body .highlighter-rouge.wide-pre pre,
 .markdown-body .highlighter-rouge:has(pre.wide-pre) pre {
+  max-width: none;
+}
+
+.markdown-body .highlighter-rouge.extra-wide-pre,
+.markdown-body .highlighter-rouge:has(pre.extra-wide-pre) {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  overflow-x: auto;
+}
+
+.markdown-body .highlighter-rouge.extra-wide-pre pre,
+.markdown-body .highlighter-rouge:has(pre.extra-wide-pre) pre {
   max-width: none;
 }
 
