@@ -343,8 +343,8 @@ graph BT
 
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
     logicalExpression --> as & and & andAmp & andSym & xor & xorSym & or & orAmp & orSym
-    ref & expressionStatement --> logicalExpression
-    if ---> ref
+    expressionStatement --> logicalExpression
+    if ---> logicalExpression
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
 ```
 {:.wide-pre}
