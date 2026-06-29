@@ -358,7 +358,10 @@ graph BT
     insideParens & assignment --> if
 ```
 
-The node shapes encode each group's associativity (for binary operators) or the analogous repeatability (for unary operators) — i.e. what it means to chain the **same** precedence group without parentheses:
+The node shapes encode each group's
+- associativity (for binary operators)
+- or the analogous repeatability (for unary operators),
+i.e. what it means to chain the **same** precedence group without parentheses:
 
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
