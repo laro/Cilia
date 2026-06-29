@@ -358,11 +358,25 @@ graph BT
     insideParens & assignment --> if
 ```
 
+The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
+- `*` tighter than `+`,
+- `**` tighter than `*`,
+- arithmetic tighter than ranges,
+- ranges tighter than the comparisons,
+- and all of these tighter than the logical operators and assignment.
+
+Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
+- the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
+- `..`/`..<` relative to `<=>`,
+- `<`/`<=`/…, `==`/`!=`, and `<=>` relative to each other,
+- `and`, `xor` and `or` relative to each other.
+
+
 The node shapes encode each group's
 
 - associativity (for binary operators)
 - or the analogous repeatability (for unary operators),
-- and in general, circles are helper nodes only (not a precedence group)
+- and circles are helper nodes (not a precedence group),
 
 i.e. what it means to chain the **same** precedence group without parentheses.
 
@@ -405,20 +419,6 @@ graph LR
     unary ~~~ nonRepeating ~~~ repeating
     helper ~~~ circle
 ```
-
-
-The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
-- `*` tighter than `+`,
-- `**` tighter than `*`,
-- arithmetic tighter than ranges,
-- ranges tighter than the comparisons,
-- and all of these tighter than the logical operators and assignment.
-
-Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
-- the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
-- `..`/`..<` relative to `<=>`,
-- `<`/`<=`/…, `==`/`!=`, and `<=>` relative to each other,
-- `and`, `xor` and `or` relative to each other.
 
 
 ### Custom Operators with Declared Precedence
