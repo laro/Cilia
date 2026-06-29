@@ -371,7 +371,7 @@ graph LR
           unary: non-repeating"]
 
     flagToLeft>"Flag
-          binary: left-associative (a + b + c = (a + b) + c)"]
+              binary: left-associative (a + b + c = (a + b) + c)"]
 
     flagToRight["Rectangle with note (right associative)
                  as there currently is no 'flag to the right'
@@ -379,10 +379,10 @@ graph LR
 
     rhombus{"Rhombus
              unary: repeating (x.y.z, *&x, T**)"}
-             
+
     circle(("Circle
-            helper node only,
-            not a precedence group"))
+             helper node only,
+             not a precedence group"))
 ```
 
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
