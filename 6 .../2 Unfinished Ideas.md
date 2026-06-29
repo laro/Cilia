@@ -358,6 +358,26 @@ graph BT
     insideParens & assignment --> if
 ```
 
+The node shapes encode each group's associativity (for binary operators) or the analogous repeatability (for unary operators) — i.e. what it means to chain the **same** precedence group without parentheses:
+
+```mermaid
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+graph LR
+    rect["Rectangle
+          binary: non-associative (a == b == c needs parens)
+          unary: non-repeating"]
+    flag>"Flag
+          binary: left-associative (a + b + c = (a + b) + c)"]
+    rect["Rectangle with note (right associative)
+          as there currently there is no 'flag to the right'
+          binary: right-associative (a ** b ** c = a ** (b ** c)"]
+    rhombus{"Rhombus
+             unary: repeating (x.y.z, *&x, T**)"}
+    circle(("Circle
+            helper node only,
+            not a precedence group"))
+```
+
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
 - `*` tighter than `+`,
 - `**` tighter than `*`,
