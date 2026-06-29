@@ -337,10 +337,6 @@ graph BT
     threeWay & comparison & membership & subset & parallel & equality --> range
     logicalOperand --> threeWay & comparison & membership & subset & parallel & equality & not
 
-    %% This helps group the logical operators together
-    classDef hidden display: none;
-    HIDDEN:::hidden ~~~ logicalOperand
-
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
     logicalExpression --> as & and & andAmp & andSym & xor & xorSym & or & orAmp & orSym
     expressionStatement --> logicalExpression
