@@ -233,9 +233,12 @@ graph BT
     range["x .. y
            x ..< y"]
 
-    threeWay["x <=> y"]
+    equality["x == y
+              x != y
+              x ≠ y"]
 
-    comparison["x < y
+    comparison["x <=> y
+                x < y
                 x > y
                 x <= y
                 x >= y
@@ -255,10 +258,6 @@ graph BT
     parallel["x ⟂ y
               x ∥ y
               x ∦ y"]
-
-    equality["x == y
-              x != y
-              x ≠ y"]
 
     not["not x
          !x
@@ -332,8 +331,8 @@ graph BT
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
     range --> binaryOps
 
-    threeWay & comparison & membership & subset & parallel & equality --> range
-    logicalOperand --> threeWay & comparison & membership & subset & parallel & equality & not
+    equality & comparison & membership & subset & parallel --> range
+    logicalOperand --> equality & comparison & membership & subset & parallel & not
 
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
     logicalExpression --> as & and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
