@@ -389,6 +389,7 @@ i.e. what it means to chain the **same** precedence group without parentheses.
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph LR
+    direction TB
     subgraph binary
         direction LR
 
