@@ -358,12 +358,14 @@ graph BT
     insideParens & assignment --> if
 ```
 
-The graph above now also covers the contemplated Unicode/Cilia operators, but — as in
-the original — only as a **partial** ordering. Relations that most developers can be
-expected to know are drawn as edges (e.g. `*` tighter than `+`, `**` tighter than `*`,
-arithmetic tighter than ranges, ranges tighter than the comparisons, and all of these
-tighter than the logical operators and assignment). Pairs that nobody reliably ranks
-are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
+The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
+- `*` tighter than `+`,
+- `**` tighter than `*`,
+- arithmetic tighter than ranges,
+- ranges tighter than the comparisons,
+- and all of these tighter than the logical operators and assignment.
+
+Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
 - `..`/`..<` relative to `<=>`,
 - `<`/`<=`/…, `==`/`!=`, and `<=>` relative to each other,
