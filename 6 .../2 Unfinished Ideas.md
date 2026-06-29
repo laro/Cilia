@@ -160,10 +160,10 @@ graph BT
     top((" "))
 
     suffixOps{"x.y
-               x.(...)
+               x.(…)
                x->y
-               x->(...)
-               x(...)
+               x->(…)
+               x(…)
                x[y]"}
     click suffixOps "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#suffix-operators"
 
@@ -236,7 +236,7 @@ graph BT
 
     binaryOps((" "))
 
-    range>"x .. y
+    range["x .. y
            x ..< y"]
 
     where["T where R"]
@@ -294,7 +294,7 @@ graph BT
     if>"if x then y else z"]
     click if "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/if.md"
 
-    insideParens["(...)"]
+    insideParens["(…)"]
 
     assignment["x = y
                 x += y
