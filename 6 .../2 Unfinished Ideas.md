@@ -189,8 +189,8 @@ graph BT
                 √x
                 ⊖x"]
 
-    incDec["++x;
-            --x;"]
+    incDec["++x
+            --x"]
     click incDec "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/assignment.md"
 
     unary((" "))
@@ -313,7 +313,7 @@ graph BT
                 x ||= y"]
     click assignment "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/assignment.md"
 
-    expressionStatement["x;"]
+    expressionStatement["x"]
 
     top --> parens & braces & unqualifiedName
 
