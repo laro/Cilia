@@ -20,9 +20,15 @@
   });
 
   // Die von kramdown erzeugten Code-Blöcke in <pre class="mermaid">…</pre> umwandeln.
+  // wide-pre vom Kramdown-Wrapper übernehmen (IAL direkt unter dem ```-Block).
   document.querySelectorAll('pre > code.language-mermaid').forEach((code) => {
     const pre = code.parentElement;
-    pre.className = 'mermaid';
+    const wrapper = pre.closest('.highlighter-rouge');
+    const isWide = wrapper?.classList.contains('wide-pre') || pre.classList.contains('wide-pre');
+    if (isWide && wrapper) {
+      wrapper.classList.add('wide-pre');
+    }
+    pre.className = isWide ? 'mermaid wide-pre' : 'mermaid';
     pre.textContent = code.textContent;
   });
 

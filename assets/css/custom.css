@@ -177,6 +177,26 @@ html {
   transform: translateX(-50%);
 }
 
+/*
+  Einzelne Code-Blöcke (inkl. Mermaid) dürfen ausnahmsweise breiter als der 800px-Container sein.
+  Anwendung in Markdown (Kramdown-IAL), direkt in der Zeile unter dem Block:
+    {:.wide-pre}
+  Analog zu wide-table: so breit wie nötig, maximal (fast) Viewport-Breite, mittig ausgerichtet.
+*/
+.markdown-body .highlighter-rouge.wide-pre,
+.markdown-body .highlighter-rouge:has(pre.wide-pre) {
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  margin-left: 50%;
+  transform: translateX(-50%);
+  overflow-x: auto;
+}
+
+.markdown-body .highlighter-rouge.wide-pre pre,
+.markdown-body .highlighter-rouge:has(pre.wide-pre) pre {
+  max-width: none;
+}
+
 /* No alternating row background (zebra striping) on markdown tables */
 .markdown-body table tr,
 .markdown-body table tr:nth-child(even),
