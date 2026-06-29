@@ -400,13 +400,18 @@ graph LR
     binary@{ shape: brace-r, label: "Binary" }
 
     nonAssociative["non-associative
-    a == b == c needs parens"]
+    a == b == c
+    needs parens"]
 
     leftAssociative>"left-associative
-    a + b + c = (a + b) + c"]
+    a + b + c 
+    =
+    (a + b) + c"]
 
     rightAssociative[\"right associative
-    a ** b ** c = a ** (b ** c)"\]
+    a ** b ** c
+    =
+    a ** (b ** c)"\]
 
 
     unary@{ shape: brace-r, label: "Unary" }
@@ -414,7 +419,9 @@ graph LR
     nonRepeating["non-repeating"]
 
     repeating{"repeating
-    x.y.z, *&x, T**"}
+    x.y.z
+    *&x
+    T**"}
 
 
     helper@{ shape: brace-r, label: "Helper Node" }
