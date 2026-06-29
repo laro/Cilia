@@ -200,15 +200,22 @@ graph BT
 
     power>"x ** y"]
 
-    multiplication>"x * y      x / y
-                    x × y      x ⋅ y
-                    x ⊙ y      x ⊘ y
-                    x ⊛ y      x ∗ y"]
+    multiplication>"x * y
+                    x / y
+                    x × y
+                    x ⋅ y
+                    x ⊙ y
+                    x ⊘ y
+                    x ⊛ y
+                    x ∗ y"]
     click multiplication "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
 
-    addition>"x + y      x - y
-              x ⊞ y      x ⊟ y
-              x ⊕ y      x ⊖ y"]
+    addition>"x + y
+              x - y
+              x ⊞ y
+              x ⊟ y
+              x ⊕ y
+              x ⊖ y"]
     click addition "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/arithmetic.md"
 
     modulo["x % y"]
@@ -221,8 +228,10 @@ graph BT
     click bitwise_or "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
     click bitwise_xor "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
 
-    shift["x << y     x >> y
-           x <<< y    x >>> y"]
+    shift["x << y
+           x >> y
+           x <<< y
+           x >>> y"]
     click shift "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/bitwise.md"
 
     binaryOps((" "))
@@ -234,14 +243,23 @@ graph BT
 
     threeWay["x <=> y"]
 
-    comparison["x < y      x > y
-                x <= y     x >= y
-                x ≤ y      x ≥ y
-                x ∈ y      x ∉ y
-                x ∋ y      x ∌ y
-                x ⊆ y      x ⊇ y
-                x ⊂ y      x ⊃ y
-                x ⟂ y      x ∥ y      x ∦ y"]
+    comparison["x < y
+                x > y
+                x <= y
+                x >= y
+                x ≤ y
+                x ≥ y
+                x ∈ y
+                x ∉ y
+                x ∋ y
+                x ∌ y
+                x ⊆ y
+                x ⊇ y
+                x ⊂ y
+                x ⊃ y
+                x ⟂ y
+                x ∥ y
+                x ∦ y"]
     click comparison "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/comparison_operators.md"
 
     equality["x == y
@@ -278,13 +296,22 @@ graph BT
 
     insideParens["(...)"]
 
-    assignment["x = y;      x $= y;
-                x += y;     x -= y;
-                x *= y;     x /= y;     x %= y;
-                x <<= y;    x >>= y;
-                x <<<= y;   x >>>= y;
-                x &= y;     x |= y;     x ^= y;
-                x &&= y;    x ||= y;"]
+    assignment["x = y
+                x $= y
+                x += y
+                x -= y
+                x *= y
+                x /= y
+                x %= y
+                x <<= y
+                x >>= y
+                x <<<= y
+                x >>>= y
+                x &= y
+                x |= y
+                x ^= y
+                x &&= y
+                x ||= y"]
     click assignment "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/assignment.md"
 
     expressionStatement["x;"]
