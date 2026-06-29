@@ -167,8 +167,7 @@ graph BT
                x[y]"}
     click suffixOps "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#suffix-operators"
 
-    qualifiedType["const T
-                   partial T"]
+    qualifiedType["const T"]
     click pointer-type "https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/type_operators.md"
 
     pointerType{"T*"}
@@ -238,8 +237,6 @@ graph BT
 
     range["x .. y
            x ..< y"]
-
-    where["T where R"]
 
     threeWay["x <=> y"]
 
@@ -329,7 +326,7 @@ graph BT
     %% Use a longer arrow here to put `not` next to other unary operators
     not ---> suffixOps
 
-    %% `as` at the same level as `where` and comparisons
+    %% `as` at the same level as comparisons
     as -----> unary
 
     %% `**` binds tighter than multiplication, looser than the prefix/unary operators
@@ -343,7 +340,6 @@ graph BT
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
     range --> binaryOps
 
-    where --> binaryOps
     threeWay & comparison & equality --> range
     logicalOperand --> threeWay & comparison & equality & not
 
@@ -352,7 +348,7 @@ graph BT
     HIDDEN:::hidden ~~~ logicalOperand
 
     and & logicalXor & or --> logicalOperand
-    logicalExpression --> as & where & and & logicalXor & or
+    logicalExpression --> as & and & logicalXor & or
     ref & expressionStatement --> logicalExpression
     if ---> ref
     insideParens & assignment --> if
