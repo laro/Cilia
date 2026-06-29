@@ -368,6 +368,8 @@ graph LR
     flagToLeft>"Flag<br/>left-associative<br/>a + b + c = (a + b) + c"]
 
     flagToRight["Rectangle with note<br/>(right associative)<br/>as there currently is no<br/>'flag to the right'<br/>right-associative<br/>a ** b ** c = a ** (b ** c)"]
+
+    rect ~~~ flagToLeft ~~~ flagToRight
 ```
 - or the analogous repeatability (for unary operators),
 ```mermaid
@@ -376,6 +378,8 @@ graph LR
     rect["Rectangle<br/>non-repeating"]
 
     rhombus{"Rhombus<br/>repeating<br/>x.y.z, *&x, T**"}
+
+    rect ~~~ rhombus
 ```
 - and in general,
 ```mermaid
