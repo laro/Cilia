@@ -369,11 +369,11 @@ graph LR
     rect["Rectangle
           binary: non-associative (a == b == c needs parens)
           unary: non-repeating"]
-    flag>"Flag
+    flagToLeft>"Flag
           binary: left-associative (a + b + c = (a + b) + c)"]
-    rect["Rectangle with note (right associative)
-          as there currently there is no 'flag to the right'
-          binary: right-associative (a ** b ** c = a ** (b ** c)"]
+    flagToRight["Rectangle with note (right associative)
+                 as there currently is no 'flag to the right'
+                 binary: right-associative (a ** b ** c = a ** (b ** c))"]
     rhombus{"Rhombus
              unary: repeating (x.y.z, *&x, T**)"}
     circle(("Circle
