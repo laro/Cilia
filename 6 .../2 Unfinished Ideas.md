@@ -363,7 +363,7 @@ The node shapes encode each group's
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph LR
-    rect["Rectangle<br/>non-associative<br/>(a == b == c needs parens"]
+    rect["Rectangle<br/>non-associative<br/>a == b == c needs parens"]
 
     flagToLeft>"Flag<br/>left-associative<br/>a + b + c = (a + b) + c"]
 
