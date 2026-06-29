@@ -372,6 +372,15 @@ graph LR
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph LR
+    subgraph binary
+        direction LR
+
+        rect["Rectangle<br/>non-associative<br/>a == b == c needs parens"]
+        flagToLeft>"Flag<br/>left-associative<br/>a + b + c = (a + b) + c"]
+        flagToRight["Rectangle with note<br/>(right associative)<br/>as there currently is no<br/>'flag to the right'<br/>right-associative<br/>a ** b ** c = a ** (b ** c)"]
+
+        rect ~~~ flagToLeft ~~~ flagToRight
+    end
     rect["Rectangle<br/>non-associative<br/>a == b == c needs parens"]
 
     flagToLeft>"Flag<br/>left-associative<br/>a + b + c = (a + b) + c"]
