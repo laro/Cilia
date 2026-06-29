@@ -369,26 +369,6 @@ graph LR
     rect ~~~ flagToLeft ~~~ flagToRight
 ```
 - associativity (for binary operators)
-```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph LR
-    subgraph binary
-        direction LR
-
-        rect["Rectangle<br/>non-associative<br/>a == b == c needs parens"]
-        flagToLeft>"Flag<br/>left-associative<br/>a + b + c = (a + b) + c"]
-        flagToRight["Rectangle with note<br/>(right associative)<br/>as there currently is no<br/>'flag to the right'<br/>right-associative<br/>a ** b ** c = a ** (b ** c)"]
-
-        rect ~~~ flagToLeft ~~~ flagToRight
-    end
-    rect["Rectangle<br/>non-associative<br/>a == b == c needs parens"]
-
-    flagToLeft>"Flag<br/>left-associative<br/>a + b + c = (a + b) + c"]
-
-    flagToRight["Rectangle with note<br/>(right associative)<br/>as there currently is no<br/>'flag to the right'<br/>right-associative<br/>a ** b ** c = a ** (b ** c)"]
-
-    rect ~~~ flagToLeft ~~~ flagToRight
-```
 - or the analogous repeatability (for unary operators),
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
@@ -406,6 +386,32 @@ graph LR
     circle((" "))
 ```
 i.e. what it means to chain the **same** precedence group without parentheses.
+```mermaid
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+graph LR
+    subgraph binary
+        direction LR
+
+        rect["non-associative
+        a == b == c needs parens"]
+
+        flagToLeft>"Flag<br/>left-associative<br/>a + b + c = (a + b) + c"]
+
+        flagToRight["right associative
+        a ** b ** c = a ** (b ** c)"]
+
+        rect ~~~ flagToLeft ~~~ flagToRight
+    end
+    subgraph unary
+        direction LR
+
+        rect["Rectangle<br/>non-repeating"]
+
+        rhombus{"Rhombus<br/>repeating<br/>x.y.z, *&x, T**"}
+
+        rect ~~~ rhombus
+    end
+```
 
 
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
