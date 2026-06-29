@@ -282,21 +282,25 @@ graph BT
 
     insideParens["(…)"]
 
-    assignment["x = y
-                x += y
-                x -= y
-                x *= y
-                x /= y
-                x %= y
-                x <<= y
-                x >>= y
-                x <<<= y
-                x >>>= y
-                x &= y
-                x |= y
-                x ^= y
-                x &&= y
-                x ||= y"]
+    assignPlain["x = y"]
+
+    assignArithmetic["x += y
+                      x -= y
+                      x *= y
+                      x /= y
+                      x %= y"]
+
+    assignShift["x <<= y
+                 x >>= y
+                 x <<<= y
+                 x >>>= y"]
+
+    assignBitwise["x &= y
+                   x |= y
+                   x ^= y"]
+
+    assignLogical["x &&= y
+                   x ||= y"]
 
     expressionStatement["x;"]
 
@@ -339,9 +343,9 @@ graph BT
     logicalExpression --> as & and & logicalXor & or
     ref & expressionStatement --> logicalExpression
     if ---> ref
-    insideParens & assignment --> if
+    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
 ```
-{:.wide-table}
+{:.wide-pre}
 
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
 - `*` tighter than `+`,
