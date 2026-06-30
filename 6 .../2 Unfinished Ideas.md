@@ -303,6 +303,7 @@ graph BT
     assignLogical["x &&= y
                    x ||= y"]
 
+
     top --> parens & braces & unqualifiedName
 
     suffixOps --> top
@@ -320,11 +321,8 @@ graph BT
     %% `as` at the same level as comparisons
     as -----> unary
 
-    %% `**` binds tighter than multiplication, looser than the prefix/unary operators
+    power & modulo & bitwise_and & bitwise_or & bitwise_xor & shift --> unary
     multiplication --> power
-    power --> unary
-
-    modulo & bitwise_and & bitwise_or & bitwise_xor & shift --> unary
     addition --> multiplication
     binaryOps --> addition & modulo & bitwise_and & bitwise_or & bitwise_xor & shift
 
