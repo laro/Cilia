@@ -384,34 +384,6 @@ graph BT
                    x ||= y"]
 
 
-    top --> parens & braces & unqualifiedName
-
-    suffixOps --> top
-
-    qualifiedType --> suffixOps
-    pointerType --> qualifiedType
-
-    pointer --> suffixOps
-    negation & complement & prefixMath & incDec --> pointer
-    unary --> pointerType & negation & complement & prefixMath
-
-    %% Use a longer arrow here to put `not` next to other unary operators
-    not ---> suffixOps
-
-    %% `as` at the same level as comparisons
-    as -----> unary
-
-    power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
-    multiplication --> power
-    addition --> multiplication
-    binaryOps --> addition & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate
-
-    %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
-    range --> binaryOps
-
-    equality & comparison & membership & subset & parallel --> range
-    logicalOperand --> equality & comparison & membership & subset & parallel & not
-
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
     logicalExpression ---> as
     logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
