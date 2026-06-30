@@ -219,14 +219,14 @@ graph BT
 
     modulo["x % y"]
 
-    bitwise_and>"x & y"]
-    bitwise_or>"x | y"]
-    bitwise_xor>"x ^ y"]
+    bitwiseAnd>"x & y"]
+    bitwiseOr>"x | y"]
+    bitwiseXor>"x ^ y"]
 
-    shift["x << y
-           x >> y
-           x <<< y
-           x >>> y"]
+    shiftRotate["x << y
+                 x >> y
+                 x <<< y
+                 x >>> y"]
 
     binaryOps((" "))
 
@@ -321,10 +321,10 @@ graph BT
     %% `as` at the same level as comparisons
     as -----> unary
 
-    power & modulo & bitwise_and & bitwise_or & bitwise_xor & shift --> unary
+    power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
     multiplication --> power
     addition --> multiplication
-    binaryOps --> addition & modulo & bitwise_and & bitwise_or & bitwise_xor & shift
+    binaryOps --> addition & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate
 
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
     range --> binaryOps
