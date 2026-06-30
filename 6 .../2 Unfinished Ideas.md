@@ -340,6 +340,87 @@ graph BT
 ```
 {:.extra-wide-pre}
 
+```mermaid
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+graph BT
+    logicalOperand((" "))
+
+    and>"x and y"]
+    or>"x or y"]
+    xor>"x xor y"]
+
+    andAmp>"x && y"]
+    orAmp>"x || y"]
+
+    andSym>"x ∧ y"]
+    orSym>"x ∨ y"]
+    xorSym>"x ⊻ y"]
+
+
+    logicalExpression((" "))
+
+    if>"if x then y else z"]
+
+    insideParens["(…)"]
+
+    assignPlain["x = y"]
+
+    assignArithmetic["x += y
+                      x -= y
+                      x *= y
+                      x /= y
+                      x %= y"]
+
+    assignShift["x <<= y
+                 x >>= y
+                 x <<<= y
+                 x >>>= y"]
+
+    assignBitwise["x &= y
+                   x |= y
+                   x ^= y"]
+
+    assignLogical["x &&= y
+                   x ||= y"]
+
+
+    top --> parens & braces & unqualifiedName
+
+    suffixOps --> top
+
+    qualifiedType --> suffixOps
+    pointerType --> qualifiedType
+
+    pointer --> suffixOps
+    negation & complement & prefixMath & incDec --> pointer
+    unary --> pointerType & negation & complement & prefixMath
+
+    %% Use a longer arrow here to put `not` next to other unary operators
+    not ---> suffixOps
+
+    %% `as` at the same level as comparisons
+    as -----> unary
+
+    power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
+    multiplication --> power
+    addition --> multiplication
+    binaryOps --> addition & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate
+
+    %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
+    range --> binaryOps
+
+    equality & comparison & membership & subset & parallel --> range
+    logicalOperand --> equality & comparison & membership & subset & parallel & not
+
+    and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
+    logicalExpression ---> as
+    logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
+    if ---> logicalExpression
+    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
+```
+{:.extra-wide-pre}
+
+
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
 - `*` tighter than `+`,
 - `**` tighter than `*`,
