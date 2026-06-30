@@ -319,7 +319,7 @@ graph BT
     not ---> suffixOps
 
     %% `as` at the same level as comparisons
-    as ----> unary
+    as -----> unary
 
     power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
     multiplication --> power
@@ -333,7 +333,8 @@ graph BT
     logicalOperand --> equality & comparison & membership & subset & parallel & not
 
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
-    logicalExpression --> as & and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
+    logicalExpression ---> as
+    logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
     if ---> logicalExpression
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
 ```
