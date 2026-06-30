@@ -319,7 +319,7 @@ graph BT
     not ---> suffixOps
 
     %% `as` at the same level as comparisons
-    as -----> unary
+    as ----> unary
 
     power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
     multiplication --> power
