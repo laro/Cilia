@@ -162,13 +162,13 @@ List of **all currently known operators**:
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph BT
     parens["(…)"]
-
     braces["{…}"]
-
     unqualifiedName["x"]
 
+    top --> parens & braces & unqualifiedName
     top((" "))
 
+    suffixOps --> top
     suffixOps{"x.y
                x.(…)
                x->y
@@ -176,31 +176,38 @@ graph BT
                x(…)
                x[y]"}
 
+    qualifiedType --> suffixOps
     qualifiedType["const T"]
 
+    pointerType --> qualifiedType
     pointerType{"T*"}
 
+    pointer --> suffixOps
     pointer{"*x
              &x"}
 
+    negation & complement & prefixMath & incDec --> pointer
     negation["-x"]
-
     complement["^x
                 ~x"]
-
     prefixMath["+x
                 √x
                 ⊖x"]
-
     incDec["++x
             --x"]
 
+    unary --> pointerType & negation & complement & prefixMath
     unary((" "))
 
+
+    %% `as` at the same level as comparisons
+    as -----> unary
     as["x as T"]
 
+    power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
     power[\"x ** y"\]
 
+    multiplication --> power
     multiplication>"x * y
                     x / y
                     x × y
@@ -209,7 +216,7 @@ graph BT
                     x ⊘ y
                     x ⊛ y
                     x ∗ y"]
-
+    addition --> multiplication
     addition>"x + y
               x - y
               x ⊞ y
@@ -218,7 +225,6 @@ graph BT
               x ⊖ y"]
 
     modulo["x % y"]
-
     bitwiseAnd>"x & y"]
     bitwiseOr>"x | y"]
     bitwiseXor>"x ^ y"]
@@ -228,15 +234,18 @@ graph BT
                  x <<< y
                  x >>> y"]
 
+    binaryOps --> addition & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate
     binaryOps((" "))
 
+    %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
+    range --> binaryOps
     range["x .. y
            x ..< y"]
 
+    equality & comparison & membership & subset & parallel --> range
     equality["x == y
               x != y
               x ≠ y"]
-
     comparison["x <=> y
                 x < y
                 x > y
@@ -244,106 +253,62 @@ graph BT
                 x >= y
                 x ≤ y
                 x ≥ y"]
-
     membership["x ∈ y
                 x ∉ y
                 x ∋ y
                 x ∌ y"]
-
     subset["x ⊆ y
             x ⊇ y
             x ⊂ y
             x ⊃ y"]
-
     parallel["x ⟂ y
               x ∥ y
               x ∦ y"]
 
+    %% Use a longer arrow here to put `not` next to other unary operators
+    not ---> suffixOps
     not["not x
          !x
          ¬x"]
 
 
-    top --> parens & braces & unqualifiedName
-
-    suffixOps --> top
-
-    qualifiedType --> suffixOps
-    pointerType --> qualifiedType
-
-    pointer --> suffixOps
-    negation & complement & prefixMath & incDec --> pointer
-    unary --> pointerType & negation & complement & prefixMath
-
-    %% Use a longer arrow here to put `not` next to other unary operators
-    not ---> suffixOps
-
-    %% `as` at the same level as comparisons
-    as -----> unary
-
-    power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
-    multiplication --> power
-    addition --> multiplication
-    binaryOps --> addition & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate
-
-    %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
-    range --> binaryOps
-
-    equality & comparison & membership & subset & parallel --> range
     logicalOperand --> equality & comparison & membership & subset & parallel & not
-
-
-
-
     logicalOperand((" "))
 
 
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
-
     and>"x and y"]
     or>"x or y"]
     xor>"x xor y"]
-
     andAmp>"x && y"]
     orAmp>"x || y"]
-
     andSym>"x ∧ y"]
     orSym>"x ∨ y"]
     xorSym>"x ⊻ y"]
 
-
     logicalExpression ---> as
     logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
-
     logicalExpression((" "))
 
-
     if ---> logicalExpression
-
     if>"if x then y else z"]
 
 
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
-
     insideParens["(…)"]
-
     assignPlain["x = y"]
-
     assignArithmetic["x += y
                       x -= y
                       x *= y
                       x /= y
                       x %= y"]
-
     assignShift["x <<= y
                  x >>= y
                  x <<<= y
                  x >>>= y"]
-
     assignBitwise["x &= y
                    x |= y
                    x ^= y"]
-
     assignLogical["x &&= y
                    x ||= y"]
 ```
