@@ -263,46 +263,6 @@ graph BT
          !x
          ¬x"]
 
-    logicalOperand((" "))
-
-    and>"x and y"]
-    or>"x or y"]
-    xor>"x xor y"]
-
-    andAmp>"x && y"]
-    orAmp>"x || y"]
-
-    andSym>"x ∧ y"]
-    orSym>"x ∨ y"]
-    xorSym>"x ⊻ y"]
-
-
-    logicalExpression((" "))
-
-    if>"if x then y else z"]
-
-    insideParens["(…)"]
-
-    assignPlain["x = y"]
-
-    assignArithmetic["x += y
-                      x -= y
-                      x *= y
-                      x /= y
-                      x %= y"]
-
-    assignShift["x <<= y
-                 x >>= y
-                 x <<<= y
-                 x >>>= y"]
-
-    assignBitwise["x &= y
-                   x |= y
-                   x ^= y"]
-
-    assignLogical["x &&= y
-                   x ||= y"]
-
 
     top --> parens & braces & unqualifiedName
 
@@ -332,18 +292,13 @@ graph BT
     equality & comparison & membership & subset & parallel --> range
     logicalOperand --> equality & comparison & membership & subset & parallel & not
 
-    and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
-    logicalExpression ---> as
-    logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
-    if ---> logicalExpression
-    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
-```
-{:.extra-wide-pre}
 
-```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph BT
+
+
     logicalOperand((" "))
+
+
+    and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
 
     and>"x and y"]
     or>"x or y"]
@@ -357,9 +312,18 @@ graph BT
     xorSym>"x ⊻ y"]
 
 
+    logicalExpression ---> as
+    logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
+
     logicalExpression((" "))
 
+
+    if ---> logicalExpression
+
     if>"if x then y else z"]
+
+
+    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
 
     insideParens["(…)"]
 
@@ -382,13 +346,63 @@ graph BT
 
     assignLogical["x &&= y
                    x ||= y"]
+```
+{:.extra-wide-pre}
+
+```mermaid
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+graph BT
+    logicalOperand((" "))
 
 
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
+
+    and>"x and y"]
+    or>"x or y"]
+    xor>"x xor y"]
+
+    andAmp>"x && y"]
+    orAmp>"x || y"]
+
+    andSym>"x ∧ y"]
+    orSym>"x ∨ y"]
+    xorSym>"x ⊻ y"]
+
+
     logicalExpression ---> as
     logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
+
+    logicalExpression((" "))
+
+
     if ---> logicalExpression
+
+    if>"if x then y else z"]
+
+
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
+
+    insideParens["(…)"]
+
+    assignPlain["x = y"]
+
+    assignArithmetic["x += y
+                      x -= y
+                      x *= y
+                      x /= y
+                      x %= y"]
+
+    assignShift["x <<= y
+                 x >>= y
+                 x <<<= y
+                 x >>>= y"]
+
+    assignBitwise["x &= y
+                   x |= y
+                   x ^= y"]
+
+    assignLogical["x &&= y
+                   x ||= y"]
 ```
 {:.extra-wide-pre}
 
