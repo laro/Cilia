@@ -335,8 +335,8 @@ The **node shapes** encode each group's
 
 - associativity (for binary operators)
     - non-associative,
-    - left-associative,
-    - right-associative,
+    - left-to-right-associative,
+    - right-to-left-associative,
 - or the analogous repeatability (for unary operators),
     - non-repeating,
     - repeating,
@@ -350,16 +350,16 @@ Circles are helper nodes only (not a precedence group).
 graph LR
     binary@{ shape: brace-r, label: "Binary" }
 
-    nonAssociative["non-associative
+    nonAssociative["Non-Associative
     a == b == c
     needs parens"]
 
-    leftAssociative[/"left-associative
+    leftToRightAssociative[/"Left-to-Right-Associative
     a + b + c 
     =
     (a + b) + c"/]
 
-    rightAssociative[\"right associative
+    rightToLeftAssociative[\"Right-to-Left-Associative
     a ** b ** c
     =
     a ** (b ** c)"\]
@@ -367,9 +367,9 @@ graph LR
 
     unary@{ shape: brace-r, label: "Unary" }
 
-    nonRepeating["non-repeating"]
+    nonRepeating["Non-Repeating"]
 
-    repeating{"repeating
+    repeating{"Repeating
     x.y.z
     *&x
     T**"}
@@ -380,7 +380,7 @@ graph LR
     circle((" "))
 
 
-    binary ~~~ nonAssociative ~~~ leftAssociative ~~~ rightAssociative
+    binary ~~~ nonAssociative ~~~ leftToRightAssociative ~~~ rightToLeftAssociative
     unary ~~~ nonRepeating ~~~ repeating
     helper ~~~ circle
 ```
