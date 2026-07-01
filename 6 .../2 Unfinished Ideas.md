@@ -186,17 +186,17 @@ graph BT
     pointer{"*x
              &x"}
 
-    negation & complement & prefixMath & incDec --> pointer
-    negation["-x"]
+    prefixMath & complement & incDec --> pointer
     complement["^x
                 ~x"]
-    prefixMath["+x
+    prefixMath["-x
+                +x
                 √x
                 ⊖x"]
     incDec["++x
             --x"]
 
-    unary --> pointerType & negation & complement & prefixMath
+    unary --> pointerType & prefixMath & complement
     unary((" "))
 
 
