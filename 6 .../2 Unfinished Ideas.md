@@ -200,10 +200,6 @@ graph BT
     unary((" "))
 
 
-    %% `as` at the same level as comparisons
-    as ------> unary
-    as["x as T"]
-
     power --> unary
     power[\"x ** y"\]
 
@@ -276,6 +272,9 @@ graph BT
     logicalOperand((" "))
 
 
+    as ------> unary
+    as["x as T"]
+
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
     and>"x and y"]
     or>"x or y"]
@@ -290,11 +289,11 @@ graph BT
     logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
     logicalExpression((" "))
 
-    if --> logicalExpression
-    if>"if x then y else z"]
+    ifThenElse --> logicalExpression
+    ifThenElse>"if x then y else z"]
 
 
-    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
+    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> ifThenElse
     insideParens["(…)"]
     assignPlain["x = y"]
     assignArithmetic["x += y
