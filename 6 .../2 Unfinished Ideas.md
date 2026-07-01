@@ -220,17 +220,17 @@ graph BT
               x ⊕ y
               x ⊖ y"/]
 
-    modulo & shiftRotate & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
+    modulo & rotate & shiftLeft & shiftRight & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
     modulo["x % y"]
-    shiftRotate["x << y
-                 x >> y
-                 x <<< y
-                 x >>> y"]
+    rotate["x <<< y
+            x >>> y"]
+    shiftLeft[/"x << y"/]
+    shiftRight[/"x >> y"/]
     bitwiseAnd[/"x & y"/]
     bitwiseOr[/"x | y"/]
     bitwiseXor[/"x ^ y"/]
 
-    binaryOps --> addition & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate
+    binaryOps --> addition & modulo & rotate & shiftLeft & shiftRight & bitwiseAnd & bitwiseOr & bitwiseXor
     binaryOps((" "))
 
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
