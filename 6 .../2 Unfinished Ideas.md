@@ -393,16 +393,16 @@ a ** (b ** c)"\]
 graph LR
     binary@{ shape: brace-r, label: "Binary" }
 
-    nonAssociative["**Non-Associative**
+    nonAssociative["`**Non-Associative**
 a == b == c
-needs parens"]
+needs parens"`]
 
-    leftToRightAssociative[/"**Left-to-Right-Associative**
+    leftToRightAssociative[/"`**Left-to-Right-Associative**`
 a + b + c 
 =
 (a + b) + c"/]
 
-    rightToLeftAssociative[\"**Right-to-Left-Associative**
+    rightToLeftAssociative[\"`**Right-to-Left-Associative**`
 a ** b ** c
 =
 a ** (b ** c)"\]
