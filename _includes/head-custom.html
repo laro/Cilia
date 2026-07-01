@@ -17,10 +17,12 @@
     // 'loose' wird benötigt, damit die click-Direktiven mit externen URLs funktionieren.
     securityLevel: 'loose',
     theme: prefersDark ? 'dark' : 'default',
+    // SVG an die (ggf. per wide-pre/extra-wide-pre verbreiterte) Containerbreite anpassen.
+    flowchart: { useMaxWidth: true },
   });
 
   // Die von kramdown erzeugten Code-Blöcke in <pre class="mermaid">…</pre> umwandeln.
-  // wide-pre / extra-wide-pre vom Kramdown-Wrapper übernehmen (IAL direkt unter dem ```-Block).
+  // wide-pre / extra-wide-pre: IAL am .highlighter-rouge-Wrapper oder direkt am <pre> (Mermaid).
   document.querySelectorAll('pre > code.language-mermaid').forEach((code) => {
     const pre = code.parentElement;
     const wrapper = pre.closest('.highlighter-rouge');

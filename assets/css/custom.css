@@ -184,9 +184,12 @@ html {
     {:.extra-wide-pre}
   wide-pre: so breit wie nötig, maximal (fast) Viewport-Breite, mittig ausgerichtet.
   extra-wide-pre: volle Viewport-Breite (100vw), mittig ausgerichtet.
+  Mermaid-Blöcke haben keinen .highlighter-rouge-Wrapper; dort landet die IAL direkt am <pre>.
 */
 .markdown-body .highlighter-rouge.wide-pre,
-.markdown-body .highlighter-rouge:has(pre.wide-pre) {
+.markdown-body .highlighter-rouge:has(pre.wide-pre),
+.markdown-body pre.wide-pre,
+.markdown-body pre.mermaid.wide-pre {
   width: max-content;
   max-width: calc(100vw - 2rem);
   margin-left: 50%;
@@ -195,12 +198,16 @@ html {
 }
 
 .markdown-body .highlighter-rouge.wide-pre pre,
-.markdown-body .highlighter-rouge:has(pre.wide-pre) pre {
+.markdown-body .highlighter-rouge:has(pre.wide-pre) pre,
+.markdown-body pre.wide-pre code,
+.markdown-body pre.mermaid.wide-pre svg {
   max-width: none;
 }
 
 .markdown-body .highlighter-rouge.extra-wide-pre,
-.markdown-body .highlighter-rouge:has(pre.extra-wide-pre) {
+.markdown-body .highlighter-rouge:has(pre.extra-wide-pre),
+.markdown-body pre.extra-wide-pre,
+.markdown-body pre.mermaid.extra-wide-pre {
   width: 100vw;
   max-width: 100vw;
   margin-left: 50%;
@@ -209,7 +216,9 @@ html {
 }
 
 .markdown-body .highlighter-rouge.extra-wide-pre pre,
-.markdown-body .highlighter-rouge:has(pre.extra-wide-pre) pre {
+.markdown-body .highlighter-rouge:has(pre.extra-wide-pre) pre,
+.markdown-body pre.extra-wide-pre code,
+.markdown-body pre.mermaid.extra-wide-pre svg {
   max-width: none;
 }
 
