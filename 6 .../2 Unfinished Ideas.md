@@ -328,7 +328,7 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
 - `..`/`..<` relative to `<=>`,
 - `<`/`<=`/…, `==`/`!=`, and `<=>` relative to each other,
-- `and`, `&&`, `∧`, `xor`, `⊻`, `or`, `||`, and `∨` relative to each other.
+- `and`, `or`, `xor`, `&&`, `||`, `∧`, `⊻`, and `∨` relative to each other.
 
 
 The **node shapes** encode each group's
