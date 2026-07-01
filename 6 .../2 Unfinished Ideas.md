@@ -204,21 +204,21 @@ graph BT
     power[\"x ** y"\]
 
     multiplication --> power
-    multiplication>"x * y
+    multiplication[/"x * y
                     x / y
                     x × y
                     x ⋅ y
                     x ⊙ y
                     x ⊘ y
                     x ⊛ y
-                    x ∗ y"]
+                    x ∗ y"/]
     addition --> multiplication
-    addition>"x + y
+    addition[/"x + y
               x - y
               x ⊞ y
               x ⊟ y
               x ⊕ y
-              x ⊖ y"]
+              x ⊖ y"/]
 
     modulo & shiftRotate & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
     modulo["x % y"]
@@ -226,9 +226,9 @@ graph BT
                  x >> y
                  x <<< y
                  x >>> y"]
-    bitwiseAnd>"x & y"]
-    bitwiseOr>"x | y"]
-    bitwiseXor>"x ^ y"]
+    bitwiseAnd[/"x & y"/]
+    bitwiseOr[/"x | y"/]
+    bitwiseXor[/"x ^ y"/]
 
     binaryOps --> addition & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate
     binaryOps((" "))
@@ -277,21 +277,21 @@ graph BT
     %% as["x as T"]
 
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
-    and>"x and y"]
-    or>"x or y"]
-    xor>"x xor y"]
-    andAmp>"x && y"]
-    orAmp>"x || y"]
-    andSym>"x ∧ y"]
-    orSym>"x ∨ y"]
-    xorSym>"x ⊻ y"]
+    and[/"x and y"/]
+    or[/"x or y"/]
+    xor[/"x xor y"/]
+    andAmp[/"x && y"/]
+    orAmp[/"x || y"/]
+    andSym[/"x ∧ y"/]
+    orSym[/"x ∨ y"/]
+    xorSym[/"x ⊻ y"/]
 
     %% logicalExpression ---> as
     logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
     logicalExpression((" "))
 
     ifThenElse --> logicalExpression
-    ifThenElse>"if x then y else z"]
+    ifThenElse[/"if x then y else z"/]
 
 
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> ifThenElse
@@ -354,10 +354,10 @@ graph LR
     a == b == c
     needs parens"]
 
-    leftAssociative>"left-associative
+    leftAssociative[/"left-associative
     a + b + c 
     =
-    (a + b) + c"]
+    (a + b) + c"/]
 
     rightAssociative[\"right associative
     a ** b ** c
