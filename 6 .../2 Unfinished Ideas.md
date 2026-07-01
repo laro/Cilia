@@ -266,7 +266,7 @@ graph BT
               x ∦ y"]
 
     %% Use a longer arrow here to put `not` next to other unary operators
-    not --------> suffixOps
+    not ---------> suffixOps
     not["not x
          !x
          ¬x"]
@@ -290,7 +290,7 @@ graph BT
     logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
     logicalExpression((" "))
 
-    if ---> logicalExpression
+    if --> logicalExpression
     if>"if x then y else z"]
 
 
