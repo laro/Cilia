@@ -204,7 +204,7 @@ graph BT
     as ------> unary
     as["x as T"]
 
-    power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
+    power --> unary
     power[\"x ** y"\]
 
     multiplication --> power
@@ -224,15 +224,15 @@ graph BT
               x ⊕ y
               x ⊖ y"]
 
+    modulo & shiftRotate & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
     modulo["x % y"]
-    bitwiseAnd>"x & y"]
-    bitwiseOr>"x | y"]
-    bitwiseXor>"x ^ y"]
-
     shiftRotate["x << y
                  x >> y
                  x <<< y
                  x >>> y"]
+    bitwiseAnd>"x & y"]
+    bitwiseOr>"x | y"]
+    bitwiseXor>"x ^ y"]
 
     binaryOps --> addition & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate
     binaryOps((" "))
