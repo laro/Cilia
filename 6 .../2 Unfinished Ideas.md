@@ -388,45 +388,6 @@ a ** (b ** c)"\]
     unary ~~~ nonRepeating ~~~ repeating
     helper ~~~ circle
 ```
-```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph LR
-    binary@{ shape: brace-r, label: "Binary" }
-
-    nonAssociative["`**Non-Associative**
-a == b == c
-needs parens"`]
-
-    leftToRightAssociative[/"`**Left-to-Right-Associative**`
-a + b + c 
-=
-(a + b) + c"/]
-
-    rightToLeftAssociative[\"`**Right-to-Left-Associative**`
-a ** b ** c
-=
-a ** (b ** c)"\]
-
-
-    unary@{ shape: brace-r, label: "Unary" }
-
-    nonRepeating["**Non-Repeating**"]
-
-    repeating{"**Repeating**
- x.y.z
- *&x
- T**"}
-
-
-    helper@{ shape: brace-r, label: "Helper Node" }
-
-    circle((" "))
-
-
-    binary ~~~ nonAssociative ~~~ leftToRightAssociative ~~~ rightToLeftAssociative
-    unary ~~~ nonRepeating ~~~ repeating
-    helper ~~~ circle
-```
 
 
 ### Custom Operators with Declared Precedence
