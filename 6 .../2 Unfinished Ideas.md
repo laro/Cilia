@@ -351,18 +351,18 @@ graph LR
     binary@{ shape: brace-r, label: "Binary" }
 
     nonAssociative["Non-Associative
-    a == b == c
-    needs parens"]
+ a == b == c
+ needs parens"]
 
     leftToRightAssociative[/"Left-to-Right-Associative
-    a + b + c 
-    =
-    (a + b) + c"/]
+ a + b + c 
+ =
+ (a + b) + c"/]
 
     rightToLeftAssociative[\"Right-to-Left-Associative
-    a ** b ** c
-    =
-    a ** (b ** c)"\]
+ a ** b ** c
+ =
+ a ** (b ** c)"\]
 
 
     unary@{ shape: brace-r, label: "Unary" }
@@ -370,9 +370,9 @@ graph LR
     nonRepeating["Non-Repeating"]
 
     repeating{"Repeating
-    x.y.z
-    *&x
-    T**"}
+ x.y.z
+ *&x
+ T**"}
 
 
     helper@{ shape: brace-r, label: "Helper Node" }
