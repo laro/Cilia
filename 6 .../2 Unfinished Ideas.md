@@ -272,8 +272,9 @@ graph BT
     logicalOperand((" "))
 
 
-    as ------> unary
-    as["x as T"]
+    %% Currently "as" is not yet fully defined, and it obscures the graph layout somehow...
+    %% as ------> unary
+    %% as["x as T"]
 
     and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
     and>"x and y"]
@@ -285,7 +286,7 @@ graph BT
     orSym>"x ∨ y"]
     xorSym>"x ⊻ y"]
 
-    logicalExpression ---> as
+    %% logicalExpression ---> as
     logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
     logicalExpression((" "))
 
@@ -308,63 +309,6 @@ graph BT
     assignBitwise["x &= y
                    x |= y
                    x ^= y"]
-    assignLogical["x &&= y
-                   x ||= y"]
-```
-{:.extra-wide-pre}
-
-```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-graph BT
-    logicalOperand((" "))
-
-
-    and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
-
-    and>"x and y"]
-    or>"x or y"]
-    xor>"x xor y"]
-
-    andAmp>"x && y"]
-    orAmp>"x || y"]
-
-    andSym>"x ∧ y"]
-    orSym>"x ∨ y"]
-    xorSym>"x ⊻ y"]
-
-
-    logicalExpression ---> as
-    logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
-
-    logicalExpression((" "))
-
-
-    if ---> logicalExpression
-
-    if>"if x then y else z"]
-
-
-    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> if
-
-    insideParens["(…)"]
-
-    assignPlain["x = y"]
-
-    assignArithmetic["x += y
-                      x -= y
-                      x *= y
-                      x /= y
-                      x %= y"]
-
-    assignShift["x <<= y
-                 x >>= y
-                 x <<<= y
-                 x >>>= y"]
-
-    assignBitwise["x &= y
-                   x |= y
-                   x ^= y"]
-
     assignLogical["x &&= y
                    x ||= y"]
 ```
