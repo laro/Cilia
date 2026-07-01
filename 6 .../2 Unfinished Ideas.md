@@ -201,7 +201,7 @@ graph BT
 
 
     %% `as` at the same level as comparisons
-    as -----> unary
+    as ------> unary
     as["x as T"]
 
     power & modulo & bitwiseAnd & bitwiseOr & bitwiseXor & shiftRotate --> unary
@@ -266,7 +266,7 @@ graph BT
               x ∦ y"]
 
     %% Use a longer arrow here to put `not` next to other unary operators
-    not ---> suffixOps
+    not --------> suffixOps
     not["not x
          !x
          ¬x"]
