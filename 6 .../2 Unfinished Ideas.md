@@ -119,35 +119,40 @@ List of **all currently known operators**:
 - Prefix
     - `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬`
 - Infix
-    - `**`
-    - `*` `/` `%`
-    - `×` `⋅`
-    - `⊙` `⊘`
-    - `⊛` `∗`
-    - `+` `-` `⊞` `⊟` `⊕` `⊖`
-    - Shift / Rotation
-        - `<<` `>>` `<<<` `>>>`
-    - Bitwise
-        - `&` `^` `|`
-    - Logical
-        - `and` `xor` `or`
-        - `&&` `||` 
-        - `∧` `⊻` `∨` 
-    - `..` `..<`
+    - Arithmetic
+        - `+` `-` `*` `/` `%`
+        - `**`
+    - Equality
+        - `==` `!=` `≠`
     - Comparison
         - `<=>`
         - `<` `>` `<=` `>=` `≤` `≥`
-    - `∈` `∉` `∋` `∌`
-    - `⊆` `⊇` `⊂` `⊃`
-    - `⟂` `∥` `∦`
-    - Equality
-        - `==` `!=` `≠`
+    - Shift / Rotation
+        - `<<` `>>` `<<<` `>>>`
+    - Logical
+        - `and` `or` `nand` `nor` `xor`
+        - `&&` `||` 
+        - `∧` `⊻` `∨`
+    - Bitwise
+        - `&` `|` `^`
     - Assignment
         - `=`
         - `+=` `-=` `*=` `/=` `%=`
         - `<<=` `>>=` `<<<=` `>>>=`
         - `&=` `|=` `^=`
         - `&&=` `||=`
+    - Vector & Matrix
+        - `×` `⋅`
+        - `⊙` `⊘`
+        - `⊞` `⊟`
+        - `⊕` `⊖`
+        - `⊛` `∗`
+        - `⟂` `∥` `∦`
+    - Range
+        - `..` `..<`
+    - Set
+        - `∈` `∉` `∋` `∌`
+        - `⊆` `⊇` `⊂` `⊃`
 
 > **Note**  
 > The precedence ordering a partial precedence ordering, not a global one,
