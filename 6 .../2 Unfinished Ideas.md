@@ -276,9 +276,11 @@ graph BT
     %% as ------> unary
     %% as["x as T"]
 
-    and & or & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
+    and & or & nand & nor & xor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
     and[/"x and y"/]
     or[/"x or y"/]
+    nand[/"x nand y"/]
+    nor[/"x nor y"/]
     xor[/"x xor y"/]
     andAmp[/"x && y"/]
     orAmp[/"x || y"/]
@@ -287,7 +289,7 @@ graph BT
     xorSym[/"x ⊻ y"/]
 
     %% logicalExpression ---> as
-    logicalExpression --> and & or & xor & andAmp & orAmp & andSym & orSym & xorSym
+    logicalExpression --> and & or & nand & nor & xor & andAmp & orAmp & andSym & orSym & xorSym
     logicalExpression((" "))
 
     ifThenElse --> logicalExpression
