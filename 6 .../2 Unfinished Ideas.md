@@ -334,7 +334,7 @@ This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (m
 Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
 - `..`/`..<` relative to `<=>`,
-- `<`/`<=`/…, `==`/`!=`, and `<=>` relative to each other,
+- `<`, `<=`, `>`, `>=`, `==`, `!=`, and `<=>` relative to each other,
 - `and`, `or`, `xor`, `&&`, `||`, `∧`, `⊻`, and `∨` relative to each other.
 
 
