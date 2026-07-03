@@ -153,6 +153,7 @@ List of **all currently known operators**:
     - Set
         - `∈` `∉` `∋` `∌`
         - `⊆` `⊇` `⊂` `⊃`
+        - `∪` `∩` `∖`
 
 > **Note**  
 > The precedence ordering a partial precedence ordering, not a global one,
@@ -238,12 +239,12 @@ graph BT
     binaryOps --> addition & modulo & rotate & shiftLeft & shiftRight & bitwiseAnd & bitwiseOr & bitwiseXor
     binaryOps((" "))
 
-    %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
+    %% Ranges bind looser than arithmetic/bitwise, tighter than set union/intersection; those bind tighter than the relational operators
     range --> binaryOps
     range["x .. y
            x ..< y"]
 
-    equality & comparison & membership & subset & parallel --> range
+    equality & comparison & membership & subset & parallel --> union
     equality["x == y
               x != y
               x ≠ y"]
@@ -265,6 +266,11 @@ graph BT
     parallel["x ⟂ y
               x ∥ y
               x ∦ y"]
+    union[/"x ∪ y
+           x ∖ y"/]
+    intersection[/"x ∩ y"/]
+    union --> intersection
+    intersection --> range
 
     %% Use a longer arrow here to put `not` next to other unary operators
     not ---------> suffixOps
@@ -326,14 +332,16 @@ The graph above covers the **partial** ordering of all contemplated Unicode/Cili
 - `*` tighter than `+`,
 - `**` tighter than `*`,
 - arithmetic tighter than ranges,
-- ranges tighter than the comparisons,
+- ranges tighter than set union/intersection,
+- set intersection tighter than union,
+- set union/intersection tighter than the comparisons,
 - and all of these tighter than the logical operators and assignment.
 
 This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
 
 Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
-- `..`/`..<` relative to `<=>`,
+- `..`/`..<` relative to `<=>` and to `∪`/`∩`/`∖`,
 - `<`, `<=`, `>`, `>=`, `==`, `!=`, and `<=>` relative to each other,
 - `and`, `or`, `xor`, `&&`, `||`, `∧`, `⊻`, and `∨` relative to each other.
 
