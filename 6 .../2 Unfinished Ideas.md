@@ -437,7 +437,7 @@ More bracket variants (asymmetric pairs only; some may be used in reversed order
 
 | Pair    | Category       | Name / note                                                      |
 | ------- | -------------- | ---------------------------------------------------------------- |
-| `⟨...⟩` | angle          | angle brackets (inner product, see above)                        |
+| `⟨...⟩` | angle          | angle brackets (inner product)                                    |
 | `⟪...⟫` | angle          | double angle brackets                                            |
 | `⦑...⦒` | angle          | angle bracket with dot                                           |
 | `⦅...⦆` | round          | double parenthesis                                               |
@@ -454,8 +454,8 @@ More bracket variants (asymmetric pairs only; some may be used in reversed order
 | `⟬...⟭` | tortoise-shell | white tortoise-shell bracket                                     |
 | `⦇...⦈` | Z notation     | image bracket                                                    |
 | `⦉...⦊` | Z notation     | binding bracket                                                  |
-| `⦓...⦔` | arc            | arc less/greater-than bracket                                    |
-| `⦕...⦖` | arc            | double-line arc bracket                                          |
+| `⦓...⦔` | arc            | arc less/greater-than bracket                                   |
+| `⦕...⦖` | arc            | double-line arc bracket                                         |
 | `⟅...⟆` | bag            | S-shaped bag delimiter                                           |
 | `⌜...⌝` | corners        | top corners (quine corners)                                      |
 | `⌞...⌟` | corners        | bottom corners                                                   |
