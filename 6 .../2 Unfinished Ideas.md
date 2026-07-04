@@ -95,7 +95,12 @@ operator (Vec a) ∦ (Vec b) -> Bool { ... }   // not parallel to
 
 ### Set Operators
 
-The set membership/subset symbols parse as relational operators, i.e. they inherit the (infix) fixity and precedence group of the comparison operators:
+Set operators fall into two precedence groups (see precedence diagram below):
+
+**Relational** — `∈`, `∉`, `∋`, `∌`, `⊆`, `⊇`, `⊂`, `⊃` parse as binary infix operators returning `Bool`. They bind looser than equality, comparison, parallel, and set algebra.
+
+**Algebraic** — `∪`, `∩`, `∖` parse as binary infix operators returning sets. They bind at the same level as equality, comparison, and parallel — tighter than membership/subset, looser than range (`..`, `..<`). Mixed algebraic expressions such as `A ∪ B ∩ C` require parentheses.
+
 ```
 // Set membership
 operator (T x) ∈ (Set<T> s) -> Bool { return s.contains(x) }
@@ -108,6 +113,13 @@ operator (Set<T> a) ⊆ (Set<T> b) -> Bool { return a.isSubsetOf(b) }
 operator (Set<T> a) ⊇ (Set<T> b) -> Bool { return a.isSupersetOf(b) }
 operator (Set<T> a) ⊂ (Set<T> b) -> Bool { return a.isProperSubsetOf(b) }
 operator (Set<T> a) ⊃ (Set<T> b) -> Bool { return a.isProperSupersetOf(b) }
+```
+
+```
+// Set algebra
+operator (Set<T> a) ∪ (Set<T> b) -> Set<T> { return a.union(b) }
+operator (Set<T> a) ∩ (Set<T> b) -> Set<T> { return a.intersection(b) }
+operator (Set<T> a) ∖ (Set<T> b) -> Set<T> { return a.difference(b) }
 ```
 
 ### Operator Precedence
@@ -150,8 +162,9 @@ List of **all currently known operators**:
         - `⟂` `∥` `∦`
     - Range
         - `..` `..<`
-    - Set
+    - Set (algebraic)
         - `∪` `∩` `∖`
+    - Set (relational)
         - `∈` `∉` `∋` `∌`
         - `⊆` `⊇` `⊂` `⊃`
 
