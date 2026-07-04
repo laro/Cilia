@@ -172,7 +172,7 @@ List of **all currently known operators**:
         - `∈` `∉` `∋` `∌`
         - `⊆` `⊇` `⊂` `⊃`
 
-The precedence ordering a partial precedence ordering, not a global one, as nobody can remember all these precedence levels.
+Operator precedence is a **partial** ordering, not a global one, as nobody can remember all these precedence levels.
 
 See [Carbon Expression Precedence](https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#precedence):
 > Expressions are interpreted based on a partial precedence ordering. Expression components which lack a relative ordering must be disambiguated by the developer, for example by adding parentheses; otherwise, the expression will be invalid due to ambiguity. Precedence orderings will only be added when it's reasonable to expect most developers to understand the precedence without parentheses.
