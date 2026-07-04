@@ -151,6 +151,7 @@ List of **all currently known operators**:
     - Range
         - `..` `..<`
     - Set
+        - `∪` `∩` `∖`
         - `∈` `∉` `∋` `∌`
         - `⊆` `⊇` `⊂` `⊃`
 
@@ -243,7 +244,7 @@ graph BT
     range["x .. y
            x ..< y"]
 
-    equality & comparison & membership & subset & parallel --> range
+    equality & comparison & parallel --> range
     equality["x == y
               x != y
               x ≠ y"]
@@ -254,6 +255,19 @@ graph BT
                 x >= y
                 x ≤ y
                 x ≥ y"]
+    parallel["x ⟂ y
+              x ∥ y
+              x ∦ y"]
+
+    setUnion & setIntersection & setDifference --> range
+    setUnion[/"x ∪ y"/]
+    setIntersection[/"x ∩ y"/]
+    setDifference[/"x ∖ y"/]
+
+    setOps -> setUnion & setIntersection & setDifference
+    setOps((" "))
+    membership & subset --> setOps
+
     membership["x ∈ y
                 x ∉ y
                 x ∋ y
@@ -262,9 +276,6 @@ graph BT
             x ⊇ y
             x ⊂ y
             x ⊃ y"]
-    parallel["x ⟂ y
-              x ∥ y
-              x ∦ y"]
 
     %% Use a longer arrow here to put `not` next to other unary operators
     not ---------> suffixOps
@@ -326,6 +337,7 @@ The graph above covers the **partial** ordering of all contemplated Unicode/Cili
 - `*` tighter than `+`,
 - `**` tighter than `*`,
 - arithmetic tighter than ranges,
+- set algebra (`∪` `∩` `∖`) tighter than ranges and tighter than set relations (`∈` `⊆`, …),
 - ranges tighter than the comparisons,
 - and all of these tighter than the logical operators and assignment.
 
@@ -333,6 +345,7 @@ This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (m
 
 Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
+- `∪`, `∩`, and `∖` relative to each other and to arithmetic/bitwise operators,
 - `..`/`..<` relative to `<=>`,
 - `<`, `<=`, `>`, `>=`, `==`, `!=`, and `<=>` relative to each other,
 - `and`, `or`, `xor`, `&&`, `||`, `∧`, `⊻`, and `∨` relative to each other.
