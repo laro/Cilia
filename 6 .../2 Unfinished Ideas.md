@@ -52,9 +52,7 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 
 ## Exotic Operators (e.g. Unicode)
 
-The examples below show **implementations** only. Each symbol is also registered via `infix operator`, `prefix operator`, or `postfix operator` in the standard library (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence)); built-ins use the precedence groups from the [precedence diagram](#operator-precedence) below. For the full three-step model see the [Operators](/advanced/operators/#custom-operators) chapter.
-
-Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF plus some, e.g. `×` U+00D7, `⟂` U+27C2, `⟨ ⟩` U+27E8/9, `‖` U+2016), so the lexer can cleanly separate identifiers and operators.
+The examples below show **implementations** only. Each symbol is also registered via `infix operator`, `prefix operator`, or `postfix operator` in the standard library (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence)); built-ins use the precedence groups from the [precedence diagram](#operator-precedence) below.
 
 ### Logical / Bool Operators
 
@@ -128,7 +126,7 @@ operator (Set<T> a) ∖ (Set<T> b) -> Set<T> { return a.difference(b) }
 
 ### Operator Precedence
 
-Group names in the diagram below correspond to `precedencegroup` declarations (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence) and the [Operators](/advanced/operators/#custom-operators) chapter).
+Group names in the diagram below correspond to `precedencegroup` declarations (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence)).
 
 List of **all currently known operators**:
 
@@ -431,7 +429,7 @@ a ** (b ** c)"\]
 
 ### Custom Operators with Declared Precedence
 
-For custom symbols, fixity and precedence must be declared explicitly — modelled after [Swift SE-0077](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0077-operator-precedence.md) (see also the [Operators](/advanced/operators/) chapter).
+For custom symbols, fixity and precedence must be declared explicitly — modelled after [Swift SE-0077](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0077-operator-precedence.md). Operator **implementations** use the existing `operator` syntax from the [Operators](/advanced/operators/) chapter.
 
 The two main difficulties are:
 - operator precedence (partial ordering via named _precedence groups_, not magic numbers),
@@ -439,9 +437,69 @@ The two main difficulties are:
 
 Declaration is in **three separate steps**:
 
-1. **`precedencegroup`** — define associativity and position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names),
-2. **`infix` / `prefix` / `postfix operator`** — register the symbol and its fixity (and precedence group for infix),
-3. **`operator` implementation** — overload the symbol for concrete types (existing Cilia syntax, without inline precedence).
+#### 1. Precedence groups
+
+Named groups replace numeric precedence levels. Groups form a **partial** ordering: neighbouring operators without a defined relation require parentheses (compile error otherwise).
+
+```
+precedencegroup Kleisli {
+    associativity: right
+    lowerThan: LogicalConjunctionPrecedence
+}
+```
+
+- `associativity`: `left`, `right`, or `none`
+- `higherThan` / `lowerThan`: position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names)
+- Built-in groups include `MultiplicationPrecedence`, `AdditionPrecedence`, `ComparisonPrecedence`, `LogicalConjunctionPrecedence`, `Power`, `RangeFormationPrecedence`, and others
+
+Built-in example — `**` (power):
+
+```
+precedencegroup Power {
+    associativity: right
+    higherThan: MultiplicationPrecedence
+}
+
+infix operator ** : Power
+```
+
+#### 2. Operator registration
+
+Fixity and (for infix) precedence group are declared explicitly:
+
+```
+infix  operator >=> : Kleisli
+infix  operator ∘   : Composition
+infix  operator ⊗   : Tensor
+infix  operator ∪   : Union
+infix  operator ∩   : Intersection
+infix  operator ∖   : Union
+prefix operator √
+postfix operator ?   // example; postfix must not start with ! or ?
+```
+
+- Infix operators without a group belong to `DefaultPrecedence` (Swift behaviour).
+- Prefix and postfix operators have fixed (high) precedence and need no group.
+- Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
+- Word operators (`and`, `or`, `not`, …) are standard-library built-ins; custom operators use symbol tokens.
+
+#### 3. Implementation
+
+Overload the registered symbol using the existing `operator` syntax — **without** inline precedence or fixity:
+
+```
+operator (Fn<A,B> f) >=> (Fn<B,C> g) -> Fn<A,C> {
+    return fn(a) { return g(f(a)) }
+}
+
+operator (Set<T> a) ∪ (Set<T> b) -> Set<T> { return a.union(b) }
+
+prefix operator √(Float a) -> Float { ... }
+```
+
+Compound-assignment variants remain member operators inside classes (`operator +=(…)`, etc.).
+
+Full example (groups, registration, and implementations):
 
 ```
 // --- Precedence groups (declare once, e.g. in a module header) ---
@@ -481,15 +539,18 @@ operator (Fn<A,B> f) >=> (Fn<B,C> g) -> Fn<A,C> { ... } // Kleisli composition
 prefix operator √(Float a)           -> Float  { ... }
 ```
 
-- **Fixity** is declared explicitly (`infix`, `prefix`, `postfix`), not inferred from the signature position. Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
-    - Only **infix** operators need a precedence group; without one they belong to `DefaultPrecedence` (Swift behaviour).
-    - **Prefix/postfix** operators have a fixed (high) precedence and need no group — which is why `√` above declares none.
-- **Partial ordering:** if two neighbouring infix operators have precedence groups with no defined relation, the expression is a compile error unless parenthesized (e.g. `1 + 2 & 3` is illegal, as in Swift).
-- **Allowed operator characters** follow Swift's _operator-head + operator-characters_ grammar: ASCII `/ = - + * % < > & | ! ^ ? ~` plus Unicode math/symbol/arrow blocks, and multi-character operators such as `>=>`, `>>=`, `<<`, `**`, `∘`, `⊗`. The lexer uses longest match (`>=>` before `>` + `=`).
+#### Allowed operator characters
+
+Operator names follow Swift's _operator-head + operator-characters_ grammar:
+
+- **operator-head:** ASCII `/ = - + * % < > & | ! ^ ? ~` plus Unicode math, symbol, and arrow blocks
+- **operator-characters:** further characters from the same sets, plus combining marks
+- Multi-character operators such as `>=>`, `>>=`, `<<`, `**`, `<=>`, `∪`, `⊗` are all valid; the lexer uses longest match (`>=>` before `>` + `=`).
     - Dot-prefixed operators (e.g. `..`, `..<`) are built-ins; a `.` may appear elsewhere in an operator only when the operator starts with `.` (Swift rule).
     - Reserved tokens cannot be used as custom operators: `( ) { } [ ] , ; : @ # ->`, a lone `?`, prefix `<` / `&` / `?`, postfix `>` / `!` / `?`. Postfix operators must not begin with `!` or `?`.
 - **Confusables:** the compiler should _warn_ (not reject) about characters easily confused with ASCII operators, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
-- Word operators (`and`, `or`, `not`, …) are built-ins of the standard library; custom operators use symbol tokens only.
+
+- **Partial ordering:** if two neighbouring infix operators have precedence groups with no defined relation, the expression is a compile error unless parenthesized (e.g. `1 + 2 & 3` is illegal, as in Swift).
 - **Bracket / "sandwich" operators** (`‖x‖`, `⟨a, b⟩`, …) are a separate category — not registered via `infix operator` (see below).
 
 

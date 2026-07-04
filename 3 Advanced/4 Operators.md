@@ -1,6 +1,6 @@
 ---
 permalink: /advanced/operators/
-description: "Cilia operators: a**b for pow, and/or/nand/nor/xor. Operator overloading, precedence, custom operators."
+description: "Cilia operators: a**b for pow, and/or/nand/nor/xor. Operator overloading and precedence."
 ---
 
 # Operators
@@ -9,7 +9,7 @@ description: "Cilia operators: a**b for pow, and/or/nand/nor/xor. Operator overl
 
 **`a**x`** for `pow(a, x)` (as in Python), "raise a to the power of x".
 
-`infix right` precedence (group `Power`), so `a**b**c` parses as `a**(b**c)`.
+infix operator with right-to-left associativity, so `a**b**c` parses as `a**(b**c)`.
 
 
 ## Boolean and Bitwise Operators
