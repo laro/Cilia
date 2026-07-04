@@ -95,11 +95,11 @@ operator (Vec a) ∦ (Vec b) -> Bool { ... }   // not parallel to
 
 ### Set Operators
 
-Set operators fall into two precedence groups (see precedence diagram below):
+Set operators fall into two precedence groups (see precedence diagram below). They are unrelated to scalar relational operators such as `==`, `!=`, `<`, or `>` — there is no precedence ordering between the two domains, and meaningful expressions do not mix them.
 
-**Relational** — `∈`, `∉`, `∋`, `∌`, `⊆`, `⊇`, `⊂`, `⊃` parse as binary infix operators returning `Bool`. They bind looser than equality, comparison, parallel, and set algebra.
+**Membership / subset** — `∈`, `∉`, `∋`, `∌`, `⊆`, `⊇`, `⊂`, `⊃` parse as binary infix operators returning `Bool`.
 
-**Algebraic** — `∪`, `∩`, `∖` parse as binary infix operators returning sets. They bind at the same level as equality, comparison, and parallel — tighter than membership/subset, looser than range (`..`, `..<`). Mixed algebraic expressions such as `A ∪ B ∩ C` require parentheses.
+**Algebraic** — `∪`, `∩`, `∖` parse as binary infix operators returning sets. They bind tighter than membership/subset (so `x ∈ A ∪ B` parses as `x ∈ (A ∪ B)`) but looser than range (`..`, `..<`). Mixed algebraic expressions such as `A ∪ B ∩ C` require parentheses.
 
 ```
 // Set membership
