@@ -264,7 +264,7 @@ graph BT
     setIntersection[/"x ∩ y"/]
     setDifference[/"x ∖ y"/]
 
-    setOps -> setUnion & setIntersection & setDifference
+    setOps --> setUnion & setIntersection & setDifference
     setOps((" "))
     membership & subset --> setOps
 
