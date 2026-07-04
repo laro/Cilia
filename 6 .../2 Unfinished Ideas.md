@@ -52,6 +52,10 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 
 ## Exotic Operators (e.g. Unicode)
 
+The examples below show **implementations** only. Each symbol is also registered via `infix operator`, `prefix operator`, or `postfix operator` in the standard library (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence)); built-ins use the precedence groups from the [precedence diagram](#operator-precedence) below. For the full three-step model see the [Operators](/advanced/operators/#custom-operators) chapter.
+
+Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF plus some, e.g. `×` U+00D7, `⟂` U+27C2, `⟨ ⟩` U+27E8/9, `‖` U+2016), so the lexer can cleanly separate identifiers and operators.
+
 ### Logical / Bool Operators
 
 It is also possible to use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
@@ -123,6 +127,8 @@ operator (Set<T> a) ∖ (Set<T> b) -> Set<T> { return a.difference(b) }
 ```
 
 ### Operator Precedence
+
+Group names in the diagram below correspond to `precedencegroup` declarations (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence) and the [Operators](/advanced/operators/#custom-operators) chapter).
 
 List of **all currently known operators**:
 
@@ -425,25 +431,66 @@ a ** (b ** c)"\]
 
 ### Custom Operators with Declared Precedence
 
-For some symbols fixity and precedence have to be given at declaration. 
+For custom symbols, fixity and precedence must be declared explicitly — modelled after [Swift SE-0077](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0077-operator-precedence.md) (see also the [Operators](/advanced/operators/) chapter).
 
-The two main difficulties (see also the [Operators](/advanced/operators/) chapter) are:
-- operator precedence,
+The two main difficulties are:
+- operator precedence (partial ordering via named _precedence groups_, not magic numbers),
 - unary (prefix, postfix) vs. binary (infix) operators.
 
-Modelled after Swift/Haskell, preferably with _named_ precedence groups instead of magic numbers:
+Declaration is in **three separate steps**:
+
+1. **`precedencegroup`** — define associativity and position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names),
+2. **`infix` / `prefix` / `postfix operator`** — register the symbol and its fixity (and precedence group for infix),
+3. **`operator` implementation** — overload the symbol for concrete types (existing Cilia syntax, without inline precedence).
+
 ```
-operator (Fn f) ∘ (Fn g)         -> Fn     right precedence Composition     { ... }
-operator (Matrix a) ⊗ (Matrix b) -> Matrix left  precedence Tensor          { ... }   // tensor / Kronecker product
-operator (Set a) ∪ (Set b)       -> Set    left  precedence Union           { ... }   // union
-operator (Set a) ∩ (Set b)       -> Set    left  precedence Intersection    { ... }   // intersection (binds tighter than ∪)
-operator (Set a) ∖ (Set b)       -> Set    left  precedence Union           { ... }   // set difference: a without b
-operator √(Float a)              -> Float                                   { ... }   // unary (prefix by position)
+// --- Precedence groups (declare once, e.g. in a module header) ---
+precedencegroup Composition {
+    associativity: right
+    higherThan: DefaultPrecedence
+}
+precedencegroup Intersection {
+    associativity: left
+    higherThan: Union
+}
+precedencegroup Union {
+    associativity: left
+    higherThan: RangeFormationPrecedence
+}
+precedencegroup Kleisli {
+    associativity: right
+    lowerThan: LogicalConjunctionPrecedence
+}
+
+// --- Operator registration (fixity + precedence) ---
+infix  operator ∘   : Composition
+infix  operator ⊗   : Tensor
+infix  operator ∪   : Union
+infix  operator ∩   : Intersection
+infix  operator ∖   : Union
+infix  operator >=> : Kleisli
+prefix operator √
+
+// --- Implementations (anywhere overloads are allowed) ---
+operator (Fn f) ∘ (Fn g)             -> Fn     { ... }
+operator (Matrix a) ⊗ (Matrix b)     -> Matrix { ... }   // tensor / Kronecker product
+operator (Set a) ∪ (Set b)           -> Set    { ... }   // union
+operator (Set a) ∩ (Set b)           -> Set    { ... }   // intersection (binds tighter than ∪)
+operator (Set a) ∖ (Set b)           -> Set    { ... }   // set difference: a without b
+operator (Fn<A,B> f) >=> (Fn<B,C> g) -> Fn<A,C> { ... } // Kleisli composition
+prefix operator √(Float a)           -> Float  { ... }
 ```
-- Fixity is determined by the position of the operator symbol: before the operand (prefix, e.g. `√(Float a)`), between the operands (infix, e.g. `(Set a) ∪ (Set b)`), or after the operand (postfix). So unary and binary forms are distinct declarations (just like `-` in C++).
-    - Only infix operators need an explicit precedence group; prefix/postfix operators have a fixed (high) precedence, which is why `√` above declares none.
-- Allowed operator characters should be a curated whitelist (e.g. mathematical symbols U+2200–U+22FF plus some, e.g. `×` U+00D7, `⟂` U+27C2, `⟨ ⟩` U+27E8/9, `‖` U+2016), so the lexer can cleanly separate identifiers and operators.
-- The whitelist should exclude (or the compiler should warn about) characters that are easily confused with ASCII operators or with each other, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
+
+- **Fixity** is declared explicitly (`infix`, `prefix`, `postfix`), not inferred from the signature position. Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
+    - Only **infix** operators need a precedence group; without one they belong to `DefaultPrecedence` (Swift behaviour).
+    - **Prefix/postfix** operators have a fixed (high) precedence and need no group — which is why `√` above declares none.
+- **Partial ordering:** if two neighbouring infix operators have precedence groups with no defined relation, the expression is a compile error unless parenthesized (e.g. `1 + 2 & 3` is illegal, as in Swift).
+- **Allowed operator characters** follow Swift's _operator-head + operator-characters_ grammar: ASCII `/ = - + * % < > & | ! ^ ? ~` plus Unicode math/symbol/arrow blocks, and multi-character operators such as `>=>`, `>>=`, `<<`, `**`, `∘`, `⊗`. The lexer uses longest match (`>=>` before `>` + `=`).
+    - Dot-prefixed operators (e.g. `..`, `..<`) are built-ins; a `.` may appear elsewhere in an operator only when the operator starts with `.` (Swift rule).
+    - Reserved tokens cannot be used as custom operators: `( ) { } [ ] , ; : @ # ->`, a lone `?`, prefix `<` / `&` / `?`, postfix `>` / `!` / `?`. Postfix operators must not begin with `!` or `?`.
+- **Confusables:** the compiler should _warn_ (not reject) about characters easily confused with ASCII operators, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
+- Word operators (`and`, `or`, `not`, …) are built-ins of the standard library; custom operators use symbol tokens only.
+- **Bracket / "sandwich" operators** (`‖x‖`, `⟨a, b⟩`, …) are a separate category — not registered via `infix operator` (see below).
 
 
 ### Bracket / "Sandwich" Operator
@@ -454,9 +501,9 @@ operator ‖Vec v‖ -> Float  { return v.length() }  // norm
 operator ⟨T a, b⟩ -> Float { ... }                // inner product
 ```
 - `|x|` for `abs(x)` is problematic, as `|` is also the bitwise `or` operator, but it _is_ parseable:
-    - a position-aware (Pratt) parser tells the two apart by position, just like prefix vs. infix `-` (see above). In _operand_ position (expression start, after an infix operator, after `(`, `,`, `=`, …) a `|` can only _open_ an abs; in _operator_ position it _closes_ the innermost open abs, otherwise it is infix bitwise `or`. This stays unambiguous because Cilia has no implicit multiplication — so `a | b | c` can only be bitwise `or`, and even `|a + |b||` nests cleanly as `abs(a + abs(b))`.
+    - a position-aware (Pratt) parser tells the two apart by position, just like the distinct prefix and infix registrations of `-`. In _operand_ position (expression start, after an infix operator, after `(`, `,`, `=`, …) a `|` can only _open_ an abs; in _operator_ position it _closes_ the innermost open abs, otherwise it is infix bitwise `or`. This stays unambiguous because Cilia has no implicit multiplication — so `a | b | c` can only be bitwise `or`, and even `|a + |b||` nests cleanly as `abs(a + abs(b))`.
     - The only real cost: a bitwise `or` _directly_ inside an abs must be parenthesized as `|(a | b)|`, because a bare `|a | b|` closes after `a`. That is a clear compile error, not a silent misparse.
-- `||x||` for `norm(x)` als needs a position-aware parser to distinguish from logical-or. Or use `‖x‖` (U+2016).
+- `||x||` for `norm(x)` also needs a position-aware parser to distinguish from logical-or. Or use `‖x‖` (U+2016).
 - Symmetric delimiters that use the _same_ character for open and close (`‖…‖`, `|…|`) can in fact be parsed and nested via the position rule above (`‖a + ‖b‖‖` = `norm(a + norm(b))`), but the close-first rule is not obvious to human readers and editor bracket-matching is hard. Asymmetric pairs (e.g. `⟨…⟩`) avoid all of this.
 
 More bracket variants (asymmetric pairs only; some may be used in reversed order, e.g. `≫...≪`; see also [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)):
