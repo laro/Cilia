@@ -77,6 +77,7 @@ operator (Matrix a) ⊙ (Matrix b) -> Matrix { ... }   // Hadamard (element-wise
 operator (Matrix a) ⊘ (Matrix b) -> Matrix { ... }   // Hadamard (element-wise) division
 operator (Matrix a) ⊞ (Matrix b) -> Matrix { ... }   // element-wise addition ("boxplus")
 operator (Matrix a) ⊟ (Matrix b) -> Matrix { ... }   // element-wise subtraction ("boxminus")
+operator (Matrix a) ⊗ (Matrix b) -> Matrix { ... }   // tensor / Kronecker product
 
 operator (Vec a) ⊕ (Vec b) -> Vec          { ... }   // direct sum: {1 2} ⊕ {3 4} -> {1 2 3 4}
 operator ⊖(Vec a) -> Vec                   { ... }   // negation (unary)
@@ -162,6 +163,7 @@ List of **all currently known operators**:
         - `⊙` `⊘`
         - `⊞` `⊟`
         - `⊕` `⊖`
+        - `⊗`
         - `⊛` `∗`
         - `⟂` `∥` `∦`
     - Range
@@ -233,6 +235,7 @@ graph BT
                     x ⋅ y
                     x ⊙ y
                     x ⊘ y
+                    x ⊗ y
                     x ⊛ y
                     x ∗ y"/]
     addition --> multiplication
