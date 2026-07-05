@@ -132,9 +132,14 @@ Group names in the diagram below correspond to `precedencegroup` declarations (s
 List of **all currently known operators**:
 
 - Postfix
-    - `a()` `a[]` `a.b` `a++` `a--`
+    - `a()` `a[]` `a.b`
+    - `a++` `a--`
 - Prefix
-    - `+a` `-a` `!` `not` `~` `++a` `--a` `√` `⊖` `¬`
+    - `+a` `-a
+    - `!` `not` `~` `¬`
+    - `++a` `--a`
+    - `√`
+    - `⊖`
 - Infix
     - Arithmetic
         - `+` `-` `*` `/` `%`
