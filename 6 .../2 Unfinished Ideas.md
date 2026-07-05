@@ -148,7 +148,7 @@ List of **all currently known operators**:
     - Logical
         - `and` `or` `nand` `nor` `xor`
         - `&&` `||` 
-        - `∧` `⊻` `∨`
+        - `∧` `∨` `⊼` `⊽` `⊻`
     - Bitwise
         - `&` `|` `^`
     - Assignment
