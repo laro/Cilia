@@ -450,20 +450,20 @@ Declaration is in **three separate steps**:
 Named groups replace numeric precedence levels. Groups form a **partial** ordering: neighbouring operators without a defined relation require parentheses (compile error otherwise).
 
 ```
-precedencegroup Kleisli {
-    associativity: right
-    lowerThan: LogicalConjunctionPrecedence
+precedencegroup MultiplicationPrecedence {
+    associativity: left
+    lowerThan: PowerPrecedence
 }
 ```
 
 - `associativity`: `left`, `right`, or `none`
 - `higherThan` / `lowerThan`: position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names)
-- Built-in groups include `MultiplicationPrecedence`, `AdditionPrecedence`, `ComparisonPrecedence`, `LogicalConjunctionPrecedence`, `Power`, `RangeFormationPrecedence`, and others
+- Built-in groups include `MultiplicationPrecedence`, `AdditionPrecedence`, `ComparisonPrecedence`, `LogicalConjunctionPrecedence`, `PowerPrecedence`, `RangeFormationPrecedence`, and others
 
 Built-in example — `**` (power):
 
 ```
-precedencegroup Power {
+precedencegroup PowerPrecedence {
     associativity: right
     higherThan: MultiplicationPrecedence
 }
@@ -476,7 +476,6 @@ infix operator ** : Power
 Fixity and (for infix) precedence group are declared explicitly:
 
 ```
-infix  operator >=> : Kleisli
 infix  operator ∘   : Composition
 infix  operator ⊗   : Tensor
 infix  operator ∪   : Union
@@ -523,10 +522,6 @@ precedencegroup Union {
     associativity: left
     higherThan: RangeFormationPrecedence
 }
-precedencegroup Kleisli {
-    associativity: right
-    lowerThan: LogicalConjunctionPrecedence
-}
 
 // --- Operator registration (fixity + precedence) ---
 infix  operator ∘   : Composition
@@ -534,7 +529,6 @@ infix  operator ⊗   : Tensor
 infix  operator ∪   : Union
 infix  operator ∩   : Intersection
 infix  operator ∖   : Union
-infix  operator >=> : Kleisli
 prefix operator √
 
 // --- Implementations (anywhere overloads are allowed) ---
@@ -543,7 +537,6 @@ operator (Matrix a) ⊗ (Matrix b)     -> Matrix { ... }   // tensor / Kronecker
 operator (Set a) ∪ (Set b)           -> Set    { ... }   // union
 operator (Set a) ∩ (Set b)           -> Set    { ... }   // intersection (binds tighter than ∪)
 operator (Set a) ∖ (Set b)           -> Set    { ... }   // set difference: a without b
-operator (Fn<A,B> f) >=> (Fn<B,C> g) -> Fn<A,C> { ... } // Kleisli composition
 prefix operator √(Float a)           -> Float  { ... }
 ```
 
@@ -553,8 +546,7 @@ Operator names follow Swift's _operator-head + operator-characters_ grammar:
 
 - **operator-head:** ASCII `/ = - + * % < > & | ! ^ ? ~` plus Unicode math, symbol, and arrow blocks
 - **operator-characters:** further characters from the same sets, plus combining marks
-- Multi-character operators such as `>=>`, `>>=`, `<<`, `**`, `<=>`, `∪`, `⊗` are all valid; the lexer uses longest match (`>=>` before `>` + `=`).
-    - Dot-prefixed operators (e.g. `..`, `..<`) are built-ins; a `.` may appear elsewhere in an operator only when the operator starts with `.` (Swift rule).
+- Multi-character operators such as `>=>`, `>>=`, `<<`, `**`, `<=>` are all valid; the lexer uses longest match (`>=>` before `>` + `=`).
     - Reserved tokens cannot be used as custom operators: `( ) { } [ ] , ; : @ # ->`, a lone `?`, prefix `<` / `&` / `?`, postfix `>` / `!` / `?`. Postfix operators must not begin with `!` or `?`.
 - **Confusables:** the compiler should _warn_ (not reject) about characters easily confused with ASCII operators, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
 
