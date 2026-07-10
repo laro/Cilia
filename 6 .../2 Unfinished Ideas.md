@@ -604,63 +604,61 @@ More bracket variants (asymmetric pairs only; some may be used in reversed order
 N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like functions or for-in-loops:
 - `∑`
     - `∑ array`
-        ```
-        sum(array)
-        ```
+      ```
+      sum(array)
+      ```
     - `∑_{i=1..n}(i**2)`
-        ```
-        var sum = 0
-        for i in 1..n {
-            sum += i**2
-        }
-        ```
+      ```
+      var sum = 0
+      for i in 1..n {
+          sum += i**2
+      }
+      ```
     - `∑_{i=1}^{n}(i**2)`
-        ```
-        var sum = 0
-        for i in 1..n {
-            sum += i**2
-        }
-        ```
+      ```
+      var sum = 0
+      for i in 1..n {
+          sum += i**2
+      }
+      ```
 - `∏`
     - `∏ array`
-        ```
-        product(array)
-        ```
+      ```
+      product(array)
+      ```
 - `∫`, `∮`
     - `∫ array`
-        ```
-        integrate(array)
-        ```
+      ```
+      integrate(array)
+      ```
 - `⋂`
     - `⋂ sets`
-        ```
-        intersection(sets)
-        ```
+      ```
+      intersection(sets)
+      ```
 - `⋃`
     - `⋃ sets`
-        ```
-        union(sets)
-        ```
+      ```
+      union(sets)
+      ```
     - `⋃_{i=1..n}(S(i))`
-        ```
-        var result = {}
-        for i in 1..n {
-            result = result ∪ S(i)
-        }
-        ```
+      ```
+      var result = {}
+      for i in 1..n {
+          result = result ∪ S(i)
+      }
+      ```
 
 - `⨂`
     - `⨂ tensors`
-        ```
-        tensorProduct(tensors)
-        ```
+      ```
+      tensorProduct(tensors)
+      ```
 - `⨁`
     - `⨁ vectors`
-        ```
-        directSum(vectors)
-        ```
-
-
+      ```
+      directSum(vectors)
+      ```
 
 ### Later / Never
 
