@@ -519,7 +519,7 @@ precedencegroup Union {
 infix  operator ∘   : Composition
 infix  operator ⊗   : Tensor
 infix  operator ∪   : Union
-infix  operator ∩   : Intersection
+infix  operator ⋂∩   : Intersection
 infix  operator ∖   : Union
 prefix operator √
 
@@ -599,14 +599,51 @@ More bracket variants (asymmetric pairs only; some may be used in reversed order
 | `❴...❵` | ornamental     | curly bracket ornament                                           |
 
 
+### N-Ary Operators
+
+N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like functions or for-in-loops:
+- `∑`
+    - `∑ array`
+        ```
+        sum(array)
+        ```
+    - `∑_{i=1..n}(i**2)`
+        ```
+        var sum = 0
+        for i in 1..n {
+            sum += i**2
+        }
+        ```
+    - `∑_{i=1}^{n}(i**2)`
+        ```
+        var sum = 0
+        for i in 1..n {
+            sum += i**2
+        }
+        ```
+- `∏`
+    - `∏ array`
+        ```
+        product(array)
+        ```
+- `∫`, `∮`
+    - `∫ array`
+        ```
+        integrate(array)
+        ```
+- `⋂`
+- `⋃`
+- `⊗`
+- `⨁`
+
+
+
 ### Later / Never
 
 Many of the symbols seem more suitable for a computer algebra system (CAS) than for a general purpose programming language, so they stay unassigned for now.
 
 Reserved for future use, as it could get complicated and confusing.
 Remaining candidate symbols, not yet assigned to one of the cases above (with their usual mathematical meaning):
-
-- `∑`, `∏`, `∫`, `∮` are _not_ operators: they need an index/binder (e.g. `∑_{i=1}^{n}`), so for now they stay plain functions `sum(...)`, `product(...)`, `integrate(...)`.
 
 - Definition / assignment
     - `≔` "colon equals" (`:=`) – defined as / assignment.
