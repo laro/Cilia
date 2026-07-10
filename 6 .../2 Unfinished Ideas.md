@@ -492,12 +492,7 @@ postfix operator ?   // example; postfix must not start with ! or ?
 Overload the registered symbol using the existing `operator` syntax — **without** inline precedence or fixity:
 
 ```
-operator (Fn<A,B> f) >=> (Fn<B,C> g) -> Fn<A,C> {
-    return fn(a) { return g(f(a)) }
-}
-
 operator (Set<T> a) ∪ (Set<T> b) -> Set<T> { return a.union(b) }
-
 prefix operator √(Float a) -> Float { ... }
 ```
 
