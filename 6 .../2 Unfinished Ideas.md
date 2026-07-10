@@ -333,11 +333,8 @@ graph BT
     logicalExpression --> and & or & xor & nandNor & andAmp & orAmp & andSym & orSym & xorSym
     logicalExpression((" "))
 
-    ifThenElse --> logicalExpression
-    ifThenElse[/"if x then y else z"/]
 
-
-    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> ifThenElse
+    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> logicalExpression
     insideParens["(…)"]
     assignPlain["x = y"]
     assignArithmetic["x += y
