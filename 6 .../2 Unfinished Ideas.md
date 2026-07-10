@@ -517,20 +517,20 @@ precedencegroup UnionPrecedence {
     higherThan: RangeFormationPrecedence
 }
 
-//// Operator registration (fixity and precedence for infix)
-infix  operator ∘   : CompositionPrecedence
-infix  operator ⊗  : TensorPrecedence
-infix  operator ∪   : UnionPrecedence
-infix  operator ∩   : IntersectionPrecedence
-infix  operator ∖   : UnionPrecedence
+//// Operator registration (fixity and precedence in case of infix)
+infix operator ∘ : CompositionPrecedence
+infix operator ⊗ : TensorPrecedence
+infix operator ∪ : UnionPrecedence
+infix operator ∩ : IntersectionPrecedence
+infix operator ∖ : UnionPrecedence
 prefix operator √
 
 //// Implementations (anywhere overloads are allowed)
 operator (Matrix a) ⊗ (Matrix b) -> Matrix { ... }   // tensor / Kronecker product
-operator (Set a) ∪ (Set b) -> Set    { ... }   // union
-operator (Set a) ∩ (Set b) -> Set    { ... }   // intersection
-operator (Set a) ∖ (Set b) -> Set    { ... }   // set difference: a without b
-prefix operator √(Float a) -> Float  { ... }
+operator (Set a) ∪ (Set b) -> Set { ... }   // union
+operator (Set a) ∩ (Set b) -> Set { ... }   // intersection
+operator (Set a) ∖ (Set b) -> Set { ... }   // set difference: a without b
+operator √(Float a) -> Float { ... }
 ```
 
 #### Allowed operator characters
