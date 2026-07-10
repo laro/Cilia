@@ -465,7 +465,7 @@ precedencegroup PowerPrecedence {
     higherThan: MultiplicationPrecedence
 }
 
-infix operator ** : Power
+infix operator ** : PowerPrecedence
 ```
 
 #### 2. Operator registration
@@ -501,29 +501,31 @@ Compound-assignment variants remain member operators inside classes (`operator +
 Full example (groups, registration, and implementations):
 
 ```
-// --- Precedence groups (declare once, e.g. in a module header) ---
-precedencegroup Composition {
+////  Precedence groups (declare once, e.g. in a module header)
+precedencegroup CompositionPrecedence {
     associativity: right
     higherThan: DefaultPrecedence
 }
-precedencegroup Intersection {
+
+precedencegroup IntersectionPrecedence {
     associativity: left
-    higherThan: Union
+    higherThan: UnionPrecedence
 }
-precedencegroup Union {
+
+precedencegroup UnionPrecedence {
     associativity: left
     higherThan: RangeFormationPrecedence
 }
 
-// --- Operator registration (fixity + precedence) ---
-infix  operator ∘   : Composition
-infix  operator ⊗   : Tensor
-infix  operator ∪   : Union
-infix  operator ∩   : Intersection
-infix  operator ∖   : Union
+//// Operator registration (fixity and precedence for infix)
+infix  operator ∘   : CompositionPrecedence
+infix  operator ⊗  : TensorPrecedence
+infix  operator ∪   : UnionPrecedence
+infix  operator ∩   : IntersectionPrecedence
+infix  operator ∖   : UnionPrecedence
 prefix operator √
 
-// --- Implementations (anywhere overloads are allowed) ---
+//// Implementations (anywhere overloads are allowed)
 operator (Matrix a) ⊗ (Matrix b) -> Matrix { ... }   // tensor / Kronecker product
 operator (Set a) ∪ (Set b) -> Set    { ... }   // union
 operator (Set a) ∩ (Set b) -> Set    { ... }   // intersection
