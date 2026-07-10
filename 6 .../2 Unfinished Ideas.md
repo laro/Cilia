@@ -524,12 +524,11 @@ infix  operator ∖   : Union
 prefix operator √
 
 // --- Implementations (anywhere overloads are allowed) ---
-operator (Fn f) ∘ (Fn g)             -> Fn     { ... }
-operator (Matrix a) ⊗ (Matrix b)     -> Matrix { ... }   // tensor / Kronecker product
-operator (Set a) ∪ (Set b)           -> Set    { ... }   // union
-operator (Set a) ∩ (Set b)           -> Set    { ... }   // intersection (binds tighter than ∪)
-operator (Set a) ∖ (Set b)           -> Set    { ... }   // set difference: a without b
-prefix operator √(Float a)           -> Float  { ... }
+operator (Matrix a) ⊗ (Matrix b) -> Matrix { ... }   // tensor / Kronecker product
+operator (Set a) ∪ (Set b) -> Set    { ... }   // union
+operator (Set a) ∩ (Set b) -> Set    { ... }   // intersection
+operator (Set a) ∖ (Set b) -> Set    { ... }   // set difference: a without b
+prefix operator √(Float a) -> Float  { ... }
 ```
 
 #### Allowed operator characters
