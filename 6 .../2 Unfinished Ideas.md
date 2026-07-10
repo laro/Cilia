@@ -486,9 +486,9 @@ postfix operator ?   // example; postfix must not start with ! or ?
 ```
 
 - Infix operators without a group belong to `DefaultPrecedence` (Swift behaviour).
-- Prefix and postfix operators have fixed (high) precedence and need no group.
+- Prefix and postfix operators have fixed (high) precedence and belong to the groups `PrefixPrecedence`/`PostfixPrecedence`.
 - Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
-- Word operators (`and`, `or`, `not`, …) are standard-library built-ins; custom operators use symbol tokens.
+- Word operators (`and`, `or`, `nand`, `nor`, `xor`, `not`) are standard-library built-ins; custom operators use symbol tokens.
 
 #### 3. Implementation
 
