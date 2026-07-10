@@ -632,9 +632,33 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
         integrate(array)
         ```
 - `⋂`
+    - `⋂ sets`
+        ```
+        intersection(sets)
+        ```
 - `⋃`
-- `⊗`
+    - `⋃ sets`
+        ```
+        union(sets)
+        ```
+    - `⋃_{i=1..n}(S(i))`
+        ```
+        var result = {}
+        for i in 1..n {
+            result = result ∪ S(i)
+        }
+        ```
+
+- `⨂`
+    - `⨂ tensors`
+        ```
+        tensorProduct(tensors)
+        ```
 - `⨁`
+    - `⨁ vectors`
+        ```
+        directSum(vectors)
+        ```
 
 
 
