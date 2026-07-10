@@ -519,7 +519,7 @@ precedencegroup Union {
 infix  operator ∘   : Composition
 infix  operator ⊗   : Tensor
 infix  operator ∪   : Union
-infix  operator ⋂∩   : Intersection
+infix  operator ∩   : Intersection
 infix  operator ∖   : Union
 prefix operator √
 
