@@ -133,15 +133,16 @@ List of **all currently known operators**:
     - `a()` `a[]` `a.b`
     - `a++` `a--`
 - Prefix
-    - `+a` `-a
+    - `+a` `-a`
     - `!` `not` `~` `¬`
     - `++a` `--a`
-    - `√`
+    - `√` `∛` `∜`
     - `⊖`
 - Infix
     - Arithmetic
         - `+` `-` `*` `/` `%`
         - `**`
+        - `⋅` `∙` `÷` `∓` `∔`
     - Equality
         - `==` `!=` `≠`
     - Comparison
@@ -162,12 +163,14 @@ List of **all currently known operators**:
         - `&=` `|=` `^=`
         - `&&=` `||=`
     - Vector & Matrix
-        - `×` `⋅`
+        - `×`
         - `⊙` `⊘`
+        - `⨀` `⨁` `⨂`
         - `⊞` `⊟`
         - `⊕` `⊖`
         - `⊗`
         - `⊛` `∗`
+        - `⟡`
         - `⟂` `∥` `∦`
     - Range
         - `..` `..<`
