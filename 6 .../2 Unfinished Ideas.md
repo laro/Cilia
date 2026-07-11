@@ -178,6 +178,7 @@ List of **all currently known operators**:
         - `∪` `∩` `∖`
     - Set (relational)
         - `∈` `∉` `∋` `∌`
+        - `∊`     `∍`
         - `⊆` `⊇` `⊂` `⊃`
 
 Operator precedence is a **partial** ordering, not a global one, as nobody can remember all these precedence levels.
