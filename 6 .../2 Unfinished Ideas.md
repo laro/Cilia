@@ -474,11 +474,11 @@ infix operator ** : PowerPrecedence
 Fixity and (for infix) precedence group are declared explicitly:
 
 ```
-infix  operator ∘   : Composition
-infix  operator ⊗   : Tensor
-infix  operator ∪   : Union
-infix  operator ∩   : Intersection
-infix  operator ∖   : Union
+infix  operator ∘   : CompositionPrecedence
+infix  operator ⊗   : TensorPrecedence
+infix  operator ∪   : UnionPrecedence
+infix  operator ∩   : IntersectionPrecedence
+infix  operator ∖   : UnionPrecedence
 prefix operator √
 postfix operator ++
 ```
@@ -494,7 +494,7 @@ Overload the registered symbol using the existing `operator` syntax — **withou
 
 ```
 operator (Set<T> a) ∪ (Set<T> b) -> Set<T> { return a.union(b) }
-prefix operator √(Float a) -> Float { ... }
+operator √(Float a) -> Float { ... }
 ```
 
 Compound-assignment variants remain member operators inside classes (`operator +=(…)`, etc.).
