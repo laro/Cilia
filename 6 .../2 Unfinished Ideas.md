@@ -607,9 +607,9 @@ More bracket variants (asymmetric pairs only; some may be used in reversed order
 N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like functions or for-in-loops:
 - `∑`
     - `∑ array`
-      ```
-      sum(array)
-      ```
+        - ```
+          sum(array)
+          ```
     - `∑_{i=1..n}(i**2)`
       ```
       var sum = 0
