@@ -626,9 +626,9 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
     - `∏_{i=1..n}(i)`  
       `∏_{i=1}^{n}(i)`
       ```
-      var sum = 0
+      var product = 0
       for i in 1..n {
-          sum *= i
+          product *= i
       }
       ```
 - `∫`, `∮`
@@ -641,6 +641,13 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
       ```
       intersection(sets)
       ```
+    - `⋂_{i=1..n}(S(i))`
+      ```
+      ... result = {}
+      for i in 1..n {
+          result = result ⋂ S(i)
+      }
+      ```
 - `⋃`
     - `⋃ sets`
       ```
@@ -648,7 +655,7 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
       ```
     - `⋃_{i=1..n}(S(i))`
       ```
-      var result = {}
+      ... result = {}
       for i in 1..n {
           result = result ∪ S(i)
       }
@@ -659,6 +666,13 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
       ```
       tensorProduct(tensors)
       ```
+    - `⨂_{i=1..n}(T(i))`
+      ```
+      ... result = {}
+      for i in 1..n {
+          result = result ⨂ v(i)
+      }
+      ```
 - `⨁`
     - `⨁ vectors`
       ```
@@ -666,7 +680,7 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
       ```
     - `⨁_{i=1..n}(v(i))`
       ```
-      var result = {}
+      ... result = {}
       for i in 1..n {
           result = result ⨁ v(i)
       }
