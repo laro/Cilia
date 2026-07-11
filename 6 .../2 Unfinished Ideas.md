@@ -456,28 +456,24 @@ precedencegroup MultiplicationPrecedence {
     associativity: left
     lowerThan: PowerPrecedence
 }
+
+precedencegroup PowerPrecedence {
+    associativity: right
+    higherThan: MultiplicationPrecedence
+}
 ```
 
 - `associativity`: `left`, `right`, or `none`
 - `higherThan` / `lowerThan`: position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names)
 - Built-in groups include `MultiplicationPrecedence`, `AdditionPrecedence`, `ComparisonPrecedence`, `LogicalConjunctionPrecedence`, `PowerPrecedence`, `RangeFormationPrecedence`, and others
 
-Built-in example — `**` (power):
-
-```
-precedencegroup PowerPrecedence {
-    associativity: right
-    higherThan: MultiplicationPrecedence
-}
-
-infix operator ** : PowerPrecedence
-```
 
 #### 2. Operator registration
 
 Fixity and (for infix) precedence group are declared explicitly:
 
 ```
+infix operator ** : PowerPrecedence
 infix operator ∘ : CompositionPrecedence
 infix operator ⊗ : TensorPrecedence
 infix operator ∪ : UnionPrecedence
@@ -492,51 +488,21 @@ postfix operator ++
 - Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
 - Word operators (`and`, `or`, `nand`, `nor`, `xor`, `not`) are standard-library built-ins; custom operators use symbol tokens.
 
+
 #### 3. Implementation
 
 Overload the registered symbol using the existing `operator` syntax — **without** inline precedence or fixity:
 
 ```
-operator (Set<T> a) ∪ (Set<T> b) -> Set<T> { return a.union(b) }
+operator (Set<T> a) ∪ (Set<T> b) -> Set<T> { ... }   // union
+operator (Set<T> a) ∩ (Set<T> b) -> Set<T> { ... }   // intersection
+operator (Set<T> a) ∖ (Set<T> b) -> Set<T> { ... }   // set difference: a without b
+operator (Matrix a) ⊗ (Matrix b) -> Matrix { ... }   // tensor / Kronecker product
 operator √(Float a) -> Float { ... }
 ```
 
 Compound-assignment variants remain member operators inside classes (`operator +=(…)`, etc.).
 
-Full example (groups, registration, and implementations):
-
-```
-////  Precedence groups (declare once, e.g. in a module header)
-precedencegroup CompositionPrecedence {
-    associativity: right
-    higherThan: DefaultPrecedence
-}
-
-precedencegroup IntersectionPrecedence {
-    associativity: left
-    higherThan: UnionPrecedence
-}
-
-precedencegroup UnionPrecedence {
-    associativity: left
-    higherThan: RangeFormationPrecedence
-}
-
-//// Operator registration (fixity and precedence in case of infix)
-infix operator ∘ : CompositionPrecedence
-infix operator ⊗ : TensorPrecedence
-infix operator ∪ : UnionPrecedence
-infix operator ∩ : IntersectionPrecedence
-infix operator ∖ : UnionPrecedence
-prefix operator √
-
-//// Implementations (anywhere overloads are allowed)
-operator (Matrix a) ⊗ (Matrix b) -> Matrix { ... }   // tensor / Kronecker product
-operator (Set a) ∪ (Set b) -> Set { ... }   // union
-operator (Set a) ∩ (Set b) -> Set { ... }   // intersection
-operator (Set a) ∖ (Set b) -> Set { ... }   // set difference: a without b
-operator √(Float a) -> Float { ... }
-```
 
 #### Allowed operator characters
 
