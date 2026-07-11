@@ -478,11 +478,11 @@ infix operator ** : PowerPrecedence
 Fixity and (for infix) precedence group are declared explicitly:
 
 ```
-infix  operator ∘ : CompositionPrecedence
-infix  operator ⊗ : TensorPrecedence
-infix  operator ∪ : UnionPrecedence
-infix  operator ∩ : IntersectionPrecedence
-infix  operator ∖ : UnionPrecedence
+infix operator ∘ : CompositionPrecedence
+infix operator ⊗ : TensorPrecedence
+infix operator ∪ : UnionPrecedence
+infix operator ∩ : IntersectionPrecedence
+infix operator ∖ : UnionPrecedence
 prefix operator √
 postfix operator ++
 ```
