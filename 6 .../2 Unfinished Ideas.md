@@ -607,27 +607,29 @@ More bracket variants (asymmetric pairs only; some may be used in reversed order
 N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like functions or for-in-loops:
 - `∑`
     - `∑ array`
-        - ```
-          sum(array)
-          ```
-    - `∑_{i=1..n}(i**2)`
+    - ```
+      sum(array)
+      ```
+    - `∑_{i=1..n}(i)`  
+      `∑_{i=1}^{n}(i)`
       ```
       var sum = 0
       for i in 1..n {
-          sum += i**2
-      }
-      ```
-    - `∑_{i=1}^{n}(i**2)`
-      ```
-      var sum = 0
-      for i in 1..n {
-          sum += i**2
+          sum += i
       }
       ```
 - `∏`
     - `∏ array`
       ```
       product(array)
+      ```
+    - `∏_{i=1..n}(i)`  
+      `∏_{i=1}^{n}(i)`
+      ```
+      var sum = 0
+      for i in 1..n {
+          sum *= i
+      }
       ```
 - `∫`, `∮`
     - `∫ array`
@@ -661,6 +663,13 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
     - `⨁ vectors`
       ```
       directSum(vectors)
+      ```
+    - `⨁_{i=1..n}(v(i))`
+      ```
+      var result = {}
+      for i in 1..n {
+          result = result ⨁ v(i)
+      }
       ```
 
 ### Later / Never
