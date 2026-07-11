@@ -636,9 +636,26 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
       }
       ```
 - `∫`, `∮`
-    - `∫ array`
+    - `∫{0..Pi}(f)`
       ```
-      integrate(array)
+      func integrate(
+          func(Float -> Float) f,
+          Float a,
+          Float b,
+          Int steps = 1000)
+      {
+          Float h = (b - a) / steps
+          Float sum = 0.0
+  
+          for i in 0..<steps {
+              Float x1 = a + i * h
+              Float x2 = x1 + h
+  
+              sum += (f(x1) + f(x2)) * h * 0.5 // Trapezregel
+          }
+  
+          return sum
+      }
       ```
 - `⋂`
     - `⋂ sets`
