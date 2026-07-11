@@ -52,8 +52,6 @@ We can redefine `T^` for interoperability with other languages, e.g. garbage col
 
 ## Exotic Operators (e.g. Unicode)
 
-The examples below show **implementations** only. Each symbol is also registered via `infix operator`, `prefix operator`, or `postfix operator` in the standard library (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence)); built-ins use the precedence groups from the [precedence diagram](#operator-precedence) below.
-
 ### Logical / Bool Operators
 
 It is also possible to use the mathematical symbols **`∧`**, **`∨`**, **`⊼`**, **`⊽`**, **`¬`** for `and`, `or`, `nand`, `nor`, `not`.
@@ -479,7 +477,7 @@ infix  operator ∪   : Union
 infix  operator ∩   : Intersection
 infix  operator ∖   : Union
 prefix operator √
-postfix operator ?   // example; postfix must not start with ! or ?
+postfix operator ++
 ```
 
 - Infix operators without a group belong to `DefaultPrecedence` (Swift behaviour).
