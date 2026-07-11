@@ -432,6 +432,9 @@ a ** (b ** c)"\]
 
 ### Custom Operators with Declared Precedence
 
+> **Note**  
+> Admittedly, all of this is rather complex.
+
 For custom symbols, fixity and precedence must be declared explicitly — modelled after [Swift SE-0077](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0077-operator-precedence.md). Operator **implementations** use the existing `operator` syntax from the [Operators](/advanced/operators/) chapter.
 
 The two main difficulties are:
