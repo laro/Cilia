@@ -165,11 +165,11 @@ List of **all currently known operators**:
     - Vector & Matrix
         - `×`
         - `⊙` `⊘`
-        - `⨀` `⨁` `⨂`
         - `⊞` `⊟`
         - `⊕` `⊖`
         - `⊗`
         - `⊛` `∗`
+        - `⨀` `⨁` `⨂`
         - `⟡`
         - `⟂` `∥` `∦`
     - Range
