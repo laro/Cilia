@@ -360,15 +360,15 @@ x xor y"/]
     nandNor["LogicalNandNor
 x nand y
 x nor y"]
-    andAmp[/"LogicalConjunction
+    andSymbol[/"LogicalConjunctionSymbol
 x && y"/]
-    orAmp[/"LogicalDisjunction
+    orSymbol[/"LogicalDisjunctionSymbol
 x || y"/]
-    andSym[/"LogicalConjunction
+    andMathl[/"LogicalConjunctionSymbol
 x ∧ y"/]
-    orSym[/"LogicalDisjunction
+    orMath[/"LogicalDisjunctionMath
 x ∨ y"/]
-    xorSym[/"LogicalExclusiveOr
+    xorMath[/"LogicalExclusiveOrMath
 x ⊻ y"/]
 
     %% logicalExpression ---> as
