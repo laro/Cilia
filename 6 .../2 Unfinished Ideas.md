@@ -193,17 +193,12 @@ In the diagram below, nodes higher up bind tighter; arrows point from looser tow
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph BT
-    parens["Primary
-(…)"]
-    braces["Primary
-{…}"]
-    unqualifiedName["Primary
+    primary["Primary
+(…)
+{…}
 x"]
 
-    top --> parens & braces & unqualifiedName
-    top((" "))
-
-    suffixOps --> top
+    suffixOps --> primary
     suffixOps{"Postfix
 x.y
 x.(…)
