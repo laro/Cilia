@@ -439,23 +439,18 @@ a ** (b ** c)"\]
 > **Note**  
 > Admittedly, all of this is rather complex.
 
-For custom symbols, fixity and precedence must be declared explicitly — roughly modelled after [Swift SE-0077](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0077-operator-precedence.md). Operator **implementations** use the existing `operator` syntax from the [Operators](/advanced/operators/) chapter.
+For custom operator symbols, fixity and precedence must be declared explicitly. Operator precedence is resolved based on a **partial ordering** (roughly as in [Swift SE-0077](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0077-operator-precedence.md)).
 
-The two main difficulties are:
-- operator precedence (partial ordering via named _precedence groups_, not magic numbers),
-- unary (prefix, postfix) vs. binary (infix) operators.
-
+If two neighbouring infix operators have precedence groups without a defined relation, the expression requires parentheses. Otherwise it is a compile error, e.g. `1 + 2 & 3` is illegal.
 
 Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
-
-**Partial ordering** means, that if two neighbouring infix operators have precedence groups with no defined relation, the expression is a compile error unless parenthesized (e.g. `1 + 2 & 3` is illegal, as in Swift).
 
 
 Declaration is in **two separate steps**:
 
 #### 1. Precedence Groups & Their Ordering
 
-Named groups replace numeric precedence levels. Groups form a **partial** ordering: neighbouring operators without a defined relation require parentheses (compile error otherwise).
+Named groups replace numeric precedence levels.
 
 ```
 precedence Multiplication {
@@ -471,7 +466,7 @@ precedence Power {
 
 - `associativity`: `left`, `right`, or `none`
 - `higherThan` / `lowerThan`: position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names)
-- Built-in groups include `Multiplication`, `Addition`, `Comparison`, `LogicalConjunction`, `Power`, `RangeFormation`, and others
+- Built-in groups include `Multiplication`, `Addition`, `Comparison`, `LogicalConjunction`, `Power`, `RangeFormation`, ...
 
 
 #### 2. Operator Registration & Implementation
@@ -483,7 +478,9 @@ operator (Set<T> a) ∖ (Set<T> b) -> Set<T> { ... }   // set difference: a with
 operator √(Float a) -> Float { ... }
 ```
 
-Operator precedence groups can be declared explicitly. Infix operators without a group belong to `Default`, prefix and postfix belong to the (high) precedence groups `Prefix`/`Postfix`.
+Infix operators without a group belong to `Default`, prefix and postfix belong to the (high) precedence groups `Prefix`/`Postfix`.
+
+Operator precedence groups can be declared explicitly:
 
 ```
 operator (Set<T> a) ∪ (Set<T> b) -> Set<T> precedence Union { ... }          // union
