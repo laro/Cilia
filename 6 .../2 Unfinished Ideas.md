@@ -351,18 +351,18 @@ not x
 %%x as T"]
 
     and & or & xor & nandNor & andSymbol & orSymbol --> logicalOperand
-    and[/"LogicalConjunction
+    and[/"LogicalAnd
 x and y"/]
-    or[/"LogicalDisjunction
+    or[/"LogicalOr
 x or y"/]
-    xor[/"LogicalExclusiveOr
+    xor[/"LogicalXOr
 x xor y"/]
     nandNor["LogicalNandNor
 x nand y
 x nor y"]
-    andSymbol[/"LogicalConjunctionSymbol
+    andSymbol[/"LogicalAndSymbol
 x && y"/]
-    orSymbol[/"LogicalDisjunctionSymbol
+    orSymbol[/"LogicalAndSymbol
 x || y"/]
 
 
