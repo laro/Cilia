@@ -502,8 +502,8 @@ Operator names follow Swift's _operator-head + operator-characters_ grammar:
 - **Confusables:** the compiler should _warn_ (not reject) about characters easily confused with ASCII operators, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
 
 Word operators (`and`, `or`, `nand`, `nor`, `xor`, `not`) are standard-library built-ins; custom operators use symbol tokens.
-> **Note:**  
-> Or should every word be able to be declred as an operator.
+> **TODO:**  
+> Should users be able to declare custom word operators?
 
 
 ### Bracket / "Sandwich" Operator
