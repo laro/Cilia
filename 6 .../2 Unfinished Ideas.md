@@ -445,9 +445,15 @@ The two main difficulties are:
 - operator precedence (partial ordering via named _precedence groups_, not magic numbers),
 - unary (prefix, postfix) vs. binary (infix) operators.
 
-Declaration is in **three separate steps**:
 
-#### 1. Precedence groups
+Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
+
+**Partial ordering** means, that if two neighbouring infix operators have precedence groups with no defined relation, the expression is a compile error unless parenthesized (e.g. `1 + 2 & 3` is illegal, as in Swift).
+
+
+Declaration is in **two separate steps**:
+
+#### 1. Precedence Groups & Their Ordering
 
 Named groups replace numeric precedence levels. Groups form a **partial** ordering: neighbouring operators without a defined relation require parentheses (compile error otherwise).
 
@@ -468,37 +474,21 @@ precedence Power {
 - Built-in groups include `Multiplication`, `Addition`, `Comparison`, `LogicalConjunction`, `Power`, `RangeFormation`, and others
 
 
-#### 2. Operator registration
+#### 2. Operator Registration & Implementation
 
-Fixity and (for infix) precedence group are declared explicitly:
-
-```
-infix operator ** : Power
-infix operator ∘ : Composition
-infix operator ⊗ : Tensor
-infix operator ∪ : Union
-infix operator ∩ : Intersection
-infix operator ∖ : Union
-prefix operator √
-postfix operator ++
-```
-
-- Infix operators without a group belong to `Default` (Swift behaviour).
-- Prefix and postfix operators have fixed (high) precedence and belong to the groups `Prefix`/`Postfix`.
-- Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
-- Word operators (`and`, `or`, `nand`, `nor`, `xor`, `not`) are standard-library built-ins; custom operators use symbol tokens.
-
-
-#### 3. Implementation
-
-Overload the registered symbol using the existing `operator` syntax — **without** inline precedence or fixity:
+Overload the registered symbol using the existing `operator` syntax.
 
 ```
-operator (Set<T> a) ∪ (Set<T> b) -> Set<T> { ... }   // union
-operator (Set<T> a) ∩ (Set<T> b) -> Set<T> { ... }   // intersection
 operator (Set<T> a) ∖ (Set<T> b) -> Set<T> { ... }   // set difference: a without b
-operator (Matrix a) ⊗ (Matrix b) -> Matrix { ... }   // tensor / Kronecker product
 operator √(Float a) -> Float { ... }
+```
+
+Operator precedence groups can be declared explicitly. Infix operators without a group belong to `Default`, prefix and postfix belong to the (high) precedence groups `Prefix`/`Postfix`.
+
+```
+operator (Set<T> a) ∪ (Set<T> b) -> Set<T> precedence Union { ... }          // union
+operator (Set<T> a) ∩ (Set<T> b) -> Set<T> precedence Intersection { ... }   // intersection
+operator (Matrix a) ⊗ (Matrix b) -> Matrix precedence Tensor { ... }         // tensor / Kronecker product
 ```
 
 Compound-assignment variants remain member operators inside classes (`operator +=(…)`, etc.).
@@ -514,17 +504,20 @@ Operator names follow Swift's _operator-head + operator-characters_ grammar:
     - Reserved tokens cannot be used as custom operators: `( ) { } [ ] , ; : @ # ->`, a lone `?`, prefix `<` / `&` / `?`, postfix `>` / `!` / `?`. Postfix operators must not begin with `!` or `?`.
 - **Confusables:** the compiler should _warn_ (not reject) about characters easily confused with ASCII operators, e.g. `∗` U+2217 vs. `*`, `∥` U+2225 vs. `||`, `⋅` U+22C5 vs. `.`, `∼` U+223C vs. `~` (see [Unicode TR39](https://www.unicode.org/reports/tr39/) confusables).
 
-- **Partial ordering:** if two neighbouring infix operators have precedence groups with no defined relation, the expression is a compile error unless parenthesized (e.g. `1 + 2 & 3` is illegal, as in Swift).
-- **Bracket / "sandwich" operators** (`‖x‖`, `⟨a, b⟩`, …) are a separate category — not registered via `infix operator` (see below).
+Word operators (`and`, `or`, `nand`, `nor`, `xor`, `not`) are standard-library built-ins; custom operators use symbol tokens.
+> **Note:**
+> Every word could be declred to be an operator.
 
 
 ### Bracket / "Sandwich" Operator
 
-`‖x‖`, `⟨a, b⟩` etc. are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator").
+Bracket / "sandwich" operators (like `‖x‖`, `⟨a, b⟩`, …) are a separate category. They are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator").
+
 ```
 operator ‖Vec v‖ -> Float  { return v.length() }  // norm
 operator ⟨T a, b⟩ -> Float { ... }                // inner product
 ```
+
 - `|x|` for `abs(x)` is problematic, as `|` is also the bitwise `or` operator, but it _is_ parseable:
     - a position-aware (Pratt) parser tells the two apart by position, just like the distinct prefix and infix registrations of `-`. In _operand_ position (expression start, after an infix operator, after `(`, `,`, `=`, …) a `|` can only _open_ an abs; in _operator_ position it _closes_ the innermost open abs, otherwise it is infix bitwise `or`. This stays unambiguous because Cilia has no implicit multiplication — so `a | b | c` can only be bitwise `or`, and even `|a + |b||` nests cleanly as `abs(a + abs(b))`.
     - The only real cost: a bitwise `or` _directly_ inside an abs must be parenthesized as `|(a | b)|`, because a bare `|a | b|` closes after `a`. That is a clear compile error, not a silent misparse.
