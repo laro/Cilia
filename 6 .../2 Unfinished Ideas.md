@@ -350,7 +350,7 @@ not x
     %% as["Cast
 %%x as T"]
 
-    and & or & xor & nandNor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
+    and & or & xor & nandNor & andSymbol & orSymbol & andMath & orMath & xorMath --> logicalOperand
     and[/"LogicalConjunction
 x and y"/]
     or[/"LogicalDisjunction
@@ -372,7 +372,7 @@ x ∨ y"/]
 x ⊻ y"/]
 
     %% logicalExpression ---> as
-    logicalExpression --> and & or & xor & nandNor & andAmp & orAmp & andSym & orSym & xorSym
+    logicalExpression --> and & or & xor & nandNor & andSymbol & orSymbol & andMath & orMath & xorMath
     logicalExpression((" "))
 
 
