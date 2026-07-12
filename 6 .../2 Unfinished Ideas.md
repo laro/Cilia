@@ -220,11 +220,10 @@ T*"}
 *x
 &x"}
 
-    prefixMath & complement & incDec --> pointer
-    complement["PrefixBitwise
+    prefix & incDec --> pointer
+    prefix["Prefix
 ^x
-~x"]
-    prefixMath["PrefixArithmetic
+~x
 -x
 +x
 √x
@@ -233,7 +232,7 @@ T*"}
 ++x
 --x"]
 
-    unary --> pointerType & prefixMath & complement
+    unary --> pointerType & prefix
     unary((" "))
 
 
