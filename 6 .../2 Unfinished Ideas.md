@@ -507,7 +507,7 @@ Word operators (`and`, `or`, `nand`, `nor`, `xor`, `not`) are standard-library b
 
 ### Bracket / "Sandwich" Operator
 
-Bracket / "sandwich" operators (like `‖x‖`, `⟨a, b⟩`, …) are a separate category. They are not infix operators but paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator").
+Bracket / "sandwich" operators (like `‖x‖`, `⟨a, b⟩`, …) are paired delimiters ("enclosing operator", "delimited form", "bracketed expression", informally "sandwich operator").
 
 ```
 operator ‖Vec v‖ -> Float  { return v.length() }  // norm
