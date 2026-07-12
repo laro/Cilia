@@ -193,166 +193,212 @@ In the diagram below, nodes higher up bind tighter; arrows point from looser tow
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph BT
-    parens["(…)"]
-    braces["{…}"]
-    unqualifiedName["x"]
+    parens["Primary
+(…)"]
+    braces["Primary
+{…}"]
+    unqualifiedName["Primary
+x"]
 
     top --> parens & braces & unqualifiedName
-    top((" "))
+    top(("Primary"))
 
     suffixOps --> top
-    suffixOps{"x.y
-               x.(…)
-               x->y
-               x->(…)
-               x(…)
-               x[y]"}
+    suffixOps{"Postfix
+x.y
+x.(…)
+x->y
+x->(…)
+x(…)
+x[y]"}
 
     qualifiedType --> suffixOps
-    qualifiedType["const T"]
+    qualifiedType["TypeQualifier
+const T"]
 
     pointerType --> qualifiedType
-    pointerType{"T*"}
+    pointerType{"PointerType
+T*"}
 
     pointer --> suffixOps
-    pointer{"*x
-             &x"}
+    pointer{"Indirection
+*x
+&x"}
 
     prefixMath & complement & incDec --> pointer
-    complement["^x
-                ~x"]
-    prefixMath["-x
-                +x
-                √x
-                ⊖x"]
-    incDec["++x
-            --x"]
+    complement["PrefixBitwise
+^x
+~x"]
+    prefixMath["PrefixArithmetic
+-x
++x
+√x
+⊖x"]
+    incDec["PrefixIncrement
+++x
+--x"]
 
     unary --> pointerType & prefixMath & complement
-    unary((" "))
+    unary(("Prefix"))
 
 
     power --> unary
-    power[\"x ** y"\]
+    power[\"Power
+x ** y"\]
 
     multiplication --> power
-    multiplication[/"x * y
-                    x / y
-                    x × y
-                    x ⋅ y
-                    x ⊙ y
-                    x ⊘ y
-                    x ⊗ y
-                    x ⊛ y
-                    x ∗ y"/]
+    multiplication[/"Multiplication
+x * y
+x / y
+x × y
+x ⋅ y
+x ⊙ y
+x ⊘ y
+x ⊗ y
+x ⊛ y
+x ∗ y"/]
     addition --> multiplication
-    addition[/"x + y
-              x - y
-              x ⊞ y
-              x ⊟ y
-              x ⊕ y
-              x ⊖ y"/]
+    addition[/"Addition
+x + y
+x - y
+x ⊞ y
+x ⊟ y
+x ⊕ y
+x ⊖ y"/]
 
     modulo & rotate & shiftLeft & shiftRight & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
-    modulo["x % y"]
-    rotate["x <<< y
-            x >>> y"]
-    shiftLeft[/"x << y"/]
-    shiftRight[/"x >> y"/]
-    bitwiseAnd[/"x & y"/]
-    bitwiseOr[/"x | y"/]
-    bitwiseXor[/"x ^ y"/]
+    modulo["Modulo
+x % y"]
+    rotate["Rotation
+x <<< y
+x >>> y"]
+    shiftLeft[/"Shift
+x << y"/]
+    shiftRight[/"Shift
+x >> y"/]
+    bitwiseAnd[/"BitwiseAnd
+x & y"/]
+    bitwiseOr[/"BitwiseOr
+x | y"/]
+    bitwiseXor[/"BitwiseXor
+x ^ y"/]
 
     binaryOps --> addition & modulo & rotate & shiftLeft & shiftRight & bitwiseAnd & bitwiseOr & bitwiseXor
-    binaryOps((" "))
+    binaryOps(("Infix"))
 
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
     range --> binaryOps
-    range["x .. y
-           x ..< y"]
+    range["RangeFormation
+x .. y
+x ..< y"]
 
     equality & comparison & parallel --> range
-    equality["x == y
-              x != y
-              x ≠ y"]
-    comparison["x <=> y
-                x < y
-                x > y
-                x <= y
-                x >= y
-                x ≤ y
-                x ≥ y"]
-    parallel["x ⟂ y
-              x ∥ y
-              x ∦ y"]
+    equality["Equality
+x == y
+x != y
+x ≠ y"]
+    comparison["Comparison
+x <=> y
+x < y
+x > y
+x <= y
+x >= y
+x ≤ y
+x ≥ y"]
+    parallel["Parallel
+x ⟂ y
+x ∥ y
+x ∦ y"]
 
     setUnion & setIntersection & setDifference --> range
-    setUnion[/"x ∪ y"/]
-    setIntersection[/"x ∩ y"/]
-    setDifference[/"x ∖ y"/]
+    setUnion[/"Union
+x ∪ y"/]
+    setIntersection[/"Intersection
+x ∩ y"/]
+    setDifference[/"SetDifference
+x ∖ y"/]
 
     setOps --> setUnion & setIntersection & setDifference
-    setOps((" "))
+    setOps(("SetAlgebra"))
     membership & subset --> setOps
 
-    membership["x ∈ y
-                x ∉ y
-                x ∋ y
-                x ∌ y"]
-    subset["x ⊆ y
-            x ⊇ y
-            x ⊂ y
-            x ⊃ y"]
+    membership["Membership
+x ∈ y
+x ∉ y
+x ∋ y
+x ∌ y"]
+    subset["Subset
+x ⊆ y
+x ⊇ y
+x ⊂ y
+x ⊃ y"]
 
     %% Use a longer arrow here to put `not` next to other unary operators
     not ---------> suffixOps
-    not["not x
-         !x
-         ¬x"]
+    not["LogicalNegation
+not x
+!x
+¬x"]
 
 
     logicalOperand --> equality & comparison & membership & subset & parallel & not
-    logicalOperand((" "))
+    logicalOperand(("Relational"))
 
 
     %% Currently "as" is not yet fully defined, and it obscures the graph layout somehow...
     %% as ------> unary
-    %% as["x as T"]
+    %% as["Cast
+%%x as T"]
 
     and & or & xor & nandNor & andAmp & orAmp & andSym & orSym & xorSym --> logicalOperand
-    and[/"x and y"/]
-    or[/"x or y"/]
-    xor[/"x xor y"/]
-    nandNor["x nand y
-             x nor y"]
-    andAmp[/"x && y"/]
-    orAmp[/"x || y"/]
-    andSym[/"x ∧ y"/]
-    orSym[/"x ∨ y"/]
-    xorSym[/"x ⊻ y"/]
+    and[/"LogicalConjunction
+x and y"/]
+    or[/"LogicalDisjunction
+x or y"/]
+    xor[/"LogicalExclusiveOr
+x xor y"/]
+    nandNor["LogicalNandNor
+x nand y
+x nor y"]
+    andAmp[/"LogicalConjunction
+x && y"/]
+    orAmp[/"LogicalDisjunction
+x || y"/]
+    andSym[/"LogicalConjunction
+x ∧ y"/]
+    orSym[/"LogicalDisjunction
+x ∨ y"/]
+    xorSym[/"LogicalExclusiveOr
+x ⊻ y"/]
 
     %% logicalExpression ---> as
     logicalExpression --> and & or & xor & nandNor & andAmp & orAmp & andSym & orSym & xorSym
-    logicalExpression((" "))
+    logicalExpression(("Logical"))
 
 
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> logicalExpression
-    insideParens["(…)"]
-    assignPlain["x = y"]
-    assignArithmetic["x += y
-                      x -= y
-                      x *= y
-                      x /= y
-                      x %= y"]
-    assignShift["x <<= y
-                 x >>= y
-                 x <<<= y
-                 x >>>= y"]
-    assignBitwise["x &= y
-                   x |= y
-                   x ^= y"]
-    assignLogical["x &&= y
-                   x ||= y"]
+    insideParens["Parenthesized
+(…)"]
+    assignPlain["Assignment
+x = y"]
+    assignArithmetic["Assignment
+x += y
+x -= y
+x *= y
+x /= y
+x %= y"]
+    assignShift["Assignment
+x <<= y
+x >>= y
+x <<<= y
+x >>>= y"]
+    assignBitwise["Assignment
+x &= y
+x |= y
+x ^= y"]
+    assignLogical["Assignment
+x &&= y
+x ||= y"]
 ```
 {:.extra-wide-pre}
 
