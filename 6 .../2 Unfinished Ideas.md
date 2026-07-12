@@ -125,7 +125,7 @@ operator (Set<T> a) ∖ (Set<T> b) -> Set<T> { return a.difference(b) }
 
 ### Operator Precedence
 
-Group names in the diagram below correspond to `precedencegroup` declarations (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence)).
+Group names in the diagram below correspond to `precedence` declarations (see [Custom Operators with Declared Precedence](#custom-operators-with-declared-precedence)).
 
 List of **all currently known operators**:
 
@@ -439,7 +439,7 @@ a ** (b ** c)"\]
 > **Note**  
 > Admittedly, all of this is rather complex.
 
-For custom symbols, fixity and precedence must be declared explicitly — modelled after [Swift SE-0077](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0077-operator-precedence.md). Operator **implementations** use the existing `operator` syntax from the [Operators](/advanced/operators/) chapter.
+For custom symbols, fixity and precedence must be declared explicitly — roughly modelled after [Swift SE-0077](https://github.com/swiftlang/swift-evolution/blob/main/proposals/0077-operator-precedence.md). Operator **implementations** use the existing `operator` syntax from the [Operators](/advanced/operators/) chapter.
 
 The two main difficulties are:
 - operator precedence (partial ordering via named _precedence groups_, not magic numbers),
@@ -452,20 +452,20 @@ Declaration is in **three separate steps**:
 Named groups replace numeric precedence levels. Groups form a **partial** ordering: neighbouring operators without a defined relation require parentheses (compile error otherwise).
 
 ```
-precedencegroup MultiplicationPrecedence {
+precedence Multiplication {
     associativity: left
-    lowerThan: PowerPrecedence
+    lowerThan: Power
 }
 
-precedencegroup PowerPrecedence {
+precedence Power {
     associativity: right
-    higherThan: MultiplicationPrecedence
+    higherThan: Multiplication
 }
 ```
 
 - `associativity`: `left`, `right`, or `none`
 - `higherThan` / `lowerThan`: position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names)
-- Built-in groups include `MultiplicationPrecedence`, `AdditionPrecedence`, `ComparisonPrecedence`, `LogicalConjunctionPrecedence`, `PowerPrecedence`, `RangeFormationPrecedence`, and others
+- Built-in groups include `Multiplication`, `Addition`, `Comparison`, `LogicalConjunction`, `Power`, `RangeFormation`, and others
 
 
 #### 2. Operator registration
@@ -473,18 +473,18 @@ precedencegroup PowerPrecedence {
 Fixity and (for infix) precedence group are declared explicitly:
 
 ```
-infix operator ** : PowerPrecedence
-infix operator ∘ : CompositionPrecedence
-infix operator ⊗ : TensorPrecedence
-infix operator ∪ : UnionPrecedence
-infix operator ∩ : IntersectionPrecedence
-infix operator ∖ : UnionPrecedence
+infix operator ** : Power
+infix operator ∘ : Composition
+infix operator ⊗ : Tensor
+infix operator ∪ : Union
+infix operator ∩ : Intersection
+infix operator ∖ : Union
 prefix operator √
 postfix operator ++
 ```
 
-- Infix operators without a group belong to `DefaultPrecedence` (Swift behaviour).
-- Prefix and postfix operators have fixed (high) precedence and belong to the groups `PrefixPrecedence`/`PostfixPrecedence`.
+- Infix operators without a group belong to `Default` (Swift behaviour).
+- Prefix and postfix operators have fixed (high) precedence and belong to the groups `Prefix`/`Postfix`.
 - Prefix and infix forms of the same symbol (e.g. `-`) are distinct registrations, as in C++ and Swift.
 - Word operators (`and`, `or`, `nand`, `nor`, `xor`, `not`) are standard-library built-ins; custom operators use symbol tokens.
 
