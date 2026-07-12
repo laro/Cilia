@@ -201,7 +201,7 @@ graph BT
 x"]
 
     top --> parens & braces & unqualifiedName
-    top(("Primary"))
+    top((" "))
 
     suffixOps --> top
     suffixOps{"Postfix
@@ -239,7 +239,7 @@ T*"}
 --x"]
 
     unary --> pointerType & prefixMath & complement
-    unary(("Prefix"))
+    unary((" "))
 
 
     power --> unary
@@ -284,7 +284,7 @@ x | y"/]
 x ^ y"/]
 
     binaryOps --> addition & modulo & rotate & shiftLeft & shiftRight & bitwiseAnd & bitwiseOr & bitwiseXor
-    binaryOps(("Infix"))
+    binaryOps((" "))
 
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
     range --> binaryOps
@@ -319,7 +319,7 @@ x ∩ y"/]
 x ∖ y"/]
 
     setOps --> setUnion & setIntersection & setDifference
-    setOps(("SetAlgebra"))
+    setOps((" "))
     membership & subset --> setOps
 
     membership["Membership
@@ -342,7 +342,7 @@ not x
 
 
     logicalOperand --> equality & comparison & membership & subset & parallel & not
-    logicalOperand(("Relational"))
+    logicalOperand((" "))
 
 
     %% Currently "as" is not yet fully defined, and it obscures the graph layout somehow...
@@ -373,7 +373,7 @@ x ⊻ y"/]
 
     %% logicalExpression ---> as
     logicalExpression --> and & or & xor & nandNor & andAmp & orAmp & andSym & orSym & xorSym
-    logicalExpression(("Logical"))
+    logicalExpression((" "))
 
 
     insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> logicalExpression
