@@ -227,6 +227,8 @@ T*"}
 -x
 +x
 √x
+∛x
+∜x
 ⊖x"]
     incDec["PrefixIncrement
 ++x
