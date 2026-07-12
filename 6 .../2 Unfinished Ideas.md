@@ -230,7 +230,7 @@ T*"}
 ∛x
 ∜x
 ⊖x"]
-    incDec["PrefixIncrement
+    incDec["IncrementDecrement
 ++x
 --x"]
 
