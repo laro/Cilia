@@ -267,9 +267,9 @@ x % y"]
     rotate["Rotation
 x <<< y
 x >>> y"]
-    shiftLeft[/"Shift
+    shiftLeft[/"ShiftLeft
 x << y"/]
-    shiftRight[/"Shift
+    shiftRight[/"ShiftRight
 x >> y"/]
     bitwiseAnd[/"BitwiseAnd
 x & y"/]
