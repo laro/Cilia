@@ -135,18 +135,19 @@ Incomplete ranges (need lower and/or upper bounds before use) are typically impl
 See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 
-## Multidimensional Array
+## N-Dimensional Array
 
+A multidimensional array with either
 - dynamic size
     - **`Int[,] dynamic2DArray`**  
         - `T[,] array` is the short form of `cilia::NDArray<2, T> array`
-    - `Int[,,] multidimensionalDynamicArray`  
+    - `Int[,,] threeDimensionalDynamicArray`  
         - `T[,,] array` is the short form of `cilia::NDArray<3, T> array`
     - and so on:  
         - `cilia::NDArray<N, T>`
 - static size
     - `Int[3, 2, 200]`
-        - Multidimensional static array  
+        - N-dimensional static array  
           ```
           Int[3, 2, 200] intArray3D
           intArray3D[2, 1, 199] = 1
