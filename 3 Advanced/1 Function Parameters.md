@@ -177,12 +177,12 @@ for str in stringArray {
 This is not possible with every view type, as some views do not guarantee contiguous memory access (typically when they do support stride):
 - ~~`Matrix` - `MatrixView`~~
 - ~~`Image` - `ImageView`~~
-- ~~`MDArray` - `MDArrayView` (AKA MDSpan?)~~
+- ~~`NDArray` - `NDArrayView` (AKA MDSpan?)~~
 - Maybe having some `XBasicView` instead, explicitly _without_ stride support,  
   that can cut off at start and end, but no slicing:
     - `Matrix` - `MatrixBasicView`
     - `Image` - `ImageBasicView`
-    - `MDArray` - `MDArrayBasicView`
+    - `NDArray` - `NDArrayBasicView`
 
 Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
 ```
@@ -191,11 +191,11 @@ extension  Array { InParameterType = const ArrayView }
 extension Vector { InParameterType = const VectorView }
 ```
 
-Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `MDArrayBasicView`) will be passed by reference:
+Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `NDArrayBasicView`) will be passed by reference:
 ```
 extension  Matrix { InParameterType = const MatrixBasicView& }
 extension   Image { InParameterType = const ImageBasicView& }
-extension MDArray { InParameterType = const MDArrayBasicView& }
+extension NDArray { InParameterType = const NDArrayBasicView& }
 ```
 But you do _not_ have to write that explicitly, because `const&` simply is the standard for user defined types anyway.
 
@@ -214,8 +214,8 @@ extension       MatrixView { CopyParameterType = Matrix }
 extension  MatrixBasicView { CopyParameterType = Matrix }
 extension        ImageView { CopyParameterType = Image }
 extension   ImageBasicView { CopyParameterType = Image }
-extension      MDArrayView { CopyParameterType = MDArray }
-extension MDArrayBasicView { CopyParameterType = MDArray }
+extension      NDArrayView { CopyParameterType = NDArray }
+extension NDArrayBasicView { CopyParameterType = NDArray }
 ```
 
 The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.

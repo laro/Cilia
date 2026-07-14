@@ -36,7 +36,7 @@ Vector<T = Float>
 Matrix<T = Float>
 ```
 
-- `MDArray<Int dimensions, T = Float>`
+- `NDArray<Int dimensions, T = Float>`
     - also see `MDSpan`
 - `VectorView`, `MatrixView`
 

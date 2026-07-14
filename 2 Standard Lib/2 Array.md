@@ -139,11 +139,11 @@ See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
 
 - dynamic size
     - **`Int[,] dynamic2DArray`**  
-        - `T[,] array` is the short form of `cilia::MDArray<2, T> array`
+        - `T[,] array` is the short form of `cilia::NDArray<2, T> array`
     - `Int[,,] multidimensionalDynamicArray`  
-        - `T[,,] array` is the short form of `cilia::MDArray<3, T> array`
+        - `T[,,] array` is the short form of `cilia::NDArray<3, T> array`
     - and so on:  
-        - `cilia::MDArray<N, T>`
+        - `cilia::NDArray<N, T>`
 - static size
     - `Int[3, 2, 200]`
         - Multidimensional static array  
@@ -151,11 +151,11 @@ See Rust [Slices](https://doc.rust-lang.org/book/ch04-03-slices.html)
           Int[3, 2, 200] intArray3D
           intArray3D[2, 1, 199] = 1
           ```
-        - `cilia::StaticMDArray<Int, 3, 2, 200> intArray3D`
+        - `cilia::StaticNDArray<Int, 3, 2, 200> intArray3D`
 - Mixed forms of static and dynamic array
     - `Int[3][,] dynamic2DArrayOfArrayOfThreeInt`
     - `Int[3,4][] dynamicArrayOfArrayOfThreeByFourInt`
-- `MDArrayView`
+- `NDArrayView`
 
 
 ## Associative Array
