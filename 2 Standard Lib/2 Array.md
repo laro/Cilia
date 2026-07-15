@@ -55,7 +55,16 @@ extension<type T, Int N> T[N] {
 }
 ```
 
-Use `T+`/`UniquePtr<T>` for "raw" C/C++ arrays of arbitrary size.  
+Use references like `Int[3]&` to handle externally given arrays:  
+```
+Int[3]& arrayRef = array  // array from the example above
+arrayPtr[0] = 0
+arrayPtr[1] = 0
+arrayPtr[2] = 0
+arrayPtr[3] = 0  // Compilation error, due to compile time bounds check
+```
+
+Use `T+`/`UniquePtr<T>` when creating "raw" C/C++ arrays of arbitrary size.  
 But array subscript with `Int+` is unsafe.
 ```
 Int[0]+ array = new Int[3]
@@ -99,7 +108,7 @@ Int[3]+ arrayPtr = new Int[3]
 (*arrayPtr)[3] = 0  // Compilation error, due to compile time bounds check
 ```
 
-But raw pointer access is still `unsafe`:  
+And raw pointer access is still `unsafe` as you need to delete the array manually:
 ```
 unsafe {
     Int[3]* arrayPtr = new Int[3]
