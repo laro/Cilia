@@ -560,43 +560,43 @@ operator ⟨Vector<Float> a, b⟩ -> Float { ... }                // inner produ
 
 More bracket variants (asymmetric pairs only; some may be used in reversed order, e.g. `≫...≪`; see also [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)):
 
-| Pair    | Category       | Name / note                                                      |
-| ------- | -------------- | ---------------------------------------------------------------- |
-| `⟨...⟩` | angle          | angle brackets (inner product)                                    |
-| `⟪...⟫` | angle          | double angle brackets                                            |
-| `⦑...⦒` | angle          | angle bracket with dot                                           |
-| `⦅...⦆` | round          | double parenthesis                                               |
-| `⟮...⟯` | round          | flattened parenthesis                                            |
-| `⦃...⦄` | curly          | white curly bracket                                              |
-| `⟦...⟧` | square         | white / semantic ("Scott") square brackets                       |
-| `⦋...⦌` | square         | square bracket with underbar                                     |
-| `⦍...⦎` | square         | square bracket with ticks                                        |
-| `⦏...⦐` | square         | square bracket with ticks (mirrored)                             |
-| `⁅...⁆` | square         | square bracket with quill                                        |
-| `⌊...⌋` | floor/ceiling  | floor (round down)                                               |
-| `⌈...⌉` | floor/ceiling  | ceiling (round up)                                               |
-| `⦗...⦘` | tortoise-shell | black tortoise-shell bracket                                     |
-| `⟬...⟭` | tortoise-shell | white tortoise-shell bracket                                     |
-| `⦇...⦈` | Z notation     | image bracket                                                    |
-| `⦉...⦊` | Z notation     | binding bracket                                                  |
-| `⦓...⦔` | arc            | arc less/greater-than bracket                                   |
-| `⦕...⦖` | arc            | double-line arc bracket                                         |
-| `⟅...⟆` | bag            | S-shaped bag delimiter                                           |
-| `⌜...⌝` | corners        | top corners (quine corners)                                      |
-| `⌞...⌟` | corners        | bottom corners                                                   |
-| `⸢...⸣` | corners        | top half brackets                                                |
-| `⸤...⸥` | corners        | bottom half brackets                                             |
-| `≪...≫` | operator       | much-less/greater-than (relational operator, not a true bracket) |
-| `⋘...⋙` | operator       | very-much-less/greater-than (operator)                           |
-| `‹...›` | quotation      | single guillemets (quotation, not math)                          |
-| `«...»` | quotation      | double guillemets (quotation, not math)                          |
-| `❨...❩` | ornamental     | parenthesis ornament (decorative)                                |
-| `❪...❫` | ornamental     | flattened parenthesis ornament                                   |
-| `❬...❭` | ornamental     | angle bracket ornament                                           |
-| `❮...❯` | ornamental     | heavy angle quotation ornament                                   |
-| `❰...❱` | ornamental     | heavy angle bracket ornament                                     |
-| `❲...❳` | ornamental     | tortoise-shell bracket ornament                                  |
-| `❴...❵` | ornamental     | curly bracket ornament                                           |
+| Pair    | Name / note                                     |
+| ------- | ----------------------------------------------- |
+| `⟨...⟩` | angle brackets (inner product)                   |
+| `⟪...⟫` | double angle brackets                           |
+| `⦑...⦒` | angle bracket with dot                          |
+| `⦅...⦆` | double parenthesi                               |
+| `⟮...⟯` | flattened parenthesi                            |
+| `⦃...⦄` | white curly bracket                             |
+| `⟦...⟧` | white / semantic ("Scott") square brackets      |
+| `⦋...⦌` | square bracket with underbar                    |
+| `⦍...⦎` | square bracket with ticks                       |
+| `⦏...⦐` | square bracket with ticks (mirrored)            |
+| `⁅...⁆` | square bracket with quill                       |
+| `⌊...⌋` | floor (round down)                              |
+| `⌈...⌉` | ceiling (round up)                              |
+| `⦗...⦘` | black tortoise-shell bracket                    |
+| `⟬...⟭` | white tortoise-shell bracket                    |
+| `⦇...⦈` | image bracket                                   |
+| `⦉...⦊` | binding bracket                                 |
+| `⦓...⦔` | arc less/greater-than bracket                  |
+| `⦕...⦖` | double-line arc bracket                        |
+| `⟅...⟆` | S-shaped bag delimiter                          |
+| `⌜...⌝` | top corners (quine corners)                     |
+| `⌞...⌟` | bottom corners                                  |
+| `⸢...⸣` | top half brackets                               |
+| `⸤...⸥` | bottom half brackets                            |
+| `≪...≫` | much-less/greater-than (relational operator, not a true bracket) |
+| `⋘...⋙` | very-much-less/greater-than (operator)          |
+| `‹...›` | single guillemets (quotation, not math)         |
+| `«...»` | double guillemets (quotation, not math)                          |
+| `❨...❩` | parenthesis ornament (decorative)               |
+| `❪...❫` | flattened parenthesis ornament                  |
+| `❬...❭` | angle bracket ornament                          |
+| `❮...❯` | heavy angle quotation ornament                  |
+| `❰...❱` | heavy angle bracket ornament                    |
+| `❲...❳` | tortoise-shell bracket ornament                 |
+| `❴...❵` | curly bracket ornament                                           |
 
 
 ### N-Ary Operators
