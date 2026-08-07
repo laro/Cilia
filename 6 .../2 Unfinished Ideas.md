@@ -556,7 +556,8 @@ operator ⟨Vector<Float> a, b⟩ -> Float { ... }    // inner product
     - In _operand_ position (expression start, after an infix operator, after `(`, `,`, `=`, …) a `|` can only _open_ an abs; in _operator_ position it _closes_ the innermost open abs, otherwise it is infix bitwise `or`. This stays unambiguous because Cilia has no implicit multiplication — so `a | b | c` can only be bitwise `or`, and even `|a + |b||` nests cleanly as `abs(a + abs(b))`.
     - The only real cost: a bitwise `or` _directly_ inside an abs must be parenthesized as `|(a | b)|`, because a bare `|a | b|` closes after `a`. That is a clear compile error, not a silent misparse.
 - `||x||` for `norm(x)` also needs a position-aware parser to distinguish from logical-or. Or use `‖x‖` (U+2016).
-- Symmetric delimiters that use the _same_ character for open and close (`‖…‖`, `|…|`) can in fact be parsed and nested via the position rule above (`‖a + ‖b‖‖` = `norm(a + norm(b))`), but the close-first rule is not obvious to human readers and editor bracket-matching is hard. Asymmetric pairs (e.g. `⟨…⟩`) avoid all of this.
+
+While symmetric delimiters that use the _same_ character for open and close (`‖…‖`, `|…|`) can be parsed and nested via the position rule above (`‖a + ‖b‖‖` = `norm(a + norm(b))`), the close-first rule is not obvious to human readers and editor bracket-matching is hard. Asymmetric pairs (e.g. `⟨…⟩`) avoid all of this.
 
 More bracket variants (asymmetric pairs only; some may be used in reversed order, e.g. `≫...≪`; see also [Unicode Math Brackets](http://xahlee.info/comp/unicode_math_brackets.html)):
 
