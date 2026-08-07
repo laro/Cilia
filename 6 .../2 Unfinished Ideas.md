@@ -549,7 +549,7 @@ Bracket / "sandwich" operators (like `‖x‖`, `⟨a, b⟩`, …) are paired de
 
 ```
 operator ‖Vec v‖ -> Float  { return v.length() }  // norm
-operator ⟨Vector<Float> a, b⟩ -> Float { ... }                // inner product
+operator ⟨Vector<Float> a, b⟩ -> Float { ... }    // inner product
 ```
 
 - `|x|` for `abs(x)` is problematic, as `|` is also the bitwise `or` operator, but it should be parseable with a position-aware (Pratt) parser.
