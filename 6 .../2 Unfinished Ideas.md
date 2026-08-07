@@ -552,10 +552,11 @@ operator ‖Vec v‖ -> Float  { return v.length() }  // norm
 operator ⟨Vector<Float> a, b⟩ -> Float { ... }    // inner product
 ```
 
-- `|x|` for `abs(x)` is problematic, as `|` is also the bitwise `or` operator, but it should be parseable with a position-aware (Pratt) parser.
-    - In _operand_ position (expression start, after an infix operator, after `(`, `,`, `=`, …) a `|` can only _open_ an abs; in _operator_ position it _closes_ the innermost open abs, otherwise it is infix bitwise `or`. This stays unambiguous because Cilia has no implicit multiplication — so `a | b | c` can only be bitwise `or`, and even `|a + |b||` nests cleanly as `abs(a + abs(b))`.
-    - The only real cost: a bitwise `or` _directly_ inside an abs must be parenthesized as `|(a | b)|`, because a bare `|a | b|` closes after `a`. That is a clear compile error, not a silent misparse.
-- `||x||` for `norm(x)` also needs a position-aware parser to distinguish from logical-or. Or use `‖x‖` (U+2016).
+`|x|` for `abs(x)` is problematic, as `|` is also the bitwise `or` operator, but it should be parseable with a position-aware (Pratt) parser.
+- In _operand_ position (expression start, after an infix operator, after `(`, `,`, `=`, …) a `|` can only _open_ an abs; in _operator_ position it _closes_ the innermost open abs, otherwise it is infix bitwise `or`. This stays unambiguous because Cilia has no implicit multiplication — so `a | b | c` can only be bitwise `or`, and even `|a + |b||` nests cleanly as `abs(a + abs(b))`.
+- The only real cost: a bitwise `or` _directly_ inside an abs must be parenthesized as `|(a | b)|`, because a bare `|a | b|` closes after `a`. That is a clear compile error, not a silent misparse.
+
+`||x||` for `norm(x)` also needs a position-aware parser to distinguish from logical-or. Or use `‖x‖` (U+2016).
 
 While symmetric delimiters that use the _same_ character for open and close (`‖…‖`, `|…|`) can be parsed and nested via the position rule above (`‖a + ‖b‖‖` = `norm(a + norm(b))`), the close-first rule is not obvious to human readers and editor bracket-matching is hard. Asymmetric pairs (e.g. `⟨…⟩`) avoid all of this.
 
@@ -563,41 +564,41 @@ More bracket variants (asymmetric pairs only; some may be used in reversed order
 
 | Pair    | Name / note                                     |
 | ------- | ----------------------------------------------- |
-| `⟨…⟩` | angle brackets (inner product)                   |
-| `⟪…⟫` | double angle brackets                           |
-| `⦑…⦒` | angle bracket with dot                          |
-| `⦅…⦆` | double parenthesi                               |
-| `⟮…⟯` | flattened parenthesi                            |
-| `⦃…⦄` | white curly bracket                             |
-| `⟦…⟧` | white / semantic ("Scott") square brackets      |
-| `⦋…⦌` | square bracket with underbar                    |
-| `⦍…⦎` | square bracket with ticks                       |
-| `⦏…⦐` | square bracket with ticks (mirrored)            |
-| `⁅…⁆` | square bracket with quill                       |
-| `⌊…⌋` | floor (round down)                              |
-| `⌈…⌉` | ceiling (round up)                              |
-| `⦗…⦘` | black tortoise-shell bracket                    |
-| `⟬…⟭` | white tortoise-shell bracket                    |
-| `⦇…⦈` | image bracket                                   |
-| `⦉…⦊` | binding bracket                                 |
-| `⦓…⦔` | arc less/greater-than bracket                  |
-| `⦕…⦖` | double-line arc bracket                        |
-| `⟅…⟆` | S-shaped bag delimiter                          |
-| `⌜…⌝` | top corners (quine corners)                     |
-| `⌞…⌟` | bottom corners                                  |
-| `⸢…⸣` | top half brackets                               |
-| `⸤…⸥` | bottom half brackets                            |
-| `≪…≫` | much-less/greater-than (relational operator, not a true bracket) |
-| `⋘…⋙` | very-much-less/greater-than (operator)          |
-| `‹…›` | single guillemets (quotation, not math)         |
-| `«…»` | double guillemets (quotation, not math)                          |
-| `❨…❩` | parenthesis ornament (decorative)               |
-| `❪…❫` | flattened parenthesis ornament                  |
-| `❬…❭` | angle bracket ornament                          |
-| `❮…❯` | heavy angle quotation ornament                  |
-| `❰…❱` | heavy angle bracket ornament                    |
-| `❲…❳` | tortoise-shell bracket ornament                 |
-| `❴…❵` | curly bracket ornament                                           |
+| `⟨...⟩` | angle brackets (inner product)                   |
+| `⟪...⟫` | double angle brackets                           |
+| `⦑...⦒` | angle bracket with dot                          |
+| `⦅...⦆` | double parenthesi                               |
+| `⟮...⟯` | flattened parenthesi                            |
+| `⦃...⦄` | white curly bracket                             |
+| `⟦...⟧` | white / semantic ("Scott") square brackets      |
+| `⦋...⦌` | square bracket with underbar                    |
+| `⦍...⦎` | square bracket with ticks                       |
+| `⦏...⦐` | square bracket with ticks (mirrored)            |
+| `⁅...⁆` | square bracket with quill                       |
+| `⌊...⌋` | floor (round down)                              |
+| `⌈...⌉` | ceiling (round up)                              |
+| `⦗...⦘` | black tortoise-shell bracket                    |
+| `⟬...⟭` | white tortoise-shell bracket                    |
+| `⦇...⦈` | image bracket                                   |
+| `⦉...⦊` | binding bracket                                 |
+| `⦓...⦔` | arc less/greater-than bracket                  |
+| `⦕...⦖` | double-line arc bracket                        |
+| `⟅...⟆` | S-shaped bag delimiter                          |
+| `⌜...⌝` | top corners (quine corners)                     |
+| `⌞...⌟` | bottom corners                                  |
+| `⸢...⸣` | top half brackets                               |
+| `⸤...⸥` | bottom half brackets                            |
+| `≪...≫` | much-less/greater-than (relational operator, not a true bracket) |
+| `⋘...⋙` | very-much-less/greater-than (operator)          |
+| `‹...›` | single guillemets (quotation, not math)         |
+| `«...»` | double guillemets (quotation, not math)         |
+| `❨...❩` | parenthesis ornament (decorative)               |
+| `❪...❫` | flattened parenthesis ornament                  |
+| `❬...❭` | angle bracket ornament                          |
+| `❮...❯` | heavy angle quotation ornament                  |
+| `❰...❱` | heavy angle bracket ornament                    |
+| `❲...❳` | tortoise-shell bracket ornament                 |
+| `❴...❵` | curly bracket ornament                          |
 
 
 ### N-Ary Operators
