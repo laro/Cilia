@@ -552,7 +552,7 @@ operator ‖Vec v‖ -> Float  { return v.length() }  // norm
 operator ⟨Vector<Float> a, b⟩ -> Float { ... }    // inner product
 ```
 
-`|x|` for `abs(x)` is problematic, as `|` is also the bitwise `or` operator, but it should be parseable with a position-aware (Pratt) parser.
+`|x|` for `abs(x)` is problematic, as `|` is also the bitwise `or` operator, but it should be parseable with a position-aware (Pratt) parser. 
 - In _operand_ position (expression start, after an infix operator, after `(`, `,`, `=`, …) a `|` can only _open_ an abs; in _operator_ position it _closes_ the innermost open abs, otherwise it is infix bitwise `or`. This stays unambiguous because Cilia has no implicit multiplication — so `a | b | c` can only be bitwise `or`, and even `|a + |b||` nests cleanly as `abs(a + abs(b))`.
 - The only real cost: a bitwise `or` _directly_ inside an abs must be parenthesized as `|(a | b)|`, because a bare `|a | b|` closes after `a`. That is a clear compile error, not a silent misparse.
 
