@@ -27,7 +27,7 @@ The long form is called `Array<T>`, not ~~`Vector<T>`~~, because
 - by using the word "vector", the purpose of this class is not immediately clear (especially not for users of many languages other than C++, not even C),
 - `Vector` could too easily collide with the mathematical vector (as used in linear algebra and geometry).
 
-`Bool[]`/`Array<Bool>` is realized as an array of bytes (i.e. each boolean occupies one byte, it is _not_ a packed bit representation like `vector<bool>`). If you need a packed representation, use `BitArray` instead.
+`Bool[]`/`Array<Bool>` is realized as a packed array of bits, same as `vector<bool>`. I like the compact, memory efficient storage. Use `ByteBoolArray` instead, if you need to have each boolean stored as one byte, e.g. for pointers to members.
 
 "Raw" C/C++ arrays are handled with `T*` instead.  
 `std::array` is called `cilia::StaticArray` instead.
