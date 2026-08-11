@@ -11,8 +11,6 @@ There is a Cilia variant of each standard class/concept (with CamelCase class na
 - `cilia::String` instead of `std::string`
 - `SharedPtr` instead of `shared_ptr`
 - `ValueType` instead of `value_type`
-- `FlatMap` instead of `flat_map`
-- `FlatSet` instead of `flat_set`
 
 Some exceptions/variations:
 - `Array` instead of `vector`
@@ -24,10 +22,12 @@ Some exceptions/variations:
     - `HashMap` instead of `unordered_map`
     - `SortedMultiMap` instead of `multimap`
     - `HashMultiMap` instead of `unordered_multimap`
+    - `FlatSortedMap` instead of `flat_map`
 - `SortedSet` instead of `set`
     - `HashSet` instead of `unordered_set`
     - `SortedMultiSet` instead of `multiset`
     - `HashMultiSet` instead of `unordered_multiset`
+    - `FlatSortedSet` instead of `flat_set`
 
 
 ## Shallow Wrappers
