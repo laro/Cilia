@@ -3,7 +3,7 @@ permalink: /comparison/swift/
 description: "Swift equivalent of Cilia code. var/let, [String], Set, [String: ContactInfo]. Closest syntax match."
 ---
 
-This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Swift:
+# Basic Lines of Code in Swift
 
 - Types
     - `Int`, `Int32`, `Int64`, `Double`

@@ -3,7 +3,7 @@ permalink: /comparison/cilia/
 description: "Cilia syntax by example: types, variables, functions, loops. Reference for comparison with C++, Cpp2, Carbon, Rust, Swift, Kotlin, Java, C#, D. Side-by-side equivalents."
 ---
 
-These are some basic lines of code in Cilia:
+# Basic Lines of Code in Cilia
 
 - Types
     - `Int`, `Int32`, `Int64`, `Float`
@@ -25,7 +25,7 @@ These are some basic lines of code in Cilia:
     - `for word in words { ... }`
 
 
-# Syntax Comparison with Other Languages
+## Syntax Comparison with Other Languages
 
 The syntax comparison on the following pages aims to show the exact equivalent of the Cilia code above, in various other languages.
 
@@ -40,7 +40,7 @@ In [C++](cpp/), [Cpp2](cpp2/), [Rust](rust/), [Java](java/), [C#](csharp/), and 
 That's OK, this is not a performance benchmark.
 
 
-## Syntax of Carbon and Cpp2
+## Syntax of Carbon, Cpp2 and Rust
 
 While Carbon and Cpp2 ("C++ syntax 2") are based on the same basic idea, a new syntax with C++ interoperability, they both have a syntax more resembling Rust than C++.  
 

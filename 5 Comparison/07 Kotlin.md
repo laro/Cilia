@@ -3,7 +3,7 @@ permalink: /comparison/kotlin/
 description: "Kotlin equivalent of Cilia code. var/val, MutableList, mutableSetOf, mutableMapOf. JVM syntax."
 ---
 
-This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Kotlin:
+# Basic Lines of Code in Kotlin
 
 - Types
     - `Int`, `Long`, `Double`

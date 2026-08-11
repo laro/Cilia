@@ -3,7 +3,7 @@ permalink: /comparison/java/
 description: "Java equivalent of Cilia code. ArrayList, Matrix<double>, HashMap, var, static methods. JVM collections."
 ---
 
-This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Java:
+# Basic Lines of Code in Java
 
 - Types
     - `int`, `long`, `double`

@@ -3,7 +3,7 @@ permalink: /comparison/carbon/
 description: "Carbon equivalent of Cilia code. var/let, fn keyword, Array(String), HashMap. Google's C++ successor."
 ---
 
-This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Carbon:
+# Basic Lines of Code in Carbon
 
 - Types
     - `i32`, `i64`, `f64`

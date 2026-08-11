@@ -3,7 +3,7 @@ permalink: /comparison/rust/
 description: "Rust equivalent of Cilia code. let mut, Vec, Matrix, HashMap, fn. Ownership and borrowing syntax."
 ---
 
-This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Rust:
+# Basic Lines of Code in Rust
 
 - Types
     - `isize`, `i32`, `i64`, `f64`
