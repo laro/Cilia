@@ -11,10 +11,8 @@ There is a Cilia variant of each standard class/concept (with CamelCase class na
 - `cilia::String` instead of `std::string`
 - `SharedPtr` instead of `shared_ptr`
 - `ValueType` instead of `value_type`
-- `Map` instead of `map`
-    - `FlatMap` instead of `flat_map`
-- `Set` instead of `set`
-    - `FlatSet` instead of `flat_set`
+- `FlatMap` instead of `flat_map`
+- `FlatSet` instead of `flat_set`
 
 Some exceptions/variations:
 - `Array` instead of `vector`
@@ -22,10 +20,12 @@ Some exceptions/variations:
     - `TextStream`, `ByteStream`, ...
 - `LinkedList` instead of `list` (a doubly linked list)
     - `ForwardLinkedList` instead of `forward_list` (a singly linked list)
-- `HashMap` instead of `unordered_map`
+- `SortedMap` instead of `map`
+    - `HashMap` instead of `unordered_map`
     - `MultiMap` instead of `multimap`
     - `HashMultiMap` instead of `unordered_multimap`
-- `HashSet` instead of `unordered_set`
+- `SortedSet` instead of `set`
+    - `HashSet` instead of `unordered_set`
     - `MultiSet` instead of `multiset`
     - `HashMultiSet` instead of `unordered_multiset`
 
