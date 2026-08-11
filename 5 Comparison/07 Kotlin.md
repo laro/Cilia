@@ -12,7 +12,7 @@ This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#
     - `var n = 42`
     - `val n = 42`
     - `var words: MutableList<String> = mutableListOf()`
-    - `var names: MutableSet<String> = mutableSetOf()`
+    - `var names: HashSet<String> = HashSet<String>()`
     - <span class="wide">`var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`</span>
 - Functions
     - `fun multiply(a: Int, b: Int): Int { return a * b }`
