@@ -13,7 +13,6 @@ This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) 
     - `val n = 42`
     - `var words: MutableList<String> = mutableListOf()`
     - `var mat = Matrix<Double>()`
-    - `var names: HashSet<String> = HashSet<String>()`
     - <span class="wide">`var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`</span>
 - Functions
     - `fun multiply(a: Int, b: Int): Int { return a * b }`
