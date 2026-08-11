@@ -12,7 +12,7 @@ These are some basic lines of code in Cilia:
     - `var n = 42`
     - `const n = 42`
     - `String[] words`
-    - `Set<String> names`
+    - `HashSet<String> names`
     - `ContactInfo[String] contactInfoForID`
 - Functions
     - `func multiply(Int a, b) -> Int { return a * b }`
