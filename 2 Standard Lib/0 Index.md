@@ -18,15 +18,15 @@ Some exceptions/variations:
     - `TextStream`, `ByteStream`, ...
 - `LinkedList` instead of `list` (a doubly linked list)
     - `ForwardLinkedList` instead of `forward_list` (a singly linked list)
-- `SortedMap` instead of `map`
-    - `HashMap` instead of `unordered_map`
-    - `SortedMultiMap` instead of `multimap`
+- `HashMap` instead of `unordered_map`
     - `HashMultiMap` instead of `unordered_multimap`
+    - `SortedMap` instead of `map`
+    - `SortedMultiMap` instead of `multimap`
     - `FlatSortedMap` instead of `flat_map`
-- `SortedSet` instead of `set`
-    - `HashSet` instead of `unordered_set`
-    - `SortedMultiSet` instead of `multiset`
+- `HashSet` instead of `unordered_set`
     - `HashMultiSet` instead of `unordered_multiset`
+    - `SortedSet` instead of `set`
+    - `SortedMultiSet` instead of `multiset`
     - `FlatSortedSet` instead of `flat_set`
 
 
