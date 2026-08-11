@@ -82,7 +82,7 @@ if 1 <= x <= 10 { ... }
       }
       ```
     - _Not every_ C/C++ for-loop can be expressed as a Cilia for-loop,  
-      but in general, any C/C++ for-loop can be converted into a while-loop.
+      but then it (and in general, _any_ C/C++ for-loop) can be converted into a while-loop.
         - ```
           for (<Initialization>; <Condition>; <Increment>) {
               <Body>
@@ -98,7 +98,7 @@ if 1 <= x <= 10 { ... }
               }
           }
           ```
-        - IMHO the code is even more clear when written as while-loop.
+        - IMHO the code is even more clear when written as while-loop (though not so dense).
         - Note:  
           When the `<Condition>` is empty, then it needs to be replaced with `True`, so `for (;;) { ... }` is translated to `while True { ... }`.
 
