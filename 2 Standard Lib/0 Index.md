@@ -11,10 +11,6 @@ There is a Cilia variant of each standard class/concept (with CamelCase class na
 - `cilia::String` instead of `std::string`
 - `SharedPtr` instead of `shared_ptr`
 - `ValueType` instead of `value_type`
-- `Map` instead of `map`
-    - `FlatMap` instead of `flat_map`
-- `Set` instead of `set`
-    - `FlatSet` instead of `flat_set`
 
 Some exceptions/variations:
 - `Array` instead of `vector`
@@ -23,11 +19,15 @@ Some exceptions/variations:
 - `LinkedList` instead of `list` (a doubly linked list)
     - `ForwardLinkedList` instead of `forward_list` (a singly linked list)
 - `HashMap` instead of `unordered_map`
-    - `MultiMap` instead of `multimap`
     - `HashMultiMap` instead of `unordered_multimap`
+    - `SortedMap` instead of `map`
+    - `SortedMultiMap` instead of `multimap`
+    - `FlatSortedMap` instead of `flat_map`
 - `HashSet` instead of `unordered_set`
-    - `MultiSet` instead of `multiset`
     - `HashMultiSet` instead of `unordered_multiset`
+    - `SortedSet` instead of `set`
+    - `SortedMultiSet` instead of `multiset`
+    - `FlatSortedSet` instead of `flat_set`
 
 
 ## Shallow Wrappers
@@ -43,8 +43,7 @@ with "**aliases**" for:
 - Member functions  
   `using func pushBack = push_back`
 
-A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it. We can even use the basic Cilia types when using the C++ APIs,  
-e.g.
+A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it. We can even use the basic Cilia types when using the C++ APIs, e.g.
 - `T[]` for `vector<T>`,
 - `Int32` for `int32_t`,
 - `String` for `string`.
