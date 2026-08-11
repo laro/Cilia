@@ -3,16 +3,16 @@ permalink: /comparison/carbon/
 description: "Carbon equivalent of Cilia code. var/let, fn keyword, Array(String), HashMap. Google's C++ successor."
 ---
 
-This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Carbon:
+This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Carbon:
 
 - Types
-    - `i32`, `i64`, `f32`
+    - `i32`, `i64`, `f64`
 - Variables
     - `var n: i64 = 42;`
     - `var n = 42;`
     - `let n = 42;`
     - `var words: Array(String);`
-    - `var names: Set(String);`
+    - `var mat = Matrix(f64)();`
     - `var contactInfoForID: HashMap(String, ContactInfo);`
 - Functions
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`

@@ -3,16 +3,16 @@ permalink: /comparison/kotlin/
 description: "Kotlin equivalent of Cilia code. var/val, MutableList, mutableSetOf, mutableMapOf. JVM syntax."
 ---
 
-This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Kotlin:
+This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Kotlin:
 
 - Types
-    - `Int`, `Long`, `Float`
+    - `Int`, `Long`, `Double`
 - Variables
     - `var n: Int = 42`
     - `var n = 42`
     - `val n = 42`
     - `var words: MutableList<String> = mutableListOf()`
-    - `var names: MutableSet<String> = mutableSetOf()`
+    - `var mat = Matrix<Double>()`
     - <span class="wide">`var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`</span>
 - Functions
     - `fun multiply(a: Int, b: Int): Int { return a * b }`

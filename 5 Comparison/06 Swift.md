@@ -3,16 +3,16 @@ permalink: /comparison/swift/
 description: "Swift equivalent of Cilia code. var/let, [String], Set, [String: ContactInfo]. Closest syntax match."
 ---
 
-This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Swift:
+This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Swift:
 
 - Types
-    - `Int`, `Int32`, `Int64`, `Float`
+    - `Int`, `Int32`, `Int64`, `Double`
 - Variables
     - `var n: Int = 42`
     - `var n = 42`
     - `let n = 42`
     - `var words: [String] = []`
-    - `var names: Set<String> = Set()`
+    - `var mat = Matrix<Double>()`
     - `var contactInfoForID: [String: ContactInfo] = [:]`
 - Functions
     - `func multiply(_ a: Int, _ b: Int) -> Int { return a * b }`

@@ -1,18 +1,18 @@
 ---
 permalink: /comparison/java/
-description: "Java equivalent of Cilia code. ArrayList, HashSet, HashMap, var, static methods. JVM collections."
+description: "Java equivalent of Cilia code. ArrayList, Matrix<double>, HashMap, var, static methods. JVM collections."
 ---
 
-This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Java:
+This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Java:
 
 - Types
-    - `int`, `long`, `float`
+    - `int`, `long`, `double`
 - Variables
     - `int n = 42;`
     - `var n = 42;`
     - `final var n = 42;`
     - `var words = new ArrayList<String>();`
-    - `var names = new HashSet<String>();`
+    - `var mat = new Matrix<double>();`
     - `var contactInfoForID = new HashMap<String, ContactInfo>();`
 - Functions
     - `static int multiply(int a, int b) { return a * b; }`

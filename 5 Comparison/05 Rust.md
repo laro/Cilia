@@ -1,18 +1,18 @@
 ---
 permalink: /comparison/rust/
-description: "Rust equivalent of Cilia code. let mut, Vec, HashSet, HashMap, fn. Ownership and borrowing syntax."
+description: "Rust equivalent of Cilia code. let mut, Vec, Matrix, HashMap, fn. Ownership and borrowing syntax."
 ---
 
-This is (should be) the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Rust:
+This is the exact equivalent of the [Cilia code](/comparison/cilia/#by-example) in Rust:
 
 - Types
-    - `isize`, `i32`, `i64`, `f32`
+    - `isize`, `i32`, `i64`, `f64`
 - Variables
     - `let mut n: i64 = 42;`
     - `let mut n = 42;`
     - `let n = 42;`
     - `let mut words = Vec::<String>::new();`
-    - `let mut names = HashSet::<String>::new();`
+    - `let mut mat = Matrix::<f64>::new();`
     - <span class="wide">`let mut contactInfoForID = HashMap::<String, ContactInfo>::new();`</span>
 - Functions
     - `fn multiply(a: i64, b: i64) -> i64 { a * b }`
