@@ -22,11 +22,11 @@ Some exceptions/variations:
     - `ForwardLinkedList` instead of `forward_list` (a singly linked list)
 - `SortedMap` instead of `map`
     - `HashMap` instead of `unordered_map`
-    - `MultiMap` instead of `multimap`
+    - `SortedMultiMap` instead of `multimap`
     - `HashMultiMap` instead of `unordered_multimap`
 - `SortedSet` instead of `set`
     - `HashSet` instead of `unordered_set`
-    - `MultiSet` instead of `multiset`
+    - `SortedMultiSet` instead of `multiset`
     - `HashMultiSet` instead of `unordered_multiset`
 
 
