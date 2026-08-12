@@ -12,7 +12,7 @@ description: "Swift equivalent of Cilia code. var/let, [String], Set, [String: C
     - `var n = 42`
     - `let n = 42`
     - `var words: [String] = []`
-    - `var mat = Matrix<Double>()`
+    - `var mat = Matrix<Double>(1000, 2000, repeating: 0.0)`
     - `var contactInfoForID: [String: ContactInfo] = [:]`
 - Functions
     - `func multiply(_ a: Int, _ b: Int) -> Int { return a * b }`
