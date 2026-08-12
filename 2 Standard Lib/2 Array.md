@@ -181,6 +181,6 @@ as short form of
 `HashMap<String, ContactInfo> contactInfoForID`
 
 
-Maybe translate **`TValue[TKey]`** to an intermediate type `Map<TKey, TValue>`, with a partial template specialization:
+Maybe translate `TValue[TKey]` to an intermediate type `Map<TKey, TValue>`, with a partial template specialization:
 - `Map<Int, ...>` is a `HashMap<Int, ...>`
 - `Map<String, ...>` is a `SortedMap<String, ...>`
