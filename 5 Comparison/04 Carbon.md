@@ -12,7 +12,7 @@ description: "Carbon equivalent of Cilia code. var/let, fn keyword, Array(String
     - `var n = 42;`
     - `let n = 42;`
     - `var words: Array(String);`
-    - `var mat: Matrix(f64) = Matrix(f64).Make(1000, 2000, 0.0);`
+    - `var M: Matrix(f64) = Matrix(f64).Make(1000, 2000, 0.0);`
     - `var contactInfoForID: HashMap(String, ContactInfo);`
 - Functions
     - `fn multiply(a: i64, b: i64) -> i64 { return a * b; }`
