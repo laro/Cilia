@@ -39,6 +39,10 @@ Matrix<T = Float>
 - `NDArray<Int dimensions, T = Float>`
     - also see `MDSpan`
 - `VectorView`, `MatrixView`
+- More matrix types in `linalg`:
+    - `Symmetric<T>`, `Hermitian<T>`
+    - `Triangular<T>` or `UpperTriangular<T>`/`LowerTriangular<T>`
+    - `Diagonal<T>`, `Identity<T>`
 
 
 ## Column-Major
@@ -55,6 +59,6 @@ Matrices (unlike images) are stored column-major, like:
 
 The default datatype is `Float` (with 64-bit precision), which is well suited for scientific calculations.
 
-Feel free to define your own type aliases:
+Feel free to define your own type aliases for special purposes:
 - `using Vec3 = cilia::Vector3<Float32>`
 - `using RGB = cilia::Vector3<UInt8>`
