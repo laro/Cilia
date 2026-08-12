@@ -175,8 +175,8 @@ Also known as map (or dictionary).
 
 There is no difference between these two forms, but the long form is necessary for other map variants (MultiMap, FlatSortedMap, etc.).
 
-Example:
-`ContactInfo[String] contactInfoForID`
+Example:  
+`ContactInfo[String] contactInfoForID`  
 as short form of  
 `HashMap<String, ContactInfo> contactInfoForID`
 
