@@ -41,7 +41,7 @@ Matrix<T = Float>
 - `VectorView`, `MatrixView`
 - More matrix types in `linalg`:
     - `Symmetric<T>`, `Hermitian<T>`
-    - `Triangular<T>` or `UpperTriangular<T>`/`LowerTriangular<T>`
+    - `UpperTriangular<T>`/`LowerTriangular<T>`
     - `Diagonal<T>`, `Identity<T>`
 
 
