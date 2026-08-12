@@ -171,17 +171,16 @@ A multidimensional array with either
 ## Associative Array
 
 AKA Map (or Dictionary).  
-**`TValue[TKey]`** as short form of `Map<TKey, TValue>` (as [in D](https://dlang.org/spec/hash-map.html)).
+**`TValue[TKey]`** as short form of `HashMap<TKey, TValue>` (as [in D](https://dlang.org/spec/hash-map.html)).
 
-There is no difference between these two forms, but the long form is necessary for other map variants (SortedMap, HashMap, etc.).
+There is no difference between these two forms, but the long form is necessary for other map variants (MultiMap, FlatSortedMap, etc.).
 
 Example:
-```
-ContactInfo[String] contactInfoForID
-// as short form of  
-Map<String, ContactInfo> contactInfoForID
-```
+`ContactInfo[String] contactInfoForID`
+as short form of  
+`HashMap<String, ContactInfo> contactInfoForID`
 
-Maybe partial template specialization:
-- `Map<Int, ...>` is a `HashMap`
-- `Map<String, ...>` is a `SortedMap`
+
+Maybe translate **`TValue[TKey]`** to an intermediate type `Map<TKey, TValue>`, with a partial template specialization:
+- `Map<Int, ...>` is a `HashMap<Int, ...>`
+- `Map<String, ...>` is a `SortedMap<String, ...>`
