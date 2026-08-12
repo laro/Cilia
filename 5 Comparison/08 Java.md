@@ -12,7 +12,7 @@ description: "Java equivalent of Cilia code. ArrayList, Matrix<double>, HashMap,
     - `var n = 42;`
     - `final var n = 42;`
     - `var words = new ArrayList<String>();`
-    - `var mat = new Matrix<double>();`
+    - `var mat = new Matrix<>(1000, 2000, 0.0);`
     - `var contactInfoForID = new HashMap<String, ContactInfo>();`
 - Functions
     - `static int multiply(int a, int b) { return a * b; }`
