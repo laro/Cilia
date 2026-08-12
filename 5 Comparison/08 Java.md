@@ -12,7 +12,7 @@ description: "Java equivalent of Cilia code. ArrayList, Matrix<double>, HashMap,
     - `var n = 42;`
     - `final var n = 42;`
     - `var words = new ArrayList<String>();`
-    - `var mat = new DoubleMatrix(1000, 2000, 0.0);`
+    - `var M = new DoubleMatrix(1000, 2000, 0.0);`
     - `var contactInfoForID = new HashMap<String, ContactInfo>();`
 - Functions
     - `static int multiply(int a, int b) { return a * b; }`
@@ -26,3 +26,4 @@ description: "Java equivalent of Cilia code. ArrayList, Matrix<double>, HashMap,
 
 > **Note**  
 > In Java `int` and `42` are 32 bits wide, not 64 bits.  
+> And there are no "value-type generics". 
