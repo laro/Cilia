@@ -12,7 +12,7 @@ description: "Rust equivalent of Cilia code. let mut, Vec, Matrix, HashMap, fn. 
     - `let mut n = 42;`
     - `let n = 42;`
     - `let mut words = Vec::<String>::new();`
-    - `let mut mat = Matrix::<f64>::new(1000, 2000, 0.0);`
+    - `let mut M = Matrix::<f64>::new(1000, 2000, 0.0);`
     - <span class="wide">`let mut contactInfoForID = HashMap::<String, ContactInfo>::new();`</span>
 - Functions
     - `fn multiply(a: i64, b: i64) -> i64 { a * b }`
