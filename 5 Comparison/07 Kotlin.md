@@ -12,7 +12,7 @@ description: "Kotlin equivalent of Cilia code. var/val, MutableList, mutableSetO
     - `var n = 42`
     - `val n = 42`
     - `var words: MutableList<String> = mutableListOf()`
-    - `var mat = Matrix<Double>(1000, 2000, 0.0)`
+    - `var mat = DoubleMatrix(1000, 2000, 0.0)`
     - <span class="wide">`var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`</span>
 - Functions
     - `fun multiply(a: Int, b: Int): Int { return a * b }`
