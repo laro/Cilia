@@ -170,7 +170,7 @@ A multidimensional array with either
 
 ## Associative Array
 
-AKA Map (or Dictionary).  
+Also known as map (or dictionary).  
 **`TValue[TKey]`** as short form of `HashMap<TKey, TValue>` (as [in D](https://dlang.org/spec/hash-map.html)).
 
 There is no difference between these two forms, but the long form is necessary for other map variants (MultiMap, FlatSortedMap, etc.).
