@@ -12,7 +12,7 @@ description: "Cilia syntax by example: types, variables, functions, loops. Refer
     - `var n = 42`
     - `const n = 42`
     - `String[] words`
-    - `Matrix<Float> mat`
+    - `Matrix<Float> mat(1000, 2000, 0.0)`
     - `ContactInfo[String] contactInfoForID`
 - Functions
     - `func multiply(Int a, b) -> Int { return a * b }`
