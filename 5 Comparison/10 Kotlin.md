@@ -11,7 +11,7 @@ description: "Kotlin equivalent of Cilia code. var/val, MutableList, mutableSetO
     - `var n: Int = 42`
     - `var n = 42`
     - `val n = 42`
-    - `var words: MutableList<String> = mutableListOf()`
+    - `var words = ArrayList<String>()`
     - `var M = DoubleMatrix(1000, 2000, 0.0)`
     - <span class="wide">`var contactInfoForID: MutableMap<String, ContactInfo> = mutableMapOf()`</span>
 - Functions
@@ -26,4 +26,4 @@ description: "Kotlin equivalent of Cilia code. var/val, MutableList, mutableSetO
 
 > **Note**  
 > In Kotlin `Int` and `42` are 32 bits wide, not 64 bits.  
-> An `Array` has a fixed size.
+> An `Array` has a fixed size, so we use `ArrayList` instead.
