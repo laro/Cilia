@@ -26,4 +26,4 @@ description: "Java equivalent of Cilia code. ArrayList, Matrix<double>, HashMap,
 
 > **Note**  
 > In Java `int` and `42` are 32 bits wide, not 64 bits.  
-> And there are no "value-type generics" until “(Project Valhalla)[https://en.wikipedia.org/wiki/Project_Valhalla_(Java_language)]” is done. 
+> And there are no "value-type generics" until “[Project Valhalla](https://en.wikipedia.org/wiki/Project_Valhalla_(Java_language))” is done. 
