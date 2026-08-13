@@ -121,12 +121,6 @@ class Service : Greeter, Logger {
 ```
 
 
-## No ~~`struct`~~
-
-Not using ~~`struct`~~, as it would be just too similar to `class` (especially in Cilia) with no real benefit. Keep as a reserved keyword for future use.  
-Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada).
-
-
 ## `this`-Reference
 
 In member functions `this` is a reference to the instance/object (not a pointer).
@@ -141,3 +135,10 @@ class Latin1String {
 }
 ```
 Getting the pointer via `&this`.
+
+
+## No ~~`struct`~~
+
+Not using ~~`struct`~~, as it would be just too similar to `class` (especially in Cilia) with no real benefit. Keep as a reserved keyword for future use.
+
+Cilia's roots are more in C++ and OOP than in plain C. Not using ~~`record`~~ either (Pascal, Ada), nor just ~~`type`~~, as C++ and Cilia implement OOP like Simula 67, with classes, objects, encapsulation, inheritance, polymorphism, and dynamic/virtual binding.
