@@ -42,7 +42,7 @@ The loop variable of a `for ... in` loop can be passed as `in`, `inout`, `copy`,
 
 The exception caught by `catch` is passed as `in`:
 ```
-catch (Exception e) {
+catch Exception ex {
     ...
 }
 ```
