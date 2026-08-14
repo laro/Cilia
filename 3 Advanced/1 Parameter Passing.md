@@ -1,11 +1,11 @@
 ---
-permalink: /advanced/function-parameters/
+permalink: /advanced/parameter-passing/
 description: "Cilia parameter passing: in, inout, out, copy, move, forward. InParameterType, CopyParameterType, view types."
 ---
 
-# Function Parameter Passing Modes
+# Parameter Passing Modes
 
-Each function parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it is input-only, mutable, output, copied, or moved.
+Each parameter in Cilia has a "parameter passing mode" that defines how its argument is passed and used — whether it is input-only, mutable, output, copied, or moved.
 
 The basic idea is to have the most efficient/appropriate parameter passing as the default, and to give more the intent than the technical realization.
 
@@ -13,11 +13,20 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 
 **Default is passing as `in`**-parameter. So if no parameter passing keyword is given, `in` parameter passing is used. All other parameter passing methods need to be explicitly given.
 
+
+## Function Parameters
+
 Function call parameters are passed as either `in`, `inout`, `out`, `copy`, or `move`. The wording fits nicely for function parameters: How does the parameter get into the function body (or out of it).  
 Template function call parameters can also be `forward`ed.
 
+
+## Loop Variables
+
 The loop variable of `for ... in` is passed as either `in`, `inout`, `copy`, or `move`. With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).  
 (`out` and `forward` are not applicable here.)
+
+
+## Exception Handlers
 
 The argument of `catch ... { ... }` is passed as `in`.  
 (`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here.)
