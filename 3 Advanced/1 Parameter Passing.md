@@ -16,20 +16,38 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 
 ## Function Parameters
 
-Function call parameters are passed as either `in`, `inout`, `out`, `copy`, or `move`. The wording fits nicely for function parameters: How does the parameter get into the function body (or out of it).  
-Template function call parameters can also be `forward`ed.
+Function call parameters are passed as either:
+- `in` — input-only; the default
+- `inout` — input and mutable
+- `out` — output-only
+- `copy` — passed by value, creating a copy
+- `move` — transfers ownership/value
+- `forward` — preserves the argument's passing mode for forwarding from a template function
+
+The wording describes how the argument gets into or out of the function body.  
 
 
 ## Loop Variables
 
-The loop variable of `for ... in` is passed as either `in`, `inout`, `copy`, or `move`. With `for` loops these keywords describe how the information (i.e. the variable) gets into the body of the loop (or out of it).  
-(`out` and `forward` are not applicable here.)
+The loop variable of a `for ... in` loop can be passed as `in`, `inout`, `copy`, or `move`. Here, the passing mode describes how the loop variable gets into the loop body:
+- `in` — read-only access; the default
+- `inout` — mutable access to the iteration element
+- `copy` — a copy of the iteration element
+- `move` — moves the iteration element into the loop body
+
+`out` and `forward` are not applicable to loop variables.
 
 
 ## Exception Handlers
 
-The argument of `catch ... { ... }` is passed as `in`.  
-(`copy`, `inout`, `move` are not recommended, `out` and `forward` are not applicable here.)
+The exception caught by `catch` is passed as `in`:
+```
+catch (Exception e) {
+    ...
+}
+```
+
+`copy`, `inout`, `move` are not recommended for exception handlers, `out` and `forward` are not applicable.
 
 
 ## Parameter Passing Mode Keywords
