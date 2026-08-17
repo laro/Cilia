@@ -64,4 +64,4 @@ Examples:
 
 By default, function arguments are passed as const reference. Only small types (with a size of up to 16 bytes) are passed as const value.
 
-For details, see [Function Parameters](/advanced/function-parameters/).
+For details, see [Parameter Passing](/advanced/parameter-passing/).
