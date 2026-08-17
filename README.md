@@ -44,7 +44,7 @@ Furthermore it is a collection of – in my opinion – quite obvious ideas. And
     - `for i in [5, 7, 11, 13] { ... }`
     - `for word in words { ... }`
 
-Corresponding code for C++, Cpp2, Carbon, etc. is given [separately](/comparison/).
+Corresponding code for [C++](/comparison/cpp/), [Cpp2](/comparison/cpp2/), [Carbon](/comparison/carbon/), etc. is given separately.
 
 Also see example code for [Matrix Multiply](/examples/matrix-multiply/), [Sieve of Eratosthenes](/examples/sieve-of-eratosthenes/), [QuickSort](/examples/quicksort/), and [FizzBuzz](/examples/fizzbuzz/).
 
