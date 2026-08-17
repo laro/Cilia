@@ -32,7 +32,7 @@ Furthermore it is a collection of – in my opinion – quite obvious ideas. And
     - `var n = 42`
     - `const n = 42`
     - `String[] words`
-    - `Matrix<Float> mat`
+    - `Matrix<Float> M(1000, 2000, 0.0)`
     - `ContactInfo[String] contactInfoForID`
 - Functions
     - `func multiply(Int a, b) -> Int { return a * b }`
