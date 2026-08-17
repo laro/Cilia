@@ -25,7 +25,7 @@ description: "Cilia basic types: Bool, Int (Int8–Int64), UInt, Byte, Float. In
 `Int` is
 - `Int64` (like in Swift and Go) on virtually all modern systems,
 - `Int32` on systems with a 32-bit address bus only (i.e. old/small platforms, like Win32/x86),
-- `Int16` on systems with a 16-bit address bus (i.e. very small microcontrollers like ATtiny, or very old like 6502, Z80).
+- `Int16` on systems with a 16-bit address bus (i.e. very small microcontrollers like AVR/ATtiny/ATmega, or very old like 6502, Z80).
 
 Simply use `Int`,
 - _not_ ~~`Size`~~, ~~`SSize`~~, nor ~~`PtrDiff`~~,
