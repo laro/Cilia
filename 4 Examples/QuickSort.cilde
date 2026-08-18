@@ -24,7 +24,7 @@ funktion schnellSort<Sortierbar T>(Spanne<T> reihe) {
 
     // Rekursion über die beiden Teilreihen
     wenn rechts > 0 {
-        schnellSort(reihe[0..rechts+1])
+        schnellSort(reihe[0..rechts])
     }
     wenn links < reihe.größe() - 1 {
         schnellSort(reihe[links..])
