@@ -180,6 +180,6 @@ as short form of
 
 There is no difference between these two forms, but only in the long form you can frrely chose the map variant (e.g. HashMap, SortedMap, MultiMap, FlatSortedMap, etc.).
 
-`Map<TKey, TValue>` is actually an intermediate type only, with partial template specializations:
-- `Map<..., ContactInfo>` might be a `HashMap<..., ContactInfo>`
-- `Map<..., Float>` might be a `FlatHashMap<..., Float>`
+`Map<type TKey, type TValue>` is actually an intermediate type only, with partial template specializations:
+- `Map<type TKey, ContactInfo>` might be a `HashMap<TKey, ContactInfo>`
+- `Map<type TKey, Float>` might be a `FlatHashMap<TKey, Float>`
