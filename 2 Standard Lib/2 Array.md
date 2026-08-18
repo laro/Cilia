@@ -171,16 +171,15 @@ A multidimensional array with either
 ## Associative Array
 
 Also known as map (or dictionary).  
-**`TValue[TKey]`** as short form of `HashMap<TKey, TValue>` (as [in D](https://dlang.org/spec/hash-map.html)).
+**`TValue[TKey]`** as short form of `Map<TKey, TValue>` (similar to [in D](https://dlang.org/spec/hash-map.html)).
 
-There is no difference between these two forms, but the long form is necessary for other map variants (MultiMap, FlatSortedMap, etc.).
+There is no difference between these two forms, but the long form is used for other map variants (MultiMap, FlatSortedMap, etc.).
 
 Example:  
 `ContactInfo[String] contactInfoForID`  
 as short form of  
-`HashMap<String, ContactInfo> contactInfoForID`
+`Map<String, ContactInfo> contactInfoForID`
 
-
-Maybe translate `TValue[TKey]` to an intermediate type `Map<TKey, TValue>`, with a partial template specialization:
-- `Map<Int, ...>` is a `HashMap<Int, ...>`
-- `Map<String, ...>` is a `SortedMap<String, ...>`
+`Map<TKey, TValue>` is actually an intermediate type only, with partial template specializations:
+- `Map<..., ContactInfo>` might be a `HashMap<..., ContactInfo>`
+- `Map<..., Float>` might be a `FlatHashMap<..., Float>`
