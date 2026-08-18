@@ -7,9 +7,9 @@ description: "Cilia operators: a**b for pow, and/or/nand/nor/xor. Operator overl
 
 ## Power Function
 
-**`a**x`** for `pow(a, x)` (as in Python), "raise a to the power of x".
+**`a ** x`** for `pow(a, x)` (as in Python), "raise a to the power of x".
 
-infix operator with right-to-left associativity, so `a**b**c` parses as `a**(b**c)`.
+infix operator with right-to-left associativity, so `a ** b ** c` parses as `a ** (b ** c)`.
 
 
 ## Boolean and Bitwise Operators
