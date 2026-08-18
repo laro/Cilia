@@ -178,7 +178,7 @@ Example:
 as short form of  
 `Map<String, ContactInfo> contactInfoForID`
 
-There is no difference between these two forms, but only in the long form you can frrely chose the map variant (e.g. HashMap, SortedMap, MultiMap, FlatSortedMap, etc.).
+There is no difference between these two forms, but only in the long form you can freely chose the map _variant_ (e.g. HashMap, SortedMap, MultiMap, FlatSortedMap, etc.).
 
 `Map<type TKey, type TValue>` is actually an intermediate type only, with partial template specializations:
 - `Map<type TKey, ContactInfo>` might be a `HashMap<TKey, ContactInfo>`
