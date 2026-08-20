@@ -159,8 +159,8 @@ class PhysicalMemory : MemoryAllocator {
 
 ### DMA Memory
 
-Will allocate in page size, too.
 Some physical memory pages may be out of reach for DMA, so better use this (when you need DMA).
+Will allocate in page size, too.
 
 ```
 class DmaMemory : MemoryAllocator {
