@@ -18,6 +18,10 @@ class MemoryAllocator {
         return address
     }
     func delete<type T>(T* address) {
+        if address == NullPtr {
+            return
+        }
+
         address->~T()
         free(address)
     }
