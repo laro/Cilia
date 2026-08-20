@@ -50,7 +50,7 @@ class FastMemory : MemoryAllocator {
 ```
 
 PSRAM attached via QSPI.
-Probably the default, simply as much more of this type is available.
+Probably the default, simply as much more memory of this type is available.
 ```
 class SlowMemory : MemoryAllocator {
     override func malloc(Int size) -> Byte* { ... }
