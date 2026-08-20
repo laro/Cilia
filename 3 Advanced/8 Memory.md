@@ -1,0 +1,170 @@
+---
+permalink: /standard-lib/memory/
+description: "Memory allocation with new or special/custom allocators."
+---
+
+# Memory Allocation
+
+Abstract base class for "all" memory allocators.
+
+```
+class MemoryAllocator {
+    virtual func malloc(Int size) -> Byte* = 0
+    virtual func free(Byte*) = 0
+
+    func new<type T>(TArgs args ...) -> T+ {
+        Byte* address = malloc(sizeof(T))
+        new (address) T(args ...)
+        return address
+    }
+    func delete<type T>(T* address) {
+        address->~T()
+        free(address)
+    }
+}
+```
+
+## Arena Allocator
+
+Allocates memory sequentially from a contiguous memory region (the arena).
+Individual objects are not freed; the entire arena is released or reset at once.
+This makes allocation extremely fast.
+
+```
+class Arena : MemoryAllocator {
+    Arena(Int size) {
+        memory = ::alloc(size)
+        next = memoy
+    }
+    ~Arena() {
+        ::free(memory)
+    }
+
+    override func malloc(Int size) -> Byte* {
+        Byte* address = next
+        next += size
+        return address
+    }
+    override func free(Byte* address) {
+        // Does nothing
+    }
+
+protected:
+    Byte* memory
+    Byte* next
+}
+```
+
+
+## Temporary Memory Allocator
+
+A full fledged memory allocator, meant to keep allocations for a special purpose cache-friendly "in one place".
+
+Should be based on a free-list and several pools for e.g.  
+16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256,
+320, 384, 448, 512 bytes.
+
+```
+class TemporaryMemory : MemoryAllocator {
+    TemporaryMemory(Int size) {
+        // Allocate a single large block of memory, e.g. via HeapAlloc()
+    }
+    ~TemporaryMemory() {
+        // Free the large block of memory, e.g. via HeapFree()
+    }
+
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address) { ... }
+
+protected:
+    Byte* memory
+    // ...
+}
+```
+
+
+## User Space
+
+Default memory allocator using heap memory.
+```
+class Memory : MemoryAllocator {
+    override func malloc(Int size, Int alignment) -> Byte* {
+        return reinterpretCast<Byte*>()::malloc(size))
+    }
+    override func free(Byte* address) {
+        ::free(address)
+    }
+}
+```
+
+
+## Microcontroller
+
+The fast, on-chip memory of an Pi Pico.
+```
+class FastMemory : MemoryAllocator {
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address)  { ... }
+}
+```
+
+PSRAM attached via QSPI.
+Probably the default, simply as much more of this type is available.
+```
+class SlowMemory : MemoryAllocator {
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address)  { ... }
+}
+```
+
+
+## Kernel Space
+
+Default memory allocator in kernel space, based on kvmalloc():
+- kmalloc()/kfree() for small allocations,
+- vmalloc()/vfree() for bigger allocations.
+
+```
+class Memory : MemoryAllocator {
+    override func malloc(Int size, Int alignment) -> Byte* {
+        Byte* address = kmalloc(size, __GFP_NOWARN)
+        if address !=)NullPtr
+            return address
+
+        return vmalloc(size)
+    }
+
+    override func free(Byte* address) {
+        if is_vmalloc_addr(address) {
+            vfree(address)
+        } else {
+            kfree(address)
+        }
+    }
+}
+```
+
+
+### Physical Memory
+
+Will allocate in page size.
+
+```
+class PhysicalMemory : MemoryAllocator {
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address)  { ... }
+}
+```
+
+
+### DMA Memory
+
+Will allocate in page size, too.
+Some physical memory pages may be out of reach for DMA, so better use this (when you need DMA).
+
+```
+class DmaMemory : MemoryAllocator {
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address)  { ... }
+}
+```
