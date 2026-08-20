@@ -120,9 +120,9 @@ class SlowMemory : MemoryAllocator {
 
 ## Kernel Space
 
-Default memory allocator in kernel space, based on kvmalloc():
-- kmalloc()/kfree() for small allocations,
-- vmalloc()/vfree() for bigger allocations.
+Default memory allocator in kernel space, based on `kvmalloc()`:
+- `kmalloc()`/`kfree()` for small allocations,
+- `vmalloc()`/`vfree()` for bigger allocations.
 
 ```
 class Memory : MemoryAllocator {
