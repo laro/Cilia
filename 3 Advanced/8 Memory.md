@@ -9,7 +9,7 @@ Abstract base class for "all" memory allocators.
 
 ```
 class MemoryAllocator {
-    virtual func malloc(Int size) -> Byte* = 0
+    virtual func malloc(Int size, Int alignment = 16) -> Byte* = 0
     virtual func free(Byte*) = 0
 
     func new<type T>(TArgs args ...) -> T+ {
@@ -29,7 +29,7 @@ class MemoryAllocator {
 Default memory allocator using heap memory.
 ```
 class Memory : MemoryAllocator {
-    override func malloc(Int size, Int alignment) -> Byte* {
+    override func malloc(Int size, Int alignment = 16, Int alignment) -> Byte* {
         return Byte*(::malloc(size))
     }
     override func free(Byte* address) {
@@ -44,7 +44,7 @@ class Memory : MemoryAllocator {
 The fast, on-chip memory of an Pi Pico.
 ```
 class FastMemory : MemoryAllocator {
-    override func malloc(Int size) -> Byte* { ... }
+    override func malloc(Int size, Int alignment = 16) -> Byte* { ... }
     override func free(Byte* address)  { ... }
 }
 ```
@@ -53,7 +53,7 @@ PSRAM attached via QSPI.
 Probably the default, simply as much more memory of this type is available.
 ```
 class SlowMemory : MemoryAllocator {
-    override func malloc(Int size) -> Byte* { ... }
+    override func malloc(Int size, Int alignment = 16) -> Byte* { ... }
     override func free(Byte* address)  { ... }
 }
 ```
@@ -67,7 +67,7 @@ Default memory allocator in kernel space, based on `kvmalloc()`:
 
 ```
 class Memory : MemoryAllocator {
-    override func malloc(Int size, Int alignment) -> Byte* {
+    override func malloc(Int size, Int alignment = 16) -> Byte* {
         Byte* address = Byte*(kmalloc(size, __GFP_NOWARN))
         if address !=)NullPtr
             return address
@@ -92,7 +92,7 @@ Will allocate in page size.
 
 ```
 class PhysicalMemory : MemoryAllocator {
-    override func malloc(Int size) -> Byte* { ... }
+    override func malloc(Int size, Int alignment = system::PageSize) -> Byte* { ... }
     override func free(Byte* address)  { ... }
 }
 ```
@@ -105,7 +105,7 @@ Will allocate in page size, too.
 
 ```
 class DmaMemory : MemoryAllocator {
-    override func malloc(Int size) -> Byte* { ... }
+    override func malloc(Int size, Int alignment = system::PageSize) -> Byte* { ... }
     override func free(Byte* address)  { ... }
 }
 ```
@@ -127,7 +127,7 @@ class Arena : MemoryAllocator {
         ::free(memory)
     }
 
-    override func malloc(Int size) -> Byte* {
+    override func malloc(Int size, Int alignment = 16) -> Byte* {
         Byte* address = next
         next += size
         return address
@@ -160,7 +160,7 @@ class TemporaryMemory : MemoryAllocator {
         // Free the large block of memory, e.g. via HeapFree()
     }
 
-    override func malloc(Int size) -> Byte* { ... }
+    override func malloc(Int size, Int alignment = 16) -> Byte* { ... }
     override func free(Byte* address) { ... }
 
 protected:
