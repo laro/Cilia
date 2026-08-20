@@ -24,6 +24,93 @@ class MemoryAllocator {
 }
 ```
 
+## User Space
+
+Default memory allocator using heap memory.
+```
+class Memory : MemoryAllocator {
+    override func malloc(Int size, Int alignment) -> Byte* {
+        return Byte*(::malloc(size))
+    }
+    override func free(Byte* address) {
+        ::free(address)
+    }
+}
+```
+
+
+## Microcontroller
+
+The fast, on-chip memory of an Pi Pico.
+```
+class FastMemory : MemoryAllocator {
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address)  { ... }
+}
+```
+
+PSRAM attached via QSPI.
+Probably the default, simply as much more of this type is available.
+```
+class SlowMemory : MemoryAllocator {
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address)  { ... }
+}
+```
+
+
+## Kernel Space
+
+Default memory allocator in kernel space, based on `kvmalloc()`:
+- `kmalloc()`/`kfree()` for small allocations,
+- `vmalloc()`/`vfree()` for bigger allocations.
+
+```
+class Memory : MemoryAllocator {
+    override func malloc(Int size, Int alignment) -> Byte* {
+        Byte* address = Byte*(kmalloc(size, __GFP_NOWARN))
+        if address !=)NullPtr
+            return address
+
+        return vmalloc(size)
+    }
+
+    override func free(Byte* address) {
+        if is_vmalloc_addr(address) {
+            vfree(address)
+        } else {
+            kfree(address)
+        }
+    }
+}
+```
+
+
+### Physical Memory
+
+Will allocate in page size.
+
+```
+class PhysicalMemory : MemoryAllocator {
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address)  { ... }
+}
+```
+
+
+### DMA Memory
+
+Some physical memory pages may be out of reach for DMA, so better use this (when you need DMA).
+Will allocate in page size, too.
+
+```
+class DmaMemory : MemoryAllocator {
+    override func malloc(Int size) -> Byte* { ... }
+    override func free(Byte* address)  { ... }
+}
+```
+
+
 ## Arena Allocator
 
 Allocates memory sequentially from a contiguous memory region (the arena).
@@ -79,92 +166,5 @@ class TemporaryMemory : MemoryAllocator {
 protected:
     Byte* memory
     // ...
-}
-```
-
-
-## User Space
-
-Default memory allocator using heap memory.
-```
-class Memory : MemoryAllocator {
-    override func malloc(Int size, Int alignment) -> Byte* {
-        return reinterpretCast<Byte*>()::malloc(size))
-    }
-    override func free(Byte* address) {
-        ::free(address)
-    }
-}
-```
-
-
-## Microcontroller
-
-The fast, on-chip memory of an Pi Pico.
-```
-class FastMemory : MemoryAllocator {
-    override func malloc(Int size) -> Byte* { ... }
-    override func free(Byte* address)  { ... }
-}
-```
-
-PSRAM attached via QSPI.
-Probably the default, simply as much more of this type is available.
-```
-class SlowMemory : MemoryAllocator {
-    override func malloc(Int size) -> Byte* { ... }
-    override func free(Byte* address)  { ... }
-}
-```
-
-
-## Kernel Space
-
-Default memory allocator in kernel space, based on `kvmalloc()`:
-- `kmalloc()`/`kfree()` for small allocations,
-- `vmalloc()`/`vfree()` for bigger allocations.
-
-```
-class Memory : MemoryAllocator {
-    override func malloc(Int size, Int alignment) -> Byte* {
-        Byte* address = kmalloc(size, __GFP_NOWARN)
-        if address !=)NullPtr
-            return address
-
-        return vmalloc(size)
-    }
-
-    override func free(Byte* address) {
-        if is_vmalloc_addr(address) {
-            vfree(address)
-        } else {
-            kfree(address)
-        }
-    }
-}
-```
-
-
-### Physical Memory
-
-Will allocate in page size.
-
-```
-class PhysicalMemory : MemoryAllocator {
-    override func malloc(Int size) -> Byte* { ... }
-    override func free(Byte* address)  { ... }
-}
-```
-
-
-### DMA Memory
-
-Some physical memory pages may be out of reach for DMA, so better use this (when you need DMA).
-Will allocate in page size, too.
-
-```
-class DmaMemory : MemoryAllocator {
-    override func malloc(Int size) -> Byte* { ... }
-    override func free(Byte* address)  { ... }
 }
 ```
