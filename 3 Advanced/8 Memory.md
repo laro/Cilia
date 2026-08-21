@@ -22,14 +22,14 @@ var imagePtr = allocator.new<Image>(1920, 1080, 0.0)
 ## Memory Allocators
 
 For a plain `new` (operator as well as function template syntax) the default memory allocator is used. For special purposes, specialized allocators can be used instead:
-- Arena allocator for very fast allocations.
-- Physical, or DMA memory in the OS kernel.
-- Fast on-chip vs. slow but plenty external memory
+- Arena allocator for very fast allocations (instead of the typical free-list-with-pools-allocator).
+- Physical, or DMA memory in the OS kernel (instead of plain kernel/virtual memory).
+- Fast but limited on-chip memory (instead of slow but plenty external memory).
 
 
 ### Memory Allocator
 
-Abstract base class for "all" memory allocators.
+Abstract base class as interface for "all" memory allocators.
 
 ```
 class MemoryAllocator {
@@ -55,6 +55,7 @@ class MemoryAllocator {
 ### User Space
 
 Default memory allocator using heap memory.
+Would use `malloc`/`free` to be compatible with C++.
 ```
 class Memory : MemoryAllocator {
     override func malloc(Int size, Int alignment = 16, Int alignment) -> Byte* {
@@ -69,7 +70,7 @@ class Memory : MemoryAllocator {
 
 ### Microcontroller
 
-The fast, on-chip memory of an Pi Pico.
+The on-chip memory of an Pi Pico is very fast but quite limited.
 ```
 class FastMemory : MemoryAllocator {
     override func malloc(Int size, Int alignment = 16) -> Byte* { ... }
@@ -89,7 +90,7 @@ class SlowMemory : MemoryAllocator {
 
 ### Kernel Space
 
-Default memory allocator in kernel space, based on `kvmalloc()`:
+The default memory allocator in kernel space is based on `kvmalloc()`:
 - `kmalloc()`/`kfree()` for small allocations,
 - `vmalloc()`/`vfree()` for bigger allocations.
 
