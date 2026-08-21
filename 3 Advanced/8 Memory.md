@@ -19,54 +19,15 @@ var imagePtr = allocator.new<Image>(1920, 1080, 0.0)
 ```
 
 
-### `new` for `T+`
-
-`new T` returns a `T+`, so that is the "default type" for pointers:
-```
-ContactInfo+ uniquePtrToContactInfo = new ContactInfo
-var alsoAUniquePtrToContactInfo = new ContactInfo
-```
-
-### `new` for `T^`
-
-In Cilia,
-1. `new` acts like `makeUnique<T>() -> T+`, and
-2. a _right value_ `T+` can also be moved to a `T^`,
-
-so now you can use `new` for both pointer types:
-```
-T+ uniquePtr = new T
-T^ sharedPtr = new T // Note: nice and short, but does two allocations
-```
-```
-T+ uniquePtr = new T
-T^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
-```
-
-With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the smart pointer.
-
-### `new` for `T*`
-In Cilia a _right value_ `T+` can even be assigned to `T*`,
-so you still can use `new` for raw pointers.  
-But it is inconvenient to use, as
-- it is allowed in unsafe code only,
-- you need to manage lifetime of the instance yourself (i.e. call `delete`), and
-- you need to distinguish between a "pointer to a single element" and a "pointer to an array" (i.e. call `delete` or `delete[0]`).
-
-```
-unsafe {
-    T* ptr = NullPtr
-
-    ptr = new T
-    delete ptr
-
-    ptr = new T[10]
-    delete[0] ptr
-}
-```
-
-
 ## Memory Allocators
+
+For a plain `new` (operator as well as function template syntax) the default memory allocator is used. For special purposes, specialized allocators can be used instead:
+- Arena allocator for very fast allocations.
+- Physical, or DMA memory in the OS kernel.
+- Fast on-chip vs. slow but plenty external memory
+
+
+### Memory Allocator
 
 Abstract base class for "all" memory allocators.
 
@@ -233,5 +194,54 @@ class TemporaryMemory : MemoryAllocator {
 protected:
     Byte* memory
     // ...
+}
+```
+
+
+## Pointers and Ownership
+
+### `new` for `T+`
+
+`new T` returns a `T+`, so that is the "default type" for pointers:
+```
+ContactInfo+ uniquePtrToContactInfo = new ContactInfo
+var alsoAUniquePtrToContactInfo = new ContactInfo
+```
+
+### `new` for `T^`
+
+In Cilia,
+1. `new` acts like `makeUnique<T>() -> T+`, and
+2. a _right value_ `T+` can also be moved to a `T^`,
+
+so now you can use `new` for both pointer types:
+```
+T+ uniquePtr = new T
+T^ sharedPtr = new T // Note: nice and short, but does two allocations
+```
+```
+T+ uniquePtr = new T
+T^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
+```
+
+With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the smart pointer.
+
+### `new` for `T*`
+In Cilia a _right value_ `T+` can even be assigned to `T*`,
+so you still can use `new` for raw pointers.  
+But it is inconvenient to use, as
+- it is allowed in unsafe code only,
+- you need to manage lifetime of the instance yourself (i.e. call `delete`), and
+- you need to distinguish between a "pointer to a single element" and a "pointer to an array" (i.e. call `delete` or `delete[0]`).
+
+```
+unsafe {
+    T* ptr = NullPtr
+
+    ptr = new T
+    delete ptr
+
+    ptr = new T[10]
+    delete[0] ptr
 }
 ```
