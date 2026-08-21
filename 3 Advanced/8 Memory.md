@@ -96,7 +96,7 @@ class FastMemory : MemoryAllocator {
 PSRAM attached via QSPI.
 Probably the default, simply as much more memory of this type is available.
 ```
-class SlowMemory : MemoryAllocator {
+class ExternalMemory : MemoryAllocator {
     override func malloc(Int size, Int alignment = 16) -> Byte* { ... }
     override func free(Byte* address)  { ... }
 }
