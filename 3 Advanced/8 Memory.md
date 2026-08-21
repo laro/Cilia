@@ -5,6 +5,54 @@ description: "Memory allocation with new or special/custom allocators."
 
 # Memory Allocation
 
+## Dynamic Allocation with `new`
+
+`new` is kept for dynamic/heap allocation, as a short and quite 'traditional' syntax (also used in C# and Java). `new T` returns a `T+`, so that is the "default type" for pointers:
+```
+ContactInfo+ uniquePtrToContactInfo = new ContactInfo
+var alsoAUniquePtrToContactInfo = new ContactInfo
+```
+
+### `new` for `T^`
+In Cilia,
+1. `new` acts like `makeUnique<T>() -> T+`, and
+2. a _right value_ `T+` can also be moved to a `T^`,
+
+so now you can use `new` for both pointer types:
+```
+T+ uniquePtr = new T
+T^ sharedPtr = new T // Note: nice and short, but does two allocations
+```
+```
+T+ uniquePtr = new T
+T^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
+```
+
+With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the smart pointer.
+
+### `new` for `T*`
+In Cilia a _right value_ `T+` can even be assigned to `T*`,
+so you still can use `new` for raw pointers.  
+But it is inconvenient to use, as
+- it is allowed in unsafe code only,
+- you need to manage lifetime of the instance yourself (i.e. call `delete`), and
+- you need to distinguish between a "pointer to a single element" and a "pointer to an array" (i.e. call `delete` or `delete[0]`).
+
+```
+unsafe {
+    T* ptr = NullPtr
+
+    ptr = new T
+    delete ptr
+
+    ptr = new T[10]
+    delete[0] ptr
+}
+```
+
+
+## Memory Allocator
+
 Abstract base class for "all" memory allocators.
 
 ```
@@ -28,7 +76,7 @@ class MemoryAllocator {
 }
 ```
 
-## User Space
+### User Space
 
 Default memory allocator using heap memory.
 ```
@@ -43,7 +91,7 @@ class Memory : MemoryAllocator {
 ```
 
 
-## Microcontroller
+### Microcontroller
 
 The fast, on-chip memory of an Pi Pico.
 ```
@@ -63,7 +111,7 @@ class SlowMemory : MemoryAllocator {
 ```
 
 
-## Kernel Space
+### Kernel Space
 
 Default memory allocator in kernel space, based on `kvmalloc()`:
 - `kmalloc()`/`kfree()` for small allocations,
@@ -90,7 +138,7 @@ class Memory : MemoryAllocator {
 ```
 
 
-### Physical Memory
+#### Physical Memory
 
 Will allocate in page size.
 
@@ -102,7 +150,7 @@ class PhysicalMemory : MemoryAllocator {
 ```
 
 
-### DMA Memory
+#### DMA Memory
 
 Some physical memory pages may be out of reach for DMA, so better use this (when you need DMA).
 Will allocate in page size, too.
@@ -115,7 +163,7 @@ class DmaMemory : MemoryAllocator {
 ```
 
 
-## Arena Allocator
+### Arena Allocator
 
 Allocates memory sequentially from a contiguous memory region (the arena).
 Individual objects are not freed; the entire arena is released or reset at once.
@@ -147,7 +195,7 @@ protected:
 ```
 
 
-## Temporary Memory Allocator
+### Temporary Memory Allocator
 
 A full fledged memory allocator, meant to keep allocations for a special purpose cache-friendly "in one place".
 
