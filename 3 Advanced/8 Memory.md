@@ -27,6 +27,21 @@ For a plain `new` (operator as well as function template syntax) the default mem
 - Fast but limited on-chip memory (instead of slow but plenty external memory).
 
 
+Some allocators will be used via an instance object, e.g. the Arena allocator:
+```
+ArenaAllocator arena(20'000'000)
+var imagePtr = arena.new<Image>(1920, 1080, 0.0)
+...
+arena.reset()
+```
+
+
+Some allocators might be used via static functions, as there is only one instance anyway, e.g. the PhysicalMemory allocator:
+```
+var imagePtr = PhysicalMemory::new<Image>(1920, 1080, 0.0)
+```
+
+
 ### Memory Allocator
 
 Abstract base class as interface for "all" memory allocators.
