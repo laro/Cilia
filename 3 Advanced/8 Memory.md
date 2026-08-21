@@ -7,13 +7,28 @@ description: "Memory allocation with new or special/custom allocators."
 
 ## Dynamic Allocation with `new`
 
-`new` is kept for dynamic/heap allocation, as a short and quite 'traditional' syntax (also used in C# and Java). `new T` returns a `T+`, so that is the "default type" for pointers:
+Operator `new` is kept for dynamic/heap allocation, as a short and quite 'traditional' syntax (also used in C# and Java).
+```
+var imagePtr = new Image(1920, 1080, 0.0)
+```
+
+As an alternative, there is a function template syntax that can be more easily adapted for use with memory allocators.
+```
+var imagePtr = new<Image>(1920, 1080, 0.0)
+var imagePtr = allocator.new<Image>(1920, 1080, 0.0)
+```
+
+
+### `new` for `T+`
+
+`new T` returns a `T+`, so that is the "default type" for pointers:
 ```
 ContactInfo+ uniquePtrToContactInfo = new ContactInfo
 var alsoAUniquePtrToContactInfo = new ContactInfo
 ```
 
 ### `new` for `T^`
+
 In Cilia,
 1. `new` acts like `makeUnique<T>() -> T+`, and
 2. a _right value_ `T+` can also be moved to a `T^`,
@@ -51,7 +66,7 @@ unsafe {
 ```
 
 
-## Memory Allocator
+## Memory Allocators
 
 Abstract base class for "all" memory allocators.
 
