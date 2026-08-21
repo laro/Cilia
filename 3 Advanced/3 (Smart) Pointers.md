@@ -79,52 +79,6 @@ unsafe {
 ```
 
 
-## Dynamic Allocation with `new`
-
-`new` is kept for dynamic/heap allocation, as a short and quite 'traditional' syntax (also used in C# and Java). `new T` returns a `T+`, so that is the "default type" for pointers:
-```
-ContactInfo+ uniquePtrToContactInfo = new ContactInfo
-var alsoAUniquePtrToContactInfo = new ContactInfo
-```
-
-### `new` for `T^`
-In Cilia,
-1. `new` acts like `makeUnique<T>() -> T+`, and
-2. a _right value_ `T+` can also be moved to a `T^`,
-
-so now you can use `new` for both pointer types:
-```
-T+ uniquePtr = new T
-T^ sharedPtr = new T // Note: nice and short, but does two allocations
-```
-```
-T+ uniquePtr = new T
-T^ sharedPtr = move(uniquePtr)  // The uniquePtr is a NullPtr afterwards.
-```
-
-With `T+`/`T^` you do _not_ need to call `delete` yourself, that is done by the smart pointer.
-
-### `new` for `T*`
-In Cilia a _right value_ `T+` can even be assigned to `T*`,
-so you still can use `new` for raw pointers.  
-But it is inconvenient to use, as
-- it is allowed in unsafe code only,
-- you need to manage lifetime of the instance yourself (i.e. call `delete`), and
-- you need to distinguish between a "pointer to a single element" and a "pointer to an array" (i.e. call `delete` or `delete[0]`).
-
-```
-unsafe {
-    T* ptr = NullPtr
-
-    ptr = new T
-    delete ptr
-
-    ptr = new T[10]
-    delete[0] ptr
-}
-```
-
-
 ## `T+`/`T^` vs. `T[0]+`/`T[0]^`
 
 `T+`/`T^` is a unique/shared pointer to a _single_ object.  
