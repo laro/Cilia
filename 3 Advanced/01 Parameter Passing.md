@@ -17,7 +17,7 @@ Taken from [Cpp2 / Herb Sutter](https://hsutter.github.io/cppfront/cpp2/function
 ## Function Parameters
 
 Function call parameters are passed as either:
-- `in` — input-only; the default
+- `in` — input-only (the default)
 - `inout` — input and mutable
 - `out` — output-only
 - `copy` — passed by value, creating a copy
@@ -30,7 +30,7 @@ The wording describes how the argument gets into or out of the function body.
 ## Loop Variables
 
 The loop variable of a `for ... in` loop can be passed as `in`, `inout`, `copy`, or `move`. Here, the passing mode describes how the loop variable gets into the loop body:
-- `in` — read-only access; the default
+- `in` — read-only access (the default)
 - `inout` — mutable access to the iteration element
 - `copy` — a copy of the iteration element
 - `move` — moves the iteration element into the loop body
