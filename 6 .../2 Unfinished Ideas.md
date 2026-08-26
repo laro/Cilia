@@ -637,8 +637,8 @@ N-ary operators need an index/binder (e.g. `∑_{i=1}^{n}`) and are handled like
           func(Float -> Float) f,
           Float a,
           Float b,
-          Int steps = 1000)
-      {
+          Int steps = 1000
+      ) {
           Float h = (b - a) / steps
           Float sum = 0.0
   
