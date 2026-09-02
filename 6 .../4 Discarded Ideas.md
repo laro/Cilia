@@ -95,7 +95,7 @@ One could define the order of bits in a bitfield.
     - `function` (Julia)
 - **Extension methods**
     - Possible, alternative syntax:  
-      `func toString (Int this) -> String`
+      `func toString(Int this) -> String`
 - **Function pointers**
     - Possible, alternative syntax variants:
     - Variant B:
