@@ -28,16 +28,12 @@ description: "Cilia syntax by example: types, variables, functions, loops. Refer
 ## Syntax Comparison with Other Languages
 
 The syntax comparison on the following pages aims to show the exact equivalent of the Cilia code above, in various other languages.
+Nut in [C++](cpp/), [Cpp2](cpp2/), [Rust](rust/), [Java](java/), [C#](csharp/), and [D](d/) the type `int`/`Int` and/or literals like `42` are 32 bits wide, not 64 bits.
+That's OK, this is not a performance benchmark.
 
 > **Note**  
 > I may not be very familiar with all these languages, or not up to date.  
 > I may not even be sufficiently up to date with C++14/17/20/23/26 either.
-
-
-## Differences
-
-In [C++](cpp/), [Cpp2](cpp2/), [Rust](rust/), [Java](java/), [C#](csharp/), and [D](d/) the type `int`/`Int` and/or literals like `42` are 32 bits wide, not 64 bits.
-That's OK, this is not a performance benchmark.
 
 
 ## Syntax of Carbon, Cpp2 and Rust
