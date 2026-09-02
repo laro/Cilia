@@ -41,7 +41,7 @@ with "**aliases**" for:
   `using var x = data[0]`  
   `using var y = data[1]`
 - Member functions  
-  `using func pushBack = push_back`
+  `using func append = push_back`
 
 A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/function without it. We can even use the basic Cilia types when using the C++ APIs, e.g.
 - `T[]` for `vector<T>`,

@@ -20,7 +20,7 @@ func sieveOfEratosthenes(Int n) -> Int[] {
     primes.reserve(n / 10)
     for i in 2..n {
         if isPrime[i] {
-            primes.pushBack(i)
+            primes.append(i)
         }
     }
 

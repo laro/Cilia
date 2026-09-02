@@ -47,7 +47,7 @@ Extensions are defined similar to classes, but with the `extension` keyword.
   ```
   extension std::vector<type T> {
       // Alias for a specific signature
-      using func pushBack(String) = push_back(String)
+      using func append(String) = push_back(String)
       
       // Alias for all overloads of 'push_back'
       using func append = push_back

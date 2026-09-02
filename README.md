@@ -84,7 +84,7 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 
 - **Functions** in **lowerCamelCase**
     - `str.findFirstOf(...)`
-    - `arr.pushBack(...)`
+    - `arr.shrinkToFit()`
     - `Thread::hardwareConcurrency()`
 
 - **Global constants** in **UpperCamelCase**.
