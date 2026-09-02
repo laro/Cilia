@@ -710,28 +710,28 @@ Reserved for future use, as it could get complicated and confusing.
 Remaining candidate symbols, not yet assigned to one of the cases above (with their usual mathematical meaning):
 
 - Definition / assignment
-    - `≔` "colon equals" (`:=`) – defined as / assignment.
-    - `≕` "equals colon" (`=:`) – same, but reversed direction.
-    - `≜` "delta equal to" – equal by definition.
-    - `≝` "equal to by definition".
+    - `≔` "colon equals" (`:=`) – defined as / assignment
+    - `≕` "equals colon" (`=:`) – same, but reversed direction
+    - `≜` "delta equal to" – equal by definition
+    - `≝` "equal to by definition"
 - Logic / proof notation
-    - `∴` therefore.
-    - `∵` because.
-    - `∅` empty set.
-    - `∞` infinity.
+    - `∴` therefore
+    - `∵` because
+    - `∅` empty set
+    - `∞` infinity
 - Calculus
-    - `∇` nabla / del – gradient, divergence, curl.
-    - `∂` partial derivative.‚
+    - `∇` nabla / del – gradient, divergence, curl
+    - `∂` partial derivative
 - Geometry
-    - `∟` right angle.
+    - `∟` right angle
 - Ratios / proportions
-    - `∶` ratio (`a ∶ b`).
+    - `∶` ratio (`a ∶ b`)
     - `∷` proportion (`a∶b ∷ c∶d`); beware: `::` is the scope operator in C++ & Cilia.
-    - `∝` "proportional to" – `isProportional(a, b)`.
+    - `∝` "proportional to" – `isProportional(a, b)`
 - Approximate comparison / similarity
-    - `≈` "almost equal to" – `isClose(a, b)`.
-    - `≉` "not almost equal to" – `not isClose(a, b)`.
-    - `∼` "tilde operator" / "similar to" – `isSimilar(a, b)`.
+    - `≈` "almost equal to" – `isClose(a, b)`
+    - `≉` "not almost equal to" – `not isClose(a, b)`
+    - `∼` "tilde operator" / "similar to" – `isSimilar(a, b)`
 
 
 ## OpenMP-like Parallel Programming
