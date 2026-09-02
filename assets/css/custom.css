@@ -413,6 +413,7 @@ body > footer {
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
+  padding-top: 2rem;
 }
 
 body > footer > nav {
