@@ -405,12 +405,28 @@ nav a[aria-current="location"] {
 }
 
 
-/* Page footer: full-width flex row, license grows in the middle, prev/next at the sides (not main nav). */
+/* Page footer: license is the only in-flow row. Prev/next sit at the corners
+   and grow upward over the page content, so their labels do not stretch the footer. */
 body > footer {
+  position: relative;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   padding: 0.5rem;
+}
+
+body > footer > nav {
+  position: absolute;
+  bottom: 0.5rem;
+  z-index: 2;
+}
+
+body > footer > nav:first-of-type {
+  left: 0.5rem;
+}
+
+body > footer > nav:last-of-type {
+  right: 0.5rem;
 }
 
 body > footer > small {
@@ -429,6 +445,7 @@ body > footer .footer-keynav-link {
   font-size: 0.85rem;
   line-height: 1.2;
   padding: 0.2rem 0.3rem;
+  background: var(--color-canvas-default, #ffffff);
 }
 
 body > footer .footer-keynav-link:hover,
@@ -477,5 +494,17 @@ body > footer .footer-keynav-arrow {
 
   body > footer {
     padding: 0.2rem;
+  }
+
+  body > footer > nav {
+    bottom: 0.2rem;
+  }
+
+  body > footer > nav:first-of-type {
+    left: 0.2rem;
+  }
+
+  body > footer > nav:last-of-type {
+    right: 0.2rem;
   }
 }
