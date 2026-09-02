@@ -3,7 +3,7 @@ permalink: /standard-lib/bytestream/
 description: "Cilia IO: ByteStream, FileStream, network sockets."
 ---
 
-# Stream, File & Network IO
+# ByteStream, File & Network IO
 
 
 ## ByteStream
