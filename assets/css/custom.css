@@ -500,6 +500,7 @@ body > footer .footer-keynav-arrow {
 
   body > footer {
     padding: 0.2rem;
+    padding-top: 2rem;
   }
 
   body > footer > nav {
