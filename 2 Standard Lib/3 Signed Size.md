@@ -7,6 +7,9 @@ description: "Cilia uses Int (signed) for size(). Why signed: avoids unsigned pi
 
 Use `Int` (i.e. signed) as the return type for `*.size()`.
 
+
+## Rationale
+
 Mixing signed and unsigned integers is error-prone, and even pure unsigned arithmetic is often unintuitive and dangerous.
 
 Classic C/C++ pitfall:  
