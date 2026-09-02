@@ -6,7 +6,7 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 # TextStream & Command Line Interface
 
 
-## Global IO functions
+## Global IO Functions
 
 - `print("...")` with Newline,
     - calls `cout.writeLine()`.
