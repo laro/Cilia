@@ -433,6 +433,11 @@ body > footer > small {
   text-align: center;
 }
 
+/* Lizenz-ID nicht an Bindestrichen umbrechen. */
+body > footer > small a {
+  white-space: nowrap;
+}
+
 body > footer .footer-keynav-link {
   display: inline-flex;
   flex-direction: column;
