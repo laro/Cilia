@@ -1,4 +1,4 @@
-auto multiply(const Matrix& A, const Matrix& B) -> Matrix {
+auto multiply(const matrix& A, const matrix& B) -> matrix {
     const int m = A.rows();
     const int n = A.columns();
     const int o = B.rows();
