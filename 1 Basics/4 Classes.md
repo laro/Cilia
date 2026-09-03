@@ -59,9 +59,9 @@ class Seekable {
 }
 ```
 Interfaces have
-- *no* member variables ("data members", "fields"),
+- _no_ member variables ("data members", "fields"),
     - TODO maybe allow`const static`,
-- *no* constructors, and
+- _no_ constructors, and
 - all methods are automatically `public` and `virtual`,
     - optionally with default implementation.
 
