@@ -81,7 +81,6 @@ It is a syntax error to write:
 - ~~`Float*m`~~
     - Whitespace _between_ type specification and variable name is mandatory:  
     `Float* m`
-    - TODO Probably too difficult to realize, as the lexer already removes all whitespace.
 - ~~`Image image { width, height, 0.0 }`~~
     - No uniform / brace initialization _for plain constructors_, as there is no need anymore.
         - There are generally _no_ implicit narrowing conversions, e.g.
