@@ -504,14 +504,14 @@ body > footer .footer-keynav-arrow {
   }
 
   body > footer > nav {
-    bottom: 0.05rem;
+    bottom: 0rem;
   }
 
   body > footer > nav:first-of-type {
-    left: 0.05rem;
+    left: 0rem;
   }
 
   body > footer > nav:last-of-type {
-    right: 0.05rem;
+    right: 0rem;
   }
 }
