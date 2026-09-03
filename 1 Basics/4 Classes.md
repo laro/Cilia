@@ -92,7 +92,7 @@ interface C : A {
     ...
 }
 
-// `A` is reached via both `B` and `C`, but there is only ever one
+// 'A' is reached via both 'B' and 'C', but there is only ever one
 // object, with no duplicated state.
 class D : B, C {
     func name() -> String { return "D" }
