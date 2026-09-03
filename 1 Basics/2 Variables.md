@@ -60,7 +60,7 @@ with `var` / `const`:
         - `Float const[]` is the same.
         - Members of a `const` array are always effectively `const` anyway.
         - With the array declarator syntax (`[]`) it is _not_ possible to say `Array<const Float>`. But that does not compile anyway, because you can't assign values to an array whose element type is non-assignable.
-    - `const Float[3]`  
+    - `const Float[3] constArrayOfThreeFloat`  
       is a `const` static array of three `Float` (which effectively are `const`, too).
     - `const ContactInfo[String] constMapOfContactInfoByName`  
       is equivalent to `const Map<String, ContactInfo>`,
