@@ -7,11 +7,15 @@ description: "Cilia literals: True/False, integers with arbitrary precision, flo
 
 Literals are fixed values written directly in source code – such as numbers, strings, or booleans.
 
+
 ## Bool
+
 - `True`, `False` are `Bool`,
     - uppercase as they are constants (as in Python).
 
+
 ## Integer
+
 - `123` is an integer literal of arbitrary precision
     - Typical integer literals like `123456` are interpreted as `Int`
         - in case of type inferring, parameter overloading and template matching.
@@ -88,7 +92,9 @@ Literals are fixed values written directly in source code – such as numbers, s
         - because an `Int` should not be accidentally interpreted as a `Bool`
         - cast if necessary: `Bool a = Bool(1)`
 
+
 ## Floating Point
+
 - `1.0` is a floating point literal
     - Floating point literals are interpreted according to the size/precision requirements.
         - Counting the decimal places  
@@ -114,7 +120,9 @@ Literals are fixed values written directly in source code – such as numbers, s
 - `NaN` is a `Float` literal for NaN ("not a number") values,
     - that can be converted to any float type.
 
+
 ## String
+
 - `"Text"` is a `StringView` with UTF-8 encoding.
     - No null termination.
         - If necessary
@@ -180,7 +188,9 @@ Literals are fixed values written directly in source code – such as numbers, s
     - All these available for multiline string literals and interpolated strings, too.
         - TODO Any reason, not to?
 
+
 ## Char
+
 - `' '` is a character literal.
     - `'A'` is an ASCII character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
     - `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
@@ -188,7 +198,9 @@ Literals are fixed values written directly in source code – such as numbers, s
     - `'𝄞'` is a `Char32` character literal.
     - `'👮🏻'` is an _invalid_ character literal, as it is a grapheme cluster consisting of multiple code points. Use the string literal `"👮🏻"` instead.
 
-## Array
+
+## Array & Initialization List
+
 - `[1, 2, 3]` is an array (here an `Int[3]`),
     - all elements have the same type.
 - `{1, "Text", 3.0}` is an initialization list,
@@ -209,7 +221,9 @@ Literals are fixed values written directly in source code – such as numbers, s
   ]
   ```
 
+
 ## Misc
+
 - `NullPtr` is the null pointer,
     - it is of the type `NullPtrType`,
     - explicit cast necessary to convert any pointer to `Int`.
