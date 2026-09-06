@@ -227,8 +227,7 @@ User defined string suffixes as in C++:
 No ~~`"..."sv`~~ for `std::string_view`, as that is the default in Cilia.
 
 `"..."sz` for null terminated strings.
-Type of `"..."sz` is `Char*`.
-`"...\0"` is a StringView of a zero terminated string.
+Type of `"..."sz` is `Char*`, while `"...\0"` is a StringView of a zero terminated string.
 
 
 All these available for multiline string literals and interpolated strings, too.  
