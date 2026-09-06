@@ -49,22 +49,22 @@ Positive integer literals up to a certain size can implicitly be used as `UInt8`
 - Up to `115'792'089'237'316'195'423'570'985'008'687'907'853'269'984'665'640'564'039'457'584'007'913'129'639'935` -> `UInt256`
 
 Examples:
-- `Int8 a = 1`        // Works because `1` fits into `Int8`
-- `Int8 b = 127`      // Works because `127` fits into `Int8`
+- `Int8 a = 1`        // `1` fits into `Int8`
+- `Int8 b = 127`      // `127` fits into `Int8`
 - ~~`Int8 c = 128`~~  // _Error_ because 128 does _not_ fit into `Int8`
-- `Int8 d = -128`     // Works because `-128` fits into `Int8`
+- `Int8 d = -128`     // `-128` fits into `Int8`
 - ~~`Int8 e = -129`~~ // _Error_ because `-129` does _not_ fit into `Int8`
-- `UInt8 f = 255`     // Works because `255` fits into `UInt8`
+- `UInt8 f = 255`     // `255` fits into `UInt8`
 - ~~`UInt8 g = 256`~~ // _Error_ because `256` does _not_ fit into `UInt8`
 - ~~`UInt8 h = -1`~~  // _Error_ because `-1` does _not_ fit into `UInt8`
-- `Int16 i = 32767`   // Works
-- `Int32 j = 2'147'483'647` // Works
-- `Int64 k = 9'223'372'036'854'775'807` // Works
-- `Int l = a`         // Works because `Int8` fits into `Int32`
+- `Int16 i = 32767`
+- `Int32 j = 2'147'483'647`
+- `Int64 k = 9'223'372'036'854'775'807`
+- `Int l = a`         // `Int8` fits into `Int32`
 - ~~`UInt m = l`~~    // _Error_ because `Int` does _not always_ fit into `UInt`
-    - `UInt m = UInt(l)` // Works
+    - `UInt m = UInt(l)`
 - ~~`Int n = m`~~     // Error because `UInt` does _not always_ fit into `Int`
-    - `Int n = Int(m)`   // Works
+    - `Int n = Int(m)`
 
 Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM.  
 Should be stored as array of `Int`/`UInt`.
