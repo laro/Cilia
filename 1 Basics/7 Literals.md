@@ -160,6 +160,7 @@ A Cilia-to-C++-transpiler would translate every string literal to a C++ string_v
 
 > TODO This would probably not work with small string optimization (SSO),
 > so it is of limited use.
+
 ~~A StringView starts like a String does: pointer to first character plus length, so slicing of String to StringView is possible.~~
 
 
