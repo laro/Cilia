@@ -17,58 +17,67 @@ uppercase as they are constants (as in Python).
 ## Integer
 
 `123` is an integer literal of arbitrary precision.
-- Typical integer literals like `123456` are interpreted as `Int`
-    - in case of type inferring, parameter overloading and template matching.
-- Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
-- Positive integer literals up to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256` (i.e. signed), as there is no loss of information.
-    - Up to `127` -> `Int8`
-    - Up to `32'767` -> `Int16`
-    - Up to `2'147'483'647` -> `Int32`
-    - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
-    - Up to `170'141'183'460'469'231'731'687'303'715'884'105'727` -> `Int128`
-    - Up to `57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'967` -> `Int256`
-- Negative integer literals down to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
-    - Down to `-128` -> `Int8`
-    - Down to `-32'768` -> `Int16`
-    - Down to `-2'147'483'648` -> `Int32`
-    - Down to `-9'223'372'036'854'775'808` -> `Int64`/`Int`
-    - Down to `-170'141'183'460'469'231'731'687'303'715'884'105'728` -> `Int128`
-    - Down to `-57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'968` -> `Int256`
-- Positive integer literals up to a certain size can implicitly be used as `UInt8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
-    - Up to `255` -> `UInt8`
-    - Up to `65'535` -> `UInt16`
-    - Up to `4'294'967'295` -> `UInt32`
-    - Up to `18'446'744'073'709'551'615` -> `UInt64`/`UInt`
-    - Up to `340'282'366'920'938'463'463'374'607'431'768'211'455` -> `UInt128`
-    - Up to `115'792'089'237'316'195'423'570'985'008'687'907'853'269'984'665'640'564'039'457'584'007'913'129'639'935` -> `UInt256`
-- Examples:
-    - `Int8 a = 1`    // Works because `1` fits into `Int8`
-    - `Int8 b = 127`  // Works because `127` fits into `Int8`
-    - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
-    - `Int8 d = -128` // Works because `-128` fits into `Int8`
-    - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
-    - `UInt8 f = 255` // Works because `255` fits into `UInt8`
-    - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
-    - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
-    - `Int16 i = 32767` // Works
-    - `Int32 j = 2'147'483'647` // Works
-    - `Int64 k = 9'223'372'036'854'775'807` // Works
-    - `Int l = a`     // Works because `Int8` fits into `Int32`
-    - `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
-        - `UInt m = UInt(l)` // Works
-    - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
-        - `Int n = Int(m)`   // Works
-- Integer literals can automatically be converted to other sizes than `Int64`,
-    - according to the C++ rules (admittedly without knowing the details),
-    - but only if the converted-to-type can contain the value of the literal.
-- Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
-    - Store as array of `Int`/`UInt`
-- Suffixes/postfixes to write integer literals of a certain size:
-    - `123u` is `UInt`
-        - `-123u` is an error.
-    - `123i8`, `123i16`, `123i32`, `123i64`,
-    - `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
-- `-123` is always `Int` (signed)
+
+Typical integer literals like `123456` are interpreted as `Int`, in case of type inferring, parameter overloading and template matching.
+
+Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
+
+Positive integer literals up to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256` (i.e. signed), as there is no loss of information.
+- Up to `127` -> `Int8`
+- Up to `32'767` -> `Int16`
+- Up to `2'147'483'647` -> `Int32`
+- Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
+- Up to `170'141'183'460'469'231'731'687'303'715'884'105'727` -> `Int128`
+- Up to `57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'967` -> `Int256`
+
+Negative integer literals down to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
+- Down to `-128` -> `Int8`
+- Down to `-32'768` -> `Int16`
+- Down to `-2'147'483'648` -> `Int32`
+- Down to `-9'223'372'036'854'775'808` -> `Int64`/`Int`
+- Down to `-170'141'183'460'469'231'731'687'303'715'884'105'728` -> `Int128`
+- Down to `-57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'968` -> `Int256`
+
+Positive integer literals up to a certain size can implicitly be used as `UInt8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
+- Up to `255` -> `UInt8`
+- Up to `65'535` -> `UInt16`
+- Up to `4'294'967'295` -> `UInt32`
+- Up to `18'446'744'073'709'551'615` -> `UInt64`/`UInt`
+- Up to `340'282'366'920'938'463'463'374'607'431'768'211'455` -> `UInt128`
+- Up to `115'792'089'237'316'195'423'570'985'008'687'907'853'269'984'665'640'564'039'457'584'007'913'129'639'935` -> `UInt256`
+
+Examples:
+- `Int8 a = 1`    // Works because `1` fits into `Int8`
+- `Int8 b = 127`  // Works because `127` fits into `Int8`
+- `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
+- `Int8 d = -128` // Works because `-128` fits into `Int8`
+- `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
+- `UInt8 f = 255` // Works because `255` fits into `UInt8`
+- `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
+- `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
+- `Int16 i = 32767` // Works
+- `Int32 j = 2'147'483'647` // Works
+- `Int64 k = 9'223'372'036'854'775'807` // Works
+- `Int l = a`     // Works because `Int8` fits into `Int32`
+- `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
+    - `UInt m = UInt(l)` // Works
+- `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
+    - `Int n = Int(m)`   // Works
+
+Integer literals can automatically be converted to other sizes than `Int64`,
+- according to the C++ rules (admittedly without knowing the details),
+- but only if the converted-to-type can contain the value of the literal.
+
+Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM.  
+Should be stored as array of `Int`/`UInt`.
+
+Suffixes/postfixes to write integer literals of a certain size:
+- `123u` is `UInt`
+    - `-123u` is an error.
+- `123i8`, `123i16`, `123i32`, `123i64`,
+- `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
+
+`-123` is always `Int` (i.e. signed).
 
 
 ### Hex, Octal, Binary
