@@ -29,7 +29,7 @@ Function parameters are given as `TypeName parameterName`, multiple function par
 A pure function (`punc`) always produces the same output for the same inputs and has no observable side effects. It cannot modify external state or its arguments.
 
 ```
-punc compoundInterest(Float capital, Float interestRate, Int years) -> Float
+punc compoundInterest(Float capital, interestRate, Int years) -> Float
 {
     return capital * pow(1.0 + interestRate, years);
 }
