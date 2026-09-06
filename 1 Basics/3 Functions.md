@@ -24,12 +24,41 @@ Function parameters are given as `TypeName parameterName`, multiple function par
 `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
 
 
-## Misc
+## Lambdas
 
-- Lambdas as in C++
-  ```
-  [](Int i) -> Float { i * 3.1415926 }
-  ```
+Lambdas also similr to C++
+```
+[](Int i) -> Float { i * 3.1415926 }
+```
+
+### Capture with Variable
+
+| Capture       | Syntax     | Meaning                                               |
+| ------------- | ---------- | ----------------------------------------------------- |
+| **Default**   | `[x]`      | Const copy or const reference depending on `x`'s type |
+| **Copy**      | `[copy x]` | Capture `x` by copy                                   |
+| **Reference** | `[ref x]`  | Capture `x` by reference                              |
+| **Move**      | `[move x]` | Move `x` into the lambda                              |
+
+### Capture `this`
+
+| Capture       | Syntax        | Meaning                                       |
+| ------------- | ------------- | --------------------------------------------- |
+| **This**      | `[this]`      | Capture the current object by const reference |
+| **This**      | `[ref this]`  | Capture the current object by reference       |
+| **Copy this** | `[copy this]` | Capture the current object by copy            |
+
+### Capture without Variable
+
+| Capture       | Syntax   | Meaning                                             |
+| ------------- | -------- | --------------------------------------------------- |
+| **Default**   | `[]`     | Const copy or const reference depending on the type |
+| **Copy**      | `[copy]` | Capture all used variables by copy                  |
+| **Reference** | `[ref]`  | Capture all used variables by reference             |
+| **Move**      | `[move]` | Move all used variables into the lambda             |
+
+
+## Misc
 
 - `const` Member Functions
   ```
