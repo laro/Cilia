@@ -53,7 +53,7 @@ Lambdas also similr to C++
 | Capture       | Syntax      | Meaning                                             |
 | ------------- | ----------- | --------------------------------------------------- |
 | **Nothing**   | `[]`        | Capture nothing                                     |
-| **Default**   | `[default]` | Const copy or const reference depending on the type |
+| **Default**   | `[default]` | Capture all used variables by const copy or const reference depending on its type |
 | **Copy**      | `[copy]`    | Capture all used variables by copy                  |
 | **Reference** | `[ref]`     | Capture all used variables by reference             |
 | **Move**      | `[move]`    | Move all used variables into the lambda             |
