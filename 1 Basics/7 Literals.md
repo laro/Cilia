@@ -159,7 +159,8 @@ A Cilia-to-C++-transpiler would translate every string literal to a C++ string_v
 (`"..."sv` as to avoid null termination, and `u8"..."` as to have UTF-8 encoding.)
 
 ~~A StringView starts like a String does: pointer to first character plus length, so slicing of String to StringView is possible.~~
-> TODO This would probably not work with small string optimization (SSO),
+> TODO  
+> This would probably not work with small string optimization (SSO),
 > so it is of limited use.
 
 
@@ -225,7 +226,8 @@ Type of `"..."sz` is `Char*`, while `"...\0"` is a StringView of a zero terminat
 
 
 All these available for multiline string literals and interpolated strings, too.  
-> TODO Any reason, not to?
+> TODO  
+> Any reason, not to?
 
 
 ## Char
