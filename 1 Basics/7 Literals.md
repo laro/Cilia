@@ -230,28 +230,31 @@ TODO Any reason, not to?
 - `'👮🏻'` is an _invalid_ character literal, as it is a grapheme cluster consisting of multiple code points. Use the string literal `"👮🏻"` instead.
 
 
-## Array & Initialization List
+## Array
 
 `[1, 2, 3]` is an array (here an `Int[3]`),  
 all elements have the same type.
 
-- `{1, "Text", 3.0}` is an initialization list,
-    - e.g. for `Tuple` or `Pair`.
-- `[ 1: "one", 2: "two", 3: "three", 4: "four" ]` is a `String[Int]` (AKA `Map<Int, String>`).
-- ```
-  String[Int] keywords = [
-      1: "one"
-      2: "two"
-      3: "three"
-      4: "four"
-  ]
-  ```
-- ```
-  ContactInfo[String] contactInfoForID = [
-      "John Doe": {"John", "Doe", "03465 452634"}
-      "Jane Doe": {"Jane", "Doe", "03245 687534"}
-  ]
-  ```
+
+## Initialization List
+
+`{1, "Text", 3.0}` is an initialization list, e.g. for `Tuple` or `Pair`.
+
+`[ 1: "one", 2: "two", 3: "three", 4: "four" ]` is a `String[Int]` (AKA `Map<Int, String>`).
+```
+String[Int] keywords = [
+    1: "one"
+    2: "two"
+    3: "three"
+    4: "four"
+]
+```
+```
+ContactInfo[String] contactInfoForID = [
+    "John Doe": {"John", "Doe", "03465 452634"}
+    "Jane Doe": {"Jane", "Doe", "03245 687534"}
+]
+```
 
 
 ## Misc
