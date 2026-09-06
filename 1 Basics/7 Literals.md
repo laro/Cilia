@@ -66,8 +66,8 @@ Examples:
 - ~~`Int n = m`~~     // Error because `UInt` does _not always_ fit into `Int`
     - `Int n = Int(m)`
 
-Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM.  
-Should be stored as array of `Int`/`UInt`.
+> Difficult:  
+> Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM. Should be stored as array of `Int`/`UInt`.
 
 Suffixes/postfixes to write integer literals of a certain size:
 - `123u` is `UInt`
