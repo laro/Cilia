@@ -99,7 +99,7 @@ Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
 
 ## Floating Point
 
-`1.0` is a floating point literal
+`1.0` is a floating point literal.
 - Floating point literals are interpreted according to the size/precision requirements.
     - Counting the decimal places  
         (including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!),  
@@ -127,86 +127,93 @@ Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
 
 ## String
 
-- `"Text"` is a `StringView` with UTF-8 encoding.
-    - No null termination.
-        - If necessary
-            - use `"Text"sz`, `"Text\0"` or
-            - convert using `StringZ("Text")`.
-    - Data is typically stored in read-only data segments (".rodata") or ROM.
-    - A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
-        - `"Text"` -> `u8"Text"sv`
-        - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
-    - ~~A StringView starts like a String does: pointer to first character plus length,~~
-        - ~~so slicing of String to StringView is possible.~~
-        - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
+`"Text"` is a `StringView` with UTF-8 encoding.
+- No null termination.
+    - If necessary
+        - use `"Text"sz`, `"Text\0"` or
+        - convert using `StringZ("Text")`.
+- Data is typically stored in read-only data segments (".rodata") or ROM.
+- A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
+    - `"Text"` -> `u8"Text"sv`
+    - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
+- ~~A StringView starts like a String does: pointer to first character plus length,~~
+    - ~~so slicing of String to StringView is possible.~~
+    - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
 
-- Multiline String Literal
-    - Use triple double-quotes `"""` to start and end the literal.
-    - ```
-      """
-      First line
-      Second line
-      """
-      ```
-    - Similar to Swift, Julia, Java 15, C# 11, ...
-    - Also as single line string literal with very few restrictions, good for RegEx
-        - `"""(.* )whatever(.*)"""`
-    - Opening Delimiter Rules
-        - If the opening `"""` is followed by a newline, that newline is _not_ part of the string content.
-        - This allows the content to start cleanly on the next line.
-    - Closing Delimiter & Indentation (Strip-Logic)
-        - The position of the closing `"""` defines the indentation guide.
-        - If the closing `"""` is on its own line:  
-            - The newline preceding it is removed from the content.
-            - The exact sequence of whitespace (spaces/tabs) before the closing `"""` is treated as a "prefix" and is stripped from every line of the string.
-        - Indentation Safety: It is a compile-time error if any non-empty line begins with less indentation than the closing delimiter.
-    - Whitespace & Line Handling
-        - Trailing Whitespace: Whitespace at the end of lines is preserved.
-        - Blank Lines: Lines containing only whitespace that is shorter than the indentation guide are treated as empty lines (\n).
-    - To include `"""` within the string content, the literal can be opened and closed with more than three double-quotes (e.g., `""""`).
-        - The closing delimiter must match the number of quotes used for the opening delimiter.
-        - This eliminates the need for escape backslashes within the literal, ensuring truly "raw" content.
 
-- Interpolated Strings
-    - `f"M[{i},{j}] = {M[i, j]}"`
-        - like f-strings in Python.
-    - Curly braces (`{}`) are used in std::format already.
-    - `f"..."` as in `format`.
-    - TODO Any reason to use/prefer any other syntax?
-        - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
+### Multiline String Literal
 
-- Alternative string literals
-    - Prefixes
-        - as in C++:
-            - `u"..."` and `u'...'` for UTF-16
-            - `U"..."` and `U'...'` for UTF-32
-        - No ~~`u8"..."`~~ and no ~~`u8'...'`~~ for UTF-8, as that is the default in Cilia.
-        - Maybe `a"..."` for ASCII and `l"..."` for Latin-1.
-    - User defined string suffixes
-        - as in C++:
-            - `"..."s` for `std::string`.
-        - No ~~`"..."sv`~~ for `std::string_view`, as that is the default in Cilia.
-        - `"..."sz` for null terminated strings.
-            - Type of `"..."sz` is `Char*`.
-            - `"...\0"` is a StringView of a zero terminated string.
-    - All these available for multiline string literals and interpolated strings, too.
-        - TODO Any reason, not to?
+- Use triple double-quotes `"""` to start and end the literal.
+- ```
+    """
+    First line
+    Second line
+    """
+    ```
+- Similar to Swift, Julia, Java 15, C# 11, ...
+- Also as single line string literal with very few restrictions, good for RegEx
+    - `"""(.* )whatever(.*)"""`
+- Opening Delimiter Rules
+    - If the opening `"""` is followed by a newline, that newline is _not_ part of the string content.
+    - This allows the content to start cleanly on the next line.
+- Closing Delimiter & Indentation (Strip-Logic)
+    - The position of the closing `"""` defines the indentation guide.
+    - If the closing `"""` is on its own line:  
+        - The newline preceding it is removed from the content.
+        - The exact sequence of whitespace (spaces/tabs) before the closing `"""` is treated as a "prefix" and is stripped from every line of the string.
+    - Indentation Safety: It is a compile-time error if any non-empty line begins with less indentation than the closing delimiter.
+- Whitespace & Line Handling
+    - Trailing Whitespace: Whitespace at the end of lines is preserved.
+    - Blank Lines: Lines containing only whitespace that is shorter than the indentation guide are treated as empty lines (\n).
+- To include `"""` within the string content, the literal can be opened and closed with more than three double-quotes (e.g., `""""`).
+    - The closing delimiter must match the number of quotes used for the opening delimiter.
+    - This eliminates the need for escape backslashes within the literal, ensuring truly "raw" content.
+
+
+### Interpolated Strings
+
+- `f"M[{i},{j}] = {M[i, j]}"`
+    - like f-strings in Python.
+- Curly braces (`{}`) are used in std::format already.
+- `f"..."` as in `format`.
+- TODO Any reason to use/prefer any other syntax?
+    - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
+
+
+### Alternative string literals
+
+- Prefixes
+    - as in C++:
+        - `u"..."` and `u'...'` for UTF-16
+        - `U"..."` and `U'...'` for UTF-32
+    - No ~~`u8"..."`~~ and no ~~`u8'...'`~~ for UTF-8, as that is the default in Cilia.
+    - Maybe `a"..."` for ASCII and `l"..."` for Latin-1.
+- User defined string suffixes
+    - as in C++:
+        - `"..."s` for `std::string`.
+    - No ~~`"..."sv`~~ for `std::string_view`, as that is the default in Cilia.
+    - `"..."sz` for null terminated strings.
+        - Type of `"..."sz` is `Char*`.
+        - `"...\0"` is a StringView of a zero terminated string.
+- All these available for multiline string literals and interpolated strings, too.
+    - TODO Any reason, not to?
 
 
 ## Char
 
-- `' '` is a character literal.
-    - `'A'` is an ASCII character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
-    - `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
-    - `'Ω'` is a `Char16` character literal. (Can implicitly be converted to `Char32`.)
-    - `'𝄞'` is a `Char32` character literal.
-    - `'👮🏻'` is an _invalid_ character literal, as it is a grapheme cluster consisting of multiple code points. Use the string literal `"👮🏻"` instead.
+`' '` is a character literal.
+- `'A'` is an ASCII character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
+- `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`. (Can implicitly be converted to `Char16` and `Char32`.)
+- `'Ω'` is a `Char16` character literal. (Can implicitly be converted to `Char32`.)
+- `'𝄞'` is a `Char32` character literal.
+- `'👮🏻'` is an _invalid_ character literal, as it is a grapheme cluster consisting of multiple code points. Use the string literal `"👮🏻"` instead.
 
 
 ## Array & Initialization List
 
-- `[1, 2, 3]` is an array (here an `Int[3]`),
-    - all elements have the same type.
+`[1, 2, 3]` is an array (here an `Int[3]`),  
+all elements have the same type.
+
 - `{1, "Text", 3.0}` is an initialization list,
     - e.g. for `Tuple` or `Pair`.
 - `[ 1: "one", 2: "two", 3: "three", 4: "four" ]` is a `String[Int]` (AKA `Map<Int, String>`).
@@ -228,8 +235,9 @@ Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
 
 ## Misc
 
-- `NullPtr` is the null pointer,
-    - it is of the type `NullPtrType`,
-    - explicit cast necessary to convert any pointer to `Int`.
-- User Defined Literals
-    - The same rules as in C++.
+`NullPtr` is the null pointer,  
+it is of the type `NullPtrType`,  
+explicit cast necessary to convert any pointer to `Int`.
+
+User Defined Literals
+with the same rules as in C++.
