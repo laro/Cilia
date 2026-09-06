@@ -147,6 +147,9 @@ One could define the order of bits in a bitfield.
 - Lowercase `true`, `false` as boolean literals.
 - `Null` could be the null pointer, and `NullType` its type.
     - Shorter and more similar to `NULL` in C.
+- Float
+    - ~~`0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o`~~ for half, single, double, quadruple, octuple precision, would not be self-explanatory.
+    - Use of ~~`0.1f`~~ for `Float` AKA `Float64` would be confusing, as in C++ `0.1f` means `single float` AKA `Float32`.
 
           
 ## Signed Size
