@@ -54,7 +54,7 @@ Lambdas also similar to C++
 
 | Syntax        | Meaning                                       |
 | ------------- | --------------------------------------------- |
-| `[this]`      | Capture the current object by const reference |
+| `[this]`      | Capture the current object by const copy or const reference depending on its type |
 | `[ref this]`  | Capture the current object by reference       |
 | `[copy this]` | Capture the current object by (mutable) copy  |
 
