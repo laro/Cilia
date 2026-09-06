@@ -26,7 +26,7 @@ Function parameters are given as `TypeName parameterName`, multiple function par
 
 ## Lambdas
 
-Lambdas also similr to C++
+Lambdas also similar to C++
 ```
 [](Int i) -> Float { i * 3.1415926 }
 ```
