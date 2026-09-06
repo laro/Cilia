@@ -86,15 +86,18 @@ Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
     - not `0123`, as that IMHO is confusing/unexpected, even though it is C++ standard.
 
 
-`Int` vs. `Bool`
-- ~~`Int a = True`~~      // Error,
-    - because `Bool` is _not_ an `Int`
-    - because a `Bool` should not be accidentally interpreted as an `Int`
-    - cast if necessary: `Int a = Int(True)`
-- ~~`Bool a = 1`~~      // Error,
-    - because `Int` is not a `Bool`
-    - because an `Int` should not be accidentally interpreted as a `Bool`
-    - cast if necessary: `Bool a = Bool(1)`
+### `Int` vs. `Bool`
+
+~~`Int a = True`~~ is an error,
+    - because `Bool` is _not_ an `Int`, and
+    - because a `Bool` should not be accidentally interpreted as an `Int`.
+Cast if necessary: `Int a = Int(True)`
+
+
+~~`Bool a = 1`~~ is an error,
+    - because `Int` is not a `Bool`, and
+    - because an `Int` should not be accidentally interpreted as a `Bool`.
+Cast if necessary: `Bool a = Bool(1)`
 
 
 ## Floating Point
