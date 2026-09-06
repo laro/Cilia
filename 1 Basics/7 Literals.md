@@ -71,32 +71,36 @@ uppercase as they are constants (as in Python).
 - `-123` is always `Int` (signed)
 
 
-Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
-- Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
-    - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possible to give a hex literal as an Int argument
-        - Up to `0x7f` -> `Int8`
-        - Up to `0x7fff` -> `Int16`
-        - Up to `0x7fffffff` -> `Int32`
-        - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
-    - Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
+### Hex, Octal, Binary
+
+Hexadecimal, octal, and binary literals are unsigned integers (e.g. `UInt`), as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
+
 - `0xffffffff` is `UInt` in hexadecimal
 - `0b1011` is `UInt` in binary
 - `0o123` is `UInt` in octal
     - Using `0o` as in Python,
     - not `0123`, as that IMHO is confusing/unexpected, even though it is C++ standard.
 
+As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is also possible to give a hex literal as an `Int` argument:
+- Up to `0x7f` -> `Int8`
+- Up to `0x7fff` -> `Int16`
+- Up to `0x7fffffff` -> `Int32`
+- Up to `0x7fffffffffffffff` -> `Int64`/`Int`
+
+Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
+
 
 ### `Int` vs. `Bool`
 
 ~~`Int a = True`~~ is an error,
-    - because `Bool` is _not_ an `Int`, and
-    - because a `Bool` should not be accidentally interpreted as an `Int`.
+- because `Bool` is _not_ an `Int`, and
+- because a `Bool` should not be accidentally interpreted as an `Int`.
 Cast if necessary: `Int a = Int(True)`
 
 
 ~~`Bool a = 1`~~ is an error,
-    - because `Int` is not a `Bool`, and
-    - because an `Int` should not be accidentally interpreted as a `Bool`.
+- because `Int` is not a `Bool`, and
+- because an `Int` should not be accidentally interpreted as a `Bool`.
 Cast if necessary: `Bool a = Bool(1)`
 
 
