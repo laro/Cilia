@@ -115,25 +115,33 @@ Cast if necessary: `Bool a = Bool(1)`
 ## Floating Point
 
 `1.0` is a floating point literal.
-- Floating point literals are interpreted according to the size/precision requirements.
-    - Counting the decimal places  
-        (including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!),  
-        then the rules are:
-        - up to 15 decimal places -> `Float64` (AKA `Float`)
-        - up to 34 decimal places -> `Float128`
-        - up to 71 decimal places -> `Float256`
-        - more decimal places     -> `BigFloat`
-            - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
-                - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
-    - So a plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
-- Can implicitly be converted to any smaller float type into which it still fits exactly,
-    - otherwise explicit cast necessary: `Float16(3.1415926)`
-    - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
-- Postfixes to write float literals with a certain precision:  
-    `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
-    - That probably is clearer than ~~`0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o`~~ for half, single, double, quadruple, octuple precision.
-    - Use of ~~`0.1f`~~ for `Float` AKA `Float64` would be confusing, as in C++ `0.1f` means `single float` AKA `Float32`.
-- To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
+
+Floating point literals are interpreted according to the size/precision requirements.
+Counting the decimal places  
+(including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!),  
+then the rules are:
+- up to 15 decimal places -> `Float64` (AKA `Float`)
+- up to 34 decimal places -> `Float128`
+- up to 71 decimal places -> `Float256`
+- more decimal places     -> `BigFloat`
+
+> Difficult:  
+> Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM. Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
+
+So a plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
+
+Can implicitly be converted to any smaller float type into which it still fits exactly,
+otherwise an explicit cast necessary: `Float16(3.1415926)`
+
+> Note:  
+> `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
+
+Postfixes to write float literals with a certain precision:  
+`0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
+- That probably is clearer than ~~`0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o`~~ for half, single, double, quadruple, octuple precision.
+- Use of ~~`0.1f`~~ for `Float` AKA `Float64` would be confusing, as in C++ `0.1f` means `single float` AKA `Float32`.
+
+To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
 
 `Infinity`/`-Infinity` is a `Float` literal for infinity values, that can be converted to any float type.
 
