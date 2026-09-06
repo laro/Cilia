@@ -203,7 +203,7 @@ Like f-strings in Python:
 `f"M[{i},{j}] = {M[i, j]}"`
 
 Curly braces (`{}`) are used in std::format already.  
-`f"..."` as in `format`.
+`f` as in `format`.
 
 > TODO  
 > Any reason to use/prefer any other syntax?  
