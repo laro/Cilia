@@ -248,6 +248,9 @@ all elements have the same type.
 
 `{1, "Text", 3.0}` is an initialization list, e.g. for `Tuple` or `Pair`.
 
+
+## Associative Array
+
 `[ 1: "one", 2: "two", 3: "three", 4: "four" ]` is a `String[Int]` (AKA `Map<Int, String>`).
 ```
 String[Int] keywords = [
