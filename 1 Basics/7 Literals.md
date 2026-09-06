@@ -117,9 +117,7 @@ Cast if necessary: `Bool a = Bool(1)`
 `1.0` is a floating point literal.
 
 Floating point literals are interpreted according to the size/precision requirements.
-Counting the decimal places  
-(including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!),  
-then the rules are:
+Counting the decimal places (including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!), then the rules are:
 - up to 15 decimal places -> `Float64` (AKA `Float`)
 - up to 34 decimal places -> `Float128`
 - up to 71 decimal places -> `Float256`
