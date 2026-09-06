@@ -202,7 +202,7 @@ To include `"""` within the string content, the literal can be opened and closed
 Like f-strings in Python:  
 `f"M[{i},{j}] = {M[i, j]}"`
 
-Curly braces (`{}`) are used in std::format already.
+Curly braces (`{}`) are used in std::format already.  
 `f"..."` as in `format`.
 
 > TODO  
