@@ -148,17 +148,19 @@ To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add
 ## String
 
 `"Text"` is a `StringView` with UTF-8 encoding.
-- No null termination.
-    - If necessary
-        - use `"Text"sz`, `"Text\0"` or
-        - convert using `StringZ("Text")`.
-- Data is typically stored in read-only data segments (".rodata") or ROM.
-- A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
-    - `"Text"` -> `u8"Text"sv`
-    - (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
-- ~~A StringView starts like a String does: pointer to first character plus length,~~
-    - ~~so slicing of String to StringView is possible.~~
-    - TODO This would probably not work with small string optimization (SSO), so it is of limited use.
+
+Without null termination.
+If necessary use `"Text"sz`, `"Text\0"`, or convert using `StringZ("Text")`.
+
+Data is typically stored in read-only data segments (".rodata") or ROM.
+
+A Cilia-to-C++-transpiler would translate every string literal to a C++ string_view-literal:
+- `"Text"` -> `u8"Text"sv`
+- (`"Text"sv` as to avoid null termination, and `u8"Text"` as to have UTF-8 encoding.)
+
+> TODO This would probably not work with small string optimization (SSO),
+> so it is of limited use.
+~~A StringView starts like a String does: pointer to first character plus length, so slicing of String to StringView is possible.~~
 
 
 ### Multiline String Literal
