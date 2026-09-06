@@ -42,20 +42,21 @@ Lambdas also similr to C++
 
 ### Capture `this`
 
-| Capture       | Syntax        | Meaning                                       |
-| ------------- | ------------- | --------------------------------------------- |
-| **This**      | `[this]`      | Capture the current object by const reference |
-| **This**      | `[ref this]`  | Capture the current object by reference       |
-| **Copy this** | `[copy this]` | Capture the current object by copy            |
+| Capture            | Syntax        | Meaning                                       |
+| ------------------ | ------------- | --------------------------------------------- |
+| **Const this**     | `[this]`      | Capture the current object by const reference |
+| **Reference this** | `[ref this]`  | Capture the current object by reference       |
+| **Copy this**      | `[copy this]` | Capture the current object by copy            |
 
 ### Capture without Variable
 
-| Capture       | Syntax   | Meaning                                             |
-| ------------- | -------- | --------------------------------------------------- |
-| **Default**   | `[]`     | Const copy or const reference depending on the type |
-| **Copy**      | `[copy]` | Capture all used variables by copy                  |
-| **Reference** | `[ref]`  | Capture all used variables by reference             |
-| **Move**      | `[move]` | Move all used variables into the lambda             |
+| Capture       | Syntax      | Meaning                                             |
+| ------------- | ----------- | --------------------------------------------------- |
+| **Nothing**   | `[]`        | Capture nothing                                     |
+| **Default**   | `[default]` | Const copy or const reference depending on the type |
+| **Copy**      | `[copy]`    | Capture all used variables by copy                  |
+| **Reference** | `[ref]`     | Capture all used variables by reference             |
+| **Move**      | `[move]`    | Move all used variables into the lambda             |
 
 
 ## Misc
