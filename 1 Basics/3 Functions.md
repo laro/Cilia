@@ -37,7 +37,7 @@ Lambdas also similr to C++
 | ----------- | --------------------------------------------------- |
 | `[]`        | Capture nothing                                     |
 | `[default]` | Capture all used variables by const copy or const reference depending on its type |
-| `[copy]`    | Capture all used variables by copy                  |
+| `[copy]`    | Capture all used variables by (mutable) copy        |
 | `[ref]`     | Capture all used variables by reference             |
 | `[move]`    | Move all used variables into the lambda             |
 
@@ -46,7 +46,7 @@ Lambdas also similr to C++
 | Syntax     | Meaning                                               |
 | ---------- | ----------------------------------------------------- |
 | `[x]`      | Const copy or const reference depending on `x`'s type |
-| `[copy x]` | Capture `x` by copy                                   |
+| `[copy x]` | Capture `x` by (mutable) copy                         |
 | `[ref x]`  | Capture `x` by reference                              |
 | `[move x]` | Move `x` into the lambda                              |
 
@@ -56,7 +56,7 @@ Lambdas also similr to C++
 | ------------- | --------------------------------------------- |
 | `[this]`      | Capture the current object by const reference |
 | `[ref this]`  | Capture the current object by reference       |
-| `[copy this]` | Capture the current object by copy            |
+| `[copy this]` | Capture the current object by (mutable) copy  |
 
 
 ## Misc
