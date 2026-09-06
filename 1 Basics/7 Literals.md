@@ -165,8 +165,8 @@ A Cilia-to-C++-transpiler would translate every string literal to a C++ string_v
 
 ### Multiline String Literal
 
-Use triple double-quotes `"""` to start and end the literal.
-(Similar to Swift, Julia, Java 15, C# 11, ...)
+Use triple double-quotes `"""` to start and end the literal.  
+Similar to Swift, Julia, Java 15, C# 11, ...
 ```
 """
 First line
