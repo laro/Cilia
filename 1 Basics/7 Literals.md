@@ -204,7 +204,7 @@ Curly braces (`{}`) are used in std::format already.
 > Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
 
 
-### Alternative string literals
+### Alternative String Literals
 
 Prefixes as in C++:
 - `u"..."` and `u'...'` for UTF-16
