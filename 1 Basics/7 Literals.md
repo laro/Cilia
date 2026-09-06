@@ -177,20 +177,16 @@ Similar to Swift, Julia, Java 15, C# 11, ...
 Also as single line string literal with very few restrictions, good for RegEx:  
 `"""(.* )whatever(.*)"""`
 
-Opening Delimiter Rules:
-- If the opening `"""` is followed by a newline, that newline is _not_ part of the string content.
-- This allows the content to start cleanly on the next line.
+If the opening `"""` is followed by a newline, that newline is _not_ part of the string content. This allows the content to start cleanly on the next line.
 
-Closing Delimiter & Indentation (Strip-Logic):
-- The position of the closing `"""` defines the indentation guide.
-- If the closing `"""` is on its own line:  
-    - The newline preceding it is removed from the content.
-    - The exact sequence of whitespace (spaces/tabs) before the closing `"""` is treated as a "prefix" and is stripped from every line of the string.
-- Indentation Safety: It is a compile-time error if any non-empty line begins with less indentation than the closing delimiter.
+The position of the closing `"""` defines the indentation guide.
+If the closing `"""` is on its own line:  
+- The newline preceding it is removed from the content.
+- The exact sequence of whitespace (spaces/tabs) before the closing `"""` is treated as a "prefix" and is stripped from every line of the string.
+Indentation Safety: It is a compile-time error if any non-empty line begins with less indentation than the closing delimiter.
 
-Whitespace & Line Handling
-- Trailing Whitespace: Whitespace at the end of lines is preserved.
-- Blank Lines: Lines containing only whitespace that is shorter than the indentation guide are treated as empty lines (\n).
+Trailing whitespace at the end of lines is preserved.
+Lines containing only whitespace that is shorter than the indentation guide are treated as empty lines (\n).
 
 To include `"""` within the string content, the literal can be opened and closed with more than three double-quotes (e.g., `""""`). The closing delimiter must match the number of quotes used for the opening delimiter. This eliminates the need for escape backslashes within the literal, ensuring truly "raw" content.
 
