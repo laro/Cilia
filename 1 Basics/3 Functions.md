@@ -33,30 +33,30 @@ Lambdas also similr to C++
 
 ### Capture with Variable
 
-| Capture       | Syntax     | Meaning                                               |
-| ------------- | ---------- | ----------------------------------------------------- |
-| **Default**   | `[x]`      | Const copy or const reference depending on `x`'s type |
-| **Copy**      | `[copy x]` | Capture `x` by copy                                   |
-| **Reference** | `[ref x]`  | Capture `x` by reference                              |
-| **Move**      | `[move x]` | Move `x` into the lambda                              |
+| Syntax     | Meaning                                               |
+| ---------- | ----------------------------------------------------- |
+| `[x]`      | Const copy or const reference depending on `x`'s type |
+| `[copy x]` | Capture `x` by copy                                   |
+| `[ref x]`  | Capture `x` by reference                              |
+| `[move x]` | Move `x` into the lambda                              |
 
 ### Capture `this`
 
-| Capture            | Syntax        | Meaning                                       |
-| ------------------ | ------------- | --------------------------------------------- |
-| **Const this**     | `[this]`      | Capture the current object by const reference |
-| **Reference this** | `[ref this]`  | Capture the current object by reference       |
-| **Copy this**      | `[copy this]` | Capture the current object by copy            |
+| Syntax        | Meaning                                       |
+| ------------- | --------------------------------------------- |
+| `[this]`      | Capture the current object by const reference |
+| `[ref this]`  | Capture the current object by reference       |
+| `[copy this]` | Capture the current object by copy            |
 
 ### Capture without Variable
 
-| Capture       | Syntax      | Meaning                                             |
-| ------------- | ----------- | --------------------------------------------------- |
-| **Nothing**   | `[]`        | Capture nothing                                     |
-| **Default**   | `[default]` | Capture all used variables by const copy or const reference depending on its type |
-| **Copy**      | `[copy]`    | Capture all used variables by copy                  |
-| **Reference** | `[ref]`     | Capture all used variables by reference             |
-| **Move**      | `[move]`    | Move all used variables into the lambda             |
+| Syntax      | Meaning                                             |
+| ----------- | --------------------------------------------------- |
+| `[]`        | Capture nothing                                     |
+| `[default]` | Capture all used variables by const copy or const reference depending on its type |
+| `[copy]`    | Capture all used variables by copy                  |
+| `[ref]`     | Capture all used variables by reference             |
+| `[move]`    | Move all used variables into the lambda             |
 
 
 ## Misc
