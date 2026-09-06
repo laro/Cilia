@@ -183,7 +183,7 @@ The position of the closing `"""` defines the indentation guide.
 If the closing `"""` is on its own line:  
 - The newline preceding it is removed from the content.
 - The exact sequence of whitespace (spaces/tabs) before the closing `"""` is treated as a "prefix" and is stripped from every line of the string.
-Indentation Safety: It is a compile-time error if any non-empty line begins with less indentation than the closing delimiter.
+- It is a compile-time error if any non-empty line begins with less indentation than the closing delimiter.
 
 Trailing whitespace at the end of lines is preserved.
 Lines containing only whitespace that is shorter than the indentation guide are treated as empty lines (\n).
