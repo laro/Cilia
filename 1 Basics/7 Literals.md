@@ -10,115 +10,119 @@ Literals are fixed values written directly in source code – such as numbers, s
 
 ## Bool
 
-- `True`, `False` are `Bool`,
-    - uppercase as they are constants (as in Python).
+`True`, `False` are `Bool`,  
+uppercase as they are constants (as in Python).
 
 
 ## Integer
 
-- `123` is an integer literal of arbitrary precision
-    - Typical integer literals like `123456` are interpreted as `Int`
-        - in case of type inferring, parameter overloading and template matching.
-    - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
-    - Positive integer literals up to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256` (i.e. signed), as there is no loss of information.
-        - Up to `127` -> `Int8`
-        - Up to `32'767` -> `Int16`
-        - Up to `2'147'483'647` -> `Int32`
-        - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
-        - Up to `170'141'183'460'469'231'731'687'303'715'884'105'727` -> `Int128`
-        - Up to `57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'967` -> `Int256`
-    - Negative integer literals down to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
-        - Down to `-128` -> `Int8`
-        - Down to `-32'768` -> `Int16`
-        - Down to `-2'147'483'648` -> `Int32`
-        - Down to `-9'223'372'036'854'775'808` -> `Int64`/`Int`
-        - Down to `-170'141'183'460'469'231'731'687'303'715'884'105'728` -> `Int128`
-        - Down to `-57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'968` -> `Int256`
-    - Positive integer literals up to a certain size can implicitly be used as `UInt8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
-        - Up to `255` -> `UInt8`
-        - Up to `65'535` -> `UInt16`
-        - Up to `4'294'967'295` -> `UInt32`
-        - Up to `18'446'744'073'709'551'615` -> `UInt64`/`UInt`
-        - Up to `340'282'366'920'938'463'463'374'607'431'768'211'455` -> `UInt128`
-        - Up to `115'792'089'237'316'195'423'570'985'008'687'907'853'269'984'665'640'564'039'457'584'007'913'129'639'935` -> `UInt256`
-    - Examples:
-        - `Int8 a = 1`    // Works because `1` fits into `Int8`
-        - `Int8 b = 127`  // Works because `127` fits into `Int8`
-        - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
-        - `Int8 d = -128` // Works because `-128` fits into `Int8`
-        - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
-        - `UInt8 f = 255` // Works because `255` fits into `UInt8`
-        - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
-        - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
-        - `Int16 i = 32767` // Works
-        - `Int32 j = 2'147'483'647` // Works
-        - `Int64 k = 9'223'372'036'854'775'807` // Works
-        - `Int l = a`     // Works because `Int8` fits into `Int32`
-        - `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
-            - `UInt m = UInt(l)` // Works
-        - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
-            - `Int n = Int(m)`   // Works
-    - Integer literals can automatically be converted to other sizes than `Int64`,
-        - according to the C++ rules (admittedly without knowing the details),
-        - but only if the converted-to-type can contain the value of the literal.
-    - Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
-        - Store as array of `Int`/`UInt`
-    - Suffixes/postfixes to write integer literals of a certain size:
-        - `123u` is `UInt`
-            - `-123u` is an error.
-        - `123i8`, `123i16`, `123i32`, `123i64`,
-        - `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
-    - `-123` is always `Int` (signed)
-- Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
-    - Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
-        - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possible to give a hex literal as an Int argument
-            - Up to `0x7f` -> `Int8`
-            - Up to `0x7fff` -> `Int16`
-            - Up to `0x7fffffff` -> `Int32`
-            - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
-        - Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
-    - `0xffffffff` is `UInt` in hexadecimal
-    - `0b1011` is `UInt` in binary
-    - `0o123` is `UInt` in octal
-        - Using `0o` as in Python,
-        - not `0123`, as that IMHO is confusing/unexpected, even though it is C++ standard.
-- `Int` vs. `Bool`
-    - ~~`Int a = True`~~      // Error,
-        - because `Bool` is _not_ an `Int`
-        - because a `Bool` should not be accidentally interpreted as an `Int`
-        - cast if necessary: `Int a = Int(True)`
-    - ~~`Bool a = 1`~~      // Error,
-        - because `Int` is not a `Bool`
-        - because an `Int` should not be accidentally interpreted as a `Bool`
-        - cast if necessary: `Bool a = Bool(1)`
+`123` is an integer literal of arbitrary precision
+- Typical integer literals like `123456` are interpreted as `Int`
+    - in case of type inferring, parameter overloading and template matching.
+- Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
+- Positive integer literals up to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256` (i.e. signed), as there is no loss of information.
+    - Up to `127` -> `Int8`
+    - Up to `32'767` -> `Int16`
+    - Up to `2'147'483'647` -> `Int32`
+    - Up to `9'223'372'036'854'775'807` -> `Int64`/`Int`
+    - Up to `170'141'183'460'469'231'731'687'303'715'884'105'727` -> `Int128`
+    - Up to `57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'967` -> `Int256`
+- Negative integer literals down to a certain size can implicitly be used as `Int8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
+    - Down to `-128` -> `Int8`
+    - Down to `-32'768` -> `Int16`
+    - Down to `-2'147'483'648` -> `Int32`
+    - Down to `-9'223'372'036'854'775'808` -> `Int64`/`Int`
+    - Down to `-170'141'183'460'469'231'731'687'303'715'884'105'728` -> `Int128`
+    - Down to `-57'896'044'618'658'097'711'785'492'504'343'953'926'634'992'332'820'282'019'728'792'003'956'564'819'968` -> `Int256`
+- Positive integer literals up to a certain size can implicitly be used as `UInt8`/`16`/`32`/`64`/`128`/`256`, as there is no loss of information.
+    - Up to `255` -> `UInt8`
+    - Up to `65'535` -> `UInt16`
+    - Up to `4'294'967'295` -> `UInt32`
+    - Up to `18'446'744'073'709'551'615` -> `UInt64`/`UInt`
+    - Up to `340'282'366'920'938'463'463'374'607'431'768'211'455` -> `UInt128`
+    - Up to `115'792'089'237'316'195'423'570'985'008'687'907'853'269'984'665'640'564'039'457'584'007'913'129'639'935` -> `UInt256`
+- Examples:
+    - `Int8 a = 1`    // Works because `1` fits into `Int8`
+    - `Int8 b = 127`  // Works because `127` fits into `Int8`
+    - `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
+    - `Int8 d = -128` // Works because `-128` fits into `Int8`
+    - `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
+    - `UInt8 f = 255` // Works because `255` fits into `UInt8`
+    - `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
+    - `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
+    - `Int16 i = 32767` // Works
+    - `Int32 j = 2'147'483'647` // Works
+    - `Int64 k = 9'223'372'036'854'775'807` // Works
+    - `Int l = a`     // Works because `Int8` fits into `Int32`
+    - `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
+        - `UInt m = UInt(l)` // Works
+    - `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
+        - `Int n = Int(m)`   // Works
+- Integer literals can automatically be converted to other sizes than `Int64`,
+    - according to the C++ rules (admittedly without knowing the details),
+    - but only if the converted-to-type can contain the value of the literal.
+- Difficult: Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM
+    - Store as array of `Int`/`UInt`
+- Suffixes/postfixes to write integer literals of a certain size:
+    - `123u` is `UInt`
+        - `-123u` is an error.
+    - `123i8`, `123i16`, `123i32`, `123i64`,
+    - `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
+- `-123` is always `Int` (signed)
+
+
+Hexadecimal, octal, and binary literals are UInt (i.e. unsigned)
+- Unsigned, as usually you want to describe flags, bit masks, hardware registers, hardware addresses, or color values, where signed integer doesn't fit.
+    - As unsigned integer literals up to a certain size can implicitly be converted to Int (i.e. signed), _usually_ it is possible to give a hex literal as an Int argument
+        - Up to `0x7f` -> `Int8`
+        - Up to `0x7fff` -> `Int16`
+        - Up to `0x7fffffff` -> `Int32`
+        - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
+    - Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
+- `0xffffffff` is `UInt` in hexadecimal
+- `0b1011` is `UInt` in binary
+- `0o123` is `UInt` in octal
+    - Using `0o` as in Python,
+    - not `0123`, as that IMHO is confusing/unexpected, even though it is C++ standard.
+
+
+`Int` vs. `Bool`
+- ~~`Int a = True`~~      // Error,
+    - because `Bool` is _not_ an `Int`
+    - because a `Bool` should not be accidentally interpreted as an `Int`
+    - cast if necessary: `Int a = Int(True)`
+- ~~`Bool a = 1`~~      // Error,
+    - because `Int` is not a `Bool`
+    - because an `Int` should not be accidentally interpreted as a `Bool`
+    - cast if necessary: `Bool a = Bool(1)`
 
 
 ## Floating Point
 
-- `1.0` is a floating point literal
-    - Floating point literals are interpreted according to the size/precision requirements.
-        - Counting the decimal places  
-          (including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!),  
-          then the rules are:
-            - up to 15 decimal places -> `Float64` (AKA `Float`)
-            - up to 34 decimal places -> `Float128`
-            - up to 71 decimal places -> `Float256`
-            - more decimal places     -> `BigFloat`
-                - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
-                    - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
-        - So a plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
-    - Can implicitly be converted to any smaller float type into which it still fits exactly,
-        - otherwise explicit cast necessary: `Float16(3.1415926)`
-        - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
-    - Postfixes to write float literals with a certain precision:  
-      `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
-        - That probably is clearer than ~~`0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o`~~ for half, single, double, quadruple, octuple precision.
-        - Use of ~~`0.1f`~~ for `Float` AKA `Float64` would be confusing, as in C++ `0.1f` means `single float` AKA `Float32`.
-    - To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
-- `Infinity`/`-Infinity` is a `Float` literal for infinity values,
-    - that can be converted to any float type.
-- `NaN` is a `Float` literal for NaN ("not a number") values,
-    - that can be converted to any float type.
+`1.0` is a floating point literal
+- Floating point literals are interpreted according to the size/precision requirements.
+    - Counting the decimal places  
+        (including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!),  
+        then the rules are:
+        - up to 15 decimal places -> `Float64` (AKA `Float`)
+        - up to 34 decimal places -> `Float128`
+        - up to 71 decimal places -> `Float256`
+        - more decimal places     -> `BigFloat`
+            - Difficult: Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM
+                - Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
+    - So a plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
+- Can implicitly be converted to any smaller float type into which it still fits exactly,
+    - otherwise explicit cast necessary: `Float16(3.1415926)`
+    - Note: `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
+- Postfixes to write float literals with a certain precision:  
+    `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)
+    - That probably is clearer than ~~`0.1h`, `0.1s`, `0.1d`, `0.1q`, `0.1o`~~ for half, single, double, quadruple, octuple precision.
+    - Use of ~~`0.1f`~~ for `Float` AKA `Float64` would be confusing, as in C++ `0.1f` means `single float` AKA `Float32`.
+- To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
+
+`Infinity`/`-Infinity` is a `Float` literal for infinity values, that can be converted to any float type.
+
+`NaN` is a `Float` literal for NaN ("not a number") values, that can be converted to any float type.
 
 
 ## String
