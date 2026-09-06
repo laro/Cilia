@@ -16,7 +16,7 @@ uppercase as they are constants (as in Python).
 
 ## Integer
 
-`123` is an integer literal of arbitrary precision
+`123` is an integer literal of arbitrary precision.
 - Typical integer literals like `123456` are interpreted as `Int`
     - in case of type inferring, parameter overloading and template matching.
 - Big integer literals are interpreted as `Int64`, `Int128`, `Int256`, `BigInt`, if required due to the size.
