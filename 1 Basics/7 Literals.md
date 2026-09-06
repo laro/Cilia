@@ -87,7 +87,8 @@ As unsigned integer literals up to a certain size can implicitly be converted to
 - Up to `0x7fffffff` -> `Int32`
 - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
 
-Otherwise you have to cast it like `Int mostNegativeInt = Int(0x8000000000000000)`.
+Otherwise you have to cast it like  
+`Int mostNegativeInt = Int(0x8000000000000000)`.
 
 
 ### `Int` vs. `Bool`
