@@ -174,7 +174,7 @@ Second line
 ```
 Similar to Swift, Julia, Java 15, C# 11, ...
 
-Also as single line string literal with very few restrictions, good for RegEx:
+Also as single line string literal with very few restrictions, good for RegEx:  
 `"""(.* )whatever(.*)"""`
 
 Opening Delimiter Rules:
