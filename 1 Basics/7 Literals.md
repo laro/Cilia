@@ -199,12 +199,15 @@ To include `"""` within the string content, the literal can be opened and closed
 
 ### Interpolated Strings
 
-- `f"M[{i},{j}] = {M[i, j]}"`
-    - like f-strings in Python.
-- Curly braces (`{}`) are used in std::format already.
-- `f"..."` as in `format`.
-- TODO Any reason to use/prefer any other syntax?
-    - Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
+Like f-strings in Python:  
+`f"M[{i},{j}] = {M[i, j]}"`
+
+Curly braces (`{}`) are used in std::format already.
+`f"..."` as in `format`.
+
+> TODO  
+> Any reason to use/prefer any other syntax?  
+> Maybe `$"M[{i},{j}] = {M[i, j]}"` like in C#?
 
 
 ### Alternative string literals
