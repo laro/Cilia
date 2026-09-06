@@ -24,6 +24,18 @@ Function parameters are given as `TypeName parameterName`, multiple function par
 `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
 
 
+## Pure Functions
+
+`punc` to declare pure functions:
+
+```
+punc compoundInterest(Float capital, Float interestRate, Int years) -> Float
+{
+    return capital * pow(1.0 + interestRate, years);
+}
+```
+
+
 ## Lambdas
 
 Lambdas also similar to C++
