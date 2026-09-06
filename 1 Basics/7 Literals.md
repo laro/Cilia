@@ -47,21 +47,21 @@ Positive integer literals up to a certain size can implicitly be used as `UInt8`
 - Up to `115'792'089'237'316'195'423'570'985'008'687'907'853'269'984'665'640'564'039'457'584'007'913'129'639'935` -> `UInt256`
 
 Examples:
-- `Int8 a = 1`    // Works because `1` fits into `Int8`
-- `Int8 b = 127`  // Works because `127` fits into `Int8`
-- `Int8 c = 128`  // _Error_ because 128 does _not_ fit into `Int8`
-- `Int8 d = -128` // Works because `-128` fits into `Int8`
-- `Int8 e = -129` // _Error_ because `-129` does _not_ fit into `Int8`
-- `UInt8 f = 255` // Works because `255` fits into `UInt8`
-- `UInt8 g = 256` // _Error_ because `256` does _not_ fit into `UInt8`
-- `UInt8 h = -1`  // _Error_ because `-1` does _not_ fit into `UInt8`
-- `Int16 i = 32767` // Works
+- `Int8 a = 1`        // Works because `1` fits into `Int8`
+- `Int8 b = 127`      // Works because `127` fits into `Int8`
+- ~~`Int8 c = 128`~~  // _Error_ because 128 does _not_ fit into `Int8`
+- `Int8 d = -128`     // Works because `-128` fits into `Int8`
+- ~~`Int8 e = -129`~~ // _Error_ because `-129` does _not_ fit into `Int8`
+- `UInt8 f = 255`     // Works because `255` fits into `UInt8`
+- ~~`UInt8 g = 256`~~ // _Error_ because `256` does _not_ fit into `UInt8`
+- ~~`UInt8 h = -1`~~  // _Error_ because `-1` does _not_ fit into `UInt8`
+- `Int16 i = 32767`   // Works
 - `Int32 j = 2'147'483'647` // Works
 - `Int64 k = 9'223'372'036'854'775'807` // Works
-- `Int l = a`     // Works because `Int8` fits into `Int32`
-- `UInt m = l`    // _Error_ because `Int` does _not always_ fit into `UInt`
+- `Int l = a`         // Works because `Int8` fits into `Int32`
+- ~~`UInt m = l`~~    // _Error_ because `Int` does _not always_ fit into `UInt`
     - `UInt m = UInt(l)` // Works
-- `Int n = m`     // Error because `UInt` does _not always_ fit into `Int`
+- ~~`Int n = m`~~     // Error because `UInt` does _not always_ fit into `Int`
     - `Int n = Int(m)`   // Works
 
 Integer literals can automatically be converted to other sizes than `Int64`,
@@ -199,21 +199,27 @@ Cast if necessary: `Bool a = Bool(1)`
 
 ### Alternative string literals
 
-- Prefixes
-    - as in C++:
-        - `u"..."` and `u'...'` for UTF-16
-        - `U"..."` and `U'...'` for UTF-32
-    - No ~~`u8"..."`~~ and no ~~`u8'...'`~~ for UTF-8, as that is the default in Cilia.
-    - Maybe `a"..."` for ASCII and `l"..."` for Latin-1.
-- User defined string suffixes
-    - as in C++:
-        - `"..."s` for `std::string`.
-    - No ~~`"..."sv`~~ for `std::string_view`, as that is the default in Cilia.
-    - `"..."sz` for null terminated strings.
-        - Type of `"..."sz` is `Char*`.
-        - `"...\0"` is a StringView of a zero terminated string.
-- All these available for multiline string literals and interpolated strings, too.
-    - TODO Any reason, not to?
+Prefixes as in C++:
+- `u"..."` and `u'...'` for UTF-16
+- `U"..."` and `U'...'` for UTF-32
+
+No ~~`u8"..."`~~ and no ~~`u8'...'`~~ for UTF-8, as that is the default in Cilia.
+
+Maybe `a"..."` for ASCII and `l"..."` for Latin-1.
+
+
+User defined string suffixes as in C++:
+- `"..."s` for `std::string`.
+
+No ~~`"..."sv`~~ for `std::string_view`, as that is the default in Cilia.
+
+`"..."sz` for null terminated strings.
+Type of `"..."sz` is `Char*`.
+`"...\0"` is a StringView of a zero terminated string.
+
+
+All these available for multiline string literals and interpolated strings, too.  
+TODO Any reason, not to?
 
 
 ## Char
