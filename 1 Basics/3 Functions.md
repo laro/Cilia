@@ -31,6 +31,16 @@ Lambdas also similr to C++
 [](Int i) -> Float { i * 3.1415926 }
 ```
 
+### Capture without Variable
+
+| Syntax      | Meaning                                             |
+| ----------- | --------------------------------------------------- |
+| `[]`        | Capture nothing                                     |
+| `[default]` | Capture all used variables by const copy or const reference depending on its type |
+| `[copy]`    | Capture all used variables by copy                  |
+| `[ref]`     | Capture all used variables by reference             |
+| `[move]`    | Move all used variables into the lambda             |
+
 ### Capture with Variable
 
 | Syntax     | Meaning                                               |
@@ -47,16 +57,6 @@ Lambdas also similr to C++
 | `[this]`      | Capture the current object by const reference |
 | `[ref this]`  | Capture the current object by reference       |
 | `[copy this]` | Capture the current object by copy            |
-
-### Capture without Variable
-
-| Syntax      | Meaning                                             |
-| ----------- | --------------------------------------------------- |
-| `[]`        | Capture nothing                                     |
-| `[default]` | Capture all used variables by const copy or const reference depending on its type |
-| `[copy]`    | Capture all used variables by copy                  |
-| `[ref]`     | Capture all used variables by reference             |
-| `[move]`    | Move all used variables into the lambda             |
 
 
 ## Misc
