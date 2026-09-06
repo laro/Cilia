@@ -166,13 +166,13 @@ A Cilia-to-C++-transpiler would translate every string literal to a C++ string_v
 ### Multiline String Literal
 
 Use triple double-quotes `"""` to start and end the literal.
+(Similar to Swift, Julia, Java 15, C# 11, ...)
 ```
 """
 First line
 Second line
 """
 ```
-Similar to Swift, Julia, Java 15, C# 11, ...
 
 Also as single line string literal with very few restrictions, good for RegEx:  
 `"""(.* )whatever(.*)"""`
