@@ -104,7 +104,7 @@ can be written as
 ```
 
 IMHO the code is even more clear when written as while-loop (though not so dense).
-> Note:
+> Note:  
 > When the `<condition>` is empty, then it needs to be replaced with `True`,
 > so `for (;;) { ... }` is translated to `while True { ... }`.
 
