@@ -129,7 +129,7 @@ Can implicitly be converted to any smaller float type into which it still fits e
 - Up to `16'777'216.0` -> `Float32`
 - Up to `9'007'199'254'740'992.0` -> `Float64`/`Float`
 
-Otherwise an _explicit_ cast necessary: `Float16(3.1415926)`
+Otherwise an _explicit_ cast is necessary: `Float16(3.1415926)`
 
 > Note:  
 > `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
