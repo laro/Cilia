@@ -71,11 +71,9 @@ Examples:
 
 Suffixes/postfixes to write integer literals of a certain size:
 - `123u` is `UInt`
-    - `-123u` is an error.
+    - ~~`-123u`~~ is an error.
 - `123i8`, `123i16`, `123i32`, `123i64`,
 - `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
-
-`-123` is always `Int` (i.e. signed).
 
 
 ### Hex, Octal, Binary
@@ -94,7 +92,7 @@ As unsigned integer literals up to a certain size can implicitly be converted to
 - Up to `0x7fffffff` -> `Int32`
 - Up to `0x7fffffffffffffff` -> `Int64`/`Int`
 
-Otherwise you have to cast it like  
+Otherwise you have to _explicitly_ cast it like  
 `Int mostNegativeInt = Int(0x8000000000000000)`.
 
 
