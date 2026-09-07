@@ -53,14 +53,13 @@ do {
 ```
 
 ### For-In
-Write
 ```
 for str in ["a", "b", "c"] {
   // ...
 }
 ```
-instead of ~~`for (... : ...)`~~ AKA range-for in C++, ~~`for each`~~ in C++/CLI, or ~~`foreach`~~ in C#.  
-As in Swift, Rust.
+As in Swift, Rust.  
+Instead of ~~`for (... : ...)`~~ AKA range-for in C++, ~~`for each`~~ in C++/CLI, or ~~`foreach`~~ in C#.  
 
 Use the **range operator** to write
 - `for i in 1..10 { ... }`  
