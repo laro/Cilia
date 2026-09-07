@@ -35,71 +35,79 @@ Chained comparison as in Cpp2 (Herb Sutter), Python, Julia.
 if 1 <= x <= 10 { ... }
 ```
 
+
 ## Loops
-- **while**
-  ```
-  while a > b {
-      // ...
+
+### While
+```
+while a > b {
+  // ...
+}
+```
+
+### Do-While
+```
+do {
+  // ...
+} while a > b
+```
+
+### For-In
+Write
+```
+for str in ["a", "b", "c"] {
+  // ...
+}
+```
+instead of ~~`for (... : ...)`~~ AKA range-for in C++, ~~`for each`~~ in C++/CLI, or ~~`foreach`~~ in C#.  
+As in Swift, Rust.
+
+Use the **range operator** to write
+- `for i in 1..10 { ... }`  
+  instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
+  translates to `for i in Range(1, 10) { ... }`.
+- `for i in 0..<10 { ... }`  
+  instead of ~~`for (Int i = 0; i < 10; ++i) { ... }`~~,  
+  translates to `for i in RangeExclusiveEnd(0, 10) { ... }`.
+- `for i in 10..1:-1 { ... }`  
+  instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
+  translates to `for i in RangeByStep(10, 1, -1) { ... }`.
+I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
+
+The variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`),  
+so `for i in 0..<10 { <Body> }` is equivalent to:
+```
+{
+  var i = 0
+  while i < 10 {
+      <Body>
+      ++i
   }
-  ```
+}
+```
 
-- **do-while**
-  ```
-  do {
-      // ...
-  } while a > b
-  ```
+_Not every_ C/C++ for-loop can be expressed as a Cilia for-loop,  
+but then it (and in general, _any_ C/C++ for-loop) can be converted into a while-loop.
+```
+for (<initialization>; <condition>; <increment>) {
+  <body>
+}  
+```
+can be written as
+```
+{
+  <initialization>
+  while <condition> {
+      <body>
+      <increment>
+  }
+}
+```
 
-- **for-in**
-    - as in Swift, Rust
-    - Write
-      ```
-      for str in ["a", "b", "c"] {
-          // ...
-      }
-      ```
-      instead of ~~`for (... : ...)`~~ AKA range-for in C++, ~~`for each`~~ in C++/CLI, or ~~`foreach`~~ in C#.
-    - Use the **range operator** to write
-        - `for i in 1..10 { ... }`  
-          instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
-          translates to `for i in Range(1, 10) { ... }`.
-        - `for i in 0..<10 { ... }`  
-          instead of ~~`for (Int i = 0; i < 10; ++i) { ... }`~~,  
-          translates to `for i in RangeExclusiveEnd(0, 10) { ... }`.
-        - `for i in 10..1:-1 { ... }`  
-          instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
-          translates to `for i in RangeByStep(10, 1, -1) { ... }`.
-        - I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
-    - The variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`),  
-      so `for i in 0..<10 { <Body> }` is equivalent to:
-      ```
-      {
-          var i = 0
-          while i < 10 {
-              <Body>
-              ++i
-          }
-      }
-      ```
-    - _Not every_ C/C++ for-loop can be expressed as a Cilia for-loop,  
-      but then it (and in general, _any_ C/C++ for-loop) can be converted into a while-loop.
-        - ```
-          for (<initialization>; <condition>; <increment>) {
-              <body>
-          }  
-          ```
-          can be written as
-          ```
-          {
-              <initialization>
-              while <condition> {
-                  <body>
-                  <increment>
-              }
-          }
-          ```
-        - IMHO the code is even more clear when written as while-loop (though not so dense).
-        - Note: When the `<condition>` is empty, then it needs to be replaced with `True`, so `for (;;) { ... }` is translated to `while True { ... }`.
+IMHO the code is even more clear when written as while-loop (though not so dense).
+> Note:
+> When the `<condition>` is empty, then it needs to be replaced with `True`,
+> so `for (;;) { ... }` is translated to `while True { ... }`.
 
 
 ## Switch / Case
