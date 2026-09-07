@@ -71,7 +71,7 @@ Examples:
 
 Suffixes/postfixes to write integer literals of a certain size:
 - `123u` is `UInt`
-    - ~~`-123u`~~ is an error.
+    - `-123u` is an error.
 - `123i8`, `123i16`, `123i32`, `123i64`,
 - `123u8`, `123u16`, `123u32`, `123u64` (as in Rust)
 
