@@ -74,12 +74,12 @@ Use the **range operator** to write
 I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
 
 The variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`).  
-So `for i in 0..<10 { <Body> }` is equivalent to:
+So `for i in 0..<10 { <body> }` is equivalent to:
 ```
 {
   var i = 0
   while i < 10 {
-      <Body>
+      <body>
       ++i
   }
 }
