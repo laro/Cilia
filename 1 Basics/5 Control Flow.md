@@ -82,7 +82,7 @@ translates to `for i in RangeByStep(10, 1, -1) { ... }`.
   
 I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
 
-The variable is declared "with the loop", with its type inferred from the range, array, etc. used as source (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`).  
+The variable is declared "with the loop", with its type inferred from the range, array, etc. used as source (similar to `var`, but only with the options `in`, `inout`, `copy`, `move`; see [Parameter Passing](https://cilialang.org/advanced/parameter-passing/#loop-variables)).  
 So `for i in start..<end { <body> }` is equivalent to:
 ```
 {
