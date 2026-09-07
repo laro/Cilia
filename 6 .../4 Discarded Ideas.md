@@ -165,7 +165,7 @@ One could define the order of bits in a bitfield.
     - `Size` - `Size` -> `SSize`
         - Problem: `-` results in `SSize`, but `+` results in `Size`?!
     - The conversion of a negative number into `Size` leads to an error instead of delivering a HUGE size.
-- Note: In the end this just didn't work out.
+- **Note:** In the end this just didn't work out.
 
 
 ## Operators
@@ -194,12 +194,12 @@ One could define the order of bits in a bitfield.
             - `2..:-1` – RangeFromWithStep(2, -1)
             - `3>..:-1` – RangeFromExclusiveStartWithStep(3, -1)
             - `..:-1` – RangeFullWithStep(-1)
-    - Note: Too complicated for too little benefit.
+    - **Note:** Too complicated for too little benefit.
 - Maybe remove `++i`, `--i`, `i++`, `i--`?
     - as Python
     - only offer/allow `i += 1`, `i -= 1`  
       or even only `i = i + 1`, `i = i - 1`
-    - Note: No, Cilia is a C++ descendant after all.
+    - **Note:** No, Cilia is a C++ descendant after all.
 
 
 ## Templates
@@ -320,7 +320,7 @@ The compiler could recognize the language (C, C++, or Cilia) by marked blocks:
 Could be limited to top level.  
 Could be extended to other languages as well, but technically this is limited to languages where the scope is marked with `{ }`.
 
-> Note:  
+> **Note**  
 > Mixing languages at file level is complicated already, and it is not desirable to have
 > wild combinations of Cilia and C/C++ source code in one file anyway.
 

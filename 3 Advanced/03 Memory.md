@@ -18,7 +18,7 @@ var imagePtr = new<Image>(1920, 1080, 0.0)
 var imagePtr = allocator.new<Image>(1920, 1080, 0.0)
 ```
 
-> Note:  
+> **Note**  
 > This assumes that `new`/`delete` can be both operator keyword and function 
 > name. That should be possible with a context-sensitive parser.
 > If that causes too many problems, we'll have to fall back on other keywords,

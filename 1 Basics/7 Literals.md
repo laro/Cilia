@@ -66,8 +66,9 @@ Examples:
 - ~~`Int n = m`~~     // Error because `UInt` does _not always_ fit into `Int`
     - `Int n = Int(m)`
 
-> Difficult:  
-> Constexpr constructor that accepts an arbitrary precision integer literal and can store that in ROM. Should be stored as array of `Int`/`UInt`.
+> **Storage**  
+> Constexpr constructor that accepts an arbitrary precision integer literal
+> and can store that in ROM. Should be stored as array of `Int`/`UInt`.
 
 Suffixes/postfixes to write integer literals of a certain size:
 - `123u` is `UInt`
@@ -123,7 +124,7 @@ This is surely true for integers up to a certain size (but not limited to those)
 - Up to `16'777'216.0` -> `Float32`
 - Up to `9'007'199'254'740'992.0` -> `Float64`/`Float`
 
-> Note:  
+> **Note**  
 > `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`,
 > so _this can not_ implicitly be converted to `Float32` or `Float16`.
 
@@ -145,7 +146,7 @@ Float   pi64 = 3.1415926535897
 Float16 pi16 = Float16(pi)
 ```
 
-> Difficult:  
+> **Storage**  
 > Constexpr constructor that accepts an arbitrary precision float literal and can
 > store that in ROM. Store the mantissa as arbitrary precision integer (i.e. array
 > of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`,
