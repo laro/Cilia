@@ -242,7 +242,7 @@ All these available for multiline string literals and interpolated strings, too.
 - `'Ω'` is a `Char16` character literal.  
 (Can implicitly be converted to `Char32`.)
 - `'𝄞'` is a `Char32` character literal.
-- `'👮🏻'` is an _invalid_ character literal, as it is a grapheme cluster consisting of multiple code points. Use the string literal `"👮🏻"` instead.
+- ~~`'👮🏻'`~~ is an _invalid_ character literal, as it is a grapheme cluster consisting of multiple code points. Use the string literal `"👮🏻"` instead.
 
 
 ## Array
