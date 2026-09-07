@@ -62,7 +62,7 @@ As in Swift, Rust.
 Instead of ~~`for (... : ...)`~~ AKA range-for in C++, ~~`for each`~~ in C++/CLI, or ~~`foreach`~~ in C#.  
 
 Use the **range operator** to write:  
-`for i in 1..10 { ... }`  
+```for i in 1..10 { ... }```
 instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
 translates to `for i in Range(1, 10) { ... }`.
 
