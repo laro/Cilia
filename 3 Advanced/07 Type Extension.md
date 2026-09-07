@@ -107,8 +107,8 @@ extension<type T, Int N> T[N] {
 ```
 
 ## Extension Classes
-Allow to create drop-in replacements for existing classes. With no-op conversion similar to `operator String&`, but in both directions.  
-Extension classes do _not_ have any additional member variables.
+Allows to create classes that act as drop-in replacements for existing classes. With no-op conversion similar to `operator String&`, but in both directions.  
+Extension classes can _not_ have any additional member variables.
 
 ```
 extension class String : std::string {
