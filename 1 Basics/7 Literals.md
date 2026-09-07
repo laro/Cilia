@@ -110,20 +110,23 @@ Cast if necessary: `Int a = Int(True)`
 Cast if necessary: `Bool a = Bool(1)`
 
 
-## Floating Point
+## Floating-Point
 
-`1.0` is a floating point literal.
+`1.0` is a floating-point literal.
 
-Floating point literals are interpreted according to the size/precision requirements.
-Counting the decimal places (including the digits before the decimal point, the significant digits after the decimal point _and_ the trailing zeros!), then the rules are:
+A plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but _there_ `1.0` is called a `double` and `1.0f` is called a single `float`.
+
+Floating-point literals are interpreted according to the size/precision requirements.
+Counting the significant digits _plus_ the trailing zeros after them (including those after the decimal point),
+the rules are:
 - up to 15 decimal places -> `Float64` (AKA `Float`)
 - up to 34 decimal places -> `Float128`
 - up to 71 decimal places -> `Float256`
 - more decimal places     -> `BigFloat`
 
-So a plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but there `1.0` is called a `double` while `1.0f` is called a (single) `float`.
-
-Can implicitly be converted to any smaller float type into which it still fits exactly.
+A floating point literal can implicitly be converted to any smaller float type into which it still fits exactly.
+A floating-point literal can be implicitly converted to a smaller floating-point type if and only if the conversion is exact/lossless.  
+This is surely true for integers up to a certain size (but not limited to those):
 - Up to `256.0` -> `BFloat16`
 - Up to `2'048.0` -> `Float16`
 - Up to `16'777'216.0` -> `Float32`
