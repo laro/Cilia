@@ -135,7 +135,8 @@ the rules are:
 - up to 71 decimal places -> `Float256`
 - more decimal places     -> `BigFloat`
 
-So to explicitly write float literals with a certain precision (e.g. `Float128`/`Float256`/`BigFloat`), you may add trailing zeros (`0.1000000000000000…`), or use postfixes:  
+So to explicitly write float literals with a certain precision (e.g. `Float128`/`Float256`/`BigFloat`), you may add trailing zeros: `0.1000000000000000…`  
+Or use postfixes:  
 `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)  
 
 To reduce the precision, you need to downcast _explicitly_:
@@ -145,7 +146,10 @@ Float16 pi16 = Float16(pi)
 ```
 
 > Difficult:  
-> Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM. Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
+> Constexpr constructor that accepts an arbitrary precision float literal and can
+> store that in ROM. Store the mantissa as arbitrary precision integer (i.e. array
+> of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`,
+> most always only a single `Int`)
 
 `Infinity`/`-Infinity` is a `Float` literal for infinity values, that can be converted to any float type.
 
