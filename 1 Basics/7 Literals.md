@@ -116,6 +116,17 @@ Cast if necessary: `Bool a = Bool(1)`
 
 A plain float literal like `1.0` is a `Float` (AKA `Float64`). This way the precision is the same as in C++, but _there_ `1.0` is called a `double` and `1.0f` is called a single `float`.
 
+A floating-point literal can be implicitly converted to a smaller floating-point type if and only if the conversion is exact/lossless.  
+This is surely true for integers up to a certain size (but not limited to those):
+- Up to `256.0` -> `BFloat16`
+- Up to `2'048.0` -> `Float16`
+- Up to `16'777'216.0` -> `Float32`
+- Up to `9'007'199'254'740'992.0` -> `Float64`/`Float`
+
+> Note:  
+> `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`,
+> so _this can not_ implicitly be converted to `Float32` or `Float16`.
+
 Floating-point literals are interpreted according to the size/precision requirements.
 Counting the significant digits _plus_ the trailing zeros after them (including those after the decimal point),
 the rules are:
@@ -124,23 +135,14 @@ the rules are:
 - up to 71 decimal places -> `Float256`
 - more decimal places     -> `BigFloat`
 
-A floating point literal can implicitly be converted to any smaller float type into which it still fits exactly.
-A floating-point literal can be implicitly converted to a smaller floating-point type if and only if the conversion is exact/lossless.  
-This is surely true for integers up to a certain size (but not limited to those):
-- Up to `256.0` -> `BFloat16`
-- Up to `2'048.0` -> `Float16`
-- Up to `16'777'216.0` -> `Float32`
-- Up to `9'007'199'254'740'992.0` -> `Float64`/`Float`
-
-Otherwise an _explicit_ cast is necessary: `Float16(3.1415926)`
-
-> Note:  
-> `0.1` as `Float64` has the significand `1001100110011001100110011001100110011001100110011010`, so _this can not_ implicitly be converted to `Float32` or `Float16`.
-
-To ensure the literal has `Float128`/`Float256`/`BigFloat` precision you may add trailing zeros (`0.1000000000000000…`).
-
-Postfixes to write float literals with a certain precision:  
+So to explicitly write float literals with a certain precision (e.g. `Float128`/`Float256`/`BigFloat`), you may add trailing zeros (`0.1000000000000000…`), or use postfixes:  
 `0.1f16`, `0.1f32`, `0.1f64`, `0.1f128`, `0.1f256` (as in Rust)  
+
+To reduce the precision, you need to downcast _explicitly_:
+```
+Float   pi64 = 3.1415926535897
+Float16 pi16 = Float16(pi)
+```
 
 > Difficult:  
 > Constexpr constructor that accepts an arbitrary precision float literal and can store that in ROM. Store the mantissa as arbitrary precision integer (i.e. array of `Int`), plus the exponent as arbitrary precision integer (i.e. array of `Int`, most always only a single `Int`)
