@@ -61,16 +61,18 @@ for str in ["a", "b", "c"] {
 As in Swift, Rust.  
 Instead of ~~`for (... : ...)`~~ AKA range-for in C++, ~~`for each`~~ in C++/CLI, or ~~`foreach`~~ in C#.  
 
-Use the **range operator** to write
-- `for i in 1..10 { ... }`  
-  instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
-  translates to `for i in Range(1, 10) { ... }`.
-- `for i in 0..<10 { ... }`  
-  instead of ~~`for (Int i = 0; i < 10; ++i) { ... }`~~,  
-  translates to `for i in RangeExclusiveEnd(0, 10) { ... }`.
-- `for i in 10..1:-1 { ... }`  
-  instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
-  translates to `for i in RangeByStep(10, 1, -1) { ... }`.
+Use the **range operator** to write:
+`for i in 1..10 { ... }`  
+instead of ~~`for (Int i = 1; i <= 10; ++i) { ... }`~~,  
+translates to `for i in Range(1, 10) { ... }`.
+
+`for i in 0..<10 { ... }`  
+instead of ~~`for (Int i = 0; i < 10; ++i) { ... }`~~,  
+translates to `for i in RangeExclusiveEnd(0, 10) { ... }`.
+
+`for i in 10..1:-1 { ... }`  
+instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
+translates to `for i in RangeByStep(10, 1, -1) { ... }`.
   
 I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
 
