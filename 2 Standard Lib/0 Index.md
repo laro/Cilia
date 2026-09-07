@@ -51,4 +51,4 @@ A wrapper is not strictly necessary, Cilia can access/call every C/C++ class/fun
 But only _with_ a wrapper do we have a Cilia standard library in the "idiomatic" Cilia style, i.e.
 - CamelCase class names,
 - camelCase function names,
-- `Int` instead of `size_t`.
+- signed `Int` instead of unsigned `size_t`.
