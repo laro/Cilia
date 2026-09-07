@@ -71,6 +71,7 @@ Use the **range operator** to write
 - `for i in 10..1:-1 { ... }`  
   instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
   translates to `for i in RangeByStep(10, 1, -1) { ... }`.
+  
 I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
 
 The variable is declared "with the loop", with its type inferred from the range, array, etc. used (similar to `var`, but only with the options `in` (the default), `inout`, `copy`, `move`).  
