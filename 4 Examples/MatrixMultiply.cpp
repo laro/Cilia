@@ -6,12 +6,13 @@ auto multiply(const matrix& A, const matrix& B) -> matrix {
 
     assert(n == o && "A.columns() must equal B.rows()");
 
-    matrix C(m, p);
+    const matrix AT = transpose(A);
+    matrix C(m, p, 0.0);
 
-    for (int i = 0; i < m; ++i) {
-        for (int k = 0; k < n; ++k) {
-            for (int j = 0; j < p; ++j) {
-                C[i, j] += A[i, k] * B[k, j];
+    for (int j = 0; j < p; ++j) {
+        for (int i = 0; i < m; ++i) {
+            for (int k = 0; k < n; ++k) {
+                C[i,j] += AT[k,i] * B[k,j];
             }
         }
     }
