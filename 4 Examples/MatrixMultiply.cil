@@ -6,12 +6,13 @@ func multiply(Matrix A, B) -> Matrix {
 
     assert(n == o, "A.columns() must equal B.rows()")
 
-    Matrix C(m, p)
+    const AT = transpose(A)
+    Matrix C(m, p, 0.0)
 
-    for i in 0..<m {
-        for k in 0..<n {
-            for j in 0..<p {
-                C[i, j] += A[i, k] * B[k, j]
+    for j in 0..<p {
+        for i in 0..<m {
+            for k in 0..<n {
+                C[i,j] += AT[k,i] * B[k,j]
             }
         }
     }
