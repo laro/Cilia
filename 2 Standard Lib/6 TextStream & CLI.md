@@ -48,9 +48,9 @@ Reading
     - With pipes/sockets it blocks until a character is available (or the pipe/socket is closed).
     - When the end of file is reached, then it returns `""`.
     - Unicode variant of ~~`cin.readChar() -> Char`~~.
-    - TODO? `cin.readCodePoint() -> Char32` reads a single Unicode code point (as `Char32`).
-        - But beware: some grapheme clusters, like emoji, consist of _multiple_ code points.
-        - When the end of file is reached, then it returns `-1`.
+- `cin.readCodePoint() -> Char32` reads a single Unicode code point (as `Char32`).
+    - But beware: some grapheme clusters, like emoji, consist of _multiple_ code points.
+    - When the end of file is reached, then it returns `-1`.
 - `cin.tryToRead() -> String` reads everything that is immediately available,
     - possibly/often returns `""`, it never blocks.
     - Reads everything from the `istream` user-level cache (if not empty),
