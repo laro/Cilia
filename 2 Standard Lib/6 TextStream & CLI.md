@@ -25,6 +25,7 @@ For input / output of _text_.
 Writing
 - `cout.write("...")` without newline.
 - `cout.writeLine("...")` with newline.
+- `cout.write(Char32 copePoint)`
 
 Reading
 - `cin.read() -> String` reads
