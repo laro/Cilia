@@ -5,7 +5,7 @@ description: "Matrix multiplication example in Cilia and C++. Side-by-side compa
 
 # Matrix Multiply
 
-Simple algorithm: triple nested loop, O(n³). For each element `C[i,j]`, compute the dot product of row `i` of `A` and column `j` of `B`. Using transposed `A`, but no tiling.
+Simple algorithm: triple nested loop, O(n³). For each element `C[i,j]`, compute the dot product of row `i` of `A` and column `j` of `B`. Using the transposed of `A`, but no tiling.
 
 
 ## Cilia
