@@ -6,8 +6,8 @@ func multiply(Matrix A, B) -> Matrix {
 
     assert(n == o, "A.columns() must equal B.rows()")
 
-    const AT = transpose(A)
     Matrix C(m, p, 0.0)
+    const AT = transpose(A)
 
     for j in 0..<p {
         for i in 0..<m {
