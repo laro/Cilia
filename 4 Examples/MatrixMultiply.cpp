@@ -6,8 +6,8 @@ auto multiply(const matrix& A, const matrix& B) -> matrix {
 
     assert(n == o && "A.columns() must equal B.rows()");
 
-    const matrix AT = transpose(A);
     matrix C(m, p, 0.0);
+    const matrix AT = transpose(A);
 
     for (int j = 0; j < p; ++j) {
         for (int i = 0; i < m; ++i) {
