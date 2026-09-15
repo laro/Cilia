@@ -29,7 +29,7 @@ Writing text.
 
 - `cout.write("...")` without newline.
 - `cout.writeLine("...")` with newline.
-- `cout.write(Char32 copePoint)`
+- `cout.write(Char32 codePoint)`
 
 
 ### TextInputStream
