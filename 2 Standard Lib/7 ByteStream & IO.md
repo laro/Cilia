@@ -157,9 +157,9 @@ flowchart LR
     
     File -.-> ByteStream
     MemoryStream -.-> ByteStream
-    NetworkConnection ---> ByteStream
-    LocalConnection ---> ByteStream
-    DeviceConnection ---> ByteStream
+    NetworkConnection --> ByteStream
+    LocalConnection --> ByteStream
+    DeviceConnection --> ByteStream
     BluetoothRfcommConnection -.-> ByteStream
     
     TcpConnection -.-> NetworkConnection
