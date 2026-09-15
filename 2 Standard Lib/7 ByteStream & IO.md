@@ -11,7 +11,7 @@ description: "Cilia IO: ByteStream, FileStream, network sockets."
 For input / output of _binary_ data.
 
 
-## OutputByteStream
+### OutputByteStream
 
 Writing binary data.
 
@@ -24,7 +24,7 @@ Writing binary data.
     - This protects against data loss in the event of a program or _system_ crash.
 
 
-## InputByteStream
+### InputByteStream
 
 Reading binary data.
 
