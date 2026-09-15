@@ -72,9 +72,6 @@ Reading
 
 ## Class Hierarchy
 
-- `TextStream`
-    - `StringStream`
-
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 flowchart TD
