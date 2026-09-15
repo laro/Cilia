@@ -155,8 +155,8 @@ flowchart LR
     ByteInputStream([ByteInputStream])
     ByteOutputStream([ByteOutputStream])
     
-    File -.-> ByteStream
-    MemoryStream -.-> ByteStream
+    File -..-> ByteStream
+    MemoryStream -..-> ByteStream
     NetworkConnection --> ByteStream
     LocalConnection --> ByteStream
     DeviceConnection --> ByteStream
