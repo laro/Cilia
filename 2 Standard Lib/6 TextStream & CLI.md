@@ -74,7 +74,7 @@ Reading
 
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-flowchart TD
+flowchart LR
     TextFile[TextFile]
     StringStream[StringStream]
 
