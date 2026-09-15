@@ -22,12 +22,20 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 
 For input / output of _text_.
 
-Writing
+
+## OutputTextStream
+
+Writing text.
+
 - `cout.write("...")` without newline.
 - `cout.writeLine("...")` with newline.
 - `cout.write(Char32 copePoint)`
 
-Reading
+
+### InputTextStream
+
+Reading text.
+
 - `cin.read() -> String` reads
     - everything from the `istream` user-level cache (if not empty),
     - or (otherwise) everything from the kernel buffer/cache:
