@@ -74,3 +74,20 @@ Reading
 
 - `TextStream`
     - `StringStream`
+
+```mermaid
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+flowchart TD
+    TextFile[TextFile]
+    StringStream[StringStream]
+
+    TextStream([TextStream])
+    TextInputStream([TextInputStream])
+    TextOutputStream([TextOutputStream])
+
+    TextFile -.-> TextStream
+    StringStream -.-> TextStream
+
+    TextStream --> TextInputStream
+    TextStream --> TextOutputStream
+```

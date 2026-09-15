@@ -116,6 +116,23 @@ Reading
 
 
 ## Class Hierarchy
+```mermaid
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+flowchart TD
+    File[File]
+    MemoryStream[MemoryStream]
+
+    ByteStream([ByteStream])
+    ByteInputStream([ByteInputStream])
+    ByteOutputStream([ByteOutputStream])
+
+
+    File -.-> ByteStream
+    MemoryStream -.-> ByteStream
+
+    ByteStream --> ByteInputStream
+    ByteStream --> ByteOutputStream
+```
 
 - `ByteStream`
     - `File`
