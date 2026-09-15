@@ -119,6 +119,21 @@ Reading
 
 ### ByteStream
 
+- `ByteStream`
+    - `File`
+    - `MemoryStream` as RAM buffer.
+    - `NetworkConnection`
+        - `TcpConnection`
+            - `TlsConnection` / `SslConnection`
+        - `SshConnection`
+    - `LocalConnection` for interprocess communication.
+        - `Pipe`
+        - `UnixDomainConnection` in stream configuration.
+    - `BluetoothRfcommConnection` Bluetooth RFCOMM
+    - `DeviceConnection`
+        - `SerialConnection` for RS-232/UART.
+        - `UsbConnection` for USB bulk transfers.
+
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 flowchart LR
@@ -163,23 +178,19 @@ flowchart LR
     ByteStream --> ByteOutputStream
 ```
 
-- `ByteStream`
-    - `File`
-    - `MemoryStream` as RAM buffer.
-    - `NetworkConnection`
-        - `TcpConnection`
-            - `TlsConnection` / `SslConnection`
-        - `SshConnection`
-    - `LocalConnection` for interprocess communication.
-        - `Pipe`
-        - `UnixDomainConnection` in stream configuration.
-    - `BluetoothRfcommConnection` Bluetooth RFCOMM
-    - `DeviceConnection`
-        - `SerialConnection` for RS-232/UART.
-        - `UsbConnection` for USB bulk transfers.
-
 
 ### MessageChannel
+
+- `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
+    - `UdpSocket` for UDP over IP.
+    - `UnixDomainSocket` in datagram configuration.
+    - Communication with sensors on microcontrollers
+        - `I2CDevice` (register read/write cycles)
+        - `SpiDevice` (chip-select-controlled frames)
+        - `CanBusNode`
+    - `BluetoothL2CapConnection` Bluetooth L2CAP
+    - `ZigbeeEndpoint`
+    - `WebSocketConnection` (message frames over TCP)
 
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
@@ -204,14 +215,3 @@ flowchart LR
     ZigbeeEndpoint -.-> MessageChannel
     WebSocketConnection -.-> MessageChannel
 ```
-
-- `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
-    - `UdpSocket` for UDP over IP.
-    - `UnixDomainSocket` in datagram configuration.
-    - Communication with sensors on microcontrollers
-        - `I2CDevice` (register read/write cycles)
-        - `SpiDevice` (chip-select-controlled frames)
-        - `CanBusNode`
-    - `BluetoothL2CapConnection` Bluetooth L2CAP
-    - `ZigbeeEndpoint`
-    - `WebSocketConnection` (message frames over TCP)
