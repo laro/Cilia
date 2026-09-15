@@ -23,7 +23,7 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 For input / output of _text_.
 
 
-## OutputTextStream
+## TextOutputStream
 
 Writing text.
 
@@ -32,7 +32,7 @@ Writing text.
 - `cout.write(Char32 copePoint)`
 
 
-### InputTextStream
+### TextInputStream
 
 Reading text.
 
