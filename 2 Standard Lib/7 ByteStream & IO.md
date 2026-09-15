@@ -126,7 +126,6 @@ flowchart TD
     ByteInputStream([ByteInputStream])
     ByteOutputStream([ByteOutputStream])
 
-
     File -.-> ByteStream
     MemoryStream -.-> ByteStream
 
