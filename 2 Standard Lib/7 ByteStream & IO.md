@@ -116,6 +116,9 @@ Reading
 
 
 ## Class Hierarchy
+
+### ByteStream
+
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 flowchart LR
@@ -174,6 +177,34 @@ flowchart LR
     - `DeviceConnection`
         - `SerialConnection` for RS-232/UART.
         - `UsbConnection` for USB bulk transfers.
+
+
+### MessageChannel
+
+```mermaid
+%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
+flowchart LR
+    UdpSocket[UdpSocket]
+    UnixDomainSocket[UnixDomainSocket]
+    I2CDevice[I2CDevice]
+    SpiDevice[SpiDevice]
+    CanBusNode[CanBusNode]
+    BluetoothL2CapConnection[BluetoothL2CapConnection]
+    ZigbeeEndpoint[ZigbeeEndpoint]
+    WebSocketConnection[WebSocketConnection]
+    
+    MessageChannel([MessageChannel])
+    
+    UdpSocket -.-> MessageChannel
+    UnixDomainSocket -.-> MessageChannel
+    I2CDevice -.-> MessageChannel
+    SpiDevice -.-> MessageChannel
+    CanBusNode -.-> MessageChannel
+    BluetoothL2CapConnection -.-> MessageChannel
+    ZigbeeEndpoint -.-> MessageChannel
+    WebSocketConnection -.-> MessageChannel
+```
+
 - `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
     - `UdpSocket` for UDP over IP.
     - `UnixDomainSocket` in datagram configuration.
