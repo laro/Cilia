@@ -10,7 +10,11 @@ description: "Cilia IO: ByteStream, FileStream, network sockets."
 
 For input / output of _binary_ data.
 
-Writing
+
+## OutputByteStream
+
+Writing binary data.
+
 - `out.close()`
 - `out.write(Byte[])`
 - `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
@@ -19,7 +23,11 @@ Writing
     - calls `fsync()` to write the kernel buffers to the file system and then to the hard disk/SSD (the write cache should be written/cleared, too).
     - This protects against data loss in the event of a program or _system_ crash.
 
-Reading
+
+## InputByteStream
+
+Reading binary data.
+
 - `in.read() -> Byte[]` reads
     - everything from the `istream` user-level cache, if not `0`,  
         otherwise everything from the kernel buffer/cache:
