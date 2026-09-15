@@ -118,17 +118,44 @@ Reading
 ## Class Hierarchy
 ```mermaid
 %%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
-flowchart TD
+flowchart LR
     File[File]
     MemoryStream[MemoryStream]
-
+    NetworkConnection[NetworkConnection]
+    TcpConnection[TcpConnection]
+    TlsConnection[TlsConnection]
+    SslConnection[SslConnection]
+    SshConnection[SshConnection]
+    LocalConnection[LocalConnection]
+    Pipe[Pipe]
+    UnixDomainConnection[UnixDomainConnection]
+    BluetoothRfcommConnection[BluetoothRfcommConnection]
+    DeviceConnection[DeviceConnection]
+    SerialConnection[SerialConnection]
+    UsbConnection[UsbConnection]
+    
     ByteStream([ByteStream])
     ByteInputStream([ByteInputStream])
     ByteOutputStream([ByteOutputStream])
-
+    
     File -.-> ByteStream
     MemoryStream -.-> ByteStream
-
+    NetworkConnection -.-> ByteStream
+    LocalConnection -.-> ByteStream
+    BluetoothRfcommConnection -.-> ByteStream
+    DeviceConnection -.-> ByteStream
+    
+    TcpConnection -.-> NetworkConnection
+    TlsConnection -.-> TcpConnection
+    SslConnection -.-> TcpConnection
+    SshConnection -.-> NetworkConnection
+    
+    Pipe -.-> LocalConnection
+    UnixDomainConnection -.-> LocalConnection
+    
+    SerialConnection -.-> DeviceConnection
+    UsbConnection -.-> DeviceConnection
+    
     ByteStream --> ByteInputStream
     ByteStream --> ByteOutputStream
 ```
