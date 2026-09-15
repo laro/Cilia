@@ -139,17 +139,17 @@ Reading
 flowchart LR
     File[File]
     MemoryStream[MemoryStream]
-    NetworkConnection[NetworkConnection]
+    NetworkConnection([NetworkConnection])
     TcpConnection[TcpConnection]
     TlsConnection[TlsConnection]
     SshConnection[SshConnection]
-    LocalConnection[LocalConnection]
+    LocalConnection([LocalConnection])
     Pipe[Pipe]
     UnixDomainConnection[UnixDomainConnection]
-    BluetoothRfcommConnection[BluetoothRfcommConnection]
-    DeviceConnection[DeviceConnection]
+    DeviceConnection([DeviceConnection])
     SerialConnection[SerialConnection]
     UsbConnection[UsbConnection]
+    BluetoothRfcommConnection[BluetoothRfcommConnection]
     
     ByteStream([ByteStream])
     ByteInputStream([ByteInputStream])
@@ -157,10 +157,10 @@ flowchart LR
     
     File -.-> ByteStream
     MemoryStream -.-> ByteStream
-    NetworkConnection -.-> ByteStream
-    LocalConnection -.-> ByteStream
+    NetworkConnection ---> ByteStream
+    LocalConnection ---> ByteStream
+    DeviceConnection ---> ByteStream
     BluetoothRfcommConnection -.-> ByteStream
-    DeviceConnection -.-> ByteStream
     
     TcpConnection -.-> NetworkConnection
     TlsConnection -.-> TcpConnection
