@@ -124,7 +124,7 @@ Reading
     - `MemoryStream` as RAM buffer.
     - `NetworkConnection`
         - `TcpConnection`
-            - `TlsConnection` / `SslConnection`
+            - `TlsConnection` for encrypted TLS and SSL connections
         - `SshConnection`
     - `LocalConnection` for interprocess communication.
         - `Pipe`
@@ -142,7 +142,6 @@ flowchart LR
     NetworkConnection[NetworkConnection]
     TcpConnection[TcpConnection]
     TlsConnection[TlsConnection]
-    SslConnection[SslConnection]
     SshConnection[SshConnection]
     LocalConnection[LocalConnection]
     Pipe[Pipe]
@@ -165,7 +164,6 @@ flowchart LR
     
     TcpConnection -.-> NetworkConnection
     TlsConnection -.-> TcpConnection
-    SslConnection -.-> TcpConnection
     SshConnection -.-> NetworkConnection
     
     Pipe -.-> LocalConnection
