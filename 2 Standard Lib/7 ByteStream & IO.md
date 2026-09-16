@@ -134,24 +134,22 @@ Reading binary data.
     - `serial.setDataBits(Int)`
 
 
-## Class Hierarchy
+### Class Hierarchy
 
-### ByteStream
-
-- `ByteStream`
-    - `File`
-    - `MemoryStream` as RAM buffer.
-    - `NetworkConnection`
-        - `TcpConnection`
-            - `TlsConnection` for encrypted TLS and SSL connections
-        - `SshConnection`
-    - `LocalConnection` for interprocess communication.
-        - `Pipe`
-        - `UnixDomainConnection` in stream configuration.
-    - `BluetoothRfcommConnection` Bluetooth RFCOMM
-    - `DeviceConnection`
-        - `SerialConnection` for RS-232/UART.
-        - `UsbConnection` for USB bulk transfers.
+`ByteStream` is implemented by:
+- `File`
+- `MemoryStream` as RAM buffer.
+- `NetworkConnection`
+    - `TcpConnection`
+        - `TlsConnection` for encrypted TLS and SSL connections
+    - `SshConnection`
+- `LocalConnection` for interprocess communication.
+    - `Pipe`
+    - `UnixDomainConnection` in stream configuration.
+- `BluetoothRfcommConnection` Bluetooth RFCOMM
+- `DeviceConnection`
+    - `SerialConnection` for RS-232/UART.
+    - `UsbConnection` for USB bulk transfers.
 
 ```mermaid
 flowchart LR
@@ -197,13 +195,13 @@ flowchart LR
 
 ### MessageChannel
 
-- `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes).
-    - `UdpSocket` for UDP over IP.
-    - `UnixDomainSocket` in datagram configuration.
-    - Communication with sensors on microcontrollers
-        - `I2CDevice` (register read/write cycles)
-        - `SpiDevice` (chip-select-controlled frames)
-        - `CanBusNode`
-    - `BluetoothL2CapConnection` Bluetooth L2CAP
-    - `ZigbeeEndpoint`
-    - `WebSocketConnection` (message frames over TCP)
+`MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes), is implemented by:
+- `UdpSocket` for UDP over IP.
+- `UnixDomainSocket` in datagram configuration.
+- Communication with sensors on microcontrollers
+    - `I2CDevice` (register read/write cycles)
+    - `SpiDevice` (chip-select-controlled frames)
+    - `CanBusNode`
+- `BluetoothL2CapConnection` Bluetooth L2CAP
+- `ZigbeeEndpoint`
+- `WebSocketConnection` (message frames over TCP)
