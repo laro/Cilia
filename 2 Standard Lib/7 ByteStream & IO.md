@@ -82,6 +82,15 @@ Reading binary data.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 - `file.path() -> String`
 
+`File::open("Test.txt", openMode = OpenMode::Read) -> File`
+`File::create("Test.txt", openMode = OpenMode::Write) -> File`
+`File::openOrCreate("Test.txt", openMode = OpenMode::Write) -> File`
+
+`OpenMode`
+- `Read`
+- `Write`
+- `Append`
+
 
 ## Network & Device IO
 
@@ -99,6 +108,7 @@ Reading binary data.
     - `connection.readTimeout() -> Duration`
         - `connection.setReadTimeout(Duration)`
 - `TcpConnection`, derived from `NetworkConnection`
+    - `TcpConnection::open("example.com", 80) -> TcpConnection`
     - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
     - `connection.connectionTimeout() -> Duration`
         - `connection.setConnectionTimeout(Duration)`
@@ -118,9 +128,11 @@ Reading binary data.
     - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
         - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
 - `SerialConnection` (RS-232/UART)
-    - `setBaudRate(Int)`
-    - `setParity(Parity)`
-    - `setDataBits(Int)`
+    - `SerialPort::open("COM3", 115200) -> SerialPort`
+    - `SerialPort::list() -> String[]`
+    - `serial.setBaudRate(Int)`
+    - `serial.setParity(Parity)`
+    - `serial.setDataBits(Int)`
 
 
 ## Class Hierarchy

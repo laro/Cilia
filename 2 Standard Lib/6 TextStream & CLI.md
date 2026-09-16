@@ -22,6 +22,10 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 
 For input / output of _text_.
 
+`TextFile::open("Test.txt") -> File`
+`File::create("Test.txt") -> File`
+`File::openOrCreate("Test.txt") -> File`
+
 
 ### TextOutputStream
 
