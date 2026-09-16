@@ -23,7 +23,7 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 For input / output of _text_.
 
 
-## TextOutputStream
+### TextOutputStream
 
 Writing text.
 
