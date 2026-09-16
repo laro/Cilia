@@ -29,7 +29,7 @@ Writing text.
 
 - `cout.write("...")` without newline.
 - `cout.writeLine("...")` with newline.
-- `cout.write(Char32 codePoint)`
+- `cout.write(Char32 codePoint)`  
 
 - `cout << "Text"` is possible, but stateless only (i.e. no manipulators besides `endl` and `flush`).
 
@@ -77,7 +77,7 @@ Reading text.
     - returns `True` if
         - the end of the file is reached (or the pipe/socket is closed),
         - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
-    - Typically necessary to call this function when `cin.read()` or `cin.readLine()` return `""`.
+    - Typically necessary to call this function when `cin.read()` or `cin.readLine()` return `""`.  
 
 - `cin >> line` is possible, but stateless only.
 
