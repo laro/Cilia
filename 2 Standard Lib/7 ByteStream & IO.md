@@ -97,41 +97,47 @@ Reading binary data.
 > This is not necessarily part of the core language.
 > I'm just thinking about what a good API might look like.
 
-- `NetworkConnection`, derived from `ByteStream`,
-    - a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
-    - `connection.connect(...)`
-    - `connection.disconnect()`
-    - `connection.isConnected() -> Bool`
-    - `connection.remoteAddress() -> String`
-    - `connection.localAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
-    - `connection.readTimeout() -> Duration`
-        - `connection.setReadTimeout(Duration)`
-- `TcpConnection`, derived from `NetworkConnection`
-    - `TcpConnection::open("example.com", 80) -> TcpConnection`
-    - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
-    - `connection.connectionTimeout() -> Duration`
-        - `connection.setConnectionTimeout(Duration)`
-    - `connection.remotePort() -> UInt16`
-    - `connection.localPort() -> UInt16`
-    - `connection.noDelay() -> Bool`
-        - `connection.setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
-    - `connection.keepAlive() -> Bool`
-        - `connection.setKeepAlive(Bool)` prevents connection termination due to inactivity.
-    - `connection.protocolVersion() -> Int` returns `4` or `6`.
-    - `connection.receiveBufferSize() -> Int`
-        - `connection.setReceiveBufferSize(Int bytes)`
-    - `connection.sendBufferSize() -> Int`
-        - `connection.setSendBufferSize(Int bytes)`
-- `LocalConnection`, derived from `ByteStream`
-    - `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
-    - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
-        - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
-- `SerialConnection` (RS-232/UART)
-    - `SerialPort::open("COM3", 115200) -> SerialPort`
-    - `SerialPort::list() -> String[]`
-    - `serial.setBaudRate(Int)`
-    - `serial.setParity(Parity)`
-    - `serial.setDataBits(Int)`
+### NetworkConnection
+`NetworkConnection`, derived from `ByteStream`, a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
+- `connection.connect(...)`
+- `connection.disconnect()`
+- `connection.isConnected() -> Bool`
+- `connection.remoteAddress() -> String`
+- `connection.localAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
+- `connection.readTimeout() -> Duration`
+    - `connection.setReadTimeout(Duration)`
+
+### TcpConnection
+`TcpConnection`, derived from `NetworkConnection`
+- `TcpConnection::open("example.com", 80) -> TcpConnection`
+- `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
+- `connection.connectionTimeout() -> Duration`
+    - `connection.setConnectionTimeout(Duration)`
+- `connection.remotePort() -> UInt16`
+- `connection.localPort() -> UInt16`
+- `connection.noDelay() -> Bool`
+    - `connection.setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
+- `connection.keepAlive() -> Bool`
+    - `connection.setKeepAlive(Bool)` prevents connection termination due to inactivity.
+- `connection.protocolVersion() -> Int` returns `4` or `6`.
+- `connection.receiveBufferSize() -> Int`
+    - `connection.setReceiveBufferSize(Int bytes)`
+- `connection.sendBufferSize() -> Int`
+    - `connection.setSendBufferSize(Int bytes)`
+
+### LocalConnection
+`LocalConnection`, derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in stream configuration:
+- `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
+- `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
+    - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
+
+### SerialPort
+`SerialPort` for RS-232/UART:
+- `SerialPort::open("COM3", 115200) -> SerialPort`
+- `SerialPort::list() -> String[]`
+- `serial.setBaudRate(Int)`
+- `serial.setParity(Parity)`
+- `serial.setDataBits(Int)`
 
 
 ### Class Hierarchy
@@ -148,7 +154,7 @@ Reading binary data.
     - `UnixDomainConnection` in stream configuration.
 - `BluetoothRfcommConnection` Bluetooth RFCOMM
 - `DeviceConnection`
-    - `SerialConnection` for RS-232/UART.
+    - `SerialPort` for RS-232/UART.
     - `UsbConnection` for USB bulk transfers.
 
 ```mermaid
@@ -163,7 +169,7 @@ flowchart LR
     Pipe[Pipe]
     UnixDomainConnection[UnixDomainConnection]
     DeviceConnection([DeviceConnection])
-    SerialConnection[SerialConnection]
+    SerialPort[SerialPort]
     UsbConnection[UsbConnection]
     BluetoothRfcommConnection[BluetoothRfcommConnection]
     
@@ -185,7 +191,7 @@ flowchart LR
     Pipe -.-> LocalConnection
     UnixDomainConnection -.-> LocalConnection
     
-    SerialConnection -.-> DeviceConnection
+    SerialPort -.-> DeviceConnection
     UsbConnection -.-> DeviceConnection
     
     ByteStream --> ByteInputStream
@@ -193,7 +199,7 @@ flowchart LR
 ```
 
 
-### MessageChannel
+## MessageChannel
 
 `MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes), is implemented by:
 - `UdpSocket` for UDP over IP.
