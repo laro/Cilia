@@ -45,7 +45,7 @@ Reading binary data.
     - `in.read(minimum..maximum) -> Byte[]`
 - `in.readAll() -> Byte[]` reads everything until the end of the stream.
     - With pipes/sockets, it blocks until the pipe/socket is closed.
-- `in.readInto(Span<Byte> buffer, Int minimum = 1)` reads into the given buffer.
+- `in.readInto(Span<Byte> buffer, Int minimum = 1) -> Int` reads into the given buffer.
     - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
     - Throws an exception if end of file reached (or pipe/socket closed) before `minimum` bytes are read.
     - The effective `maximum` if defined by `buffer.size()`.
