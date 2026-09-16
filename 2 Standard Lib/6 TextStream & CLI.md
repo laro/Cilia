@@ -84,14 +84,14 @@ Reading text.
 `cin >> line` is possible, but stateless only.
 
 
-## Class Hierarchy
-
-### TextFile
+## TextFile
 
 - `TextFile::open("Test.txt") -> File`
 - `TextFile::create("Test.txt") -> File`
 - `TextFile::openOrCreate("Test.txt") -> File`
 
+
+## Class Hierarchy
 
 ```mermaid
 flowchart LR
