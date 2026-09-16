@@ -70,6 +70,14 @@ Reading binary data.
 ## File IO
 
 **`File`**, derived from `ByteStream`.
+- `File::open("Test.txt", openMode = OpenMode::Read) -> File`
+- `File::create("Test.txt", openMode = OpenMode::Write) -> File`
+- `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
+    - `OpenMode`
+        - `Read`
+        - `Write`
+        - `Append`
+
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -81,15 +89,6 @@ Reading binary data.
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 - `file.path() -> String`
-
-- `File::open("Test.txt", openMode = OpenMode::Read) -> File`
-- `File::create("Test.txt", openMode = OpenMode::Write) -> File`
-- `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
-
-`OpenMode`
-- `Read`
-- `Write`
-- `Append`
 
 
 ## Network & Device IO
