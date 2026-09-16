@@ -81,7 +81,6 @@ Reading text.
 ## Class Hierarchy
 
 ```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 flowchart LR
     TextFile[TextFile]
     StringStream[StringStream]

@@ -191,7 +191,6 @@ Also see [Circle simpler_precedence](https://github.com/seanbaxter/circle/blob/m
 In the diagram below, nodes higher up bind tighter; arrows point from looser toward tighter binding.
 
 ```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph BT
     primary["Primary
 (…)
@@ -428,7 +427,6 @@ Circles are helper nodes only (not a precedence group).
 
 
 ```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 graph LR
     binary@{ shape: brace-r, label: "Binary" }
 
