@@ -22,10 +22,6 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 
 For input / output of _text_.
 
-- `TextFile::open("Test.txt") -> File`
-- `TextFile::create("Test.txt") -> File`
-- `TextFile::openOrCreate("Test.txt") -> File`
-
 
 ### TextOutputStream
 
@@ -89,6 +85,13 @@ Reading text.
 
 
 ## Class Hierarchy
+
+### TextFile
+
+- `TextFile::open("Test.txt") -> File`
+- `TextFile::create("Test.txt") -> File`
+- `TextFile::openOrCreate("Test.txt") -> File`
+
 
 ```mermaid
 flowchart LR
