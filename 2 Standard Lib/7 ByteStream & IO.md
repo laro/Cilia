@@ -82,9 +82,9 @@ Reading binary data.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 - `file.path() -> String`
 
-`File::open("Test.txt", openMode = OpenMode::Read) -> File`
-`File::create("Test.txt", openMode = OpenMode::Write) -> File`
-`File::openOrCreate("Test.txt", openMode = OpenMode::Write) -> File`
+- `File::open("Test.txt", openMode = OpenMode::Read) -> File`
+- `File::create("Test.txt", openMode = OpenMode::Write) -> File`
+- `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
 
 `OpenMode`
 - `Read`
