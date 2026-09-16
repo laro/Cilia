@@ -143,7 +143,6 @@ Reading binary data.
         - `UsbConnection` for USB bulk transfers.
 
 ```mermaid
-%%{init: {'themeVariables': {'fontFamily': 'monospace'}}}%%
 flowchart LR
     File[File]
     MemoryStream[MemoryStream]
