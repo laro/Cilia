@@ -110,9 +110,14 @@ flowchart LR
     TextInStream([TextInStream])
     TextOutStream([TextOutStream])
 
+    BasicStream([BasicStream])
+
     TextFile -.-> TextStream
     StringStream -.-> TextStream
 
     TextStream --> TextInStream
     TextStream --> TextOutStream
+
+    TextInStream --> BasicStream
+    TextOutStream --> BasicStream
 ```

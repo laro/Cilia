@@ -175,6 +175,8 @@ flowchart LR
     ByteStream([ByteStream])
     ByteInStream([ByteInStream])
     ByteOutStream([ByteOutStream])
+
+    BasicStream([BasicStream])
     
     File -..-> ByteStream
     MemoryStream -..-> ByteStream
@@ -195,6 +197,9 @@ flowchart LR
     
     ByteStream --> ByteInStream
     ByteStream --> ByteOutStream
+
+    ByteInStream --> BasicStream
+    ByteOutStream --> BasicStream
 ```
 
 
