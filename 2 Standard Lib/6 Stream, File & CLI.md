@@ -164,15 +164,7 @@ Interface for reading binary data.
 
 ## File IO
 
-**`File`**, derived from `ByteStream`.
-- `File::open("Test.txt", openMode = OpenMode::Read) -> File`
-- `File::create("Test.txt", openMode = OpenMode::Write) -> File`
-- `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
-    - `OpenMode`
-        - `Read`
-        - `Write`
-        - `Append`
-
+Interface `SeekableStream`
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -181,9 +173,24 @@ Interface for reading binary data.
     - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
 - `file.seekFromEnd(Int distanceToEnd)`
     - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
+
+
+**`File`**, derived from `ByteStream` and `SeekableStream`:
+- `File::open("Test.txt", openMode = OpenMode::Read) -> File`
+- `File::create("Test.txt", openMode = OpenMode::Write) -> File`
+- `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
+    - `OpenMode`
+        - `Read`
+        - `Write`
+        - `Append`
+
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 - `file.path() -> String`
+
+
+**`MemoryStream`**, derived from `ByteStream` and `SeekableStream`:
+- `MemoryStream memoryStream(Int capacity = 0)`
 
 
 ## Network & Device IO
