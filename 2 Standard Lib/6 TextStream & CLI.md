@@ -20,12 +20,15 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 
 ## TextStream
 
-For input / output of _text_.
+Interface `TextStream` for input / output of _text_.
+
+- `stream.isOpen() -> Bool`
+- `stream.close()`
 
 
 ### TextOutStream
 
-Writing text.
+Interface `TextOutStream` for writing text.
 
 - `cout.write("...")` without newline.
 - `cout.writeLine("...")` with newline.
@@ -37,7 +40,7 @@ Writing text.
 
 ### TextInStream
 
-Reading text.
+Interface `TextInStream` for reading text.
 
 - `cin.read() -> String` reads
     - everything from the `istream` user-level cache (if not empty),
