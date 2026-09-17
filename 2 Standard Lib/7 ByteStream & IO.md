@@ -10,8 +10,8 @@ description: "Cilia IO: ByteStream, FileStream, network sockets."
 
 Interface `ByteStream` for input / output of _binary_ data.
 
-- `out.isOpen() -> Bool`
-- `out.close()`
+- `stream.isOpen() -> Bool`
+- `stream.close()`
 
 
 ### ByteOutStream
