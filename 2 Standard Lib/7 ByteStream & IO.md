@@ -14,9 +14,9 @@ Interface `ByteStream` for input / output of _binary_ data.
 - `out.close()`
 
 
-### ByteOutputStream
+### ByteOutStream
 
-Interface `ByteOutputStream` for writing binary data.
+Interface `ByteOutStream` for writing binary data.
 
 - `out.write(Byte[])`
 - `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
@@ -26,9 +26,9 @@ Interface `ByteOutputStream` for writing binary data.
     - This protects against data loss in the event of a program or _system_ crash.
 
 
-### ByteInputStream
+### ByteInStream
 
-Interface `ByteInputStream` for reading binary data.
+Interface `ByteInStream` for reading binary data.
 
 - `in.read() -> Byte[]` reads
     - everything from the `istream` user-level cache, if not `0`,  
@@ -173,8 +173,8 @@ flowchart LR
     BluetoothRfcommConnection[BluetoothRfcommConnection]
     
     ByteStream([ByteStream])
-    ByteInputStream([ByteInputStream])
-    ByteOutputStream([ByteOutputStream])
+    ByteInStream([ByteInStream])
+    ByteOutStream([ByteOutStream])
     
     File -..-> ByteStream
     MemoryStream -..-> ByteStream
@@ -193,8 +193,8 @@ flowchart LR
     SerialPort -.-> DeviceConnection
     UsbConnection -.-> DeviceConnection
     
-    ByteStream --> ByteInputStream
-    ByteStream --> ByteOutputStream
+    ByteStream --> ByteInStream
+    ByteStream --> ByteOutStream
 ```
 
 

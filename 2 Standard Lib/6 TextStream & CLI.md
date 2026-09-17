@@ -23,7 +23,7 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 For input / output of _text_.
 
 
-### TextOutputStream
+### TextOutStream
 
 Writing text.
 
@@ -35,7 +35,7 @@ Writing text.
 `cout << "Text"` is possible, but stateless only (i.e. no manipulators besides `endl` and `flush`).
 
 
-### TextInputStream
+### TextInStream
 
 Reading text.
 
@@ -99,12 +99,12 @@ flowchart LR
     StringStream[StringStream]
 
     TextStream([TextStream])
-    TextInputStream([TextInputStream])
-    TextOutputStream([TextOutputStream])
+    TextInStream([TextInStream])
+    TextOutStream([TextOutStream])
 
     TextFile -.-> TextStream
     StringStream -.-> TextStream
 
-    TextStream --> TextInputStream
-    TextStream --> TextOutputStream
+    TextStream --> TextInStream
+    TextStream --> TextOutStream
 ```
