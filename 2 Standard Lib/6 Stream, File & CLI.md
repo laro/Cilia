@@ -164,7 +164,7 @@ Interface for reading binary data.
 
 ## File IO
 
-Interface `SeekableStream`
+Interface `SeekableStream`:
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -175,7 +175,12 @@ Interface `SeekableStream`
     - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
 
 
-**`File`**, derived from `ByteStream` and `SeekableStream`:
+Interface `TruncatableStream`:
+- `file.truncate()` truncates the file at the current position.
+    - `file.truncateAt(Int n)` truncates the file at the given position.
+
+
+**`File`**, derived from `ByteStream`, `SeekableStream`, and `TruncatableStream`:
 - `File::open("Test.txt", openMode = OpenMode::Read) -> File`
 - `File::create("Test.txt", openMode = OpenMode::Write) -> File`
 - `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
@@ -184,12 +189,10 @@ Interface `SeekableStream`
         - `Write`
         - `Append`
 
-- `file.truncate()` truncates the file at the current position.
-    - `file.truncateAt(Int n)` truncates the file at the given position.
 - `file.path() -> String`
 
 
-**`MemoryStream`**, derived from `ByteStream` and `SeekableStream`:
+**`MemoryStream`**, derived from `ByteStream`, `SeekableStream`, and `TruncatableStream`:
 - `MemoryStream memoryStream(Int capacity = 0)`
 
 
