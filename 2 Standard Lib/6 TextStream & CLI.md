@@ -18,12 +18,17 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
     - `input(String prompt = "") -> String`
 
 
-## TextStream
+## BasicStream
 
-Interface `TextStream` for input / output of _text_.
+Interface `BasicStream` as base for `Text*Stream` and `Byte*Stream`.
 
 - `stream.isOpen() -> Bool`
 - `stream.close()`
+
+
+## TextStream
+
+Interface `TextStream` for input / output of _text_.
 
 
 ### TextOutStream
