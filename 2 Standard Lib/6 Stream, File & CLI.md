@@ -296,8 +296,8 @@ flowchart LR
     UsbConnection[UsbConnection]
     BluetoothRfcommConnection[BluetoothRfcommConnection]
     
-    TextFile -.-> TextStream
-    StringStream -.-> TextStream
+    TextFile -..-> TextStream
+    StringStream -..-> TextStream
 
     TextStream --> TextInStream
     TextStream --> TextOutStream
