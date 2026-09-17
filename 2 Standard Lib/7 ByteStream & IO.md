@@ -8,7 +8,7 @@ description: "Cilia IO: ByteStream, FileStream, network sockets."
 
 ## ByteStream
 
-Interface `ByteStream` for input / output of _binary_ data.
+Interface for input / output of _binary_ data.
 
 - `stream.isOpen() -> Bool`
 - `stream.close()`
@@ -16,7 +16,7 @@ Interface `ByteStream` for input / output of _binary_ data.
 
 ### ByteOutStream
 
-Interface `ByteOutStream` for writing binary data.
+Interface for writing binary data.
 
 - `out.write(Byte[])`
 - `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
@@ -28,7 +28,7 @@ Interface `ByteOutStream` for writing binary data.
 
 ### ByteInStream
 
-Interface `ByteInStream` for reading binary data.
+Interface for reading binary data.
 
 - `in.read() -> Byte[]` reads
     - everything from the `istream` user-level cache, if not `0`,  

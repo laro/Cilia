@@ -20,7 +20,7 @@ description: "Cilia text-based IO: print(), input(), ask(), TextStream, global c
 
 ## BasicStream
 
-Interface `BasicStream` as base for `Text*Stream` and `Byte*Stream`.
+Interface as base for `Text*Stream` and `Byte*Stream`.
 
 - `stream.isOpen() -> Bool`
 - `stream.close()`
@@ -28,12 +28,12 @@ Interface `BasicStream` as base for `Text*Stream` and `Byte*Stream`.
 
 ## TextStream
 
-Interface `TextStream` for input / output of _text_.
+Interface for input / output of _text_.
 
 
 ### TextOutStream
 
-Interface `TextOutStream` for writing text.
+Interface for writing text.
 
 - `cout.write("...")` without newline.
 - `cout.writeLine("...")` with newline.
@@ -45,7 +45,7 @@ Interface `TextOutStream` for writing text.
 
 ### TextInStream
 
-Interface `TextInStream` for reading text.
+Interface for reading text.
 
 - `cin.read() -> String` reads
     - everything from the `istream` user-level cache (if not empty),
