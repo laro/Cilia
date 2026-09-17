@@ -8,14 +8,16 @@ description: "Cilia IO: ByteStream, FileStream, network sockets."
 
 ## ByteStream
 
-For input / output of _binary_ data.
+Interface `ByteStream` for input / output of _binary_ data.
+
+- `out.isOpen() -> Bool`
+- `out.close()`
 
 
 ### ByteOutputStream
 
-Writing binary data.
+Interface `ByteOutputStream` for writing binary data.
 
-- `out.close()`
 - `out.write(Byte[])`
 - `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
     - This protects against data loss in the event of a program crash.
@@ -26,7 +28,7 @@ Writing binary data.
 
 ### ByteInputStream
 
-Reading binary data.
+Interface `ByteInputStream` for reading binary data.
 
 - `in.read() -> Byte[]` reads
     - everything from the `istream` user-level cache, if not `0`,  
@@ -98,10 +100,7 @@ Reading binary data.
 > I'm just thinking about what a good API might look like.
 
 ### NetworkConnection
-`NetworkConnection`, derived from `ByteStream`, a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
-- `connection.connect(...)`
-- `connection.disconnect()`
-- `connection.isConnected() -> Bool`
+Interface `NetworkConnection`, derived from `ByteStream`, a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
 - `connection.remoteAddress() -> String`
 - `connection.localAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
 - `connection.readTimeout() -> Duration`
