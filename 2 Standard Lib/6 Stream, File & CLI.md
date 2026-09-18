@@ -281,8 +281,8 @@ Interface `LocalConnection`, derived from `ByteStream`, for `Pipe` and `UnixDoma
 flowchart LR
     BasicStream([BasicStream])
 
-    ReadableFile([SeekableStream])
-    WritableFile([TruncatableStream])
+    ReadableFile([ReadableFile])
+    WritableFile([WritableFile])
 
     TextStream([TextStream])
     TextInStream([TextInStream])
