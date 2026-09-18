@@ -192,6 +192,7 @@ Class derived from `RandomAccessStream`:
         - `Append`
 
 - `file.path() -> String`
+- `file.name() -> String`
 
 
 ### MemoryStream
