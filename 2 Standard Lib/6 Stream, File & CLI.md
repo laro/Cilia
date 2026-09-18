@@ -319,8 +319,10 @@ flowchart LR
     TextOutStream --> BasicStream
 
     File -.-> WritableFile
-    MemoryStream -..-> WritableFile
+    MemoryStream -.-> WritableFile
+    WritableFile -.-> RewadableFile
     WritableFile -.-> ByteStream
+    RewadableFile -.-> ByteInStream
 
     NetworkConnection --> ByteStream
     LocalConnection --> ByteStream
