@@ -204,7 +204,7 @@ Class derived from `RandomAccessStream`:
 
 ### NetworkConnection
 
-Interface `NetworkConnection`, derived from `ByteStream`, a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
+Interface derived from `ByteStream`, a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
 - `connection.remoteAddress() -> String`
 - `connection.localAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
 - `connection.readTimeout() -> Duration`
@@ -213,7 +213,7 @@ Interface `NetworkConnection`, derived from `ByteStream`, a base class for TCP/I
 
 ### TcpConnection
 
-`TcpConnection`, derived from `NetworkConnection`
+Class derived from `NetworkConnection`:
 - `TcpConnection::open("example.com", 80) -> TcpConnection`
 - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
 - `connection.connectionTimeout() -> Duration`
@@ -233,7 +233,7 @@ Interface `NetworkConnection`, derived from `ByteStream`, a base class for TCP/I
 
 ### LocalConnection
 
-Interface `LocalConnection`, derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in stream configuration:
+Interface derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in stream configuration:
 - `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
 - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
     - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
@@ -241,7 +241,7 @@ Interface `LocalConnection`, derived from `ByteStream`, for `Pipe` and `UnixDoma
 
 ### SerialPort
 
-`SerialPort` for RS-232/UART:
+Class for RS-232/UART:
 - `SerialPort::open("COM3", 115200) -> SerialPort`
 - `SerialPort::list() -> String[]`
 - `serial.setBaudRate(Int)`
@@ -251,7 +251,7 @@ Interface `LocalConnection`, derived from `ByteStream`, for `Pipe` and `UnixDoma
 
 ## MessageChannel
 
-`MessageChannel` for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes), is implemented by:
+Interface for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes), is implemented by:
 - `UdpSocket` for UDP over IP.
 - `UnixDomainSocket` in datagram configuration.
 - Communication with sensors on microcontrollers
