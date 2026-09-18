@@ -164,7 +164,7 @@ Interface for reading binary data.
 
 ## File IO
 
-Interface `FileInterface`, derived from `ByteStream`, to access/modify size, current position (e.g. for seeking):
+Interface `RandomAccessStream`, derived from `ByteStream`, to access/modify size, current position (e.g. for seeking):
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -178,7 +178,7 @@ Interface `FileInterface`, derived from `ByteStream`, to access/modify size, cur
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
 
-**`File`**, derived from `FileInterface`:
+**`File`**, derived from `RandomAccessStream`:
 - `File::open("Test.txt", openMode = OpenMode::Read) -> File`
 - `File::create("Test.txt", openMode = OpenMode::Write) -> File`
 - `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
@@ -190,7 +190,7 @@ Interface `FileInterface`, derived from `ByteStream`, to access/modify size, cur
 - `file.path() -> String`
 
 
-**`MemoryStream`**, derived from `FileInterface`:
+**`MemoryStream`**, derived from `RandomAccessStream`:
 - `MemoryStream memoryStream(Int capacity = 0)`
 
 
@@ -279,7 +279,7 @@ Interface `LocalConnection`, derived from `ByteStream`, for `Pipe` and `UnixDoma
 flowchart LR
     BasicStream([BasicStream])
 
-    FileInterface([FileInterface])
+    RandomAccessStream([RandomAccessStream])
 
     TextStream([TextStream])
     TextInStream([TextInStream])
@@ -315,9 +315,9 @@ flowchart LR
     TextInStream --> BasicStream
     TextOutStream --> BasicStream
 
-    File -.-> FileInterface
-    MemoryStream -.-> FileInterface
-    FileInterface -.-> ByteStream
+    File -.-> RandomAccessStream
+    MemoryStream -.-> RandomAccessStream
+    RandomAccessStream -.-> ByteStream
 
     NetworkConnection --> ByteStream
     LocalConnection --> ByteStream
