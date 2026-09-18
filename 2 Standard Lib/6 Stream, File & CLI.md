@@ -97,7 +97,7 @@ Interface for reading text.
 Class derived from `TextStream`:
 - `TextFile::open("Test.txt") -> File`
 - `TextFile::create("Test.txt") -> File`
-- `TextFile::openOrCreate("Test.txt") -> File`
+- `TextFile::openOrCreate("Test.txt") -> File`  
 
 - `textFile.path() -> String`
 - `textFile.name() -> String`
@@ -185,7 +185,7 @@ Interface derived from `ByteStream`, with additional functions to access/modify 
 - `file.seek(Int offsetToCurrentPos)`
     - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
 - `file.seekFromEnd(Int distanceToEnd)`
-    - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
+    - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).  
 
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
@@ -200,7 +200,7 @@ Class derived from `RandomAccessStream`:
     - `OpenMode`
         - `Read`
         - `Write`
-        - `Append`
+        - `Append`  
 
 - `file.path() -> String`
 - `file.name() -> String`
@@ -255,7 +255,8 @@ Interface derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in st
 
 Class for RS-232/UART:
 - `SerialPort::open("COM3", 115200) -> SerialPort`
-- `SerialPort::list() -> String[]`
+- `SerialPort::list() -> String[]`  
+
 - `serial.setBaudRate(Int)`
 - `serial.setParity(Parity)`
 - `serial.setDataBits(Int)`
