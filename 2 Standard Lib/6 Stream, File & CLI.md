@@ -201,7 +201,7 @@ Class derived from `RandomAccessStream`:
         - `Read`
         - `Write`
         - `Append`
-&nbsp;
+          &nbsp;
 - `file.path() -> String`
 - `file.name() -> String`
 
@@ -256,7 +256,7 @@ Interface derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in st
 Class for RS-232/UART:
 - `SerialPort::open("COM3", 115200) -> SerialPort`
 - `SerialPort::list() -> String[]`  
-
+  &nbsp;
 - `serial.setBaudRate(Int)`
 - `serial.setParity(Parity)`
 - `serial.setDataBits(Int)`
