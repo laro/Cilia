@@ -164,7 +164,7 @@ Interface for reading binary data.
 
 ## File IO
 
-Interface `RandomAccessStream`, derived from `ByteStream`, to access/modify size, current position (e.g. for seeking):
+Interface `RandomAccessStream`, derived from `ByteStream`, with additional functions to access/modify size, current position (e.g. for seeking):
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -178,6 +178,7 @@ Interface `RandomAccessStream`, derived from `ByteStream`, to access/modify size
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
 
+
 **`File`**, derived from `RandomAccessStream`:
 - `File::open("Test.txt", openMode = OpenMode::Read) -> File`
 - `File::create("Test.txt", openMode = OpenMode::Write) -> File`
@@ -188,6 +189,7 @@ Interface `RandomAccessStream`, derived from `ByteStream`, to access/modify size
         - `Append`
 
 - `file.path() -> String`
+
 
 
 **`MemoryStream`**, derived from `RandomAccessStream`:
