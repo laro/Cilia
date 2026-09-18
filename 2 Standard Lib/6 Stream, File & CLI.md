@@ -92,11 +92,19 @@ Interface for reading text.
 `cin >> line` is possible, but stateless only.
 
 
-## TextFile
+### TextFile
 
+Class derived from `TextStream`:
 - `TextFile::open("Test.txt") -> File`
 - `TextFile::create("Test.txt") -> File`
 - `TextFile::openOrCreate("Test.txt") -> File`
+
+
+### StringStream
+
+Class derived from `TextStream`:
+- `StringStream stringStream(String content)`
+- `StringStream stringStream(Int capacity = 0)`
 
 
 ## ByteStream
