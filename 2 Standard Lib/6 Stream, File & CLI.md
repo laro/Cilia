@@ -97,7 +97,8 @@ Interface for reading text.
 Class derived from `TextStream`:
 - `TextFile::open("Test.txt") -> File`
 - `TextFile::create("Test.txt") -> File`
-- `TextFile::openOrCreate("Test.txt") -> File`  
+- `TextFile::openOrCreate("Test.txt") -> File`
+
 
 - `textFile.path() -> String`
 - `textFile.name() -> String`
