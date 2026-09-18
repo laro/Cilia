@@ -322,7 +322,7 @@ flowchart LR
     MemoryStream -.-> WritableFile
     WritableFile -.-> RewadableFile
     WritableFile -.-> ByteStream
-    RewadableFile -.-> ByteInStream
+    ReadableFile -.-> ByteInStream
 
     NetworkConnection --> ByteStream
     LocalConnection --> ByteStream
