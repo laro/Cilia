@@ -226,7 +226,8 @@ Interface derived from `ByteStream`, a base class for TCP/IP, Bluetooth RFCOMM, 
 ### TcpConnection
 
 Class derived from `NetworkConnection`:
-- `TcpConnection::open("example.com", 80) -> TcpConnection`
+- `TcpConnection::open("example.com", 80) -> TcpConnection`  
+  
 - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
 - `connection.connectionTimeout() -> Duration`
     - `connection.setConnectionTimeout(Duration)`
