@@ -320,7 +320,7 @@ flowchart LR
 
     File -.-> WritableFile
     MemoryStream -.-> WritableFile
-    WritableFile -.-> RewadableFile
+    WritableFile -.-> ReadableFile
     WritableFile -.-> ByteStream
     ReadableFile -.-> ByteInStream
 
