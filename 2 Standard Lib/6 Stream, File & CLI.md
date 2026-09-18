@@ -99,7 +99,6 @@ Class derived from `TextStream`:
 - `TextFile::create("Test.txt") -> File`
 - `TextFile::openOrCreate("Test.txt") -> File`  
   &nbsp;
-
 - `textFile.path() -> String`
 - `textFile.name() -> String`
 
@@ -201,8 +200,8 @@ Class derived from `RandomAccessStream`:
     - `OpenMode`
         - `Read`
         - `Write`
-        - `Append`  
-
+        - `Append`
+&nbsp;
 - `file.path() -> String`
 - `file.name() -> String`
 
