@@ -164,7 +164,7 @@ Interface for reading binary data.
 
 ## File IO
 
-Interface `ReadableFile`, derived from `ByteInStream`, to access size and current position (e.g. for seeking):
+Interface `FileInterface`, derived from `ByteStream`, to access/modify size, current position (e.g. for seeking):
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -174,13 +174,11 @@ Interface `ReadableFile`, derived from `ByteInStream`, to access size and curren
 - `file.seekFromEnd(Int distanceToEnd)`
     - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
 
-
-Interface `WritableFile`, derived from `ByteStream`, to modify the size:
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
 
-**`File`**, derived from `WritableFile`:
+**`File`**, derived from `FileInterface`:
 - `File::open("Test.txt", openMode = OpenMode::Read) -> File`
 - `File::create("Test.txt", openMode = OpenMode::Write) -> File`
 - `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
@@ -192,7 +190,7 @@ Interface `WritableFile`, derived from `ByteStream`, to modify the size:
 - `file.path() -> String`
 
 
-**`MemoryStream`**, derived from `WritableFile`:
+**`MemoryStream`**, derived from `FileInterface`:
 - `MemoryStream memoryStream(Int capacity = 0)`
 
 
@@ -281,8 +279,7 @@ Interface `LocalConnection`, derived from `ByteStream`, for `Pipe` and `UnixDoma
 flowchart LR
     BasicStream([BasicStream])
 
-    ReadableFile([ReadableFile])
-    WritableFile([WritableFile])
+    FileInterface([FileInterface])
 
     TextStream([TextStream])
     TextInStream([TextInStream])
@@ -318,11 +315,9 @@ flowchart LR
     TextInStream --> BasicStream
     TextOutStream --> BasicStream
 
-    File -.-> WritableFile
-    MemoryStream -.-> WritableFile
-    WritableFile -.-> ReadableFile
-    WritableFile -.-> ByteStream
-    ReadableFile -.-> ByteInStream
+    File -.-> FileInterface
+    MemoryStream -.-> FileInterface
+    FileInterface -.-> ByteStream
 
     NetworkConnection --> ByteStream
     LocalConnection --> ByteStream
