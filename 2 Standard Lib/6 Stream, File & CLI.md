@@ -152,7 +152,7 @@ Interface for reading binary data.
       otherwise reports the size of the kernel cache/buffer.
     - As that is the number of bytes you would get with the next `in.read()`.
 - `in.peek(Int n) -> Byte[]`
-    - Blocks until (at least) the given minimum (`n`) number of bytes are read.
+    - Blocks until the given (`n`) number of bytes are read.
     - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
     - TODO Limited to 16 bytes or to the buffer size?
 - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
