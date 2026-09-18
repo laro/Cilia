@@ -310,11 +310,11 @@ flowchart LR
     BluetoothRfcommConnection[BluetoothRfcommConnection]
     
     TextFile -..-> TextStream
-    TextFile -..-> SeekableStream
-    TextFile -..-> TruncatableStream
+    TextFile -.-> SeekableStream
+    TextFile -.-> TruncatableStream
     StringStream -..-> TextStream
-    StringStream -..-> SeekableStream
-    StringStream -..-> TruncatableStream
+    StringStream -.-> SeekableStream
+    StringStream -.-> TruncatableStream
 
     TextStream --> TextInStream
     TextStream --> TextOutStream
@@ -323,12 +323,12 @@ flowchart LR
     TextOutStream --> BasicStream
 
     File -..-> ByteStream
-    File -..-> SeekableStream
-    File -..-> TruncatableStream
+    File -.-> SeekableStream
+    File -.-> TruncatableStream
 
     MemoryStream -..-> ByteStream
-    MemoryStream -..-> SeekableStream
-    MemoryStream -..-> TruncatableStream
+    MemoryStream -.-> SeekableStream
+    MemoryStream -.-> TruncatableStream
 
     NetworkConnection --> ByteStream
     LocalConnection --> ByteStream
