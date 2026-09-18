@@ -164,7 +164,7 @@ Interface for reading binary data.
 
 ## File IO
 
-Interface `SeekableStream`:
+Interface `ReadableFile`, derived from `ByteInStream`, to access size and current position (e.g. for seeking):
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -175,12 +175,12 @@ Interface `SeekableStream`:
     - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
 
 
-Interface `TruncatableStream`:
+Interface `WritableFile`, derived from `ByteStream`, to modify the size:
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
 
-**`File`**, derived from `ByteStream`, `SeekableStream`, and `TruncatableStream`:
+**`File`**, derived from `WritableFile`:
 - `File::open("Test.txt", openMode = OpenMode::Read) -> File`
 - `File::create("Test.txt", openMode = OpenMode::Write) -> File`
 - `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
@@ -192,7 +192,7 @@ Interface `TruncatableStream`:
 - `file.path() -> String`
 
 
-**`MemoryStream`**, derived from `ByteStream`, `SeekableStream`, and `TruncatableStream`:
+**`MemoryStream`**, derived from `WritableFile`:
 - `MemoryStream memoryStream(Int capacity = 0)`
 
 
@@ -281,8 +281,8 @@ Interface `LocalConnection`, derived from `ByteStream`, for `Pipe` and `UnixDoma
 flowchart LR
     BasicStream([BasicStream])
 
-    SeekableStream([SeekableStream])
-    TruncatableStream([TruncatableStream])
+    ReadableFile([SeekableStream])
+    WritableFile([TruncatableStream])
 
     TextStream([TextStream])
     TextInStream([TextInStream])
@@ -310,11 +310,7 @@ flowchart LR
     BluetoothRfcommConnection[BluetoothRfcommConnection]
     
     TextFile -..-> TextStream
-    TextFile -.-> SeekableStream
-    TextFile -.-> TruncatableStream
     StringStream -..-> TextStream
-    StringStream -.-> SeekableStream
-    StringStream -.-> TruncatableStream
 
     TextStream --> TextInStream
     TextStream --> TextOutStream
@@ -322,13 +318,9 @@ flowchart LR
     TextInStream --> BasicStream
     TextOutStream --> BasicStream
 
-    File -..-> ByteStream
-    File -.-> SeekableStream
-    File -.-> TruncatableStream
+    File -.-> WritableFile
 
-    MemoryStream -..-> ByteStream
-    MemoryStream -.-> SeekableStream
-    MemoryStream -.-> TruncatableStream
+    MemoryStream -..-> WritableFile
 
     NetworkConnection --> ByteStream
     LocalConnection --> ByteStream
