@@ -99,6 +99,9 @@ Class derived from `TextStream`:
 - `TextFile::create("Test.txt") -> File`
 - `TextFile::openOrCreate("Test.txt") -> File`
 
+- `textFile.path() -> String`
+- `textFile.name() -> String`
+
 
 ### StringStream
 
