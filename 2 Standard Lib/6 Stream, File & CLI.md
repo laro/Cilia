@@ -86,7 +86,7 @@ Interface for reading text.
     - Typically necessary to call this function when `cin.read()` or `cin.readLine()` return `""`.  
 
 
-### Operators `>> `<<``
+### Operators `>>` `<<`
 
 Input and output stream opoerators `>>` and `<<` are also possible:
 - `cin >> word`
