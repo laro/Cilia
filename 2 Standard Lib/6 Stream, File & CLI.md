@@ -88,16 +88,15 @@ Interface for reading text.
 
 ### Operators `>>` `<<`
 
-Input and output stream opoerators `>>` and `<<` are also possible:
+Input and output stream operators `>>` and `<<`, similar to C++ iostreams:
 - `cin >> word`
 - `cout << "Text"` 
 
-It is similar to C++ iostreams, but stateless only, i.e. there are no "state manipulators".
+But TextStreams are stateless only, i.e. there are no "state manipulators".
 
 `endl` does not flush, you need to `flush` explicitly:
 - `cout << "Text" << endl` 
 - `cout << "Text" << endl << flush` 
-
 
 Using input/output descriptors to control the behaviour:
 ```
