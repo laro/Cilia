@@ -40,9 +40,6 @@ Interface for writing text.
 - `cout.write(Char32 codePoint)`  
 
 
-`cout << "Text"` is possible, but stateless only (i.e. no manipulators besides `endl` and `flush`).
-
-
 ### TextInStream
 
 Interface for reading text.
@@ -89,7 +86,43 @@ Interface for reading text.
     - Typically necessary to call this function when `cin.read()` or `cin.readLine()` return `""`.  
 
 
-`cin >> line` is possible, but stateless only.
+### Operators `>> `<<``
+
+Input and output stream opoerators `>>` and `<<` are also possible:
+- `cin >> word`
+- `cout << "Text"` 
+
+It is similar to C++ iostreams, but stateless only, i.e. there are no manipulators besides `endl` and `flush`.
+
+Using input/output descriptors to control the behaviour:
+```
+String word
+cin >> word
+
+Char32 cp
+cin >> CodePoint(cp)
+
+String grapheme
+cin >> GraphemeCluster(grapheme)
+
+String line
+cin >> Line(line)
+```
+
+```
+struct Line {
+    String& destination
+}
+operator>>(TextInputStream stream, Line line) {
+    line.destination = stream.readLine()
+}
+```
+
+```
+cout << Hex(address)
+cout << Quoted(name)
+cout << Line(text)
+```
 
 
 ### TextFile
