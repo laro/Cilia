@@ -175,7 +175,7 @@ Interface for reading binary data.
 
 ## File IO
 
-### RandomAccessStream
+### RandomAccessByteStream
 
 Interface derived from `ByteStream`, with additional functions to access/modify the size and current position (e.g. seeking):
 - `file.size() -> Int`
@@ -193,7 +193,7 @@ Interface derived from `ByteStream`, with additional functions to access/modify 
 
 ### File
 
-Class derived from `RandomAccessStream`:
+Class derived from `RandomAccessByteStream`:
 - `File::open("Test.txt", openMode = OpenMode::Read) -> File`
 - `File::create("Test.txt", openMode = OpenMode::Write) -> File`
 - `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
@@ -208,7 +208,7 @@ Class derived from `RandomAccessStream`:
 
 ### MemoryStream
 
-Class derived from `RandomAccessStream`:
+Class derived from `RandomAccessByteStream`:
 - `MemoryStream memoryStream(Int capacity = 0)`
 
 
@@ -298,8 +298,6 @@ Interface for message/packet/frame/datagram-based protocols (i.e. _not_ only a s
 flowchart LR
     BasicStream([BasicStream])
 
-    RandomAccessStream([RandomAccessStream])
-
     TextStream([TextStream])
     TextInStream([TextInStream])
     TextOutStream([TextOutStream])
@@ -311,8 +309,10 @@ flowchart LR
     ByteInStream([ByteInStream])
     ByteOutStream([ByteOutStream])
     
+    RandomAccessByteStream([RandomAccessByteStream])
     File[File]
     MemoryStream[MemoryStream]
+
     NetworkConnection([NetworkConnection])
     TcpConnection[TcpConnection]
     TlsConnection[TlsConnection]
@@ -334,9 +334,9 @@ flowchart LR
     TextInStream --> BasicStream
     TextOutStream --> BasicStream
 
-    File -.-> RandomAccessStream
-    MemoryStream -.-> RandomAccessStream
-    RandomAccessStream -.-> ByteStream
+    File -.-> RandomAccessByteStream
+    MemoryStream -.-> RandomAccessByteStream
+    RandomAccessByteStream -.-> ByteStream
 
     NetworkConnection --> ByteStream
     LocalConnection --> ByteStream
