@@ -113,11 +113,11 @@ cin >> f
 Char32 codePoint
 cin >> codePoint
 
-String word
-cin >> word
-
 String grapheme
 cin >> GraphemeCluster(grapheme)
+
+String word
+cin >> word
 
 String line
 cin >> Line(line)
