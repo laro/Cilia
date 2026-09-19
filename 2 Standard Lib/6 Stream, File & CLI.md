@@ -128,7 +128,7 @@ Technically realized as:
 class Line {
     String& destination
 }
-operator>>(TextInputStream stream, Line line) {
+operator (TextInStream stream) >> (Line line) {
     line.destination = stream.readLine()
 }
 ```
@@ -137,6 +137,10 @@ operator>>(TextInputStream stream, Line line) {
 cout << Hex(address)
 cout << Quoted(name)
 cout << Line(text)
+
+operator (TextOutStream stream) << (Line line) {
+    stream.writeLine(line)
+}
 ```
 
 
