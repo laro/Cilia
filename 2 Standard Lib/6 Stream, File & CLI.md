@@ -92,15 +92,29 @@ Input and output stream opoerators `>>` and `<<` are also possible:
 - `cin >> word`
 - `cout << "Text"` 
 
-It is similar to C++ iostreams, but stateless only, i.e. there are no manipulators besides `endl` and `flush`.
+It is similar to C++ iostreams, but stateless only, i.e. there are no "state manipulators".
+
+`endl` does not flush, you need to `flush` explicitly:
+- `cout << "Text" << endl` 
+- `cout << "Text" << endl << flush` 
+
 
 Using input/output descriptors to control the behaviour:
 ```
+Int i
+cin >> i
+
+UInt address
+cin >> Hex(address)
+
+Float f
+cin >> f
+
+Char32 codePoint
+cin >> codePoint
+
 String word
 cin >> word
-
-Char32 cp
-cin >> CodePoint(cp)
 
 String grapheme
 cin >> GraphemeCluster(grapheme)
@@ -109,8 +123,9 @@ String line
 cin >> Line(line)
 ```
 
+Technically realized as:
 ```
-struct Line {
+class Line {
     String& destination
 }
 operator>>(TextInputStream stream, Line line) {
