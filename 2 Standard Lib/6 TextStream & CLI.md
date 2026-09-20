@@ -125,10 +125,10 @@ cin >> Line(line)
 Technically realized as:
 ```
 class Line {
-    String& destination
+    String& storage
 }
 operator (TextInStream stream) >> (Line line) {
-    line.destination = stream.readLine()
+    line.storage = stream.readLine()
 }
 ```
 
@@ -138,7 +138,7 @@ cout << Quoted(name)
 cout << Line(text)
 
 operator (TextOutStream stream) << (Line line) {
-    stream.writeLine(line)
+    stream.writeLine(line.storage)
 }
 ```
 
