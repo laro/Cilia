@@ -43,7 +43,12 @@ Interface for writing text, derived from `BasicStream`.
 #### Operator `<<`
 
 Output stream operator `<<`, similar to C++ iostreams:
-- `cout << "Text"` 
+```
+cout << "Text"
+
+Int i = 1
+cout << i
+```
 
 But TextStreams are stateless only, i.e. there are no "state manipulators".
 
@@ -55,14 +60,7 @@ Using output descriptors to control the behaviour:
 ```
 cout << Hex(address)
 cout << Quoted(name)
-cout << Line(text)
-```
-
-Technically realized as:
-```
-operator (TextOutStream stream) << (Line line) {
-    stream.writeLine(line.storage)
-}
+cout << Escaped(text)
 ```
 
 
@@ -115,17 +113,9 @@ Interface for reading text, derived from `BasicStream`.
 #### Operator `>>`
 
 Input stream operators `>>`, similar to C++ iostreams:
-- `cin >> word`
-
-But TextStreams are stateless only, i.e. there are no "state manipulators".
-
-Using input descriptors to control the behaviour:
 ```
 Int i
 cin >> i
-
-UInt address
-cin >> Hex(address)
 
 Float f
 cin >> f
@@ -133,11 +123,19 @@ cin >> f
 Char32 codePoint
 cin >> codePoint
 
-String grapheme
-cin >> GraphemeCluster(grapheme)
-
 String word
 cin >> word
+```
+
+But TextStreams are stateless only, i.e. there are no "state manipulators".
+
+Using input descriptors to control the behaviour:
+```
+UInt address
+cin >> Hex(address)
+
+String grapheme
+cin >> GraphemeCluster(grapheme)
 
 String line
 cin >> Line(line)
