@@ -93,8 +93,8 @@ Abstract base class derived from `ByteStream`, with additional functions to acce
     - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).  
       &nbsp;
 - `file.truncate()` truncates the file at the current position.
-    - `file.truncateAt(Int n)` truncates the file at the given position.
-
+    - `file.truncateAt(Int n)` truncates the file at the given position.  
+      &nbsp;
 - `protected virtual setPositionRaw(Int position)`
 - `protected virtual truncateRaw(Int position)`
 
