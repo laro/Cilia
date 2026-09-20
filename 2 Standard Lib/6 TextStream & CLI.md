@@ -124,6 +124,14 @@ cin >> Line(line)
 
 Technically realized as:
 ```
+class GraphemeCluster {
+    String& storage
+}
+operator (TextInStream stream) >> (GraphemeCluster graphemeCluster) {
+    graphemeCluster.storage = stream.readGraphemeCluster()
+}
+```
+```
 class Line {
     String& storage
 }
