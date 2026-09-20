@@ -54,10 +54,12 @@ Base class for reading _binary_ data.
         - You may limit the maximum number of bytes to read by using `buffer.subspan(0, 4096)`,
           or configure the starting point (in the buffer) by using `buffer.subspan(100)`.
     - Usually more efficient, as the buffer is reused and less allocations are necessary.
-- `in.available() -> Int` says how many bytes are _immediately_ available for reading.
-    - Returns the size of the `istream` cache, if not 0,  
-      otherwise reports the size of the kernel cache/buffer.
-    - As that is the number of bytes you would get with the next `in.read()`.
+- `in.available() -> Int` returns the number of bytes that can be read _immediately_ without blocking.
+    - That is the number of bytes you would get with the next `in.read()`.
+    - If the input buffer contains data, returns the number of bytes currently available there.
+    - Otherwise, attempts to fill the input buffer with a _non-blocking_ read from the underlying stream.
+    - Returns the number of bytes available in the input buffer after the non-blocking read.
+    - Never waits for additional input to become available.
 - `in.peek(Int n) -> Byte[]`
     - Blocks until the given (`n`) number of bytes are read.
     - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
