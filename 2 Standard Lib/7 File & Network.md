@@ -6,14 +6,9 @@ description: "ByteStream, File, NetworkConnection."
 # File, ByteStream & Network
 
 
-## ByteStream
-
-Interface for input / output of _binary_ data, derived from `BasicStream`, `ByteInStream`, and `ByteOutStream`.
-
-
 ### ByteOutStream
 
-Interface for writing binary data.
+Base class for writing _binary_ data.
 
 - `out.write(Byte[])`
 - `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
@@ -25,7 +20,7 @@ Interface for writing binary data.
 
 ### ByteInStream
 
-Interface for reading binary data.
+Base class for reading _binary_ data.
 
 - `in.read() -> Byte[]` reads
     - everything from the `istream` user-level cache, if not `0`,  
@@ -64,6 +59,11 @@ Interface for reading binary data.
 - `in.atEnd()` returns `True` if
     - the end of the file is reached (or the pipe/socket is closed),
     - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer).
+
+
+## ByteStream
+
+Base class for input and output of binary data, derived from `BasicStream`, `ByteInStream`, and `ByteOutStream`.
 
 
 ## File IO
@@ -189,7 +189,7 @@ Interface for message/packet/frame/datagram-based protocols (i.e. _not_ only a s
 
 ```mermaid
 flowchart LR
-    BasicStream([BasicStream])
+    BasicStream[BasicStream]
 
     TextStream([TextStream])
     TextInStream([TextInStream])
@@ -198,9 +198,9 @@ flowchart LR
     TextFile[TextFile]
     StringStream[StringStream]
 
-    ByteStream([ByteStream])
-    ByteInStream([ByteInStream])
-    ByteOutStream([ByteOutStream])
+    ByteStream[ByteStream]
+    ByteInStream[ByteInStream]
+    ByteOutStream[ByteOutStream]
     
     RandomAccessByteStream([RandomAccessByteStream])
     File[File]

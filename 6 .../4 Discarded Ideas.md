@@ -262,6 +262,10 @@ One could define the order of bits in a bitfield.
     - `Int[3,4,]`
 
 
+## Stream, File & Network IO
+Having a mostly _interface_ based class hierarchy was _discarded_, going back to the classical C++ approach with (abstract) base classes, as a highly efficient IO architecture needs to inline basic IO functions as readByte(), therefore it needs a common base class with a known buffer structure.
+
+
 ## (Smart) Pointers
 - We may use some more (or just other) characters for the "special" pointers
     - ASCII
