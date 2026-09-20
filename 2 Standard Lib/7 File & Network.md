@@ -63,8 +63,12 @@ Base class for reading _binary_ data.
     - Blocks until at least `n` bytes are available and returns the next `n` bytes without consuming them.
     - May throw an `ArgumentException("Unable to peek() more than ... bytes.")` if `n` exceeds the maximum number of bytes that can be peeked.
     - `n` is limited by the stream's peek buffer capacity.
-- `in.ignore(Int n)` ignores/discards n bytes from the input stream.
-- `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
+- `in.discard(Int n)` ignores/discards the next `n` bytes from the input stream.
+    - Blocks until all `n` bytes have been discarded or the end of the stream is reached.
+- `in.discardAvailable()` ignores/discards all bytes currently in the input stream.
+    - Clears the input buffer _and_ performs a non-blocking read, discarding that bytes, too.
+    - Does not block waiting for additional data.
+    - Useful for re-synchronizing a stream after invalid or unexpected input.
 - `in.atEnd()` returns `True` if
     - the end of the file is reached (or the pipe/socket is closed),
     - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer).
