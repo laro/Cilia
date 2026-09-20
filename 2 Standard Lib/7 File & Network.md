@@ -8,10 +8,7 @@ description: "ByteStream, File, NetworkConnection."
 
 ## ByteStream
 
-Interface for input / output of _binary_ data.
-
-- `stream.isOpen() -> Bool`
-- `stream.close()`
+Interface for input / output of _binary_ data, derived from `BasicStream`, `ByteInStream`, and `ByteOutStream`.
 
 
 ### ByteOutStream
