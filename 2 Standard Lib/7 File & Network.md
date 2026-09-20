@@ -11,6 +11,11 @@ description: "ByteStream, File, NetworkConnection."
 Base class for writing _binary_ data.
 
 - `out.write(Byte[])`
+- `preferredWriteSize() -> Int`
+    - Returns the preferred number of bytes to provide in a single write operation.
+    - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be written.
+    - The value may vary between stream types and platforms.
+    - Typically in the range of 16 to 256 KB.
 - `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
     - This protects against data loss in the event of a program crash.
 - `out.flushAndSync()` calls `flush()`, then
@@ -31,7 +36,7 @@ Cache:
 Base class for reading _binary_ data.
 
 - `in.read() -> Byte[]` reads
-    - everything from the `istream` user-level cache, if not `0`,  
+    - everything from the input buffer, if not `0`,  
         otherwise everything from the kernel buffer/cache:
         - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically 64 KB).
             - Blocks when this buffer is empty.
@@ -54,12 +59,11 @@ Base class for reading _binary_ data.
         - You may limit the maximum number of bytes to read by using `buffer.subspan(0, 4096)`,
           or configure the starting point (in the buffer) by using `buffer.subspan(100)`.
     - Usually more efficient, as the buffer is reused and less allocations are necessary.
-- `in.available() -> Int` returns the number of bytes that can be read _immediately_ without blocking.
-    - That is the number of bytes you would get with the next `in.read()`.
-    - If the input buffer contains data, returns the number of bytes currently available there.
-    - Otherwise, attempts to fill the input buffer with a _non-blocking_ read from the underlying stream.
-    - Returns the number of bytes available in the input buffer after the non-blocking read.
-    - Never waits for additional input to become available.
+- `preferredReadSize() -> Int`
+    - Returns the preferred number of bytes to request in a single read operation.
+    - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be read.
+    - The value may vary between stream types and platforms.
+    - Typically in the range of 16 to 256 KB.
 - `in.peek(Int n) -> Byte[]`
     - Blocks until the given (`n`) number of bytes are read.
     - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
