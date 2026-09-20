@@ -71,6 +71,8 @@ Cache:
   The outBuffer is stored as pointer, as to allow a single common buffer, as well as two separate buffers for input and output.
 - `Int outPosition`
 - `protected virtual readRaw(Span<Byte> dest, Int minimum = 1)`
+- `protected virtual availableRaw() -> Int`
+- `protected virtual atEndRaw() -> Bool`
 
 
 ## ByteStream
