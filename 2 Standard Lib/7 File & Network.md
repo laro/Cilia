@@ -17,6 +17,12 @@ Base class for writing _binary_ data.
     - calls `fsync()` to write the kernel buffers to the file system and then to the hard disk/SSD (the write cache should be written/cleared, too).
     - This protects against data loss in the event of a program or _system_ crash.
 
+Cache:
+- `Byte* outBuffer`  
+  The outputBuffer is stored as pointer, as to allow a single common buffer, as well as two separate buffers for input and output.
+- `Int outputPosition`
+- `protected writeRaw(Span<Byte> src)`
+
 
 ### ByteInStream
 
@@ -60,6 +66,12 @@ Base class for reading _binary_ data.
     - the end of the file is reached (or the pipe/socket is closed),
     - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer).
 
+Cache:
+- `Byte* inBuffer`  
+  The outBuffer is stored as pointer, as to allow a single common buffer, as well as two separate buffers for input and output.
+- `Int outPosition`
+- `protected readRaw(Span<Byte> dest, Int minimum = 1)`
+
 
 ## ByteStream
 
@@ -82,6 +94,9 @@ Abstract base class derived from `ByteStream`, with additional functions to acce
       &nbsp;
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
+
+- `protected setPositionRaw(Int position)`
+- `protected truncateRaw(Int position)`
 
 
 ### File
