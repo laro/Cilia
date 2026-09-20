@@ -60,9 +60,9 @@ Base class for reading _binary_ data.
           or configure the starting point (in the buffer) by using `buffer.subspan(100)`.
     - Usually more efficient, as the buffer is reused and less allocations are necessary.
 - `in.peek(Int n) -> Byte[]`
-    - Blocks until the given (`n`) number of bytes are read.
-    - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
-    - TODO Limited to 16 bytes or to the buffer size?
+    - Blocks until at least `n` bytes are available and returns the next `n` bytes without consuming them.
+    - May throw an `ArgumentException("Unable to peek() more than ... bytes.")` if `n` exceeds the maximum number of bytes that can be peeked.
+    - `n` is limited by the stream's peek buffer capacity.
 - `in.ignore(Int n)` ignores/discards n bytes from the input stream.
 - `in.ignoreAll()` ignores/discards everything that is currently in the input stream.
 - `in.atEnd()` returns `True` if
