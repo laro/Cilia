@@ -21,7 +21,7 @@ Cache:
 - `Byte* outBuffer`  
   The outputBuffer is stored as pointer, as to allow a single common buffer as well as two separate buffers for input and output.
 - `Int outPosition`
-- `Int outCapicity`  
+- `Int outCapacity`  
   &nbsp;
 - `protected virtual writeRaw(Span<Byte> src)`
 
