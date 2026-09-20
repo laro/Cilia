@@ -46,8 +46,8 @@ Output stream operator `<<`, similar to C++ iostreams:
 ```
 cout << "Text"
 
-Int i = 1
-cout << i
+Int value = 1
+cout << value
 ```
 
 But TextStreams are stateless only, i.e. there are no "state manipulators".
