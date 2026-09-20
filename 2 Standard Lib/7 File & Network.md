@@ -70,7 +70,7 @@ Base class for input and output of binary data, derived from `BasicStream`, `Byt
 
 ### RandomAccessByteStream
 
-Interface derived from `ByteStream`, with additional functions to access/modify the size and current position (e.g. seeking):
+Abstract base class derived from `ByteStream`, with additional functions to access/modify the size and current position (e.g. seeking):
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -109,7 +109,7 @@ Class derived from `RandomAccessByteStream`:
 
 ### NetworkConnection
 
-Interface derived from `ByteStream`, a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
+Abstract base class derived from `ByteStream`, a base class for TCP/IP, Bluetooth RFCOMM, infrared, ...
 - `connection.remoteAddress() -> String`
 - `connection.localAddress() -> String` for finding out which interface (WLAN, LAN, VPN) the connection is actually running on.
 - `connection.readTimeout() -> Duration`
@@ -139,7 +139,7 @@ Class derived from `NetworkConnection`:
 
 ### LocalConnection
 
-Interface derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in stream configuration:
+Abstract base class derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in stream configuration:
 - `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
 - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
     - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
