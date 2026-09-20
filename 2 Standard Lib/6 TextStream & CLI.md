@@ -28,12 +28,12 @@ Interface as base for `Text*Stream` and `Byte*Stream`.
 
 ## TextStream
 
-Interface for input / output of _text_.
+Interface for input / output of _text_, derived from `TextInStream` and `TextOutStream`.
 
 
 ### TextOutStream
 
-Interface for writing text.
+Interface for writing text, derived from `BasicStream`.
 
 - `cout.write("...")` without newline.
 - `cout.writeLine("...")` with newline.
@@ -42,7 +42,7 @@ Interface for writing text.
 
 ### TextInStream
 
-Interface for reading text.
+Interface for reading text, derived from `BasicStream`.
 
 - `cin.read() -> String` reads
     - everything from the `istream` user-level cache (if not empty),
