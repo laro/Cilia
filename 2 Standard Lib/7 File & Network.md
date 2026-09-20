@@ -59,11 +59,6 @@ Base class for reading _binary_ data.
         - You may limit the maximum number of bytes to read by using `buffer.subspan(0, 4096)`,
           or configure the starting point (in the buffer) by using `buffer.subspan(100)`.
     - Usually more efficient, as the buffer is reused and less allocations are necessary.
-- `preferredReadSize() -> Int`
-    - Returns the preferred number of bytes to request in a single read operation.
-    - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be read.
-    - The value may vary between stream types and platforms.
-    - Typically in the range of 16 to 256 KB.
 - `in.peek(Int n) -> Byte[]`
     - Blocks until the given (`n`) number of bytes are read.
     - May throw an `ArgumentException("Unable to peek() more than ... bytes.")`.
@@ -73,6 +68,11 @@ Base class for reading _binary_ data.
 - `in.atEnd()` returns `True` if
     - the end of the file is reached (or the pipe/socket is closed),
     - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer).
+- `preferredReadSize() -> Int`
+    - Returns the preferred number of bytes to request in a single read operation.
+    - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be read.
+    - The value may vary between stream types and platforms.
+    - Typically in the range of 16 to 256 KB.
 
 Cache:
 - `Byte* inBuffer`  
