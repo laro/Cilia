@@ -20,7 +20,8 @@ Base class for writing _binary_ data.
 Cache:
 - `Byte* outBuffer`  
   The outputBuffer is stored as pointer, as to allow a single common buffer as well as two separate buffers for input and output.
-- `Int outPosition`  
+- `Int outPosition`
+- `Int outCapicity`  
   &nbsp;
 - `protected virtual writeRaw(Span<Byte> src)`
 
@@ -70,7 +71,8 @@ Base class for reading _binary_ data.
 Cache:
 - `Byte* inBuffer`  
   The inBuffer is stored as pointer, as to allow a single common buffer as well as two separate buffers for input and output.
-- `Int inPosition`  
+- `Int inPosition`
+- `Int inCapacity`  
   &nbsp;
 - `protected virtual readRaw(Span<Byte> dest, Int minimum = 1)`
 - `protected virtual availableRaw() -> Int`
