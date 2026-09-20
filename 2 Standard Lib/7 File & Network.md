@@ -21,7 +21,7 @@ Cache:
 - `Byte* outBuffer`  
   The outputBuffer is stored as pointer, as to allow a single common buffer, as well as two separate buffers for input and output.
 - `Int outputPosition`
-- `protected writeRaw(Span<Byte> src)`
+- `protected virtual writeRaw(Span<Byte> src)`
 
 
 ### ByteInStream
@@ -70,7 +70,7 @@ Cache:
 - `Byte* inBuffer`  
   The outBuffer is stored as pointer, as to allow a single common buffer, as well as two separate buffers for input and output.
 - `Int outPosition`
-- `protected readRaw(Span<Byte> dest, Int minimum = 1)`
+- `protected virtual readRaw(Span<Byte> dest, Int minimum = 1)`
 
 
 ## ByteStream
@@ -95,8 +95,8 @@ Abstract base class derived from `ByteStream`, with additional functions to acce
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
-- `protected setPositionRaw(Int position)`
-- `protected truncateRaw(Int position)`
+- `protected virtual setPositionRaw(Int position)`
+- `protected virtual truncateRaw(Int position)`
 
 
 ### File
