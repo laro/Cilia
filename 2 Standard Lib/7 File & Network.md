@@ -47,9 +47,9 @@ Base class for reading _binary_ data.
 - `in.read(Int n) -> Byte[]` reads exactly n bytes.
     - Blocks until the given number of bytes are read.
     - Throws an exception if end of file is reached (or pipe/socket closed) before n bytes are read.
-- `in.read(Int minimum, maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes.
+- `in.read(minimum..maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes.
     - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
-    - `in.read(minimum..maximum) -> Byte[]`
+    - `in.read(Int minimum, maximum) -> Byte[]`
 - `in.readAll() -> Byte[]` reads everything until the end of the stream.
     - With pipes/sockets, it blocks until the pipe/socket is closed.
 - `in.readInto(Span<Byte> buffer, Int minimum = 1) -> Int` reads into the given buffer.
