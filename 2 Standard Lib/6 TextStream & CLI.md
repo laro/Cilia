@@ -40,6 +40,32 @@ Interface for writing text, derived from `BasicStream`.
 - `cout.write(Char32 codePoint)`  
 
 
+#### Operator `<<`
+
+Output stream operator `<<`, similar to C++ iostreams:
+- `cout << "Text"` 
+
+But TextStreams are stateless only, i.e. there are no "state manipulators".
+
+`endl` does not flush, you need to `flush` explicitly:
+- `cout << "Text" << endl` 
+- `cout << "Text" << endl << flush` 
+
+Using output descriptors to control the behaviour:
+```
+cout << Hex(address)
+cout << Quoted(name)
+cout << Line(text)
+```
+
+Technically realized as:
+```
+operator (TextOutStream stream) << (Line line) {
+    stream.writeLine(line.storage)
+}
+```
+
+
 ### TextInStream
 
 Interface for reading text, derived from `BasicStream`.
@@ -86,19 +112,14 @@ Interface for reading text, derived from `BasicStream`.
     - Typically necessary to call this function when `cin.read()` or `cin.readLine()` return `""`.  
 
 
-### Operators `>>` `<<`
+#### Operator `>>`
 
-Input and output stream operators `>>` and `<<`, similar to C++ iostreams:
+Input stream operators `>>`, similar to C++ iostreams:
 - `cin >> word`
-- `cout << "Text"` 
 
 But TextStreams are stateless only, i.e. there are no "state manipulators".
 
-`endl` does not flush, you need to `flush` explicitly:
-- `cout << "Text" << endl` 
-- `cout << "Text" << endl << flush` 
-
-Using input/output descriptors to control the behaviour:
+Using input descriptors to control the behaviour:
 ```
 Int i
 cin >> i
@@ -137,16 +158,6 @@ class Line {
 }
 operator (TextInStream stream) >> (Line line) {
     line.storage = stream.readLine()
-}
-```
-
-```
-cout << Hex(address)
-cout << Quoted(name)
-cout << Line(text)
-
-operator (TextOutStream stream) << (Line line) {
-    stream.writeLine(line.storage)
 }
 ```
 
