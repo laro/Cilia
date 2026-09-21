@@ -26,7 +26,7 @@ Base class for writing _binary_ data.
 - `out.write(Float32)`
 - `out.write(Float64)`  
   &nbsp;
-- `out.write(Bool)`  
+- `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`  
   &nbsp;
 - `preferredWriteSize() -> Int`
     - Returns the preferred number of bytes to provide in a single write operation.
@@ -41,7 +41,7 @@ Base class for writing _binary_ data.
 
 Cache:
 - `Byte* outBuffer`  
-  The outputBuffer is stored as pointer, as to allow a single common buffer as well as two separate buffers for input and output.
+  The output buffer is stored as pointer, to allow a single common buffer as well as two separate buffers for input and output.
 - `Int outPosition`
 - `Int outCapacity`  
   &nbsp;
@@ -97,7 +97,7 @@ Base class for reading _binary_ data.
 
 Cache:
 - `Byte* inBuffer`  
-  The inBuffer is stored as pointer, as to allow a single common buffer as well as two separate buffers for input and output.
+  The input buffer is stored as pointer, to allow a single common buffer as well as two separate buffers for input and output.
 - `Int inPosition`
 - `Int inCapacity`  
   &nbsp;
