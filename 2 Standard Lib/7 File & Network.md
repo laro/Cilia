@@ -44,20 +44,21 @@ Cache:
 Base class for reading _binary_ data.
 
 - `in.read() -> Byte[]` reads
-    - everything from the input buffer, if not `0`,  
-        otherwise everything from the kernel buffer/cache:
+    - everything from the input buffer, if not empty,  
+      otherwise everything from the kernel buffer/cache:
         - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically 64 KB).
             - Blocks when this buffer is empty.
             - When the pipe/socket is closed (and no data is buffered anymore), then it returns an empty array.
         - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
             - Blocks when this cache is empty.
             - When the end of file is reached (and no data is cached anymore), then it returns an empty array.
+- `in.read(minimum..) -> Byte[]` reads everything that is currently available.
+    - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
+- `in.read(minimum..maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes.
+    - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
 - `in.read(Int n) -> Byte[]` reads exactly n bytes.
     - Blocks until the given number of bytes are read.
     - Throws an exception if end of file is reached (or pipe/socket closed) before n bytes are read.
-- `in.read(minimum..maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes.
-    - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
-    - `in.read(Int minimum, maximum) -> Byte[]`
 - `in.readAll() -> Byte[]` reads everything until the end of the stream.
     - With pipes/sockets, it blocks until the pipe/socket is closed.
 - `in.readInto(Span<Byte> buffer, Int minimum = 1) -> Int` reads into the given buffer.
