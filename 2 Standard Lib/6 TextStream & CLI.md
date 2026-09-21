@@ -43,10 +43,10 @@ Interface for writing text, derived from `BasicStream`.
 - `cout.write(Float floatingPointNumber)`  
   &nbsp;
 - `cout.write(UInt8`/`16`/`32`/`64 hexNumber)` writes a number in hexadecimal format, without prefix, the width is derived from the type:
-    - UInt8  ->  "2a"
-    - UInt16 ->  "002a"
-    - UInt32 ->  "0000002a"
-    - UInt64 ->  "000000000000002a"
+    - `UInt8`  ->  `"2a"`
+    - `UInt16` ->  `"002a"`
+    - `UInt32` ->  `"0000002a"`
+    - `UInt64` ->  `"000000000000002a"`
 - `cout.write(String prefix, UInt8`/`16`/`32`/`64 hexNumber)` writes a number in hexadecimal format with the given prefix (e.g. "0x" or "$")
 
 
