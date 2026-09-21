@@ -211,7 +211,7 @@ This is not possible with every view type, as some views do not guarantee contig
     - `Image` - `ImageBasicView`
     - `NDArray` - `NDArrayBasicView`
 
-Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`, and `VectorView`) will be passed by value:
+Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`/`Span`, and `VectorView`) will be passed by value:
 ```
 extension String { InParameterType = const StringView }
 extension  Array { InParameterType = const ArrayView }
