@@ -104,7 +104,7 @@ Interface for reading text, derived from `BasicStream`.
 - `cin.readLine() -> String` reads until newline (or end of file).
     - The newline character is removed from the line.
         - `\n`, `\r`, `\r\n` are recognized as (a single) newline.
-        - (Maybe even `\n\r` from Acorn RISC OS "Spooled Text", and `NEL`/`U+0085` from EBCDIC/IBM.)
+        - (Maybe even `\n\r` from Acorn RISC OS "spooled text", and `NEL`/`U+0085` from EBCDIC/IBM.)
     - With pipes/sockets it blocks until a line is available (or pipe/socket is closed).
     - When the end of file is reached, then it returns `""`.
     - But as empty lines are also read as `""`, you need to check `atEnd()` here.
