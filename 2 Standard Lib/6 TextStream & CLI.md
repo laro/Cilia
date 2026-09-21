@@ -38,7 +38,7 @@ Interface for writing text, derived from `BasicStream`.
 - `cout.write("...")` without newline.
 - `cout.writeLine("...")` with newline, default argument is `""` (i.e. an empty line).  
   &nbsp;
-- `cout.write(Char32 codePoint)` writes a single Unicode symbol
+- `cout.write(Char8`/`16`/`32 codePoint)` writes a single Unicode symbol
 - `cout.write(Int number)` writes a number
 - `cout.write(Float floatingPointNumber)`  
   &nbsp;
