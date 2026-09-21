@@ -36,8 +36,14 @@ Interface for input / output of _text_, derived from `TextInStream` and `TextOut
 Interface for writing text, derived from `BasicStream`.
 
 - `cout.write("...")` without newline.
-- `cout.writeLine("...")` with newline.
-- `cout.write(Char32 codePoint)`  
+- `cout.writeLine("...")` with newline, default argument is `""`.  
+  &nbsp;
+- `cout.write(Char32 codePoint)` writes a single Unicode symbol
+- `cout.write(Int number)` writes a number
+- `cout.write(Float floatingPointNumber)`  
+  &nbsp;
+- `cout.write(UInt8`/`16`/`32`/`64` `hexNumber)` writes a number in hexadecimal format, without prefix
+- `cout.write(String prefix, UInt8`/`16`/`32`/`64` `hexNumber)` writes a number in hexadecimal format with the given prefix (e.g. "0x" or "$")
 
 
 #### Operator `<<`
