@@ -10,23 +10,20 @@ description: "ByteStream, File, NetworkConnection."
 
 Base class for writing _binary_ data.
 
-- `out.write(Byte[])`
-- `out.write(Byte)`  
+- `out.write(Byte[])`  
   &nbsp;
+- `out.write(Byte)`  
+- `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`
 - `out.write(Int8)`
 - `out.write(Int16)`
 - `out.write(Int32)`
-- `out.write(Int64)`  
-  &nbsp;
+- `out.write(Int64)`
 - `out.write(UInt8)`
 - `out.write(UInt16)`
 - `out.write(UInt32)`
 - `out.write(UInt64)`  
-  &nbsp;
 - `out.write(Float32)`
 - `out.write(Float64)`  
-  &nbsp;
-- `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`  
   &nbsp;
 - `preferredWriteSize() -> Int`
     - Returns the preferred number of bytes to provide in a single write operation.
