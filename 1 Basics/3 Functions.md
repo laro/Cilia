@@ -40,7 +40,7 @@ punc compoundInterest(Float capital, interestRate, Int years) -> Float
 
 Lambdas also similar to C++
 ```
-[](Int i) -> Float { i * 3.1415926 }
+[](Int i) -> Float { i * 3.1415926535897931 }
 ```
 
 ### Capture without Variable
