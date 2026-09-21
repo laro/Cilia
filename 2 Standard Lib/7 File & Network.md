@@ -12,22 +12,22 @@ Base class for writing _binary_ data.
 
 - `out.write(Byte[])`
 - `out.write(Byte)`  
-  
+  &nbsp;
 - `out.write(Int8)`
 - `out.write(Int16)`
 - `out.write(Int32)`
 - `out.write(Int64)`  
-  
+  &nbsp;
 - `out.write(UInt8)`
 - `out.write(UInt16)`
 - `out.write(UInt32)`
 - `out.write(UInt64)`  
-  
+  &nbsp;
 - `out.write(Float32)`
 - `out.write(Float64)`  
-  
+  &nbsp;
 - `out.write(Bool)`  
-  
+  &nbsp;
 - `preferredWriteSize() -> Int`
     - Returns the preferred number of bytes to provide in a single write operation.
     - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be written.
