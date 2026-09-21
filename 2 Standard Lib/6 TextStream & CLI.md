@@ -86,15 +86,15 @@ Interface for reading text, derived from `BasicStream`.
             Only when the pipe/socket is closed (and no data is buffered anymore), then it returns `""`.
         - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB). Blocks when this cache is empty.
             Only when the end of file is reached (and no data is buffered anymore), then it returns `""`.
-- `cin.read(min..) -> String` reads everything that is immediately available,
-    - blocks until at least `min` characters are read.
+- `cin.read(minimum..) -> String` reads everything that is immediately available,
+    - blocks until at least `minimum` characters are read.
     - Reads everything from the input buffer (if not empty),
     - or (otherwise) everything from the kernel buffer/cache:
         - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically up to 64 KB).
             Returns `""` when no data is buffered anymore (then maybe the pipe/socket is closed).
         - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
             Returns `""` when no data is buffered anymore (then maybe the end of file is reached).
-    - With `min` = `0`:
+    - With `minimum` = `0`:
         - Never blocks.
         - Meant for polling / busy loops only, so _rarely_ appropriate.
         - You need to check `atEnd()` separately!
