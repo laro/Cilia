@@ -40,8 +40,9 @@ Cache:
 - `Byte* outBuffer`  
   The output buffer is stored as pointer, to allow a single common buffer as well as two separate buffers for input and output.
 - `Int outPosition`
-- `Int outCapacity`  
-  &nbsp;
+- `Int outCapacity`
+
+<!-- -->
 - `protected virtual writeRaw(Span<Byte> src)`
 
 
@@ -103,7 +104,8 @@ Cache:
 - `Byte* inBuffer`  
   The input buffer is stored as pointer, to allow a single common buffer as well as two separate buffers for input and output.
 - `Int inPosition`
-- `Int inCapacity`  
+- `Int inCapacity`
+
 <!-- -->
 - `protected virtual readRaw(Span<Byte> dest, Int minimum = 1)`
 - `protected virtual availableRaw() -> Int`
@@ -131,8 +133,9 @@ Abstract base class derived from `ByteStream`, with additional functions to acce
 
 <!-- -->
 - `file.truncate()` truncates the file at the current position.
-    - `file.truncateAt(Int n)` truncates the file at the given position.  
-      &nbsp;
+    - `file.truncateAt(Int n)` truncates the file at the given position.
+
+<!-- -->
 - `protected virtual setPositionRaw(Int position)`
 - `protected virtual truncateRaw(Int position)`
 
@@ -146,8 +149,9 @@ Class derived from `RandomAccessByteStream`:
     - `OpenMode`
         - `Read`
         - `Write`
-        - `Append`  
-          &nbsp;
+        - `Append`
+
+<!-- -->
 - `file.path() -> String`
 - `file.name() -> String`
 
@@ -172,8 +176,9 @@ Abstract base class derived from `ByteStream`, a base class for TCP/IP, Bluetoot
 ### TcpConnection
 
 Class derived from `NetworkConnection`:
-- `TcpConnection::open("example.com", 80) -> TcpConnection`  
-  
+- `TcpConnection::open("example.com", 80) -> TcpConnection`
+
+<!-- -->
 - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
 - `connection.connectionTimeout() -> Duration`
     - `connection.setConnectionTimeout(Duration)`
@@ -199,8 +204,9 @@ Listens for incoming TCP connections.
     - Throws if the port cannot be bound or listening cannot be started.
 - `TcpConnectionListener::listen(String address, Int port) -> TcpConnectionListener`
     - Starts listening for incoming TCP connections on the local network interface identified by address at port.
-    - Throws if the address or port cannot be bound or listening cannot be started.  
-      &nbsp;
+    - Throws if the address or port cannot be bound or listening cannot be started.
+
+<!-- -->
 - `listener.accept() -> TcpConnection`
     - Waits until a client connects and returns the connection.
     - Blocks until a connection is available.
@@ -221,6 +227,7 @@ Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in s
     - Throws if the connection cannot be established.
     - Is using named pipes on windows, unix domain sockets on Unix/Linux/macOS.
 
+<!-- -->
 - `connection.name() -> String`
     - Returns the name (for pipes), or the file system path (for Unix sockets).
 - `connection.peerCredentials() -> String`
@@ -234,8 +241,9 @@ Listens for local inter-process connections.
 
 - `LocalConnectionListener::listen(String name) -> LocalListener`
     - Creates a local listener identified by `name`.
-    - Throws if the name is already in use or cannot be registered.  
-      &nbsp;
+    - Throws if the name is already in use or cannot be registered.
+
+<!-- -->
 - `listener.accept() -> LocalConnection`
     - Waits until a client connects and returns the connection.
     - Blocks until a connection is available.
@@ -249,8 +257,9 @@ Listens for local inter-process connections.
 
 Class for RS-232/UART:
 - `SerialPort::open("COM3", 115200) -> SerialPort`
-- `SerialPort::list() -> String[]`  
-  &nbsp;
+- `SerialPort::list() -> String[]`
+
+<!-- -->
 - `serial.setBaudRate(Int)`
 - `serial.setParity(Parity)`
 - `serial.setDataBits(Int)`
