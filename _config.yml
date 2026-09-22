@@ -23,6 +23,3 @@ defaults:
       type: pages
     values:
       layout: default
-
-kramdown:
-  parse_block_html: true
