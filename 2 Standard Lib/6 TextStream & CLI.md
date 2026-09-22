@@ -22,10 +22,8 @@ Convenience functions for simple console I/O.
     - Writes `prompt` without a newline and reads a line from standard input,
     - as in Python.
     - Equivalent to:
-      ```
-      cout.write(prompt)
-      cin.readLine()
-      ```
+      `cout.write(prompt)`
+      `cin.readLine()`
 
 
 ## BasicStream
@@ -54,8 +52,7 @@ Interface for writing text, derived from `BasicStream`.
 - `cout.write(Float floatingPointNumber)`
 
 <!-- -->
-- `cout.write(UInt8`/`16`/`32`/`64 hexNumber)` writes a number in hexadecimal format, without prefix,  
-   the width is derived from the type:
+- `cout.write(UInt8`/`16`/`32`/`64 hexNumber)` writes a number in hexadecimal format, without prefix, the width is derived from the type:
     - `UInt8`  -> `"2a"`
     - `UInt16` -> `"002a"`
     - `UInt32` -> `"0000002a"`
