@@ -11,20 +11,21 @@ description: "ByteStream, File, NetworkConnection."
 Base class for writing _binary_ data.
 
 - `out.write(Byte[])`
-    - also accepts a `Span<Byte>`/`ArrayView<Byte>` (see [parameter passing mode `in`](https://cilialang.org/advanced/parameter-passing/#special-trick-for-types-with-views))<br>
-
+    - also accepts a `Span<Byte>`/`ArrayView<Byte>` (see [parameter passing mode `in`](https://cilialang.org/advanced/parameter-passing/#special-trick-for-types-with-views))
+<!-- -->
 - `out.write(Byte)` writes a single byte
-- `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`<br>
-
+- `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`
+<!-- -->
 - `out.write(Int8`/`16`/`32`/`64)`
 - `out.write(UInt8`/`16`/`32`/`64)`
-- `out.write(Float32`/`64)`<br>
-
+- `out.write(Float32`/`64)`
+<!-- -->
 - `preferredWriteSize() -> Int`
     - Returns the preferred number of bytes to provide in a single write operation.
     - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be written.
     - The value may vary between stream types and platforms.
     - Typically in the range of 16 to 256 KB.
+<!-- -->
 - `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
     - This protects against data loss in the event of a program crash.
 - `out.flushAndSync()` calls `flush()`, then
