@@ -47,11 +47,9 @@ Base class for reading _binary_ data.
     - everything from the input buffer, if not empty,  
       otherwise everything from the kernel buffer/cache:
         - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically 64 KB).
-            - Blocks when this buffer is empty.
-            - When the pipe/socket is closed (and no data is buffered anymore), then it returns an empty array.
         - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
-            - Blocks when this cache is empty.
-            - When the end of file is reached (and no data is cached anymore), then it returns an empty array.
+    - Blocks when this buffer/cache is empty.
+    - When the pipe/socket is closed / the end of file is reached (and no data is cached anymore), then it returns an empty array.
 - `in.read(minimum..) -> Byte[]` reads everything that is currently available.
     - Blocks until (at least) the `minimum` number of bytes are read (may return immediately with an empty array when `minimum` is `0`).
 - `in.read(minimum..maximum) -> Byte[]` reads everything that is currently available, up to the given `maximum` number of bytes.
