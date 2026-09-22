@@ -43,8 +43,7 @@ Cache:
 - `Int outCapacity`
 
 <!-- -->
-- `protected:`
-    - `virtual writeRaw(Span<Byte> src)`
+- `virtual writeRaw(Span<Byte> src)`
 
 
 ### ByteInStream
@@ -108,10 +107,9 @@ Cache:
 - `Int inCapacity`
 
 <!-- -->
-- `protected:`
-    - `virtual readRaw(Span<Byte> dest, Int minimum = 1)`
-    - `virtual availableRaw() -> Int`
-    - `virtual atEndRaw() -> Bool`
+- `virtual readRaw(Span<Byte> dest, Int minimum = 1)`
+- `virtual availableRaw() -> Int`
+- `virtual atEndRaw() -> Bool`
 
 
 ## ByteStream
@@ -138,9 +136,8 @@ Abstract base class derived from `ByteStream`, with additional functions to acce
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
 <!-- -->
-- `protected:`
-    - `virtual setPositionRaw(Int position)`
-    - `virtual truncateRaw(Int position)`
+- `virtual setPositionRaw(Int position)`
+- `virtual truncateRaw(Int position)`
 
 
 ### File
