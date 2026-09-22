@@ -8,14 +8,24 @@ description: "print(), input(), cout/cin, TextStream, TextFile."
 
 ## Global IO Functions
 
-- `print("...")` with Newline,
-    - calls `cout.writeLine()`.
-- `readLine() -> String` reads up to Newline,
-    - calls `cin.readLine()`.
-- `input("Name? ") -> String`
-    - as in Python,
-    - calls `cout.write()`, then `cin.readLine()`.
-    - `input(String prompt = "") -> String`
+Convenience functions for simple console I/O.
+
+- `print(String text)`
+    - Writes `text` followed by a newline.
+    - Equivalent to `cout.writeLine(text)`.
+
+- `readLine() -> String`
+    - Reads a line from standard input.
+    - Equivalent to `cin.readLine()`.
+
+- `input(String prompt = "") -> String`
+    - Writes `prompt` without a newline and reads a line from standard input,
+    - as in Python.
+    - Equivalent to:
+      ```
+      cout.write(prompt)
+      cin.readLine()
+      ```
 
 
 ## BasicStream
@@ -85,7 +95,7 @@ Interface for reading text, derived from `BasicStream`.
         - With pipes/sockets this is everything currently in the kernel pipe/socket buffer (typically up to 64 KB).
         - With files this is everything currently in the kernel "read ahead" cache (typically 64 to 256 KB).
     - Blocks when this buffer/cache is empty.
-    - Only when the pipe/socket is closed / end of file is reached (and no data is buffered anymore), then it returns `""`.
+    - Only when the pipe/socket is closed / end of file is reached, and no data is buffered anymore, then it returns `""`.
 - `cin.read(minimum..) -> String` reads everything that is immediately available,
     - blocks until at least `minimum` characters are read.
     - Reads everything from the input buffer (if not empty),
