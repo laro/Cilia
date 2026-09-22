@@ -127,8 +127,9 @@ Abstract base class derived from `ByteStream`, with additional functions to acce
 - `file.seek(Int offsetToCurrentPos)`
     - `offsetToCurrentPos` can be positive (moving towards the end) or negative (moving towards the beginning).
 - `file.seekFromEnd(Int distanceToEnd)`
-    - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).  
-      &nbsp;
+    - `distanceToEnd` is `0` or positive (here moving from the end towards the beginning).
+
+<!-- -->
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.  
       &nbsp;
