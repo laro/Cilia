@@ -14,18 +14,15 @@ Base class for writing _binary_ data.
     - also accepts a `Span<Byte>`/`ArrayView<Byte>` (see [parameter passing mode `in`](https://cilialang.org/advanced/parameter-passing/#special-trick-for-types-with-views))
 
 <!-- -->
-
 - `out.write(Byte)` writes a single byte
 - `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`
 
 <!-- -->
-
 - `out.write(Int8`/`16`/`32`/`64)`
 - `out.write(UInt8`/`16`/`32`/`64)`
 - `out.write(Float32`/`64)`
 
 <!-- -->
-
 - `preferredWriteSize() -> Int`
     - Returns the preferred number of bytes to provide in a single write operation.
     - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be written.
@@ -75,19 +72,27 @@ Base class for reading _binary_ data.
         - You may limit the maximum number of bytes to read by using `buffer.subspan(0, 4096)`,
           or configure the starting point (in the buffer) by using `buffer.subspan(100)`.
     - Usually more efficient, as the buffer is reused and less allocations are necessary.
+
+<!-- -->
 - `in.peek(Int n) -> Byte[]`
     - Blocks until at least `n` bytes are available and returns the next `n` bytes without consuming them.
     - May throw an `ArgumentException("Unable to peek() more than ... bytes.")` if `n` exceeds the maximum number of bytes that can be peeked.
     - `n` is limited by the stream's peek buffer capacity.
+
+<!-- -->
 - `in.discard(Int n)` ignores/discards the next `n` bytes from the input stream.
     - Blocks until all `n` bytes have been discarded or the end of the stream is reached.
 - `in.discardAvailable()` ignores/discards all bytes currently in the input stream.
     - Clears the input buffer _and_ performs a non-blocking read, discarding that bytes, too.
     - Does not block waiting for additional data.
     - Useful for re-synchronizing a stream after invalid or unexpected input.
+
+<!-- -->
 - `in.atEnd()` returns `True` if
     - the end of the file is reached (or the pipe/socket is closed),
     - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer).
+
+<!-- -->
 - `preferredReadSize() -> Int`
     - Returns the preferred number of bytes to request in a single read operation.
     - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be read.
@@ -99,7 +104,7 @@ Cache:
   The input buffer is stored as pointer, to allow a single common buffer as well as two separate buffers for input and output.
 - `Int inPosition`
 - `Int inCapacity`  
-  &nbsp;
+<!-- -->
 - `protected virtual readRaw(Span<Byte> dest, Int minimum = 1)`
 - `protected virtual availableRaw() -> Int`
 - `protected virtual atEndRaw() -> Bool`
