@@ -162,8 +162,8 @@ Class derived from `NetworkConnection`:
 - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
 - `connection.connectionTimeout() -> Duration`
     - `connection.setConnectionTimeout(Duration)`
-- `connection.remotePort() -> UInt16`
-- `connection.localPort() -> UInt16`
+- `connection.remotePort() -> Int`
+- `connection.localPort() -> Int`
 - `connection.noDelay() -> Bool`
     - `connection.setNoDelay(Bool disableNagle)` to disable the Nagle algorithm.
 - `connection.keepAlive() -> Bool`
