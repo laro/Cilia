@@ -243,7 +243,19 @@ Class for RS-232/UART:
 
 ## MessageChannel
 
-Interface for message/packet/frame/datagram-based protocols (i.e. _not_ only a stream of bytes), is implemented by:
+Interface for message/packet/frame/datagram-based protocols, preserving message boundaries (i.e. _not_ only a stream of bytes).
+
+- `channel.send(Byte[] data)`
+    - Sends one message to the other endpoint.
+- `channel.receive() -> Byte[]`
+    - Receives the next message.
+    - Blocks until a message is available.
+- `channel.close()`
+    - Closes the channel.
+- `channel.isOpen() -> Bool`
+    - Returns whether the channel is open.
+
+Is implemented by:
 - `UdpSocket` for UDP over IP.
 - `UnixDomainSocket` in datagram configuration.
 - Communication with sensors on microcontrollers
