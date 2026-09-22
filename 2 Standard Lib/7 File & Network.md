@@ -198,8 +198,8 @@ Listens for local inter-process connections.
 
 - `LocalConnectionListener::listen(String name) -> LocalListener`
     - Creates a local listener identified by `name`.
-    - Throws if the name is already in use or cannot be registered.
-      <br>
+    - Throws if the name is already in use or cannot be registered.  
+      &nbsp;
 - `listener.accept() -> LocalConnection`
     - Waits until a client connects and returns the connection.
     - Blocks until a connection is available.
