@@ -178,7 +178,7 @@ Class derived from `NetworkConnection`:
 ### LocalConnection
 
 Abstract base class derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in stream configuration:
-- `connection.path() -> String` returns the file system path (for Unix sockets) or the name (for pipes).
+- `connection.name() -> String` returns the name (for pipes), or the file system path (for Unix sockets).
 - `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
     - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
 
