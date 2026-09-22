@@ -180,7 +180,7 @@ Class derived from `NetworkConnection`:
 A byte stream for local inter-process communication.
 Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in stream configuration:
 
-- `LocalConnection::connect(String name) -> LocalConnection`
+- `LocalConnection::open(String name) -> LocalConnection`
     - Connects to a local server identified by `name`.
     - Blocks until the connection is established.
     - Throws if the connection cannot be established.
@@ -191,6 +191,22 @@ Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in s
 - `connection.peerCredentials() -> String`
     - Returns platform-specific credentials identifying the peer, typically the process ID (PID) or user ID (UID) of the other party.
     - The format and contents depend on the operating system and connection type.
+
+#### LocalListener
+
+Listens for local inter-process connections.
+
+- `LocalListener::listen(String name) -> LocalListener`
+    - Creates a local listener identified by `name`.
+    - Throws if the name is already in use or cannot be registered.
+
+- `listener.accept() -> LocalConnection`
+    - Waits until a client connects and returns the connection.
+    - Blocks until a connection is available.
+- `listener.name() -> String`
+    - Returns the name of the listener.
+- `listener.close()`
+    - Stops listening for new connections.
 
 
 ### SerialPort
