@@ -175,6 +175,23 @@ Class derived from `NetworkConnection`:
     - `connection.setSendBufferSize(Int bytes)`
 
 
+#### TcpConnectionListener
+
+Listens for incoming TCP connections.
+
+- `TcpConnectionListener::listen(Int port) -> TcpConnectionListener`
+    - Starts listening for incoming TCP connections on the local host at `port`.
+    - Throws if the port cannot be bound or listening cannot be started.
+      &nbsp;
+- `listener.accept() -> TcpConnection`
+    - Waits until a client connects and returns the connection.
+    - Blocks until a connection is available.
+- `listener.port() -> Int`
+    - Returns the local TCP port the listener is listening on.
+- `listener.close()`
+    - Stops listening for new connections.
+
+
 ### LocalConnection
 
 A byte stream for local inter-process communication.
@@ -191,6 +208,7 @@ Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in s
 - `connection.peerCredentials() -> String`
     - Returns platform-specific credentials identifying the peer, typically the process ID (PID) or user ID (UID) of the other party.
     - The format and contents depend on the operating system and connection type.
+
 
 #### LocalConnectionListener
 
