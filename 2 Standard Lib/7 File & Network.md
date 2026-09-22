@@ -192,11 +192,11 @@ Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in s
     - Returns platform-specific credentials identifying the peer, typically the process ID (PID) or user ID (UID) of the other party.
     - The format and contents depend on the operating system and connection type.
 
-#### LocalListener
+#### LocalConnectionListener
 
 Listens for local inter-process connections.
 
-- `LocalListener::listen(String name) -> LocalListener`
+- `LocalConnectionListener::listen(String name) -> LocalListener`
     - Creates a local listener identified by `name`.
     - Throws if the name is already in use or cannot be registered.  
       &nbsp;
