@@ -11,11 +11,11 @@ description: "ByteStream, File, NetworkConnection."
 Base class for writing _binary_ data.
 
 - `out.write(Byte[])`
-    - also accepts a `Span<Byte>`/`ArrayView<Byte>` (see [parameter passing mode `in`](https://cilialang.org/advanced/parameter-passing/#special-trick-for-types-with-views))
-<br>
+    - also accepts a `Span<Byte>`/`ArrayView<Byte>` (see [parameter passing mode `in`](https://cilialang.org/advanced/parameter-passing/#special-trick-for-types-with-views))<br>
+
 - `out.write(Byte)` writes a single byte
-- `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`
-<br>
+- `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`<br>
+
 - `out.write(Int8`/`16`/`32`/`64)`
 - `out.write(UInt8`/`16`/`32`/`64)`
 - `out.write(Float32`/`64)`  
