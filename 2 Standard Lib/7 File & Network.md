@@ -203,8 +203,10 @@ Listens for local inter-process connections.
 - `listener.accept() -> LocalConnection`
     - Waits until a client connects and returns the connection.
     - Blocks until a connection is available.
+
 - `listener.name() -> String`
     - Returns the name of the listener.
+      
 - `listener.close()`
     - Stops listening for new connections.
 
