@@ -46,12 +46,14 @@ Interface for input / output of _text_, derived from `TextInStream` and `TextOut
 Interface for writing text, derived from `BasicStream`.
 
 - `cout.write("...")` without newline.
-- `cout.writeLine("...")` with newline, default argument is `""` (i.e. an empty line).  
-  &nbsp;
+- `cout.writeLine("...")` with newline, default argument is `""` (i.e. an empty line).
+
+<!-- -->
 - `cout.write(Char8`/`16`/`32 codePoint)` writes a single Unicode symbol
 - `cout.write(Int number)` writes a number
-- `cout.write(Float floatingPointNumber)`  
-  &nbsp;
+- `cout.write(Float floatingPointNumber)`
+
+<!-- -->
 - `cout.write(UInt8`/`16`/`32`/`64 hexNumber)` writes a number in hexadecimal format, without prefix,  
    the width is derived from the type:
     - `UInt8`  ->  `"2a"`
@@ -125,6 +127,8 @@ Interface for reading text, derived from `BasicStream`.
 - `cin.readCodePoint() -> Char32` reads a single Unicode code point (as `Char32`).
     - But beware: some grapheme clusters, like emoji, consist of _multiple_ code points.
     - When the end of file is reached, then it returns `-1`.
+
+<!-- -->
 - `cin.atEnd()` (instead of ~~`cin.isEof()`~~)
     - returns `True` if
         - the end of the file is reached (or the pipe/socket is closed),
@@ -187,8 +191,9 @@ operator (TextInStream stream) >> (Line line) {
 Class derived from `TextStream`:
 - `TextFile::open("Test.txt") -> File`
 - `TextFile::create("Test.txt") -> File`
-- `TextFile::openOrCreate("Test.txt") -> File`  
-  &nbsp;
+- `TextFile::openOrCreate("Test.txt") -> File`
+
+<!-- -->
 - `textFile.path() -> String`
 - `textFile.name() -> String`
 
