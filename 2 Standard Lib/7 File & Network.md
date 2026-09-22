@@ -15,6 +15,8 @@ Base class for writing _binary_ data.
       &nbsp;
 - `out.write(Byte)` writes a single byte  
 - `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`
+
+
 - `out.write(Int8`/`16`/`32`/`64)`
 - `out.write(UInt8`/`16`/`32`/`64)`
 - `out.write(Float32`/`64)`  
