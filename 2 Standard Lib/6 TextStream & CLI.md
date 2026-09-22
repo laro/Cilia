@@ -55,6 +55,32 @@ Interface for writing text, derived from `BasicStream`.
     - `UInt64` -> `"000000000000002a"`
 - `cout.write(String prefix, UInt8`/`16`/`32`/`64 hexNumber)` writes a number in hexadecimal format with the given prefix (e.g. `"0x"` or `"$"`)
 
+<!-- -->
+- `out.flush()` writes the data buffer to the operating system.
+    - This protects against data loss in the event of a program crash.
+- `out.flushAndSync()` calls `flush()`, then
+    - calls `fsync()` to write the kernel buffers to the file system and then to the hard disk/SSD (the write cache should be written/cleared, too).
+    - This protects against data loss in the event of a program or _system_ crash.
+
+Cache:
+- `Byte* outBuffer`  
+  The output buffer is stored as pointer, to allow:
+    - a single common buffer as well as two separate buffers for input and output,
+    - a dedicated buffer (for TextFile) as well as a String as backing store (for StringStream).
+- `Int outPosition`
+- `Int outCapacity`
+
+<!-- -->
+- `virtual writeRaw(Span<Byte> src)`
+    - With TextFile: copies all bytes to the underlying File.
+    - With StringStream:
+        - on `flush()` : update the size of the String,
+        - on `writeRaw()`  with buffer capacity reached:
+            - update the size of the String,
+            - allocate a new, bigger String,
+            - copy all bytes from the old String,
+            - adjust `outBuffer` = `newString.data()`, `outPosition` = `newString.size()` , and `outCapacity` = `newString.capacity`.
+
 
 #### Operator `<<`
 
