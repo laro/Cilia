@@ -182,6 +182,9 @@ Listens for incoming TCP connections.
 - `TcpConnectionListener::listen(Int port) -> TcpConnectionListener`
     - Starts listening for incoming TCP connections on the local host at `port`.
     - Throws if the port cannot be bound or listening cannot be started.
+- `TcpConnectionListener::listen(String address, Int port) -> TcpConnectionListener`
+    - Starts listening for incoming TCP connections on the local network interface identified by address at port.
+    - Throws if the address or port cannot be bound or listening cannot be started.  
       &nbsp;
 - `listener.accept() -> TcpConnection`
     - Waits until a client connects and returns the connection.
