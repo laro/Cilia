@@ -31,8 +31,8 @@ Base class for writing _binary_ data.
     - The returned value is a performance hint intended for bulk data transfer. It may reflect the buffering characteristics of the underlying operating system or device, but does not limit the maximum amount of data that can be written.
     - The value may vary between stream types and platforms.
     - Typically in the range of 16 to 256 KB.
-<!-- -->
 
+<!-- -->
 - `out.flush()` writes the data buffer (the `ostream` user-level cache) to the operating system.
     - This protects against data loss in the event of a program crash.
 - `out.flushAndSync()` calls `flush()`, then
