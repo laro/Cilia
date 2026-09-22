@@ -177,10 +177,20 @@ Class derived from `NetworkConnection`:
 
 ### LocalConnection
 
-Abstract base class derived from `ByteStream`, for `Pipe` and `UnixDomainConnection` in stream configuration:
-- `connection.name() -> String` returns the name (for pipes), or the file system path (for Unix sockets).
-- `connection.peerCredentials() -> String` returns the process ID (PID) or user ID of the other party.
-    - TODO Move to `UnixDomainSocket`? But on Windows this info is available for pipes, too.
+A byte stream for local inter-process communication.
+Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in stream configuration:
+
+- `LocalConnection::connect(String name) -> LocalConnection`
+    - Connects to a local server identified by `name`.
+    - Blocks until the connection is established.
+    - Throws if the connection cannot be established.
+    - Is using named pipes on windows, unic domain sockets on Unix/Linux/macOS.
+
+- `connection.name() -> String`
+    - Returns the name (for pipes), or the file system path (for Unix sockets).
+- `connection.peerCredentials() -> String`
+    - Returns platform-specific credentials identifying the peer, typically the process ID (PID) or user ID (UID) of the other party.
+    - The format and contents depend on the operating system and connection type.
 
 
 ### SerialPort
