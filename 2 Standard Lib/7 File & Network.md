@@ -13,7 +13,7 @@ Base class for writing _binary_ data.
 - `out.write(Byte[])`
     - also accepts a `Span<Byte>`/`ArrayView<Byte>` (see [parameter passing mode `in`](https://cilialang.org/advanced/parameter-passing/#special-trick-for-types-with-views))  
       &nbsp;
-- `out.write(Byte)` writes a single byte  
+- `out.write(Byte)` writes a single byte
 - `out.write(Bool)` writes a byte, `0` for `false`, `1` for `true`
 
 
