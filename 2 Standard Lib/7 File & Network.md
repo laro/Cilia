@@ -204,7 +204,7 @@ Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in s
     - Connects to a local server identified by `name`.
     - Blocks until the connection is established.
     - Throws if the connection cannot be established.
-    - Is using named pipes on windows, unic domain sockets on Unix/Linux/macOS.
+    - Is using named pipes on windows, unix domain sockets on Unix/Linux/macOS.
 
 - `connection.name() -> String`
     - Returns the name (for pipes), or the file system path (for Unix sockets).
