@@ -65,7 +65,7 @@ Interface for writing text, derived from `BasicStream`.
 Cache:
 - `Byte* outBuffer`  
   The output buffer is stored as pointer, to allow:
-    - a single common buffer as well as two separate buffers for input and output,
+    - a single common buffer (for files) as well as two separate buffers for input and output (for network connections),
     - a dedicated buffer (for TextFile) as well as a String as backing store (for StringStream).
 - `Int outPosition`
 - `Int outCapacity`
@@ -74,12 +74,12 @@ Cache:
 - `virtual writeRaw(Span<Byte> src)`
     - With TextFile: copies all bytes to the underlying File.
     - With StringStream:
-        - on `flush()` : update the size of the String,
+        - on `flush()` : update the size of the buffer string,
         - on `writeRaw()`  with buffer capacity reached:
-            - update the size of the String,
-            - allocate a new, bigger String,
-            - copy all bytes from the old String,
-            - adjust `outBuffer` = `newString.data()`, `outPosition` = `newString.size()` , and `outCapacity` = `newString.capacity`.
+            - update the size of the buffer string,
+            - allocate a new, bigger buffer string,
+            - copy all bytes from the old buffer string to the new one,
+            - adjust `outBuffer` = `newBufferString.data()`, `outPosition` = `newBufferString.size()` , and `outCapacity` = `newBufferString.capacity`.
 
 
 #### Operator `<<`
