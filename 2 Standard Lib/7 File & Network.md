@@ -38,7 +38,8 @@ Base class for writing _binary_ data.
 
 Cache:
 - `Byte* outBuffer`  
-  The output buffer is stored as pointer, to allow a single common buffer as well as two separate buffers for input and output.
+  The output buffer is stored as pointer, to allow
+    - a single common buffer (for files) as well as two separate buffers for input and output (for network connections).
 - `Int outPosition`
 - `Int outCapacity`
 
@@ -102,7 +103,8 @@ Base class for reading _binary_ data.
 
 Cache:
 - `Byte* inBuffer`  
-  The input buffer is stored as pointer, to allow a single common buffer as well as two separate buffers for input and output.
+  The input buffer is stored as pointer, to allow
+    - a single common buffer (for files) as well as two separate buffers for input and output (for network connections).
 - `Int inPosition`
 - `Int inCapacity`
 
