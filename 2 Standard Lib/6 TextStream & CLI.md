@@ -19,7 +19,7 @@ Convenience functions for simple console I/O.
 - `input(String prompt = "") -> String`
     - Writes `prompt` without a newline and reads a line from standard input,
     - as in Python.
-    - Equivalent to `cout.write(prompt)` and `cin.readLine()`.
+    - Equivalent to `cout.write(prompt)`, `cout.flush()`, and `cin.readLine()`.
 
 
 ## BasicStream
