@@ -299,13 +299,13 @@ Is implemented by:
 
 ## High Performance I/O
 
-The stream interface is designed to provide high performance while keeping the public API simple. The frequently used buffering operations are implemented as _inline_ functions, so operations such as `write(Byte`/`Int`/`Float`/`...)`, and buffered reads can avoid unnecessary virtual calls and function-call overhead.
+The stream interface is designed to provide high performance while keeping the public API simple and convenient. The frequently used operations like `write(Byte`/`Int`/`Float`/`...)` and `read(...)` are implemented as _inline_ functions, so unnecessary virtual calls and function-call overhead is avoided.
 
 Data is accumulated in a user-level buffer and transferred to or from the underlying (operating system) stream in larger blocks through the small set of virtual `writeRaw()` / `readRaw()` operations. This minimizes system calls, memory allocations, and data copying. For files, input and output can share a single buffer; network streams can use separate buffers for each direction.
 
 For bulk transfers, `Span<Byte>` allows callers to operate directly on existing memory without additional allocations or copies. `readInto()` is particularly efficient because the caller-provided buffer is reused.
 
-Thus, the abstraction separates high-level, inline, buffered operations from a minimal virtual raw-I/O layer: the common path stays cheap, while only the actual interaction with the file, pipe, socket, or other device requires dynamic dispatch.
+Thus, the abstraction separates high-level, inline, buffered operations from a minimal virtual raw-I/O layer: the common path stays cheap, while only the actual interaction with the file/pipe/socket/etc. requires dynamic dispatch.
 
 
 ## Class Hierarchy
