@@ -99,7 +99,7 @@ protected:
 
 A `TextBufferStream` buffers text locally. Small reads and writes are done efficiently without locking, the underlying stream is accessed in big chunks only (e.g. full lines or full buffers). The buffer of the base stream will mostly be circumvented.
 
-It can be used to buffer a `ThreadSafeTextStream` (as those are especially slow for small reads/writes), but also a plain `TextStream`.
+It is used to buffer `ThreadSafeTextStream`s, as those are slow for small reads/writes.
 
 ```
 class TextBufferStream : TextBufferOutStream, TextBufferInStream
@@ -112,15 +112,11 @@ A `TextBufferInStream` reads text from the underlying base stream (done efficien
 
 ```
 class TextBufferInStream {
-    TextBufferInStream(TextInStream baseInStream)
     TextBufferInStream(ThreadSafeTextInStream baseThreadSafeInStream)
 
-    setBaseStream(TextInStream baseInStream)
     setBaseStream(ThreadSafeTextInStream baseThreadSafeInStream)
 
 protected:
-    // Only one of these two streams can be set.
-    TextInStream* baseInStream
     ThreadSafeTextInStream* baseThreadSafeInStream
 }
 ```
@@ -132,15 +128,11 @@ A `TextBufferOutStream` buffers small writes locally (done efficiently without l
 
 ```
 class TextBufferOutStream {
-    TextBufferOutStream(TextOutStream baseOutStream)
     TextBufferOutStream(ThreadSafeTextOutStream baseThreadSafeOutStream)
 
-    setBaseStream(TextOutStream baseOutStream)
     setBaseStream(ThreadSafeTextOutStream baseThreadSafeOutStream)
 
 protected:
-    // Only one of these two streams can be set.
-    TextOutStream* baseOutStream
     ThreadSafeTextOutStream* baseThreadSafeOutStream
 }
 ```
