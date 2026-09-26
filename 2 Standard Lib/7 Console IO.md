@@ -34,6 +34,7 @@ The "raw", not thread-safe in/out streams are three globals:
 - `TextInStream  system::console::in`
 - `TextOutStream system::console::out`
 - `TextOutStream system::console::err`
+
 With these plain `TextStream`s, simultaneous access from multiple threads would be undefined behaviour (UB) and sooner or later lead to _memory corruption_.
 
 Then there are three thread-safe globals:
