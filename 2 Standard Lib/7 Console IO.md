@@ -159,7 +159,7 @@ They are meant to wrap the three standard streams. They could wrap any compatibl
 
 ### FileHandleStream
 
-Under Windows: wraps a Win32 `HANDLE` (typically from `GetStdHandle`, but also from `CreateFile`, `CreatePipe`, ...).
+Windows only, wraps a Win32 `HANDLE` (typically from `GetStdHandle`, but also from `CreateFile`, `CreatePipe`, ...).
 
 ```
 class FileHandleStream : FileHandleOutStream, FileHandleInStream
@@ -206,7 +206,7 @@ protected:
 
 ### FileDescriptorStream
 
-Under Unix, Linux, macOS: wraps a POSIX file descriptor (an `Int32`).
+Unix, Linux, macOS only, wraps a POSIX file descriptor (an `Int32`).
 
 ```
 class FileDescriptorStream : FileDescriptorOutStream, FileDescriptorInStream
@@ -228,7 +228,7 @@ class FileDescriptorInStream : TextInStream {
     FileDescriptorInStream(Int inFD)
 
 protected:
-    Int inFD
+    Int32 inFD
 }
 ```
 
@@ -240,6 +240,6 @@ class FileDescriptorOutStream : TextOutStream {
     FileDescriptorOutStream(Int outFD)
 
 protected:
-    Int outFD
+    Int32 outFD
 }
 ```
