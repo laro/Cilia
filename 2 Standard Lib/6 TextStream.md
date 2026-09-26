@@ -152,6 +152,14 @@ Interface for reading text, derived from `BasicStream`.
 - `virtual isTerminal() -> Bool`
     - to toggle colors, spinner, progress bars, etc.
 
+Cache:
+- `Byte* inBuffer`  
+  The input buffer is stored as pointer, to allow:
+    - a single common buffer (for files) as well as two separate buffers for input and output (for network connections),
+    - a dedicated buffer (for TextFile) as well as a String as backing store (for StringStream).
+- `Int inPosition`
+- `Int inCapacity`
+
 
 #### Operator `>>`
 
