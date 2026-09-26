@@ -1,6 +1,6 @@
 ---
 permalink: /standard-lib/textstream/
-description: "print(), input(), cout/cin, TextStream, TextFile."
+description: "TextStream, TextFile."
 ---
 
 # TextStream
