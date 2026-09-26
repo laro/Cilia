@@ -208,7 +208,7 @@ protected:
 
 ### FileHandleStream
 
-Windows only, wraps a Win32 `HANDLE` (typically from `GetStdHandle`, but also from `CreateFile`, `CreatePipe`, ...).
+Windows only, wraps a Win32 `HANDLE` (typically from `GetStdHandle()`, but also from `CreateFile()`, `CreatePipe()`, ...).
 
 ```
 class FileHandleStream : FileHandleOutStream, FileHandleInStream
@@ -219,12 +219,12 @@ class FileHandleStream : FileHandleOutStream, FileHandleInStream
 - `system::console::err` uses `GetStdHandle(STD_ERROR_HANDLE)`
 
 If the handle is a console (`GetFileType` → `FILE_TYPE_CHAR`):
-- input uses `ReadConsole`,
-- output uses `WriteConsole`.
+- input uses `ReadConsole()`,
+- output uses `WriteConsole()`.
 
 If the handle is a file or pipe:
-- input uses `ReadFile`,
-- output uses `WriteFile`.
+- input uses `ReadFile()`,
+- output uses `WriteFile()`.
 
 `isTerminal()` is `GetConsoleMode()`.
 
