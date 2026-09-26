@@ -142,7 +142,7 @@ protected:
 
 `system::console::in`, `out`, and `err` are implemented by platform-specific streams. They wrap an operating-system handle or file descriptor and implement `TextOutStream::writeRaw()` / `TextInStream::readRaw()`.
 
-They are **not** thread-safe. Use `cin` / `cout` / `cerr` for concurrent access.
+They are _not_ thread-safe. Use `cin` / `cout` / `cerr` for concurrent access.
 
 The file descriptor / OS handle is _not owned_: `close()` flushes and marks the stream closed, but does not close the file descriptor / OS handle (as that would close stdin/stdout/stderr for the whole process).
 
