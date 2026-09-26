@@ -175,30 +175,6 @@ If the handle is a file or pipe:
 `isTerminal()` is `GetConsoleMode()`.
 
 
-#### FileHandleInStream
-
-```
-class FileHandleInStream : TextInStream {
-    FileHandleInStream(Handle handle)
-
-protected:
-    Handle inHandle
-}
-```
-
-
-#### FileHandleOutStream
-
-```
-class FileHandleOutStream : TextOutStream {
-    FileHandleOutStream(Handle handle)
-
-protected:
-    Handle outHandle
-}
-```
-
-
 ### FileDescriptorStream
 
 Unix, Linux, macOS only, wraps a POSIX file descriptor (an `Int32`).
@@ -236,5 +212,29 @@ class FileDescriptorOutStream : TextOutStream {
 
 protected:
     Int32 outFD
+}
+```
+
+
+#### FileHandleInStream
+
+```
+class FileHandleInStream : TextInStream {
+    FileHandleInStream(Handle handle)
+
+protected:
+    Handle inHandle
+}
+```
+
+
+#### FileHandleOutStream
+
+```
+class FileHandleOutStream : TextOutStream {
+    FileHandleOutStream(Handle handle)
+
+protected:
+    Handle outHandle
 }
 ```
