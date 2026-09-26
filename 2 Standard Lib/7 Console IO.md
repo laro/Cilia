@@ -54,7 +54,7 @@ The thread-safe streams have the same interface as the plain `TextStream`s, but 
 > While simultaneous access is "safe", the output of two threads might/will still be intertwined.
 
 
-Due to the locking the performance is reduced, especially when reading/writing in small chunks (i.e. single bytes, integers, etc.). You may use a local `TextBufferStream` to read/write small chunks fast locally, and write bigger chunks (i.e. full lines or full buffers) to the underlying thread-safe stream.
+Due to the locking the performance is reduced, especially when reading/writing in small chunks (i.e. single bytes, integers, etc.). Use a local `TextBufferStream` to improve on that.
 
 ```
 class ThreadSafeTextStream : ThreadSafeTextOutStream, ThreadSafeTextInStream
@@ -97,9 +97,9 @@ protected:
 
 ## TextBufferStream
 
-A `TextBufferStream` buffers text locally. Small reads and writes are done efficiently without locking. The buffer of the base stream will mostly be circumvented.
+A `TextBufferStream` buffers text locally. Small reads and writes are done efficiently without locking, the underlying stream is accessed in big chunks only (e.g. full lines or full buffers). The buffer of the base stream will mostly be circumvented.
 
-A `TextBufferStream` can be used to buffer a `ThreadSafeTextStream` (as those are a bit slow for small reads/writes) and also a plain `TextStream`.
+It can be used to buffer a `ThreadSafeTextStream` (as those are especially slow for small reads/writes), but also a plain `TextStream`.
 
 ```
 class TextBufferStream : TextBufferOutStream, TextBufferInStream
