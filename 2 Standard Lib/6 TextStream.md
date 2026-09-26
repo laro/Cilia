@@ -141,15 +141,10 @@ Interface for reading text, derived from `BasicStream`.
     - Typically necessary to call this function when `in.read()` or `in.readLine()` return `""`.
 
 <!-- -->
-- `protected virtual readRaw(Span<Byte> dest)`
-    - With TextFile: copies all bytes to the underlying File.
+- `protected virtual readRaw(Span<Byte> dest) -> Int`
+    - With TextFile: copies bytes from the underlying File into `dest`.
     - With StringStream:
-        - on `flush()` : update the size of the buffer string,
-        - on `writeRaw()`  with buffer capacity reached:
-            - update the size of the buffer string,
-            - allocate a new, bigger buffer string,
-            - copy all bytes from the old buffer string to the new one,
-            - adjust `outBuffer` = `newBufferString.data()`, `outPosition` = `newBufferString.size()` , and `outCapacity` = `newBufferString.capacity`.
+        - Signal end of stream (no more bytes).
 - `virtual isTerminal() -> Bool`
     - to toggle colors, spinner, progress bars, etc.
 
