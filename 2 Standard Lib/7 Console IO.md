@@ -56,6 +56,11 @@ Due to the locking the performance is reduced, especially when reading/writing i
 > While simultaneous access is "safe", the output of two threads might/will still be
 > intertwined. A local `TextBufferStream` will fix that, too.
 
+> **Note**  
+> While the API is the same as that of `TextStream`, the ABI (i.e. the memory layout)
+> is _not_ the same. So you can _not_ use a `ThreadSafeTextStream*` as `TextStream*`.
+> Again, a local `TextBufferStream` will fix that.
+
 
 ```
 class ThreadSafeTextStream : ThreadSafeTextOutStream, ThreadSafeTextInStream
@@ -76,6 +81,10 @@ class ThreadSafeTextInStream {
     // ...
 
 protected:
+    Lock inLock
+    Byte* inBuffer
+    Int inPosition
+    Int inCapacity
     TextInStream* baseInStream
 }
 ```
@@ -93,6 +102,10 @@ class ThreadSafeTextOutStream {
     // ...
 
 protected:
+    Lock outLock
+    Byte* outBuffer
+    Int outPosition
+    Int outCapacity
     TextOutStream* baseOutStream
 }
 ```
