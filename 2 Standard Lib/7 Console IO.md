@@ -37,7 +37,7 @@ The "raw", not thread-safe in/out streams are three globals:
 
 With these plain `TextStream`s, simultaneous access from multiple threads would be undefined behaviour (UB) and sooner or later lead to _memory corruption_.
 
-Then there are three thread-safe globals:
+Then there are three _thread-safe_ globals:
 - `ThreadSafeTextInStream  cin(system::console::in)`
 - `ThreadSafeTextOutStream cout(system::console::out)`
 - `ThreadSafeTextOutStream cerr(system::console::err)`
