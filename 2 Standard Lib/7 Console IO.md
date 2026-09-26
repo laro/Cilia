@@ -160,7 +160,7 @@ They can wrap any compatible handle or descriptor (console, pipe, file, socket),
 
 ### FileHandleStream
 
-Under Windows: Wraps a Win32 `HANDLE` (typically from `GetStdHandle`, but also from `CreateFile`, `CreatePipe`, ...).
+Under Windows: wraps a Win32 `HANDLE` (typically from `GetStdHandle`, but also from `CreateFile`, `CreatePipe`, ...).
 
 ```
 class FileHandleStream : FileHandleOutStream, FileHandleInStream
@@ -205,7 +205,7 @@ protected:
 
 ### FileDescriptorStream
 
-Under Unix, Linux, macOS: Wraps a POSIX file descriptor (`Int`).
+Under Unix, Linux, macOS: wraps a POSIX file descriptor (an `Int32`).
 
 ```
 class FileDescriptorStream : FileDescriptorOutStream, FileDescriptorInStream
