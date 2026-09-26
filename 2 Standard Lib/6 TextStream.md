@@ -46,14 +46,6 @@ Interface for writing text, derived from `BasicStream`.
     - calls `fsync()` to write the kernel buffers to the file system and then to the hard disk/SSD (the write cache should be written/cleared, too).
     - This protects against data loss in the event of a program or _system_ crash.
 
-Cache:
-- `Byte* outBuffer`  
-  The output buffer is stored as pointer, to allow:
-    - a single common buffer (for files) as well as two separate buffers for input and output (for network connections),
-    - a dedicated buffer (for TextFile) as well as a String as backing store (for StringStream).
-- `Int outPosition`
-- `Int outCapacity`
-
 <!-- -->
 - `virtual writeRaw(Span<Byte> src)`
     - With TextFile: copies all bytes to the underlying File.
@@ -70,6 +62,14 @@ Cache:
 <!-- -->
 - `virtual isTerminal() -> Bool`
     - to toggle colors, spinner, progress bars, etc.
+
+Cache:
+- `Byte* outBuffer`  
+  The output buffer is stored as pointer, to allow:
+    - a single common buffer (for files) as well as two separate buffers for input and output (for network connections),
+    - a dedicated buffer (for TextFile) as well as a String as backing store (for StringStream).
+- `Int outPosition`
+- `Int outCapacity`
 
 
 #### Operator `<<`
