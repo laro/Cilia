@@ -102,7 +102,7 @@ protected:
 
 A `TextBufferStream` buffers text locally. Small reads and writes are done efficiently without locking, the underlying stream is accessed in big chunks only (e.g. full lines or full buffers). The buffer of the base stream will mostly be circumvented.
 
-It is used to buffer `ThreadSafeTextStream`s, as those are slow for small reads/writes.
+It is used to buffer `ThreadSafeTextStream`s (like `cin`, `cout`, `cerr`), as those are slow for small reads/writes.
 
 ```
 class TextBufferStream : TextBufferOutStream, TextBufferInStream
