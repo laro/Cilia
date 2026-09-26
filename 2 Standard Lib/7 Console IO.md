@@ -165,7 +165,7 @@ If the handle is a console (`GetFileType` → `FILE_TYPE_CHAR`):
 - input uses `ReadConsole`,
 - output uses `WriteConsole`.
 
-If the handle is redirected to a file or pipe:
+If the handle is a file or pipe:
 - input uses `ReadFile`,
 - output uses `WriteFile`.
 
