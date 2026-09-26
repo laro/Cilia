@@ -143,3 +143,18 @@ protected:
     ThreadSafeTextOutStream* baseThreadSafeOutStream
 }
 ```
+
+
+## Platform-specific Raw Streams
+
+### FileHandleStream
+
+Under Windows:
+FileHandleInStream, FileHandleOutStream
+
+
+
+### FileDescriptorStream
+
+Under Unix, Linux, macOS:
+FileDescriptorInStream, FileDescriptorOutStream
