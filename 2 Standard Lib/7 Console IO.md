@@ -64,7 +64,7 @@ class ThreadSafeTextStream : ThreadSafeTextOutStream, ThreadSafeTextInStream
 
 ### ThreadSafeTextInStream
 
-`ThreadSafeTextOutStream`s  will auto-flush the buffer after (nun-flushing) writes within 0.5 seconds.
+A `ThreadSafeTextOutStream` automatically flushes buffered output if no explicit flush occurs for 0.5 seconds.
 
 ```
 class ThreadSafeTextInStream {
