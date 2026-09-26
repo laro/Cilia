@@ -47,7 +47,7 @@ Then there are three thread-safe globals:
 
 ## ThreadSafeTextStream
 
-The thread-safe streams have the same interface as the plain `TextStream`s, but access to the "User-level" buffer is restricted via a lock, allowing simultaneous access from multiple threads.
+The thread-safe streams have the same interface as the plain `TextStream`s, but access to the "user-level" buffer is restricted via a lock, allowing simultaneous access from multiple threads.
 
 > **Note**  
 > While simultaneous access is "safe", the output of two threads might/will still be intertwined.
