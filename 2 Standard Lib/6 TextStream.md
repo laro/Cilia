@@ -64,6 +64,10 @@ Cache:
             - allocate a new, bigger buffer string,
             - copy all bytes from the old buffer string to the new one,
             - adjust `outBuffer` = `newBufferString.data()`, `outPosition` = `newBufferString.size()` , and `outCapacity` = `newBufferString.capacity`.
+- `virtual syncRaw()`
+    - to write the system buffer to disk.
+
+<!-- -->
 - `virtual isTerminal() -> Bool`
     - to toggle colors, spinner, progress bars, etc.
 

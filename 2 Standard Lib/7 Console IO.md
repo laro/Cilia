@@ -148,14 +148,13 @@ protected:
 
 ## Platform-specific Raw Streams
 
-`system::console::in`, `out`, and `err` are implemented by these platform-specific streams.
-They are the lowest layer: they wrap an operating-system handle or file descriptor and implement `writeRaw()` / `readRaw()` of `TextOutStream` / `TextInStream`.
+`system::console::in`, `out`, and `err` are implemented by platform-specific streams. They wrap an operating-system handle or file descriptor and implement `TextOutStream::writeRaw()` / `TextInStream::readRaw()`.
 
 They are **not** thread-safe. Use `cin` / `cout` / `cerr` for concurrent access.
 
 Standard input, output, and error are **not owned**: `close()` flushes and marks the stream closed, but does not close the OS handle / file descriptor (that would close stdin/stdout/stderr for the whole process).
 
-They can wrap any compatible handle or descriptor (console, pipe, file, socket), not only the three standard streams.
+They are meant to wrap the three standard streams. They could wrap any compatible handle or descriptor (console, pipe, file, socket), but that is rarely used.
 
 
 ### FileHandleStream
