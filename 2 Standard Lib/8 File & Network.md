@@ -113,7 +113,7 @@ Cache:
 - `Int inCapacity`
 
 <!-- -->
-- `virtual readRaw(Span<Byte> dest, Int minimum = 1)`
+- `virtual readRaw(Span<Byte> dest, Int minimum = 1) -> Int`
 - `virtual availableRaw() -> Int`
 - `virtual atEndRaw() -> Bool`
 
