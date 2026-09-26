@@ -3,23 +3,7 @@ permalink: /standard-lib/textstream/
 description: "print(), input(), cout/cin, TextStream, TextFile."
 ---
 
-# TextStream & Command Line Interface
-
-
-## Global IO Functions
-
-Convenience functions for simple console I/O.
-
-- `print(String text)`
-    - Writes `text` followed by a newline.
-    - Equivalent to `out.writeLine(text)`.
-- `readLine() -> String`
-    - Reads a line from standard input.
-    - Equivalent to `in.readLine()`.
-- `input(String prompt = "") -> String`
-    - Writes `prompt` without a newline and reads a line from standard input,
-    - as in Python.
-    - Equivalent to `out.write(prompt)`, `out.flush()`, and `in.readLine()`.
+# TextStream
 
 
 ## BasicStream
@@ -86,23 +70,23 @@ Cache:
 
 Output stream operator `<<`, similar to C++ iostreams:
 ```
-cout << "Text"
+out << "Text"
 
 Int value = 1
-cout << value
+out << value
 ```
 
 But TextStreams are stateless only, i.e. there are no "state manipulators".
 
 `endl` does not flush, you need to `flush` explicitly:
-- `cout << "Text" << endl` 
-- `cout << "Text" << endl << flush` 
+- `out << "Text" << endl` 
+- `out << "Text" << endl << flush` 
 
 Using output descriptors to control the behaviour:
 ```
-cout << Hex(address)
-cout << Quoted(name)
-cout << Escaped(text)
+out << Hex(address)
+out << Quoted(name)
+out << Escaped(text)
 ```
 
 
@@ -160,16 +144,16 @@ Interface for reading text, derived from `BasicStream`.
 Input stream operators `>>`, similar to C++ iostreams:
 ```
 Int i
-cin >> i
+in >> i
 
 Float f
-cin >> f
+in >> f
 
 Char32 codePoint
-cin >> codePoint
+in >> codePoint
 
 String word
-cin >> word
+in >> word
 ```
 
 But TextStreams are stateless only, i.e. there are no "state manipulators".
@@ -177,13 +161,13 @@ But TextStreams are stateless only, i.e. there are no "state manipulators".
 Using input descriptors to control the behaviour:
 ```
 UInt address
-cin >> Hex(address)
+in >> Hex(address)
 
 String grapheme
-cin >> GraphemeCluster(grapheme)
+in >> GraphemeCluster(grapheme)
 
 String line
-cin >> Line(line)
+in >> Line(line)
 ```
 
 Technically realized as:
