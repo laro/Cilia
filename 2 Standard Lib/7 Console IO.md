@@ -170,8 +170,8 @@ class FileHandleStream : FileHandleOutStream, FileHandleInStream
 - `system::console::err` uses `GetStdHandle(STD_ERROR_HANDLE)`
 
 If the handle is a console (`GetFileType` → `FILE_TYPE_CHAR`):
-- input uses `ReadConsoleW`,
-- output uses `WriteConsoleW`.
+- input uses `ReadConsole`,
+- output uses `WriteConsole`.
 
 If the handle is redirected to a file or pipe:
 - input uses `ReadFile`,
