@@ -152,29 +152,6 @@ They are _not_ thread-safe. Use `cin` / `cout` / `cerr` for concurrent access.
 The file descriptor / OS handle is _not owned_: `close()` flushes and marks the stream closed, but does not close the file descriptor / OS handle (as that would close stdin/stdout/stderr for the whole process).
 
 
-### FileHandleStream
-
-Windows only, wraps a Win32 `HANDLE` (typically from `GetStdHandle`, but also from `CreateFile`, `CreatePipe`, ...).
-
-```
-class FileHandleStream : FileHandleOutStream, FileHandleInStream
-```
-
-- `system::console::in`  uses `GetStdHandle(STD_INPUT_HANDLE)`
-- `system::console::out` uses `GetStdHandle(STD_OUTPUT_HANDLE)`
-- `system::console::err` uses `GetStdHandle(STD_ERROR_HANDLE)`
-
-If the handle is a console (`GetFileType` → `FILE_TYPE_CHAR`):
-- input uses `ReadConsole`,
-- output uses `WriteConsole`.
-
-If the handle is a file or pipe:
-- input uses `ReadFile`,
-- output uses `WriteFile`.
-
-`isTerminal()` is `GetConsoleMode()`.
-
-
 ### FileDescriptorStream
 
 Unix, Linux, macOS only, wraps a POSIX file descriptor (an `Int32`).
@@ -214,6 +191,29 @@ protected:
     Int32 outFD
 }
 ```
+
+
+### FileHandleStream
+
+Windows only, wraps a Win32 `HANDLE` (typically from `GetStdHandle`, but also from `CreateFile`, `CreatePipe`, ...).
+
+```
+class FileHandleStream : FileHandleOutStream, FileHandleInStream
+```
+
+- `system::console::in`  uses `GetStdHandle(STD_INPUT_HANDLE)`
+- `system::console::out` uses `GetStdHandle(STD_OUTPUT_HANDLE)`
+- `system::console::err` uses `GetStdHandle(STD_ERROR_HANDLE)`
+
+If the handle is a console (`GetFileType` → `FILE_TYPE_CHAR`):
+- input uses `ReadConsole`,
+- output uses `WriteConsole`.
+
+If the handle is a file or pipe:
+- input uses `ReadFile`,
+- output uses `WriteFile`.
+
+`isTerminal()` is `GetConsoleMode()`.
 
 
 #### FileHandleInStream
