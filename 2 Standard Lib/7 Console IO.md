@@ -177,6 +177,8 @@ If the handle is redirected to a file or pipe:
 - input uses `ReadFile`,
 - output uses `WriteFile`.
 
+`isTerminal()` is `GetConsoleMode()`.
+
 
 #### FileHandleInStream
 
