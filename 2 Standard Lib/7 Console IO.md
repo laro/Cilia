@@ -50,9 +50,7 @@ Then there are three _thread-safe_ globals:
 
 The thread-safe streams have the same interface as the plain `TextStream`s, but access to the "user-level" buffer is restricted via a lock, allowing simultaneous access from multiple threads.
 
-
 Due to the locking the performance is reduced, especially when reading/writing in small chunks (i.e. single bytes, integers, etc.). Use a local `TextBufferStream` to improve on that.
-
 
 > **Note**  
 > While simultaneous access is "safe", the output of two threads might/will still be
@@ -65,6 +63,8 @@ class ThreadSafeTextStream : ThreadSafeTextOutStream, ThreadSafeTextInStream
 
 
 ### ThreadSafeTextInStream
+
+`ThreadSafeTextOutStream`s  will auto-flush the buffer after (nun-flushing) writes within 0.5 seconds.
 
 ```
 class ThreadSafeTextInStream {
