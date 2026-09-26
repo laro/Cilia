@@ -64,6 +64,8 @@ Cache:
             - allocate a new, bigger buffer string,
             - copy all bytes from the old buffer string to the new one,
             - adjust `outBuffer` = `newBufferString.data()`, `outPosition` = `newBufferString.size()` , and `outCapacity` = `newBufferString.capacity`.
+- `virtual isTerminal() -> Bool`
+    - to toggle colors, spinner, progress bars, etc.
 
 
 #### Operator `<<`
@@ -136,7 +138,20 @@ Interface for reading text, derived from `BasicStream`.
     - returns `True` if
         - the end of the file is reached (or the pipe/socket is closed),
         - and no data is buffered anymore (neither in the `istream` user-level cache, nor in the kernel cache/buffer),
-    - Typically necessary to call this function when `in.read()` or `in.readLine()` return `""`.  
+    - Typically necessary to call this function when `in.read()` or `in.readLine()` return `""`.
+
+<!-- -->
+- `protected virtual readRaw(Span<Byte> dest)`
+    - With TextFile: copies all bytes to the underlying File.
+    - With StringStream:
+        - on `flush()` : update the size of the buffer string,
+        - on `writeRaw()`  with buffer capacity reached:
+            - update the size of the buffer string,
+            - allocate a new, bigger buffer string,
+            - copy all bytes from the old buffer string to the new one,
+            - adjust `outBuffer` = `newBufferString.data()`, `outPosition` = `newBufferString.size()` , and `outCapacity` = `newBufferString.capacity`.
+- `virtual isTerminal() -> Bool`
+    - to toggle colors, spinner, progress bars, etc.
 
 
 #### Operator `>>`
