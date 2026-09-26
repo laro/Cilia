@@ -185,7 +185,7 @@ class FileHandleInStream : TextInStream {
     FileHandleInStream(Handle handle)
 
 protected:
-    Handle handle
+    Handle inHandle
 }
 ```
 
@@ -197,7 +197,7 @@ class FileHandleOutStream : TextOutStream {
     FileHandleOutStream(Handle handle)
 
 protected:
-    Handle handle
+    Handle outHandle
 }
 ```
 
