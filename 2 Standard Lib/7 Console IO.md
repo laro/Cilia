@@ -147,14 +147,101 @@ protected:
 
 ## Platform-specific Raw Streams
 
+`system::console::in`, `out`, and `err` are implemented by these platform-specific streams.
+They are the lowest layer: they wrap an operating-system handle or file descriptor and implement `writeRaw()` / `readRaw()` of `TextOutStream` / `TextInStream`.
+
+They are **not** thread-safe. Use `cin` / `cout` / `cerr` for concurrent access.
+
+Standard input, output, and error are **not owned**: `close()` flushes and marks the stream closed, but does not close the OS handle / file descriptor (that would close stdin/stdout/stderr for the whole process).
+
+They can wrap any compatible handle or descriptor (console, pipe, file, socket), not only the three standard streams.
+
+
 ### FileHandleStream
 
-Under Windows:
-FileHandleInStream, FileHandleOutStream
+Under Windows: `FileHandleInStream`, `FileHandleOutStream`.
 
+Wraps a Win32 `HANDLE` (typically from `GetStdHandle`, but also from `CreateFile`, `CreatePipe`, ...).
+
+```
+class FileHandleStream : FileHandleOutStream, FileHandleInStream
+```
+
+- `system::console::in`  uses `GetStdHandle(STD_INPUT_HANDLE)`
+- `system::console::out` uses `GetStdHandle(STD_OUTPUT_HANDLE)`
+- `system::console::err` uses `GetStdHandle(STD_ERROR_HANDLE)`
+
+If the handle is a console (`GetFileType` → `FILE_TYPE_CHAR`):
+- input uses `ReadConsoleW`,
+- output uses `WriteConsoleW`.
+
+If the handle is redirected to a file or pipe:
+- input uses `ReadFile`,
+- output uses `WriteFile`.
+
+
+#### FileHandleInStream
+
+```
+class FileHandleInStream : TextInStream {
+    FileHandleInStream(Handle handle)
+
+protected:
+    Handle handle
+}
+```
+
+
+#### FileHandleOutStream
+
+```
+class FileHandleOutStream : TextOutStream {
+    FileHandleOutStream(Handle handle)
+
+protected:
+    Handle handle
+}
+```
 
 
 ### FileDescriptorStream
 
-Under Unix, Linux, macOS:
-FileDescriptorInStream, FileDescriptorOutStream
+Under Unix, Linux, macOS: `FileDescriptorInStream`, `FileDescriptorOutStream`.
+
+Wraps a POSIX file descriptor (`Int`).
+
+```
+class FileDescriptorStream : FileDescriptorOutStream, FileDescriptorInStream
+```
+
+- `system::console::in`  uses file descriptor `0` (`STDIN_FILENO`)
+- `system::console::out` uses file descriptor `1` (`STDOUT_FILENO`)
+- `system::console::err` uses file descriptor `2` (`STDERR_FILENO`)
+
+I/O uses `read()` / `write()`.
+
+`isTerminal()` is `isatty()`.
+
+
+#### FileDescriptorInStream
+
+```
+class FileDescriptorInStream : TextInStream {
+    FileDescriptorInStream(Int fileDescriptor)
+
+protected:
+    Int fileDescriptor
+}
+```
+
+
+#### FileDescriptorOutStream
+
+```
+class FileDescriptorOutStream : TextOutStream {
+    FileDescriptorOutStream(Int fileDescriptor)
+
+protected:
+    Int fileDescriptor
+}
+```
