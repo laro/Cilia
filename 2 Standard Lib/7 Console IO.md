@@ -223,10 +223,10 @@ I/O uses `read()` / `write()`.
 
 ```
 class FileDescriptorInStream : TextInStream {
-    FileDescriptorInStream(Int fileDescriptor)
+    FileDescriptorInStream(Int inFD)
 
 protected:
-    Int fileDescriptor
+    Int inFD
 }
 ```
 
@@ -235,9 +235,9 @@ protected:
 
 ```
 class FileDescriptorOutStream : TextOutStream {
-    FileDescriptorOutStream(Int fileDescriptor)
+    FileDescriptorOutStream(Int outFD)
 
 protected:
-    Int fileDescriptor
+    Int outFD
 }
 ```
