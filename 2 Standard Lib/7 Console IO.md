@@ -3,7 +3,7 @@ permalink: /standard-lib/console/
 description: "Console I/O, cin, cout, cerr."
 ---
 
-# Console I/O, `cin` & `cout`
+# Console I/O
 
 
 ## Global IO Functions
@@ -22,7 +22,7 @@ Convenience functions for simple console I/O.
     - Equivalent to `cout.write(prompt)`, `cout.flush()`, and `cin.readLine()`.
 
 
-## `cin` & `cout`
+## `cin`, `cout` & 'cerr`
 
 The I/O streams for current input and output `cin`, `cout`, and `cerr` are thread-safe
 in C++, so they allow simultaneous access from multiple threads.
