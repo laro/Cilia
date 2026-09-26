@@ -144,7 +144,7 @@ protected:
 
 They are **not** thread-safe. Use `cin` / `cout` / `cerr` for concurrent access.
 
-Standard input, output, and error are **not owned**: `close()` flushes and marks the stream closed, but does not close the OS handle / file descriptor (that would close stdin/stdout/stderr for the whole process).
+The file descriptor / OS handle is _not owned_: `close()` flushes and marks the stream closed, but does not close the file descriptor / OS handle (as that would close stdin/stdout/stderr for the whole process).
 
 They are meant to wrap the three standard streams. They could wrap any compatible handle or descriptor (console, pipe, file, socket), but that is rarely used.
 
