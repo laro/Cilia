@@ -15,6 +15,7 @@ Base class for input and output of binary data, derived from `BasicStream`, `Byt
 
 Base class for writing _binary_ data.
 
+Inlined and buffered functions:
 - `out.write(Byte[])`
     - also accepts a `Span<Byte>`/`ArrayView<Byte>` (see [parameter passing mode `in`](https://cilialang.org/advanced/parameter-passing/#special-trick-for-types-with-views))
 
@@ -50,7 +51,7 @@ Cache:
 - `Int outPosition`
 - `Int outCapacity`
 
-<!-- -->
+Virtual functions:
 - `virtual writeRaw(Span<Byte> src)`
 
 
@@ -58,6 +59,7 @@ Cache:
 
 Base class for reading _binary_ data.
 
+Inlined and buffered functions:
 - `in.read() -> Byte[]` reads
     - everything from the input buffer, if not empty,  
       otherwise everything from the kernel buffer/cache:
@@ -117,7 +119,7 @@ Cache:
 - `Int inPosition`
 - `Int inCapacity`
 
-<!-- -->
+Virtual functions:
 - `virtual readRaw(Span<Byte> dest, Int minimum = 1) -> Int`
 - `virtual availableRaw() -> Int`
 - `virtual atEndRaw() -> Bool`
@@ -127,7 +129,9 @@ Cache:
 
 ### RandomAccessByteStream
 
-Abstract base class derived from `ByteStream`, with additional functions to access/modify the size and current position (e.g. seeking):
+Abstract base class derived from `ByteStream`, with additional functions to access/modify the size and current position (e.g. seeking).
+
+Inlined and buffered functions:
 - `file.size() -> Int`
 - `file.position() -> Int`
     - `file.setPosition(Int n)` (AKA ~~`file.seekFromStart()`~~)
@@ -141,14 +145,16 @@ Abstract base class derived from `ByteStream`, with additional functions to acce
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
-<!-- -->
+Virtual functions:
 - `virtual setPositionRaw(Int position)`
 - `virtual truncateRaw(Int position)`
 
 
 ### File
 
-Class derived from `RandomAccessByteStream`:
+Class derived from `RandomAccessByteStream`.
+
+Static functions:
 - `File::open("Test.txt", openMode = OpenMode::Read) -> File`
 - `File::create("Test.txt", openMode = OpenMode::Write) -> File`
 - `File::openOrCreate("Test.doc", openMode = OpenMode::Write) -> File`
@@ -157,7 +163,7 @@ Class derived from `RandomAccessByteStream`:
         - `Write`
         - `Append`
 
-<!-- -->
+Member functionjs:
 - `file.path() -> String`
 - `file.name() -> String`
 
