@@ -51,7 +51,7 @@ Cache:
 - `Int outPosition`
 - `Int outCapacity`
 
-Virtual functions:
+Virtual protected functions:
 - `virtual writeRaw(Span<Byte> src)`
 
 
@@ -119,7 +119,7 @@ Cache:
 - `Int inPosition`
 - `Int inCapacity`
 
-Virtual functions:
+Virtual protected functions:
 - `virtual readRaw(Span<Byte> dest, Int minimum = 1) -> Int`
 - `virtual availableRaw() -> Int`
 - `virtual atEndRaw() -> Bool`
@@ -145,7 +145,7 @@ Inlined and buffered functions:
 - `file.truncate()` truncates the file at the current position.
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
-Virtual functions:
+Virtual protected functions:
 - `virtual setPositionRaw(Int position)`
 - `virtual truncateRaw(Int position)`
 
