@@ -274,7 +274,7 @@ Member functions:
 Class for RS-232/UART.
 
 Static functions:
-- `SerialPort::open(String portName, Int bitrate = -1, Int startBits = 8, Parity parity = Parity:::None, Int stopBits = 1) -> SerialPort`
+- `SerialPort::open(String portName, Int baudRate = -1, Int startBits = 8, Parity parity = Parity:::None, Int stopBits = 1) -> SerialPort`
     - `SerialPort::open("COM3") -> SerialPort`
     - `SerialPort::open("COM3", 115200) -> SerialPort`
 - `SerialPort::list() -> String[]`
@@ -283,6 +283,11 @@ Member functions:
 - `serial.setBaudRate(Int)`
 - `serial.setParity(Parity)`
 - `serial.setDataBits(Int)`
+- Probably unreliable on Linux/macOS:
+    - `serial.supportedBaudRates() -> Int[]`
+    - `serial.supportedStartBits() -> Int[]`
+    - `serial.supportedParity() -> Parity[]`
+    - `serial.supportedStopBits() -> Int[]`
 
 
 ## MessageChannel
