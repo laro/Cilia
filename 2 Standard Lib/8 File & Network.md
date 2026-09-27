@@ -274,7 +274,9 @@ Member functions:
 Class for RS-232/UART.
 
 Static functions:
-- `SerialPort::open("COM3", 115200) -> SerialPort`
+- `SerialPort::open(String portName, Int bitrate = -1, Int startBits = 8, Parity parity = Parity:::None, Int stopBits = 1) -> SerialPort`
+    - `SerialPort::open("COM3") -> SerialPort`
+    - `SerialPort::open("COM3", 115200) -> SerialPort`
 - `SerialPort::list() -> String[]`
 
 Member functions:
