@@ -283,11 +283,12 @@ Member functions:
 - `serial.setBaudRate(Int)`
 - `serial.setParity(Parity)`
 - `serial.setDataBits(Int)`
-- Probably unreliable on Linux/macOS:
-    - `serial.supportedBaudRates() -> Int[]`
-    - `serial.supportedStartBits() -> Int[]`
-    - `serial.supportedParity() -> Parity[]`
-    - `serial.supportedStopBits() -> Int[]`
+
+Probably unreliable on Linux/macOS:
+- `serial.supportedBaudRates() -> Int[]`
+- `serial.supportedStartBits() -> Int[]`
+- `serial.supportedParity() -> Parity[]`
+- `serial.supportedStopBits() -> Int[]`
 
 
 ## MessageChannel
