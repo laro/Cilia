@@ -163,7 +163,7 @@ Static functions:
         - `Write`
         - `Append`
 
-Member functionjs:
+Member functions:
 - `file.path() -> String`
 - `file.name() -> String`
 
@@ -187,10 +187,12 @@ Abstract base class derived from `ByteStream`, a base class for TCP/IP, Bluetoot
 
 ### TcpConnection
 
-Class derived from `NetworkConnection`:
+Class derived from `NetworkConnection`.
+
+Static functions:
 - `TcpConnection::open("example.com", 80) -> TcpConnection`
 
-<!-- -->
+Member functions:
 - `connection.shutdownWrite()` sends FIN (half-close), allows further reading.
 - `connection.connectionTimeout() -> Duration`
     - `connection.setConnectionTimeout(Duration)`
@@ -211,6 +213,7 @@ Class derived from `NetworkConnection`:
 
 Listens for incoming TCP connections.
 
+Static functions:
 - `TcpConnectionListener::listen(Int port) -> TcpConnectionListener`
     - Starts listening for incoming TCP connections on the local host at `port`.
     - Throws if the port cannot be bound or listening cannot be started.
@@ -218,7 +221,7 @@ Listens for incoming TCP connections.
     - Starts listening for incoming TCP connections on the local network interface identified by address at port.
     - Throws if the address or port cannot be bound or listening cannot be started.
 
-<!-- -->
+Member functions:
 - `listener.accept() -> TcpConnection`
     - Waits until a client connects and returns the connection.
     - Blocks until a connection is available.
@@ -239,7 +242,7 @@ Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in s
     - Throws if the connection cannot be established.
     - Is using named pipes on windows, unix domain sockets on Unix/Linux/macOS.
 
-<!-- -->
+Member functions:
 - `connection.name() -> String`
     - Returns the name (for pipes), or the file system path (for Unix sockets).
 - `connection.peerCredentials() -> String`
@@ -251,11 +254,12 @@ Derived from `ByteStream`, base class for `Pipe` and `UnixDomainConnection` in s
 
 Listens for local inter-process connections.
 
+Static functions:
 - `LocalConnectionListener::listen(String name) -> LocalListener`
     - Creates a local listener identified by `name`.
     - Throws if the name is already in use or cannot be registered.
 
-<!-- -->
+Member functions:
 - `listener.accept() -> LocalConnection`
     - Waits until a client connects and returns the connection.
     - Blocks until a connection is available.
@@ -267,11 +271,13 @@ Listens for local inter-process connections.
 
 ### SerialPort
 
-Class for RS-232/UART:
+Class for RS-232/UART.
+
+Static functions:
 - `SerialPort::open("COM3", 115200) -> SerialPort`
 - `SerialPort::list() -> String[]`
 
-<!-- -->
+Member functions:
 - `serial.setBaudRate(Int)`
 - `serial.setParity(Parity)`
 - `serial.setDataBits(Int)`
@@ -281,6 +287,7 @@ Class for RS-232/UART:
 
 Interface for message/packet/frame/datagram-based protocols, preserving message boundaries (i.e. _not_ only a stream of bytes).
 
+Member functions:
 - `channel.send(Byte[] data)`
     - Sends one message to the other endpoint.
 - `channel.receive() -> Byte[]`
