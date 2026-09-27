@@ -6,6 +6,11 @@ description: "ByteStream, File, NetworkConnection."
 # File, ByteStream & Network
 
 
+## ByteStream
+
+Base class for input and output of binary data, derived from `BasicStream`, `ByteInStream`, and `ByteOutStream`.
+
+
 ### ByteOutStream
 
 Base class for writing _binary_ data.
@@ -116,11 +121,6 @@ Cache:
 - `virtual readRaw(Span<Byte> dest, Int minimum = 1) -> Int`
 - `virtual availableRaw() -> Int`
 - `virtual atEndRaw() -> Bool`
-
-
-## ByteStream
-
-Base class for input and output of binary data, derived from `BasicStream`, `ByteInStream`, and `ByteOutStream`.
 
 
 ## File IO
