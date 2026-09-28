@@ -129,7 +129,7 @@ Virtual protected functions:
 
 ### RandomAccessByteStream
 
-Abstract base class derived from `ByteStream`, with additional functions to access/modify the size and current position (e.g. seeking).
+Abstract base class derived from `ByteStream`, with additional functions to access/modify the size and current position (i.e. seeking).
 
 Inlined and buffered functions:
 - `file.size() -> Int`
