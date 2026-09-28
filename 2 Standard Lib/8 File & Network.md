@@ -146,6 +146,7 @@ Inlined and buffered functions:
     - `file.truncateAt(Int n)` truncates the file at the given position.
 
 Virtual protected functions:
+- `virtual sizeRaw() -> Int`
 - `virtual setPositionRaw(Int position)`
 - `virtual truncateRaw(Int position)`
 
