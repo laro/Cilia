@@ -1,6 +1,6 @@
 ---
 permalink: /basics/functions/
-description: "Cilia functions: func keyword, trailing return type, combined parameters. Avoids most vexing parse, supports lambdas."
+description: "Cilia functions: func keyword, trailing return type, combined parameters. Available in every .cil file of a project. Avoids most vexing parse, supports lambdas."
 ---
 
 # Function Declaration
@@ -23,6 +23,12 @@ func print(String line) { ... }
 
 Function parameters are given as `TypeName parameterName`, multiple function parameters of the (exact) same type can be combined:  
 `func multiply(`**`Int x, y`**`) -> Int` // x _and_ y are Int
+
+
+## Visibility
+
+Functions are known throughout the project.  
+A function declared in one `.cil` file is available in every `.cil` file of that project.
 
 
 ## Pure Functions

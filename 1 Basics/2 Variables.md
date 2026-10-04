@@ -1,6 +1,6 @@
 ---
 permalink: /basics/variables/
-description: "Cilia variable declaration: TypeName variableName syntax. Arrays as Int[10] or Int[], multiple variables of same type."
+description: "Cilia variable declaration: TypeName variableName syntax. Arrays as Int[10] or Int[], multiple variables of same type. Top-level objects are file-local unless declared global."
 ---
 
 # Variable Declaration
@@ -34,6 +34,28 @@ Some simplifications and restrictions:
     - `Image image()`
         - is the same as `Image image`, i.e. it is a variable declaration,
         - a function declaration would be written as `func image() -> Image`.
+
+
+## Global Objects
+
+Unlike functions, which are available in every `.cil` file of a project, a normal object at the top level of a `.cil` file is visible _only in that file_.
+```
+Int a
+```
+
+It is not visible in the other `.cil` files of the project.
+This corresponds to `static Int a` in C/C++.
+
+A top-level object becomes visible in the other `.cil` files of the project only when marked `global`:
+
+```
+global Int a
+```
+
+Only such a `global` declaration is known throughout the project.
+
+Global state should generally be avoided, so the default – the simple expression – is 'file scope'.
+
 
 ## Type Inference
 with `var` / `const`:
