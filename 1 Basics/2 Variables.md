@@ -54,7 +54,7 @@ global Int a
 
 Only such a `global` declaration is known throughout the project.
 
-Global state should generally be avoided, so the default – the simple expression – is 'file scope'.
+Global state should generally be avoided, so the default – the simple expression – is 'file-local'.
 
 
 ## Type Inference
