@@ -36,27 +36,6 @@ Some simplifications and restrictions:
         - a function declaration would be written as `func image() -> Image`.
 
 
-## Global Objects
-
-Unlike functions, which are available in every `.cil` file of a project, a normal object at the top level of a `.cil` file is visible _only in that file_.
-```
-Int a
-```
-
-It is not visible in the other `.cil` files of the project.
-This corresponds to `static Int a` in C/C++.
-
-A top-level object becomes visible in the other `.cil` files of the project only when marked `global`:
-
-```
-global Int a
-```
-
-Only such a `global` declaration is known throughout the project.
-
-Global state should generally be avoided, so the default – the simple expression – is 'file-local'.
-
-
 ## Type Inference
 with `var` / `const`:
 - `var i = 3` instead of ~~`auto i = 3;`~~
@@ -87,6 +66,35 @@ with `var` / `const`:
     - `const ContactInfo[String] constMapOfContactInfoByName`  
       is equivalent to `const Map<String, ContactInfo>`,
         - keys and values of a `const Map` are always `const`, too.
+
+
+## Global Objects
+
+Unlike functions, which are available in every `.cil` file of a project, a normal object at the top level of a `.cil` file is visible _only in that file_.
+```
+Int a
+```
+
+It is not visible in the other `.cil` files of the project.
+This corresponds to `static Int a` in C/C++.
+
+A top-level object becomes visible in the other `.cil` files of the project only when marked `global`:
+
+```
+global Int a
+```
+
+Only such a `global` declaration is known throughout the project.
+
+Global state should generally be avoided, so the default – the simple expression – is 'file-local'.
+
+
+## Bit Fields
+- `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
+- TODO Standardization of the bit field layout would be nice (LSB-first like on LittleEndian/Intel, or MSB-first like on BigEndian/Motorola),
+    - but IMHO there is no clear/logical/right definition (especially with LittleEndian).
+    - Dense packing of Int1, Int2, Int3, ..., Int64 could be more straightforward anyway.
+
 
 ## Not Allowed
 It is a syntax error to write:
@@ -122,9 +130,3 @@ It is a syntax error to write:
         - The most vexing parse is mitigated with the keyword `func`.
         - Brace initialization only for constructors with `InitializerList<T>` as parameter (i.e. for "list-initialization" and "copy-list-initialization").
     - See [Misc](/cilia/misc/#misc) / Mixed arithmetic and [https://stackoverflow.com/a/18222927](https://stackoverflow.com/a/18222927)
-
-## Bit Fields
-- `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
-- TODO Standardization of the bit field layout would be nice (LSB-first like on LittleEndian/Intel, or MSB-first like on BigEndian/Motorola),
-    - but IMHO there is no clear/logical/right definition (especially with LittleEndian).
-    - Dense packing of Int1, Int2, Int3, ..., Int64 could be more straightforward anyway.
