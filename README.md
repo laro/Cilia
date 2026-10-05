@@ -134,8 +134,9 @@ Cilia has
 - `type` instead of ~~`typename`~~
 - `await` instead of ~~`co_await`~~
 - `yield` instead of ~~`co_yield`~~
-- `return` instead of ~~`co_return`~~  
-  <!-- -->
+- `return` instead of ~~`co_return`~~
+
+<!-- -->
 - `Int` instead of `int`, `long`/`long long`, `size_t`, `ssize_t`/`ptrdiff_t`
 - `Int32` instead of `int32_t` or `qint32`,
     - so no postfix "_t" nor prefix "q", and in CamelCase.
