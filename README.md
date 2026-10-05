@@ -128,12 +128,14 @@ When we are at it, after a quick look at Python, Kotlin, Swift, JavaScript, Juli
 
 C++ has a "tradition" of complicated names, keywords or reuse of keywords, simply as to avoid compatibility problems with old code, which may have used one of the new keywords as name (of a variable, function, class, or namespace). Cilia uses simpler, clearer keywords.
 
-- Cilia has
-    - `var` instead of ~~`auto`~~ in variable declarations
-    - `func` instead of ~~`auto`~~ in function declarations
-    - `type` instead of ~~`typename`~~
-    - `await` instead of ~~`co_await`~~
-    - `yield` instead of ~~`co_yield`~~
-    - `return` instead of ~~`co_return`~~
+Cilia has
+- `var` instead of ~~`auto`~~ in variable declarations
+- `func` instead of ~~`auto`~~ in function declarations
+- `type` instead of ~~`typename`~~
+- `await` instead of ~~`co_await`~~
+- `yield` instead of ~~`co_yield`~~
+- `return` instead of ~~`co_return`~~  
+  <!-- -->
+- `Int` instead of `int`, `long`/`long long`, `size_t`, `ssize_t`/`ptrdiff_t`
 - `Int32` instead of `int32_t` or `qint32`,
     - so no postfix "_t" nor prefix "q", and in CamelCase.
