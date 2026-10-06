@@ -99,7 +99,7 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 - Namespaces fully lowercase
     - `cilia`
     - `cilia::gui`, `cilia::cli`
-    - `cilia::lapack`, `cilia::geometry`
+    - `cilia::linalg`, `cilia::geometry`
     - Helps to differentiate between classes and namespaces.
 
 Acronyms of at most two letters stay fully upper-case inside names, e.g. `userID`, `IOStream`. Longer abbreviations follow normal camel-case segments, e.g. `HttpRequest`, `XmlWriter`.
