@@ -1,6 +1,6 @@
 func sieveOfEratosthenes(Int n) -> Int[] {
     if n < 2 {
-        return {}
+        return []
     }
 
     Bool[] isPrime(n + 1, True)
