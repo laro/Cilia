@@ -41,13 +41,11 @@ See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts
 
 All of these also work for smart pointers (`T^`, `T+`, `T-`), replacing ~~`std::*_pointer_cast`~~.
 
-- `staticCastTo<T>(...)`
-    - instead of ~~`static_cast<T>(...)`~~
-- `dynamicCastTo<T>(...)`
-    - instead of ~~`dynamic_cast<T>(...)`~~
+- `staticCastTo<T>(...)` instead of ~~`static_cast<T>(...)`~~
+- `dynamicCastTo<T>(...)` instead of ~~`dynamic_cast<T>(...)`~~
     - But typically `objPtr as T*` is preferred.
-- `castToMutable<T>(...)` or `castToMutable(...)`
-    - instead of ~~`const_cast<T>(...)`~~
+- `castToMutable<T>(...)` instead of ~~`const_cast<T>(...)`~~,
+    - typically used as `castToMutable(...)`, as the type is inferred.
 - `reinterpretCastTo<T>(...)`
     - instead of `reinterpret_cast<T>(...)`
 - `castTo<T>(...)`?
