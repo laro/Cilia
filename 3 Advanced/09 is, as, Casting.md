@@ -46,8 +46,7 @@ All of these also work for smart pointers (`T^`, `T+`, `T-`), replacing ~~`std::
     - But typically `objPtr as T*` is preferred.
 - `castToMutable<T>(...)` instead of ~~`const_cast<T>(...)`~~,
     - typically used as `castToMutable(...)`, as the type is inferred.
-- `reinterpretCastTo<T>(...)`
-    - instead of `reinterpret_cast<T>(...)`
+- `reinterpretCastTo<T>(...)` instead of ~~`reinterpret_cast<T>(...)`~~
 - `castTo<T>(...)`?
     - A general, safe cast, i.e. like `as`, but in function syntax.
 - Other casts of the C++ standard library (and GSL):
