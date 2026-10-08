@@ -308,11 +308,40 @@ Having a mostly _interface_ based class hierarchy was _discarded_, going back to
 
 ## `is`, `as`, Casting
 - Automatic casts
-    - As multiple inheritance is problematic here:
+    - Multiple inheritance is problematic here:
         - In Cilia/C++, an object can be an instance of several base classes at once, whereby the pointer (sometimes) changes during casting.
         - What if you still want/need to access the functions for a `Type obj` after `if obj is ParentA`?
-        - Therefore maybe better: `if obj is String str ...`
-            - as in C#
+        - Therefore better use a **condition declaration with casting**:  
+         `if var usingStmt = stmt as UsingStatement* { ... }`
+    - In Kotlin,
+        - for template types, references and pointers.
+        - ```
+        func getStringLength(Type obj) -> Int {
+            if obj is String {
+                // "obj" is automatically cast to "String" in this branch
+                return obj.length
+            }
+            // "obj" is still a "Type" outside of the type-checked branch
+            return 0
+        }
+        ```
+        - ```
+        func getStringLength(Type obj) -> Int {
+            if not obj is String
+                return 0
+            // "obj" is automatically cast to "String" in this branch
+            return obj.length
+        }
+        ```
+        - ```
+        func getStringLength(Type obj) -> Int {
+            // "obj" is automatically cast to "String" on the right-hand side of "and"
+            if obj is String  and  obj.length > 0 {
+                return obj.length
+            }
+            return 0
+        }
+        ```
 
 
 ## C++ Compatibility / Interoperability
