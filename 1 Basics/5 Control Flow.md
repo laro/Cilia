@@ -177,8 +177,7 @@ if pt {
 }
 ```
 
-
-<!-- -->
+<br>>
 With `while`, the declaration runs again on every iteration:
 ```
 while var pt = stmt->getParent() {
