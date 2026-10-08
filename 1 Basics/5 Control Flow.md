@@ -7,6 +7,8 @@ description: "Cilia control flow: if/else, switch, for, while without braces aro
 
 Branches, loops, and exceptions, without parentheses around the condition clause (as in Python, Swift, Go, Ruby).
 
+`if`, `for`, and `while` always take a `{...}` body, even for a single statement. That can still be one line: `if a > b { return a }`.
+
 ## Conditional Branches
 ```
 if a > b {
