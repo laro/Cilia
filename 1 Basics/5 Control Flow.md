@@ -126,6 +126,74 @@ IMHO the code is even more clear when written as while-loop (though not so dense
 > so `for (;;) { ... }` is translated to `while True { ... }`.
 
 
+## Condition Declaration
+
+The condition of `if` and `while` may itself be a declaration.  
+The declared variable is the condition, contextually converted to `Bool`, as in C++.  
+A null pointer is `False`.  
+The name is in scope in the body, and for `if` also in the `else` branch.
+
+```
+if var pt = stmt->getParent() {
+    // ...
+}
+```
+instead of ~~`if (auto pt = stmt->getParent()) { ... }`~~.
+```
+if Stmt* pt = stmt->getParent() {
+    // ...
+}
+```
+instead of ~~`if (Stmt* pt = stmt->getParent()) { ... }`~~.
+
+
+> **Note**  
+> I am not very fond of this syntax,  
+> _but_*_ in an `if` / `else if` chain it is more efficient, and much more compact, than nesting `if … else { if … else … }`.  
+> Also C#, Java, Swift, and Rust all have it.
+
+In an `if` / `else if` chain, the next declaration is evaluated only when the previous condition was false:
+```
+if var pt = stmt->getParent() {
+    // ...
+} else if var prev = stmt->getPrevious() {
+    // ...
+} else {
+    // ...
+}
+```
+instead of the more verbose and complicated
+```
+var pt = stmt->getParent()
+if pt {
+    // ...
+} else {
+    var prev = stmt->getPrevious()
+    if prev {
+        // ...
+    } else {
+        // ...
+    }
+}
+```
+
+
+With `while`, the declaration runs again on every iteration:
+```
+while var pt = stmt->getParent() {
+    // ...
+}
+```
+instead of ~~`while (auto pt = stmt->getParent()) { ... }`~~.
+
+```
+while Stmt* pt = stmt->getParent() {
+    // ...
+}
+```
+instead of ~~`while (Stmt* pt = stmt->getParent()) { ... }`~~.
+
+
 ## Switch / Case
 
 With implicit ~~`break`~~ (like in Swift), i.e `break` is the default, and it is not necessary to explicitly write it. Use `fallthrough` if necessary.
