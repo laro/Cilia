@@ -149,7 +149,7 @@ instead of ~~`if (Stmt* pt = stmt->getParent()) { ... }`~~.
 
 > **Note**  
 > I am not very fond of this syntax,  
-> _but_*_ in an `if` / `else if` chain it is more efficient, and much more compact, than nesting `if … else { if … else … }`.  
+> _but_ in an `if` / `else if` chain it is more efficient, and much more compact, than nesting `if … else { if … else … }`.  
 > Also C#, Java, Swift, and Rust all have it.
 
 In an `if` / `else if` chain, the next declaration is evaluated only when the previous condition was false:
