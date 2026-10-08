@@ -45,6 +45,23 @@ with `var` / `const`:
 - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 
 
+## Structured Binding
+
+C++17 structured bindings unpack one value into several names: a pair, a tuple, an array, or an aggregate.  
+`var` instead of ~~`auto`~~, and `{ }` instead of ~~`[ ]`~~:
+
+- `var {a, b} = ...` instead of ~~`auto [a, b] = ...;`~~
+- `for {a, b} in ... { ... }` instead of ~~`for (auto [a, b] : ...) { ... }`~~
+
+The names are declared here, and each name's type is inferred from its element, as with `var`.  
+A constant binding is `const {a, b} = ...`, instead of ~~`const auto [a, b] = ...;`~~ — the same idea as `const i = 3` above.
+
+This is not a multiple-variable declaration (`Int x, y`).  
+The names need not share one type — a `String` and an `Int` from one pair is fine — and there is exactly one name per element.
+
+`{ }` rather than `[ ]`, because `[ ]` is already the array and map declarator (`Int[10]`, `Float[String]`).
+
+
 ## Const
 
 **`const`** always binds to the right (contrary to C/C++).  
