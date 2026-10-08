@@ -39,34 +39,24 @@ See Cpp2 [as](https://hsutter.github.io/cppfront/cpp2/expressions/#as-safe-casts
 
 ## Classical C++ Casts
 
+All of these also work for smart pointers (`T^`, `T+`, `T-`), replacing ~~`std::*_pointer_cast`~~.
+
 - `staticCastTo<T>(...)`
     - instead of `static_cast<T>(...)`
-    - Also for smart pointers, e.g. `staticCastTo<IdentifierExpr^>(expr)`,  
-      or `staticPointerCast<IdentifierExpr>(expr)`  
-      instead of `std::static_pointer_cast<IdentifierExpr>(expr)`
 - `dynamicCastTo<T>(...)`
     - instead of `dynamic_cast<T>(...)`
-    - Also for smart pointers, e.g. `dynamicCastTo<IdentifierExpr^>(expr)`,  
-      or `dynamicPointerCast<IdentifierExpr>(expr)`  
-      instead of `std::dynamic_pointer_cast<IdentifierExpr>(expr)`
     - But typically `objPtr as T*` is preferred.
 - `castToMutable<T>(...)` or `castToMutable(...)`
     - instead of ~~`const_cast<T>(...)`~~
-    - Also for smart pointers, e.g. `castToMutable<IdentifierExpr^>(expr)`,  
-      or `mutablePointerCast<IdentifierExpr>(expr)`  
-      instead of `std::const_pointer_cast<IdentifierExpr>(expr)`
 - `reinterpretCastTo<T>(...)`
     - instead of `reinterpret_cast<T>(...)`
-    - Also for smart pointers, e.g. `reinterpretCastTo<IdentifierExpr^>(expr)`,  
-      or `reinterpretPointerCast<IdentifierExpr>(expr)`  
-      instead of `std::reinterpret_pointer_cast<IdentifierExpr>(expr)`
 - `castTo<T>(...)`?
     - A general, safe cast, i.e. like `as`, but in function syntax.
 - Other casts of the C++ standard library (and GSL):
-    - `bitCastTo<T>(...)` instead of `std::bit_cast<T>(...)`
-    - `anyCastTo<T>(a)` instead of `std::any_cast<T>(a)`
+    - `bitCastTo<T>(...)` instead of ~~`std::bit_cast<T>(...)`~~
+    - `anyCastTo<T>(a)` instead of ~~`std::any_cast<T>(a)`~~
         - But typically `a as T` is preferred.
-    - `durationCastTo<T>(d)` instead of `std::chrono::duration_cast<T>(d)`
-    - `timePointCastTo<T>(t)` instead of `std::chrono::time_point_cast<T>(t)`
-    - `narrowCastTo<T>(...)` instead of `gsl::narrow_cast<T>(...)` (unchecked)
-    - `narrowTo<T>(...)` instead of `gsl::narrow<T>(...)` (checked)
+    - `durationCastTo<T>(d)` instead of ~~`std::chrono::duration_cast<T>(d)`~~
+    - `timePointCastTo<T>(t)` instead of ~~`std::chrono::time_point_cast<T>(t)`~~
+    - `narrowCastTo<T>(...)` instead of ~~`gsl::narrow_cast<T>(...)`~~ (unchecked)
+    - `narrowTo<T>(...)` instead of ~~`gsl::narrow<T>(...)`~~ (checked)
