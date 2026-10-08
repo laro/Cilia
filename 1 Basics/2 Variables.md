@@ -18,7 +18,9 @@ Some simplifications and restrictions:
     - all variables must be of the exact same type,
     - either all variables are initialized or none are.
 
+
 ## Examples
+
 - `Int i`
 - `Int i = 0`
 - `Int x, y`
@@ -37,11 +39,14 @@ Some simplifications and restrictions:
 
 
 ## Type Inference
+
 with `var` / `const`:
 - `var i = 3` instead of ~~`auto i = 3;`~~
 - `const i = 3` instead of ~~`const auto i = 3;`~~ (it is short, and `const var` / "constant variable" is a bit of a contradiction in terms.)
 
+
 ## Const
+
 **`const`** always binds to the right (contrary to C/C++).  
 - One can read `const Int` as “a constant integer”.
 - `const` binds more strongly than `*`, `&`, and `?`, but less strongly than `[]`.
@@ -91,6 +96,7 @@ Only such a `global` declaration is known throughout the project.
 
 
 ## Bit Fields
+
 - `UInt32:1 sign` instead of ~~`UInt32 sign : 1`~~.
 - TODO Standardization of the bit field layout would be nice (LSB-first like on LittleEndian/Intel, or MSB-first like on BigEndian/Motorola),
     - but IMHO there is no clear/logical/right definition (especially with LittleEndian).
@@ -98,6 +104,7 @@ Only such a `global` declaration is known throughout the project.
 
 
 ## Not Allowed
+
 It is a syntax error to write:
 - ~~`Float* m, &n`~~
     - Type variations within multiple-variable declarations are _not_ allowed.
