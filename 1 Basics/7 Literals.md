@@ -242,8 +242,8 @@ All these available for multiline string literals and interpolated strings, too.
 `' '` is a character literal.
 - `'A'` is an ASCII character literal, a `Char8`.  
 (Can implicitly be converted to `Char16` and `Char32`.)
-- `'Ä'` is a non-ASCII Latin-1 character literal, a `Char8`.  
-(Can implicitly be converted to `Char16` and `Char32`.)
+- `'Ä'` is a non-ASCII Latin-1 character literal, a `Char16`.  
+(Can implicitly be converted to `Char32`.)
 - `'Ω'` is a `Char16` character literal.  
 (Can implicitly be converted to `Char32`.)
 - `'𝄞'` is a `Char32` character literal.
