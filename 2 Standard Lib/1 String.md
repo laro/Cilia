@@ -28,7 +28,7 @@ Iteration over a `String` or `StringView` by:
     - Not as fast as iterating over bytes, as it has to find grapheme cluster boundaries.
     - It is recommended to mostly use the standard functions for string manipulation anyway. But if you need to iterate manually over a Unicode-String, then grapheme-cluster-based iteration is the safe/right way.
 - **Code Points**
-    - each represented by an `Char32`,
+    - each represented by a `Char32`,
         - independent of the encoding (i.e. the same for UTF-8, UTF-16, and UTF-32 strings).
         - `for codePoint in "abc 🥸👮🏻".asCodePoints()`
         - 0x00000061, 0x00000062, 0x00000063, 0x00000020, &nbsp; 0x0001F978, &nbsp; 0x0001F46E, 0x0001F3FB
