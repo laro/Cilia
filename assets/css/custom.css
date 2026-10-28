@@ -64,6 +64,15 @@ html {
 }
 
 
+.markdown-body p,
+.markdown-body li,
+.markdown-body blockquote,
+.markdown-body td,
+.markdown-body th {
+    font-feature-settings: "ss07" 1;
+}
+
+
 .float-left-75px {
   float: right;
   padding-left: 12px;
