@@ -47,6 +47,7 @@ html,
 body {
   background: var(--color-canvas-default);
   color: var(--color-fg-default);
+  font-feature-settings: "ss07" 1;
 }
 
 /* Always reserve a vertical scrollbar gutter to prevent layout shift. */
@@ -62,16 +63,6 @@ html {
 .markdown-body {
   color: var(--color-fg-default);
 }
-
-
-.markdown-body p,
-.markdown-body li,
-.markdown-body blockquote,
-.markdown-body td,
-.markdown-body th {
-    font-feature-settings: "ss07" 1;
-}
-
 
 .float-left-75px {
   float: right;
