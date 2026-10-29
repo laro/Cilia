@@ -43,16 +43,10 @@
   }
 }
 
-/* Get font "Lexend" (with single story a) from Google */
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap");
-
 html,
 body {
   background: var(--color-canvas-default);
   color: var(--color-fg-default);
-
-  font-family: "Lexend", sans-serif;
-  font-feature-settings: "ss07" 1;
 }
 
 /* Always reserve a vertical scrollbar gutter to prevent layout shift. */
@@ -65,7 +59,13 @@ html {
   max-width: 800px;
 }
 
+/* Get font "Lexend" (with single story a) from Google */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap");
+
 .markdown-body {
+  font-family: "Lexend", sans-serif;
+  font-feature-settings: "ss07" 1;
+
   color: var(--color-fg-default);
 }
 
