@@ -5,6 +5,9 @@
    -----------------------------------------------------------------------------
 */
 
+/* Get font "Lexend" (with single story a) from Google */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap");
+
 :root {
   /* Tell the UA that both schemes are supported (form controls, scrollbars, etc.). */
   color-scheme: light dark;
@@ -58,9 +61,6 @@ html {
 .container-lg {
   max-width: 800px;
 }
-
-/* Get font "Lexend" (with single story a) from Google */
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap");
 
 .markdown-body {
   font-family: "Lexend", sans-serif;
