@@ -179,7 +179,7 @@ class FileDescriptorStream : FileDescriptorOutStream, FileDescriptorInStream
 
 I/O uses `read()` / `write()`.
 
-`isTerminal()` is `isatty()`.
+`isTerminal()` calls `isatty()`.
 
 
 #### FileDescriptorInStream
@@ -226,7 +226,7 @@ If the handle is a file or pipe:
 - input uses `ReadFile()`,
 - output uses `WriteFile()`.
 
-`isTerminal()` is `GetConsoleMode()`.
+`isTerminal()` calls `GetConsoleMode()`.
 
 
 #### FileHandleInStream
