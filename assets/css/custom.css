@@ -7,6 +7,9 @@
 
 /* Get font "Lexend" (with single story a) from Google */
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap");
+
+html,
+body,
 .markdown-body {
   font-family: -apple-system,"Lexend",BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-feature-settings: "ss07" 1;
