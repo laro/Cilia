@@ -60,7 +60,7 @@ Iteration over a `String` or `StringView` by:
     - `for line in text.asLines()`
     - Break after:
       
-        | Name | Codepoint         | Meaning                            |
+        | Name | Codepoint(s)      | Meaning                            |
         |------|-------------------|------------------------------------|
         | LF   | `U+000A`          | `\n`, Unix, Linux, macOS, AmigaOS  |
         | CR   | `U+000D`          | `\r`, Classic Mac, C64             |
