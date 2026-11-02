@@ -87,13 +87,13 @@ Iteration over a `String` or `StringView` by:
 
 The encoding is not defined, the user has to take care of this.  
 Or a subclass with known encoding has to be used:
-- **`ASCIIString`**, a string containing only ASCII characters.
-    - Iteration over an `ASCIIString` or `ASCIIStringView` by `Char`==`Char8`
+- **`AsciiString`**, a string containing only ASCII characters.
+    - Iteration over an `AsciiString` or `AsciiStringView` by `Char`==`Char8`
         - `for aChar in a"abc"`
             - 0x61, 0x62, 0x63
             - 'a', 'b', 'c'
             - Compilation error, if string literal contains non-ASCII characters.
-            - same for `for aChar in ASCIIString("abc")`
+            - same for `for aChar in AsciiString("abc")`
                 - but Exception thrown, if string contains non-ASCII characters.
     - Implicitly convertible to `String`==`Utf8String`.
         - Very fast conversion, as all characters have the same binary representation.
@@ -106,7 +106,7 @@ Or a subclass with known encoding has to be used:
             - same for `for aChar in Latin1String("äßç")`
                 - but Exception thrown, if string contains non-Latin1 characters.
     - Explicitly convertible to `String`==`Utf8String`.
-        - Not as fast a conversion as ASCIIString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
+        - Not as fast a conversion as AsciiString to String, because typically some characters need to be translated into _two_ UTF-8 code units.
 
 
 ## Char
