@@ -346,12 +346,12 @@ not x
     %% as["Cast
 %%x as T"]
 
-    and & or & xor & nandNor & andSymbol & orSymbol --> logicalOperand
+    and & or & xorNandNor & andSymbol & orSymbol --> logicalOperand
     and[/"LogicalAnd
 x and y"/]
     or[/"LogicalOr
 x or y"/]
-    nandNor["LogicalXOrNandNor
+    xorNandNor["LogicalXOrNandNor
 x xor y
 x nand y
 x nor y"]
@@ -362,7 +362,7 @@ x || y"/]
 
 
     %% logicalExpression ---> as
-    logicalExpression --> and & or & xor & nandNor & andSymbol & orSymbol
+    logicalExpression --> and & or & xorNandNor & andSymbol & orSymbol
     logicalExpression((" "))
 
 
