@@ -155,14 +155,13 @@ Depending on locale
 
 ## In-Place vs. Copy
 
-| Member Function                     | Member Function                       |
-| In-Place                            | Copy or View                          |
-| ----------------------------------- | ------------------------------------- |
-| `string.uppercase() -> String&`     | `string.uppercased() -> String`       |
-| `string.lowercase() -> String&`     | `string.lowercased() -> String`       |
-| `string.trim() -> String&`          | `string.trimmed() -> StringView`      |
-| `string.trimLeft() -> String&`      | `string.trimmedLeft() -> StringView`  |
-| `string.trimRight() -> String&`     | `string.trimmedRight() -> StringView` |
-| `string.reverse() -> String&`       | `string.reversed() -> String`         |
-| `string.replace(String) -> String&` | `string.replaced(String) -> String`   |
+| In-Place                                    | Copy (or View)                                |
+| ------------------------------------------- | --------------------------------------------- |
+| `string.uppercase() -> String&`             | `string.uppercased() -> String`               |
+| `string.lowercase() -> String&`             | `string.lowercased() -> String`               |
+| `string.trim() -> String&`                  | `string.trimmed() -> StringView`              |
+| `string.trimLeft() -> String&`              | `string.trimmedLeft() -> StringView`          |
+| `string.trimRight() -> String&`             | `string.trimmedRight() -> StringView`         |
+| `string.reverse() -> String&`               | `string.reversed() -> String`                 |
+| `string.replace(String, String) -> String&` | `string.replaced(String, String) -> String`   |
 {:.wide-table}
