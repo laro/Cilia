@@ -148,7 +148,6 @@ Even iterating through graphemes clusters is complicated for some/rare/historic 
         
 Depending on locale
 - `string.uppercase(locale)`, `string.lowercase(locale)`
-    - `uppercase(String, locale) -> String`, `lowercase(String, locale) -> String`
 - `stringArray.sort(locale)`
     - `sort(Container<String>, locale) -> Container<String>`
 - `compare(stringA, stringB, locale) -> Int`
@@ -156,14 +155,14 @@ Depending on locale
 
 ## In-Place vs. Copy
 
-| Member Function                     | Member Function                       | Free Function                       |
-| In-Place                            | Copy or View                          | Copy                                |
-| ----------------------------------- | ------------------------------------- | ----------------------------------- |
-| `string.uppercase() -> String&`     | `string.uppercased() -> String`       | `uppercase(String) -> String`       |
-| `string.lowercase() -> String&`     | `string.lowercased() -> String`       | `lowercase(String) -> String`       |
-| `string.trim() -> String&`          | `string.trimmed() -> StringView`      | `trim(String) -> String`            |
-| `string.trimLeft() -> String&`      | `string.trimmedLeft() -> StringView`  | `trimLeft(String) -> String`        |
-| `string.trimRight() -> String&`     | `string.trimmedRight() -> StringView` | `trimRight(String) -> String`       |
-| `string.reverse() -> String&`       | `string.reversed() -> String`         | `reverse(String) -> String`         |
-| `string.replace(String) -> String&` | `string.replaced(String) -> String`   | `replace(String, String) -> String` |
+| Member Function                     | Member Function                       |
+| In-Place                            | Copy or View                          |
+| ----------------------------------- | ------------------------------------- |
+| `string.uppercase() -> String&`     | `string.uppercased() -> String`       |
+| `string.lowercase() -> String&`     | `string.lowercased() -> String`       |
+| `string.trim() -> String&`          | `string.trimmed() -> StringView`      |
+| `string.trimLeft() -> String&`      | `string.trimmedLeft() -> StringView`  |
+| `string.trimRight() -> String&`     | `string.trimmedRight() -> StringView` |
+| `string.reverse() -> String&`       | `string.reversed() -> String`         |
+| `string.replace(String) -> String&` | `string.replaced(String) -> String`   |
 {:.wide-table}
