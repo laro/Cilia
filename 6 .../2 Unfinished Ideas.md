@@ -358,7 +358,7 @@ x nand y
 x nor y"]
     andSymbol[/"LogicalAndSymbol
 x && y"/]
-    orSymbol[/"LogicalAndSymbol
+    orSymbol[/"LogicalOrSymbol
 x || y"/]
 
 
