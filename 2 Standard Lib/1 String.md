@@ -63,7 +63,7 @@ Iteration over a `String` or `StringView` by:
         | Name | Codepoint         | Meaning                              |
         |------|-------------------|--------------------------------------|
         | LF   | `U+000A`          | `\n`, Unix, Linux, macOS, AmigaOS    |
-        | CR   | `U+000D`          | `\r`, Classic Mac                    |
+        | CR   | `U+000D`          | `\r`, Classic Mac, C64               |
         | CRLF | `U+000D` `U+000A` | `\r\n`, Windows, DOS, CP/M           |
         | LFCR | `U+000A` `U+000D` | `\n\r`, Acorn RISC OS "spooled text" |
         | NEL  | `U+0085`          | Next Line, EBCDIC/Mainframes         |
