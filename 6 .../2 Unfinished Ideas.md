@@ -397,7 +397,8 @@ The graph above covers the **partial** ordering of all contemplated Unicode/Cili
 - `*` tighter than `+`,
 - `**` tighter than `*`,
 - arithmetic tighter than ranges,
-- set algebra (`∪` `∩` `∖`) tighter than ranges and tighter than set relations (`∈` `⊆`, …),
+- ranges tighter than set algebra (`∪` `∩` `∖`), so `a..b ∪ c..d` parses as `(a..b) ∪ (c..d)`,
+- set algebra tighter than set relations (`∈` `⊆`, …),
 - ranges tighter than the comparisons,
 - and all of these tighter than the logical operators and assignment.
 
