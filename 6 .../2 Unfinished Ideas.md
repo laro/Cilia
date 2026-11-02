@@ -351,9 +351,8 @@ not x
 x and y"/]
     or[/"LogicalOr
 x or y"/]
-    xor[/"LogicalXOr
-x xor y"/]
-    nandNor["LogicalNandNor
+    nandNor["LogicalXOrNandNor
+x xor y
 x nand y
 x nor y"]
     andSymbol[/"LogicalAndSymbol
@@ -410,6 +409,13 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - `..`/`..<` relative to `<=>`,
 - `<`, `<=`, `>`, `>=`, `==`, `!=`, and `<=>` relative to each other,
 - `and`, `or`, `xor`, `&&`, `||`, `∧`, `⊻`, and `∨` relative to each other.
+
+Logical `xor` (and `⊻`) is deliberately **non-associative**, although xor is mathematically associative:
+- `a xor b xor c` is easily misread as "exactly one is true", while it actually means "an odd number is true" (`true xor true xor true` is `true`).
+- On `Bool`, `a xor b` is the same as `a != b`, and `a != b != c` needs parentheses, too.
+- Chaining logical xor is rare, so requiring parentheses costs little (and can be relaxed later without breaking code).
+
+Bitwise `^` stays left-to-right-associative, as `h ^ a ^ b` (parity, hashing) is common and unambiguous there.
 
 
 The **node shapes** encode each group's
