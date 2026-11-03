@@ -240,6 +240,22 @@ T*"}
     unary((" "))
 
 
+    modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
+    modulo["Modulo
+x % y"]
+    rotate["Rotation
+x <<< y
+x >>> y"]
+    shift[/"Shift
+x << y
+x >> y"/]
+    bitwiseAnd[/"BitwiseAnd
+x & y"/]
+    bitwiseOr[/"BitwiseOr
+x | y"/]
+    bitwiseXor[/"BitwiseXor
+x ^ y"/]
+
     %% No edge to prefixArithmetic/complement: `-x ** 2` requires parentheses
     power --> pointer
     power[\"Power
@@ -280,23 +296,7 @@ x ⊟ y
 x ⊕ y
 x ⊖ y"/]
 
-    modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
-    modulo["Modulo
-x % y"]
-    rotate["Rotation
-x <<< y
-x >>> y"]
-    shift[/"Shift
-x << y
-x >> y"/]
-    bitwiseAnd[/"BitwiseAnd
-x & y"/]
-    bitwiseOr[/"BitwiseOr
-x | y"/]
-    bitwiseXor[/"BitwiseXor
-x ^ y"/]
-
-    binaryOps --> addition & modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor
+    binaryOps --> modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor & addition
     binaryOps((" "))
 
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
