@@ -348,7 +348,10 @@ x ⊂ y
 x ⊃ y"]
 
     %% `not` binds looser than equality/comparison (as in Carbon): `not a == b` is `not (a == b)`
-    not --> equality & comparison & threeWay
+    negationOperand --> equality & comparison & threeWay
+    negationOperand((" "))
+
+    not --> negationOperand
     not["LogicalNegation
 not x"]
 
