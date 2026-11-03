@@ -362,11 +362,10 @@ x ⟂ y
 x ∥ y
 x ∦ y"]
 
-    %% `not` binds looser than equality/comparison (as in Carbon): `not a == b` is `not (a == b)`
-    negationOperand --> equality & comparison & threeWay
-    negationOperand((" "))
-
-    not --> negationOperand
+    %% `not` binds looser than equality/comparison/set relations (as in Carbon): `not a == b` is `not (a == b)`,
+    %% but is unordered relative to `and`, `or`, …
+    %% (`not` --> `!`/`¬` is irrelevant, as a prefix operator applied to another one is never ambiguous)
+    not --> logicalOperand
     not["LogicalNegation
 not x"]
 
@@ -379,7 +378,7 @@ not x"]
 ¬x"]
 
 
-    logicalOperand --> negationOperand & subset & membership & parallel & bang
+    logicalOperand --> subset & membership & equality & comparison & threeWay & parallel & bang
     logicalOperand((" "))
 
 
@@ -483,7 +482,7 @@ The graph above covers the **partial** ordering of all contemplated Unicode/Cili
 - ranges tighter than set algebra (`∪` `∩` `∖`), so `a..b ∪ c..d` parses as `(a..b) ∪ (c..d)`,
 - set algebra tighter than set relations (`∈` `⊆`, …) and than equality, so `A ∪ B == C` parses as `(A ∪ B) == C`,
 - ranges tighter than the comparisons,
-- equality and comparison tighter than `not` (as in Carbon), so `not a == b` parses as `not (a == b)`,
+- equality, comparison, set relations, and `⟂` `∥` `∦` tighter than `not` (as in Carbon), so `not a == b` parses as `not (a == b)` and `not x ∈ S` as `not (x ∈ S)`,
 - and all of these tighter than the logical operators and assignment.
 
 This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
@@ -495,7 +494,7 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - prefix `-`, `+`, `√`, `~`, … relative to `**`, so `-x ** 2` must be written as `-(x ** 2)` or `(-x) ** 2` (mathematically −x² means −(x²), but C-family programmers expect `(-x)`; Python picks the former, JavaScript makes it an error, as Cilia does),
 - the product-like groups `*` `/` `÷`, `⋅` `∙`, `×`, `⊙` `⊘`, `⊗`, and `⊛` `∗` relative to each other (except `×` tighter than `⋅`), so `6 / 2 × 3` (as `×` is often read as plain multiplication), `A * B ⊙ C`, and `2 ⋅ x * y` require parentheses,
 - `⊕` `⊖` (direct sum, often read as xor) relative to `+` `-` `⊞` `⊟` and to `*` `/` `⋅` `×` `⊙`, so `a + b ⊕ c` requires parentheses,
-- `not` relative to set relations, `⟂` `∥` `∦`, and the logical operators (`and`, `or`, `xor`, …), so `not x ∈ S`, `not a and b`, and `not a or b` require parentheses (`a and not b` is fine, as `not` is to the right of `and`),
+- `not` relative to the logical operators (`and`, `or`, `xor`, …), so `not a and b` and `not a or b` require parentheses (`a and not b` is fine, as `not` is to the right of `and`),
 - `!` and `¬` relative to arithmetic, comparison, equality, and set relations, so `!a == b` and `¬a == b` require parentheses (in C/C++ `!a == b` means `(!a) == b`, and in math `¬` binds tightly, too, while `not a == b` means `not (a == b)`; parentheses avoid silently different semantics; `!a && b` is `(!a) && b`, as in C++, and `¬a ∧ b` is `(¬a) ∧ b`),
 - `∪`, `∩`, and `∖` relative to each other,
 - equality (`==` `!=` `≠`), comparison (`<` `<=` `>` `>=` `≤` `≥`), and three-way comparison (`<=>`) relative to each other, so `a < b == c` and `a <=> b < c` require parentheses,
