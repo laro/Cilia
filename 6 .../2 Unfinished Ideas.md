@@ -238,22 +238,36 @@ T*"}
     unary((" "))
 
 
-    power --> unary
+    %% No edge to prefixArithmetic/complement: `-x ** 2` requires parentheses
+    power --> pointer
     power[\"Power
 x ** y"\]
 
-    multiplication --> power
+    product --> power & unary
+    product((" "))
+
+    crossProduct --> product
+    crossProduct["CrossProduct
+x × y"]
+
+    multiplication --> crossProduct
     multiplication[/"Multiplication
 x * y
 x / y
-x × y
 x ⋅ y
 x ⊙ y
-x ⊘ y
-x ⊗ y
+x ⊘ y"/]
+
+    tensor --> product
+    tensor[/"Tensor
+x ⊗ y"/]
+
+    convolution --> product
+    convolution[/"Convolution
 x ⊛ y
 x ∗ y"/]
-    addition --> multiplication
+
+    addition --> multiplication & tensor & convolution
     addition[/"Addition
 x + y
 x - y
@@ -396,6 +410,7 @@ x ||= y"]
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
 - `*` tighter than `+`,
 - `**` tighter than `*`,
+- `×` tighter than `*` and `⋅`, so `a ⋅ b × c` parses as the scalar triple product `a ⋅ (b × c)`,
 - arithmetic tighter than ranges,
 - ranges tighter than set algebra (`∪` `∩` `∖`), so `a..b ∪ c..d` parses as `(a..b) ∪ (c..d)`,
 - set algebra tighter than set relations (`∈` `⊆`, …),
@@ -406,6 +421,10 @@ This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (m
 
 Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
+- `%` relative to `+`/`-`, `*`/`/`, and `**` (`a + b % n` is a common source of bugs),
+- prefix `-`, `+`, `√`, `~`, … relative to `**`, so `-x ** 2` must be written as `-(x ** 2)` or `(-x) ** 2` (mathematically −x² means −(x²), but C-family programmers expect `(-x)`; Python picks the former, JavaScript makes it an error, as Cilia does),
+- `⊗` and `⊛`/`∗` relative to each other and to `*`, `/`, `⋅`, `×`, `⊙`, `⊘`,
+- `not` / `!` / `¬` relative to arithmetic, comparison, equality, and set relations, so `not a == b` and `not a + b` require parentheses (but `not a and b` is `(not a) and b`),
 - `∪`, `∩`, and `∖` relative to each other,
 - `<`, `<=`, `>`, `>=`, `==`, `!=`, and `<=>` relative to each other,
 - `and`, `or`, `xor`, `&&`, `||`, `∧`, `⊻`, and `∨` relative to each other.
@@ -430,6 +449,13 @@ The **node shapes** encode each group's
 
 i.e. what it means to chain the **same** precedence group without parentheses.  
 Circles are helper nodes only (not a precedence group).
+
+`×` is **non-associative**, as the cross product is not associative: `(a × b) × c ≠ a × (b × c)`, so `a × b × c` requires parentheses.
+
+Precedence only matters where an expression is actually ambiguous:
+- A prefix operator to the **right** of an infix operator is never ambiguous: `x ** -y` is `x ** (-y)`, `a * -b` is `a * (-b)`.
+- A prefix operator applied to another prefix operator is never ambiguous either: `-√x`, `-~x`, `not -x`, `*&x` are always fine, regardless of their groups.
+- Repeatability (non-repeating vs. repeating) therefore only concerns the **same** operator token, e.g. `- -x`.
 
 
 ```mermaid
