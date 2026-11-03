@@ -280,15 +280,14 @@ x ⊟ y
 x ⊕ y
 x ⊖ y"/]
 
-    modulo & rotate & shiftLeft & shiftRight & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
+    modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
     modulo["Modulo
 x % y"]
     rotate["Rotation
 x <<< y
 x >>> y"]
-    shiftLeft[/"ShiftLeft
-x << y"/]
-    shiftRight[/"ShiftRight
+    shift[/"Shift
+x << y
 x >> y"/]
     bitwiseAnd[/"BitwiseAnd
 x & y"/]
@@ -297,7 +296,7 @@ x | y"/]
     bitwiseXor[/"BitwiseXor
 x ^ y"/]
 
-    binaryOps --> addition & modulo & rotate & shiftLeft & shiftRight & bitwiseAnd & bitwiseOr & bitwiseXor
+    binaryOps --> addition & modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor
     binaryOps((" "))
 
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
@@ -442,6 +441,7 @@ This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (m
 
 Pairs that nobody reliably ranks are left **unordered** on purpose and therefore require explicit parentheses, e.g.:
 - the bitwise operators `&` `^` `|` relative to each other and to `<<`/`>>`, `%`, `**`, and `+`/`-`,
+- `<<`/`>>` relative to `<<<`/`>>>`, `%`, `**`, and arithmetic, so `1 << n - 1` requires parentheses (but `x << a >> b` is `(x << a) >> b`, as in C/C++),
 - `%` relative to `+`/`-`, `*`/`/`, and `**` (`a + b % n` is a common source of bugs),
 - prefix `-`, `+`, `√`, `~`, … relative to `**`, so `-x ** 2` must be written as `-(x ** 2)` or `(-x) ** 2` (mathematically −x² means −(x²), but C-family programmers expect `(-x)`; Python picks the former, JavaScript makes it an error, as Cilia does),
 - `⊗` and `⊛`/`∗` relative to each other and to `*`, `/`, `⋅`, `×`, `⊙`, `⊘`,
