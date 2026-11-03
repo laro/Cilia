@@ -306,19 +306,20 @@ x ^ y"/]
 x .. y
 x ..< y"]
 
-    equality & comparison & parallel --> range
+    equality & comparison & threeWay & parallel --> range
     equality["Equality
 x == y
 x != y
 x ≠ y"]
-    comparison["Comparison
-x <=> y
+    comparison{{"Comparison
 x < y
 x > y
 x <= y
 x >= y
 x ≤ y
-x ≥ y"]
+x ≥ y"}}
+    threeWay["ThreeWayComparison
+x <=> y"]
     parallel["Parallel
 x ⟂ y
 x ∥ y
@@ -350,7 +351,7 @@ x ⊂ y
 x ⊃ y"]
 
     %% `not` binds looser than equality/comparison (as in Carbon): `not a == b` is `not (a == b)`
-    not --> equality & comparison
+    not --> equality & comparison & threeWay
     not["LogicalNegation
 not x"]
 
@@ -363,7 +364,7 @@ not x"]
 ¬x"]
 
 
-    logicalOperand --> equality & comparison & membership & subset & parallel & not & bang
+    logicalOperand --> equality & comparison & threeWay & membership & subset & parallel & not & bang
     logicalOperand((" "))
 
 
@@ -447,7 +448,7 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - `not` relative to set relations and `⟂` `∥` `∦`, so `not x ∈ S` requires parentheses (but `not a and b` is `(not a) and b`),
 - `!` and `¬` relative to arithmetic, comparison, equality, and set relations, so `!a == b` and `¬a == b` require parentheses (in C/C++ `!a == b` means `(!a) == b`, and in math `¬` binds tightly, too, while `not a == b` means `not (a == b)`; parentheses avoid silently different semantics; `!a && b` is `(!a) && b`, as in C++, and `¬a ∧ b` is `(¬a) ∧ b`),
 - `∪`, `∩`, and `∖` relative to each other,
-- equality (`==` `!=` `≠`) relative to comparison (`<` `<=` `>` `>=` `≤` `≥` `<=>`), so `a < b == c` requires parentheses (chaining within one group, e.g. `a < b <= c`, requires parentheses, too, as both groups are non-associative),
+- equality (`==` `!=` `≠`), comparison (`<` `<=` `>` `>=` `≤` `≥`), and three-way comparison (`<=>`) relative to each other, so `a < b == c` and `a <=> b < c` require parentheses,
 - `and`, `or`, `xor`, `nand`, `nor`, `&&`, `||`, `∧`, `∨`, `⊻`, `⊼`, and `⊽` relative to each other (even `and` vs. `&&` vs. `∧`, so styles are not mixed without parentheses).
 
 Logical `xor` (and `⊻`) is deliberately **non-associative**, although xor is mathematically associative:
@@ -464,6 +465,7 @@ The **node shapes** encode each group's
     - non-associative,
     - left-to-right-associative,
     - right-to-left-associative,
+    - chaining,
 - or the analogous repeatability (for unary operators),
     - non-repeating,
     - repeating,
@@ -472,6 +474,10 @@ i.e. what it means to chain the **same** precedence group without parentheses.
 Circles are helper nodes only (not a precedence group).
 
 `×` is **non-associative**, as the cross product is not associative: `(a × b) × c ≠ a × (b × c)`, so `a × b × c` requires parentheses.
+
+Comparisons are **chaining** (as in Python and in math notation): `a < b <= c` means `a < b and b <= c`, with `b` evaluated only once.
+- Only operators of the **same direction** may be chained: `<` `<=` `≤` with each other, and `>` `>=` `≥` with each other. Mixed directions such as `a < b > c` are a compile error, as they do not describe an interval.
+- Equality (`==` `!=` `≠`) and three-way comparison (`<=>`) are **not** chaining: `a == b == c` is easily misread (with `Bool` it would compare the result of `a == b` with `c`), and `a <=> b` does not return `Bool`.
 
 Precedence only matters where an expression is actually ambiguous:
 - A prefix operator to the **right** of an infix operator is never ambiguous: `x ** -y` is `x ** (-y)`, `a * -b` is `a * (-b)`.
@@ -500,6 +506,12 @@ a ** b ** c
 =
 a ** (b ** c)"\]
 
+    chaining{{"Chaining
+
+a < b <= c
+=
+a < b and b <= c"}}
+
 
     unary@{ shape: brace-r, label: "Unary" }
 
@@ -517,7 +529,7 @@ a ** (b ** c)"\]
     circle((" "))
 
 
-    binary ~~~ nonAssociative ~~~ leftToRightAssociative ~~~ rightToLeftAssociative
+    binary ~~~ nonAssociative ~~~ leftToRightAssociative ~~~ rightToLeftAssociative ~~~ chaining
     unary ~~~ nonRepeating ~~~ repeating
     helper ~~~ circle
 ```
@@ -549,7 +561,7 @@ precedence Composition {      // e.g. for function composition `f >=> g`
 }
 ```
 
-- `associativity`: `left`, `right`, or `none`
+- `associativity`: `left`, `right`, `none`, or `chaining` (`a ◁ b ◁ c` means `a ◁ b and b ◁ c`; the operators must return `Bool`)
 - `higherThan` / `lowerThan`: position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names)
 - Built-in groups include `Multiplication`, `Addition`, `Comparison`, `LogicalAnd`, `Power`, `RangeFormation`, ...
 
