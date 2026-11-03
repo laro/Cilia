@@ -326,6 +326,21 @@ x ∖ y"/]
     setOps --> setUnion & setIntersection & setDifference
     setOps((" "))
 
+    subset & membership --> setOps
+
+    subset["Subset
+x ⊆ y
+x ⊇ y
+x ⊂ y
+x ⊃ y"]
+    membership["Membership
+x ∈ y
+x ∉ y
+x ∋ y
+x ∌ y
+x ∊ y
+x ∍ y"]
+
     %% Set equality: `A ∪ B == C` is `(A ∪ B) == C`
     equality --> range & setOps
     comparison & threeWay & parallel --> range
@@ -346,21 +361,6 @@ x <=> y"]
 x ⟂ y
 x ∥ y
 x ∦ y"]
-
-    subset & membership --> setOps
-
-    subset["Subset
-x ⊆ y
-x ⊇ y
-x ⊂ y
-x ⊃ y"]
-    membership["Membership
-x ∈ y
-x ∉ y
-x ∋ y
-x ∌ y
-x ∊ y
-x ∍ y"]
 
     %% `not` binds looser than equality/comparison (as in Carbon): `not a == b` is `not (a == b)`
     negationOperand --> equality & comparison & threeWay
