@@ -387,18 +387,11 @@ not x"]
     %% as["Cast
 %%x as T"]
 
-    and & or & xorNandNor & andSymbol & orSymbol & andMath & orMath --> logicalOperand
+    and & or & andSymbol & orSymbol & andMath & orMath & xorNandNor --> logicalOperand
     and[/"LogicalAnd
 x and y"/]
     or[/"LogicalOr
 x or y"/]
-    xorNandNor["LogicalXOrNandNor
-x xor y
-x nand y
-x nor y
-x ⊻ y
-x ⊼ y
-x ⊽ y"]
     andSymbol[/"LogicalAndSymbol
 x && y"/]
     orSymbol[/"LogicalOrSymbol
@@ -407,11 +400,18 @@ x || y"/]
 x ∧ y"/]
     orMath[/"LogicalOrMath
 x ∨ y"/]
+    xorNandNor["LogicalXOrNandNor
+x xor y
+x nand y
+x nor y
+x ⊻ y
+x ⊼ y
+x ⊽ y"]
 
 
     %% logicalExpression ---> as
     %% `not` is unordered relative to `and`, `or`, …: `not a and b` requires parentheses
-    logicalExpression --> not & and & or & xorNandNor & andSymbol & orSymbol & andMath & orMath
+    logicalExpression --> not & and & or & andSymbol & orSymbol & andMath & orMath & xorNandNor
     logicalExpression((" "))
 
 
