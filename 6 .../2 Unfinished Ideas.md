@@ -208,14 +208,6 @@ x[y]
 x++
 x--"}
 
-    qualifiedType --> suffixOps
-    qualifiedType["TypeQualifier
-const T"]
-
-    pointerType --> qualifiedType
-    pointerType{"PointerType
-T*"}
-
     pointer --> suffixOps
     pointer{"Indirection
 *x
@@ -236,7 +228,7 @@ T*"}
 ++x
 --x"]
 
-    unary --> pointerType & prefixArithmetic & complement
+    unary --> prefixArithmetic & complement & incDec
     unary((" "))
 
 
@@ -256,7 +248,7 @@ x | y"/]
     bitwiseXor[/"BitwiseXor
 x ^ y"/]
 
-    %% No edge to prefixArithmetic/complement: `-x ** 2` requires parentheses
+    %% No edge to prefixArithmetic/complement/incDec: `-x ** 2` requires parentheses
     power --> pointer
     power[\"Power
 x ** y"\]
@@ -264,19 +256,27 @@ x ** y"\]
     product --> power & unary
     product((" "))
 
+    %% The product-like groups are unordered relative to each other (`6 / 2 × 3` requires parentheses),
+    %% except `×` tighter than `⋅` (scalar triple product `a ⋅ (b × c)`)
+    multiplication --> product
+    multiplication[/"Multiplication
+x * y
+x / y
+x ÷ y"/]
+
+    hadamard --> product
+    hadamard[/"Hadamard
+x ⊙ y
+x ⊘ y"/]
+
     crossProduct --> product
     crossProduct["CrossProduct
 x × y"]
 
-    multiplication --> crossProduct
-    multiplication[/"Multiplication
-x * y
-x / y
-x ÷ y
+    dotProduct --> crossProduct
+    dotProduct[/"DotProduct
 x ⋅ y
-x ∙ y
-x ⊙ y
-x ⊘ y"/]
+x ∙ y"/]
 
     tensor --> product
     tensor[/"Tensor
@@ -287,16 +287,20 @@ x ⊗ y"/]
 x ⊛ y
 x ∗ y"/]
 
-    addition --> multiplication & tensor & convolution
+    addition --> multiplication & hadamard & dotProduct & tensor & convolution
     addition[/"Addition
 x + y
 x - y
 x ⊞ y
-x ⊟ y
+x ⊟ y"/]
+
+    %% `⊗` tighter than `⊕` (as in algebra), but `⊕` unordered relative to `+`
+    directSum --> tensor
+    directSum[/"DirectSum
 x ⊕ y
 x ⊖ y"/]
 
-    binaryOps --> modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor & addition
+    binaryOps --> modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor & addition & directSum
     binaryOps((" "))
 
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
@@ -305,7 +309,20 @@ x ⊖ y"/]
 x .. y
 x ..< y"]
 
-    equality & comparison & threeWay & parallel --> range
+    setUnion & setIntersection & setDifference --> range
+    setUnion[/"Union
+x ∪ y"/]
+    setIntersection[/"Intersection
+x ∩ y"/]
+    setDifference[/"SetDifference
+x ∖ y"/]
+
+    setOps --> setUnion & setIntersection & setDifference
+    setOps((" "))
+
+    %% Set equality: `A ∪ B == C` is `(A ∪ B) == C`
+    equality --> range & setOps
+    comparison & threeWay & parallel --> range
     equality["Equality
 x == y
 x != y
@@ -324,23 +341,15 @@ x ⟂ y
 x ∥ y
 x ∦ y"]
 
-    setUnion & setIntersection & setDifference --> range
-    setUnion[/"Union
-x ∪ y"/]
-    setIntersection[/"Intersection
-x ∩ y"/]
-    setDifference[/"SetDifference
-x ∖ y"/]
-
-    setOps --> setUnion & setIntersection & setDifference
-    setOps((" "))
     membership & subset --> setOps
 
     membership["Membership
 x ∈ y
 x ∉ y
 x ∋ y
-x ∌ y"]
+x ∌ y
+x ∊ y
+x ∍ y"]
     subset["Subset
 x ⊆ y
 x ⊇ y
@@ -400,40 +409,66 @@ x ∨ y"/]
     logicalExpression((" "))
 
 
-    insideParens & assignPlain & assignArithmetic & assignShift & assignBitwise & assignLogical --> logicalExpression
+    insideParens & assignment --> logicalExpression
     insideParens["Parenthesized
 (…)"]
-    assignPlain["Assignment
-x = y"]
-    assignArithmetic["Assignment
-x += y
-x -= y
-x *= y
-x /= y
-x %= y"]
-    assignShift["Assignment
-x <<= y
-x >>= y
-x <<<= y
-x >>>= y"]
-    assignBitwise["Assignment
-x &= y
-x |= y
-x ^= y"]
-    assignLogical["Assignment
-x &&= y
-x ||= y"]
+    assignment["Assignment
+x = y
+x += y   x -= y
+x *= y   x /= y
+x %= y
+x <<= y   x >>= y
+x <<<= y   x >>>= y
+x &= y   x |= y
+x ^= y
+x &&= y   x ||= y"]
 ```
 {:.extra-wide-pre}
+
+Notes on the value expressions:
+- `++x`/`--x` (and `x++`/`x--`) are expressions, so `++i < n` is `(++i) < n`.
+- `*p.x` is `*(p.x)` and `*p++` is `*(p++)`, as in C/C++ (use `p->x` for `(*p).x`).
+- An assignment is not a value expression: `(a = b)` and `a = b = c` are compile errors.
+
+**Type expressions** are a separate syntactic context (declarations, parameter and return types, template arguments, `as`), with their own small precedence graph. So `T**` (pointer to pointer) never competes with `x ** y` (power), nor `T*` with `x * y`, nor `T&` with `x & y`.
+At the start of a statement, where both could occur, `A* b …` is parsed as a declaration (an expression statement `a * b` would have no effect anyway).
+
+```mermaid
+graph BT
+    typeName["TypeName
+T
+T<…>
+(…)"]
+
+    qualifiedType --> typeName
+    qualifiedType["TypeQualifier
+const T"]
+
+    typeSuffix --> qualifiedType
+    typeSuffix{"TypeSuffix
+T*
+T^
+T+
+T-
+T&
+T?
+T[]
+T[N]"}
+```
+
+- `const` binds tighter than the type suffixes, so `const T*` is a pointer to `const T` and `const T&` is a reference to `const T`, as in C++.
+- Type suffixes are repeating and apply left-to-right: `T**` is a pointer to `T*`, `T*?` is an optional `T*`, `T[][]` is an array of `T[]`.
 
 
 The graph above covers the **partial** ordering of all contemplated Unicode/Cilia operators. Relations that most developers can be expected to know are drawn as edges, e.g.
 - `*` tighter than `+`,
 - `**` tighter than `*`,
-- `×` tighter than `*` and `⋅`, so `a ⋅ b × c` parses as the scalar triple product `a ⋅ (b × c)`,
+- `×` tighter than `⋅`, so `a ⋅ b × c` parses as the scalar triple product `a ⋅ (b × c)`,
+- all product-like operators (`*` `/` `÷` `⋅` `×` `⊙` `⊘` `⊗` `⊛` `∗`) tighter than `+` `-` `⊞` `⊟`,
+- `⊗` tighter than `⊕` (as in algebra),
 - arithmetic tighter than ranges,
 - ranges tighter than set algebra (`∪` `∩` `∖`), so `a..b ∪ c..d` parses as `(a..b) ∪ (c..d)`,
-- set algebra tighter than set relations (`∈` `⊆`, …),
+- set algebra tighter than set relations (`∈` `⊆`, …) and than equality, so `A ∪ B == C` parses as `(A ∪ B) == C`,
 - ranges tighter than the comparisons,
 - equality and comparison tighter than `not` (as in Carbon), so `not a == b` parses as `not (a == b)`,
 - and all of these tighter than the logical operators and assignment.
@@ -445,7 +480,8 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - `<<`/`>>` relative to `<<<`/`>>>`, `%`, `**`, and arithmetic, so `1 << n - 1` requires parentheses (but `x << a >> b` is `(x << a) >> b`, as in C/C++),
 - `%` relative to `+`/`-`, `*`/`/`, and `**` (`a + b % n` is a common source of bugs),
 - prefix `-`, `+`, `√`, `~`, … relative to `**`, so `-x ** 2` must be written as `-(x ** 2)` or `(-x) ** 2` (mathematically −x² means −(x²), but C-family programmers expect `(-x)`; Python picks the former, JavaScript makes it an error, as Cilia does),
-- `⊗` and `⊛`/`∗` relative to each other and to `*`, `/`, `⋅`, `×`, `⊙`, `⊘`,
+- the product-like groups `*` `/` `÷`, `⋅` `∙`, `×`, `⊙` `⊘`, `⊗`, and `⊛` `∗` relative to each other (except `×` tighter than `⋅`), so `6 / 2 × 3` (as `×` is often read as plain multiplication), `A * B ⊙ C`, and `2 ⋅ x * y` require parentheses,
+- `⊕` `⊖` (direct sum, often read as xor) relative to `+` `-` `⊞` `⊟` and to `*` `/` `⋅` `×` `⊙`, so `a + b ⊕ c` requires parentheses,
 - `not` relative to set relations and `⟂` `∥` `∦`, so `not x ∈ S` requires parentheses (but `not a and b` is `(not a) and b`),
 - `!` and `¬` relative to arithmetic, comparison, equality, and set relations, so `!a == b` and `¬a == b` require parentheses (in C/C++ `!a == b` means `(!a) == b`, and in math `¬` binds tightly, too, while `not a == b` means `not (a == b)`; parentheses avoid silently different semantics; `!a && b` is `(!a) && b`, as in C++, and `¬a ∧ b` is `(¬a) ∧ b`),
 - `∪`, `∩`, and `∖` relative to each other,
