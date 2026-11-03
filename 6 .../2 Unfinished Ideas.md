@@ -347,8 +347,13 @@ x ⟂ y
 x ∥ y
 x ∦ y"]
 
-    membership & subset --> setOps
+    subset & membership --> setOps
 
+    subset["Subset
+x ⊆ y
+x ⊇ y
+x ⊂ y
+x ⊃ y"]
     membership["Membership
 x ∈ y
 x ∉ y
@@ -356,11 +361,6 @@ x ∋ y
 x ∌ y
 x ∊ y
 x ∍ y"]
-    subset["Subset
-x ⊆ y
-x ⊇ y
-x ⊂ y
-x ⊃ y"]
 
     %% `not` binds looser than equality/comparison (as in Carbon): `not a == b` is `not (a == b)`
     negationOperand --> equality & comparison & threeWay
@@ -379,7 +379,7 @@ not x"]
 ¬x"]
 
 
-    logicalOperand --> negationOperand & membership & subset & parallel & not & bang
+    logicalOperand --> negationOperand & subset & membership & parallel & not & bang
     logicalOperand((" "))
 
 
