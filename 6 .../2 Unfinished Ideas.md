@@ -431,7 +431,7 @@ Notes on the value expressions:
 - An assignment is not a value expression: `(a = b)` and `a = b = c` are compile errors.
 
 **Type expressions** are a separate syntactic context (declarations, parameter and return types, template arguments, `as`), with their own small precedence graph. So `T**` (pointer to pointer) never competes with `x ** y` (power), nor `T*` with `x * y`, nor `T&` with `x & y`.
-At the start of a statement, where both could occur, `A* b …` is parsed as a declaration (an expression statement `a * b` would have no effect anyway).
+At the start of a statement, where both could occur (`A* b = c`, `A& b`, `A+ b`, …), name lookup decides, as in C++: if `A` names a type, it is a declaration, otherwise an expression. For dependent names in templates see [Templates](/advanced/templates/) (`type` analogous to C++ `typename`, or ways to omit it).
 
 ```mermaid
 graph BT
