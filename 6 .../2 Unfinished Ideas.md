@@ -218,7 +218,6 @@ x--"]
 
     prefixArithmetic & root & complement & incDec --> pointer
     complement["PrefixBitwise
- ^x
 ~x"]
     prefixArithmetic["PrefixArithmetic
 -x
