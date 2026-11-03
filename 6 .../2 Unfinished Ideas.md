@@ -258,6 +258,10 @@ x ** y"\]
 
     %% The product-like groups are unordered relative to each other (`6 / 2 × 3` requires parentheses),
     %% except `×` tighter than `⋅` (scalar triple product `a ⋅ (b × c)`)
+    tensor --> product
+    tensor[/"Tensor
+x ⊗ y"/]
+
     multiplication --> product
     multiplication[/"Multiplication
 x * y
@@ -278,21 +282,10 @@ x × y"]
 x ⋅ y
 x ∙ y"/]
 
-    tensor --> product
-    tensor[/"Tensor
-x ⊗ y"/]
-
     convolution --> product
     convolution[/"Convolution
 x ⊛ y
 x ∗ y"/]
-
-    addition --> multiplication & hadamard & dotProduct & tensor & convolution
-    addition[/"Addition
-x + y
-x - y
-x ⊞ y
-x ⊟ y"/]
 
     %% `⊗` tighter than `⊕` (as in algebra), but `⊕` unordered relative to `+`
     directSum --> tensor
@@ -300,7 +293,14 @@ x ⊟ y"/]
 x ⊕ y
 x ⊖ y"/]
 
-    binaryOps --> modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor & addition & directSum
+    addition --> tensor & multiplication & hadamard & dotProduct & convolution
+    addition[/"Addition
+x + y
+x - y
+x ⊞ y
+x ⊟ y"/]
+
+    binaryOps --> modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor & directSum & addition
     binaryOps((" "))
 
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
