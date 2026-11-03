@@ -364,7 +364,7 @@ not x"]
 ¬x"]
 
 
-    logicalOperand --> equality & comparison & threeWay & membership & subset & parallel & not & bang
+    logicalOperand --> negationOperand & membership & subset & parallel & not & bang
     logicalOperand((" "))
 
 
