@@ -366,7 +366,7 @@ not x"]
     %% as["Cast
 %%x as T"]
 
-    and & or & xorNandNor & andSymbol & orSymbol --> logicalOperand
+    and & or & xorNandNor & andSymbol & orSymbol & andMath & orMath --> logicalOperand
     and[/"LogicalAnd
 x and y"/]
     or[/"LogicalOr
@@ -374,15 +374,22 @@ x or y"/]
     xorNandNor["LogicalXOrNandNor
 x xor y
 x nand y
-x nor y"]
+x nor y
+x ⊻ y
+x ⊼ y
+x ⊽ y"]
     andSymbol[/"LogicalAndSymbol
 x && y"/]
     orSymbol[/"LogicalOrSymbol
 x || y"/]
+    andMath[/"LogicalAndMath
+x ∧ y"/]
+    orMath[/"LogicalOrMath
+x ∨ y"/]
 
 
     %% logicalExpression ---> as
-    logicalExpression --> and & or & xorNandNor & andSymbol & orSymbol
+    logicalExpression --> and & or & xorNandNor & andSymbol & orSymbol & andMath & orMath
     logicalExpression((" "))
 
 
@@ -435,7 +442,7 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - `!` and `¬` relative to arithmetic, comparison, equality, and set relations, so `!a == b` and `¬a == b` require parentheses (in C/C++ `!a == b` means `(!a) == b`, and in math `¬` binds tightly, too, while `not a == b` means `not (a == b)`; parentheses avoid silently different semantics; `!a && b` is `(!a) && b`, as in C++, and `¬a ∧ b` is `(¬a) ∧ b`),
 - `∪`, `∩`, and `∖` relative to each other,
 - `<`, `<=`, `>`, `>=`, `==`, `!=`, and `<=>` relative to each other,
-- `and`, `or`, `xor`, `&&`, `||`, `∧`, `⊻`, and `∨` relative to each other.
+- `and`, `or`, `xor`, `nand`, `nor`, `&&`, `||`, `∧`, `∨`, `⊻`, `⊼`, and `⊽` relative to each other (even `and` vs. `&&` vs. `∧`, so styles are not mixed without parentheses).
 
 Logical `xor` (and `⊻`) is deliberately **non-associative**, although xor is mathematically associative:
 - `a xor b xor c` is easily misread as "exactly one is true", while it actually means "an odd number is true" (`true xor true xor true` is `true`).
