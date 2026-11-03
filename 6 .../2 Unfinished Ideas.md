@@ -379,7 +379,7 @@ not x"]
 ¬x"]
 
 
-    logicalOperand --> negationOperand & subset & membership & parallel & not & bang
+    logicalOperand --> negationOperand & subset & membership & parallel & bang
     logicalOperand((" "))
 
 
@@ -411,7 +411,8 @@ x ∨ y"/]
 
 
     %% logicalExpression ---> as
-    logicalExpression --> and & or & xorNandNor & andSymbol & orSymbol & andMath & orMath
+    %% `not` is unordered relative to `and`, `or`, …: `not a and b` requires parentheses
+    logicalExpression --> not & and & or & xorNandNor & andSymbol & orSymbol & andMath & orMath
     logicalExpression((" "))
 
 
@@ -494,7 +495,7 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - prefix `-`, `+`, `√`, `~`, … relative to `**`, so `-x ** 2` must be written as `-(x ** 2)` or `(-x) ** 2` (mathematically −x² means −(x²), but C-family programmers expect `(-x)`; Python picks the former, JavaScript makes it an error, as Cilia does),
 - the product-like groups `*` `/` `÷`, `⋅` `∙`, `×`, `⊙` `⊘`, `⊗`, and `⊛` `∗` relative to each other (except `×` tighter than `⋅`), so `6 / 2 × 3` (as `×` is often read as plain multiplication), `A * B ⊙ C`, and `2 ⋅ x * y` require parentheses,
 - `⊕` `⊖` (direct sum, often read as xor) relative to `+` `-` `⊞` `⊟` and to `*` `/` `⋅` `×` `⊙`, so `a + b ⊕ c` requires parentheses,
-- `not` relative to set relations and `⟂` `∥` `∦`, so `not x ∈ S` requires parentheses (but `not a and b` is `(not a) and b`),
+- `not` relative to set relations, `⟂` `∥` `∦`, and the logical operators (`and`, `or`, `xor`, …), so `not x ∈ S`, `not a and b`, and `not a or b` require parentheses (`a and not b` is fine, as `not` is to the right of `and`),
 - `!` and `¬` relative to arithmetic, comparison, equality, and set relations, so `!a == b` and `¬a == b` require parentheses (in C/C++ `!a == b` means `(!a) == b`, and in math `¬` binds tightly, too, while `not a == b` means `not (a == b)`; parentheses avoid silently different semantics; `!a && b` is `(!a) && b`, as in C++, and `¬a ∧ b` is `(¬a) ∧ b`),
 - `∪`, `∩`, and `∖` relative to each other,
 - equality (`==` `!=` `≠`), comparison (`<` `<=` `>` `>=` `≤` `≥`), and three-way comparison (`<=>`) relative to each other, so `a < b == c` and `a <=> b < c` require parentheses,
