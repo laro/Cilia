@@ -284,9 +284,9 @@ x ⊘ y"/]
 x × y"]
 
     dotProduct --> crossProduct
-    dotProduct[/"DotProduct
+    dotProduct["DotProduct
 x ⋅ y
-x ∙ y"/]
+x ∙ y"]
 
     convolution --> product
     convolution[/"Convolution
@@ -340,7 +340,7 @@ x ∋ y
 x ∌ y"]
 
     %% Set equality: `A ∪ B == C` is `(A ∪ B) == C`
-    equality --> range & setOps
+    equality --> setOps
     comparison & threeWay & parallel --> range
     equality["Equality
 x == y
@@ -526,7 +526,8 @@ The **node shapes** encode each group's
 i.e. what it means to chain the **same** precedence group without parentheses.  
 Circles are helper nodes only (not a precedence group).
 
-`×` is **non-associative**, as the cross product is not associative: `(a × b) × c ≠ a × (b × c)`, so `a × b × c` requires parentheses.
+`×` is **non-associative**, as the cross product is not associative: `(a × b) × c ≠ a × (b × c)`, so `a × b × c` requires parentheses.  
+`⋅` / `∙` is **non-associative**, too: `(a ⋅ b) ⋅ c` (scalar times vector) differs from `a ⋅ (b ⋅ c)`, so `a ⋅ b ⋅ c` requires parentheses.
 
 Comparisons are **chaining** (as in Python and in math notation): `a < b <= c` means `a < b and b <= c`, with `b` evaluated only once.
 - Only operators of the **same direction** may be chained: `<` `<=` `≤` with each other, and `>` `>=` `≥` with each other. Mixed directions such as `a < b > c` are a compile error, as they do not describe an interval.
