@@ -204,7 +204,9 @@ x.(…)
 x->y
 x->(…)
 x(…)
-x[y]"}
+x[y]
+x++
+x--"}
 
     qualifiedType --> suffixOps
     qualifiedType["TypeQualifier
@@ -254,7 +256,9 @@ x × y"]
     multiplication[/"Multiplication
 x * y
 x / y
+x ÷ y
 x ⋅ y
+x ∙ y
 x ⊙ y
 x ⊘ y"/]
 
@@ -336,7 +340,9 @@ x ∖ y"/]
 x ∈ y
 x ∉ y
 x ∋ y
-x ∌ y"]
+x ∌ y
+x ∊ y
+x ∍ y"]
     subset["Subset
 x ⊆ y
 x ⊇ y
@@ -441,7 +447,7 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - `not` relative to set relations and `⟂` `∥` `∦`, so `not x ∈ S` requires parentheses (but `not a and b` is `(not a) and b`),
 - `!` and `¬` relative to arithmetic, comparison, equality, and set relations, so `!a == b` and `¬a == b` require parentheses (in C/C++ `!a == b` means `(!a) == b`, and in math `¬` binds tightly, too, while `not a == b` means `not (a == b)`; parentheses avoid silently different semantics; `!a && b` is `(!a) && b`, as in C++, and `¬a ∧ b` is `(¬a) ∧ b`),
 - `∪`, `∩`, and `∖` relative to each other,
-- `<`, `<=`, `>`, `>=`, `==`, `!=`, and `<=>` relative to each other,
+- equality (`==` `!=` `≠`) relative to comparison (`<` `<=` `>` `>=` `≤` `≥` `<=>`), so `a < b == c` requires parentheses (chaining within one group, e.g. `a < b <= c`, requires parentheses, too, as both groups are non-associative),
 - `and`, `or`, `xor`, `nand`, `nor`, `&&`, `||`, `∧`, `∨`, `⊻`, `⊼`, and `⊽` relative to each other (even `and` vs. `&&` vs. `∧`, so styles are not mixed without parentheses).
 
 Logical `xor` (and `⊻`) is deliberately **non-associative**, although xor is mathematically associative:
@@ -536,20 +542,22 @@ Declaration is in **two separate steps**:
 Named groups replace numeric precedence levels.
 
 ```
-precedence Multiplication {
+precedence Composition {      // e.g. for function composition `f >=> g`
     associativity: left
-    lowerThan: Power
-}
-
-precedence Power {
-    associativity: right
-    higherThan: Multiplication
+    higherThan: Comparison
+    lowerThan: Addition
 }
 ```
 
 - `associativity`: `left`, `right`, or `none`
 - `higherThan` / `lowerThan`: position relative to other groups (see the [precedence diagram](#operator-precedence) above for group names)
-- Built-in groups include `Multiplication`, `Addition`, `Comparison`, `LogicalConjunction`, `Power`, `RangeFormation`, ...
+- Built-in groups include `Multiplication`, `Addition`, `Comparison`, `LogicalAnd`, `Power`, `RangeFormation`, ...
+
+Rules for the precedence graph (as in Swift):
+- Relations are **transitive**: `Composition` above is also tighter than `LogicalAnd` and looser than `Multiplication`.
+- **Cycles** (`A` tighter than `B` and `B` tighter than `A`, directly or transitively) are a compile error.
+- `lowerThan` may only refer to groups from **other modules**. Within a module, relations are declared with `higherThan` only.
+- A module cannot add relations between two groups that are both declared in other modules, so importing a library never changes how existing expressions parse.
 
 
 #### 2. Operator Registration & Implementation
@@ -562,6 +570,7 @@ operator √(Float a) -> Float { ... }
 ```
 
 Infix operators without a group belong to `Default`, prefix and postfix belong to the (high) precedence groups `Prefix`/`Postfix`.
+`Default` is non-associative and only tighter than the logical operators and assignment (i.e. it is a logical operand, like `Comparison`); relative to all other groups it is unordered. So `a ⊕⊕ b and c` is `(a ⊕⊕ b) and c`, but `a ⊕⊕ b + c` and `a ⊕⊕ b ⊕⊕ c` require parentheses.
 
 Operator precedence groups can be declared explicitly:
 
