@@ -362,13 +362,6 @@ x ⟂ y
 x ∥ y
 x ∦ y"]
 
-    %% `not` binds looser than equality/comparison/set relations (as in Carbon): `not a == b` is `not (a == b)`,
-    %% but is unordered relative to `and`, `or`, …
-    %% (`not` --> `!`/`¬` is irrelevant, as a prefix operator applied to another one is never ambiguous)
-    not --> logicalOperand
-    not["LogicalNegation
-not x"]
-
     %% `!` and `¬` are unordered relative to equality/comparison: in C/C++ `!a == b` is `(!a) == b`,
     %% and in math `¬` binds tightly, too, so require parentheses
     %% Use a longer arrow here to put `!`/`¬` next to other unary operators
@@ -387,6 +380,10 @@ not x"]
     %% as["Cast
 %%x as T"]
 
+    %% `not` binds looser than equality/comparison/set relations (as in Carbon): `not a == b` is `not (a == b)`,
+    %% but is unordered relative to `and`, `or`, …
+    %% (`not` --> `!`/`¬` is irrelevant, as a prefix operator applied to another one is never ambiguous)
+    not        --> logicalOperand
     and        ---> logicalOperand
     or         --> logicalOperand
     andSymbol  ---> logicalOperand
@@ -394,6 +391,9 @@ not x"]
     andMath    ---> logicalOperand
     orMath     --> logicalOperand
     xorNandNor ---> logicalOperand
+
+    not["LogicalNegation
+not x"]
     and[/"LogicalAnd
 x and y"/]
     or[/"LogicalOr
