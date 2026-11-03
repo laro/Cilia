@@ -387,7 +387,13 @@ not x"]
     %% as["Cast
 %%x as T"]
 
-    and & or & andSymbol & orSymbol & andMath & orMath & xorNandNor --> logicalOperand
+    and        ---> logicalOperand
+    or         --> logicalOperand
+    andSymbol  ---> logicalOperand
+    orSymbol   --> logicalOperand
+    andMath    ---> logicalOperand
+    orMath     --> logicalOperand
+    xorNandNor ---> logicalOperand
     and[/"LogicalAnd
 x and y"/]
     or[/"LogicalOr
