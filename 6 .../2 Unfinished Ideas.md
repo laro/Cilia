@@ -232,7 +232,10 @@ x--"}
     unary((" "))
 
 
-    modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
+    modulo ---> unary
+    %% Longer arrow to place Rotation a bit lower than Modulo and Shift
+    rotate ----> unary
+    shift & bitwiseAnd & bitwiseOr & bitwiseXor ---> unary
     modulo["Modulo
 x % y"]
     rotate["Rotation
