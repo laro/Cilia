@@ -414,14 +414,20 @@ x ∨ y"/]
 (…)"]
     assignment["Assignment
 x = y
-x += y   x -= y
-x *= y   x /= y
+x += y
+x -= y
+x *= y
+x /= y
 x %= y
-x <<= y   x >>= y
-x <<<= y   x >>>= y
-x &= y   x |= y
+x <<= y
+x >>= y
+x <<<= y
+x >>>= y
+x &= y
+x |= y
 x ^= y
-x &&= y   x ||= y"]
+x &&= y
+x ||= y"]
 ```
 {:.extra-wide-pre}
 
