@@ -311,13 +311,13 @@ x ..< y"]
 x == y
 x != y
 x ≠ y"]
-    comparison{{"Comparison
+    comparison@{ shape: hex, label: "Comparison
 x < y
 x > y
 x <= y
 x >= y
 x ≤ y
-x ≥ y"}}
+x ≥ y" }
     threeWay["ThreeWayComparison
 x <=> y"]
     parallel["Parallel
@@ -506,11 +506,11 @@ a ** b ** c
 =
 a ** (b ** c)"\]
 
-    chaining{{"Chaining
+    chaining@{ shape: hex, label: "Chaining
 
 a < b <= c
 =
-a < b and b <= c"}}
+a < b and b <= c" }
 
 
     unary@{ shape: brace-r, label: "Unary" }
