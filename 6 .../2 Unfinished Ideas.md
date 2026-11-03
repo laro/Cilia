@@ -98,7 +98,7 @@ operator (Vec a) ∦ (Vec b) -> Bool { ... }   // not parallel to
 
 Set operators fall into two precedence groups (see precedence diagram below). They are unrelated to scalar relational operators such as `==`, `!=`, `<`, or `>` — there is no precedence ordering between the two domains, and meaningful expressions do not mix them.
 
-**Membership / subset** — `∈`, `∉`, `∋`, `∌`, `⊆`, `⊇`, `⊂`, `⊃` parse as binary infix operators returning `Bool`.
+**Membership / subset** — `∈`, `∉`, `∋`, `∌`, `⊆`, `⊇`, `⊂`, `⊃` parse as binary infix operators returning `Bool`. Subset relations are chaining (`A ⊆ B ⊂ C`), membership is non-associative.
 
 **Algebraic** — `∪`, `∩`, `∖` parse as binary infix operators returning sets. They bind tighter than membership/subset (so `x ∈ A ∪ B` parses as `x ∈ (A ∪ B)`) but looser than range (`..`, `..<`). Mixed algebraic expressions such as `A ∪ B ∩ C` require parentheses.
 
@@ -204,31 +204,35 @@ x.(…)
 x->y
 x->(…)
 x(…)
-x[y]
-x++
-x--"}
+x[y]"}
 
-    pointer --> suffixOps
+    postIncDec --> suffixOps
+    postIncDec["PostfixIncrementDecrement
+x++
+x--"]
+
+    pointer --> postIncDec
     pointer{"Indirection
 *x
 &x"}
 
-    prefixArithmetic & complement & incDec --> pointer
+    prefixArithmetic & root & complement & incDec --> pointer
     complement["PrefixBitwise
  ^x
 ~x"]
     prefixArithmetic["PrefixArithmetic
 -x
 +x
+⊖x"]
+    root{"Root
 √x
 ∛x
-∜x
-⊖x"]
+∜x"}
     incDec["IncrementDecrement
 ++x
 --x"]
 
-    unary --> prefixArithmetic & complement & incDec
+    unary --> prefixArithmetic & root & complement & incDec
     unary((" "))
 
 
@@ -254,7 +258,7 @@ x | y"/]
     bitwiseXor[/"BitwiseXor
 x ^ y"/]
 
-    %% No edge to prefixArithmetic/complement/incDec: `-x ** 2` requires parentheses
+    %% No edge to prefixArithmetic/root/complement/incDec: `-x ** 2` and `√x ** 2` require parentheses
     power --> pointer
     power[\"Power
 x ** y"\]
@@ -328,11 +332,11 @@ x ∖ y"/]
 
     subset & membership --> setOps
 
-    subset["Subset
+    subset@{ shape: hex, label: "Subset
 x ⊆ y
 x ⊇ y
 x ⊂ y
-x ⊃ y"]
+x ⊃ y" }
     membership["Membership
 x ∈ y
 x ∉ y
@@ -444,6 +448,8 @@ x ||= y"]
 Notes on the value expressions:
 - `++x`/`--x` (and `x++`/`x--`) are expressions, so `++i < n` is `(++i) < n`.
 - `*p.x` is `*(p.x)` and `*p++` is `*(p++)`, as in C/C++ (use `p->x` for `(*p).x`).
+- `x.y++` is `(x.y)++` and `a[i]++` is `(a[i])++`, but postfix `++`/`--` is non-repeating and cannot be followed by other postfix operators: `x++++` and `x++.y` are compile errors.
+- `√√x` is fine (roots are repeating), while `- -x` and `~~x` are compile errors.
 - An assignment is not a value expression: `(a = b)` and `a = b = c` are compile errors.
 
 **Type expressions** are a separate syntactic context (declarations, parameter and return types, template arguments, `as`), with their own small precedence graph. So `T**` (pointer to pointer) never competes with `x ** y` (power), nor `T*` with `x * y`, nor `T&` with `x & y`.
@@ -531,6 +537,7 @@ Circles are helper nodes only (not a precedence group).
 
 Comparisons are **chaining** (as in Python and in math notation): `a < b <= c` means `a < b and b <= c`, with `b` evaluated only once.
 - Only operators of the **same direction** may be chained: `<` `<=` `≤` with each other, and `>` `>=` `≥` with each other. Mixed directions such as `a < b > c` are a compile error, as they do not describe an interval.
+- Subset relations are **chaining** in the same way: `A ⊆ B ⊂ C` means `A ⊆ B and B ⊂ C`. `⊆` `⊂` may be chained with each other, and `⊇` `⊃` with each other; `A ⊆ B ⊇ C` is a compile error. Membership (`∈` `∉` `∋` `∌`) is not chaining, as its operands are of different kinds.
 - Equality (`==` `!=` `≠`) and three-way comparison (`<=>`) are **not** chaining: `a == b == c` is easily misread (with `Bool` it would compare the result of `a == b` with `c`), and `a <=> b` does not return `Bool`.
 
 Precedence only matters where an expression is actually ambiguous:
