@@ -340,9 +340,7 @@ x ∖ y"/]
 x ∈ y
 x ∉ y
 x ∋ y
-x ∌ y
-x ∊ y
-x ∍ y"]
+x ∌ y"]
     subset["Subset
 x ⊆ y
 x ⊇ y
