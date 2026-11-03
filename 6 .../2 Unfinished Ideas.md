@@ -337,9 +337,7 @@ x ⊃ y"]
 x ∈ y
 x ∉ y
 x ∋ y
-x ∌ y
-x ∊ y
-x ∍ y"]
+x ∌ y"]
 
     %% Set equality: `A ∪ B == C` is `(A ∪ B) == C`
     equality --> range & setOps
