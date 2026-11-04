@@ -130,7 +130,8 @@ Group names in the diagram below correspond to `precedence` declarations (see [C
 List of **all currently known operators**:
 
 - Postfix
-    - `a()` `a[]` `a.b`
+    - `a()` `a[]` `a.b` `a->b` `a.(…)` `a->(…)`
+    - `a?.b`
     - `a++` `a--`
 - Prefix
     - `+a` `-a`
@@ -142,7 +143,7 @@ List of **all currently known operators**:
     - Arithmetic
         - `+` `-` `*` `/` `%`
         - `**`
-        - `⋅` `∙` `÷` `∓` `∔`
+        - `⋅` `∙` `÷`
     - Equality
         - `==` `!=` `≠`
     - Comparison
@@ -169,8 +170,6 @@ List of **all currently known operators**:
         - `⊕` `⊖`
         - `⊗`
         - `⊛` `∗`
-        - `⨀` `⨁` `⨂`
-        - `⟡`
         - `⟂` `∥` `∦`
     - Range
         - `..` `..<`
@@ -178,8 +177,17 @@ List of **all currently known operators**:
         - `∪` `∩` `∖`
     - Set (relational)
         - `∈` `∉` `∋` `∌`
-        - `∊`     `∍`
         - `⊆` `⊇` `⊂` `⊃`
+    - Type
+        - `as` (cast)
+        - `is` (type test)
+    - Optional
+        - `??` (null coalescing)
+
+Possible future operators (optional, not yet in the precedence diagram):
+- Arithmetic: `∓` `∔`
+- Vector & Matrix: `⨀` `⨁` `⨂` `⟡`
+- Set (relational): `∊` `∍`
 
 Operator precedence is a **partial** ordering, not a global one, as nobody can remember all these precedence levels.
 
@@ -195,6 +203,7 @@ graph BT
     primary["Primary
 (…)
 {…}
+[…](…) {…}
 x"]
 
     suffixOps --> primary
@@ -203,6 +212,7 @@ x.y
 x.(…)
 x->y
 x->(…)
+x?.y
 x(…)
 x[y]"}
 
@@ -312,8 +322,14 @@ x ⊟ y"/]
     binaryOps --> modulo & rotate & shift & bitwiseAnd & bitwiseOr & bitwiseXor & directSum & addition
     binaryOps((" "))
 
+    %% `as` is unordered relative to arithmetic and bitwise operators: `a * b as T` requires parentheses,
+    %% but `x as Int == 3` is `(x as Int) == 3`
+    cast ------> unary
+    cast["Cast
+x as T"]
+
     %% Ranges bind looser than arithmetic/bitwise, tighter than the relational operators
-    range --> binaryOps
+    range --> binaryOps & cast
     range["RangeFormation
 x .. y
 x ..< y"]
@@ -342,8 +358,15 @@ x ∉ y
 x ∋ y
 x ∌ y"]
 
+    %% `??` is unordered relative to arithmetic, bitwise, and range: `x ?? 0 + 1` requires parentheses,
+    %% but `a ?? b == c` is `(a ?? b) == c`
+    nullCoalescing ------> unary
+    nullCoalescing[\"NullCoalescing
+x ?? y"\]
+
     %% Set equality: `A ∪ B == C` is `(A ∪ B) == C`
-    equality --> setOps
+    equality --> setOps & nullCoalescing
+    comparison --> nullCoalescing
     comparison & threeWay & parallel --> range
     equality["Equality
 x == y
@@ -365,36 +388,38 @@ x ∦ y"]
 
     %% `!` and `¬` are unordered relative to equality/comparison: in C/C++ `!a == b` is `(!a) == b`,
     %% and in math `¬` binds tightly, too, so require parentheses
+    %% `!x++` is `!(x++)`, as in C/C++ (and as `-x++` is `-(x++)`)
     %% Use a longer arrow here to put `!`/`¬` next to other unary operators
-    bang ---------> suffixOps
+    bang ---------> postIncDec
     bang["LogicalNegationSymbol
 !x
 ¬x"]
 
+    %% `is` is unordered relative to equality/comparison: `x is T == b` requires parentheses
+    isType ------> unary
+    isType["TypeTest
+x is T"]
 
-    logicalOperand --> subset & membership & equality & comparison & threeWay & parallel & bang
+
+    logicalOperand --> subset & membership & equality & comparison & threeWay & parallel & bang & isType
     logicalOperand((" "))
 
 
-    %% Currently "as" is not yet fully defined, and it obscures the graph layout somehow...
-    %% as ------> unary
-    %% as["Cast
-%%x as T"]
-
-    %% `not` binds looser than equality/comparison/set relations (as in Carbon): `not a == b` is `not (a == b)`,
-    %% but is unordered relative to `and`, `or`, …
+    %% `not` binds looser than equality/comparison/set relations (as in Carbon and Python): `not a == b` is `not (a == b)`,
+    %% but tighter than the binary logical operators: `not a and b` is `(not a) and b`
     %% (`not` --> `!`/`¬` is irrelevant, as a prefix operator applied to another one is never ambiguous)
-    not        --> logicalOperand
-    and        ---> logicalOperand
-    or         --> logicalOperand
-    andSymbol  ---> logicalOperand
-    orSymbol   --> logicalOperand
-    andMath    ---> logicalOperand
-    orMath     --> logicalOperand
-    xorNandNor ---> logicalOperand
-
+    not --> logicalOperand
     not["LogicalNegation
 not x"]
+
+    and        ---> not
+    or         --> not
+    andSymbol  ---> not
+    orSymbol   --> not
+    andMath    ---> not
+    orMath     --> not
+    xorNandNor ---> not
+
     and[/"LogicalAnd
 x and y"/]
     or[/"LogicalOr
@@ -416,9 +441,7 @@ x ⊼ y
 x ⊽ y"]
 
 
-    %% logicalExpression ---> as
-    %% `not` is unordered relative to `and`, `or`, …: `not a and b` requires parentheses
-    logicalExpression --> not & and & or & andSymbol & orSymbol & andMath & orMath & xorNandNor
+    logicalExpression --> and & or & andSymbol & orSymbol & andMath & orMath & xorNandNor
     logicalExpression((" "))
 
 
@@ -449,9 +472,39 @@ Notes on the value expressions:
 - `*p.x` is `*(p.x)` and `*p++` is `*(p++)`, as in C/C++ (use `p->x` for `(*p).x`).
 - `x.y++` is `(x.y)++` and `a[i]++` is `(a[i])++`, but postfix `++`/`--` is non-repeating and cannot be followed by other postfix operators: `x++++` and `x++.y` are compile errors.
 - `√√x` is fine (roots are repeating), while `- -x` and `~~x` are compile errors.
+- `!x++` is `!(x++)`, as in C/C++ (whether that makes sense is up to type checking, `Bool++` is a type error).
 - An assignment is not a value expression: `(a = b)` and `a = b = c` are compile errors.
+- `x as Int == 3` is `(x as Int) == 3`, but `a * b as T` requires parentheses. `as` is non-associative.
+- `x is T` returns `Bool` and is a logical operand like a comparison: `x is T and y` is `(x is T) and y`, `not x is T` is `not (x is T)`, but `x is T == b` requires parentheses.
+- For `as` and `is` the right operand is a type expression (see below).
+- `a?.b.c` short-circuits the whole chain if `a` is empty (as in Swift, C#, and Kotlin), and `*p?.x` is `*(p?.x)`.
+    - TODO: Also `x?[i]` and `f?(…)` (as `?[]` in C#)?
+- `??` is right-to-left-associative (as in Swift and C#): `a ?? b ?? c` is `a ?? (b ?? c)`.
+  It binds tighter than equality/comparison (`a ?? b == c` is `(a ?? b) == c`), but is unordered relative to arithmetic, bitwise, and range operators, so `x ?? 0 + 1` requires parentheses (in Swift and C# it silently means `x ?? (0 + 1)`, a well-known pitfall).
+- Lambdas always have a body in braces (`[](Int x) -> Int { x * 2 }`), so they are primary expressions and need no precedence group.
+    - TODO: If an expression body without braces is allowed someday, the lambda becomes the lowest level, below the logical operators, with the body reaching as far right as possible (as in Python and Rust).
 
-**Type expressions** are a separate syntactic context (declarations, parameter and return types, template arguments, `as`), with their own small precedence graph. So `T**` (pointer to pointer) never competes with `x ** y` (power), nor `T*` with `x * y`, nor `T&` with `x & y`.
+**Evaluation order** is as in C++17 and later (no Cilia-specific extensions):
+- Assignment and compound assignment: right side before left side (`a[i] = i++` indexes with the new `i`).
+- `a.b`, `a->b`, `a[b]`, `a << b`, `a >> b`: left before right.
+- `and`, `or`, `&&`, `||`: left before right, with short-circuit.
+- Function call: first the function itself, then the arguments; the arguments among each other in unspecified order (but not interleaved).
+- The operands of `+`, `*`, `==`, … are unsequenced.
+
+Order-dependent expressions are checked by the **Cilia compiler** (not left to the C++ compiler), syntactically on the AST, similar to Clang's `-Wunsequenced`:
+- **Error** where the result depends on the evaluation order, i.e. the same variable is modified twice, or modified and read:
+    - Unsequenced operands (undefined behavior in C++): `i++ + i++`, `i++ + ++i`, `i++ + i`.
+    - Function arguments (unspecified order in C++, GCC and Clang differ): `f(i++, i++)` gives `f(0, 1)` or `f(1, 0)`; `f(i++, i)` gives `f(0, 1)` or `f(0, 0)`.
+- Optionally a **warning** where the behavior is defined, but hard to read: `a[i] = i++`.
+- Nothing is reported where the operator itself sequences its operands: `i++ and i < n`, `x = x + 1`.
+- Aliasing via pointers and references is not fully detected; there it stays as in C++ (undefined or unspecified behavior).
+
+Why not leave this to the C++ compiler:
+- GCC and Clang report it only as a warning (an error only with `-Werror=…`), and heuristically.
+- The message refers to the generated C++ code instead of the Cilia source.
+- Other backends (C#, Java, Swift) have no such check.
+
+**Type expressions** are a separate syntactic context (declarations, parameter and return types, template arguments, right operand of `as` and `is`), with their own small precedence graph. So `T**` (pointer to pointer) never competes with `x ** y` (power), nor `T*` with `x * y`, nor `T&` with `x & y`.
 At the start of a statement, where both could occur (`A* b = c`, `A& b`, `A+ b`, …), name lookup decides, as in C++: if `A` names a type, it is a declaration, otherwise an expression. For dependent names in templates see [Templates](/advanced/templates/) (`type` analogous to C++ `typename`, or ways to omit it).
 
 ```mermaid
@@ -491,7 +544,10 @@ The graph above covers the **partial** ordering of all contemplated Unicode/Cili
 - ranges tighter than set algebra (`∪` `∩` `∖`), so `a..b ∪ c..d` parses as `(a..b) ∪ (c..d)`,
 - set algebra tighter than set relations (`∈` `⊆`, …) and than equality, so `A ∪ B == C` parses as `(A ∪ B) == C`,
 - ranges tighter than the comparisons,
-- equality, comparison, set relations, and `⟂` `∥` `∦` tighter than `not` (as in Carbon), so `not a == b` parses as `not (a == b)` and `not x ∈ S` as `not (x ∈ S)`,
+- `as` tighter than ranges, comparisons, and equality, so `x as Int == 3` parses as `(x as Int) == 3`,
+- `??` tighter than equality and comparison, so `a ?? b == c` parses as `(a ?? b) == c`,
+- equality, comparison, set relations, `is`, and `⟂` `∥` `∦` tighter than `not` (as in Carbon and Python), so `not a == b` parses as `not (a == b)` and `not x ∈ S` as `not (x ∈ S)`,
+- `not` tighter than the binary logical operators (as in [Carbon](https://github.com/carbon-language/carbon-lang/blob/trunk/docs/design/expressions/README.md#precedence) and [Python](https://docs.python.org/3/reference/expressions.html#operator-precedence)), so `not a and b` parses as `(not a) and b` and `a and not b and c` as `a and (not b) and c` (consistent with `!a && b` being `(!a) && b`),
 - and all of these tighter than the logical operators and assignment.
 
 This avoids the well-known C/C++ pitfall where `x & mask == 0` parses as `x & (mask == 0)`; here it parses as the intended `(x & mask) == 0`.
@@ -503,7 +559,9 @@ Pairs that nobody reliably ranks are left **unordered** on purpose and therefore
 - prefix `-`, `+`, `√`, `~`, … relative to `**`, so `-x ** 2` must be written as `-(x ** 2)` or `(-x) ** 2` (mathematically −x² means −(x²), but C-family programmers expect `(-x)`; Python picks the former, JavaScript makes it an error, as Cilia does),
 - the product-like groups `*` `/` `÷`, `⋅` `∙`, `×`, `⊙` `⊘`, `⊗`, and `⊛` `∗` relative to each other (except `×` tighter than `⋅`), so `6 / 2 × 3` (as `×` is often read as plain multiplication), `A * B ⊙ C`, and `2 ⋅ x * y` require parentheses,
 - `⊕` `⊖` (direct sum, often read as xor) relative to `+` `-` `⊞` `⊟` and to `*` `/` `⋅` `×` `⊙`, so `a + b ⊕ c` requires parentheses,
-- `not` relative to the logical operators (`and`, `or`, `xor`, …), so `not a and b` and `not a or b` require parentheses (`a and not b` is fine, as `not` is to the right of `and`),
+- `as` relative to arithmetic and bitwise operators, so `a * b as T` requires parentheses,
+- `??` relative to arithmetic, bitwise, and range operators, so `x ?? 0 + 1` requires parentheses,
+- `is` relative to equality and comparison, so `x is T == b` requires parentheses,
 - `!` and `¬` relative to arithmetic, comparison, equality, and set relations, so `!a == b` and `¬a == b` require parentheses (in C/C++ `!a == b` means `(!a) == b`, and in math `¬` binds tightly, too, while `not a == b` means `not (a == b)`; parentheses avoid silently different semantics; `!a && b` is `(!a) && b`, as in C++, and `¬a ∧ b` is `(¬a) ∧ b`),
 - `∪`, `∩`, and `∖` relative to each other,
 - equality (`==` `!=` `≠`), comparison (`<` `<=` `>` `>=` `≤` `≥`), and three-way comparison (`<=>`) relative to each other, so `a < b == c` and `a <=> b < c` require parentheses,
@@ -543,6 +601,14 @@ Precedence only matters where an expression is actually ambiguous:
 - A prefix operator to the **right** of an infix operator is never ambiguous: `x ** -y` is `x ** (-y)`, `a * -b` is `a * (-b)`.
 - A prefix operator applied to another prefix operator is never ambiguous either: `-√x`, `-~x`, `not -x`, `*&x` are always fine, regardless of their groups.
 - Repeatability (non-repeating vs. repeating) therefore only concerns the **same** operator token, e.g. `- -x`.
+
+Whether an operator token is **prefix, infix, or postfix** is decided by whitespace, as in [Swift](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/lexicalstructure/#Operators). This matters, as many tokens can be both (`-`, `+`, `⊖`, `*`, `&`, `++`, `--`), and for custom operators in particular:
+- Whitespace on both sides or on neither side: infix, so `a - b` and `a-b` are subtractions.
+- Whitespace on the left side only: prefix, so `-b` in `f(a, -b)`.
+- Whitespace on the right side only: postfix, so `x++;` and `T* p`.
+- `(`, `[`, `{` before an operator, `)`, `]`, `}` after an operator, and `,`, `;`, `:` count as whitespace (as do comments).
+- So `a -b` is a compile error (prefix `-b` directly after the operand `a`), and so is `a- b`.
+- `*p++` is prefix `*` and postfix `++`, and `i++ + ++i` is postfix `++`, infix `+`, prefix `++`.
 
 
 ```mermaid
@@ -642,7 +708,7 @@ operator √(Float a) -> Float { ... }
 ```
 
 Infix operators without a group belong to `Default`, prefix and postfix belong to the (high) precedence groups `Prefix`/`Postfix`.
-`Default` is non-associative and only tighter than the logical operators and assignment (i.e. it is a logical operand, like `Comparison`); relative to all other groups it is unordered. So `a ⊕⊕ b and c` is `(a ⊕⊕ b) and c`, but `a ⊕⊕ b + c` and `a ⊕⊕ b ⊕⊕ c` require parentheses.
+`Default` is non-associative and only tighter than `not`, the logical operators, and assignment (i.e. it is a logical operand, like `Comparison`); relative to all other groups it is unordered. So `a ⊕⊕ b and c` is `(a ⊕⊕ b) and c`, but `a ⊕⊕ b + c` and `a ⊕⊕ b ⊕⊕ c` require parentheses.
 
 Operator precedence groups can be declared explicitly:
 
