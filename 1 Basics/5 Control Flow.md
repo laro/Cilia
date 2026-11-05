@@ -57,7 +57,7 @@ while a > b {
 
 ### Loop
 
-Better readability in cases with complex termination criteria (as in Rust).
+Simpler syntax (as in Rust) for cases with complex termination criteria.
 ```
 Int i = 0
 loop {
