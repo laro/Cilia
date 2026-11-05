@@ -141,7 +141,7 @@ List of **all currently known operators**:
     - `⊖`
 - Infix
     - Arithmetic
-        - `+` `-` `*` `/` `%`
+        - `+` `-` `*` `/` `%` `mod`
         - `**`
         - `⋅` `∙` `÷`
     - Equality
@@ -163,6 +163,7 @@ List of **all currently known operators**:
         - `<<=` `>>=` `<<<=` `>>>=`
         - `&=` `|=` `^=`
         - `&&=` `||=`
+        - `??=`
     - Vector & Matrix
         - `×`
         - `⊙` `⊘`
@@ -253,7 +254,8 @@ x--"]
     bitwiseOr  ----> unary
     bitwiseXor ---> unary
     modulo["Modulo
-x % y"]
+x % y
+x mod y"]
     rotate["Rotation
 x <<< y
 x >>> y"]
@@ -463,7 +465,8 @@ x &= y
 x |= y
 x ^= y
 x &&= y
-x ||= y"]
+x ||= y
+x ??= y"]
 ```
 {:.extra-wide-pre}
 
@@ -481,6 +484,8 @@ Notes on the value expressions:
     - TODO: Also `x?[i]` and `f?(…)` (as `?[]` in C#)?
 - `??` is right-to-left-associative (as in Swift and C#): `a ?? b ?? c` is `a ?? (b ?? c)`.
   It binds tighter than equality/comparison (`a ?? b == c` is `(a ?? b) == c`), but is unordered relative to arithmetic, bitwise, and range operators, so `x ?? 0 + 1` requires parentheses (in Swift and C# it silently means `x ?? (0 + 1)`, a well-known pitfall).
+- `x % y` is the remainder as in C/C++ (truncated division, the result has the sign of the dividend: `-7 % 3 == -1`),
+  `x mod y` is the mathematical modulo (floored division, the result has the sign of the divisor, as in Python: `-7 mod 3 == 2`).
 - Lambdas always have a body in braces (`[](Int x) -> Int { x * 2 }`), so they are primary expressions and need no precedence group.
     - TODO: If an expression body without braces is allowed someday, the lambda becomes the lowest level, below the logical operators, with the body reaching as far right as possible (as in Python and Rust).
 
