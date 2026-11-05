@@ -47,23 +47,43 @@ if 1 <= x <= 10 { ... }
 ## Loops
 
 ### While
+
 ```
 while a > b {
-  // ...
+    // ...
 }
 ```
 
+
+### Loop
+
+Better readability for for complex termination criteria.
+```
+Int i = 0
+loop {
+    i = str.find("...", i)
+    if i == String.NPos {
+        break
+    }
+    // ...
+}
+```
+
+
 ### Do-While
+
 ```
 do {
-  // ...
+    // ...
 } while a > b
 ```
 
+
 ### For-In
+
 ```
 for str in ["a", "b", "c"] {
-  // ...
+    // ...
 }
 ```
 As in Swift, Rust.  
@@ -94,10 +114,10 @@ The variable is declared "with the loop", with its type inferred from the range,
 So `for i in start..<end { <body> }` is equivalent to:
 ```
 {
-  var i = start
-  while i < end {
-      <body>
-      ++i
+    var i = start
+    while i < end {
+        <body>
+        ++i
   }
 }
 ```
@@ -106,17 +126,17 @@ _Not every_ C/C++ for-loop can be expressed as a Cilia for-loop,
 but then it (and in general, _any_ C/C++ for-loop) can be converted into a while-loop.
 ```
 for (<initialization>; <condition>; <increment>) {
-  <body>
+    <body>
 }  
 ```
 can be written as
 ```
 {
-  <initialization>
-  while <condition> {
-      <body>
-      <increment>
-  }
+    <initialization>
+    while <condition> {
+        <body>
+        <increment>
+    }
 }
 ```
 
