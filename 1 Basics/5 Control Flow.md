@@ -180,18 +180,18 @@ if pt {
 <br>
 With `while`, the declaration runs again on every iteration:
 ```
-while var pt = stmt->getParent() {
+while var task = queue.tryPop() {
     // ...
 }
 ```
-instead of ~~`while (auto pt = stmt->getParent()) { ... }`~~.
+instead of ~~`while (auto task = queue.tryPop()) { ... }`~~.
 
 ```
-while Stmt* pt = stmt->getParent() {
+while Task* task = queue.tryPop() {
     // ...
 }
 ```
-instead of ~~`while (Stmt* pt = stmt->getParent()) { ... }`~~.
+instead of ~~`while (Task* task = queue.tryPop()) { ... }`~~.
 
 
 ## Switch / Case
