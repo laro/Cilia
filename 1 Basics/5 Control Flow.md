@@ -57,7 +57,7 @@ while a > b {
 
 ### Loop
 
-Better readability for for complex termination criteria.
+Better readability in cases with complex termination criteria (as in Rust).
 ```
 Int i = 0
 loop {
@@ -68,6 +68,7 @@ loop {
     // ...
 }
 ```
+instead of ~~`while True { ... }`~~.
 
 
 ### Do-While
