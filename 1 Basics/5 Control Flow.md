@@ -1,13 +1,13 @@
 ---
 permalink: /basics/control-flow/
-description: "Cilia control flow: if/else, switch, for, while without braces around conditions. Exceptions, break, continue."
+description: "Cilia control flow: if/else, switch, for, while without parentheses around conditions. Exceptions, break, continue."
 ---
 
 # Control Flow
 
 Branches, loops, and exceptions, without parentheses around the condition clause (as in Python, Swift, Go, Ruby).
 
-`if`, `for`, and `while`/`do` _always_ take a `{...}` body, even for a single statement. 
+`if`, `for`, and `while`/`do` _always_ take a `{...}` body, even for a single statement.
 
 That can still be one line:
 ```
@@ -108,7 +108,7 @@ for i in 10..1:-1 { ... }
 ```
 instead of ~~`for (Int i = 10; i >= 1; --i) { ... }`~~,  
 translates to `for i in RangeByStep(10, 1, -1) { ... }`.
-  
+
 I find this for-loop-syntax so intriguing that I accept the somewhat complex details of the range operator (with all its variants).
 
 The variable is declared "with the loop", with its type inferred from the range, array, etc. used as source (similar to `var`, but only with the options `in`, `inout`, `copy`, `move`; see [Parameter Passing](https://cilialang.org/advanced/parameter-passing/#loop-variables)).  
@@ -119,7 +119,7 @@ So `for i in start..<end { <body> }` is equivalent to:
     while i < end {
         <body>
         ++i
-  }
+    }
 }
 ```
 
@@ -128,7 +128,7 @@ but then it (and in general, _any_ C/C++ for-loop) can be converted into a while
 ```
 for (<initialization>; <condition>; <increment>) {
     <body>
-}  
+}
 ```
 can be written as
 ```
@@ -242,7 +242,7 @@ instead of ~~`if constexpr (std::is_integral_v<T>) { ... }`~~.
 ### Consteval For
 
 The loop is unrolled at compile time, the body is instantiated once per element.  
-Iterating over heterogeneous sequences, like tuples, parameter packs, or (static reflection) members of a class.
+Useful for iterating over heterogeneous sequences, like tuples, parameter packs, or (static reflection) members of a class.
 ```
 consteval for value in (1, 2.5, "three") {
     print(value)  // `value` has a different type in each iteration
@@ -261,7 +261,7 @@ Guaranteed loop unrolling, `i` is a compile-time constant in each instance of th
 
 ## Switch / Case
 
-With implicit ~~`break`~~ (like in Swift), i.e `break` is the default, and it is not necessary to explicitly write it. Use `fallthrough` if necessary.
+With implicit ~~`break`~~ (like in Swift), i.e. `break` is the default, and it is not necessary to explicitly write it. Use `fallthrough` if necessary.
 ```
 switch i {
 case 1:
