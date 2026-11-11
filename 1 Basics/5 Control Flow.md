@@ -231,12 +231,13 @@ func toString<type T>(T value) -> String {
     }
 }
 ```
-instead of ~~`if constexpr (std::is_integral_v<T>) { ... }`~~.
+instead of ~~`if constexpr ( ... ) { ... }`~~.
 
 `consteval` applies to the whole `if` / `else if` chain, so every condition must be a compile-time constant.
 
 > **Note**  
 > Not to be confused with C++23 `if consteval { ... }` (which checks whether the code is currently being evaluated at compile time).
+> That is possible in Cilia, too.
 
 
 ### Consteval For
@@ -248,15 +249,8 @@ consteval for value in (1, 2.5, "three") {
     print(value)  // `value` has a different type in each iteration
 }
 ```
-instead of ~~`template for (auto value : std::tuple(1, 2.5, "three")) { ... }`~~ (C++26 expansion statements),  
-or ~~`std::apply([](auto... v) { (print(v), ...); }, tuple)`~~ (fold expressions).
-
-```
-consteval for i in 0..<4 {
-    result[i] = a[i] + b[i]
-}
-```
-Guaranteed loop unrolling, `i` is a compile-time constant in each instance of the body.
+instead of ~~`template for ( ... ) { ... }`~~ (C++26 expansion statements),
+or ~~`std::apply([](auto... v) { ... }, ...)`~~ (fold expressions).
 
 
 ## Switch / Case
