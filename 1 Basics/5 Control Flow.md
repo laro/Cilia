@@ -169,9 +169,14 @@ instead of ~~`if (Stmt* pt = stmt->getParent()) { ... }`~~.
 
 
 > **Note**  
-> I am not very fond of this syntax,  
-> _but_ in an `if` / `else if` chain it is more efficient, and much more compact, than nesting `if … else { if … else … }`.  
-> Also C++ has it; Swift and Rust have the equivalent `if let`, C# and Java a pattern-based variant (`is` / `instanceof`).
+> I am not particularly fond of this syntax, _but_ in an `if` / `else if` chain it is
+> - more efficient, as the function is called only if the else branch is really taken, or
+> - much more concise, when compared to the exact equivalent code.
+> 
+> Also:
+> - C++ has it,
+> - Swift and Rust have the equivalent `if let`,
+> - C# and Java a pattern-based variant (`is` / `instanceof`).
 
 In an `if` / `else if` chain, the next declaration is evaluated only when the previous condition was false:
 ```
