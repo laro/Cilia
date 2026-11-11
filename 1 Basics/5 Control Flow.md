@@ -149,7 +149,10 @@ IMHO the code is even more clear when written as while-loop (though not so dense
 
 ## Condition Declaration
 
-The condition of `if` and `while` may itself be a declaration.  
+The condition of `if` and `while` may itself be a declaration.
+
+### If
+
 The declared variable is the condition, contextually converted to `Bool`, as in C++.  
 A null pointer is `False`.  
 The name is in scope in the body, and for `if` also in the `else` branch.
@@ -167,16 +170,6 @@ if Stmt* pt = stmt->getParent() {
 ```
 instead of ~~`if (Stmt* pt = stmt->getParent()) { ... }`~~.
 
-
-> **Note**  
-> I am not particularly fond of this syntax, _but_ in an `if` / `else if` chain it is
-> - more efficient, as the function is called only if the else branch is really taken, or
-> - much more concise, when compared to the exact equivalent code.
-> 
-> Also:
-> - C++ has it,
-> - Swift and Rust have the equivalent `if let`,
-> - C# and Java a pattern-based variant (`is` / `instanceof`).
 
 In an `if` / `else if` chain, the next declaration is evaluated only when the previous condition was false:
 ```
@@ -203,7 +196,18 @@ if pt {
 }
 ```
 
-<br>
+> **Note**  
+> I am not particularly fond of this syntax, _but_ in an `if` / `else if` chain it is
+> - more efficient, as the function is called only if the else branch is really taken, or
+> - much more concise, when compared to the exact equivalent code.
+> 
+> Also:
+> - C++ has it,
+> - Swift and Rust have the equivalent `if let`,
+> - C# and Java a pattern-based variant (`is` / `instanceof`).
+
+
+### While
 
 With `while`, the declaration runs again on every iteration:
 ```
