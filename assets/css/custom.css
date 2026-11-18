@@ -20,8 +20,8 @@
    Browsers only download a font file when it is actually used, so declaring
    all of them here costs nothing.
 
-   >>> To switch the site font, change `--cilia-font` (and, if needed,
-   >>> `--cilia-font-features`) in the `:root` block right below. <<<
+   >>> To switch the site font, activate one font group (and comment out
+   >>> the others) in the `:root` block right below. <<<
    -----------------------------------------------------------------------------
 */
 @font-face {
@@ -98,25 +98,43 @@
 }
 
 :root {
-  /* Font presets (full stacks incl. fallbacks + emoji). */
   --cilia-font-fallback: BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  --cilia-font-system:      -apple-system,"Lexend",var(--cilia-font-fallback); /* old default: San Francisco (double-story a!) on Apple, Lexend elsewhere */
-  --cilia-font-lexend:      "Lexend",var(--cilia-font-fallback);
-  --cilia-font-jost:        "Jost",var(--cilia-font-fallback);
-  --cilia-font-nunito-sans: "Nunito Sans",var(--cilia-font-fallback);
-  --cilia-font-quicksand:   "Quicksand",var(--cilia-font-fallback);
 
-  /* Per-font weights: normal text / bold (strong, headings, nav). */
-  --cilia-font-system-weight:      400; --cilia-font-system-weight-bold:      600;
-  --cilia-font-lexend-weight:      300; --cilia-font-lexend-weight-bold:      500;
-  --cilia-font-jost-weight:        400; --cilia-font-jost-weight-bold:        600;
-  --cilia-font-nunito-sans-weight: 400; --cilia-font-nunito-sans-weight-bold: 600;
-  --cilia-font-quicksand-weight:   400; --cilia-font-quicksand-weight-bold:   600;
+  /* ===== FONT: exactly one group active, the others commented out ===== */
 
-  /* ===== SWITCH HERE (same font name in all three lines) ===== */
-  --cilia-font:             var(--cilia-font-lexend);
-  --cilia-font-weight:      var(--cilia-font-lexend-weight);
-  --cilia-font-weight-bold: var(--cilia-font-lexend-weight-bold);
+  /* Lexend */
+  --cilia-font: "Lexend",var(--cilia-font-fallback);
+  --cilia-font-weight: 300;
+  --cilia-font-weight-bold: 500;
+
+  /* Jost */
+  /*
+  --cilia-font: "Jost",var(--cilia-font-fallback);
+  --cilia-font-weight: 400;
+  --cilia-font-weight-bold: 600;
+  */
+
+  /* Nunito Sans */
+  /*
+  --cilia-font: "Nunito Sans",var(--cilia-font-fallback);
+  --cilia-font-weight: 400;
+  --cilia-font-weight-bold: 600;
+  */
+
+  /* Quicksand */
+  /*
+  --cilia-font: "Quicksand",var(--cilia-font-fallback);
+  --cilia-font-weight: 400;
+  --cilia-font-weight-bold: 600;
+  */
+
+  /* System (old default): San Francisco (double-story a!) on Apple, Lexend elsewhere */
+  /*
+  --cilia-font: -apple-system,"Lexend",var(--cilia-font-fallback);
+  --cilia-font-weight: 400;
+  --cilia-font-weight-bold: 600;
+  */
+
   /* Optional OpenType features. Note: the web font files contain no
      stylistic sets (ss01, ss07, ...), so only things like "tnum" work. */
   --cilia-font-features: normal;
