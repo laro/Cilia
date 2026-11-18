@@ -106,8 +106,17 @@
   --cilia-font-nunito-sans: "Nunito Sans",var(--cilia-font-fallback);
   --cilia-font-quicksand:   "Quicksand",var(--cilia-font-fallback);
 
-  /* ===== SWITCH HERE ===== */
-  --cilia-font: var(--cilia-font-lexend);
+  /* Per-font weights: normal text / bold (strong, headings, nav). */
+  --cilia-font-system-weight:      400; --cilia-font-system-weight-bold:      600;
+  --cilia-font-lexend-weight:      300; --cilia-font-lexend-weight-bold:      500;
+  --cilia-font-jost-weight:        400; --cilia-font-jost-weight-bold:        600;
+  --cilia-font-nunito-sans-weight: 400; --cilia-font-nunito-sans-weight-bold: 600;
+  --cilia-font-quicksand-weight:   400; --cilia-font-quicksand-weight-bold:   600;
+
+  /* ===== SWITCH HERE (same font name in all three lines) ===== */
+  --cilia-font:             var(--cilia-font-lexend);
+  --cilia-font-weight:      var(--cilia-font-lexend-weight);
+  --cilia-font-weight-bold: var(--cilia-font-lexend-weight-bold);
   /* Optional OpenType features. Note: the web font files contain no
      stylistic sets (ss01, ss07, ...), so only things like "tnum" work. */
   --cilia-font-features: normal;
@@ -118,6 +127,21 @@ body,
 .markdown-body {
   font-family: var(--cilia-font);
   font-feature-settings: var(--cilia-font-features);
+  font-weight: var(--cilia-font-weight);
+}
+
+b,
+strong,
+th,
+dt,
+h1, h2, h3, h4, h5, h6,
+.markdown-body b,
+.markdown-body strong,
+.markdown-body th,
+.markdown-body dt,
+.markdown-body h1, .markdown-body h2, .markdown-body h3,
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  font-weight: var(--cilia-font-weight-bold);
 }
 
 :root {
@@ -453,7 +477,7 @@ nav ul.nav-sub a {
   align-items: center;
   /* Match first-level navigation link typography */
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: var(--cilia-font-weight-bold);
   line-height: 1.25;
 }
 
@@ -491,7 +515,7 @@ nav a {
   color: inherit;
   /* Make nav items roughly the size of an H3 heading. */
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: var(--cilia-font-weight-bold);
   line-height: 1.25;
   text-decoration: none;
   border: 1px solid transparent;
