@@ -1,0 +1,6 @@
+/* VS Code Markdown preview: San Francisco with single-story "a" (ss07),
+   like the "System" font option on the website. */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-feature-settings: "ss07" 1;
+}
