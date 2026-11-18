@@ -350,7 +350,8 @@ html {
 
 /*
   Klassisch minimalistische Tabellen:
-  - dicker Strich unter dem Header,
+  - Strich in Textfarbe unter dem Header (1px, kräftiger als die Zeilenstriche),
+  - Spalten zentriert (Markdown-Ausrichtung wie |:--| hat Vorrang),
   - dünne Striche zwischen den Zeilen,
   - keine vertikalen Striche (Spalten werden nur über den Abstand getrennt).
 */
@@ -361,6 +362,7 @@ html {
 .markdown-body table td {
   border: 0;
   padding: 6px 1em;
+  text-align: center;
 }
 .markdown-body table th:first-child,
 .markdown-body table td:first-child {
@@ -371,7 +373,7 @@ html {
   padding-right: 0;
 }
 .markdown-body table thead th {
-  border-bottom: 2px solid var(--color-fg-default);
+  border-bottom: 1px solid var(--color-fg-default);
 }
 .markdown-body table tbody tr + tr td {
   border-top: 1px solid var(--color-border-default);
