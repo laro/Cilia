@@ -61,7 +61,7 @@ Iteration over a `String` or `StringView` by:
     - Break after:
       
         | Name | Codepoint(s)      | Meaning                            |
-        |------|-------------------|------------------------------------|
+        |------|-------------------|:-----------------------------------|
         | LF   | `U+000A`          | `\n`, Unix, Linux, macOS, AmigaOS  |
         | CR   | `U+000D`          | `\r`, Classic Mac, C64             |
         | CRLF | `U+000D` `U+000A` | `\r\n`, Windows, DOS, CP/M         |
