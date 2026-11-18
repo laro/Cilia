@@ -364,14 +364,6 @@ html {
   padding: 6px 1em;
   text-align: center;
 }
-.markdown-body table th:first-child,
-.markdown-body table td:first-child {
-  padding-left: 0;
-}
-.markdown-body table th:last-child,
-.markdown-body table td:last-child {
-  padding-right: 0;
-}
 .markdown-body table thead th {
   border-bottom: 1px solid var(--color-fg-default);
 }
