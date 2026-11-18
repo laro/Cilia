@@ -22,6 +22,7 @@
 
    >>> To switch the site font, activate one font group (and comment out
    >>> the others) in the `:root` block right below. <<<
+   That is the default; visitors can override it via the gear menu (top right).
    -----------------------------------------------------------------------------
 */
 @font-face {
@@ -135,6 +136,35 @@
   /* Optional OpenType features. Note: the web font files contain no
      stylistic sets (ss01, ss07, ...), so only things like "tnum" work. */
   --cilia-font-features: normal;
+}
+
+/* Font chosen by the visitor via the gear menu (top right). The attribute is
+   set from localStorage by a script in _layouts/default.html; without it, the
+   group activated above applies. */
+:root[data-cilia-font="lexend"] {
+  --cilia-font: "Lexend",var(--cilia-font-fallback);
+  --cilia-font-weight: 300;
+  --cilia-font-weight-bold: 500;
+}
+:root[data-cilia-font="jost"] {
+  --cilia-font: "Jost",var(--cilia-font-fallback);
+  --cilia-font-weight: 400;
+  --cilia-font-weight-bold: 600;
+}
+:root[data-cilia-font="nunito-sans"] {
+  --cilia-font: "Nunito Sans",var(--cilia-font-fallback);
+  --cilia-font-weight: 400;
+  --cilia-font-weight-bold: 600;
+}
+:root[data-cilia-font="quicksand"] {
+  --cilia-font: "Quicksand",var(--cilia-font-fallback);
+  --cilia-font-weight: 400;
+  --cilia-font-weight-bold: 600;
+}
+:root[data-cilia-font="system"] {
+  --cilia-font: -apple-system,"Lexend",var(--cilia-font-fallback);
+  --cilia-font-weight: 400;
+  --cilia-font-weight-bold: 600;
 }
 
 html,
@@ -560,6 +590,93 @@ nav a[aria-current="location"] {
   border-color: var(--color-fg-default, #1f2328);
 }
 
+
+/* Settings menu (gear, top right): font selection */
+nav > ul.nav-main {
+  /* Keep centered nav items clear of the gear button. */
+  padding-inline: 2.5rem;
+}
+
+.settings-menu {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+.settings-menu > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: var(--color-fg-muted);
+}
+
+.settings-menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings-menu > summary:hover,
+.settings-menu > summary:focus-visible,
+.settings-menu[open] > summary {
+  color: var(--color-fg-default);
+  border-color: currentColor;
+}
+
+.settings-menu-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 12rem;
+  padding: 0.4rem;
+  background: var(--color-canvas-default);
+  color: var(--color-fg-default);
+  border: 1px solid var(--color-border-default);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.settings-menu-heading {
+  margin: 0.1rem 0.5rem 0.3rem;
+  font-size: 0.8rem;
+  color: var(--color-fg-muted);
+}
+
+.settings-menu-panel button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  font-size: 1.05rem;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+
+.settings-menu-panel button::before {
+  content: "✓";
+  visibility: hidden;
+  font-family: var(--cilia-font-fallback);
+}
+
+.settings-menu-panel button[aria-checked="true"]::before {
+  visibility: visible;
+}
+
+.settings-menu-panel button:hover,
+.settings-menu-panel button:focus-visible {
+  border-color: currentColor;
+  outline: none;
+}
 
 /* Page footer: license is the only in-flow row. Prev/next sit at the corners
    and grow upward over the page content, so their labels do not stretch the footer. */

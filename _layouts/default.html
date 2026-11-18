@@ -194,6 +194,13 @@
     <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/CiliaLogo.svg' | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/custom.css?v=" | append: site.github.build_revision | relative_url }}">
+    <script>
+      // Apply the font chosen in the gear menu as early as possible (no flash).
+      try {
+        var ciliaFont = localStorage.getItem("cilia-font");
+        if (ciliaFont) document.documentElement.setAttribute("data-cilia-font", ciliaFont);
+      } catch (e) {}
+    </script>
     {% comment %}
       These are used by the keyboard navigation script (ArrowLeft/ArrowRight).
       They are also meaningful to crawlers and some browsers.
@@ -204,6 +211,27 @@
   </head>
 
   <body>
+    {% comment %}
+      Settings menu (gear icon, top right): lets the visitor pick the site font.
+      The choice is stored in localStorage ("cilia-font") and applied via
+      <html data-cilia-font="...">, see custom.css.
+    {% endcomment %}
+    <details class="settings-menu" id="settingsMenu">
+      <summary aria-label="Settings" title="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </summary>
+      <div class="settings-menu-panel" role="menu" aria-label="Font">
+        <p class="settings-menu-heading">Font</p>
+        <button type="button" role="menuitemradio" data-font="lexend" style="font-family: 'Lexend'; font-weight: 300">Lexend</button>
+        <button type="button" role="menuitemradio" data-font="jost" style="font-family: 'Jost'">Jost</button>
+        <button type="button" role="menuitemradio" data-font="nunito-sans" style="font-family: 'Nunito Sans'">Nunito Sans</button>
+        <button type="button" role="menuitemradio" data-font="quicksand" style="font-family: 'Quicksand'">Quicksand</button>
+        <button type="button" role="menuitemradio" data-font="system" style="font-family: -apple-system, 'Lexend', sans-serif">System</button>
+      </div>
+    </details>
     {% comment %}
       Navigation model:
       - all_md_pages: all Markdown pages sorted by path.
@@ -613,6 +641,60 @@
             if (focusSearchInput()) e.preventDefault();
           }
         });
+      })();
+    </script>
+    <script>
+      // Settings menu: font selection.
+      // - Without a stored choice, the font group active in custom.css applies;
+      //   the menu then marks whichever entry matches that font.
+      // - Closes on outside click and on Escape.
+      (function () {
+        var menu = document.getElementById("settingsMenu");
+        if (!menu) return;
+        var buttons = menu.querySelectorAll("button[data-font]");
+        var root = document.documentElement;
+
+        function currentFont() {
+          var chosen = root.getAttribute("data-cilia-font");
+          if (chosen) return chosen;
+          var family = getComputedStyle(root).getPropertyValue("--cilia-font").trim().toLowerCase();
+          if (family.indexOf("-apple-system") === 0) return "system";
+          var first = family.split(",")[0].replace(/["']/g, "").trim();
+          return first.replace(/\s+/g, "-");
+        }
+
+        function updateChecks() {
+          var font = currentFont();
+          buttons.forEach(function (b) {
+            b.setAttribute("aria-checked", b.getAttribute("data-font") === font ? "true" : "false");
+          });
+        }
+
+        buttons.forEach(function (b) {
+          b.addEventListener("click", function () {
+            var font = b.getAttribute("data-font");
+            root.setAttribute("data-cilia-font", font);
+            try { localStorage.setItem("cilia-font", font); } catch (e) {}
+            updateChecks();
+          });
+        });
+
+        menu.addEventListener("toggle", function () {
+          if (menu.open) updateChecks();
+        });
+
+        document.addEventListener("click", function (e) {
+          if (menu.open && !menu.contains(e.target)) menu.open = false;
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if ((e.key || "") === "Escape" && menu.open) {
+            menu.open = false;
+            menu.querySelector("summary").focus();
+          }
+        });
+
+        updateChecks();
       })();
     </script>
     <script>
