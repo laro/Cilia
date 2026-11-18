@@ -102,17 +102,16 @@
 
   /* ===== FONT: exactly one group active, the others commented out ===== */
 
-  /* Lexend */
+  /* Lexend
   --cilia-font: "Lexend",var(--cilia-font-fallback);
   --cilia-font-weight: 300;
   --cilia-font-weight-bold: 500;
+  */
 
   /* Jost */
-  /*
   --cilia-font: "Jost",var(--cilia-font-fallback);
   --cilia-font-weight: 400;
   --cilia-font-weight-bold: 600;
-  */
 
   /* Nunito Sans */
   /*
