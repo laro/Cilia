@@ -5,9 +5,25 @@
    -----------------------------------------------------------------------------
 */
 
-/* Font "Lexend", self-hosted (GDPR: no requests to Google Fonts).
-   Variable font (wght 100–900) from @fontsource-variable/lexend@5.2.11,
-   SIL Open Font License 1.1 (see assets/fonts/OFL.txt). */
+/* -----------------------------------------------------------------------------
+   Fonts, self-hosted (GDPR: no requests to Google Fonts).
+
+   All fonts have a single-story "a". Variable fonts (latin + latin-ext
+   subsets), SIL Open Font License 1.1 (see assets/fonts/OFL*.txt):
+     Lexend      wght 100–900   @fontsource-variable/lexend@5.2.11 (OFL.txt)
+     Quicksand   wght 300–700   @fontsource-variable/quicksand@5.3.0
+     Jost        wght 100–900   built by _tools/build_single_story_a_fonts.py
+     Nunito Sans wght 200–1000  built by _tools/build_single_story_a_fonts.py
+   Jost and Nunito Sans have the single-story "a" only as stylistic set ss01,
+   which web subsets strip; the build script bakes it into the font files.
+
+   Browsers only download a font file when it is actually used, so declaring
+   all of them here costs nothing.
+
+   >>> To switch the site font, change `--cilia-font` (and, if needed,
+   >>> `--cilia-font-features`) in the `:root` block right below. <<<
+   -----------------------------------------------------------------------------
+*/
 @font-face {
   font-family: "Lexend";
   font-style: normal;
@@ -26,12 +42,82 @@
        url("../fonts/lexend-latin-wght-normal.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../fonts/jost-latin-ext-wght-normal.woff2") format("woff2-variations"),
+       url("../fonts/jost-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../fonts/jost-latin-wght-normal.woff2") format("woff2-variations"),
+       url("../fonts/jost-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url("../fonts/nunito-sans-latin-ext-wght-normal.woff2") format("woff2-variations"),
+       url("../fonts/nunito-sans-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 1000;
+  src: url("../fonts/nunito-sans-latin-wght-normal.woff2") format("woff2-variations"),
+       url("../fonts/nunito-sans-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 700;
+  src: url("../fonts/quicksand-latin-ext-wght-normal.woff2") format("woff2-variations"),
+       url("../fonts/quicksand-latin-ext-wght-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 700;
+  src: url("../fonts/quicksand-latin-wght-normal.woff2") format("woff2-variations"),
+       url("../fonts/quicksand-latin-wght-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+:root {
+  /* Font presets (full stacks incl. fallbacks + emoji). */
+  --cilia-font-fallback: BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  --cilia-font-system:      -apple-system,"Lexend",var(--cilia-font-fallback); /* old default: San Francisco (double-story a!) on Apple, Lexend elsewhere */
+  --cilia-font-lexend:      "Lexend",var(--cilia-font-fallback);
+  --cilia-font-jost:        "Jost",var(--cilia-font-fallback);
+  --cilia-font-nunito-sans: "Nunito Sans",var(--cilia-font-fallback);
+  --cilia-font-quicksand:   "Quicksand",var(--cilia-font-fallback);
+
+  /* ===== SWITCH HERE ===== */
+  --cilia-font: var(--cilia-font-lexend);
+  /* Optional OpenType features. Note: the web font files contain no
+     stylistic sets (ss01, ss07, ...), so only things like "tnum" work. */
+  --cilia-font-features: normal;
+}
 
 html,
 body,
 .markdown-body {
-  font-family: -apple-system,"Lexend",BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-feature-settings: "ss07" 1;
+  font-family: var(--cilia-font);
+  font-feature-settings: var(--cilia-font-features);
 }
 
 :root {
