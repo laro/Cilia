@@ -495,7 +495,7 @@ nav ul.nav-sub a {
   align-items: center;
   /* Match first-level navigation link typography */
   font-size: 1.25rem;
-  font-weight: var(--cilia-font-weight-bold);
+  font-weight: var(--cilia-font-weight);
   line-height: 1.25;
 }
 
@@ -533,7 +533,7 @@ nav a {
   color: inherit;
   /* Make nav items roughly the size of an H3 heading. */
   font-size: 1.25rem;
-  font-weight: var(--cilia-font-weight-bold);
+  font-weight: var(--cilia-font-weight);
   line-height: 1.25;
   text-decoration: none;
   border: 1px solid transparent;
