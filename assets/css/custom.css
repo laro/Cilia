@@ -117,7 +117,7 @@
   /* Nunito Sans
   --cilia-font: "Nunito Sans",var(--cilia-font-fallback);
   --cilia-font-weight: 400;
-  --cilia-font-weight-bold: 600;
+  --cilia-font-weight-bold: 700;
   */
 
   /* Quicksand
@@ -154,7 +154,7 @@
 :root[data-cilia-font="nunito-sans"] {
   --cilia-font: "Nunito Sans",var(--cilia-font-fallback);
   --cilia-font-weight: 400;
-  --cilia-font-weight-bold: 600;
+  --cilia-font-weight-bold: 700;
 }
 :root[data-cilia-font="quicksand"] {
   --cilia-font: "Quicksand",var(--cilia-font-fallback);
