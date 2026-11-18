@@ -81,9 +81,9 @@ One could define the order of bits in a bitfield.
         - CiliaC may have to reverse the order of bit field elements and add some padding `UInt32:... __filler_for_right_alignment` (when using typical "LSB-first" C++ compilers like GCC x86).
     - Add your own filler (padding bits) to shift field elements/members on demand, e.g.
       ```
-      class Sign {
-          UInt32:1  filler
-          UInt32:31 bit0
+      class LeastSignificantBit {
+          UInt32:31 filler
+          UInt32:1  bit0
       }
       ```
 
