@@ -126,8 +126,10 @@
   --cilia-font-weight-bold: 600;
   */
 
-  /* System (old default): San Francisco (double-story a!) on Apple, Lexend elsewhere */
-  /*
+  /* System (old default): San Francisco on Apple, Lexend elsewhere.
+     SF's single-story "a" is stylistic set ss07 (the installed system font
+     has it; the web fonts don't, so it is harmless for the fallbacks).
+     When activating this group, also set --cilia-font-features: "ss07" 1 below.
   --cilia-font: -apple-system,"Lexend",var(--cilia-font-fallback);
   --cilia-font-weight: 400;
   --cilia-font-weight-bold: 600;
@@ -165,6 +167,7 @@
   --cilia-font: -apple-system,"Lexend",var(--cilia-font-fallback);
   --cilia-font-weight: 400;
   --cilia-font-weight-bold: 600;
+  --cilia-font-features: "ss07" 1;
 }
 
 html,
