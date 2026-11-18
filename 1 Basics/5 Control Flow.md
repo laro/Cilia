@@ -246,7 +246,7 @@ instead of ~~`if constexpr ( ... ) { ... }`~~.
 `consteval` applies to the whole `if` / `else if` chain, so every condition must be a compile-time constant.
 
 > **Note**  
-> Not to be confused with C++23 `if consteval { ... }` (which checks whether the code is currently being evaluated at compile time).
+> Not to be confused with C++23 `if consteval { ... }`, which checks whether the code is currently being evaluated at compile time.
 > That is possible in Cilia, too.
 
 
@@ -259,8 +259,7 @@ consteval for value in (1, 2.5, "three") {
     print(value)  // `value` has a different type in each iteration
 }
 ```
-instead of ~~`template for ( ... ) { ... }`~~ (C++26 expansion statements),
-or ~~`std::apply([](auto... v) { ... }, ...)`~~ (fold expressions).
+instead of ~~`template for ( ... ) { ... }`~~ (C++26 expansion statements), or `std::apply([](auto... v) { ... }, ...)` (fold expressions).
 
 
 ## Switch / Case
