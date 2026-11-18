@@ -149,14 +149,17 @@ b,
 strong,
 th,
 dt,
-h1, h2, h3, h4, h5, h6,
 .markdown-body b,
 .markdown-body strong,
 .markdown-body th,
-.markdown-body dt,
+.markdown-body dt {
+  font-weight: var(--cilia-font-weight-bold);
+}
+
+h1, h2, h3, h4, h5, h6,
 .markdown-body h1, .markdown-body h2, .markdown-body h3,
 .markdown-body h4, .markdown-body h5, .markdown-body h6 {
-  font-weight: var(--cilia-font-weight-bold);
+  font-weight: var(--cilia-font-weight);
 }
 
 :root {
