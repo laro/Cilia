@@ -331,15 +331,14 @@ html {
     background-color: transparent !important;
   }
 
-  /* Tables: dark background in dark theme */
+  /* Tables: page background and light text in dark theme */
   .markdown-body table,
   .markdown-body table tr,
   .markdown-body table tr:nth-child(even),
   .markdown-body table tr:nth-child(odd),
   .markdown-body table th,
   .markdown-body table td {
-    background-color: var(--cilia-code-bg) !important;
-    border-color: var(--cilia-border) !important;
+    background-color: transparent !important;
     color: var(--cilia-fg) !important;
   }
 }
@@ -347,6 +346,35 @@ html {
 .markdown-body table {
   display: table;
   width: auto;
+}
+
+/*
+  Klassisch minimalistische Tabellen:
+  - dicker Strich unter dem Header,
+  - dünne Striche zwischen den Zeilen,
+  - keine vertikalen Striche (Spalten werden nur über den Abstand getrennt).
+*/
+.markdown-body table tr {
+  border: 0;
+}
+.markdown-body table th,
+.markdown-body table td {
+  border: 0;
+  padding: 6px 1em;
+}
+.markdown-body table th:first-child,
+.markdown-body table td:first-child {
+  padding-left: 0;
+}
+.markdown-body table th:last-child,
+.markdown-body table td:last-child {
+  padding-right: 0;
+}
+.markdown-body table thead th {
+  border-bottom: 2px solid var(--color-fg-default);
+}
+.markdown-body table tbody tr + tr td {
+  border-top: 1px solid var(--color-border-default);
 }
 
 /*
