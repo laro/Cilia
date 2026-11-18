@@ -156,12 +156,6 @@ dt,
   font-weight: var(--cilia-font-weight-bold);
 }
 
-h1, h2, h3, h4, h5, h6,
-.markdown-body h1, .markdown-body h2, .markdown-body h3,
-.markdown-body h4, .markdown-body h5, .markdown-body h6 {
-  font-weight: var(--cilia-font-weight);
-}
-
 :root {
   /* Tell the UA that both schemes are supported (form controls, scrollbars, etc.). */
   color-scheme: light dark;
@@ -483,7 +477,7 @@ nav ul.nav-sub {
 
 nav ul.nav-sub a {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: var(--cilia-font-weight);
   border-radius: 10px;
   padding: 0.05rem 0.35rem;
   white-space: nowrap;
