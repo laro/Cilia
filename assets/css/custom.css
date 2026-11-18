@@ -114,17 +114,16 @@
   --cilia-font-weight-bold: 600;
   */
 
-  /* Nunito Sans */
+  /* Nunito Sans
   --cilia-font: "Nunito Sans",var(--cilia-font-fallback);
   --cilia-font-weight: 400;
   --cilia-font-weight-bold: 600;
+  */
 
   /* Quicksand */
-  /*
   --cilia-font: "Quicksand",var(--cilia-font-fallback);
   --cilia-font-weight: 400;
   --cilia-font-weight-bold: 600;
-  */
 
   /* System (old default): San Francisco (double-story a!) on Apple, Lexend elsewhere */
   /*
