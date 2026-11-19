@@ -18,33 +18,41 @@ class MyArray<Number T> {
     Int size = 0
 }
 ```
-- Template specialization
-  ```
-  class MyUniquePtr<type T> {
-      ... destructor calls delete ...
-  }
-  class MyUniquePtr<type T[]> {
-      ... destructor calls delete[] ...
-  }
-  ```
-- Partial template specialization
-  ```
-  class KeyValuePair<type TKey, type TValue> {
-      ...
-  }
-  class KeyValuePair<Int, type TValue> {
-      ...
-  }
-  class KeyValuePair<type TKey, String> {
-      ...
-  }
-  ```
 
-- Having to write `typename` (in C++) before dependent names in templates is quite annoying.  
-  In Cilia it would be `type` instead, but maybe it is possible to omit it with
-    - two-pass compilation,
-    - context-based rules (in `T::Value* x` -> `Value` is a type, in `var y = T::Value* x` -> `Value` is a value), and/or
-    - different syntax for types (`T::Value` is a type, `T.Value` is a value).
+### Template specialization
+```
+class MyUniquePtr<type T> {
+    ... destructor calls delete ...
+}
+class MyUniquePtr<type T[]> {
+    ... destructor calls delete[] ...
+}
+```
+
+### Partial template specialization
+```
+class KeyValuePair<type TKey, type TValue> {
+    ...
+}
+class KeyValuePair<Int, type TValue> {
+    ...
+}
+class KeyValuePair<type TKey, String> {
+    ...
+}
+```
+
+### Distinguish Types and Values
+To avoid having to write `type` (or `typename` in C++) before dependent names in templates:
+- Using `::` only to separate names of classes and namespaces.
+  ```
+  cilia::text::String s
+  ```
+- Using `.`to separate variables, functions, or enum values from classe(s) and/or namespace(s).
+  ```
+  var file = cilia::streams::File.open("...")
+  var noPosition = cilia::text::String.NPos
+  ```
 
 
 ## Function Templates
