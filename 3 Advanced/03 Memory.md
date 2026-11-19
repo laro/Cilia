@@ -44,7 +44,7 @@ arena.reset()
 
 Some allocators might be used via static functions, as there is only one instance anyway, e.g. the PhysicalMemory allocator:
 ```
-var imagePtr = PhysicalMemory::new<Image>(1920, 1080, 0.0)
+var imagePtr = PhysicalMemory.new<Image>(1920, 1080, 0.0)
 ```
 
 

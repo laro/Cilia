@@ -115,7 +115,7 @@ interface Logger {
 class Service : Greeter, Logger {
     // Required, as it would otherwise be ambiguous.
     override func greet() -> String {
-        return Greeter::greet()   // explicitly pick one
+        return Greeter.greet()   // explicitly pick one
     }
 }
 ```

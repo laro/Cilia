@@ -44,14 +44,17 @@ class KeyValuePair<type TKey, String> {
 
 ### Distinguish Types and Values
 To avoid having to write `type` (or `typename` in C++) before dependent names in templates:
-- Using `::` only to separate names of classes and namespaces.
+- Using `::` only to separate names of classes, nested types, and namespaces.
   ```
   cilia::text::String s
+  T::Value* x            // T::Value is a type → declaration
   ```
-- Using `.`to separate variables, functions, or enum values from classe(s) and/or namespace(s).
+- Using `.` to separate variables, functions, or enum values from classes and/or namespaces.
   ```
+  var y = T.Value * x    // T.Value is a value → multiplication
   var file = cilia::streams::File.open("...")
   var noPosition = cilia::text::String.NPos
+  var align = Alignment.Center
   ```
 
 
@@ -153,7 +156,7 @@ Template static constants as type traits:
 extension<type T>          T { static const Bool IsFloatingPoint = False }
 extension            Float32 { static const Bool IsFloatingPoint = True }
 extension            Float64 { static const Bool IsFloatingPoint = True }
-extension<type T> Complex<T> { static const Bool IsFloatingPoint = T::IsFloatingPoint }
+extension<type T> Complex<T> { static const Bool IsFloatingPoint = T.IsFloatingPoint }
 ```
 
 

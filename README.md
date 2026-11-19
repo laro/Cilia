@@ -85,7 +85,7 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 - **Functions** in **lowerCamelCase**
     - `str.findFirstOf(...)`
     - `arr.shrinkToFit()`
-    - `Thread::hardwareConcurrency()`
+    - `Thread.hardwareConcurrency()`
 
 - **Global constants** in **UpperCamelCase**.
     - `Pi`, `SpeedOfLight`, `Euler` (feel free to bend/break this rule, e.g. define a constant `const e = Euler`)

@@ -301,8 +301,8 @@ This is different than in C++, so for interop with C++ you may need to use `std:
 - Maybe even
   ```
   class OkDialog : Window {
-      Label("Message to user").horizontalAlignment(Alignment::Center)
-      Button("Ok").onClick(&OkDialog::onOk)
+      Label("Message to user").horizontalAlignment(Alignment.Center)
+      Button("Ok").onClick(&OkDialog.onOk)
   }
   ```
   instead of
