@@ -137,31 +137,31 @@ The rule of thumb is:
 So, as general default, use _const reference_,
 ```
 extension<type T> T {
-  InParameterType = const T&
+  using InParameterType = const T&
 }
 ```
 and use a "list of exceptions" for the "const _value_ types".
 ```
-extension     Bool { InParameterType = const Bool }
-extension     Int8 { InParameterType = const Int8 }
-extension    Int16 { InParameterType = const Int16 }
-extension    Int32 { InParameterType = const Int32 }
-extension    Int64 { InParameterType = const Int64 }
-extension    UInt8 { InParameterType = const UInt8 }
-extension   UInt16 { InParameterType = const UInt16 }
-extension   UInt32 { InParameterType = const UInt32 }
-extension   UInt64 { InParameterType = const UInt64 }
-extension  Float32 { InParameterType = const Float32 }
-extension  Float64 { InParameterType = const Float64 }
-extension   std::string_view { InParameterType = const std::string_view }
-extension  std::span<type T> { InParameterType = const std::span<T> }
+extension     Bool { using InParameterType = const Bool }
+extension     Int8 { using InParameterType = const Int8 }
+extension    Int16 { using InParameterType = const Int16 }
+extension    Int32 { using InParameterType = const Int32 }
+extension    Int64 { using InParameterType = const Int64 }
+extension    UInt8 { using InParameterType = const UInt8 }
+extension   UInt16 { using InParameterType = const UInt16 }
+extension   UInt32 { using InParameterType = const UInt32 }
+extension   UInt64 { using InParameterType = const UInt64 }
+extension  Float32 { using InParameterType = const Float32 }
+extension  Float64 { using InParameterType = const Float64 }
+extension   std::string_view { using InParameterType = const std::string_view }
+extension  std::span<type T> { using InParameterType = const std::span<T> }
 ...
 ```
 This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
 
 ```
-extension<type T> Complex<T> { InParameterType = T::InParameterType }
-extension  Complex<Float128> { InParameterType = const Complex<Float128>& }
+extension<type T> Complex<T> { using InParameterType = T::InParameterType }
+extension  Complex<Float128> { using InParameterType = const Complex<Float128>& }
 ```
 According to the generic rule, `Complex<T>` is passed the same way as `T`. But as `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default), the generic rule is corrected.
 
@@ -174,8 +174,8 @@ Applicable only for types `X` that have an `XView` counterpart where
 
 Like:  
 ```
-extension String { InParameterType = const StringView }
-extension<type T>  T[0] { InParameterType = const Span }
+extension String { using InParameterType = const StringView }
+extension<type T>  T[0] { using InParameterType = const Span }
 ```
 
 So **for an `in String` _in fact_ a `const StringView`** is used as parameter type.
@@ -213,16 +213,16 @@ This is not possible with every view type, as some views do not guarantee contig
 
 Small `...View`-classes with a size of up to 16 bytes (such as `StringView`, `ArrayView`/`Span`, and `VectorView`) will be passed by value:
 ```
-extension String { InParameterType = const StringView }
-extension  Array { InParameterType = const ArrayView }
-extension Vector { InParameterType = const VectorView }
+extension String { using InParameterType = const StringView }
+extension  Array { using InParameterType = const ArrayView }
+extension Vector { using InParameterType = const VectorView }
 ```
 
 Bigger `...View`-classes with a size of _more_ than 16 bytes (such as `MatrixBasicView`, `ImageBasicView`, and `NDArrayBasicView`) will be passed by reference:
 ```
-extension  Matrix { InParameterType = const MatrixBasicView& }
-extension   Image { InParameterType = const ImageBasicView& }
-extension NDArray { InParameterType = const NDArrayBasicView& }
+extension  Matrix { using InParameterType = const MatrixBasicView& }
+extension   Image { using InParameterType = const ImageBasicView& }
+extension NDArray { using InParameterType = const NDArrayBasicView& }
 ```
 But you do _not_ have to write that explicitly, because `const&` simply is the standard for user defined types anyway.
 
@@ -230,19 +230,19 @@ But you do _not_ have to write that explicitly, because `const&` simply is the s
 ### Type Trait `CopyParameterType`
 The type trait `CopyParameterType` of a type `T` typically is simply `T` itself:
 ```
-extension<type T> T { CopyParameterType = T }
+extension<type T> T { using CopyParameterType = T }
 ```
 But for `View`-types the corresponding "full" type is used instead:
 ```
-extension       StringView { CopyParameterType = String }
-extension        ArrayView { CopyParameterType = Array }
-extension       VectorView { CopyParameterType = Vector }
-extension       MatrixView { CopyParameterType = Matrix }
-extension  MatrixBasicView { CopyParameterType = Matrix }
-extension        ImageView { CopyParameterType = Image }
-extension   ImageBasicView { CopyParameterType = Image }
-extension      NDArrayView { CopyParameterType = NDArray }
-extension NDArrayBasicView { CopyParameterType = NDArray }
+extension       StringView { using CopyParameterType = String }
+extension        ArrayView { using CopyParameterType = Array }
+extension       VectorView { using CopyParameterType = Vector }
+extension       MatrixView { using CopyParameterType = Matrix }
+extension  MatrixBasicView { using CopyParameterType = Matrix }
+extension        ImageView { using CopyParameterType = Image }
+extension   ImageBasicView { using CopyParameterType = Image }
+extension      NDArrayView { using CopyParameterType = NDArray }
+extension NDArrayBasicView { using CopyParameterType = NDArray }
 ```
 
 The idea is to get a _mutable copy_ of the object, even without understanding the concept of a `View`.
