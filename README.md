@@ -102,7 +102,14 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
     - `cilia::linalg`, `cilia::geometry`
     - Helps to differentiate between classes and namespaces.
 
-Acronyms of at most two letters stay fully upper-case inside names, e.g. `userID`, `IOStream`. Longer abbreviations follow normal camel-case segments, e.g. `HttpRequest`, `XmlWriter`.
+Acronyms and initialisms follow Swift-style capitalization:
+- In UpperCamelCase, acronyms remain fully uppercase, e.g. `ID`, `IO`, `HTTP`, `XML`, `RGB`:  
+  `UserID`, `IOStream`, `HTTPResponse`, `XMLWriter`, `RGBColor`
+- In lowerCamelCase, acronyms at the beginning are fully lowercase, while acronyms later in the name remain fully uppercase:  
+  `userID`, `ioStream`, `httpResponse`, `xmlWriter`, `rgbColor`  
+  `saveHTTP()`, `saveXML()`, `saveRGB()`
+
+Only commonly all-uppercase acronyms and initialisms follow this rule; ordinary words are not arbitrarily capitalized.
 
 
 ## No Trailing Semicolons
