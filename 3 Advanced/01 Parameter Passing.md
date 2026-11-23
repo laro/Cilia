@@ -129,12 +129,14 @@ try {
     - for perfect forwarding in template functions.
     - Technically written as a right-value reference (`X&&`), too.
 
+
 ### Type Trait `InParameterType`
+
 The type trait `InParameterType` determines the concrete type to be used for `in`-passing.
 
 The rule of thumb is:
-- Objects that are "POD" ("Plain Old Data", i.e. trivially copyable and trivially destructible) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes on 64 bit platforms) are passed by value.
-- Larger objects (or "non-POD") are passed by reference.
+- Types with a size `<= 2 * sizeOf(Int)` (i.e. up to 16 bytes on 64 bit platforms) that are trivially copyable and trivially destructible are passed by value.
+- All other types are passed by reference.
 
 So, as general default, use _const reference_,
 ```
@@ -175,6 +177,7 @@ According to the generic rule, `Complex<T>` is passed the same way as `T`. But a
 
 
 #### Special Trick for Types with Views
+
 Applicable only for types `X` that have an `XView` counterpart where
 - `X` can implicitly be converted to `XView`,
 - `XView` can (explicitly) be converted to `X`, and
