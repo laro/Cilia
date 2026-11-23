@@ -160,7 +160,13 @@ extension  std::span<type T> { using InParameterType = const std::span<T> }
 This way developers only need to extend this list if they create a _small_ class (and if they need or want maximum performance). And I expect most custom classes to be larger than 16 bytes (so nothing to do for those).
 
 ```
-extension<type T> Complex<T> { using InParameterType = T::InParameterType }
+extension<type T> Complex<T> {
+    using InParameterType = Conditional<
+      IsReference(T::InParameterType),
+      const Complex<T>&,
+      const Complex<T>
+    >
+}
 extension  Complex<Float128> { using InParameterType = const Complex<Float128>& }
 ```
 According to the generic rule, `Complex<T>` is passed the same way as `T`. But as `sizeOf(Complex<Float128>)` is 32 bytes (so pass by reference is desired), despite `sizeOf(Float128)` is 16 bytes (so pass by value would be the default), the generic rule is corrected.
