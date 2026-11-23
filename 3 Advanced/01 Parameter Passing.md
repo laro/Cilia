@@ -133,8 +133,8 @@ try {
 The type trait `InParameterType` determines the concrete type to be used for `in`-passing.
 
 The rule of thumb is:
-- Objects that are POD (Plain Old Data, i.e. with no pointers) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes on 64 bit platforms) are passed by value.
-- Larger objects (or non-POD) are passed by reference.
+- Objects that are "POD" ("Plain Old Data", i.e. trivially copyable and trivially destructible) with a size less than or equal to the size of two `Int` (i.e. up to 16 bytes on 64 bit platforms) are passed by value.
+- Larger objects (or "non-POD") are passed by reference.
 
 So, as general default, use _const reference_,
 ```
