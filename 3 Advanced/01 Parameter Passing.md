@@ -114,7 +114,7 @@ try {
           ```
 - **`copy`**
     - to create a (mutable) copy (i.e. pass "by value").
-    - Technically a non-const/mutable value (`X`), sometimes the "full class" `X` of a view class `XView`.
+    - Technically a non-const/mutable value (`X`), sometimes the "full"/owning type `X` of a view type `XView`.
     - Examples:
         - `for copy i in [1, 2, 3] { ... }`
             - `i` is an `Int`
@@ -243,7 +243,7 @@ The type trait `CopyParameterType` of a type `T` typically is simply `T` itself:
 ```
 extension<type T> T { using CopyParameterType = T }
 ```
-But for `View`-types the corresponding "full" type is used instead:
+But for `View`-types the corresponding "full"/owning type is used instead:
 ```
 extension       StringView { using CopyParameterType = String }
 extension        ArrayView { using CopyParameterType = Array }
