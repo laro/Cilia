@@ -110,7 +110,7 @@ Commonly all-uppercase acronyms and initialisms (e.g. `ID`, `IO`, `HTTP`, `XML`,
 In UpperCamelCase, acronyms remain fully uppercase:
 - `UserID`, `IOStream`, `HTTPResponse`, `XMLWriter`, `RGBColor`
 
-In lowerCamelCase, acronyms at the beginning are fully lowercase, while acronyms later in the name remain fully uppercase:
+In lowerCamelCase, acronyms at the beginning of a name are fully lowercase, while acronyms elsewhere remain fully uppercase:
 - `userID`, `ioStream`, `httpResponse`, `xmlWriter`, `rgbColor`  
 - `saveHTTP()`, `saveXML()`, `saveRGB()`
 
