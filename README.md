@@ -102,6 +102,9 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
     - `cilia::linalg`, `cilia::geometry`
     - Helps to differentiate between classes and namespaces.
 
+
+### Acronyms and Initialisms
+
 Commonly all-uppercase acronyms and initialisms (e.g. `ID`, `IO`, `HTTP`, `XML`, `RGB`) follow Swift-style capitalization.
 
 In UpperCamelCase, acronyms remain fully uppercase:
