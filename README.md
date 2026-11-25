@@ -112,7 +112,7 @@ In UpperCamelCase, acronyms remain fully uppercase:
 
 In lowerCamelCase, acronyms at the beginning of a name are fully lowercase, while acronyms elsewhere remain fully uppercase:
 - `userID`, `ioStream`, `httpResponse`, `xmlWriter`, `rgbColor`  
-- `saveHTTP()`, `saveXML()`, `saveRGB()`
+- `sendHTTP()`, `saveXML()`, `saveRGB()`
 
 > **Note**  
 > I just can't stand "Io"[^1], "Id"[^2], or "Rgba".  
