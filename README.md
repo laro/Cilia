@@ -114,6 +114,10 @@ In lowerCamelCase, acronyms at the beginning of a name are fully lowercase, whil
 - `userID`, `ioStream`, `httpResponse`, `xmlWriter`, `rgbColor`  
 - `saveHTTP()`, `saveXML()`, `saveRGB()`
 
+> **Note**  
+> I just can't stand "Io" (if not the moon), "Id" (if not about psychology), nor "Rgba".  
+> So kudos to [Swift](https://www.swift.org/documentation/api-design-guidelines) for bringing back this classic C++ style. Fashion repeats itself.
+
 
 ## No Trailing Semicolons
 
