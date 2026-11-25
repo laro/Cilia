@@ -105,7 +105,7 @@ Roughly in the style of Qt and Java (or JavaScript, TypeScript, Kotlin, Swift).
 
 ### Acronyms and Initialisms
 
-Commonly all-uppercase acronyms and initialisms (e.g. `ID`, `IO`, `HTTP`, `XML`, `RGB`) follow [Swift-style capitalization](https://www.swift.org/documentation/api-design-guidelines).
+Commonly all-uppercase acronyms and initialisms (e.g. `ID`, `IO`, `HTTP`, `XML`, `RGB`) follow [Swift-style capitalization](https://www.swift.org/documentation/api-design-guidelines/#general-conventions).
 
 In UpperCamelCase, acronyms remain fully uppercase:
 - `UserID`, `IOStream`, `HTTPResponse`, `XMLWriter`, `RGBColor`
