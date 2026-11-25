@@ -115,11 +115,11 @@ In lowerCamelCase, acronyms at the beginning of a name are fully lowercase, whil
 - `sendHTTP()`, `saveXML()`, `saveRGB()`
 
 > **Note**  
-> I just can't stand "Io"[^1], "Id"[^2], or "Rgba".  
+> I just can't stand "Id"[^1], "Io"[^2], or "Rgba".  
 > So kudos to Swift for bringing back this classic C++ style. Fashion repeats itself.
 
-[^1]: Unless referring to [Jupiter's moon](https://en.wikipedia.org/wiki/Io_(moon)).
-[^2]: Unless referring to [Freud's psychoanalytic concept](https://en.wikipedia.org/wiki/Id,_ego_and_superego).
+[^1]: Unless referring to [Freud's psychoanalytic concept](https://en.wikipedia.org/wiki/Id,_ego_and_superego).
+[^2]: Unless referring to [Jupiter's moon](https://en.wikipedia.org/wiki/Io_(moon)).
 
 
 ## No Trailing Semicolons
