@@ -703,6 +703,12 @@ nav > ul.nav-main {
   outline: none;
 }
 
+
+.footnotes {
+  margin-top: 4em;
+}
+
+
 /* Page footer: license is the only in-flow row. Prev/next sit at the corners
    and grow upward over the page content, so their labels do not stretch the footer. */
 body > footer {
