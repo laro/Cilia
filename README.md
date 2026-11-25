@@ -13,9 +13,11 @@ This is a collection of ideas for a programming language that is **based on C++*
 - **CamelCase Style**  
 I'd like to have the standard library roughly in the style of Swift, Java/Kotlin, JavaScript/TypeScript, or [**Qt**](https://wiki.qt.io/Qt_Coding_Style). In addition to being my personal favourite, this could also attract many developers currently using those languages.
 - **Simplified Syntax**  
-Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed. Cilia can call into C++ (and vice versa), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
+Many of C++'s shortcomings stem from the fact that it inherited from C or that backwards compatibility with existing code must be guaranteed. Cilia can call into C++ (and vice versa[^1]), but is a separate language, so its _syntax_ does not need to be backwards compatible with C++.
 
 Furthermore it is a collection of – in my opinion – quite obvious ideas. And mostly taken from other programming languages, of course.
+
+[^1]: When using a compiler that supports both C++ and Cilia, of course.
 
 > **Note**  
 > Currently it is more of a **wish list**, a "thought experiment".  
@@ -115,11 +117,11 @@ In lowerCamelCase, acronyms at the beginning of a name are fully lowercase, whil
 - `sendHTTP()`, `saveXML()`, `saveRGB()`
 
 > **Note**  
-> I just can't stand "Id"[^1], "Io"[^2], or "Rgba".  
+> I just can't stand "Id"[^2], "Io"[^3], or "Rgba".  
 > So kudos to Swift for bringing back this classic C++ style. Fashion repeats itself.
 
-[^1]: Unless referring to [Freud's psychoanalytic concept](https://en.wikipedia.org/wiki/Id,_ego_and_superego).
-[^2]: Unless referring to [Jupiter's moon](https://en.wikipedia.org/wiki/Io_(moon)).
+[^2]: Unless referring to [Freud's psychoanalytic concept](https://en.wikipedia.org/wiki/Id,_ego_and_superego).
+[^3]: Unless referring to [Jupiter's moon](https://en.wikipedia.org/wiki/Io_(moon)).
 
 
 ## No Trailing Semicolons
