@@ -118,7 +118,7 @@ In lowerCamelCase, acronyms at the beginning of a name are fully lowercase, whil
 > I just can't stand "Io"[^1], "Id"[^2], or "Rgba".  
 > So kudos to [Swift](https://www.swift.org/documentation/api-design-guidelines) for bringing back this classic C++ style. Fashion repeats itself.
 
-[^1]: Unless referring to the [moon](https://en.wikipedia.org/wiki/Io_(moon)).
+[^1]: Unless referring to [Jupiter's moon](https://en.wikipedia.org/wiki/Io_(moon)).
 [^2]: Unless referring to [Freud's psychoanalytic concept](https://en.wikipedia.org/wiki/Id,_ego_and_superego).
 
 
